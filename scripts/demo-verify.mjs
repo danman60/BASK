@@ -142,6 +142,24 @@ await check('beat-7', 'What UVALUX sees screen exists', async () => {
   return /uvalux sees/i.test(text) || 'screen does not name what UVALUX sees';
 });
 
+// ── Customer side (represented-future surface, but real) ─────────────────────
+await check('customer', 'Public booking page offers real slots', async () => {
+  const status = await routeStatus(page, '/book');
+  if (status === 404) return 'skip';
+  if (status !== 200) return `HTTP ${status}`;
+  await page.locator('.book-service').first().waitFor({ timeout: 15_000 }).catch(() => {});
+  const services = await page.locator('.book-service').count();
+  if (services === 0) return 'no services offered';
+  // The tiles are in the server HTML before React hydrates, so a click fired the
+  // instant they appear lands on a button with no handler yet and silently does
+  // nothing. Settle first — this is a real race a fast presenter could also hit.
+  await page.waitForTimeout(1500);
+  await page.locator('.book-service').first().click();
+  await page.locator('.book-slot').first().waitFor({ timeout: 15_000 }).catch(() => {});
+  const slots = await page.locator('.book-slot').count();
+  return slots > 0 || 'no open times offered';
+});
+
 // ── Presenter mechanics (recovery path for every beat) ───────────────────────
 await check('presenter', 'Panel opens on the hotkey', async () => {
   await routeStatus(page, '/dev/api');
