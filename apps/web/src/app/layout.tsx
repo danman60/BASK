@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Fraunces, Inter } from 'next/font/google';
 import { Suspense } from 'react';
 import '@bask/tokens/index.css';
@@ -28,6 +29,7 @@ const inter = Inter({
 import { ThemeProvider, ThemeScript } from '@bask/ui';
 import '@bask/ui/guidance.css';
 
+import { ClientErrorCapture } from '@/components/ClientErrorCapture';
 import { PresenterPanel } from '@/components/presenter/PresenterPanel';
 import { Providers } from './providers';
 

@@ -1335,3 +1335,19 @@ model DemoState {
   @@map("demo_state")
   @@schema("bask")
 }
+
+/// Remote log sink (bootstrap skill Step 15c). Server actions, middleware and the
+/// browser all POST here, so a failure during a live demo can be pulled from any
+/// machine instead of being lost in a terminal nobody is watching.
+model AppLog {
+  id    BigInt   @id @default(autoincrement())
+  ts    DateTime @default(now()) @db.Timestamptz(6)
+  level String   @default("info")
+  tag   String
+  msg   String
+  data  Json?
+
+  @@index([ts])
+  @@map("app_log")
+  @@schema("bask")
+}

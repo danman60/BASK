@@ -224,6 +224,10 @@ export async function createBooking(input: {
           salonId: salon.id,
           OR: [{ email: { equals: contact, mode: 'insensitive' } }, { phone: contact }],
         },
+        // Two records can share a phone (a couple, a family). Oldest wins so the
+        // same contact always resolves to the same person rather than whichever
+        // row Postgres happened to return.
+        orderBy: { createdAt: 'asc' },
         select: { id: true },
       })
     : null;
