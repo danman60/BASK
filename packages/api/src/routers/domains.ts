@@ -65,31 +65,10 @@ export const floorRouter = router({
   })),
 });
 
-export const customersRouter = router({
-  surface: staffProcedure.query(({ ctx }) => ({
-    ...salonSurface({
-      domain: 'customers',
-      buildsIn: 'M1',
-      summary: 'Customer records, memberships, packages and visit history.',
-    }),
-    salonId: ctx.salonId,
-    role: ctx.role,
-  })),
-});
-
-export const marketingRouter = router({
-  // Owner-only: campaigns spend goodwill and money. Nothing auto-sends
-  // (IMPLEMENTATION_SPEC §1.2 guardrails).
-  surface: ownerProcedure.query(({ ctx }) => ({
-    ...salonSurface({
-      domain: 'marketing',
-      buildsIn: 'M1',
-      summary: 'Segments, campaign drafts, approval and measured results.',
-    }),
-    salonId: ctx.salonId,
-    role: ctx.role,
-  })),
-});
+// `customersRouter` and `marketingRouter` have left this file: M1 Lane 3 filled
+// them in, and they now live in `./customers.ts` and `./marketing.ts` with the
+// rest of their procedures. Both kept their `surface()` query, so `/dev/api`
+// still lists every domain.
 
 export const inventoryRouter = router({
   surface: staffProcedure.query(({ ctx }) => ({

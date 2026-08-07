@@ -10,14 +10,20 @@
  *
  * Resolution order, most explicit first:
  *   role  — `x-bask-role` header → `?role=` query param → `owner`
- *   salon — `x-bask-salon` header → `?salon=` query param → the only/first salon
- *           in the database → null
+ *   salon — `x-bask-salon` header → `?salon=` query param → the hero salon
+ *           (Sunset Ridge) → the oldest salon in the database → null
  *
- * The fallback to "first salon" is what makes the demo work before anyone picks
- * one: M0–M2 run a single seeded tenant (Sunset Ridge). It is deliberately a
- * fallback, not a default — every procedure still reads `ctx.salonId`.
+ * The fallback is what makes the demo work before anyone picks a salon.
+ *
+ * It resolves to the HERO salon by id, NOT to "the first row". M0 seeded the
+ * 12-salon Compass portfolio alongside Sunset Ridge, and the oldest of those by
+ * `createdAt` is Ironwood — a portfolio account with zero customers. Falling
+ * back to it silently pointed every Bask surface at an empty tenant (found in
+ * M1 Lane 3: segments returned 0 of 420 customers). "Oldest row" survives only
+ * as a last resort for a database seeded some other way.
  */
 
+import { HERO_SALON_ID } from '@bask/db/fixtures';
 import { db, type PrismaClient, type ScopedDb, withSalonScope } from '@bask/db';
 
 import { type DemoRole, parseDemoRole, ROLE_HEADER, SALON_HEADER } from './roles';
@@ -86,10 +92,14 @@ export async function createContext(options: CreateContextOptions): Promise<Cont
         where: salonWhere(requestedSalon),
         select: { id: true, slug: true },
       })
-    : await db.salon.findFirst({
+    : ((await db.salon.findUnique({
+        where: { id: HERO_SALON_ID },
+        select: { id: true, slug: true },
+      })) ??
+      (await db.salon.findFirst({
         orderBy: { createdAt: 'asc' },
         select: { id: true, slug: true },
-      });
+      })));
 
   const salonId = salon?.id ?? null;
 

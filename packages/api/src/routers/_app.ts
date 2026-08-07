@@ -5,13 +5,13 @@
 
 import { router } from '../trpc';
 import { compassRouter, dataSharingRouter } from './compass';
+import { customersRouter } from './customers';
 import { demoRouter } from './demo';
+import { marketingRouter } from './marketing';
 import {
-  customersRouter,
   floorRouter,
   insightsRouter,
   inventoryRouter,
-  marketingRouter,
   settingsRouter,
   todayRouter,
 } from './domains';
