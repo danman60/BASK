@@ -18,13 +18,15 @@
     "demo:reset": "pnpm --filter @bask/db demo:reset",
     "demo:advance": "pnpm --filter @bask/db demo:advance",
     "demo:checksum": "pnpm --filter @bask/db demo:checksum",
-    "demo:dump": "pnpm --filter @bask/db demo:dump"
+    "demo:dump": "pnpm --filter @bask/db demo:dump",
+    "demo:verify": "node scripts/demo-verify.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.0",
     "@types/node": "^22.19.0",
     "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
+    "playwright": "1.61.1",
     "prettier": "^3.9.6",
     "turbo": "^2.10.8",
     "typescript": "^5.9.3",

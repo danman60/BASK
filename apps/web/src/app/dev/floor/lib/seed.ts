@@ -34,7 +34,7 @@ interface RoomSeed {
 }
 
 const ROOM_TYPES = [
-  { key: 'uv_lie_down', label: 'Lie-down bed', category: 'uv', defaultMinutes: 12, sortOrder: 10 },
+  { key: 'uv_level2', label: 'Lie-down bed', category: 'uv', defaultMinutes: 12, sortOrder: 10 },
   {
     key: 'uv_stand_up',
     label: 'Stand-up booth',
@@ -43,7 +43,7 @@ const ROOM_TYPES = [
     sortOrder: 20,
   },
   {
-    key: 'spray_booth',
+    key: 'spray',
     label: 'Spray booth',
     category: 'spray',
     defaultMinutes: 15,
@@ -52,14 +52,22 @@ const ROOM_TYPES = [
   { key: 'red_light', label: 'Red light', category: 'wellness', defaultMinutes: 20, sortOrder: 40 },
 ];
 
-/** Eight rooms — the count DESIGN_SPEC §3.2 and PRODUCT_SPEC §20 both assume. */
+/**
+ * Eight rooms — the count DESIGN_SPEC §3.2 and PRODUCT_SPEC §20 both assume.
+ *
+ * Room-type keys must match the ones the FIXTURE generator seeds
+ * (uv_level1/2/3, uv_stand_up, spray, red_light, hydromassage). This harness
+ * originally invented its own (`uv_lie_down`, `spray_booth`); after a
+ * `demo:reset` those types no longer existed, every room insert failed its
+ * foreign key, and the board silently rendered zero rooms.
+ */
 const ROOMS: RoomSeed[] = [
-  { name: 'Bed 1', roomTypeKey: 'uv_lie_down', sortOrder: 10 },
-  { name: 'Bed 2', roomTypeKey: 'uv_lie_down', sortOrder: 20 },
-  { name: 'Bed 3', roomTypeKey: 'uv_lie_down', sortOrder: 30 },
+  { name: 'Bed 1', roomTypeKey: 'uv_level2', sortOrder: 10 },
+  { name: 'Bed 2', roomTypeKey: 'uv_level2', sortOrder: 20 },
+  { name: 'Bed 3', roomTypeKey: 'uv_level2', sortOrder: 30 },
   { name: 'Stand-up 1', roomTypeKey: 'uv_stand_up', sortOrder: 40 },
   { name: 'Stand-up 2', roomTypeKey: 'uv_stand_up', sortOrder: 50 },
-  { name: 'Spray Booth', roomTypeKey: 'spray_booth', sortOrder: 60 },
+  { name: 'Spray Booth', roomTypeKey: 'spray', sortOrder: 60 },
   { name: 'Red Light 1', roomTypeKey: 'red_light', sortOrder: 70 },
   { name: 'Red Light 2', roomTypeKey: 'red_light', sortOrder: 80 },
 ];
