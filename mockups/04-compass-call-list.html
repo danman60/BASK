@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compass — Call List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* Hallmark · screen: Compass Call List · theme: Compass (fixed dark sub-theme of Sunset system) */
+body { background: var(--c-paper); color: var(--c-ink); }
+.layout { display: grid; grid-template-columns: 216px minmax(0,1fr); min-height: 100vh; }
+
+.sidenav { border-right: 1px solid var(--c-line); padding: var(--space-6) var(--space-5); display: flex; flex-direction: column; }
+.wordmark { font: italic 600 22px/1 var(--font-display); color: var(--c-ink); padding: 0 var(--space-3); }
+.wordmark small { display: block; font: 600 var(--text-xs)/1.6 var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-amber); font-style: normal; }
+.sidenav nav { margin-top: var(--space-8); display: flex; flex-direction: column; gap: 2px; }
+.sidenav a { font: 500 var(--text-sm)/1 var(--font-body); color: var(--c-ink-soft); text-decoration: none; padding: 10px var(--space-3); border-radius: var(--radius-sm); }
+.sidenav a.active { color: var(--c-ink); background: var(--c-card); font-weight: 600; }
+.rep { margin-top: auto; display: flex; gap: 10px; align-items: center; padding: var(--space-3); }
+.rep .a { width: 32px; height: 32px; border-radius: 50%; background: var(--c-amber-wash); color: var(--c-amber); display: grid; place-items: center; font: 700 11px/1 var(--font-body); }
+.rep .n { font: 600 var(--text-sm)/1.3 var(--font-body); }
+.rep .r { font-size: var(--text-xs); color: var(--c-ink-faint); }
+
+.main { padding: var(--space-8) var(--space-10); max-width: 980px; }
+.head h1 { font: 500 var(--text-display)/1.15 var(--font-display); letter-spacing: -0.015em; }
+.head h1 em { color: var(--c-amber); }
+.head p { color: var(--c-ink-soft); margin-top: var(--space-2); }
+.pulse { display: flex; gap: var(--space-6); margin: var(--space-6) 0 var(--space-8); font-size: var(--text-sm); color: var(--c-ink-soft); }
+.pulse b { color: var(--c-ink); font-weight: 600; }
+.pulse i { font-style: normal; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 7px; }
+
+.call { background: var(--c-card); border: 1px solid var(--c-line); border-radius: var(--radius-lg); box-shadow: var(--c-shadow); margin-bottom: var(--space-5); overflow: hidden; }
+.call-head { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-5) var(--space-6) 0; }
+.call-head h3 { font: 600 var(--text-lg)/1.2 var(--font-body); }
+.loc { font-size: var(--text-sm); color: var(--c-ink-faint); }
+.sig { margin-left: auto; font: 600 var(--text-xs)/1 var(--font-body); border-radius: 999px; padding: 6px 12px; }
+.sig.watch { background: var(--c-amber-wash); color: var(--c-amber); }
+.sig.grow { background: var(--c-green-wash); color: var(--c-green); }
+.ev { padding: var(--space-4) var(--space-6) 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--space-3); }
+.ev-item { border: 1px solid var(--c-line); border-radius: var(--radius-sm); padding: var(--space-3) var(--space-4); }
+.ev-item .n { font: 600 var(--text-lg)/1 var(--font-body); font-variant-numeric: tabular-nums; }
+.ev-item .n.down { color: var(--c-risk); } .ev-item .n.up { color: var(--c-green); } .ev-item .n.flat { color: var(--c-ink); }
+.ev-item .k { font-size: var(--text-xs); color: var(--c-ink-faint); margin-top: 3px; }
+.suggest { margin: var(--space-4) var(--space-6); padding: var(--space-4) var(--space-5); background: var(--c-paper-2); border-left: 3px solid var(--c-amber); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: var(--text-sm); color: var(--c-ink-soft); }
+.suggest b { color: var(--c-ink); }
+.call-actions { display: flex; gap: var(--space-2); padding: 0 var(--space-6) var(--space-5); }
+.cbtn { font: 600 var(--text-sm)/1 var(--font-body); border-radius: 999px; padding: 10px 16px; cursor: pointer; border: 1px solid transparent; }
+.cbtn.pri { background: var(--c-amber); color: oklch(20% 0.03 60); }
+.cbtn.sec { background: transparent; border-color: var(--c-line); color: var(--c-ink-soft); }
+.cbtn.ghost { background: transparent; color: var(--c-ink-faint); border: 0; }
+.cbtn:focus-visible { outline: 2px solid var(--c-amber); outline-offset: 2px; }
+.thread { padding: var(--space-3) var(--space-6) var(--space-5); border-top: 1px solid var(--c-line); font-size: var(--text-xs); color: var(--c-ink-faint); }
+.thread b { color: var(--c-ink-soft); }
+</style></head>
+<body>
+
+<div class="layout">
+  <aside class="sidenav">
+    <div class="wordmark">Compass<small>UVALUX</small></div>
+    <nav>
+      <a href="#">Network</a>
+      <a class="active" href="#">Call List</a>
+      <a href="#">Accounts</a>
+      <a href="#">Signals</a>
+      <a href="#">Coaching</a>
+    </nav>
+    <div class="rep"><div class="a">KL</div><div><div class="n">Karen L.</div><div class="r">Western Canada</div></div></div>
+  </aside>
+
+  <main class="main">
+    <div class="head">
+      <h1>Thursday. <em>Three calls</em> worth making.</h1>
+      <p>Ranked by what a conversation could change this week.</p>
+    </div>
+
+    <div class="pulse">
+      <span><i style="background:var(--c-green)"></i><b>7</b> thriving</span>
+      <span><i style="background:var(--c-ink-faint)"></i><b>3</b> steady</span>
+      <span><i style="background:var(--c-amber)"></i><b>2</b> need attention</span>
+      <span style="margin-left:auto"><b>12</b> salons in your portfolio</span>
+    </div>
+
+    <article class="call">
+      <div class="call-head">
+        <h3>Maple Glow Tanning</h3><span class="loc">Kelowna, BC</span>
+        <span class="sig watch">Needs attention</span>
+      </div>
+      <div class="ev">
+        <div class="ev-item"><div class="n down num">−17%</div><div class="k">Retail sales, 8 weeks</div></div>
+        <div class="ev-item"><div class="n down num">11%</div><div class="k">Attachment vs. 22% peer median</div></div>
+        <div class="ev-item"><div class="n flat num">Stable</div><div class="k">Customer traffic</div></div>
+      </div>
+      <div class="suggest"><b>Suggested conversation:</b> retail merchandising and staff sales coaching.
+        Last order 6 weeks ago (usually 3) — hasn't ordered the lotion category in two cycles.</div>
+      <div class="call-actions">
+        <button class="cbtn pri">Open call brief</button>
+        <button class="cbtn sec">Log contact</button>
+        <button class="cbtn sec">Schedule coaching</button>
+        <button class="cbtn ghost">Snooze</button>
+      </div>
+      <div class="thread">Asked for coaching via Bask on Tuesday — <b>their request, not just our signal.</b></div>
+    </article>
+
+    <article class="call">
+      <div class="call-head">
+        <h3>Northern Sun Wellness</h3><span class="loc">Red Deer, AB</span>
+        <span class="sig grow">Ready to grow</span>
+      </div>
+      <div class="ev">
+        <div class="ev-item"><div class="n up num">85%+</div><div class="k">Peak-hour capacity, 6 weeks</div></div>
+        <div class="ev-item"><div class="n up num">Strong</div><div class="k">UV utilization</div></div>
+        <div class="ev-item"><div class="n up num">+30%</div><div class="k">Red-light demand, peer cohort</div></div>
+      </div>
+      <div class="suggest"><b>Suggested conversation:</b> expansion — they're turning people away at peak.
+        Red-light equipment fits their member base; ROI sketch attached to the brief.</div>
+      <div class="call-actions">
+        <button class="cbtn pri">Open call brief</button>
+        <button class="cbtn sec">Log contact</button>
+        <button class="cbtn ghost">Snooze</button>
+      </div>
+    </article>
+
+    <article class="call">
+      <div class="call-head">
+        <h3>Sunset Ridge Tanning &amp; Wellness</h3><span class="loc">Kelowna, BC</span>
+        <span class="sig grow">Order in</span>
+      </div>
+      <div class="suggest" style="margin-top:var(--space-4)"><b>Draft order arrived this morning</b> — bronzer
+        restock plus two seasonal items, built from their own sell-through. Confirm and it ships Monday.</div>
+      <div class="call-actions">
+        <button class="cbtn pri">Review draft order</button>
+        <button class="cbtn sec">Account timeline</button>
+      </div>
+    </article>
+  </main>
+</div>
+
+</body></html>

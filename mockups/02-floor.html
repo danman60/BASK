@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bask — The Floor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* Hallmark · screen: The Floor (room board + check-in) · theme: Sunset (locked) · compact density */
+body { font-size: var(--text-sm); }
+.topbar {
+  display: flex; align-items: center; gap: var(--space-5);
+  padding: 12px var(--space-8); border-bottom: 1px solid var(--line-soft);
+  background: oklch(98.2% 0.004 84 / 0.9); backdrop-filter: blur(12px);
+}
+.wordmark { font: italic 600 20px/1 var(--font-display); }
+.tabs { display: flex; gap: 2px; background: var(--paper-2); border-radius: 999px; padding: 3px; margin-left: var(--space-6); }
+.tabs a { font: 600 var(--text-sm)/1 var(--font-body); color: var(--ink-faint); text-decoration: none; padding: 8px 16px; border-radius: 999px; }
+.tabs a.active { color: var(--ink); background: var(--card); box-shadow: var(--shadow-card); }
+.scan-hint { margin-left: auto; display: flex; align-items: center; gap: 8px; color: var(--ink-faint); font-size: var(--text-xs); }
+.scan-hint .pill { border: 1px solid var(--line); border-radius: 6px; padding: 3px 7px; font: 600 10px/1 var(--font-body); color: var(--ink-soft); }
+.clock { font: 600 var(--text-sm)/1 var(--font-body); color: var(--ink-soft); margin-left: var(--space-5); }
+
+.layout { display: grid; grid-template-columns: minmax(0,1fr) 372px; gap: var(--space-6); padding: var(--space-6) var(--space-8); }
+
+/* room board */
+.board-head { display: flex; align-items: baseline; gap: var(--space-4); margin-bottom: var(--space-4); }
+.board-head h1 { font: 500 var(--text-xl)/1 var(--font-display); }
+.legend { display: flex; gap: var(--space-4); margin-left: auto; font-size: var(--text-xs); color: var(--ink-faint); }
+.legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: var(--space-4); }
+.room { border-radius: var(--radius-lg); background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow-card); padding: var(--space-4) var(--space-5); min-height: 132px; display: flex; flex-direction: column; }
+.room .type { font: 600 var(--text-xs)/1 var(--font-body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
+.room h3 { font: 600 var(--text-md)/1.2 var(--font-body); margin-top: 3px; }
+.room .state { margin-top: auto; display: flex; align-items: baseline; gap: 8px; }
+.chip { font: 600 var(--text-xs)/1 var(--font-body); border-radius: 999px; padding: 4px 10px; }
+.chip.ready { background: var(--success-wash); color: var(--success); }
+.chip.clean { background: var(--warn-wash); color: oklch(58% 0.13 70); }
+.chip.maint { background: var(--risk-wash); color: var(--risk); }
+.countdown { font: 600 var(--text-2xl)/1 var(--font-body); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.who { font-size: var(--text-sm); color: var(--ink-soft); }
+.in-session-ring .room { border: 0; height: 100%; }
+.mins { font-size: var(--text-xs); color: var(--ink-faint); }
+
+/* check-in panel */
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow-pop); overflow: hidden; align-self: start; }
+.panel-head { padding: var(--space-5) var(--space-6); border-bottom: 1px solid var(--line-soft); display: flex; align-items: center; gap: var(--space-4); }
+.pav { width: 44px; height: 44px; border-radius: 50%; background: var(--primary-wash); color: var(--primary-deep); display: grid; place-items: center; font: 700 14px/1 var(--font-body); }
+.panel-head h2 { font: 600 var(--text-lg)/1.2 var(--font-body); }
+.member-badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 3px; font: 600 var(--text-xs)/1 var(--font-body); color: var(--gold); }
+.member-badge i { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+.panel-body { padding: var(--space-5) var(--space-6); }
+.meta { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3) var(--space-5); margin-bottom: var(--space-5); }
+.meta .k { font-size: var(--text-xs); color: var(--ink-faint); }
+.meta .v { font-weight: 600; }
+.flag { display: flex; gap: 8px; align-items: flex-start; background: var(--warn-wash); border-radius: var(--radius-sm); padding: 10px 12px; font-size: var(--text-xs); color: oklch(45% 0.1 70); margin-bottom: var(--space-5); }
+.hint { display: flex; gap: 8px; align-items: flex-start; background: var(--paper-2); border-radius: var(--radius-sm); padding: 10px 12px; font-size: var(--text-xs); color: var(--ink-soft); margin-bottom: var(--space-5); }
+.sect { font: 600 var(--text-xs)/1 var(--font-body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: var(--space-3); }
+.svc-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: var(--space-5); }
+.svc { border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font: 600 var(--text-sm)/1 var(--font-body); color: var(--ink-soft); background: var(--card); cursor: pointer; }
+.svc.sel { border-color: var(--primary); color: var(--primary-deep); background: var(--primary-wash); }
+.rooms-row { display: flex; gap: 8px; margin-bottom: var(--space-6); }
+.rm { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 8px 12px; font: 600 var(--text-sm)/1 var(--font-body); color: var(--ink-soft); }
+.rm.sel { border-color: var(--primary); color: var(--primary-deep); background: var(--primary-wash); }
+.start { width: 100%; justify-content: center; padding: 14px; font-size: var(--text-md); border-radius: var(--radius); }
+</style></head>
+<body>
+
+<header class="topbar">
+  <span class="wordmark">Bask</span>
+  <nav class="tabs">
+    <a class="active" href="#">Room Board</a><a href="#">Check-in</a><a href="#">POS</a><a href="#">Schedule</a>
+  </nav>
+  <span class="scan-hint">Scanner ready — scan any product <span class="pill">⌁</span></span>
+  <span class="clock num">10:47 AM</span>
+</header>
+
+<div class="layout">
+  <section>
+    <div class="board-head">
+      <h1>The Floor</h1>
+      <div class="legend">
+        <span><i style="background:var(--success)"></i>Ready</span>
+        <span><i style="background:var(--primary)"></i>In session</span>
+        <span><i style="background:var(--warn)"></i>Cleaning</span>
+        <span><i style="background:var(--risk)"></i>Maintenance</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="in-session-ring"><div class="room">
+        <span class="type">UV · Level 3</span><h3>Bed 1 — Solstice</h3>
+        <div class="state"><span class="countdown num">7:42</span><span class="mins">left</span></div>
+        <span class="who">Jenna R.</span>
+      </div></div>
+
+      <div class="room">
+        <span class="type">UV · Level 2</span><h3>Bed 2 — Ember</h3>
+        <div class="state"><span class="chip ready">Ready</span></div>
+      </div>
+
+      <div class="in-session-ring"><div class="room">
+        <span class="type">UV · Level 1</span><h3>Bed 3 — Dawn</h3>
+        <div class="state"><span class="countdown num">2:10</span><span class="mins">left</span></div>
+        <span class="who">Marc T.</span>
+      </div></div>
+
+      <div class="room">
+        <span class="type">UV · Stand-up</span><h3>Bed 4 — Zenith</h3>
+        <div class="state"><span class="chip clean">Cleaning · 2 min</span></div>
+      </div>
+
+      <div class="room">
+        <span class="type">Spray</span><h3>Booth — Velvet</h3>
+        <div class="state"><span class="chip ready">Ready</span></div>
+      </div>
+
+      <div class="in-session-ring"><div class="room">
+        <span class="type">Red light</span><h3>Studio A — Glow</h3>
+        <div class="state"><span class="countdown num">14:05</span><span class="mins">left</span></div>
+        <span class="who">Priya K.</span>
+      </div></div>
+
+      <div class="room">
+        <span class="type">Red light</span><h3>Studio B — Aura</h3>
+        <div class="state"><span class="chip ready">Ready</span></div>
+      </div>
+
+      <div class="room">
+        <span class="type">Hydromassage</span><h3>Wave Room</h3>
+        <div class="state"><span class="chip maint">Maintenance</span></div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="panel">
+    <div class="panel-head">
+      <div class="pav">SM</div>
+      <div>
+        <h2>Sarah Mitchell</h2>
+        <span class="member-badge"><i></i>Gold Unlimited — active</span>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="meta">
+        <div><div class="k">Last visit</div><div class="v">6 days ago</div></div>
+        <div><div class="k">Visits this month</div><div class="v num">5</div></div>
+        <div><div class="k">Spray package</div><div class="v num">3 of 10 left</div></div>
+        <div><div class="k">Session timing</div><div class="v" style="color:var(--success)">Okay to tan</div></div>
+      </div>
+
+      <div class="flag">⚠ <span>Her waiver expires next month — a fresh signature at checkout takes 30 seconds.</span></div>
+      <div class="hint">✦ <span>Sarah has bought <strong>Fiji Blend</strong> twice. It's back in stock this week.</span></div>
+
+      <div class="sect">Service</div>
+      <div class="svc-row">
+        <button class="svc sel">Level 3 UV</button>
+        <button class="svc">Spray tan</button>
+        <button class="svc">Red light</button>
+        <button class="svc">Hydromassage</button>
+      </div>
+
+      <div class="sect">Ready rooms</div>
+      <div class="rooms-row">
+        <span class="rm sel">Bed 2 — Ember</span>
+        <span class="rm">Bed 4 · in 2 min</span>
+      </div>
+
+      <button class="btn btn-primary start">Start session — Bed 2 · 12 minutes</button>
+    </div>
+  </aside>
+</div>
+
+</body></html>

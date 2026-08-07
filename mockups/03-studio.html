@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bask — Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* Hallmark · screen: Studio (generate step) · theme: Sunset (locked) · relaxed density */
+.topbar {
+  display: flex; align-items: center; gap: var(--space-6);
+  padding: 14px var(--space-10); border-bottom: 1px solid var(--line-soft);
+  background: oklch(98.2% 0.004 84 / 0.85); backdrop-filter: blur(12px);
+}
+.wordmark { font: italic 600 22px/1 var(--font-display); }
+.crumb { font: 500 var(--text-sm)/1 var(--font-body); color: var(--ink-faint); }
+.crumb b { color: var(--ink); font-weight: 600; }
+.steps { margin-left: auto; display: flex; gap: var(--space-2); align-items: center; font: 600 var(--text-xs)/1 var(--font-body); color: var(--ink-faint); }
+.step { padding: 6px 12px; border-radius: 999px; }
+.step.done { color: var(--success); }
+.step.cur { background: var(--primary-wash); color: var(--primary-deep); }
+.sep { color: var(--line); }
+
+.shell { max-width: 1180px; margin: 0 auto; padding: var(--space-8) var(--space-10); }
+.context {
+  display: flex; align-items: center; gap: var(--space-4);
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow-card); padding: var(--space-4) var(--space-6); margin-bottom: var(--space-8);
+}
+.context .g { width: 10px; height: 34px; border-radius: 5px; background: var(--grad-sunset-soft); }
+.context p { font-size: var(--text-sm); color: var(--ink-soft); }
+.context p b { color: var(--ink); }
+.context .why { margin-left: auto; white-space: nowrap; flex: none; }
+
+.head { display: flex; align-items: baseline; gap: var(--space-4); margin-bottom: var(--space-6); }
+.head h1 { font: 500 var(--text-2xl)/1.15 var(--font-display); letter-spacing: -0.01em; }
+.head .sub { color: var(--ink-faint); font-size: var(--text-sm); }
+.tones { margin-left: auto; display: flex; gap: 6px; }
+.tone { border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; font: 600 var(--text-xs)/1 var(--font-body); color: var(--ink-soft); background: var(--card); cursor: pointer; }
+.tone.sel { border-color: var(--primary); background: var(--primary-wash); color: var(--primary-deep); }
+
+.grid { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr) 300px; gap: var(--space-6); align-items: start; }
+
+.out { overflow: hidden; }
+.out-head { display: flex; align-items: center; gap: 8px; padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--line-soft); }
+.out-head .ch { font: 600 var(--text-sm)/1 var(--font-body); }
+.out-head .regen { margin-left: auto; font: 600 var(--text-xs)/1 var(--font-body); color: var(--primary-deep); background: none; border: 0; cursor: pointer; }
+.ig-canvas {
+  aspect-ratio: 1; margin: var(--space-5); border-radius: var(--radius);
+  background: var(--grad-sunset); position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-6);
+}
+.ig-canvas::after { content:""; position: absolute; inset: 0; background: linear-gradient(to top, oklch(20% 0.05 340 / 0.55), transparent 55%); }
+.ig-canvas h2 { position: relative; z-index: 1; color: #fff; font: 600 30px/1.15 var(--font-display); letter-spacing: -0.01em; max-width: 12ch; }
+.ig-canvas .badge { position: relative; z-index: 1; margin-top: 10px; align-self: flex-start; background: oklch(100% 0 0 / 0.9); color: var(--ink); font: 700 12px/1 var(--font-body); border-radius: 999px; padding: 7px 12px; }
+.caption { padding: 0 var(--space-5) var(--space-5); font-size: var(--text-sm); color: var(--ink-soft); }
+.caption b { color: var(--ink); }
+
+.sms-body { padding: var(--space-5); }
+.bubble { background: var(--paper-2); border-radius: 18px 18px 18px 4px; padding: var(--space-4) var(--space-5); font-size: var(--text-sm); color: var(--ink); max-width: 40ch; }
+.bubble-meta { display: flex; gap: var(--space-3); margin-top: var(--space-3); font-size: var(--text-xs); color: var(--ink-faint); }
+.edit-note { margin: 0 var(--space-5) var(--space-5); font-size: var(--text-xs); color: var(--ink-faint); border-top: 1px dashed var(--line); padding-top: var(--space-3); }
+.email-line { padding: var(--space-4) var(--space-5); border-top: 1px solid var(--line-soft); font-size: var(--text-sm); }
+.email-line .k { font: 600 var(--text-xs)/1 var(--font-body); color: var(--ink-faint); display: block; margin-bottom: 3px; }
+
+.side .card { padding: var(--space-5) var(--space-6); margin-bottom: var(--space-5); }
+.side h4 { font: 600 var(--text-sm)/1 var(--font-body); color: var(--ink-faint); margin-bottom: var(--space-4); }
+.aud-n { font: 600 var(--text-2xl)/1 var(--font-body); }
+.aud-sub { font-size: var(--text-sm); color: var(--ink-soft); margin: 4px 0 var(--space-4); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip2 { background: var(--paper-2); border-radius: 999px; padding: 6px 11px; font: 600 var(--text-xs)/1 var(--font-body); color: var(--ink-soft); }
+.sched-row { display: flex; justify-content: space-between; font-size: var(--text-sm); padding: 8px 0; border-top: 1px solid var(--line-soft); }
+.sched-row:first-of-type { border-top: 0; }
+.sched-row .v { font-weight: 600; }
+.cta { width: 100%; justify-content: center; padding: 14px; font-size: var(--text-md); border-radius: var(--radius); margin-top: var(--space-2); }
+.note { font-size: var(--text-xs); color: var(--ink-faint); text-align: center; margin-top: var(--space-3); }
+</style></head>
+<body>
+
+<header class="topbar">
+  <span class="wordmark">Bask</span>
+  <span class="crumb">Marketing · <b>New campaign</b></span>
+  <div class="steps">
+    <span class="step done">✓ Goal</span><span class="sep">·</span>
+    <span class="step done">✓ Audience</span><span class="sep">·</span>
+    <span class="step done">✓ Offer</span><span class="sep">·</span>
+    <span class="step cur">Review</span><span class="sep">·</span>
+    <span class="step">Schedule</span>
+  </div>
+</header>
+
+<main class="shell">
+  <div class="context">
+    <div class="g"></div>
+    <p><b>Fixing: quiet Tuesday afternoon.</b> Next Tuesday 1–5 pm is 60% unbooked — Bask suggested a
+       one-day offer for lapsed regulars who used to visit midweek.</p>
+    <button class="btn btn-quiet why">Why this offer</button>
+  </div>
+
+  <div class="head">
+    <h1>Here's your campaign. Change anything.</h1>
+    <span class="sub">Every word is editable — tap any text.</span>
+    <div class="tones">
+      <button class="tone sel">Warm</button><button class="tone">Fun</button><button class="tone">Straight-talk</button>
+    </div>
+  </div>
+
+  <div class="grid">
+    <article class="out card">
+      <div class="out-head"><span class="ch">Instagram post</span><button class="regen">↻ Regenerate</button></div>
+      <div class="ig-canvas">
+        <h2>Tuesday, but make it golden.</h2>
+        <span class="badge">20% off · this Tuesday 1–5 pm</span>
+      </div>
+      <p class="caption"><b>sunsetridgetanning</b> — Midweek reset: every session 20% off this Tuesday
+         afternoon. Your favourite bed, none of the wait. Book from the link in bio ☀️</p>
+    </article>
+
+    <article class="out card">
+      <div class="out-head"><span class="ch">Text message</span><button class="regen">↻ Regenerate</button></div>
+      <div class="sms-body">
+        <div class="bubble">Hi {{first name}} — it's Sunset Ridge ☀️ We've missed you! This Tuesday only,
+          every session is 20% off between 1–5 pm. Want your usual bed? Reply YES and we'll hold it.</div>
+        <div class="bubble-meta"><span>164 characters</span><span>·</span><span>1 credit each</span></div>
+      </div>
+      <div class="edit-note">Goes to 43 people who agreed to texts. Nothing sends until you press Schedule.</div>
+      <div class="email-line"><span class="k">Email subject</span>A golden Tuesday, 20% off — this week only</div>
+    </article>
+
+    <aside class="side">
+      <div class="card">
+        <h4>Audience</h4>
+        <div class="aud-n num">43 people</div>
+        <p class="aud-sub">Lapsed regulars — used to visit midweek, quiet for 30+ days.</p>
+        <div class="chips"><span class="chip2">Texts OK</span><span class="chip2">30+ days quiet</span><span class="chip2">Midweek visitors</span></div>
+      </div>
+      <div class="card">
+        <h4>Schedule</h4>
+        <div class="sched-row"><span>Send</span><span class="v">Sun 6:00 pm</span></div>
+        <div class="sched-row"><span>Offer valid</span><span class="v">Tue 1–5 pm</span></div>
+        <div class="sched-row"><span>Results tracked</span><span class="v">Automatic</span></div>
+      </div>
+      <button class="btn btn-primary cta">Schedule campaign</button>
+      <p class="note">You'll see bookings and revenue from this campaign on Today.</p>
+    </aside>
+  </div>
+</main>
+
+</body></html>

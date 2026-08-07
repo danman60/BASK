@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+
+/* Design tokens land here in M0 step 8 (packages/tokens ← mockups/tokens.css). */
+:root {
+  --bask-bg: #fdfaf6;
+  --bask-fg: #2a2118;
+}
+
+html,
+body {
+  background: var(--bask-bg);
+  color: var(--bask-fg);
+}
