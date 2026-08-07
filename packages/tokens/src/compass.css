@@ -1,0 +1,51 @@
+/* Compass — fixed product theme for every /compass surface (DESIGN_SPEC §2.1, §4.2).
+ * NOT user-selectable: ThemeProvider force-pins it, so a salon sitting in Dusk still
+ * gets Compass tokens the moment they cross into a /compass route.
+ *
+ * The --c-* values already live in tokens.css (that file is the source of truth and is
+ * copied verbatim — nothing here redefines them). This block only MAPS the semantic
+ * token names onto the --c-* set, so a component written against --paper/--ink/--primary
+ * changes costume with zero component-level branching.
+ *
+ * Two rules that are not mechanical mapping:
+ *   - --on-primary is dark. Compass amber oklch(79% .125 78) is a light surface;
+ *     DESIGN_SPEC §2.1: "Amber primary buttons carry dark text (WCAG)."
+ *   - --gold maps to amber. Compass has no separate gold; the eyebrow and the accent are
+ *     the same amber, which is why the Compass wordmark's UVALUX sub-lockup reads gold.
+ * Compass never uses terracotta, so --primary is amber, not a lifted --primary.
+ */
+[data-theme='compass'] {
+  /* two Compass values the mockup token set does not carry a slot for */
+  --c-line-soft: oklch(27% 0.013 52);
+  --c-on-amber: oklch(19.5% 0.012 50);
+
+  --paper: var(--c-paper);
+  --paper-2: var(--c-paper-2);
+  --card: var(--c-card);
+  --ink: var(--c-ink);
+  --ink-soft: var(--c-ink-soft);
+  --ink-faint: var(--c-ink-faint);
+  --line: var(--c-line);
+  --line-soft: var(--c-line-soft);
+
+  --primary: var(--c-amber);
+  --primary-deep: var(--c-amber-deep);
+  --primary-wash: var(--c-amber-wash);
+  --on-primary: var(--c-on-amber);
+  --gold: var(--c-amber);
+  --success: var(--c-green);
+  --success-wash: var(--c-green-wash);
+  --warn: var(--c-amber);
+  --warn-wash: var(--c-amber-wash);
+  --risk: var(--c-risk);
+  --risk-wash: oklch(68% 0.15 28 / 0.12);
+
+  --shadow-card: var(--c-shadow);
+  --shadow-pop: 0 2px 4px oklch(0% 0 0 / 0.4), 0 16px 40px oklch(0% 0 0 / 0.45);
+
+  color-scheme: dark;
+}
+
+[data-theme='compass'] .glass {
+  background: oklch(22.5% 0.013 50 / 0.85);
+}

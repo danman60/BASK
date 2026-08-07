@@ -1,0 +1,46 @@
+/* Semantic on-wash foregrounds — additive, fills a gap the mockups papered over.
+ *
+ * WHY THIS FILE EXISTS. tokens.css gives each semantic colour a wash
+ * (--warn / --warn-wash). The obvious reading is "put the colour on its wash", and
+ * mockup 01 does exactly that for success (.chip.ready) — but that pairing measures
+ * 3.36:1, below AA for a 11px chip label. Mockup 02 shows the designer already hit
+ * this and solved it inline:
+ *     .chip.clean { background: var(--warn-wash); color: oklch(58% 0.13 70); }
+ *     .flag       { background: var(--warn-wash); color: oklch(45% 0.1 70); }
+ * Those hardcoded literals ARE the missing token. Rather than let every component
+ * re-hardcode them (and drift), they get names here. The Sunset --warn-on-wash value
+ * is mockup 02's literal, verbatim — this file names existing design decisions, it
+ * does not invent new colour.
+ *
+ * Rule: a semantic colour on its own wash is a TEXT pair and must clear 4.5:1. Use
+ * --*-on-wash for the label, --* for the icon/dot/rule beside it.
+ *
+ * Sunset darkens (wash is near-white); Dusk and Compass lift (wash is alpha over a
+ * dark canvas). Hue and chroma are held; only lightness moves.
+ */
+:root {
+  --success-on-wash: oklch(47% 0.11 155);
+  --warn-on-wash: oklch(45% 0.1 70); /* mockup 02 `.flag`, verbatim */
+  --risk-on-wash: oklch(47% 0.16 25);
+
+  /* Accent label on --primary-wash: ImpactChip, .impact, .pav, .svc.sel, .tone.sel.
+   * Sunset does this with --primary-deep (mockup 01 L53) but Compass does it with the
+   * BRIGHT amber (mockup 04 `.sig.watch`, `.rep .a`) — the deep amber is too close to
+   * its own wash on a dark canvas. One token, per-theme value, so ImpactChip never
+   * needs to know which product it is rendering in. */
+  --accent-on-wash: var(--primary-deep);
+}
+
+[data-theme='dusk'] {
+  --success-on-wash: oklch(85% 0.13 155);
+  --warn-on-wash: oklch(88% 0.11 80);
+  --risk-on-wash: oklch(82% 0.13 26);
+  --accent-on-wash: oklch(84% 0.11 44);
+}
+
+[data-theme='compass'] {
+  --success-on-wash: oklch(80% 0.12 155);
+  --warn-on-wash: oklch(85% 0.12 78);
+  --risk-on-wash: oklch(78% 0.14 28);
+  --accent-on-wash: var(--c-amber); /* mockup 04, verbatim */
+}
