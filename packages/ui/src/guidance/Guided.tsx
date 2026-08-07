@@ -21,12 +21,32 @@ import { GUIDED_UI, METRICS, TIPS, type MetricKey, type TipKey } from './guidanc
  * and an outside click closes.
  */
 
+/**
+ * How loudly the affordance advertises itself.
+ *   default — dotted underline + the `?` mark, always visible. For unfamiliar
+ *             terms in prose, where the reader has to KNOW help exists.
+ *   quiet   — dotted underline, `?` only on hover/focus. For labelled metrics in
+ *             a dense card, where four permanent marks in a column becomes noise.
+ *   none    — neither, until hover/focus. For wrapping a chip, chart or other
+ *             element that already has its own shape (DESIGN_SPEC §2.4 restraint).
+ * Every variant keeps the same keyboard and screen-reader contract — the trigger
+ * is always a real button with a real label. Quiet is visual, not functional.
+ */
+export type GuidedAffordance = 'default' | 'quiet' | 'none';
+
 type GuidedProps = {
   children: ReactNode;
   className?: string;
+  affordance?: GuidedAffordance;
 } & ({ metric: MetricKey; tip?: never } | { tip: TipKey; metric?: never });
 
-export function Guided({ children, className, metric, tip }: GuidedProps) {
+export function Guided({
+  children,
+  className,
+  metric,
+  tip,
+  affordance = 'default',
+}: GuidedProps) {
   const [open, setOpen] = useState(false);
   const [align, setAlign] = useState<'start' | 'end'>('start');
   const anchorRef = useRef<HTMLSpanElement>(null);
@@ -70,6 +90,7 @@ export function Guided({ children, className, metric, tip }: GuidedProps) {
   return (
     <span
       className={['g-anchor', className].filter(Boolean).join(' ')}
+      data-affordance={affordance}
       ref={anchorRef}
       // Tips follow the pointer; metric popovers are click-only so the owner can
       // read three paragraphs without the thing evaporating.
