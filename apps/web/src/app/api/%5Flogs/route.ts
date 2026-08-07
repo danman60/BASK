@@ -13,6 +13,11 @@ import { db } from '@bask/db';
  * Gated on LOG_TOKEN because the rows contain operational detail. If the token is
  * unset the endpoint refuses everything rather than defaulting open — an
  * unconfigured deploy should be silent, not public.
+ *
+ * The directory is `%5Flogs`, not `_logs`: the App Router treats a leading
+ * underscore as a PRIVATE folder and excludes it from routing entirely, so the
+ * obvious spelling 404s. `%5F` is the documented escape and the served path is
+ * still `/api/_logs`.
  */
 
 export const dynamic = 'force-dynamic';
