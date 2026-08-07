@@ -13,3 +13,6 @@ export const SPINE_VERSION = '0.0.0-m0';
 
 /** Everything user-facing renders in this zone (see docs/plans constraint). */
 export const DISPLAY_TIMEZONE = 'America/New_York';
+
+// Demo-clock advance pipeline. STUB pending M0 step 4 — see ./demo/pipeline.
+export * from './demo/pipeline';

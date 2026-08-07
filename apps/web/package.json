@@ -11,11 +11,17 @@
   "dependencies": {
     "@bask/api": "workspace:*",
     "@bask/core": "workspace:*",
+    "@bask/db": "workspace:*",
     "@bask/tokens": "workspace:*",
     "@bask/ui": "workspace:*",
+    "@tanstack/react-query": "^5.101.4",
+    "@trpc/client": "^11.18.0",
+    "@trpc/react-query": "^11.18.0",
+    "@trpc/server": "^11.18.0",
     "next": "^16.3.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "superjson": "^2.2.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",

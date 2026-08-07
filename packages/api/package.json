@@ -3,15 +3,21 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "_comment": "'.' is SERVER-ONLY (it reaches the Prisma client). './roles' and './surfaces' are the client-safe subpaths the web/mobile UI imports at runtime.",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./roles": "./src/roles.ts",
+    "./surfaces": "./src/surfaces.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@bask/core": "workspace:*",
-    "@bask/db": "workspace:*"
+    "@bask/db": "workspace:*",
+    "@trpc/server": "^11.18.0",
+    "superjson": "^2.2.6",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "typescript": "^5.9.3"
