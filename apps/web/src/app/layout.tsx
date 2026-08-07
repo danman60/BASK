@@ -38,7 +38,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
+    /* suppressHydrationWarning: ThemeScript stamps data-theme on <html> before
+       React hydrates, so the server markup deliberately differs by that one
+       attribute. Standard fix, scoped to this element — it hides nothing inside
+       the tree. */
+    <html lang="en" className={`${fraunces.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
         {/* Must run before first paint so a Dusk salon never sees a white flash.
             Lives at the root, not in a route layout: themes are an app-wide
