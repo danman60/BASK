@@ -3,6 +3,10 @@
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "jsx": "preserve",
+    // An app never emits .d.ts. Leaving the base config's `declaration: true` on
+    // makes tsc validate declaration emit, which trips TS2742 on inferred types
+    // from pnpm's non-hoisted deps (e.g. the tRPC React client).
+    "declaration": false,
     "allowJs": true,
     "incremental": true,
     "noEmit": true,

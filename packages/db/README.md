@@ -55,12 +55,31 @@ pnpm db:deploy         # runs db:check, then migrate deploy
 Do not use `prisma migrate dev` — it regenerates SQL through the wrong config and would
 need a shadow database this project does not have.
 
+## Runtime client (added M0 step 3)
+
+`import { db } from '@bask/db'` — a process-wide singleton, cached on `globalThis` in
+development so Next's HMR does not leak a pool per edit.
+
+Prisma 7 removed `datasourceUrl`: the client connects through a **driver adapter**
+(`@prisma/adapter-pg`) against `DATABASE_URL`, the :6543 pooler, `max: 10`. Migrations are
+unaffected — they still run through `prisma.config.ts` on `DIRECT_DATABASE_URL`.
+
+`DATABASE_URL` is read from the environment; when it is absent the client walks up from
+`process.cwd()` to **this package's `.env`**, so `apps/web` (and anything else) works from
+one copy of the credentials rather than a per-app duplicate. In CI and on Vercel the
+variable is already set and the walk never runs.
+
 ## RLS
 
 29 of 35 tables have RLS enabled with a `salon_isolation` policy. Scope comes from the
 `app.salon_id` session GUC, read by `bask.current_salon_id()`; it returns NULL when
 unset, so an unscoped connection sees nothing rather than everything. The tRPC context
 (M0 step 3) is responsible for setting that GUC per request.
+
+The tRPC context does this via `ctx.runScoped(fn)` (M0 step 3), which wraps the callback in
+a transaction and issues `set_config('app.salon_id', …, true)` — `SET LOCAL`, the only safe
+form on a transaction pooler, since a session-level `SET` would leak to whichever request
+reuses the backend next. `settings.scopeProbe` reads the GUC back out as a live check.
 
 The service role carries `BYPASSRLS`, so M0–M2 demo work is unaffected. Auth hardening
 lands in M3.

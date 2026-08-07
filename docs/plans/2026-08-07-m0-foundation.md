@@ -179,3 +179,77 @@ Vitest unit tests already accumulated (core engine, consent filter stub, clock, 
 - **2026-08-07 · Step 8 · `pnpm-workspace.yaml` `allowBuilds.esbuild` was a placeholder.**
   It literally read `esbuild: set this to true or false`, which made every `pnpm install`
   exit 1 once vitest (→ esbuild) entered the tree. Set to `true`.
+- **2026-08-07 · Step 3 · Prisma 7 requires a driver adapter; `datasourceUrl` is gone.**
+  `new PrismaClient({ datasourceUrl })` does not typecheck — `PrismaClientOptions` is now
+  `WithAdapter | WithAccelerateUrl`. Runtime client uses `@prisma/adapter-pg` (added to
+  `packages/db`) against `DATABASE_URL` (:6543 pooler), pool capped at 10. Migrations are
+  untouched — they still go through `prisma.config.ts` on `DIRECT_DATABASE_URL` (:5432).
+
+- **2026-08-07 · Step 3 · one `.env`, found by walking up from `cwd`.** Prisma 7 does not
+  auto-load `.env` and Next only loads env files beside the app it serves, so `apps/web`
+  would have needed a second copy of the database credentials. `packages/db/src/client.ts`
+  walks up from `process.cwd()` to the workspace's single `packages/db/.env` when
+  `DATABASE_URL` is absent. No-op in CI/Vercel, and it never overrides an ambient value.
+
+- **2026-08-07 · Step 3 · `@bask/api` has client-safe subpath exports.** The package root
+  reaches the Prisma client, so it is server-only. `@bask/api/roles` and
+  `@bask/api/surfaces` exist for the browser (role list, labels, header names, domain
+  list). Client code imports `AppRouter` type-only.
+
+- **2026-08-07 · Step 3 · `declaration: false` in `apps/web/tsconfig.json`.** The base
+  config sets `declaration: true`; under `noEmit` tsc still validates declaration emit,
+  which trips TS2742 on the inferred tRPC React client type because pnpm does not hoist
+  `@trpc/react-query`'s internal `.d.mts`. An app never emits declarations, so turning it
+  off is the correct scope for the fix rather than annotating around it.
+
+- **2026-08-07 · Step 3 · `demo.state` creates the `demo_state` singleton if missing.**
+  Step 4 (fixtures) had not landed, so the table was empty and the acceptance round-trip
+  had nothing to read. `ensureDemoState` upserts `id='default'` at day-zero, idempotently.
+  Step 4's `demo:reset` overwrites it — this is a floor, not a fixture.
+
+- **2026-08-07 · Step 3 · salon scope falls back to the first salon in the database.**
+  Nothing selects a salon yet (no auth until M3, no fixtures until step 4). Resolution is
+  `x-bask-salon` header → `?salon=` param → first salon by `created_at` → null. With zero
+  salons, `salonProcedure` returns PRECONDITION_FAILED with a plain-language message
+  rather than silently returning empty data.
+
+- **2026-08-07 · Step 3 · RLS is wired but not yet enforcing.** `ctx.runScoped()` opens a
+  transaction and sets `app.salon_id` via `set_config(..., true)` (`SET LOCAL` — the only
+  safe form on a transaction pooler). Verified end to end by `settings.scopeProbe`, which
+  reads the GUC back out of Postgres. The demo connects as `postgres`, which carries
+  BYPASSRLS, so policies do not gate queries yet; M3's switch to a restricted role is
+  then a config change rather than an audit of every query.
+
+- **2026-08-07 · Step 10 · `runAdvancePipeline` is a STUB in this lane.**
+  `packages/core/src/demo/pipeline.ts` did not exist (step 4 owns it), so the interface is
+  defined here: `runAdvancePipeline({ store, days })` / `runResetPipeline({ store })` over
+  a `DemoClockStore` port, returning `{ virtualToday, stagesRun, stubbed: true }`. It moves
+  the clock and runs zero stages. The Prisma implementation of the port is the single
+  merge seam — `packages/api/src/demo/clock.ts`.
+
+- **2026-08-07 · Step 10 · day-zero is "today in Eastern", also a stub.** The real
+  day-zero belongs to the fixture generator (it has to line up with 90 days of seeded
+  visits/sales, PRODUCT_SPEC §20). `stubDayZero()` in `packages/api/src/demo/clock.ts`
+  is the placeholder.
+
+- **2026-08-07 · Step 10 · `floor-live` bookmark points at `/dev/api`, not `/dev/floor`.**
+  The room-board harness (step 7) does not exist in this lane. Marked TARGET FOR MERGE in
+  `apps/web/src/lib/scenario-bookmarks.ts`; repointing is a one-line change.
+
+- **2026-08-07 · Step 10 · theme switch is a stub that sets `data-theme` only.**
+  `packages/tokens` has no ThemeProvider yet (step 8). The switch reads the theme LIST
+  from `@bask/tokens` (`THEMES`, `DEFAULT_THEME`) rather than redefining one, carries the
+  choice in the URL, and stamps `data-theme` on `<html>` — which is the hook step 8's
+  provider is expected to drive anyway.
+
+- **2026-08-07 · Step 10 · role invalidation must happen AFTER the URL commits.** The
+  role travels as an HTTP header read from `window.location` at request time, not as a
+  query key. Invalidating alongside `router.push` refetches under the OLD URL, so the
+  panel reported the previous role — caught in browser verification. Fixed with an effect
+  keyed on the role param.
+
+- **2026-08-07 · Step 3/10 · pre-existing, NOT fixed (outside this lane):** `pnpm lint`
+  fails with 7 `no-undef` errors on `console`/`process` in
+  `packages/db/scripts/assert-bask-scoped.mjs` — the root ESLint flat config declares no
+  Node globals for `.mjs` scripts. Untouched by this lane; `eslint.config.mjs` (step 1)
+  and that script (step 2) own it.
