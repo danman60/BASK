@@ -73,4 +73,10 @@ export const demoRouter = router({
     const state = await ensureDemoState(ctx.db);
     return { clock: clockPayload(state), pipeline: result };
   }),
+
+  /** Presenter Panel stubs, wired M1/M2. Named here so the panel can label them. */
+  pendingControls: publicProcedure.query(() => [
+    { id: 'seed-walk-in', label: 'Seed a walk-in', availableIn: 'M1' },
+    { id: 'fire-push', label: 'Fire push', availableIn: 'M2' },
+  ]),
 });
