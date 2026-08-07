@@ -1,12 +1,13 @@
 # CURRENT_WORK — uvalux-platform
 
 ## Active Task
-M1 web demo build COMPLETE (2026-08-07) — all six surfaces merged, 11/11 pitch beats pass on a fresh reset. Next: fund the AI key, tune fixture volume for the demo script, then M2 (mobile + barcode).
+M1 web demo build COMPLETE (2026-08-07) — all six surfaces + public booking merged; `pnpm demo:verify` 12/12 on a fresh reset. Next: fund the AI key, tune fixture volume for the demo script, then M2 (mobile + barcode).
 
 ## Recent Changes
 - 2026-08-07 **M1 COMPLETE — 5 lanes merged, `pnpm demo:verify` 11/11 on a fresh `demo:reset`.**
   - Surfaces: `/` Today/Daybreak · `/floor` (room board, check-in, waiver signature, POS + wedge scanner, schedule, shift handoff) · `/marketing` Studio · `/customers` · `/inventory` (+ UVALUX draft order) · `/insights` (+ Peers gap slider, activity log) · `/compass` (Call List, Network, Accounts, Coaching) · `/settings/data-sharing`.
-  - `pnpm demo:verify` (scripts/demo-verify.mjs) walks the whole PITCH.md path headlessly; unbuilt surfaces report SKIP, never PASS.
+  - Lane 6 (built in main): `/book` public booking — service → day → time → name, writes a real Booking the Floor renders; slots derived from salon-local wall time via the zone so they survive DST. All 7 PITCH.md presenter bookmarks wired.
+  - `pnpm demo:verify` (scripts/demo-verify.mjs) walks the whole PITCH.md path headlessly, 12 checks; unbuilt surfaces report SKIP, never PASS.
   - **Bugs the merge exposed (each invisible inside its own lane):** no-salon fallback resolved to Ironwood (0 customers) so every Bask surface pointed at an empty tenant · `?salon=<slug>` sent a non-UUID to a uuid column, 500ing every slug link · all five lanes' routes were built OUTSIDE the `(bask)` route group so none had the app nav · two lanes appended to the same guidance dictionary and the union merge swallowed six closing braces · Floor duplicated the shell wordmark.
   - **Lane-found bugs worth remembering:** Floor engine's `globalThis` cache survived hot reloads (edits silently ignored) · 24h UV rule applied to every service and hard-blocked check-in · wedge listener could emit a truncated barcode (wrong bottle in cart).
   - **Migrations added:** `daybreak_brief` (M0 lane B), `Booking`/`WaiverSignature`/`ShiftHandoff` (M1 lane 2). All `bask`-scoped, zero public footprint.
