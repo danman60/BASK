@@ -5,12 +5,20 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./tokens.css": "./src/tokens.css"
+    "./contrast": "./src/contrast.ts",
+    "./index.css": "./src/index.css",
+    "./tokens.css": "./src/tokens.css",
+    "./dusk.css": "./src/dusk.css",
+    "./compass.css": "./src/compass.css"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "contrast": "vite-node scripts/contrast-check.ts"
   },
   "devDependencies": {
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vite-node": "^3.2.4",
+    "vitest": "^3.2.4"
   }
 }

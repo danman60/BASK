@@ -1,0 +1,291 @@
+/* Guidance Layer styling. Tokens only — these primitives appear on every surface and
+ * in both products, so a hardcoded colour here would be a Compass bug later. */
+
+/* ------------------------------------------------------------------ <Guided> */
+
+.g-anchor {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* The "explain this" affordance. Deliberately quiet: a dotted underline on the term
+ * plus a small mark, never a loud icon button — DESIGN_SPEC's restraint rule. */
+.g-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: help;
+  border-bottom: 1px dotted var(--ink-faint);
+  border-radius: 2px;
+}
+
+.g-trigger:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.g-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--primary-wash);
+  color: var(--accent-on-wash);
+  font: 700 10px/1 var(--font-body);
+  flex: none;
+}
+
+.g-pop {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 10px);
+  left: 0;
+  width: max(260px, 22rem);
+  max-width: min(94vw, 26rem);
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-pop);
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  text-align: left;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  line-height: 1.55;
+  animation: g-pop-in var(--dur-base) var(--ease-out);
+}
+
+/* flips when the anchor is near the right edge */
+.g-pop[data-align='end'] {
+  left: auto;
+  right: 0;
+}
+
+@keyframes g-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.g-pop-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-md);
+  letter-spacing: -0.012em;
+  margin-bottom: var(--space-3);
+  padding-right: var(--space-6);
+}
+
+.g-pop dt {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: var(--space-3);
+}
+
+.g-pop dd {
+  color: var(--ink-soft);
+  margin: 2px 0 0;
+}
+
+.g-pop-close {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 0;
+  background: none;
+  color: var(--ink-faint);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.g-pop-close:hover {
+  background: var(--paper-2);
+  color: var(--ink);
+}
+
+.g-pop-close:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+/* plain tooltip variant — no headings, no close button */
+.g-tip {
+  width: max-content;
+  max-width: 22rem;
+  padding: var(--space-3) var(--space-4);
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------- WhisperNote */
+
+.g-whisper {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  color: var(--ink-faint);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.g-whisper::before {
+  content: '';
+  flex: none;
+  width: 3px;
+  align-self: stretch;
+  min-height: 1em;
+  border-radius: 2px;
+  background: var(--line);
+}
+
+.g-whisper[data-tone='caution']::before {
+  background: var(--warn);
+}
+
+.g-whisper[data-tone='caution'] {
+  color: var(--warn-on-wash);
+}
+
+/* -------------------------------------------------------- teaching empty state */
+
+.g-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-10) var(--space-6);
+}
+
+.g-empty-art {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--primary-wash);
+  display: grid;
+  place-items: center;
+  color: var(--accent-on-wash);
+  font-size: 19px;
+}
+
+.g-empty h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-lg);
+  letter-spacing: -0.012em;
+}
+
+.g-empty p {
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+  max-width: 46ch;
+}
+
+/* ----------------------------------------------------------------- tour */
+
+.g-tour-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+}
+
+/* The spotlight is one element: a transparent box over the target with a huge
+ * spread shadow, so the "hole" and the dimming are the same paint. Cheaper and
+ * sharper than four dimming rectangles, and it follows the target on scroll. */
+.g-tour-hole {
+  position: fixed;
+  z-index: 91;
+  border-radius: var(--radius);
+  box-shadow:
+    0 0 0 9999px oklch(12% 0.01 60 / 0.62),
+    0 0 0 2px var(--primary);
+  transition:
+    top var(--dur-base) var(--ease-out),
+    left var(--dur-base) var(--ease-out),
+    width var(--dur-base) var(--ease-out),
+    height var(--dur-base) var(--ease-out);
+  pointer-events: none;
+}
+
+.g-tour-card {
+  position: fixed;
+  z-index: 92;
+  width: min(23rem, 92vw);
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-pop);
+  padding: var(--space-5);
+  transition:
+    top var(--dur-base) var(--ease-out),
+    left var(--dur-base) var(--ease-out);
+}
+
+.g-tour-card h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-md);
+  letter-spacing: -0.012em;
+  margin-bottom: var(--space-2);
+}
+
+.g-tour-card p {
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.g-tour-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.g-tour-step {
+  color: var(--ink-faint);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.g-tour-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .g-pop {
+    animation: none;
+  }
+  .g-tour-hole,
+  .g-tour-card {
+    transition: none;
+  }
+}

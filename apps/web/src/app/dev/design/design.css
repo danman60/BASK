@@ -1,0 +1,201 @@
+/* Dev harness layout only. Every colour, radius, space and type value comes from
+ * @bask/tokens — nothing here hardcodes a colour, which is the point of the page:
+ * if a swatch looks wrong, the token is wrong, not this stylesheet. */
+
+.dh-page {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  padding: var(--space-8) var(--space-6) var(--space-12);
+}
+
+.dh-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.dh-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--line);
+}
+
+.dh-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-2xl);
+  letter-spacing: -0.014em;
+  line-height: 1.15;
+}
+
+.dh-title em {
+  font-style: italic;
+  color: var(--primary);
+}
+
+.dh-sub {
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+  margin-top: var(--space-2);
+  max-width: 62ch;
+}
+
+.dh-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.dh-section > header h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-lg);
+  letter-spacing: -0.012em;
+}
+
+.dh-section > header p {
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+  margin-top: var(--space-1);
+  max-width: 70ch;
+}
+
+.dh-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: var(--space-4);
+}
+
+.dh-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-5);
+}
+
+.dh-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.dh-chipbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.dh-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  padding: 6px 12px;
+}
+
+.dh-status.ready {
+  background: var(--success-wash);
+  color: var(--success-on-wash);
+}
+.dh-status.clean {
+  background: var(--warn-wash);
+  color: var(--warn-on-wash);
+}
+.dh-status.maint {
+  background: var(--risk-wash);
+  color: var(--risk-on-wash);
+}
+.dh-status.impact {
+  background: var(--primary-wash);
+  color: var(--accent-on-wash);
+}
+
+.dh-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.dh-row:last-child {
+  border-bottom: 0;
+}
+.dh-row dt {
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+}
+.dh-row dd {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.dh-meta {
+  color: var(--ink-faint);
+  font-size: var(--text-xs);
+}
+
+.dh-ring-demo {
+  display: grid;
+  place-items: center;
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-4);
+  min-height: 104px;
+  text-align: center;
+}
+
+.dh-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+}
+
+.dh-note {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.dh-banner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+  background: var(--primary-wash);
+  color: var(--accent-on-wash);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.dh-links {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.dh-links a {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: var(--text-sm);
+}

@@ -1,0 +1,57 @@
+/* Dusk — dark companion to Sunset (DESIGN_SPEC §4.2: "deep warm charcoal, same ambers").
+ *
+ * Every Sunset token in tokens.css gets a Dusk value here. Rules used to derive them:
+ *   1. Same hue families. Terracotta stays terracotta (h≈42) — Dusk is Bask at night,
+ *      NOT Compass. Compass amber (h≈78) never appears here; the palettes are how you
+ *      know which product you are in (DESIGN_SPEC §2.1).
+ *   2. Lightness inverts, chroma does not. Paper drops to ~20% L keeping the warm 60°
+ *      hue so it reads as charcoal-with-a-fire-in-it, never neutral grey/blue.
+ *   3. Accents LIFT. On a dark canvas oklch(60% .14 42) is muddy, so --primary rises to
+ *      70% and --primary-deep goes BRIGHTER than --primary (hover moves toward the light
+ *      in dark mode, the opposite of Sunset). That flips --on-primary to dark ink.
+ *   4. Washes become alpha-over-paper instead of near-white tints — a 96%-L wash on a
+ *      20%-L canvas would be a saturated fill, which DESIGN_SPEC §2.1 bans.
+ *   5. Non-color tokens (radius, space, type scale, motion, gradients) are NOT redeclared.
+ *      The sunset gradient is brand-sacred and identical in both themes.
+ *
+ * Contrast for every pair below is asserted by packages/tokens/test/contrast.test.ts.
+ */
+[data-theme='dusk'] {
+  --paper: oklch(20.5% 0.008 60);
+  --paper-2: oklch(24% 0.009 60);
+  --card: oklch(26% 0.01 60);
+  --ink: oklch(95% 0.006 84);
+  --ink-soft: oklch(80% 0.012 70);
+  --ink-faint: oklch(68% 0.013 65);
+  --line: oklch(34% 0.012 60);
+  --line-soft: oklch(29% 0.01 60);
+
+  --primary: oklch(72% 0.13 42); /* terracotta, lifted for a dark canvas */
+  --primary-deep: oklch(80% 0.115 44); /* hover goes brighter in the dark */
+  --primary-wash: oklch(72% 0.13 42 / 0.14);
+  --on-primary: oklch(20% 0.02 40);
+  --gold: oklch(82% 0.1 85);
+  --success: oklch(80% 0.13 155);
+  --success-wash: oklch(80% 0.13 155 / 0.13);
+  --warn: oklch(84% 0.12 80);
+  --warn-wash: oklch(84% 0.12 80 / 0.13);
+  /* Risk is the one wash NOT derived from its own colour at the same lightness.
+   * Success and warn can be, because their raw-colour-on-own-wash pairing clears AA
+   * anyway. Risk's does not: lifting --risk lifts the wash with it, so the ratio
+   * stays pinned (76%→80% moved it 4.13→4.29, still under 4.5). Dropping the wash
+   * base to 58% decouples the two and lands at 5.4:1. Dusk is ours to derive, so
+   * this gets fixed — waivers are reserved for the locked mockup palette. */
+  --risk: oklch(80% 0.15 26);
+  --risk-wash: oklch(58% 0.15 26 / 0.18);
+
+  --shadow-card: 0 1px 2px oklch(0% 0 0 / 0.4), 0 8px 24px oklch(0% 0 0 / 0.4);
+  --shadow-pop: 0 2px 4px oklch(0% 0 0 / 0.45), 0 16px 40px oklch(0% 0 0 / 0.5);
+
+  color-scheme: dark;
+}
+
+/* Glass is defined against white in tokens.css; in the dark it has to be paper-based
+ * or it reads as a bright milky plate instead of a frosted surface. */
+[data-theme='dusk'] .glass {
+  background: oklch(24% 0.009 60 / 0.82);
+}

@@ -13,6 +13,9 @@
     "typecheck": {
       "dependsOn": ["^typecheck", "generate"]
     },
+    "test": {
+      "outputs": []
+    },
     "dev": {
       "cache": false,
       "persistent": true
