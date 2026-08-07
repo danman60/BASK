@@ -126,28 +126,7 @@ export interface Waiver {
 }
 
 export const WAIVERS: Record<string, Waiver> = {
-  'sunset:--on-primary:--primary': {
-    floor: 4.15,
-    reason:
-      'Locked palette. --primary oklch(60% .14 42) with white --on-primary measures 4.18:1; ' +
-      '.btn-primary labels are 13px/600 so AA wants 4.5. Both values are verbatim from ' +
-      'mockups/tokens.css. The :hover state (--primary-deep) clears at 5.86:1. Fix requires a ' +
-      'design decision on the locked terracotta, not a code change — raise before M1 UI build.',
-  },
-  'sunset:--ink-faint:--paper': {
-    floor: 4.4,
-    reason:
-      'Locked palette, 4.45:1 vs 4.5 — 1% short. --ink-faint carries timestamps and meta lines ' +
-      'at 11-13px. Prefer --ink-soft (7.4:1) for anything a user must read; --ink-faint is for ' +
-      'genuinely ambient text. Raise with --ink-faint on --card (4.68:1) before M1.',
-  },
-  'compass:--ink-faint:--paper': {
-    floor: 4.2,
-    reason:
-      'Locked palette (--c-ink-faint oklch(58% .014 60), verbatim). 4.26:1 on Compass paper. ' +
-      'Same guidance as Sunset: ambient text only.',
-  },
-  'sunset:--success:--success-wash': {
+        'sunset:--success:--success-wash': {
     floor: 3.3,
     reason:
       'mockup 01 `.impact.up` ships --success on --success-wash at 3.36:1 for an 11px/600 chip. ' +
@@ -169,14 +148,7 @@ export const WAIVERS: Record<string, Waiver> = {
       'raw pairing sits at 3.73:1. Compass labels use --risk-on-wash (6.9:1). Note Dusk hit the ' +
       'same problem and was FIXED rather than waived, because Dusk values are ours to derive.',
   },
-  'compass:--ink-faint:--card': {
-    floor: 3.75,
-    reason:
-      'Locked palette. 3.79:1 — Compass cards are the lightest Compass surface so this is the ' +
-      'worst case for --c-ink-faint. Compass EvidenceTile meta lines must use --ink-soft ' +
-      '(6.55:1); --ink-faint is restricted to non-essential text on Compass.',
-  },
-};
+  };
 
 export interface Pair {
   fg: string;

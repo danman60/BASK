@@ -1,13 +1,11 @@
 @import 'tailwindcss';
 
-/* Design tokens land here in M0 step 8 (packages/tokens ← mockups/tokens.css). */
+/* Design tokens: packages/tokens (imported in layout.tsx before this file's cascade
+ * matters — tokens own every colour/type/space value; nothing is redeclared here).
+ * The two font families below bind the token names to the next/font CSS variables
+ * set on <html> in layout.tsx, so --font-display / --font-body resolve to the real
+ * webfonts instead of falling through to Georgia / system-ui. */
 :root {
-  --bask-bg: #fdfaf6;
-  --bask-fg: #2a2118;
-}
-
-html,
-body {
-  background: var(--bask-bg);
-  color: var(--bask-fg);
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
 }

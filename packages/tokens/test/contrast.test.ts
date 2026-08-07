@@ -90,7 +90,7 @@ describe('WCAG AA contrast gate', () => {
   });
 
   it('reports the full audit (visible in CI output)', () => {
-    // eslint-disable-next-line no-console
+     
     console.log('\n' + formatResults(results) + '\n');
     expect(results.every((r) => r.pass)).toBe(true);
   });

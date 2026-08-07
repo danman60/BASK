@@ -1,6 +1,6 @@
 /* Hallmark · macrostructure: app-shell (page-scope N/A) · genre: editorial-app · theme: custom "Sunset"
  * (locked system — IMPLEMENTATION_SPEC §4, DNA: carly-hair-co IG-luxe, primary swapped #E1306C → terracotta)
- * paper oklch(98.2% .004 84) warm ivory · ink oklch(21% .012 320) · accent terracotta oklch(60% .14 42)
+ * paper oklch(98.2% .004 84) warm ivory · ink oklch(21% .012 320) · accent terracotta oklch(58% .14 42)
  * display Fraunces · body Inter · axes: light / roman+italic-serif / warm
  * Compass sub-theme: deep warm charcoal, amber accent (fixed, not user-selectable)
  */
@@ -11,11 +11,11 @@
   --card: #ffffff;
   --ink: oklch(21% 0.012 320);
   --ink-soft: oklch(42% 0.014 320);
-  --ink-faint: oklch(56% 0.014 320);
+  --ink-faint: oklch(55% 0.014 320);
   --line: oklch(90% 0.006 84);
   --line-soft: oklch(93.5% 0.005 84);
 
-  --primary: oklch(60% 0.14 42);            /* terracotta */
+  --primary: oklch(58% 0.14 42);            /* terracotta — L58 clears WCAG AA (4.54:1) on white labels */
   --primary-deep: oklch(52% 0.14 40);
   --primary-wash: oklch(96% 0.02 50);
   --on-primary: #ffffff;
@@ -55,7 +55,7 @@
   --c-card: oklch(24.5% 0.014 50);
   --c-ink: oklch(94% 0.008 84);
   --c-ink-soft: oklch(72% 0.014 65);
-  --c-ink-faint: oklch(58% 0.014 60);
+  --c-ink-faint: oklch(64% 0.014 60);
   --c-line: oklch(31% 0.014 55);
   --c-amber: oklch(79% 0.125 78);
   --c-amber-deep: oklch(70% 0.14 65);
