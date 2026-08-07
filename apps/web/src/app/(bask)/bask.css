@@ -1,0 +1,242 @@
+/* Today / Daybreak page styles. Lifted from mockups/01-today-daybreak.html
+ * (.daybreak, .q-label, .book, .story) and mockups/05-mobile-daybreak.html
+ * (.brief, .pulse, .q-label, .stack). Tokens only — no literal colours. */
+
+/* ------------------------------------------------------------- the letter */
+
+.b-daybreak {
+  margin-bottom: var(--space-8);
+}
+.b-daybreak .eyebrow {
+  display: block;
+  margin-bottom: var(--space-3);
+}
+.b-daybreak h1 {
+  font: 500 var(--text-display) / 1.18 var(--font-display);
+  letter-spacing: -0.015em;
+  max-width: 21ch;
+  margin-bottom: var(--space-4);
+}
+/* The one italic terracotta emphasis. Exactly one per headline (DESIGN_SPEC §2.2). */
+.b-daybreak h1 em {
+  font-style: italic;
+  color: var(--primary-deep);
+}
+.b-daybreak p {
+  font-size: var(--text-md);
+  color: var(--ink-soft);
+  max-width: 58ch;
+}
+
+/* ---------------------------------------------------------------- queue */
+
+.b-q-label {
+  font: 600 var(--text-sm) / 1 var(--font-body);
+  color: var(--ink-faint);
+  margin: var(--space-8) 0 var(--space-4);
+}
+
+.b-queue-item {
+  animation: b-rise var(--dur-base) var(--ease-out) both;
+}
+@keyframes b-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.b-queue-error {
+  font: 500 var(--text-sm) / 1.4 var(--font-body);
+  color: var(--risk);
+  background: var(--risk-wash);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: var(--space-4);
+}
+
+/* ------------------------------------------------------------- right rail */
+
+.b-book {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  padding: 8px 0;
+  border-top: 1px solid var(--line-soft);
+  font-size: var(--text-sm);
+}
+.b-book:first-of-type {
+  border-top: 0;
+}
+.b-book time {
+  font: 600 var(--text-xs) / 1.2 var(--font-body);
+  color: var(--ink-faint);
+  width: 52px;
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+.b-book-who {
+  font-weight: 600;
+}
+.b-book-what {
+  color: var(--ink-faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.b-book-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--success);
+  margin-left: auto;
+  flex: none;
+}
+
+/* The one brand moment on this screen (DESIGN_SPEC §2.1 — the gradient is scarce). */
+.b-story {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+}
+.b-story-tile {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--grad-sunset-soft);
+  flex: none;
+}
+.b-story p {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+.b-story a {
+  font-weight: 600;
+  color: var(--primary-deep);
+  text-decoration: none;
+}
+
+/* ------------------------------------------------------- loading skeleton */
+
+.b-skel {
+  border-radius: var(--radius-sm);
+  background: linear-gradient(
+    90deg,
+    var(--paper-2) 0%,
+    oklch(94% 0.004 84) 50%,
+    var(--paper-2) 100%
+  );
+  background-size: 200% 100%;
+  animation: b-skel-slide 1.4s ease-in-out infinite;
+}
+@keyframes b-skel-slide {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+.b-skel-line {
+  height: 14px;
+  margin-bottom: 10px;
+}
+.b-skel-head {
+  height: 42px;
+  margin-bottom: var(--space-4);
+  max-width: 21ch;
+}
+.b-skel-card {
+  height: 132px;
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-lg);
+}
+.b-skel-note {
+  font-size: var(--text-sm);
+  color: var(--ink-faint);
+  margin-bottom: var(--space-6);
+}
+
+/* ----------------------------------------------------------- error state */
+
+.b-error {
+  max-width: 560px;
+  margin: var(--space-12) auto;
+  padding: var(--space-8);
+  text-align: center;
+}
+.b-error h2 {
+  font: 500 var(--text-xl) / 1.2 var(--font-display);
+  letter-spacing: -0.014em;
+  margin-bottom: var(--space-3);
+}
+.b-error p {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  margin-bottom: var(--space-5);
+}
+
+/* -------------------------------------------------------- mobile variants */
+/* The mobile pulse strip and section label only exist below 720px; the desktop
+   right rail and its heading only exist above it. Both are rendered — CSS picks. */
+
+.b-mobile-only {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .b-daybreak {
+    padding: 22px 20px 6px;
+    margin-bottom: 0;
+  }
+  .b-daybreak h1 {
+    font-size: 27px;
+    line-height: 1.22;
+    letter-spacing: -0.012em;
+    max-width: none;
+  }
+  .b-daybreak p {
+    font-size: var(--text-sm);
+    margin-top: 10px;
+  }
+
+  .b-mobile-only {
+    display: block;
+  }
+  .b-mobile-only.b-pulse-strip {
+    padding: 16px 20px;
+  }
+
+  .b-q-label {
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 8px 20px 10px;
+    margin: 0;
+  }
+
+  .b-queue {
+    padding: 0 20px;
+  }
+
+  .b-rail {
+    padding: var(--space-6) 20px 0;
+  }
+  /* "Today so far" is already up top as chips — the stacked card would repeat it. */
+  .b-rail .b-desktop-only {
+    display: none;
+  }
+}
+
+@media (min-width: 721px) {
+  .b-mobile-only {
+    display: none;
+  }
+}

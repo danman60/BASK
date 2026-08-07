@@ -43,6 +43,23 @@
   flex: none;
 }
 
+/* Quieter affordances (see GuidedAffordance in Guided.tsx). The mark reserves its
+ * space in both cases, so revealing it on hover never reflows the line. */
+.g-anchor[data-affordance='none'] .g-trigger {
+  border-bottom: 0;
+}
+.g-anchor[data-affordance='quiet'] .g-mark,
+.g-anchor[data-affordance='none'] .g-mark {
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.g-anchor[data-affordance='quiet']:hover .g-mark,
+.g-anchor[data-affordance='none']:hover .g-mark,
+.g-anchor[data-affordance='quiet']:focus-within .g-mark,
+.g-anchor[data-affordance='none']:focus-within .g-mark {
+  opacity: 1;
+}
+
 .g-pop {
   position: absolute;
   z-index: 60;

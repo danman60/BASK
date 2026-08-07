@@ -2,12 +2,16 @@
  * @bask/ui — shared web components.
  *
  * M0 step 8: theming runtime. M0 step 9: the Guidance Layer primitives.
- * InsightCard / RoomCard / EvidenceTile and the rest of the DESIGN_SPEC §4
- * vocabulary land in M1.
+ * M1 lane 1: the Today/Daybreak half of the DESIGN_SPEC §4 vocabulary —
+ * InsightCard, ImpactChip, Sparkline, StatRow, PulseCard/PulseChips,
+ * ComparisonCard, EvidenceDrilldown, UndoToast. RoomCard / CheckinPanel /
+ * EvidenceTile / SuggestBlock / GapSlider land with their own lanes; add them
+ * here rather than in an app so there is one vocabulary, not six.
  *
  * Stylesheets are separate entry points so an app opts in explicitly:
  *   import '@bask/tokens/index.css';
  *   import '@bask/ui/guidance.css';
+ *   import '@bask/ui/components.css';
  */
 
 export {
@@ -23,7 +27,7 @@ export {
 
 export { ThemeToggle } from './theme/ThemeToggle';
 
-export { Guided } from './guidance/Guided';
+export { Guided, type GuidedAffordance } from './guidance/Guided';
 export { WhisperNote } from './guidance/WhisperNote';
 export { TeachingEmptyState } from './guidance/TeachingEmptyState';
 export { Tour, useTourSeen } from './guidance/Tour';
@@ -31,15 +35,20 @@ export { Tour, useTourSeen } from './guidance/Tour';
 export {
   EMPTY_STATES,
   GUIDED_UI,
+  INSIGHT_UI,
   METRICS,
+  SHELL_UI,
   TIPS,
+  TODAY_UI,
   TOURS,
   TOUR_UI,
   WHISPERS,
+  type DismissReasonKey,
   type EmptyState,
   type EmptyStateKey,
   type MetricExplainer,
   type MetricKey,
+  type NavKey,
   type Tip,
   type TipKey,
   type Tour as TourDef,
@@ -47,3 +56,26 @@ export {
   type TourStep,
   type WhisperKey,
 } from './guidance/guidance';
+
+// DESIGN_SPEC §4 component vocabulary (M1 lane 1)
+export { InsightCard, renderBoldFacts, type InsightCardProps } from './components/InsightCard';
+export {
+  EvidenceDrilldown,
+  type EvidenceDrilldownProps,
+} from './components/EvidenceDrilldown';
+export { ImpactChip, type ImpactChipProps } from './components/ImpactChip';
+export { Sparkline, sparklinePoints, type SparklineProps } from './components/Sparkline';
+export { StatRow, type StatRowProps } from './components/StatRow';
+export {
+  PulseCard,
+  PulseChips,
+  type PulseCardProps,
+  type PulseChipsProps,
+  type PulseRow,
+} from './components/PulseCard';
+export {
+  ComparisonCard,
+  type ComparisonCardProps,
+  type ComparisonMetric,
+} from './components/ComparisonCard';
+export { UndoToast, type UndoToastProps } from './components/UndoToast';

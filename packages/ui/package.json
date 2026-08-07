@@ -5,13 +5,15 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./guidance.css": "./src/guidance/guidance.css"
+    "./guidance.css": "./src/guidance/guidance.css",
+    "./components.css": "./src/components/components.css"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },
   "dependencies": {
+    "@bask/core": "workspace:*",
     "@bask/tokens": "workspace:*"
   },
   "peerDependencies": {

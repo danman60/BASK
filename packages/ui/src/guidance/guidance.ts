@@ -91,6 +91,42 @@ export const METRICS = {
     how: 'What is on the shelf divided by how much you have been selling per day recently.',
     why: 'Running out of a product your regulars buy sends them to another salon to get it.',
   },
+  revenueToday: {
+    label: 'Revenue',
+    what: 'Money taken at the front desk so far today.',
+    how: 'Every sale rung up today, added together, up to the moment you opened this page. Refunds come back off.',
+    why: 'It tells you by mid-morning whether today is tracking like a normal day or needs a nudge.',
+  },
+  bookingsToday: {
+    label: 'Bookings today',
+    what: 'People expected in the salon today.',
+    how: 'Every booking on the books for today, whether it came from the phone, the front desk, or online.',
+    why: 'It is the day at a glance — and the first place a quiet afternoon shows up while you can still fill it.',
+  },
+  inSalonNow: {
+    label: 'In the salon now',
+    what: 'People checked in and not yet gone.',
+    how: 'Anyone checked in whose session has not finished and who has not checked out.',
+    why: 'Tells you if the front desk is busy before you walk out there.',
+  },
+  roomsInUse: {
+    label: 'Rooms in use',
+    what: 'How many of your rooms have someone in them right now.',
+    how: 'Rooms with a session running, out of the rooms you have open today. Rooms closed for repairs are left out.',
+    why: 'Rooms sitting empty still cost you rent and power.',
+  },
+  impactEstimate: {
+    label: 'What it is worth',
+    what: 'Our best estimate of the money involved in this finding.',
+    how: 'Worked out from your own numbers — how much moved, times what it usually sells for. The card says which figures went into it.',
+    why: 'It is why the cards are in this order. The top one is the biggest number, not the loudest one.',
+  },
+  onPace: {
+    label: 'On pace',
+    what: 'Today is running about the same as a normal day like this one.',
+    how: 'Today so far compared with the same hours on the last few of the same weekday.',
+    why: 'A morning is not a day. Comparing like with like stops a slow start looking like a disaster.',
+  },
 } as const satisfies Record<string, MetricExplainer>;
 
 export type MetricKey = keyof typeof METRICS;
@@ -113,6 +149,22 @@ export const TIPS = {
   roomMaintenance: {
     label: 'Out of service',
     body: 'This room is closed for repairs, so nobody can be booked into it.',
+  },
+  severityRail: {
+    label: 'The coloured stripe',
+    body: 'Amber means something is slipping. Green means there is money on the table.',
+  },
+  sparkline: {
+    label: 'The little line',
+    body: 'The last few weeks of this number, oldest on the left. No scale — it is there for the shape, not the reading.',
+  },
+  weeklyStory: {
+    label: 'Your week, as a story',
+    body: 'A short read-through of the whole week, ready Sunday evening. Same plain sentences as the morning letter.',
+  },
+  locationCompare: {
+    label: 'Comparing your two locations',
+    body: 'The same numbers side by side, for yesterday. The arrow points at whichever shop is ahead.',
   },
 } as const satisfies Record<string, Tip>;
 
@@ -152,6 +204,21 @@ export const EMPTY_STATES = {
     title: 'No calls lined up',
     body: 'Salons that could use a hand show up here, newest first, with the reason they surfaced and what to say. The list builds itself overnight from what their numbers are doing.',
     action: 'Look at the whole portfolio',
+  },
+  nextUp: {
+    title: 'Nothing else booked today',
+    body: 'The rest of the day is open. Anyone who books or walks in from here shows up in this list, with the time, the name and what they are booked for.',
+    action: 'Open the floor',
+  },
+  locationCompare: {
+    title: 'Nothing to compare yet',
+    body: 'Your two shops sit side by side here — revenue, visits and members for yesterday, with the gap called out. The numbers start filling in as soon as both locations are ringing sales through Bask.',
+    action: 'Open the floor',
+  },
+  daybreak: {
+    title: "Your letter isn't written yet",
+    body: 'Bask reads yesterday overnight and writes this up before you open the door. Move the demo clock forward a day and it appears.',
+    action: 'See the numbers instead',
   },
 } as const satisfies Record<string, EmptyState>;
 
@@ -202,3 +269,93 @@ export const GUIDED_UI = {
   howHeading: 'How it is worked out',
   whyHeading: 'Why it matters',
 } as const;
+
+/* ------------------------------------------------------------- app shell */
+
+/**
+ * The whole app's chrome (DESIGN_SPEC §3.1 — "nav is the whole app's chrome, no
+ * sidebar in Bask"). Destination LABELS live here so the six names are reviewed
+ * in one place; the hrefs live with the shell because they are routing, not copy.
+ */
+export const SHELL_UI = {
+  wordmark: 'Bask',
+  nav: {
+    today: 'Today',
+    floor: 'The Floor',
+    customers: 'Customers',
+    marketing: 'Marketing',
+    inventory: 'Inventory',
+    insights: 'Insights',
+  },
+  /**
+   * Tab-bar labels. Six 10px labels across a 390px bar leaves ~64px each, so the
+   * two-word names lose their article rather than being ellipsised into nonsense.
+   * Same destinations, same words — never a different name for the same place.
+   */
+  navShort: {
+    today: 'Today',
+    floor: 'Floor',
+    customers: 'Customers',
+    marketing: 'Marketing',
+    inventory: 'Inventory',
+    insights: 'Insights',
+  },
+  navLandmark: 'Main sections',
+  avatarLabel: (name: string) => `Signed in as ${name}`,
+  skipToContent: 'Skip to the main part of this page',
+} as const;
+
+export type NavKey = keyof typeof SHELL_UI.nav;
+
+/* ------------------------------------------------------------------ today */
+
+/** Section labels and states on the Today surface. */
+export const TODAY_UI = {
+  queueHeading: 'Needs your attention — ranked by impact',
+  queueHeadingShort: 'Needs your attention',
+  pulseHeading: 'Today so far',
+  nextUpHeading: 'Next up',
+  comparisonHeading: 'Your two locations, yesterday',
+  storyLead: 'Your week, as a story.',
+  storyBody: 'Five beats, ready Sunday evening.',
+  storyAction: 'Preview',
+  loading: 'Reading last night’s numbers…',
+  bookingHold: 'Walk-in hold',
+  errorTitle: 'This page could not finish loading',
+  errorBody:
+    'The numbers behind your morning letter did not come back. Nothing is lost — try again, and if it keeps happening the demo database is probably still starting up.',
+  errorAction: 'Try again',
+} as const;
+
+/* ---------------------------------------------------------- insight cards */
+
+/**
+ * Card mechanics copy. `Show me why` opens INLINE — never a modal — so the label
+ * has to promise an expansion, and the close label has to promise a collapse.
+ */
+export const INSIGHT_UI = {
+  showWhy: 'Show me why',
+  hideWhy: 'Hide the detail',
+  showWhyShort: 'Why',
+  dismiss: 'Dismiss',
+  dismissPrompt: 'Why are you putting this away?',
+  dismissCancel: 'Keep it',
+  dismissReasons: [
+    { key: 'not_relevant', label: 'Not relevant to me' },
+    { key: 'already_handled', label: 'Already handled it' },
+    { key: 'snooze', label: 'Remind me next week' },
+  ],
+  undoToast: (title: string) => `Put away: ${title}`,
+  undoAction: 'Undo',
+  undoDismissLabel: 'Close this message',
+  dismissFailed: 'That did not save. It is still on your list — try again.',
+  drilldownHeading: 'What we measured',
+  factorsHeading: "What's behind it",
+  basisHeading: 'How the money figure works',
+  windowLabel: (label: string) => `Measured over the ${label}.`,
+  comparisonLabel: (baseline: string, current: string) => `${baseline} before · ${current} now`,
+  shareLabel: (percent: number) => `${percent}% of the movement`,
+  noSeries: 'There is no day-by-day trend for this one — it is a single count.',
+} as const;
+
+export type DismissReasonKey = (typeof INSIGHT_UI.dismissReasons)[number]['key'];

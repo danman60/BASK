@@ -180,6 +180,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@bask/core':
+        specifier: workspace:*
+        version: link:../core
       '@bask/tokens':
         specifier: workspace:*
         version: link:../tokens
