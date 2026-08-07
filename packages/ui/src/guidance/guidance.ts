@@ -91,6 +91,33 @@ export const METRICS = {
     how: 'What is on the shelf divided by how much you have been selling per day recently.',
     why: 'Running out of a product your regulars buy sends them to another salon to get it.',
   },
+
+  /* --- Lane 4 (Inventory + Insights/Peers) ------------------------------- */
+
+  sellThroughPace: {
+    label: 'How fast it is selling',
+    what: 'The number of bottles of one product that leave the shelf on an average day.',
+    how: 'Everything sold in the last 30 days, plus what your staff used in the rooms, divided by 30. Nothing here is typed in by hand — it is counted from your till.',
+    why: 'It is the number that turns "we have got sixteen" into "that is three weeks" — which is the only version you can order against.',
+  },
+  salesPerShift: {
+    label: 'Product sales per shift',
+    what: 'The value of products one person sells on a day they are working.',
+    how: 'Their product sales over the last two weeks, divided by the number of days they actually rang something through.',
+    why: 'It shows who is comfortable talking about products at the counter, so you know who to pair a newer person with.',
+  },
+  peerGap: {
+    label: 'The gap to businesses like yours',
+    what: 'The difference between your number and the middle number for salons of your size.',
+    how: 'Every participating salon shares summary figures only. We line them up, take the middle one, and compare it to yours. Nobody is named, and a group smaller than eight salons is never shown at all.',
+    why: 'A gap is an amount of money, not a grade. It tells you what is realistically there to pick up, at your own traffic.',
+  },
+  roomUtilisation: {
+    label: 'How full each hour is',
+    what: 'The share of your rooms that were actually in use, hour by hour, across a normal week.',
+    how: 'Sessions that ran in that hour, divided by the sessions that could have run in it — your open rooms across four weeks of that same weekday.',
+    why: 'Quiet hours are where a promotion pays for itself, and full hours are the argument for another room.',
+  },
 } as const satisfies Record<string, MetricExplainer>;
 
 export type MetricKey = keyof typeof METRICS;
@@ -114,6 +141,33 @@ export const TIPS = {
     label: 'Out of service',
     body: 'This room is closed for repairs, so nobody can be booked into it.',
   },
+
+  /* --- Lane 4 (Inventory + Insights/Peers) ------------------------------- */
+
+  cohortSize: {
+    label: 'How many salons are in this group',
+    body: 'The number of participating salons behind these figures. It is always shown, and it is never fewer than eight.',
+  },
+  cohortSuppressed: {
+    label: 'Why this group is hidden',
+    body: 'Fewer than eight salons take part in this group. With a group that small, everyone could work out whose numbers were whose, so nothing is shown at all.',
+  },
+  wholesalePrice: {
+    label: 'Your cost',
+    body: 'What you pay UVALUX per bottle. The shelf price beside it is what you charge.',
+  },
+  orderReason: {
+    label: 'Why this is on the order',
+    body: 'Every suggested line says what put it there — a shelf below its threshold, how fast it is selling, or a service that is getting busier.',
+  },
+  overstockFlag: {
+    label: 'Sitting too long',
+    body: 'There is more of this on the shelf than four months of selling would use. Money on a shelf is money you cannot spend.',
+  },
+  reorderPoint: {
+    label: 'Reorder point',
+    body: 'The count at which a product should go back on an order — roughly two weeks of selling at its usual pace.',
+  },
 } as const satisfies Record<string, Tip>;
 
 export type TipKey = keyof typeof TIPS;
@@ -131,6 +185,17 @@ export const WHISPERS = {
   undoAvailable: 'You can undo this for the next few seconds.',
   demoData: 'These are practice numbers, not a real salon.',
   consentSummaryOnly: 'Summary numbers only — this salon keeps its customer details private.',
+
+  /* --- Lane 4 (Inventory + Insights/Peers) ------------------------------- */
+
+  orderNotSentYet: 'Nothing goes to UVALUX until you read the order and press send.',
+  orderGoesToRep: (lines: number) =>
+    `Sends ${lines} ${lines === 1 ? 'line' : 'lines'} to your UVALUX rep. They will confirm before anything ships.`,
+  peersAnonymous: (count: number) =>
+    `Worked out from ${count} salons that agreed to share summary numbers. None of them are named, and neither are you.`,
+  coachingRequestVisible: 'Your rep sees that you asked, and what you asked about. Nothing else.',
+  challengeVisibleToStaff: 'Your team sees this on the Floor. It shows a target, never a ranking.',
+  figuresFromYourTill: 'Every figure here is counted from your own sales — nothing is typed in.',
 } as const;
 
 export type WhisperKey = keyof typeof WHISPERS;
@@ -152,6 +217,24 @@ export const EMPTY_STATES = {
     title: 'No calls lined up',
     body: 'Salons that could use a hand show up here, newest first, with the reason they surfaced and what to say. The list builds itself overnight from what their numbers are doing.',
     action: 'Look at the whole portfolio',
+  },
+
+  /* --- Lane 4 (Inventory + Insights/Peers) ------------------------------- */
+
+  draftOrder: {
+    title: 'Your order is empty',
+    body: 'Bask watches how fast every product leaves the shelf and suggests what to reorder before you run out. Each suggestion says why it is there, and nothing goes to UVALUX until you send it.',
+    action: 'See what it suggests',
+  },
+  activityLog: {
+    title: 'Nothing has happened yet today',
+    body: 'Every discount, void, dismissed insight and sharing change lands here with who did it and when. It is the answer to "who changed that", without anyone having to remember.',
+    action: 'See yesterday instead',
+  },
+  peersPrivate: {
+    title: 'Peers is off while sharing is private',
+    body: 'Comparisons only work if salons put numbers in, so a salon on the private setting does not get them back. Turning sharing on adds your summary figures to groups of at least eight salons — never your customers, never your takings.',
+    action: 'Look at what UVALUX would see',
   },
 } as const satisfies Record<string, EmptyState>;
 
