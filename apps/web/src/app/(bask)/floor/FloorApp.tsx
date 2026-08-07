@@ -441,7 +441,8 @@ export function FloorApp({
   return (
     <div className="floor">
       <header className="floor-topbar">
-        <span className="floor-wordmark">Bask</span>
+        {/* No wordmark here: the Floor sits inside the (bask) shell, which already
+            carries it. Two Basks in a 90px band read as a rendering bug. */}
         <nav className="floor-tabs" aria-label={FLOOR.title}>
           {(['board', 'checkin', 'pos', 'schedule'] as Tab[]).map((t) => (
             <a
