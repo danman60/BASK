@@ -1,5 +1,16 @@
 # CURRENT_WORK — uvalux-platform
 
+## Deployed
+- **Live:** https://bask-lub8r3iau-danman60s-projects.vercel.app (public, no auth — it is a demo)
+- **Repo:** https://github.com/danman60/BASK (public)
+- Vercel project `bask` (team danman60s-projects), Root Directory `apps/web`, deploys on push to master.
+- **The URL is NOT bask.vercel.app** — that belongs to somebody else's project. Always read the real
+  deployment URL back from `vercel ls`; never construct it from the project name.
+- Env on Vercel: DATABASE_URL, DIRECT_DATABASE_URL, OPENAI_API_KEY, LOG_TOKEN, NEXT_PUBLIC_LOG_TOKEN,
+  NEXT_PUBLIC_APP_URL. Logs: `curl "<url>/api/_logs?token=$LOG_TOKEN&since=0" | jq`
+- Deployment Protection is OFF (public demo). Turn back on:
+  `curl -X PATCH .../projects/bask -d '{"ssoProtection":{"deploymentType":"prod_deployment_urls_and_all_previews"}}'`
+
 ## Active Task
 M1 web demo build COMPLETE (2026-08-07) — all six surfaces + public booking merged; `pnpm demo:verify` 12/12 on a fresh reset. Next: fund the AI key, tune fixture volume for the demo script, then M2 (mobile + barcode).
 
@@ -11,7 +22,8 @@ M1 web demo build COMPLETE (2026-08-07) — all six surfaces + public booking me
   - **Bugs the merge exposed (each invisible inside its own lane):** no-salon fallback resolved to Ironwood (0 customers) so every Bask surface pointed at an empty tenant · `?salon=<slug>` sent a non-UUID to a uuid column, 500ing every slug link · all five lanes' routes were built OUTSIDE the `(bask)` route group so none had the app nav · two lanes appended to the same guidance dictionary and the union merge swallowed six closing braces · Floor duplicated the shell wordmark.
   - **Lane-found bugs worth remembering:** Floor engine's `globalThis` cache survived hot reloads (edits silently ignored) · 24h UV rule applied to every service and hard-blocked check-in · wedge listener could emit a truncated barcode (wrong bottle in cart).
   - **Migrations added:** `daybreak_brief` (M0 lane B), `Booking`/`WaiverSignature`/`ShiftHandoff` (M1 lane 2). All `bask`-scoped, zero public footprint.
-  - **STILL BLOCKED — AI success path unverified.** Every generation (Daybreak, campaigns, call briefs, recovery drafts) runs the deterministic fallback because the key returns 400 "credit balance is too low". Three lanes independently confirmed the call goes out and the fallback catches it; each screen states which path ran. Fund the key, re-run `pnpm demo:advance --days 0` — no code change needed.
+  - **RESOLVED 2026-08-07:** AI provider switched to OpenAI (gpt-4.1 / gpt-4.1-mini for classification) because the Anthropic key was out of credits. Verified live — `demo:advance` now reports `brief ai`, not fallback. Original note follows for context.
+  - ~~**STILL BLOCKED — AI success path unverified.**~~ Every generation (Daybreak, campaigns, call briefs, recovery drafts) runs the deterministic fallback because the key returns 400 "credit balance is too low". Three lanes independently confirmed the call goes out and the fallback catches it; each screen states which path ran. Fund the key, re-run `pnpm demo:advance --days 0` — no code change needed.
   - **Open tuning:** fixture volume makes day-zero read "31% below your usual Monday" where the pitch wants "8% above"; impact figures run ~10x the mockups ($9,498 vs $640/mo) because the dataset does ~96 visits/day. Arithmetic is right; volume is a design call.
   - **Shared-DB hazard:** concurrent `demo:reset` from parallel lanes is NOT safe (FK violations, interleaved state). One owner per reset.
 - 2026-08-07 **M0 COMPLETE — all 11 steps merged to master, exit gate passed.**
