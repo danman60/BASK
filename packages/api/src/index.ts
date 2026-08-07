@@ -40,4 +40,4 @@ export {
   staffProcedure,
 } from './trpc';
 
-export { DEMO_STATE_ID, createPrismaDemoClockStore, ensureDemoState, stubDayZero } from './demo/clock';
+export { DEMO_STATE_ID, ensureDemoState, fixtureDayZero } from './demo/clock';

@@ -4,10 +4,11 @@
  * not behind a role, and the presenter may be switched to any role when they use it.
  */
 
-import { runAdvancePipeline, runResetPipeline } from '@bask/core';
+import { runPipeline } from '@bask/core';
+import { createPrismaPipelinePorts } from '@bask/db';
 import { z } from 'zod';
 
-import { createPrismaDemoClockStore, ensureDemoState } from '../demo/clock';
+import { DEMO_STATE_ID, ensureDemoState, fixtureDayZero } from '../demo/clock';
 import { DEMO_ROLES } from '../roles';
 import { publicProcedure, router } from '../trpc';
 
@@ -55,23 +56,34 @@ export const demoRouter = router({
     };
   }),
 
-  /** Moves the virtual clock forward and runs the (stubbed) advance pipeline. */
+  /**
+   * Moves the virtual clock forward and runs the real pipeline (campaign settle →
+   * rollups → insight sweep → Daybreak regen). `offline: true` so a presenter
+   * click never blocks on the AI API mid-demo — the scripted briefs are already
+   * cached by `demo:advance` on the command line.
+   */
   advance: publicProcedure
     .input(z.object({ days: z.int().min(1).max(90).default(1) }))
     .mutation(async ({ ctx, input }) => {
-      const result = await runAdvancePipeline({
-        store: createPrismaDemoClockStore(ctx.db),
-        days: input.days,
-      });
       const state = await ensureDemoState(ctx.db);
-      return { clock: clockPayload(state), pipeline: result };
+      const ports = createPrismaPipelinePorts(ctx.db, { seed: state.seed });
+      const report = await runPipeline(ports, { days: input.days, offline: true });
+      const next = await ensureDemoState(ctx.db);
+      return { clock: clockPayload(next), pipeline: report };
     }),
 
-  /** Rewinds the clock to day-zero. Fixture regeneration lands in M0 step 4. */
+  /**
+   * Rewinds the clock to fixture day-zero. Full reseeding is `pnpm demo:reset` on
+   * the command line — regenerating 36k rows is a 30-second job and does not
+   * belong behind a panel button mid-pitch.
+   */
   reset: publicProcedure.mutation(async ({ ctx }) => {
-    const result = await runResetPipeline({ store: createPrismaDemoClockStore(ctx.db) });
+    await ctx.db.demoState.update({
+      where: { id: DEMO_STATE_ID },
+      data: { virtualToday: fixtureDayZero(), lastAdvancedAt: null, lastPipelineRunAt: null },
+    });
     const state = await ensureDemoState(ctx.db);
-    return { clock: clockPayload(state), pipeline: result };
+    return { clock: clockPayload(state), pipeline: { clockOnly: true } };
   }),
 
   /** Presenter Panel stubs, wired M1/M2. Named here so the panel can label them. */

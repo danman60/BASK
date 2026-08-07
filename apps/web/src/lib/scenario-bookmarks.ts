@@ -42,9 +42,7 @@ export const SCENARIO_BOOKMARKS: readonly ScenarioBookmark[] = [
     id: 'floor-live',
     label: 'Floor live',
     description: 'Two days in, front desk — the room-board beat.',
-    // TARGET FOR MERGE: `/dev/floor` (M0 step 7's room-board harness) does not
-    // exist in this lane. Repoint when that route lands; nothing else changes.
-    path: '/dev/api',
+    path: '/dev/floor',
     clockDays: 2,
     role: 'front_desk',
   },

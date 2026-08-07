@@ -1,0 +1,6 @@
+# Prisma reads this to know which connector the migrations directory targets.
+# `migrate diff --from-migrations` fails without it ("Could not determine the
+# connector from the migrations directory"), which is how it went missing —
+# the initial migration was applied with psql and recorded via
+# `migrate resolve --applied`, a path that never writes this file.
+provider = "postgresql"

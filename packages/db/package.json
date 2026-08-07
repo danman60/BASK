@@ -5,21 +5,30 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./client": "./generated/prisma/client.ts"
+    "./client": "./generated/prisma/client.ts",
+    "./fixtures": "./fixtures/index.ts"
   },
   "scripts": {
     "generate": "prisma generate",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run",
     "db:check": "node scripts/assert-bask-scoped.mjs",
     "db:status": "prisma migrate status",
     "db:deploy": "node scripts/assert-bask-scoped.mjs && prisma migrate deploy",
-    "db:migration:new": "prisma migrate diff --config prisma.config.migrations.ts --from-migrations prisma/migrations --to-schema prisma/schema.prisma --script"
+    "db:migration:new": "prisma migrate diff --config prisma.config.migrations.ts --from-migrations prisma/migrations --to-schema prisma/schema.prisma --script",
+    "demo:reset": "tsx scripts/demo-reset.ts",
+    "demo:advance": "tsx scripts/demo-advance.ts",
+    "demo:checksum": "tsx scripts/demo-checksum.ts",
+    "demo:dump": "tsx scripts/demo-dump.ts"
   },
   "devDependencies": {
     "prisma": "7.9.1",
-    "typescript": "^5.9.3"
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
   },
   "dependencies": {
+    "@bask/core": "workspace:*",
     "@prisma/adapter-pg": "7.9.1",
     "@prisma/client": "7.9.1"
   }

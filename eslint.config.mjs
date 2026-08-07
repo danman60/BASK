@@ -25,7 +25,7 @@ export default tseslint.config(
   {
     // Node scripts (.mjs tooling: migration guards, seeds, contrast gate) run outside
     // the browser — declare the Node globals so `console`/`process` aren't no-undef.
-    files: ['**/*.mjs', '**/scripts/**/*.{js,ts}'],
+    files: ['**/*.mjs', '**/scripts/**/*.{js,ts,mjs}'],
     languageOptions: {
       globals: { console: 'readonly', process: 'readonly', URL: 'readonly', fetch: 'readonly' },
     },

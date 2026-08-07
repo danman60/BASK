@@ -338,33 +338,34 @@ model Salon {
   createdAt    DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt    DateTime    @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  org               Org                @relation(fields: [orgId], references: [id], onDelete: Cascade)
-  rooms             Room[]
-  equipmentDevices  EquipmentDevice[]
-  services          Service[]
-  sessions          Session[]
-  customers         Customer[]
-  memberships       Membership[]
-  packages          Package[]
-  visits            Visit[]
-  sales             Sale[]
-  saleLines         SaleLine[]
-  products          Product[]
-  barcodes          Barcode[]
-  inventoryLevels   InventoryLevel[]
-  stockEvents       StockEvent[]
-  insights          Insight[]
-  campaigns         Campaign[]
-  giftCards         GiftCard[]
-  activityEvents    ActivityEvent[]
-  staff             Staff[]
-  consentProfile    ConsentProfile?
-  consentAudit      ConsentAuditEntry[]
-  draftOrders       DraftOrder[]
-  account           Account?
-  signalSnapshots   SignalSnapshot[]
-  coachingRequests  CoachingRequest[]
-  contactLogs       ContactLog[]
+  org              Org                 @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  rooms            Room[]
+  equipmentDevices EquipmentDevice[]
+  services         Service[]
+  sessions         Session[]
+  customers        Customer[]
+  memberships      Membership[]
+  packages         Package[]
+  visits           Visit[]
+  sales            Sale[]
+  saleLines        SaleLine[]
+  products         Product[]
+  barcodes         Barcode[]
+  inventoryLevels  InventoryLevel[]
+  stockEvents      StockEvent[]
+  insights         Insight[]
+  campaigns        Campaign[]
+  giftCards        GiftCard[]
+  activityEvents   ActivityEvent[]
+  staff            Staff[]
+  consentProfile   ConsentProfile?
+  consentAudit     ConsentAuditEntry[]
+  draftOrders      DraftOrder[]
+  account          Account?
+  signalSnapshots  SignalSnapshot[]
+  coachingRequests CoachingRequest[]
+  contactLogs      ContactLog[]
+  daybreakBriefs   DaybreakBrief[]
 
   @@index([orgId])
   @@map("salon")
@@ -386,21 +387,21 @@ model Staff {
   createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt    DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  salon                Salon?              @relation(fields: [salonId], references: [id], onDelete: Cascade)
-  sessionsStarted      Session[]           @relation("SessionStartedByStaff")
-  visits               Visit[]
-  sales                Sale[]
-  saleLines            SaleLine[]
-  stockEvents          StockEvent[]
-  campaignsCreated     Campaign[]
-  activityEvents       ActivityEvent[]
-  consentChanges       ConsentAuditEntry[]
-  consentProfiles      ConsentProfile[]
-  draftOrdersCreated   DraftOrder[]
-  accountsAssigned     Account[]           @relation("AccountAssignedRep")
-  coachingRequested    CoachingRequest[]   @relation("CoachingRequestedBy")
-  coachingAssigned     CoachingRequest[]   @relation("CoachingAssignedRep")
-  contactLogs          ContactLog[]
+  salon              Salon?              @relation(fields: [salonId], references: [id], onDelete: Cascade)
+  sessionsStarted    Session[]           @relation("SessionStartedByStaff")
+  visits             Visit[]
+  sales              Sale[]
+  saleLines          SaleLine[]
+  stockEvents        StockEvent[]
+  campaignsCreated   Campaign[]
+  activityEvents     ActivityEvent[]
+  consentChanges     ConsentAuditEntry[]
+  consentProfiles    ConsentProfile[]
+  draftOrdersCreated DraftOrder[]
+  accountsAssigned   Account[]           @relation("AccountAssignedRep")
+  coachingRequested  CoachingRequest[]   @relation("CoachingRequestedBy")
+  coachingAssigned   CoachingRequest[]   @relation("CoachingAssignedRep")
+  contactLogs        ContactLog[]
 
   @@index([salonId])
   @@index([role])
@@ -414,14 +415,14 @@ model Staff {
 
 /// Extensible lookup — NOT a hard enum. Wellness expansion adds rows, not migrations.
 model RoomType {
-  key            String   @id
-  label          String
-  category       String   @default("uv") // uv | spray | wellness
-  defaultMinutes Int      @default(12) @map("default_minutes")
-  cleaningMinutes Int     @default(5) @map("cleaning_minutes")
-  sortOrder      Int      @default(0) @map("sort_order")
-  isActive       Boolean  @default(true) @map("is_active")
-  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  key             String   @id
+  label           String
+  category        String   @default("uv") // uv | spray | wellness
+  defaultMinutes  Int      @default(12) @map("default_minutes")
+  cleaningMinutes Int      @default(5) @map("cleaning_minutes")
+  sortOrder       Int      @default(0) @map("sort_order")
+  isActive        Boolean  @default(true) @map("is_active")
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
 
   rooms    Room[]
   services Service[]
@@ -540,27 +541,27 @@ model Session {
 // ---------------------------------------------------------------------------
 
 model Customer {
-  id                    String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  salonId               String         @map("salon_id") @db.Uuid
-  firstName             String         @map("first_name")
-  lastName              String         @map("last_name")
-  email                 String?
-  phone                 String?
-  birthDate             DateTime?      @map("birth_date") @db.Date
-  photoUrl              String?        @map("photo_url")
-  skinType              String?        @map("skin_type")
-  status                CustomerStatus @default(active)
+  id                 String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  salonId            String         @map("salon_id") @db.Uuid
+  firstName          String         @map("first_name")
+  lastName           String         @map("last_name")
+  email              String?
+  phone              String?
+  birthDate          DateTime?      @map("birth_date") @db.Date
+  photoUrl           String?        @map("photo_url")
+  skinType           String?        @map("skin_type")
+  status             CustomerStatus @default(active)
   // consent flags
-  emailOptIn            Boolean        @default(false) @map("email_opt_in")
-  smsOptIn              Boolean        @default(false) @map("sms_opt_in")
-  photoConsent          Boolean        @default(false) @map("photo_consent")
-  marketingConsentAt    DateTime?      @map("marketing_consent_at") @db.Timestamptz(6)
-  waiverSignedAt        DateTime?      @map("waiver_signed_at") @db.Timestamptz(6)
-  notes                 String?
-  joinedAt              DateTime       @default(now()) @map("joined_at") @db.Timestamptz(6)
-  lastVisitAt           DateTime?      @map("last_visit_at") @db.Timestamptz(6)
-  createdAt             DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt             DateTime       @updatedAt @map("updated_at") @db.Timestamptz(6)
+  emailOptIn         Boolean        @default(false) @map("email_opt_in")
+  smsOptIn           Boolean        @default(false) @map("sms_opt_in")
+  photoConsent       Boolean        @default(false) @map("photo_consent")
+  marketingConsentAt DateTime?      @map("marketing_consent_at") @db.Timestamptz(6)
+  waiverSignedAt     DateTime?      @map("waiver_signed_at") @db.Timestamptz(6)
+  notes              String?
+  joinedAt           DateTime       @default(now()) @map("joined_at") @db.Timestamptz(6)
+  lastVisitAt        DateTime?      @map("last_visit_at") @db.Timestamptz(6)
+  createdAt          DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt          DateTime       @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   salon             Salon        @relation(fields: [salonId], references: [id], onDelete: Cascade)
   memberships       Membership[]
@@ -722,18 +723,18 @@ model SaleLine {
 
 /// Seeded plausible UVALUX catalogue; real catalogue import lands M3+. Global (no salon).
 model UvaluxCatalogItem {
-  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  officialSku   String?  @unique @map("official_sku")
-  name          String
-  brand         String?
-  category      String?
-  size          String?
-  upc           String?
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  officialSku    String?  @unique @map("official_sku")
+  name           String
+  brand          String?
+  category       String?
+  size           String?
+  upc            String?
   wholesalePrice Decimal? @map("wholesale_price") @db.Decimal(10, 2)
-  msrp          Decimal? @db.Decimal(10, 2)
-  isActive      Boolean  @default(true) @map("is_active")
-  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt     DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  msrp           Decimal? @db.Decimal(10, 2)
+  isActive       Boolean  @default(true) @map("is_active")
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   products        Product[]
   draftOrderLines DraftOrderLine[]
@@ -774,14 +775,14 @@ model Product {
 
 /// Many external codes → one product (manufacturer UPC/EAN + self-printed Code128).
 model Barcode {
-  id         String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  salonId    String?          @map("salon_id") @db.Uuid
-  productId  String           @map("product_id") @db.Uuid
-  value      String
-  symbology  BarcodeSymbology @default(upc_a)
-  source     BarcodeSource    @default(scanned)
-  isPrimary  Boolean          @default(false) @map("is_primary")
-  createdAt  DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  id        String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  salonId   String?          @map("salon_id") @db.Uuid
+  productId String           @map("product_id") @db.Uuid
+  value     String
+  symbology BarcodeSymbology @default(upc_a)
+  source    BarcodeSource    @default(scanned)
+  isPrimary Boolean          @default(false) @map("is_primary")
+  createdAt DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
 
   salon   Salon?  @relation(fields: [salonId], references: [id], onDelete: Cascade)
   product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
@@ -892,23 +893,23 @@ model Segment {
 }
 
 model Campaign {
-  id                 String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  salonId            String        @map("salon_id") @db.Uuid
-  name               String
-  goal               String?
-  segmentKey         String?       @map("segment_key")
-  segmentSnapshot    Json          @default("{}") @map("segment_snapshot")
-  channels           String[]      @default([])
-  content            Json          @default("{}")
-  state              CampaignState @default(draft)
-  scheduledFor       DateTime?     @map("scheduled_for") @db.Timestamptz(6)
-  sentAt             DateTime?     @map("sent_at") @db.Timestamptz(6)
-  measuredAt         DateTime?     @map("measured_at") @db.Timestamptz(6)
-  results            Json?
-  sourceInsightId    String?       @map("source_insight_id") @db.Uuid
-  createdByStaffId   String?       @map("created_by_staff_id") @db.Uuid
-  createdAt          DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt          DateTime      @updatedAt @map("updated_at") @db.Timestamptz(6)
+  id               String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  salonId          String        @map("salon_id") @db.Uuid
+  name             String
+  goal             String?
+  segmentKey       String?       @map("segment_key")
+  segmentSnapshot  Json          @default("{}") @map("segment_snapshot")
+  channels         String[]      @default([])
+  content          Json          @default("{}")
+  state            CampaignState @default(draft)
+  scheduledFor     DateTime?     @map("scheduled_for") @db.Timestamptz(6)
+  sentAt           DateTime?     @map("sent_at") @db.Timestamptz(6)
+  measuredAt       DateTime?     @map("measured_at") @db.Timestamptz(6)
+  results          Json?
+  sourceInsightId  String?       @map("source_insight_id") @db.Uuid
+  createdByStaffId String?       @map("created_by_staff_id") @db.Uuid
+  createdAt        DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime      @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   salon         Salon    @relation(fields: [salonId], references: [id], onDelete: Cascade)
   segment       Segment? @relation(fields: [segmentKey], references: [key])
@@ -974,17 +975,17 @@ model ActivityEvent {
 // ---------------------------------------------------------------------------
 
 model ConsentProfile {
-  id              String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  salonId         String      @unique @map("salon_id") @db.Uuid
-  tier            ConsentTier @default(benchmarks)
-  updatedByStaffId String?    @map("updated_by_staff_id") @db.Uuid
-  effectiveAt     DateTime    @default(now()) @map("effective_at") @db.Timestamptz(6)
-  createdAt       DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt       DateTime    @updatedAt @map("updated_at") @db.Timestamptz(6)
+  id               String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  salonId          String      @unique @map("salon_id") @db.Uuid
+  tier             ConsentTier @default(benchmarks)
+  updatedByStaffId String?     @map("updated_by_staff_id") @db.Uuid
+  effectiveAt      DateTime    @default(now()) @map("effective_at") @db.Timestamptz(6)
+  createdAt        DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime    @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  salon           Salon               @relation(fields: [salonId], references: [id], onDelete: Cascade)
-  updatedByStaff  Staff?              @relation(fields: [updatedByStaffId], references: [id], onDelete: SetNull)
-  auditEntries    ConsentAuditEntry[]
+  salon          Salon               @relation(fields: [salonId], references: [id], onDelete: Cascade)
+  updatedByStaff Staff?              @relation(fields: [updatedByStaffId], references: [id], onDelete: SetNull)
+  auditEntries   ConsentAuditEntry[]
 
   @@map("consent_profile")
   @@schema("bask")
@@ -1111,23 +1112,23 @@ model SignalSnapshot {
 }
 
 model CoachingRequest {
-  id                String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  salonId           String               @map("salon_id") @db.Uuid
-  accountId         String               @map("account_id") @db.Uuid
-  topic             String
-  message           String?
-  state             CoachingRequestState @default(open)
-  requestedByStaffId String?             @map("requested_by_staff_id") @db.Uuid
-  assignedRepId     String?              @map("assigned_rep_id") @db.Uuid
-  response          String?
-  requestedAt       DateTime             @default(now()) @map("requested_at") @db.Timestamptz(6)
-  respondedAt       DateTime?            @map("responded_at") @db.Timestamptz(6)
-  closedAt          DateTime?            @map("closed_at") @db.Timestamptz(6)
+  id                 String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  salonId            String               @map("salon_id") @db.Uuid
+  accountId          String               @map("account_id") @db.Uuid
+  topic              String
+  message            String?
+  state              CoachingRequestState @default(open)
+  requestedByStaffId String?              @map("requested_by_staff_id") @db.Uuid
+  assignedRepId      String?              @map("assigned_rep_id") @db.Uuid
+  response           String?
+  requestedAt        DateTime             @default(now()) @map("requested_at") @db.Timestamptz(6)
+  respondedAt        DateTime?            @map("responded_at") @db.Timestamptz(6)
+  closedAt           DateTime?            @map("closed_at") @db.Timestamptz(6)
 
-  salon          Salon   @relation(fields: [salonId], references: [id], onDelete: Cascade)
-  account        Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
-  requestedBy    Staff?  @relation("CoachingRequestedBy", fields: [requestedByStaffId], references: [id], onDelete: SetNull)
-  assignedRep    Staff?  @relation("CoachingAssignedRep", fields: [assignedRepId], references: [id], onDelete: SetNull)
+  salon       Salon   @relation(fields: [salonId], references: [id], onDelete: Cascade)
+  account     Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  requestedBy Staff?  @relation("CoachingRequestedBy", fields: [requestedByStaffId], references: [id], onDelete: SetNull)
+  assignedRep Staff?  @relation("CoachingAssignedRep", fields: [assignedRepId], references: [id], onDelete: SetNull)
 
   @@index([salonId, state])
   @@index([accountId, state])
@@ -1177,20 +1178,50 @@ model Playbook {
 }
 
 // ---------------------------------------------------------------------------
+// Daybreak (pre-generated briefs)
+// ---------------------------------------------------------------------------
+
+/// Pre-generated morning briefs (IMPLEMENTATION_SPEC §0.1). The Today surface
+/// reads a row here; it never waits on a model. `prompt_hash` is the cache key:
+/// a rerun whose facts have not changed serves this row with no API call, which
+/// is what makes the demo airplane-mode tolerant. `brief` holds the shape
+/// defined by `daybreakBriefSchema` in packages/core.
+model DaybreakBrief {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  salonId     String   @map("salon_id") @db.Uuid
+  forDate     DateTime @map("for_date") @db.Date
+  promptHash  String   @map("prompt_hash")
+  /// ai | cache | fallback — which path produced this brief.
+  source      String   @default("fallback")
+  model       String?
+  brief       Json
+  generatedAt DateTime @map("generated_at") @db.Timestamptz(6)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  salon Salon @relation(fields: [salonId], references: [id], onDelete: Cascade)
+
+  @@unique([salonId, forDate])
+  @@index([salonId, forDate])
+  @@map("daybreak_brief")
+  @@schema("bask")
+}
+
+// ---------------------------------------------------------------------------
 // Demo harness
 // ---------------------------------------------------------------------------
 
 /// Singleton row (id = 'default'). The demo clock's `virtual_today` lives here
 /// (IMPLEMENTATION_SPEC §1.4) — no timestamp rewriting, ever.
 model DemoState {
-  id                String   @id @default("default")
-  virtualToday      DateTime @map("virtual_today") @db.Date
-  seed              String   @default("sunset-ridge-v1")
+  id                String    @id @default("default")
+  virtualToday      DateTime  @map("virtual_today") @db.Date
+  seed              String    @default("sunset-ridge-v1")
   lastAdvancedAt    DateTime? @map("last_advanced_at") @db.Timestamptz(6)
   lastPipelineRunAt DateTime? @map("last_pipeline_run_at") @db.Timestamptz(6)
   notes             String?
-  createdAt         DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt         DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  createdAt         DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt         DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   @@map("demo_state")
   @@schema("bask")

@@ -1,12 +1,21 @@
 /**
- * Runtime Prisma client for the `bask` schema on the shared CC&SS project.
+ * Prisma access for the `bask` schema on the shared CC&SS project.
  *
- * Connection: `DATABASE_URL` (pgbouncer transaction pooler, :6543). Migrations use
- * `DIRECT_DATABASE_URL` and are configured entirely in `prisma.config.ts` — nothing
- * in this file may be used by the CLI (see packages/db/README.md).
+ * Two consumers with different needs, so this file exports both shapes:
+ *   `db`                  — the app singleton, HMR-safe, pooled runtime queries
+ *   `createPrismaClient`  — a factory for scripts, which can ask for the direct URL
  *
- * The generated client is schema-qualified (`multiSchema` with `schemas = ["bask"]`),
- * so every query names `"bask"."…"` explicitly and does not depend on `search_path`.
+ * Two URLs, and the choice matters (see packages/db/README.md):
+ *   DATABASE_URL         :6543 pgbouncer, transaction pooling — runtime queries
+ *   DIRECT_DATABASE_URL  :5432 session pooling — DDL, migrations, bulk seeding
+ *
+ * Demo/seed scripts must pass `{ direct: true }`: they run thousands of inserts
+ * inside long transactions, which transaction-mode pooling handles badly.
+ *
+ * Migrations are configured entirely in `prisma.config.ts` — nothing in this file
+ * may be used by the Prisma CLI. The generated client is schema-qualified
+ * (`multiSchema` with `schemas = ["bask"]`), so queries name `"bask"."…"` and do
+ * not depend on `search_path`.
  */
 
 import path from 'node:path';
@@ -21,14 +30,14 @@ export type { PrismaClient } from '../generated/prisma/client';
  * Prisma 7 no longer auto-loads `.env`, and Next.js only loads env files sitting
  * beside the app it is serving — so `apps/web` would otherwise need its own copy of
  * the database credentials. Walking up from the working directory to the
- * workspace's single `packages/db/.env` keeps `pnpm dev` working from any package
- * with the secret stored exactly once.
+ * workspace's single `packages/db/.env` keeps `pnpm dev` and the demo scripts
+ * working from any package with the secret stored exactly once.
  *
- * Local development only: in CI and on Vercel `DATABASE_URL` is already in the
+ * Local development only: in CI and on Vercel the vars are already in the
  * environment, so this returns immediately and never overrides an ambient value.
  */
-function loadLocalEnv(): void {
-  if (process.env.DATABASE_URL) return;
+export function loadDbEnv(): void {
+  if (process.env.DATABASE_URL && process.env.DIRECT_DATABASE_URL) return;
   if (typeof process.loadEnvFile !== 'function') return;
 
   let dir = process.cwd();
@@ -44,24 +53,33 @@ function loadLocalEnv(): void {
   }
 }
 
-function createClient(): PrismaClient {
-  loadLocalEnv();
+export interface ClientOptions {
+  /** Use the session pooler (:5432). Required for seeding and bulk writes. */
+  direct?: boolean;
+  log?: boolean;
+}
 
-  const connectionString = process.env.DATABASE_URL;
-  if (!connectionString) {
+export function createPrismaClient(options: ClientOptions = {}): PrismaClient {
+  loadDbEnv();
+
+  const url = options.direct
+    ? process.env.DIRECT_DATABASE_URL
+    : (process.env.DATABASE_URL ?? process.env.DIRECT_DATABASE_URL);
+
+  if (!url) {
     throw new Error(
-      'DATABASE_URL is not set. Copy packages/db/.env.example to packages/db/.env (values in ~/.env.keys).',
+      options.direct
+        ? 'DIRECT_DATABASE_URL is not set. Seeding needs the :5432 session pooler.'
+        : 'DATABASE_URL is not set. Copy packages/db/.env.example to packages/db/.env (values in ~/.env.keys).',
     );
   }
 
-  // Prisma 7 connects through a driver adapter — `datasourceUrl` is gone. The pool
-  // sits behind Supabase's pgbouncer transaction pooler, so it stays small and must
-  // never issue named prepared statements (node-postgres does not by default).
-  const adapter = new PrismaPg({ connectionString, max: 10 });
-
+  // Prisma 7 connects through a driver adapter — `datasourceUrl` is gone. The
+  // runtime pool sits behind pgbouncer's transaction pooler, so it stays small and
+  // must never issue named prepared statements (node-postgres does not by default).
   return new PrismaClient({
-    adapter,
-    log: process.env.NODE_ENV === 'development' ? ['warn', 'error'] : ['error'],
+    adapter: new PrismaPg({ connectionString: url, ...(options.direct ? {} : { max: 10 }) }),
+    log: options.log ?? process.env.NODE_ENV === 'development' ? ['warn', 'error'] : ['error'],
   });
 }
 
@@ -69,7 +87,7 @@ function createClient(): PrismaClient {
 // cache each edit leaks a connection pool against the shared pooler.
 const globalForPrisma = globalThis as unknown as { __baskPrisma?: PrismaClient };
 
-export const db: PrismaClient = globalForPrisma.__baskPrisma ?? createClient();
+export const db: PrismaClient = globalForPrisma.__baskPrisma ?? createPrismaClient();
 
 if (process.env.NODE_ENV !== 'production') {
   globalForPrisma.__baskPrisma = db;
