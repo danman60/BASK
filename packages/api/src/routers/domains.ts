@@ -16,7 +16,6 @@
 import { readSalonScope } from '@bask/db';
 
 import {
-  compassProcedure,
   ownerProcedure,
   publicProcedure,
   router,
@@ -40,10 +39,6 @@ function salonSurface(meta: SurfaceMeta) {
     scoped: 'salon' as const,
     implemented: false,
   };
-}
-
-function networkSurface(meta: SurfaceMeta) {
-  return { ...meta, scoped: 'uvalux-network' as const, implemented: false };
 }
 
 export const todayRouter = router({
@@ -120,19 +115,12 @@ export const insightsRouter = router({
   })),
 });
 
-export const compassRouter = router({
-  // NOT salon-scoped, and NOT shippable beyond this stub until the consent filter
-  // exists (packages/core/consent.ts, M0 step 11 — IMPLEMENTATION_SPEC §2).
-  surface: compassProcedure.query(({ ctx }) => ({
-    ...networkSurface({
-      domain: 'compass',
-      buildsIn: 'M1',
-      summary: 'Dealer network, accounts, signals and the rep call list.',
-    }),
-    role: ctx.role,
-    consentFilterReady: false,
-  })),
-});
+/*
+ * `compassRouter` used to be a stub here, blocked on the consent filter existing.
+ * M1 lane 5 moved it to `./compass.ts`, where every read goes through
+ * `@bask/core`'s `filterAccount`. Its `networkSurface` helper went with it — the
+ * shape is inlined there now, since Compass is the only UVALUX-side domain.
+ */
 
 export const settingsRouter = router({
   /**

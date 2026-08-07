@@ -4,9 +4,9 @@
  */
 
 import { router } from '../trpc';
+import { compassRouter, dataSharingRouter } from './compass';
 import { demoRouter } from './demo';
 import {
-  compassRouter,
   customersRouter,
   floorRouter,
   insightsRouter,
@@ -25,6 +25,12 @@ export const appRouter = router({
   insights: insightsRouter,
   compass: compassRouter,
   settings: settingsRouter,
+  /**
+   * Bask-side "What UVALUX sees" (PRODUCT_SPEC §15). Its own namespace rather
+   * than `settings.dataSharing` so the consent screen and the Compass router it
+   * describes stay in one file — they are one feature.
+   */
+  dataSharing: dataSharingRouter,
   demo: demoRouter,
 });
 

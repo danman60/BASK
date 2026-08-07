@@ -54,6 +54,14 @@ export const COMPASS_FIELDS = {
     'utilizationBand',
     'orderRecencyDays',
     'churnRiskBand',
+    // M1 lane 5 — the Call List's own fields, declared here because that is the
+    // review step this design exists to force. `evidenceTiles` is a TYPED,
+    // already-derived 3-up (band / direction / percentage delta / day count) —
+    // deliberately not the raw metrics blob, so an upstream detector cannot
+    // smuggle a new figure into Compass by adding a JSON key.
+    'signalType',
+    'signalHeadline',
+    'evidenceTiles',
   ],
   /** Things the salon asked for. Coaching tier only — it is their own request. */
   requests: ['coachingRequests', 'draftOrders'],
@@ -164,6 +172,59 @@ const NEVER_SEEN = [
   'staffPersonalRecords',
   'rawRevenueAmounts',
 ] as const;
+
+/**
+ * Plain-language names for every field the filter knows about (IMPLEMENTATION_SPEC
+ * §3.4 register: grade-7, no jargon, concrete).
+ *
+ * These live NEXT TO the field list rather than in the UI so the "What UVALUX sees"
+ * screen can render `describeConsent(tier).uvaluxSees` directly and still read like
+ * English. A field added to COMPASS_FIELDS without a label here falls back to the
+ * key itself, which is ugly enough on screen to get noticed in review — the same
+ * forcing function as the filter's drop-unknown-keys rule.
+ */
+export const CONSENT_FIELD_LABELS: Record<string, string> = {
+  // identity — what UVALUX already knows from selling to them
+  salonName: 'Your salon name',
+  region: 'Your town and province',
+  roomCount: 'How many rooms you have',
+  equipmentProfile: 'Which UVALUX equipment you run',
+  softwareAdoption: 'Whether you use Bask',
+  // participation
+  consentTier: 'Which sharing level you picked',
+  benchmarkParticipant: 'That you take part in benchmarks',
+  lastActiveAt: 'The last day you used Bask',
+  // signals
+  healthBand: 'A health band — thriving, steady, or needs attention',
+  revenueTrendDirection: 'Whether sales are going up, down, or holding',
+  membershipTrendDirection: 'Whether memberships are going up, down, or holding',
+  retailAttachmentBand: 'How your product sales compare to salons like yours',
+  peerGaps: 'Where you sit against the peer group, as a band',
+  utilizationBand: 'How busy your rooms are, as a band',
+  orderRecencyDays: 'How long since your last UVALUX order',
+  churnRiskBand: 'A cancellation-risk band',
+  signalType: 'Which kind of thing was spotted',
+  signalHeadline: 'A one-line summary of it',
+  evidenceTiles: 'The three numbers behind that summary',
+  // requests
+  coachingRequests: 'Coaching you asked for yourself',
+  draftOrders: 'Orders you sent to UVALUX',
+  // never-seen set
+  customerNames: 'Your customers’ names',
+  customerContacts: 'Your customers’ phone numbers and emails',
+  individualTransactions: 'Any single sale or receipt',
+  staffPersonalRecords: 'Anything personal about your staff',
+  rawRevenueAmounts: 'What you actually took in, in dollars',
+  // what you receive
+  peerBenchmarks: 'How you compare to salons like yours',
+  opportunitySizing: 'What closing a gap would be worth',
+  coachingSupport: 'A rep who can help when you ask',
+};
+
+/** Never throws — an unlabelled field renders as its own key. */
+export function labelForConsentField(field: string): string {
+  return CONSENT_FIELD_LABELS[field] ?? field;
+}
 
 export function describeConsent(tier: ConsentTier): ConsentDisclosure {
   return {

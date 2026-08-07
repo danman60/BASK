@@ -1,0 +1,949 @@
+/* Compass surfaces. Lifted from mockups/04-compass-call-list.html — selectors
+ * renamed to `cp-*` for the real app, values untouched. Every colour, radius,
+ * space and type value comes from @bask/tokens via the [data-theme='compass']
+ * block; nothing here hardcodes a colour, so if a shade looks wrong the token is
+ * wrong, not this file (same rule as dev/design/design.css).
+ *
+ * DESIGN_SPEC §2.3: Compass is RELAXED density, except the Call List evidence
+ * tiles, which are COMPACT. That split is the only reason the tile row uses
+ * tighter padding than the card around it. */
+
+.cp-layout {
+  display: grid;
+  grid-template-columns: 216px minmax(0, 1fr);
+  min-height: 100vh;
+  background: var(--c-paper);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+}
+
+/* ------------------------------------------------------------------ sidenav */
+
+.cp-sidenav {
+  border-right: 1px solid var(--c-line);
+  padding: var(--space-6) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.cp-wordmark {
+  font: italic 600 22px/1 var(--font-display);
+  color: var(--c-ink);
+  padding: 0 var(--space-3);
+  text-decoration: none;
+  display: block;
+}
+
+.cp-wordmark small {
+  display: block;
+  font: 600 var(--text-xs) / 1.6 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-amber);
+  font-style: normal;
+}
+
+.cp-nav {
+  margin-top: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cp-nav a {
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  color: var(--c-ink-soft);
+  text-decoration: none;
+  padding: 10px var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.cp-nav a:hover {
+  background: var(--c-paper-2);
+  color: var(--c-ink);
+}
+
+.cp-nav a[aria-current='page'] {
+  color: var(--c-ink);
+  background: var(--c-card);
+  font-weight: 600;
+}
+
+.cp-nav a:focus-visible {
+  outline: 2px solid var(--c-amber);
+  outline-offset: 2px;
+}
+
+.cp-rep {
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: var(--space-3);
+}
+
+.cp-rep .a {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-amber-wash);
+  color: var(--accent-on-wash);
+  display: grid;
+  place-items: center;
+  font: 700 11px/1 var(--font-body);
+  flex: none;
+}
+
+.cp-rep .n {
+  font: 600 var(--text-sm) / 1.3 var(--font-body);
+}
+
+.cp-rep .r {
+  font-size: var(--text-xs);
+  color: var(--c-ink-faint);
+}
+
+/* --------------------------------------------------------------------- main */
+
+.cp-main {
+  padding: var(--space-8) var(--space-10);
+  max-width: 980px;
+  width: 100%;
+}
+
+.cp-main--wide {
+  max-width: 1180px;
+}
+
+.cp-head {
+  margin-bottom: var(--space-6);
+}
+
+.cp-head h1 {
+  font: 500 var(--text-display) / 1.15 var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+/* The one italic amber emphasis. Exactly one per headline (DESIGN_SPEC §2.2). */
+.cp-head h1 em {
+  color: var(--c-amber);
+}
+
+.cp-head p {
+  color: var(--c-ink-soft);
+  margin-top: var(--space-2);
+  max-width: 62ch;
+}
+
+.cp-pulse {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  margin: 0 0 var(--space-8);
+  font-size: var(--text-sm);
+  color: var(--c-ink-soft);
+}
+
+.cp-pulse b {
+  color: var(--c-ink);
+  font-weight: 600;
+}
+
+.cp-pulse i {
+  font-style: normal;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 7px;
+}
+
+.cp-pulse .cp-pulse-total {
+  margin-left: auto;
+}
+
+/* --------------------------------------------------------------- call cards */
+
+.cp-call {
+  background: var(--c-card);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--c-shadow);
+  margin-bottom: var(--space-5);
+  overflow: hidden;
+}
+
+.cp-call-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6) 0;
+}
+
+.cp-call-head h3 {
+  font: 600 var(--text-lg) / 1.2 var(--font-body);
+}
+
+.cp-call-head h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cp-call-head h3 a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cp-loc {
+  font-size: var(--text-sm);
+  color: var(--c-ink-faint);
+}
+
+/* StatusChip — semantic wash + its on-wash label token, never the raw colour. */
+.cp-chip {
+  margin-left: auto;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  border-radius: 999px;
+  padding: 6px 12px;
+  white-space: nowrap;
+}
+
+.cp-chip--watch {
+  background: var(--c-amber-wash);
+  color: var(--warn-on-wash);
+}
+
+.cp-chip--grow,
+.cp-chip--order {
+  background: var(--c-green-wash);
+  color: var(--success-on-wash);
+}
+
+.cp-chip--steady {
+  background: var(--c-paper-2);
+  color: var(--c-ink-soft);
+}
+
+/* EvidenceTile row — compact density inside a relaxed card. */
+.cp-ev {
+  padding: var(--space-4) var(--space-6) 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.cp-ev-item {
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+}
+
+.cp-ev-item .n {
+  font: 600 var(--text-lg) / 1 var(--font-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.cp-ev-item .n.down {
+  color: var(--c-risk);
+}
+
+.cp-ev-item .n.up {
+  color: var(--c-green);
+}
+
+.cp-ev-item .n.flat,
+.cp-ev-item .n.unknown {
+  color: var(--c-ink);
+}
+
+.cp-ev-item .k {
+  font-size: var(--text-xs);
+  color: var(--c-ink-faint);
+  margin-top: 3px;
+}
+
+/* SuggestBlock */
+.cp-suggest {
+  margin: var(--space-4) var(--space-6);
+  padding: var(--space-4) var(--space-5);
+  background: var(--c-paper-2);
+  border-left: 3px solid var(--c-amber);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: var(--text-sm);
+  color: var(--c-ink-soft);
+}
+
+.cp-suggest b {
+  color: var(--c-ink);
+}
+
+.cp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: 0 var(--space-6) var(--space-5);
+}
+
+.cp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 600 var(--text-sm) / 1 var(--font-body);
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.cp-btn:active {
+  transform: translateY(1px);
+}
+
+.cp-btn:focus-visible {
+  outline: 2px solid var(--c-amber);
+  outline-offset: 2px;
+}
+
+.cp-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* DESIGN_SPEC §2.1: amber primary buttons carry DARK text. */
+.cp-btn--pri {
+  background: var(--c-amber);
+  color: var(--c-on-amber);
+}
+
+.cp-btn--pri:hover:not(:disabled) {
+  background: var(--c-amber-deep);
+}
+
+.cp-btn--sec {
+  background: transparent;
+  border-color: var(--c-line);
+  color: var(--c-ink-soft);
+}
+
+.cp-btn--sec:hover:not(:disabled) {
+  background: var(--c-paper-2);
+  color: var(--c-ink);
+}
+
+.cp-btn--ghost {
+  background: transparent;
+  color: var(--c-ink-faint);
+  border: 0;
+}
+
+.cp-btn--ghost:hover:not(:disabled) {
+  color: var(--c-ink);
+}
+
+.cp-thread {
+  padding: var(--space-3) var(--space-6) var(--space-5);
+  border-top: 1px solid var(--c-line);
+  font-size: var(--text-xs);
+  color: var(--c-ink-faint);
+}
+
+.cp-thread b {
+  color: var(--c-ink-soft);
+}
+
+/* Inline forms live in the card footer — never a modal (DESIGN_SPEC §3.4). */
+.cp-inline {
+  border-top: 1px solid var(--c-line);
+  padding: var(--space-4) var(--space-6) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background: var(--c-paper-2);
+}
+
+.cp-inline-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: flex-end;
+}
+
+.cp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.cp-field label {
+  font-size: var(--text-xs);
+  color: var(--c-ink-faint);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cp-input,
+.cp-select {
+  background: var(--c-card);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-sm);
+  color: var(--c-ink);
+  font: 400 var(--text-sm) / 1.4 var(--font-body);
+  padding: 9px 12px;
+  min-width: 0;
+}
+
+.cp-input:focus-visible,
+.cp-select:focus-visible {
+  outline: 2px solid var(--c-amber);
+  outline-offset: 1px;
+}
+
+.cp-input--grow {
+  flex: 1 1 220px;
+}
+
+.cp-note {
+  font-size: var(--text-xs);
+  color: var(--c-ink-faint);
+}
+
+/* -------------------------------------------------------------- side sheet */
+
+.cp-scrim {
+  position: fixed;
+  inset: 0;
+  background: oklch(0% 0 0 / 0.5);
+  z-index: 40;
+  border: 0;
+  padding: 0;
+  cursor: default;
+}
+
+.cp-sheet {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(60%, 760px);
+  background: var(--c-paper);
+  border-left: 1px solid var(--c-line);
+  box-shadow: var(--shadow-pop);
+  z-index: 41;
+  display: flex;
+  flex-direction: column;
+  animation: cp-sheet-in var(--dur-base) var(--ease-out);
+}
+
+@keyframes cp-sheet-in {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-sheet {
+    animation-duration: 120ms;
+  }
+}
+
+@media (max-width: 900px) {
+  .cp-sheet {
+    width: 100%;
+  }
+}
+
+.cp-sheet-head {
+  padding: var(--space-6) var(--space-6) var(--space-4);
+  border-bottom: 1px solid var(--c-line);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.cp-sheet-head h2 {
+  font: 500 var(--text-xl) / 1.2 var(--font-display);
+  letter-spacing: -0.014em;
+}
+
+.cp-sheet-head .cp-loc {
+  margin-top: 2px;
+}
+
+.cp-sheet-body {
+  padding: var(--space-6);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.cp-sheet-section h3 {
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-amber);
+  margin-bottom: var(--space-3);
+}
+
+.cp-sheet-section p {
+  color: var(--c-ink-soft);
+}
+
+.cp-sheet-section ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.cp-sheet-section li {
+  color: var(--c-ink-soft);
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.cp-sheet-section li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--c-amber);
+}
+
+.cp-sheet-section li.cp-avoid::before {
+  background: var(--c-risk);
+}
+
+/* StatRow — label / value with a hairline (DESIGN_SPEC §4). */
+.cp-statrow {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--c-line);
+  font-size: var(--text-sm);
+}
+
+.cp-statrow:last-child {
+  border-bottom: 0;
+}
+
+.cp-statrow .l {
+  color: var(--c-ink-faint);
+}
+
+.cp-statrow .v {
+  color: var(--c-ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* Provenance whisper: which path wrote this brief. */
+.cp-provenance {
+  font-size: var(--text-xs);
+  color: var(--c-ink-faint);
+  border-top: 1px dashed var(--c-line);
+  padding-top: var(--space-3);
+}
+
+/* ----------------------------------------------------------------- network */
+
+.cp-grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.cp-grid--3 {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.cp-grid--2 {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.cp-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--c-shadow);
+  padding: var(--space-5) var(--space-6);
+}
+
+.cp-card h3 {
+  font: 600 var(--text-md) / 1.3 var(--font-body);
+  margin-bottom: var(--space-2);
+}
+
+.cp-card p {
+  color: var(--c-ink-soft);
+  font-size: var(--text-sm);
+}
+
+.cp-section {
+  margin-bottom: var(--space-10);
+}
+
+.cp-section > header {
+  margin-bottom: var(--space-4);
+}
+
+.cp-section > header h2 {
+  font: 500 var(--text-xl) / 1.2 var(--font-display);
+  letter-spacing: -0.014em;
+}
+
+.cp-section > header p {
+  color: var(--c-ink-soft);
+  font-size: var(--text-sm);
+  margin-top: var(--space-1);
+  max-width: 68ch;
+}
+
+/* Health distribution — bands, expandable to factors. No naked scores. */
+.cp-band {
+  background: var(--c-card);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.cp-band > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.cp-band > summary::-webkit-details-marker {
+  display: none;
+}
+
+.cp-band > summary:focus-visible {
+  outline: 2px solid var(--c-amber);
+  outline-offset: -2px;
+}
+
+.cp-band .cp-band-count {
+  font: 600 var(--text-2xl) / 1 var(--font-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.cp-band .cp-band-label {
+  font-size: var(--text-sm);
+  color: var(--c-ink-soft);
+}
+
+.cp-band .cp-band-more {
+  margin-left: auto;
+  font-size: var(--text-xs);
+  color: var(--c-ink-faint);
+}
+
+.cp-band-body {
+  border-top: 1px solid var(--c-line);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  background: var(--c-paper-2);
+}
+
+.cp-band-salon {
+  font-size: var(--text-sm);
+}
+
+.cp-band-salon .n {
+  font-weight: 600;
+}
+
+.cp-band-salon ul {
+  list-style: none;
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.cp-band-salon li {
+  font-size: var(--text-xs);
+  color: var(--c-ink-faint);
+  background: var(--c-card);
+  border: 1px solid var(--c-line);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.cp-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.cp-dot--thriving {
+  background: var(--c-green);
+}
+
+.cp-dot--steady {
+  background: var(--c-ink-faint);
+}
+
+.cp-dot--needs_attention {
+  background: var(--c-amber);
+}
+
+.cp-dot--unknown {
+  background: var(--c-line);
+  border: 1px solid var(--c-ink-faint);
+}
+
+/* Region map stand-in: a proportional strip, not a fake cartographic map. */
+.cp-regions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.cp-region {
+  display: grid;
+  grid-template-columns: 48px 1fr 32px;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.cp-region .bar {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--c-amber-wash);
+  overflow: hidden;
+}
+
+.cp-region .bar > span {
+  display: block;
+  height: 100%;
+  background: var(--c-amber);
+  border-radius: 999px;
+}
+
+.cp-region .n {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-ink-soft);
+}
+
+/* ---------------------------------------------------------------- accounts */
+
+.cp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.cp-table th {
+  text-align: left;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-ink-faint);
+  padding: 0 var(--space-4) var(--space-3);
+}
+
+.cp-table td {
+  padding: var(--space-4);
+  border-top: 1px solid var(--c-line);
+  vertical-align: middle;
+}
+
+.cp-table tbody tr:hover {
+  background: var(--c-paper-2);
+}
+
+.cp-table a {
+  color: var(--c-ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cp-table a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cp-table .num {
+  font-variant-numeric: tabular-nums;
+  color: var(--c-ink-soft);
+}
+
+.cp-trend {
+  font-weight: 600;
+}
+
+.cp-trend--up {
+  color: var(--c-green);
+}
+
+.cp-trend--down {
+  color: var(--c-risk);
+}
+
+.cp-trend--flat,
+.cp-trend--unknown {
+  color: var(--c-ink-faint);
+}
+
+/* Consent badge — trust made legible on the UVALUX side too (PRODUCT_SPEC §14). */
+.cp-consent {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  border-radius: 999px;
+  padding: 5px 10px;
+  border: 1px solid var(--c-line);
+  color: var(--c-ink-soft);
+  white-space: nowrap;
+}
+
+.cp-consent--coaching {
+  background: var(--c-green-wash);
+  color: var(--success-on-wash);
+  border-color: transparent;
+}
+
+.cp-consent--benchmarks {
+  background: var(--c-paper-2);
+}
+
+.cp-consent--private {
+  background: var(--c-amber-wash);
+  color: var(--warn-on-wash);
+  border-color: transparent;
+}
+
+/* ---------------------------------------------------------------- timeline */
+
+.cp-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cp-tl-entry {
+  display: grid;
+  grid-template-columns: 12px 1fr;
+  gap: var(--space-4);
+  padding-bottom: var(--space-5);
+  position: relative;
+}
+
+.cp-tl-entry::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 16px;
+  bottom: 0;
+  width: 1px;
+  background: var(--c-line);
+}
+
+.cp-tl-entry:last-child::before {
+  display: none;
+}
+
+.cp-tl-mark {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  margin-top: 5px;
+  background: var(--c-line);
+  border: 2px solid var(--c-paper);
+  z-index: 1;
+}
+
+.cp-tl-mark--theirs {
+  background: var(--c-amber);
+}
+
+.cp-tl-body .t {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.cp-tl-body .d {
+  font-size: var(--text-xs);
+  color: var(--c-ink-faint);
+  margin-top: 1px;
+}
+
+.cp-tl-body .b {
+  font-size: var(--text-sm);
+  color: var(--c-ink-soft);
+  margin-top: var(--space-2);
+}
+
+.cp-tl-body ul {
+  list-style: none;
+  margin-top: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cp-tl-body li {
+  font-size: var(--text-xs);
+  color: var(--c-ink-faint);
+}
+
+/* ------------------------------------------------------------ empty states */
+
+.cp-empty {
+  border: 1px dashed var(--c-line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  text-align: center;
+  color: var(--c-ink-soft);
+}
+
+.cp-empty h3 {
+  font: 500 var(--text-lg) / 1.2 var(--font-display);
+  color: var(--c-ink);
+  margin-bottom: var(--space-2);
+}
+
+.cp-empty p {
+  font-size: var(--text-sm);
+  max-width: 52ch;
+  margin: 0 auto;
+}
+
+.cp-toast {
+  position: fixed;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--c-card);
+  border: 1px solid var(--c-line);
+  box-shadow: var(--shadow-pop);
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-size: var(--text-sm);
+  color: var(--c-ink);
+  z-index: 50;
+}
