@@ -64,6 +64,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Suspense fallback={null}>
               <PresenterPanel />
             </Suspense>
+            <ClientErrorCapture />
+            {/* Cross-project feedback widget (bootstrap skill Step 19). Loaded
+                after interactive so it can never delay a demo's first paint. */}
+            <Script
+              src="https://ddd-one-tawny.vercel.app/feedback-widget.js"
+              data-project="Bask"
+              data-color="#c2551f"
+              strategy="afterInteractive"
+            />
           </Providers>
         </ThemeProvider>
       </body>

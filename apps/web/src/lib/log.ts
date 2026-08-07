@@ -6,7 +6,7 @@
  * fail a check-in or a campaign send.
  */
 export function rlog(tag: string, msg: string, data?: unknown): void {
-  // eslint-disable-next-line no-console
+   
   console.log(`[${tag}] ${msg}` + (data !== undefined ? ` ${JSON.stringify(data)}` : ''));
 
   const url = process.env.NEXT_PUBLIC_APP_URL;
@@ -21,7 +21,7 @@ export function rlog(tag: string, msg: string, data?: unknown): void {
 }
 
 export function rerror(tag: string, msg: string, data?: unknown): void {
-  // eslint-disable-next-line no-console
+   
   console.error(`[${tag}] ${msg}` + (data !== undefined ? ` ${JSON.stringify(data)}` : ''));
 
   const url = process.env.NEXT_PUBLIC_APP_URL;
