@@ -1,9 +1,18 @@
 # CURRENT_WORK — uvalux-platform
 
 ## Active Task
-M0 foundation COMPLETE (2026-08-07). Next: M1 plan file → web demo build (the five loops).
+M1 web demo build COMPLETE (2026-08-07) — all six surfaces merged, 11/11 pitch beats pass on a fresh reset. Next: fund the AI key, tune fixture volume for the demo script, then M2 (mobile + barcode).
 
 ## Recent Changes
+- 2026-08-07 **M1 COMPLETE — 5 lanes merged, `pnpm demo:verify` 11/11 on a fresh `demo:reset`.**
+  - Surfaces: `/` Today/Daybreak · `/floor` (room board, check-in, waiver signature, POS + wedge scanner, schedule, shift handoff) · `/marketing` Studio · `/customers` · `/inventory` (+ UVALUX draft order) · `/insights` (+ Peers gap slider, activity log) · `/compass` (Call List, Network, Accounts, Coaching) · `/settings/data-sharing`.
+  - `pnpm demo:verify` (scripts/demo-verify.mjs) walks the whole PITCH.md path headlessly; unbuilt surfaces report SKIP, never PASS.
+  - **Bugs the merge exposed (each invisible inside its own lane):** no-salon fallback resolved to Ironwood (0 customers) so every Bask surface pointed at an empty tenant · `?salon=<slug>` sent a non-UUID to a uuid column, 500ing every slug link · all five lanes' routes were built OUTSIDE the `(bask)` route group so none had the app nav · two lanes appended to the same guidance dictionary and the union merge swallowed six closing braces · Floor duplicated the shell wordmark.
+  - **Lane-found bugs worth remembering:** Floor engine's `globalThis` cache survived hot reloads (edits silently ignored) · 24h UV rule applied to every service and hard-blocked check-in · wedge listener could emit a truncated barcode (wrong bottle in cart).
+  - **Migrations added:** `daybreak_brief` (M0 lane B), `Booking`/`WaiverSignature`/`ShiftHandoff` (M1 lane 2). All `bask`-scoped, zero public footprint.
+  - **STILL BLOCKED — AI success path unverified.** Every generation (Daybreak, campaigns, call briefs, recovery drafts) runs the deterministic fallback because the key returns 400 "credit balance is too low". Three lanes independently confirmed the call goes out and the fallback catches it; each screen states which path ran. Fund the key, re-run `pnpm demo:advance --days 0` — no code change needed.
+  - **Open tuning:** fixture volume makes day-zero read "31% below your usual Monday" where the pitch wants "8% above"; impact figures run ~10x the mockups ($9,498 vs $640/mo) because the dataset does ~96 visits/day. Arithmetic is right; volume is a design call.
+  - **Shared-DB hazard:** concurrent `demo:reset` from parallel lanes is NOT safe (FK violations, interleaved state). One owner per reset.
 - 2026-08-07 **M0 COMPLETE — all 11 steps merged to master, exit gate passed.**
   - Steps: 1 scaffold · 2 bask schema (shared CC&SS Supabase, 35 tables, RLS 29) · 3 tRPC+RBAC · 4 fixtures/clock · 5 Evidence+insight engine · 6 Daybreak gen · 7 session machine+SimulatedDriver · 8 tokens/ThemeProvider · 9 guidance primitives · 10 Presenter Panel · 11 consent filter+verification.
   - **Exit gate:** `demo:reset` 36,351 rows deterministic (byte-identical dumps, sha 7097328e…) · `demo:advance --days 5` moves clock 2026-08-06→08-11, 5 insights/day, 5 briefs with 5 distinct prompt hashes and day-over-day headlines · 8 insights carry Evidence + linkedActionType + ref (all 6 detectors fire; failed_payments = exactly $284 per PRODUCT_SPEC) · panel hotkey/role switch/bookmarks · theme toggle + reload persistence + /compass forced theme + preference restored on leave · /dev/floor 8 rooms w/ manual-start reconciliation · Fraunces+Inter actually loaded · 165 tests, build/typecheck/lint green.
