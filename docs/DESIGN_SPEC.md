@@ -25,7 +25,8 @@ Mockups (screenshot before/after any visual change; PNGs alongside):
 ## 2.1 Tokens
 `mockups/tokens.css` is authoritative. Key decisions locked there:
 - **Paper** warm ivory `oklch(98.2% .004 84)`, **ink** `oklch(21% .012 320)` — never pure white/black.
-- **Primary** terracotta `oklch(60% .14 42)`; hover state = `--primary-deep`. One accent. Gold `oklch(72% .084 85)` is for eyebrows/membership only — never buttons.
+- **Primary** terracotta `oklch(58% .14 42)`; hover state = `--primary-deep`. One accent. Gold `oklch(72% .084 85)` is for eyebrows/membership only — never buttons.
+  *(Amended 2026-08-07 during M0: primary was `60% L` in the original mockups and measured 4.18:1 against white button labels — short of WCAG AA's 4.5 at 13px/600. Dropped to `58% L` → 4.54:1. `--ink-faint` 56%→55% and Compass `--c-ink-faint` 58%→64% for the same reason. Visually indistinguishable; mockups re-rendered. The automated contrast gate in `packages/tokens` now passes these pairs without waiver — four waivers remain, all for mockup-literal `--<semantic>` on `--<semantic>-wash` pairings that components supersede with `--*-on-wash` label tokens.)*
 - **Sunset gradient** (`--grad-sunset`) is sacred and scarce: session rings, Studio graphic canvas, one brand moment per screen max. It is the brand's signature, not a decoration.
 - **Semantic washes** (`--warn-wash`, `--success-wash`, `--risk-wash`) for chips/flags — never saturated fills on large areas.
 - Radius 1rem base; cards `--radius-lg` (1.4rem). Shadows are the Carly two-layer soft pair — no hard drop shadows anywhere.
