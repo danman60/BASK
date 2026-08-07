@@ -7,9 +7,13 @@
  */
 
 /**
- * Sonnet-class default, per IMPLEMENTATION_SPEC §1.2. Override with `AI_MODEL`.
+ * Mid-tier default, per IMPLEMENTATION_SPEC §1.2. Override with `AI_MODEL`.
+ *
+ * OpenAI since 2026-08-07 (the Anthropic key ran out of credits). Model names are
+ * the only provider-specific thing in this file — the call sites below are
+ * provider-agnostic on purpose.
  */
-export const DEFAULT_AI_MODEL = 'claude-sonnet-5';
+export const DEFAULT_AI_MODEL = 'gpt-4.1';
 
 /** Named call sites. Adding one here is cheaper than adding a config surface. */
 export type AiCall =
@@ -21,14 +25,14 @@ export type AiCall =
 
 /**
  * Per-call overrides. `null` means "use the configured default".
- * Haiku-class for short classification work; everything narrative stays on the
+ * A cheap small model for short classification work; everything narrative stays on the
  * default so the demo's voice is consistent.
  */
 export const AI_CALL_OVERRIDES: Record<AiCall, string | null> = {
   'daybreak.brief': null,
   'daybreak.greeting': null,
   'campaign.draft': null,
-  'insight.classify': 'claude-haiku-4-5',
+  'insight.classify': 'gpt-4.1-mini',
   // Narrative, and a rep reads it before a real phone call — stays on the default
   // so Compass's voice matches Bask's.
   'compass.callBrief': null,

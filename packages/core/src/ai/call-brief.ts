@@ -181,7 +181,7 @@ export async function generateCallBrief(
 
   const canCallApi = !deps.offline && isAiConfigured(deps.env ?? process.env);
   if (!canCallApi) {
-    failureReason = deps.offline ? 'offline requested' : 'ANTHROPIC_API_KEY is not set';
+    failureReason = deps.offline ? 'offline requested' : 'OPENAI_API_KEY is not set';
   } else {
     calledApi = true;
     try {

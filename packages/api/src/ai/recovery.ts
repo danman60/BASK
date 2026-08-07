@@ -135,7 +135,7 @@ export async function generateRecoveryDrafts(
   if (deps.offline) {
     fallbackReason = 'offline requested';
   } else if (!isAiConfigured(env)) {
-    fallbackReason = 'ANTHROPIC_API_KEY is not set';
+    fallbackReason = 'OPENAI_API_KEY is not set';
   } else {
     calledApi = true;
     try {

@@ -86,7 +86,7 @@ function input(overrides: Partial<DaybreakInput> = {}): DaybreakInput {
   };
 }
 
-const NO_API = { ANTHROPIC_API_KEY: '' } as NodeJS.ProcessEnv;
+const NO_API = { OPENAI_API_KEY: '' } as NodeJS.ProcessEnv;
 
 describe('offline generation', () => {
   it('produces a valid brief with no API key', async () => {
@@ -191,7 +191,7 @@ describe('caching (demo-safe rule)', () => {
     const loadCached = vi.fn().mockResolvedValue(first.brief);
 
     const second = await generateDaybreak(input(), {
-      env: { ANTHROPIC_API_KEY: 'sk-should-never-be-used' } as NodeJS.ProcessEnv,
+      env: { OPENAI_API_KEY: 'sk-should-never-be-used' } as NodeJS.ProcessEnv,
       loadCached,
     });
 
@@ -257,9 +257,9 @@ describe('fallback narrative', () => {
 });
 
 describe('model selection', () => {
-  it('defaults to the sonnet-class model per IMPLEMENTATION_SPEC §1.2', () => {
+  it('defaults to the configured mid-tier model per IMPLEMENTATION_SPEC §1.2', () => {
     expect(resolveModel(undefined, {} as NodeJS.ProcessEnv)).toEqual({
-      model: 'claude-sonnet-5',
+      model: 'gpt-4.1',
       source: 'default',
     });
   });
@@ -273,6 +273,6 @@ describe('model selection', () => {
   it('applies the in-code per-call override for short classification work', () => {
     expect(
       resolveModel('insight.classify', { AI_MODEL: 'claude-opus-5' } as NodeJS.ProcessEnv),
-    ).toEqual({ model: 'claude-haiku-4-5', source: 'override' });
+    ).toEqual({ model: 'gpt-4.1-mini', source: 'override' });
   });
 });

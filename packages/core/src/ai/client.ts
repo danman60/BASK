@@ -1,10 +1,15 @@
 /**
- * The one server-side Anthropic wrapper (IMPLEMENTATION_SPEC §1.2).
+ * The one server-side LLM wrapper (IMPLEMENTATION_SPEC §1.2).
  *
  * Everything AI in this product goes through here. The SDK is imported lazily
  * so `packages/core` stays importable from the browser and from React Native —
  * pulling the Node SDK into a client bundle would break the "one brain, three
  * clients" shape the monorepo is built around.
+ *
+ * Provider: OpenAI. Switched from Anthropic on 2026-08-07 because that key ran
+ * out of credits mid-build and every generated surface was falling back. The
+ * seam is deliberately narrow — `isAiConfigured`, the SDK import and the request
+ * body — so swapping back is a small, reviewable diff rather than a rewrite.
  */
 
 import { createHash } from 'node:crypto';
@@ -92,7 +97,7 @@ export class AiUnavailableError extends Error {
 }
 
 export function isAiConfigured(env: NodeJS.ProcessEnv = process.env): boolean {
-  return Boolean(env.ANTHROPIC_API_KEY?.trim());
+  return Boolean(env.OPENAI_API_KEY?.trim());
 }
 
 /**
@@ -105,47 +110,53 @@ export function isAiConfigured(env: NodeJS.ProcessEnv = process.env): boolean {
 export async function generateJson<T>(args: GenerateJsonArgs<T>): Promise<GenerateJsonResult<T>> {
   const env = args.env ?? process.env;
   if (!isAiConfigured(env)) {
-    throw new AiUnavailableError('ANTHROPIC_API_KEY is not set');
+    throw new AiUnavailableError('OPENAI_API_KEY is not set');
   }
 
   const { model } = resolveModel(args.call, env);
   const promptContextHash = hashContext({ system: args.system, prompt: args.prompt, model });
 
   // Lazy so the SDK never lands in a browser or React Native bundle.
-  const { default: Anthropic } = await import('@anthropic-ai/sdk');
-  const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
+  const { default: OpenAI } = await import('openai');
+  const client = new OpenAI({ apiKey: env.OPENAI_API_KEY });
 
   try {
-    const response = await client.messages.create({
+    const response = await client.chat.completions.create({
       model,
-      max_tokens: AI_MAX_TOKENS[args.call],
-      system: args.system,
-      messages: [{ role: 'user', content: args.prompt }],
-      output_config: {
-        format: {
-          type: 'json_schema',
+      max_completion_tokens: AI_MAX_TOKENS[args.call],
+      messages: [
+        { role: 'system', content: args.system },
+        { role: 'user', content: args.prompt },
+      ],
+      // Structured Outputs: the schema is enforced server-side, so `validate`
+      // is the belt to that suspenders rather than the only check.
+      response_format: {
+        type: 'json_schema',
+        json_schema: {
+          name: 'bask_response',
+          strict: false,
           schema: args.jsonSchema as never,
         },
       },
     } as never);
 
     const message = response as {
-      stop_reason?: string | null;
-      content: Array<{ type: string; text?: string }>;
-      usage?: { input_tokens?: number; output_tokens?: number };
+      choices: Array<{
+        finish_reason?: string | null;
+        message?: { content?: string | null; refusal?: string | null };
+      }>;
+      usage?: { prompt_tokens?: number; completion_tokens?: number };
     };
 
-    // Refusals arrive as a successful HTTP 200 with an empty content array.
-    // Reading content[0] unconditionally is how that becomes a crash.
-    if (message.stop_reason === 'refusal') {
+    const choice = message.choices?.[0];
+
+    // A refusal arrives as a successful HTTP 200 with `refusal` set and content
+    // null. Reading content unconditionally is how that becomes a crash.
+    if (choice?.message?.refusal) {
       throw new AiUnavailableError('Model declined the request');
     }
 
-    const text = message.content
-      .filter((block) => block.type === 'text')
-      .map((block) => block.text ?? '')
-      .join('')
-      .trim();
+    const text = (choice?.message?.content ?? '').trim();
 
     if (!text) throw new AiUnavailableError('Model returned no text');
 
@@ -161,8 +172,8 @@ export async function generateJson<T>(args: GenerateJsonArgs<T>): Promise<Genera
         outputHash: hashContext(value),
         usage: message.usage
           ? {
-              inputTokens: message.usage.input_tokens ?? 0,
-              outputTokens: message.usage.output_tokens ?? 0,
+              inputTokens: message.usage.prompt_tokens ?? 0,
+              outputTokens: message.usage.completion_tokens ?? 0,
             }
           : null,
         ok: true,
