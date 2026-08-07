@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./client": "./generated/prisma/client.ts"
   },
   "scripts": {
     "generate": "prisma generate",
@@ -19,6 +20,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "7.9.1",
     "@prisma/client": "7.9.1"
   }
 }

@@ -107,3 +107,48 @@ Vitest unit tests already accumulated (core engine, consent filter stub, clock, 
 - **2026-08-07 · Step 2 · turbo `generate` task added.** `build` and `typecheck` now
   depend on it so `prisma generate` runs before anything consumes the client — removes a
   clean-clone foot-gun for step 3, since `packages/db/generated/` is gitignored.
+
+- **2026-08-07 · Step 7 · harness talks to the DB directly, not through tRPC.**
+  Step 3 (`packages/api`) is owned by a parallel lane and was not landed when this
+  step ran. The `/dev/floor` harness therefore uses Next server actions plus two
+  route handlers under `apps/web/src/app/dev/floor/`, with its own `PrismaClient`
+  in `dev/floor/lib/prisma.ts`. The engine API (`startSession`, `cancelSession`,
+  `setMaintenance`, `getState`) is already the shape a `floor` router needs, so
+  wiring it to tRPC later is a wrapper, not a rewrite.
+
+- **2026-08-07 · Step 7 · Prisma 7 needs a driver adapter at runtime.** There is no
+  built-in engine connection any more: `new PrismaClient({ adapter: new PrismaPg({
+  connectionString }) })`. `@prisma/adapter-pg@7.9.1` added to `packages/db` and
+  `apps/web`. Also added `packages/db` export `"./client": "./generated/prisma/client.ts"`
+  and `packages/core` export `"./sessions"` — without an exports entry Node/TS refuse
+  the subpath. Runtime uses `DATABASE_URL` (:6543 pooler), never the migrate URL.
+
+- **2026-08-07 · Step 7 · Realtime uses broadcast, not `postgres_changes`.**
+  `postgres_changes` would need `bask.room`/`bask.session` added to the
+  `supabase_realtime` publication — a migration on a database shared with 574
+  other apps' tables, for a harness. The engine POSTs the derived floor state to
+  `/realtime/v1/api/broadcast` instead, and the board also polls the state route
+  every 2s. Realtime is the fast path; the poll and the absolute `ends_at`
+  timestamps are the correctness path.
+
+- **2026-08-07 · Step 7 · relative imports inside `packages/core/src/sessions` are
+  extensionless.** Turbopack does not resolve the `./types.js` → `types.ts` mapping
+  for workspace TS source and fails the build with "The module has no exports at
+  all". `moduleResolution: "Bundler"` makes extensionless correct for TS.
+
+- **2026-08-07 · Step 7 · harness fixture is a throwaway salon, not step 4's.**
+  `TEST-LANE-C Salon` + 8 rooms + one simulated `equipment_device` per room, all
+  upserted on stable slugs so the page heals itself after a `demo:reset` wipes
+  `bask` data mid-run (button, or `curl -X POST /dev/floor/api/reseed`). Room types
+  go in with `skipDuplicates` so the fixtures lane's global `room_type` rows win.
+  Timings are deliberately compressed for observability — `cleaning_minutes = 1`
+  and simulated manual starts of 2–5 min — so a full ready → in_session → cleaning
+  → ready lap is watchable in two minutes rather than seventeen. Production
+  cleaning stays 5 min (the schema default).
+
+- **2026-08-07 · Step 7 · two independent reconcilers, on purpose.** Driver events
+  AND a timestamp sweep both drive state, and the sweep alone is sufficient. This
+  is what makes the acceptance criterion hold under a full server restart, not
+  just an F5: a session started by one process is carried through `cleaning` →
+  `ready` by the next one, from rows alone, with an empty driver. Verified by
+  killing and restarting the dev server mid-session.
