@@ -129,6 +129,18 @@ enum VisitSource {
   @@schema("bask")
 }
 
+/// A booking's lifecycle on the Floor schedule. `arrived` is the check-in join point.
+enum BookingState {
+  booked
+  arrived
+  completed
+  cancelled
+  no_show
+
+  @@map("booking_state")
+  @@schema("bask")
+}
+
 enum SaleState {
   completed
   voided
@@ -366,6 +378,9 @@ model Salon {
   coachingRequests CoachingRequest[]
   contactLogs      ContactLog[]
   daybreakBriefs   DaybreakBrief[]
+  bookings         Booking[]
+  waiverSignatures WaiverSignature[]
+  shiftHandoffs    ShiftHandoff[]
 
   @@index([orgId])
   @@map("salon")
@@ -402,6 +417,8 @@ model Staff {
   coachingRequested  CoachingRequest[]   @relation("CoachingRequestedBy")
   coachingAssigned   CoachingRequest[]   @relation("CoachingAssignedRep")
   contactLogs        ContactLog[]
+  bookings           Booking[]
+  shiftHandoffs      ShiftHandoff[]
 
   @@index([salonId])
   @@index([role])
@@ -448,6 +465,7 @@ model Room {
   roomType        RoomType         @relation(fields: [roomTypeKey], references: [key])
   sessions        Session[]
   equipmentDevice EquipmentDevice?
+  bookings        Booking[]
 
   @@unique([salonId, name])
   @@index([salonId])
@@ -493,6 +511,7 @@ model Service {
   sessions  Session[]
   packages  Package[]
   saleLines SaleLine[]
+  bookings  Booking[]
 
   @@unique([salonId, name])
   @@index([salonId])
@@ -572,6 +591,8 @@ model Customer {
   saleLines         SaleLine[]
   giftCardsBought   GiftCard[]   @relation("GiftCardPurchaser")
   giftCardsReceived GiftCard[]   @relation("GiftCardRecipient")
+  bookings          Booking[]
+  waiverSignatures  WaiverSignature[]
 
   @@index([salonId, lastName])
   @@index([salonId, status])
@@ -1204,6 +1225,94 @@ model DaybreakBrief {
   @@unique([salonId, forDate])
   @@index([salonId, forDate])
   @@map("daybreak_brief")
+  @@schema("bask")
+}
+
+// ---------------------------------------------------------------------------
+// The Floor: schedule, waivers, shift handoff (M1 lane 2)
+// ---------------------------------------------------------------------------
+
+/// A slot on the Floor schedule. Distinct from `Visit`, which is what actually
+/// happened: a Booking is an intention, and the gap between the two is exactly
+/// what a no-show is. `source` carries the walk-in / booked distinction the
+/// schedule shades by, and `room_id` is nullable because a booking can be taken
+/// against a service before anyone decides which bed it lands on.
+model Booking {
+  id         String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  salonId    String       @map("salon_id") @db.Uuid
+  customerId String?      @map("customer_id") @db.Uuid
+  serviceId  String?      @map("service_id") @db.Uuid
+  roomId     String?      @map("room_id") @db.Uuid
+  staffId    String?      @map("staff_id") @db.Uuid
+  state      BookingState @default(booked)
+  source     VisitSource  @default(online_booking)
+  /// Set when a walk-in has no customer record yet.
+  guestName  String?      @map("guest_name")
+  startsAt   DateTime     @map("starts_at") @db.Timestamptz(6)
+  endsAt     DateTime     @map("ends_at") @db.Timestamptz(6)
+  minutes    Int
+  notes      String?
+  createdAt  DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime     @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  salon    Salon     @relation(fields: [salonId], references: [id], onDelete: Cascade)
+  customer Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  service  Service?  @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  room     Room?     @relation(fields: [roomId], references: [id], onDelete: SetNull)
+  staff    Staff?    @relation(fields: [staffId], references: [id], onDelete: SetNull)
+
+  @@index([salonId, startsAt])
+  @@index([customerId])
+  @@map("booking")
+  @@schema("bask")
+}
+
+/// A real signature, captured on a canvas at the front desk (DESIGN_SPEC §4
+/// `SignaturePad`). `customer.waiver_signed_at` stays the fast flag the check-in
+/// panel reads; this table is the artefact you can actually show someone.
+/// `image_data` is a self-contained PNG data URL — no blob store to stand up for
+/// a demo, and the row is portable.
+model WaiverSignature {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  salonId    String    @map("salon_id") @db.Uuid
+  customerId String    @map("customer_id") @db.Uuid
+  signedName String    @map("signed_name")
+  imageData  String    @map("image_data")
+  width      Int       @default(0)
+  height     Int       @default(0)
+  strokes    Int       @default(0)
+  signedAt   DateTime  @default(now()) @map("signed_at") @db.Timestamptz(6)
+  expiresAt  DateTime? @map("expires_at") @db.Timestamptz(6)
+  createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  salon    Salon    @relation(fields: [salonId], references: [id], onDelete: Cascade)
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([salonId, signedAt])
+  @@index([customerId, signedAt])
+  @@map("waiver_signature")
+  @@schema("bask")
+}
+
+/// End-of-shift summary. `summary` is the computed snapshot frozen at post time —
+/// the whole point of a handoff is that it says what the closer saw, not what the
+/// numbers look like when the opener reads it tomorrow.
+model ShiftHandoff {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  salonId   String    @map("salon_id") @db.Uuid
+  staffId   String?   @map("staff_id") @db.Uuid
+  forDate   DateTime  @map("for_date") @db.Date
+  summary   Json      @default("{}")
+  note      String?
+  postedAt  DateTime? @map("posted_at") @db.Timestamptz(6)
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  salon Salon  @relation(fields: [salonId], references: [id], onDelete: Cascade)
+  staff Staff? @relation(fields: [staffId], references: [id], onDelete: SetNull)
+
+  @@index([salonId, forDate])
+  @@map("shift_handoff")
   @@schema("bask")
 }
 

@@ -35,6 +35,14 @@ const log = (message: string) => {
  */
 const DELETE_ORDER = [
   'daybreakBrief',
+  // Floor-owned tables (M1 lane 2). Not fixture data — the app creates these —
+  // but they hang off customer/room/salon, so a reset that leaves them behind
+  // leaves bookings pointing at nothing. Listed explicitly for the reason at the
+  // top of this block: the cascades would cover it, and relying on cascade order
+  // is how a reset starts failing intermittently.
+  'shiftHandoff',
+  'waiverSignature',
+  'booking',
   'saleLine',
   'sale',
   'session',

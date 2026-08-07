@@ -12,7 +12,7 @@ import {
   startSessionAction,
   triggerManualStartAction,
 } from './actions';
-import type { FloorState } from './lib/state';
+import type { FloorState } from '@/server/floor/state';
 
 /**
  * The room board.

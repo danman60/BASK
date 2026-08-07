@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server';
 
-import { getFloorEngine } from '../../lib/engine';
+import { getFloorEngine } from '@/server/floor/engine';
 
 /**
  * One-command re-seed for the harness salon:
@@ -17,7 +17,7 @@ import { getFloorEngine } from '../../lib/engine';
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
-  const engine = getFloorEngine();
+  const engine = getFloorEngine('harness');
   const hardReset = request.nextUrl.searchParams.get('reset') === '1';
 
   if (hardReset) {
