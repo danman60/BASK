@@ -19,3 +19,4 @@ pnpm-debug.log*
 
 # Prisma generated client
 packages/db/generated/
+.vercel
