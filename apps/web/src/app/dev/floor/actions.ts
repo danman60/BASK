@@ -2,7 +2,7 @@
 
 import { refresh } from 'next/cache';
 
-import { getFloorEngine } from './lib/engine';
+import { getFloorEngine } from '@/server/floor/engine';
 
 /**
  * Server actions for the step 7 harness.
@@ -27,26 +27,26 @@ export async function startSessionAction(input: {
   minutes: number;
   delayMinutes?: number;
 }): Promise<ActionResult> {
-  const result = await getFloorEngine().startSession(input);
+  const result = await getFloorEngine('harness').startSession(input);
   refresh();
   return result.ok ? { ok: true } : { ok: false, error: result.error };
 }
 
 export async function cancelSessionAction(roomId: string): Promise<ActionResult> {
-  const result = await getFloorEngine().cancelSession(roomId);
+  const result = await getFloorEngine('harness').cancelSession(roomId);
   refresh();
   return result.ok ? { ok: true } : { ok: false, error: result.error };
 }
 
 export async function setMaintenanceAction(roomId: string, on: boolean): Promise<ActionResult> {
-  const result = await getFloorEngine().setMaintenance(roomId, on);
+  const result = await getFloorEngine('harness').setMaintenance(roomId, on);
   refresh();
   return result.ok ? { ok: true } : { ok: false, error: result.error };
 }
 
 /** Fire the manual-start the simulator would otherwise roll for at random. */
 export async function triggerManualStartAction(): Promise<ActionResult> {
-  const result = await getFloorEngine().triggerManualStart();
+  const result = await getFloorEngine('harness').triggerManualStart();
   refresh();
   return result.ok ? { ok: true } : { ok: false, error: result.error };
 }
@@ -57,14 +57,14 @@ export async function triggerManualStartAction(): Promise<ActionResult> {
  * one button, no server restart.
  */
 export async function reseedAction(): Promise<ActionResult> {
-  await getFloorEngine().resync();
+  await getFloorEngine('harness').resync();
   refresh();
   return { ok: true };
 }
 
 /** Clear this salon's sessions and park every room `ready`. */
 export async function resetFloorAction(): Promise<ActionResult> {
-  await getFloorEngine().resetFloor();
+  await getFloorEngine('harness').resetFloor();
   refresh();
   return { ok: true };
 }

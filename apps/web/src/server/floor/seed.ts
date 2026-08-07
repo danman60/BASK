@@ -16,6 +16,12 @@ import { prisma } from './prisma';
  * fixtures lane already seeded the global `room_type` lookup, theirs wins.
  */
 
+/**
+ * The seeded pitch salon (`packages/db/fixtures`). The real Floor runs against
+ * this one; nothing in this file creates it — `pnpm demo:reset` does.
+ */
+export const HERO_SALON_SLUG = 'sunset-ridge';
+
 export const TEST_ORG_SLUG = 'test-lane-c';
 export const TEST_SALON_SLUG = 'test-lane-c-salon';
 export const TEST_SALON_NAME = 'TEST-LANE-C Salon';

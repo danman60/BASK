@@ -1,5 +1,5 @@
-import { getFloorEngine } from './lib/engine';
-import { getPublicRealtimeConfig, floorChannelName } from './lib/realtime';
+import { getFloorEngine } from '@/server/floor/engine';
+import { getPublicRealtimeConfig, floorChannelName } from '@/server/floor/realtime';
 import { FloorBoard } from './floor-board';
 
 /**
@@ -22,7 +22,7 @@ export const metadata = {
 };
 
 export default async function DevFloorPage() {
-  const engine = getFloorEngine();
+  const engine = getFloorEngine('harness');
   // Idempotent: recreates the test salon if a fixtures reset wiped it.
   await engine.ensureStarted();
   const state = await engine.getState();

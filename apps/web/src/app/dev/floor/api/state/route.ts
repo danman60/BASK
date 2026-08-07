@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server';
 
-import { getFloorEngine } from '../../lib/engine';
+import { getFloorEngine } from '@/server/floor/engine';
 
 /**
  * Polled fallback for the room board.
@@ -16,7 +16,7 @@ import { getFloorEngine } from '../../lib/engine';
 export const dynamic = 'force-dynamic';
 
 export async function GET(_request: NextRequest) {
-  const state = await getFloorEngine().getState();
+  const state = await getFloorEngine('harness').getState();
   return Response.json(state, {
     headers: { 'Cache-Control': 'no-store' },
   });

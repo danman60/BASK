@@ -10,7 +10,7 @@ import {
 
 import { prisma } from './prisma';
 import { broadcastFloor } from './realtime';
-import { ensureTestSalon, resetTestFloor } from './seed';
+import { HERO_SALON_SLUG, ensureTestSalon, resetTestFloor } from './seed';
 import { readFloorState, type FloorState } from './state';
 
 /**
@@ -33,15 +33,33 @@ import { readFloorState, type FloorState } from './state';
  * reports and the cloud decides; this is what that costs in code.
  */
 
-const GLOBAL_KEY = Symbol.for('bask.dev.floor.engine');
+const GLOBAL_KEY = Symbol.for('bask.floor.engines');
 const TICK_MS = 1000;
 
 /** Seeded so a given run of the harness replays the same manual-start pattern. */
 const DRIVER_SEED = 20260807;
 
 interface EngineCache {
-  engine: FloorEngine;
+  engines: Map<FloorTargetName, FloorEngine>;
+  /** Which evaluation of THIS module built the cached engines. See below. */
+  build: symbol;
 }
+
+/**
+ * Unique per module evaluation.
+ *
+ * The engine is cached on `globalThis` so two tickers never race on the same
+ * rows. That is correct in production, where this module is evaluated once — and
+ * a trap in development, where Turbopack re-evaluates the module on every edit
+ * while `globalThis` keeps the engine built by the *previous* version of this
+ * file. The symptom is brutal to diagnose: edits to the engine appear to do
+ * nothing, and the surviving instance holds a `SimulatedDriver` whose units
+ * drifted out of step with the database hours ago.
+ *
+ * Comparing this token against the cached one turns "my change did nothing" into
+ * a clean swap.
+ */
+const BUILD = Symbol('bask.floor.engine.build');
 
 interface SimConfig {
   manualMinuteChoices?: number[];
@@ -49,10 +67,45 @@ interface SimConfig {
   maxMinutes?: number;
 }
 
+/**
+ * Which salon an engine drives.
+ *
+ * M0's harness hard-wired the throwaway TEST-LANE-C salon because the fixtures
+ * lane had not landed yet. It has. The real Floor runs against the seeded hero
+ * salon, and the harness keeps its own sandbox so `demo:reset` rehearsals and
+ * state-machine pokes never touch pitch data. Same engine, same state machine,
+ * same driver — only the salon resolver differs, which is the whole point of
+ * having written it this way.
+ */
+export type FloorTargetName = 'hero' | 'harness';
+
+export interface FloorTarget {
+  /** Resolve (and for the harness, create) the salon this engine drives. */
+  resolve(): Promise<{ salonId: string; salonName: string }>;
+  /**
+   * Whether `resetFloor()` may delete Session rows. False for the hero salon:
+   * its sessions are 90 days of seeded history that the insight engine reads,
+   * so a reset there parks rooms and closes what is live, and deletes nothing.
+   */
+  readonly destructiveResetAllowed: boolean;
+  /**
+   * Mean seconds between simulated manual starts (staff using the bed's own
+   * timer). This is a realism garnish, and how much of it you want depends
+   * entirely on who is watching — see the two targets below.
+   */
+  readonly manualStartMeanIntervalSec: number;
+}
+
 export class FloorEngine {
   private driver: SimulatedDriver | null = null;
   private salonId: string | null = null;
   private salonName = '';
+  private readonly target: FloorTarget;
+
+  constructor(target: FloorTarget) {
+    this.target = target;
+  }
+
   private queue: UnitEvent[] = [];
   private timer: ReturnType<typeof setInterval> | null = null;
   private booting: Promise<void> | null = null;
@@ -74,9 +127,9 @@ export class FloorEngine {
   }
 
   private async boot(): Promise<void> {
-    const seeded = await ensureTestSalon();
-    this.salonId = seeded.salonId;
-    this.salonName = seeded.salonName;
+    const resolved = await this.target.resolve();
+    this.salonId = resolved.salonId;
+    this.salonName = resolved.salonName;
     await this.hydrate();
 
     if (!this.timer) {
@@ -135,7 +188,7 @@ export class FloorEngine {
     const driver = new SimulatedDriver({
       units: specs,
       seed: DRIVER_SEED,
-      manualStartMeanIntervalSec: 300,
+      manualStartMeanIntervalSec: this.target.manualStartMeanIntervalSec,
     });
     driver.onEvent((e) => {
       this.queue.push(e);
@@ -188,20 +241,47 @@ export class FloorEngine {
     this.version += 1;
   }
 
-  /** Re-seed the harness salon and re-hydrate. Safe to call at any time. */
+  /** Stop the ticker. Called when a dev reload replaces this engine. */
+  dispose(): void {
+    if (this.timer) clearInterval(this.timer);
+    this.timer = null;
+    this.driver = null;
+  }
+
+  /** Re-resolve the salon and re-hydrate. Safe to call at any time. */
   async resync(): Promise<void> {
-    const seeded = await ensureTestSalon();
-    this.salonId = seeded.salonId;
-    this.salonName = seeded.salonName;
+    const resolved = await this.target.resolve();
+    this.salonId = resolved.salonId;
+    this.salonName = resolved.salonName;
     await this.hydrate();
     await this.push();
   }
 
-  /** Wipe this salon's sessions, park every room `ready`, re-hydrate. */
+  /**
+   * Park every room `ready` and re-hydrate.
+   *
+   * On the harness salon that means deleting its sessions outright. On the hero
+   * salon it must not: those rows are the seeded history every insight is
+   * computed from. There, live sessions are *closed* (marked cancelled, which is
+   * what actually happened when someone hit reset mid-session) and history is
+   * left alone.
+   */
   async resetFloor(): Promise<void> {
     await this.ensureStarted();
-    if (!this.salonId) return;
-    await resetTestFloor(this.salonId);
+    const salonId = this.salonId;
+    if (!salonId) return;
+    if (this.target.destructiveResetAllowed) {
+      await resetTestFloor(salonId);
+    } else {
+      await prisma.session.updateMany({
+        where: { salonId, state: { in: [...ACTIVE_SESSION_STATES] } },
+        data: { state: 'cancelled', endedAt: new Date(), cleaningEndsAt: null },
+      });
+      await prisma.room.updateMany({
+        where: { salonId },
+        data: { state: 'ready', maintenanceNote: null },
+      });
+    }
     await this.hydrate();
     await this.push();
   }
@@ -235,6 +315,9 @@ export class FloorEngine {
     minutes: number;
     delayMinutes?: number;
     customerId?: string | null;
+    serviceId?: string | null;
+    visitId?: string | null;
+    staffId?: string | null;
   }): Promise<{ ok: true; sessionId: string } | { ok: false; error: string }> {
     await this.ensureStarted();
     const driver = this.driver;
@@ -262,8 +345,34 @@ export class FloorEngine {
     if (!transition.ok) return { ok: false, error: transition.reason };
 
     const unit = room.equipmentDevice?.address ?? room.id;
-    const ack = await driver.startSession(unit, input.minutes, delayMinutes);
-    if (!ack.ok) return { ok: false, error: ack.error ?? 'driver_rejected' };
+    let ack = await driver.startSession(unit, input.minutes, delayMinutes);
+
+    if (!ack.ok) {
+      /**
+       * The driver refused a room the rows say is free. That is a disagreement
+       * between what the equipment believes and what is true, and the rows win
+       * (§5.2: the bridge reports, the cloud decides).
+       *
+       * It happens for real: `demo:reset` between pitch rehearsals, a DB edit,
+       * or any restart that leaves the simulated units holding a session the
+       * database no longer has. The harness papered over this with a "Re-seed"
+       * button; the real Floor has no such button and must not need one — a
+       * front-desk staffer cannot be asked to diagnose a stale driver. So
+       * re-seat the driver from the rows and try once more.
+       */
+      const live = await this.activeSession(room.id);
+      if (!live) {
+        console.warn('[floor] driver refused a free room — re-hydrating', {
+          unit,
+          reason: ack.error,
+        });
+        await this.hydrate();
+        const rehydrated = this.driver;
+        if (!rehydrated) return { ok: false, error: 'engine_not_ready' };
+        ack = await rehydrated.startSession(unit, input.minutes, delayMinutes);
+      }
+      if (!ack.ok) return { ok: false, error: ack.error ?? 'driver_rejected' };
+    }
 
     const now = new Date();
     const started = delayMinutes === 0;
@@ -273,6 +382,9 @@ export class FloorEngine {
           salonId,
           roomId: room.id,
           customerId: input.customerId ?? null,
+          serviceId: input.serviceId ?? null,
+          visitId: input.visitId ?? null,
+          startedByStaffId: input.staffId ?? null,
           startedBy: 'staff',
           state: started ? 'in_session' : 'pending',
           requestedMinutes: input.minutes,
@@ -666,12 +778,78 @@ export class FloorEngine {
   }
 }
 
+/** The seeded pitch salon. Never seeded from here — `demo:reset` owns its rows. */
+const HERO_TARGET: FloorTarget = {
+  destructiveResetAllowed: false,
+  /**
+   * An hour, not five minutes.
+   *
+   * Manual starts are the honest bit of realism that proves the board reports
+   * what it can see rather than what it wishes (§5.2). But this is the salon
+   * somebody demos and somebody eventually runs a front desk on, and several
+   * services here map to exactly one room — Level 2 UV is only ever Bed 2. At a
+   * five-minute cadence the simulator takes that bed out from under the person
+   * trying to check a customer into it, and the product looks broken while
+   * behaving correctly. Rare enough to see over a long session, not often
+   * enough to fight the operator.
+   */
+  manualStartMeanIntervalSec: 3600,
+  async resolve() {
+    const salon = await prisma.salon.findUnique({
+      where: { slug: HERO_SALON_SLUG },
+      select: { id: true, name: true },
+    });
+    if (!salon) {
+      throw new Error(
+        `[floor] no salon with slug "${HERO_SALON_SLUG}". Run \`pnpm demo:reset\` first.`,
+      );
+    }
+    return { salonId: salon.id, salonName: salon.name };
+  },
+};
+
+/** The M0 sandbox. Self-seeding, disposable, safe to wipe. */
+const HARNESS_TARGET: FloorTarget = {
+  destructiveResetAllowed: true,
+  /** Frequent on purpose: the harness exists to exercise reconciliation. */
+  manualStartMeanIntervalSec: 300,
+  async resolve() {
+    const seeded = await ensureTestSalon();
+    return { salonId: seeded.salonId, salonName: seeded.salonName };
+  },
+};
+
+const TARGETS: Record<FloorTargetName, FloorTarget> = {
+  hero: HERO_TARGET,
+  harness: HARNESS_TARGET,
+};
+
 /**
  * Cached on `globalThis`: Turbopack re-evaluates server modules on edit, and a
- * second engine would mean two tickers racing on the same rows.
+ * second engine would mean two tickers racing on the same rows. One engine per
+ * target, because two engines on the *same* salon is the same bug.
  */
-export function getFloorEngine(): FloorEngine {
+export function getFloorEngine(target: FloorTargetName = 'hero'): FloorEngine {
   const store = globalThis as unknown as Record<symbol, EngineCache | undefined>;
-  store[GLOBAL_KEY] ??= { engine: new FloorEngine() };
-  return store[GLOBAL_KEY].engine;
+  let cache = store[GLOBAL_KEY];
+
+  if (cache && cache.build !== BUILD) {
+    // This module was re-evaluated (a dev edit). Stop the old engines' tickers
+    // before dropping them, or every edit leaves another interval behind
+    // sweeping the same rows.
+    for (const stale of cache.engines.values()) stale.dispose();
+    cache = undefined;
+  }
+
+  if (!cache) {
+    cache = { engines: new Map(), build: BUILD };
+    store[GLOBAL_KEY] = cache;
+  }
+
+  let engine = cache.engines.get(target);
+  if (!engine) {
+    engine = new FloorEngine(TARGETS[target]);
+    cache.engines.set(target, engine);
+  }
+  return engine;
 }
