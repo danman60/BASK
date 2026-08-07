@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { ForcedTheme, ThemeProvider, ThemeScript } from '@bask/ui';
+import '@bask/ui/guidance.css';
 import '../../../dev/design/design.css';
 
 /**

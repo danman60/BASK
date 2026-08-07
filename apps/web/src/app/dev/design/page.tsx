@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ThemeToggle } from '@bask/ui';
+import { GuidanceDemo } from './GuidanceDemo';
 import { TokenGallery } from './TokenGallery';
 
 export const metadata = {
@@ -33,6 +34,7 @@ export default function DesignHarnessPage() {
           <Link href="/compass/dev/tokens">Compass token proof →</Link>
         </div>
 
+        <GuidanceDemo />
         <TokenGallery />
       </div>
     </main>
