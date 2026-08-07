@@ -3,12 +3,15 @@
   "ui": "stream",
   "globalEnv": ["NODE_ENV", "DATABASE_URL", "DIRECT_DATABASE_URL"],
   "tasks": {
+    "generate": {
+      "outputs": ["generated/**"]
+    },
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "generate"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
     "typecheck": {
-      "dependsOn": ["^typecheck"]
+      "dependsOn": ["^typecheck", "generate"]
     },
     "dev": {
       "cache": false,

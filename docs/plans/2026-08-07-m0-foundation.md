@@ -64,3 +64,46 @@ Vitest unit tests already accumulated (core engine, consent filter stub, clock, 
 
 ## Deviations
 (log here — date · step · what changed · why)
+
+- **2026-08-07 · Step 2 · Prisma 7 moved datasource URLs out of `schema.prisma`.**
+  `url`/`directUrl` are no longer valid datasource properties; they now live in
+  `prisma.config.ts`. The datasource block keeps only `provider` + `schemas = ["bask"]`.
+  Prisma 7 also renamed `migrate diff --to-schema-datamodel` to `--to-schema`, and no
+  longer auto-loads `.env` (the config calls `process.loadEnvFile()` itself).
+
+- **2026-08-07 · Step 2 · TWO Prisma config files instead of one.** With `?schema=bask`
+  in the connection URL, Prisma treats `bask` as the implicit default schema and emits
+  **unqualified** DDL (`CREATE TABLE "org"`). On the shared CC&SS database that would
+  have created all 34 tables in `public` alongside 574 other apps' tables. Verified by
+  generating both ways: with the param, 199/199 DDL statements were unqualified; without
+  it, 0. Resolution: `prisma.config.ts` (keeps the param — which is what keeps
+  `_prisma_migrations` inside `bask` rather than leaking it to `public`) is used to
+  *apply*; `prisma.config.migrations.ts` (strips the param) is used to *generate*.
+  Only fully-qualified SQL may be committed, enforced by
+  `packages/db/scripts/assert-bask-scoped.mjs` (`pnpm db:check`, wired into `db:deploy`).
+
+- **2026-08-07 · Step 2 · `prisma migrate deploy` cannot use the pgbouncer pooler.**
+  Migrate takes a session-level advisory lock before every command; transaction-mode
+  pooling can't hold one, so `migrate deploy`/`status` hang indefinitely with no error
+  against `:6543` (hung past 120s) and return instantly against the `:5432` session
+  pooler. `prisma.config.ts` is a CLI-only config, so its `datasource.url` now points at
+  `DIRECT_DATABASE_URL`; `DATABASE_URL` (6543) is reserved for runtime queries.
+
+- **2026-08-07 · Step 2 · initial migration applied with `psql`, then
+  `migrate resolve --applied`.** The hang above was diagnosed after the SQL was already
+  authored, so `20260807000000_init_bask` was applied via `psql --single-transaction`
+  (safe: the SQL is fully schema-qualified) and recorded in the ledger. The RLS migration
+  `20260807000001_bask_rls` was applied normally through `prisma migrate deploy`, which
+  is now clean and reports "Database schema is up to date!".
+
+- **2026-08-07 · Step 2 · RLS covers 29 of 35 tables, not "every table".** Six hold
+  global reference or demo-harness data with no tenant rows and are deliberately
+  excluded: `room_type`, `segment`, `playbook`, `uvalux_catalog_item`, `demo_state`,
+  `_prisma_migrations`. `salon` and `org` are scoped by identity rather than a
+  `salon_id` column, and `draft_order_line` through its parent `draft_order`. Nullable
+  `salon_id` on `staff`/`product`/`barcode` means "global", so those policies admit
+  `salon_id IS NULL`.
+
+- **2026-08-07 · Step 2 · turbo `generate` task added.** `build` and `typecheck` now
+  depend on it so `prisma generate` runs before anything consumes the client — removes a
+  clean-clone foot-gun for step 3, since `packages/db/generated/` is gitignored.
