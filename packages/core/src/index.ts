@@ -195,6 +195,7 @@ export {
 export {
   CONSENT_TIERS,
   COMPASS_FIELDS,
+  CONSENT_FIELD_LABELS,
   MIN_COHORT_SIZE,
   allowedFields,
   allowedGroups,
@@ -203,6 +204,7 @@ export {
   describeConsent,
   filterAccount,
   filterCohort,
+  labelForConsentField,
   receivesBenchmarks,
   repMaySeeSignals,
   type CohortAggregate,
@@ -211,3 +213,56 @@ export {
   type ConsentDisclosure,
   type ConsentTier,
 } from './consent';
+
+// Compass derivation — derive here, filter there, render what survives
+// (PRODUCT_SPEC §14; every Compass read goes through `deriveAccountView`)
+export {
+  CALL_STATUS_LABELS,
+  HEALTH_BANDS,
+  HEALTH_BAND_FLOOR,
+  HEALTH_BAND_LABELS,
+  bandForHealth,
+  buildEvidenceTiles,
+  buildHealthCohort,
+  callPriorityScore,
+  callStatusFor,
+  deriveAccountView,
+  healthBandFactors,
+  healthDistribution,
+  suggestionFor,
+  type AccountSignalInput,
+  type CallStatus,
+  type ChurnRiskBand,
+  type CoachingRequestSummary,
+  type CompassAccountRecord,
+  type CompassAccountView,
+  type CompassBand,
+  type CompassEnvelope,
+  type DeriveAccountInput,
+  type DraftOrderSummary,
+  type EquipmentProfileSummary,
+  type EvidenceTile,
+  type HealthBand,
+  type HealthCohort,
+  type PeerGap,
+  type Suggestion,
+  type TrendDirection,
+} from './compass/derive';
+
+// Rep call brief (PRODUCT_SPEC §16) — Daybreak's sibling, same guarantees
+export {
+  CALL_BRIEF_VERSION,
+  GENERATED_CALL_BRIEF_JSON_SCHEMA,
+  buildCallBriefContext,
+  buildFacts,
+  buildFallbackCallBrief,
+  callBriefSchema,
+  canBrief,
+  generateCallBrief,
+  generatedCallBriefSchema,
+  type CallBrief,
+  type CallBriefDeps,
+  type CallBriefInput,
+  type CallBriefResult,
+  type GeneratedCallBrief,
+} from './ai/call-brief';

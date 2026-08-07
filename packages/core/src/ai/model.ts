@@ -16,7 +16,8 @@ export type AiCall =
   | 'daybreak.brief'
   | 'daybreak.greeting'
   | 'campaign.draft'
-  | 'insight.classify';
+  | 'insight.classify'
+  | 'compass.callBrief';
 
 /**
  * Per-call overrides. `null` means "use the configured default".
@@ -28,6 +29,9 @@ export const AI_CALL_OVERRIDES: Record<AiCall, string | null> = {
   'daybreak.greeting': null,
   'campaign.draft': null,
   'insight.classify': 'claude-haiku-4-5',
+  // Narrative, and a rep reads it before a real phone call — stays on the default
+  // so Compass's voice matches Bask's.
+  'compass.callBrief': null,
 };
 
 export interface ModelResolution {
@@ -49,4 +53,5 @@ export const AI_MAX_TOKENS: Record<AiCall, number> = {
   'daybreak.greeting': 1000,
   'campaign.draft': 2000,
   'insight.classify': 512,
+  'compass.callBrief': 2000,
 };

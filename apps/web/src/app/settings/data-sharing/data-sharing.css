@@ -1,0 +1,272 @@
+/* "What UVALUX sees" — Bask side, so Sunset tokens. Deliberately NOT Compass:
+ * this screen is the salon reading about UVALUX, not the salon inside UVALUX's
+ * product, and the palette is how you know which product you are in
+ * (DESIGN_SPEC §2.1). Every value is a token. */
+
+.ds-page {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  padding: var(--space-10) var(--space-6) var(--space-12);
+}
+
+.ds-shell {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.ds-head .eyebrow {
+  margin-bottom: var(--space-2);
+}
+
+.ds-head h1 {
+  font: 500 var(--text-2xl) / 1.15 var(--font-display);
+  letter-spacing: -0.014em;
+}
+
+.ds-head h1 em {
+  font-style: italic;
+  color: var(--primary);
+}
+
+.ds-head p {
+  color: var(--ink-soft);
+  max-width: 64ch;
+  margin-top: var(--space-3);
+}
+
+/* ---------------------------------------------------------------- tier picker */
+
+.ds-tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+}
+
+.ds-tier {
+  text-align: left;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-5);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.ds-tier:hover {
+  border-color: var(--primary);
+}
+
+.ds-tier:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.ds-tier[aria-pressed='true'] {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-pop);
+}
+
+.ds-tier-name {
+  font: 600 var(--text-md) / 1.2 var(--font-body);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.ds-tier-now {
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  background: var(--primary-wash);
+  color: var(--accent-on-wash);
+  border-radius: 999px;
+  padding: 4px 9px;
+}
+
+.ds-tier-plain {
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+}
+
+/* ---------------------------------------------------- side-by-side previews */
+
+.ds-previews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-5);
+  /* The two panes list different numbers of things. Stretching the shorter one to
+   * match leaves a slab of empty card, which reads as missing content. */
+  align-items: start;
+}
+
+.ds-preview {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-6);
+}
+
+/* The UVALUX pane wears Compass's charcoal so the salon can see, literally,
+ * whose screen they are looking at. One brand moment, deliberately scarce. */
+.ds-preview--them {
+  background: var(--c-paper);
+  border-color: var(--c-line);
+  color: var(--c-ink);
+}
+
+.ds-preview h2 {
+  font: 500 var(--text-lg) / 1.2 var(--font-display);
+  letter-spacing: -0.012em;
+  margin-bottom: var(--space-1);
+}
+
+.ds-preview--them h2 {
+  color: var(--c-ink);
+}
+
+.ds-preview .ds-sub {
+  font-size: var(--text-sm);
+  color: var(--ink-faint);
+  margin-bottom: var(--space-4);
+}
+
+.ds-preview--them .ds-sub {
+  color: var(--c-ink-faint);
+}
+
+.ds-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ds-list li {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.ds-preview--them .ds-list li {
+  color: var(--c-ink-soft);
+}
+
+.ds-mark {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.ds-mark--yes {
+  background: var(--success-wash);
+  color: var(--success-on-wash);
+}
+
+.ds-mark--no {
+  background: var(--risk-wash);
+  color: var(--risk-on-wash);
+}
+
+.ds-preview--them .ds-mark--yes {
+  background: var(--c-green-wash);
+  color: var(--success-on-wash);
+}
+
+.ds-preview--them .ds-mark--no {
+  background: oklch(68% 0.15 28 / 0.14);
+  color: var(--risk-on-wash);
+}
+
+.ds-group-label {
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: var(--space-5) 0 var(--space-3);
+}
+
+.ds-preview--them .ds-group-label {
+  color: var(--c-amber);
+}
+
+.ds-preview--them .ds-group-label:first-child,
+.ds-preview .ds-group-label:first-child {
+  margin-top: 0;
+}
+
+/* ------------------------------------------------------------------ actions */
+
+.ds-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.ds-whisper {
+  font-size: var(--text-sm);
+  color: var(--ink-faint);
+  max-width: 62ch;
+}
+
+.ds-audit {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-5) var(--space-6);
+}
+
+.ds-audit h2 {
+  font: 500 var(--text-lg) / 1.2 var(--font-display);
+  margin-bottom: var(--space-3);
+}
+
+.ds-audit-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--text-sm);
+}
+
+.ds-audit-row:last-child {
+  border-bottom: 0;
+}
+
+.ds-audit-row .w {
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.ds-toast {
+  position: fixed;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-pop);
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-size: var(--text-sm);
+  z-index: 50;
+}
