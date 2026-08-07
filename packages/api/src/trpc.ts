@@ -39,19 +39,33 @@ export const createCallerFactory = t.createCallerFactory;
 export const publicProcedure = t.procedure;
 
 /**
- * Requires one of `allowed`. Message is plain-language because a non-technical
- * user can trip this with the role switch (IMPLEMENTATION_SPEC §3).
+ * Throws unless the caller holds one of `allowed`. Message is plain-language
+ * because a non-technical user can trip this with the role switch
+ * (IMPLEMENTATION_SPEC §3).
+ */
+function assertRole(role: DemoRole, allowed: readonly DemoRole[]): void {
+  if (!allowed.includes(role)) {
+    throw new TRPCError({
+      code: 'FORBIDDEN',
+      message: `${DEMO_ROLE_LABELS[role]} can't open this. Switch to ${allowed
+        .map((r) => DEMO_ROLE_LABELS[r])
+        .join(' or ')}.`,
+    });
+  }
+}
+
+/**
+ * Standalone role guard, for procedures that need no other narrowing.
+ *
+ * NOT used by the salon-scoped procedures below: a standalone `middleware()` is
+ * typed against the ROOT context, so composing one after `salonProcedure` threw
+ * away its `salonId: string` narrowing and every salon router got
+ * `string | null` back. Those compose the check inline instead, which preserves
+ * the incoming context type.
  */
 export function requireRole(...allowed: readonly DemoRole[]) {
   return middleware(({ ctx, next }) => {
-    if (!allowed.includes(ctx.role)) {
-      throw new TRPCError({
-        code: 'FORBIDDEN',
-        message: `${DEMO_ROLE_LABELS[ctx.role]} can't open this. Switch to ${allowed
-          .map((role) => DEMO_ROLE_LABELS[role])
-          .join(' or ')}.`,
-      });
-    }
+    assertRole(ctx.role, allowed);
     return next({ ctx });
   });
 }
@@ -71,10 +85,16 @@ export const salonProcedure = publicProcedure.use(({ ctx, next }) => {
 });
 
 /** Bask salon surfaces: owner + front desk. */
-export const staffProcedure = salonProcedure.use(requireRole(...SALON_ROLES));
+export const staffProcedure = salonProcedure.use(({ ctx, next }) => {
+  assertRole(ctx.role, SALON_ROLES);
+  return next({ ctx });
+});
 
 /** Owner-only salon surfaces (marketing sends, settings, money). */
-export const ownerProcedure = salonProcedure.use(requireRole('owner'));
+export const ownerProcedure = salonProcedure.use(({ ctx, next }) => {
+  assertRole(ctx.role, ['owner']);
+  return next({ ctx });
+});
 
 /**
  * Compass surfaces. NOT salon-scoped — a rep reads a portfolio of accounts, always

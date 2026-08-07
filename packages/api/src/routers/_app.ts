@@ -4,14 +4,14 @@
  */
 
 import { router } from '../trpc';
+import { customersRouter } from './customers';
 import { demoRouter } from './demo';
+import { marketingRouter } from './marketing';
 import {
   compassRouter,
-  customersRouter,
   floorRouter,
   insightsRouter,
   inventoryRouter,
-  marketingRouter,
   settingsRouter,
   todayRouter,
 } from './domains';

@@ -1,0 +1,982 @@
+/* Studio — mockup 03 is the visual bar. Selectors and values are lifted from
+ * `mockups/03-studio.html` rather than re-derived; anything below that has no
+ * counterpart there (idea shelf, campaigns list, calendar, phone frame) follows
+ * the same vocabulary — `.card`, semantic washes, one accent, no hard shadows.
+ * Every colour, space and type value comes from @bask/tokens. */
+
+/* --- chrome --------------------------------------------------------------- */
+.st-topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding: 14px var(--space-10);
+  border-bottom: 1px solid var(--line-soft);
+  background: oklch(98.2% 0.004 84 / 0.85);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.st-wordmark {
+  font: italic 600 22px/1 var(--font-display);
+  color: var(--ink);
+  text-decoration: none;
+}
+.st-crumb {
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  color: var(--ink-faint);
+}
+.st-crumb b {
+  color: var(--ink);
+  font-weight: 600;
+}
+.st-crumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.st-crumb a:hover {
+  color: var(--ink);
+}
+.st-steps {
+  margin-left: auto;
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: var(--ink-faint);
+}
+.st-step {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: none;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  cursor: default;
+}
+.st-step.is-done {
+  color: var(--success-on-wash);
+  cursor: pointer;
+}
+.st-step.is-current {
+  background: var(--primary-wash);
+  color: var(--accent-on-wash);
+}
+.st-sep {
+  color: var(--line);
+}
+
+.st-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-10) var(--space-12);
+}
+
+/* --- context banner (mockup 03 `.context`) -------------------------------- */
+.st-context {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-4) var(--space-6);
+  margin-bottom: var(--space-8);
+}
+.st-context-bar {
+  width: 10px;
+  height: 34px;
+  border-radius: 5px;
+  background: var(--grad-sunset-soft);
+  flex: none;
+}
+.st-context p {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.st-context p b {
+  color: var(--ink);
+}
+.st-context .st-why {
+  margin-left: auto;
+  white-space: nowrap;
+  flex: none;
+}
+.st-why-panel {
+  margin: calc(var(--space-8) * -1) 0 var(--space-8);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-5) var(--space-6);
+}
+.st-why-panel h4 {
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: var(--space-3);
+}
+.st-why-panel li {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  line-height: 1.6;
+  padding-left: var(--space-4);
+  position: relative;
+}
+.st-why-panel li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* --- working headline (mockup 03 `.head`) --------------------------------- */
+.st-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+.st-head h1 {
+  font: 500 var(--text-2xl) / 1.15 var(--font-display);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.st-head .st-sub {
+  color: var(--ink-faint);
+  font-size: var(--text-sm);
+}
+.st-tones {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+}
+.st-tone {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: var(--ink-soft);
+  background: var(--card);
+  cursor: pointer;
+  transition: background var(--dur-fast), border-color var(--dur-fast);
+}
+.st-tone:hover:not(:disabled) {
+  background: var(--paper-2);
+}
+.st-tone.is-selected {
+  border-color: var(--primary);
+  background: var(--primary-wash);
+  color: var(--accent-on-wash);
+}
+.st-tone:disabled {
+  opacity: 0.5;
+  cursor: progress;
+}
+
+/* --- output grid (mockup 03 `.grid`) -------------------------------------- */
+.st-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) 300px;
+  gap: var(--space-6);
+  align-items: start;
+}
+@media (max-width: 1100px) {
+  .st-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* One grid column, two stacked cards (text message + the long-form channels). */
+.st-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.st-out {
+  overflow: hidden;
+}
+.st-out-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--line-soft);
+}
+.st-out-head .st-ch {
+  font: 600 var(--text-sm) / 1 var(--font-body);
+  color: var(--ink);
+}
+.st-regen {
+  margin-left: auto;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: var(--primary-deep);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+}
+.st-regen:hover:not(:disabled) {
+  background: var(--primary-wash);
+}
+.st-regen:disabled {
+  opacity: 0.5;
+  cursor: progress;
+}
+
+/* The branded graphic: the salon's gradient + a serif headline + a white offer
+ * badge. One brand moment per screen — DESIGN_SPEC §2.1 calls the gradient
+ * sacred and scarce, so it appears here and nowhere else on this page. */
+.st-canvas {
+  aspect-ratio: 1;
+  margin: var(--space-5);
+  border-radius: var(--radius);
+  background: var(--grad-sunset);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-6);
+}
+.st-canvas::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, oklch(20% 0.05 340 / 0.55), transparent 55%);
+  pointer-events: none;
+}
+.st-canvas h2 {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font: 600 30px/1.15 var(--font-display);
+  letter-spacing: -0.01em;
+  max-width: 12ch;
+}
+.st-canvas .st-badge {
+  position: relative;
+  z-index: 1;
+  margin-top: 10px;
+  align-self: flex-start;
+  background: oklch(100% 0 0 / 0.9);
+  color: var(--ink);
+  font: 700 12px/1 var(--font-body);
+  border-radius: 999px;
+  padding: 7px 12px;
+}
+.st-caption {
+  padding: 0 var(--space-5) var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.st-caption b {
+  color: var(--ink);
+}
+
+.st-sms-body {
+  padding: var(--space-5);
+}
+.st-bubble {
+  background: var(--paper-2);
+  border-radius: 18px 18px 18px 4px;
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--ink);
+  max-width: 40ch;
+  line-height: 1.5;
+}
+.st-bubble-meta {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+}
+.st-bubble-meta .is-over {
+  color: var(--warn-on-wash);
+  font-weight: 600;
+}
+.st-edit-note {
+  margin: 0 var(--space-5) var(--space-5);
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+  border-top: 1px dashed var(--line);
+  padding-top: var(--space-3);
+  line-height: 1.55;
+}
+.st-line {
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--line-soft);
+  font-size: var(--text-sm);
+  color: var(--ink);
+}
+.st-line .st-k {
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: var(--ink-faint);
+  display: block;
+  margin-bottom: 3px;
+}
+.st-line pre {
+  font: 400 var(--text-sm) / 1.6 var(--font-body);
+  white-space: pre-wrap;
+  color: var(--ink-soft);
+}
+
+/* --- right rail (mockup 03 `.side`) --------------------------------------- */
+.st-side .card {
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-5);
+}
+.st-side h4 {
+  font: 600 var(--text-sm) / 1 var(--font-body);
+  color: var(--ink-faint);
+  margin-bottom: var(--space-4);
+}
+.st-aud-n {
+  font: 600 var(--text-2xl) / 1 var(--font-body);
+  color: var(--ink);
+}
+.st-aud-sub {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  margin: 4px 0 var(--space-4);
+  line-height: 1.5;
+}
+.st-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.st-chip {
+  background: var(--paper-2);
+  border-radius: 999px;
+  padding: 6px 11px;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: var(--ink-soft);
+}
+.st-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-size: var(--text-sm);
+  padding: 8px 0;
+  border-top: 1px solid var(--line-soft);
+  color: var(--ink-soft);
+}
+.st-row:first-of-type {
+  border-top: 0;
+}
+.st-row .st-v {
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+}
+.st-cta {
+  width: 100%;
+  justify-content: center;
+  padding: 14px;
+  font-size: var(--text-md);
+  border-radius: var(--radius);
+  margin-top: var(--space-2);
+}
+.st-note {
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+  text-align: center;
+  margin-top: var(--space-3);
+  line-height: 1.5;
+}
+
+/* --- inline editing ------------------------------------------------------- */
+/* Click to edit in place. No modals anywhere in Studio (DESIGN_SPEC §3.3). */
+.st-editable {
+  cursor: text;
+  border-radius: var(--radius-sm);
+  transition: background var(--dur-fast);
+  outline-offset: 2px;
+}
+.st-editable:hover {
+  background: var(--primary-wash);
+}
+.st-editable:focus-visible {
+  outline: 2px solid var(--primary);
+}
+.st-editing {
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  background: var(--card);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+  resize: vertical;
+  outline: none;
+}
+.st-canvas .st-editing {
+  background: oklch(100% 0 0 / 0.14);
+  color: #fff;
+  border-color: oklch(100% 0 0 / 0.6);
+}
+
+/* --- guardrail note ------------------------------------------------------- */
+.st-guard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--warn-wash);
+  border-radius: var(--radius-sm);
+  padding: 10px var(--space-4);
+  margin-top: var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--warn-on-wash);
+  line-height: 1.5;
+}
+.st-guard button {
+  margin-left: auto;
+  flex: none;
+  background: none;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: inherit;
+  cursor: pointer;
+}
+
+/* --- provenance whisper --------------------------------------------------- */
+.st-prov {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+}
+.st-prov .st-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+}
+.st-prov.is-fallback .st-dot {
+  background: var(--warn);
+}
+
+/* --- steps: goal / audience / offer --------------------------------------- */
+.st-setup {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: var(--space-6);
+  align-items: start;
+}
+@media (max-width: 1100px) {
+  .st-setup {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.st-setup .card {
+  padding: var(--space-6);
+}
+.st-field {
+  margin-bottom: var(--space-5);
+}
+.st-field label {
+  display: block;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: var(--space-2);
+}
+.st-field input,
+.st-field textarea {
+  width: 100%;
+  font: 400 var(--text-base) / 1.5 var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+.st-field input:focus,
+.st-field textarea:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+.st-field .st-hint {
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.st-seg-list {
+  display: grid;
+  gap: var(--space-3);
+}
+.st-seg {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  text-align: left;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-5);
+  cursor: pointer;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+.st-seg:hover {
+  background: var(--paper-2);
+}
+.st-seg.is-selected {
+  border-color: var(--primary);
+  background: var(--primary-wash);
+}
+.st-seg-n {
+  font: 600 var(--text-lg) / 1 var(--font-body);
+  color: var(--ink);
+  min-width: 3.5ch;
+  text-align: right;
+}
+.st-seg-label {
+  display: block;
+  font: 600 var(--text-base) / 1.3 var(--font-body);
+  color: var(--ink);
+}
+.st-seg-desc {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+.st-seg-reach {
+  margin-left: auto;
+  flex: none;
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+  text-align: right;
+  line-height: 1.6;
+}
+
+.st-channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.st-channel {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: var(--ink-soft);
+  background: var(--card);
+  cursor: pointer;
+}
+.st-channel.is-selected {
+  border-color: var(--primary);
+  background: var(--primary-wash);
+  color: var(--accent-on-wash);
+}
+
+.st-actions {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  margin-top: var(--space-6);
+}
+
+/* --- phone frame preview -------------------------------------------------- */
+.st-phone-wrap {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .st-phone-wrap {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.st-phone {
+  width: 300px;
+  border-radius: 34px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  box-shadow: var(--shadow-pop);
+  padding: 14px;
+}
+.st-phone-screen {
+  background: var(--paper);
+  border-radius: 22px;
+  overflow: hidden;
+  min-height: 520px;
+}
+.st-phone-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px var(--space-4);
+  border-bottom: 1px solid var(--line-soft);
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: var(--ink-faint);
+}
+.st-phone-body {
+  padding: var(--space-4);
+}
+.st-phone-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--grad-sunset);
+  flex: none;
+}
+.st-phone-canvas {
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  background: var(--grad-sunset);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-4);
+}
+.st-phone-canvas::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, oklch(20% 0.05 340 / 0.55), transparent 55%);
+}
+.st-phone-canvas h3 {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font: 600 19px/1.15 var(--font-display);
+  max-width: 12ch;
+}
+.st-phone-canvas span {
+  position: relative;
+  z-index: 1;
+  margin-top: 8px;
+  align-self: flex-start;
+  background: oklch(100% 0 0 / 0.9);
+  color: var(--ink);
+  font: 700 10px/1 var(--font-body);
+  border-radius: 999px;
+  padding: 6px 10px;
+}
+.st-phone-caption {
+  font-size: var(--text-xs);
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin-top: var(--space-3);
+}
+.st-phone-caption b {
+  color: var(--ink);
+}
+.st-phone-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: var(--space-4);
+}
+.st-phone-tab {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  background: var(--card);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.st-phone-tab.is-selected {
+  border-color: var(--primary);
+  background: var(--primary-wash);
+  color: var(--accent-on-wash);
+}
+
+/* --- hub: idea shelf, campaigns, calendar --------------------------------- */
+.st-hub-head {
+  margin-bottom: var(--space-8);
+}
+.st-hub-head h1 {
+  font: 500 var(--text-2xl) / 1.15 var(--font-display);
+  letter-spacing: -0.012em;
+  color: var(--ink);
+}
+.st-hub-head p {
+  font-size: var(--text-base);
+  color: var(--ink-soft);
+  margin-top: 6px;
+  max-width: 58ch;
+  line-height: 1.55;
+}
+.st-tabs {
+  display: flex;
+  gap: 6px;
+  margin: var(--space-6) 0 var(--space-6);
+  border-bottom: 1px solid var(--line-soft);
+}
+.st-tab {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 10px 4px;
+  margin-right: var(--space-5);
+  font: 600 var(--text-sm) / 1 var(--font-body);
+  color: var(--ink-faint);
+  cursor: pointer;
+}
+.st-tab.is-selected {
+  color: var(--ink);
+  border-bottom-color: var(--primary);
+}
+
+.st-shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-5);
+}
+.st-idea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-6);
+  position: relative;
+  overflow: hidden;
+}
+/* 4px severity rail, fused to the left edge — the InsightCard mechanic from
+ * mockup 01, reused so an idea and an insight read as the same family. */
+.st-idea::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--success);
+}
+.st-idea.from-insight::before {
+  background: var(--primary);
+}
+.st-idea h3 {
+  font: 600 var(--text-md) / 1.3 var(--font-body);
+  color: var(--ink);
+}
+.st-idea p {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.st-idea p b {
+  color: var(--ink);
+  font-weight: 600;
+}
+.st-idea-foot {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+.st-idea-src {
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: var(--ink-faint);
+  margin-left: auto;
+}
+
+.st-camps {
+  display: grid;
+  gap: var(--space-3);
+}
+.st-camp {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  gap: var(--space-5);
+  align-items: center;
+  padding: var(--space-4) var(--space-6);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+.st-camp:hover {
+  border-color: var(--primary);
+}
+/* Block, not inline: both are spans inside the grid cell's span, and inline
+ * runs the name straight into the goal on one line. */
+.st-camp-name {
+  display: block;
+  font: 600 var(--text-md) / 1.3 var(--font-body);
+  color: var(--ink);
+}
+.st-camp-goal {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+  margin-top: 3px;
+}
+.st-camp-meta {
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+  text-align: right;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.st-camp-meta b {
+  color: var(--ink);
+  font-weight: 600;
+}
+.st-state {
+  border-radius: 999px;
+  padding: 6px 11px;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  white-space: nowrap;
+}
+.st-state.is-draft {
+  background: var(--paper-2);
+  color: var(--ink-soft);
+}
+.st-state.is-scheduled {
+  background: var(--primary-wash);
+  color: var(--accent-on-wash);
+}
+.st-state.is-sent {
+  background: var(--warn-wash);
+  color: var(--warn-on-wash);
+}
+.st-state.is-measured {
+  background: var(--success-wash);
+  color: var(--success-on-wash);
+}
+
+.st-cal {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+}
+.st-cal-head {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid var(--line-soft);
+}
+.st-cal-head span {
+  padding: 10px;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: var(--ink-faint);
+  text-align: center;
+}
+.st-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.st-cal-day {
+  min-height: 96px;
+  border-right: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+  padding: 8px;
+}
+.st-cal-day:nth-child(7n) {
+  border-right: 0;
+}
+.st-cal-day.is-today {
+  background: var(--primary-wash);
+}
+.st-cal-num {
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: var(--ink-faint);
+}
+.st-cal-day.is-today .st-cal-num {
+  color: var(--accent-on-wash);
+}
+.st-cal-pill {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin-top: 6px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  padding: 5px 7px;
+  font: 600 10px/1.3 var(--font-body);
+  cursor: pointer;
+  background: var(--paper-2);
+  color: var(--ink-soft);
+}
+.st-cal-pill.is-scheduled {
+  background: var(--primary-wash);
+  color: var(--accent-on-wash);
+}
+.st-cal-pill.is-measured {
+  background: var(--success-wash);
+  color: var(--success-on-wash);
+}
+
+.st-empty {
+  padding: var(--space-10);
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.st-results {
+  display: flex;
+  gap: var(--space-8);
+  padding: var(--space-5) var(--space-6);
+  background: var(--success-wash);
+  border-radius: var(--radius);
+  margin-bottom: var(--space-6);
+}
+.st-result-n {
+  font: 600 var(--text-xl) / 1 var(--font-body);
+  color: var(--ink);
+}
+.st-result-k {
+  font-size: var(--text-xs);
+  color: var(--success-on-wash);
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.st-toast {
+  position: fixed;
+  left: 50%;
+  bottom: var(--space-8);
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 999px;
+  padding: 12px var(--space-6);
+  font: 600 var(--text-sm) / 1 var(--font-body);
+  box-shadow: var(--shadow-pop);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.st-busy {
+  color: var(--ink-faint);
+  font-size: var(--text-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-editable,
+  .st-tone,
+  .st-seg {
+    transition: none;
+  }
+}
