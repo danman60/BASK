@@ -25,6 +25,9 @@ const inter = Inter({
   display: 'swap',
 });
 
+import { ThemeProvider, ThemeScript } from '@bask/ui';
+import '@bask/ui/guidance.css';
+
 import { PresenterPanel } from '@/components/presenter/PresenterPanel';
 import { Providers } from './providers';
 
@@ -36,19 +39,27 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
+      <head>
+        {/* Must run before first paint so a Dusk salon never sees a white flash.
+            Lives at the root, not in a route layout: themes are an app-wide
+            concern and a nested script only runs after the shell has painted. */}
+        <ThemeScript />
+      </head>
       <body>
-        <Providers>
-          {children}
-          {/*
+        <ThemeProvider>
+          <Providers>
+            {children}
+            {/*
             Presenter Panel lives at the root so every route — including ones other
             lanes add — gets the hotkey. Suspense because it reads the URL's demo
             scope via useSearchParams, which would otherwise opt every prerendered
             page into client-side rendering.
           */}
-          <Suspense fallback={null}>
-            <PresenterPanel />
-          </Suspense>
-        </Providers>
+            <Suspense fallback={null}>
+              <PresenterPanel />
+            </Suspense>
+          </Providers>
+        </ThemeProvider>
       </body>
     </html>
   );

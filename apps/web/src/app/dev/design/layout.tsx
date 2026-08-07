@@ -1,18 +1,12 @@
 import type { ReactNode } from 'react';
-import { ThemeProvider, ThemeScript } from '@bask/ui';
-import '@bask/ui/guidance.css';
 import './design.css';
 
 /**
- * Dev harness scope. The provider lives here rather than in the root layout so lane A
- * owns the app shell uninterrupted; the root layout carries only the global tokens
- * stylesheet import.
+ * Dev harness scope. ThemeProvider + ThemeScript moved to the ROOT layout when the
+ * M0 lanes merged — themes are app-wide, and a provider mounted only under
+ * /dev/design left every other route unthemed (and broke persistence across a
+ * reload, because the pre-paint script never ran for the shell).
  */
 export default function DesignHarnessLayout({ children }: { children: ReactNode }) {
-  return (
-    <>
-      <ThemeScript />
-      <ThemeProvider>{children}</ThemeProvider>
-    </>
-  );
+  return <>{children}</>;
 }

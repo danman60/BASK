@@ -189,3 +189,25 @@ export {
   type PipelinePorts,
   type PipelineSalon,
 } from './pipeline/ports';
+
+// Consent filter — the ONE choke point every Compass surface reads through
+// (IMPLEMENTATION_SPEC §2, PRODUCT_SPEC §15/§38)
+export {
+  CONSENT_TIERS,
+  COMPASS_FIELDS,
+  MIN_COHORT_SIZE,
+  allowedFields,
+  allowedGroups,
+  canSee,
+  contributesToCohorts,
+  describeConsent,
+  filterAccount,
+  filterCohort,
+  receivesBenchmarks,
+  repMaySeeSignals,
+  type CohortAggregate,
+  type CohortResult,
+  type CompassFieldGroup,
+  type ConsentDisclosure,
+  type ConsentTier,
+} from './consent';
