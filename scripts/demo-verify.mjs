@@ -113,7 +113,7 @@ await check('beat-4', 'Demo clock state is live', async () => {
 
 // ── Beats 5–6: Compass ───────────────────────────────────────────────────────
 await check('beat-5', 'Compass network renders in its own theme', async () => {
-  const status = await routeStatus(page, '/compass');
+  const status = await routeStatus(page, '/compass/network');
   if (status === 404) return 'skip';
   if (status !== 200) return `HTTP ${status}`;
   await page.waitForTimeout(1200);
@@ -122,7 +122,9 @@ await check('beat-5', 'Compass network renders in its own theme', async () => {
 });
 
 await check('beat-6', 'Call List ranks salons with reasons', async () => {
-  const status = await routeStatus(page, '/compass/call-list');
+  // The Call List IS /compass — it's the rep's morning, so it earns the root of
+  // the product rather than sitting one click in (lane 5 deviation, logged).
+  const status = await routeStatus(page, '/compass');
   if (status === 404) return 'skip';
   if (status !== 200) return `HTTP ${status}`;
   await page.waitForTimeout(1200);
