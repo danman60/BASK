@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import { WhisperNote } from '@bask/ui';
 
-import { receiveScanAction } from '@/app/inventory/actions';
+import { receiveScanAction } from '@/app/(bask)/inventory/actions';
 
 /**
  * Receiving by barcode.
