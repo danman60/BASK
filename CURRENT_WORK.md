@@ -4,6 +4,10 @@
 Product discovery complete. Fable spec written from master brief.
 
 ## Recent Changes
+- 2026-08-07 **M0 BUILD IN PROGRESS.** Steps 1-3, 7-10 done and merged to master. Commits: e08cbe1 scaffold · e6afd7b bask schema (shared CC&SS Supabase, 35 tables, RLS on 29) · a00a536 lane D (tokens+guidance) · a49460c lane A (tRPC+Presenter Panel) · c989dfe WCAG/font/lint fixes · cd2352b lane C (session machine+SimulatedDriver). Lane B (steps 4-6: fixtures/clock → Evidence+insight engine → Daybreak gen) still running in worktree. Gate green: build/typecheck/lint/test.
+  - **Token amendment:** `--primary` 60%→58% L (WCAG AA 4.54:1), `--ink-faint` 56%→55%, `--c-ink-faint` 58%→64%. Mockups re-rendered + DM'd. 4 waivers remain (mockup-literal semantic-on-wash pairings superseded by `--*-on-wash`).
+  - **Fonts wired:** next/font Fraunces(variable+opsz)+Inter bound to `--font-display`/`--font-body`.
+  - **Known gotchas:** Prisma 7 needs a driver adapter (`@prisma/adapter-pg`); Prisma Migrate MUST use DIRECT_DATABASE_URL :5432 (:6543 pgbouncer hangs silently); route-module Prisma clients must be lazy or `next build` page-data collection fails; per-lane dev ports needed (all default 3417).
 - 2026-08-07: `docs/PRODUCT_SPEC.md` v1.0 created (Fable pass over `docs/UVALUX_Master_Fable_Product_Discovery_Brief.md`).
 - 2026-08-07: `docs/IMPLEMENTATION_SPEC.md` v1.0 created (Fable engineering blueprint for Opus). Adds: Expo iOS/Android app (one binary, Bask+Compass shells), Bask Bridge hardware abstraction (SimulatedDriver → TMaxDriver at pilot), barcode system (internal BSK SKUs + UPC capture, wedge scanner + expo-camera, per-customer product tracking), Guidance Layer for non-technical users, theme system: Sunset default (Carly IG-luxe adapted, `.in-session-ring` from Carly's `.in-chair-ring`) + Dusk/Linen/Compass via CompPortal TenantThemeProvider pattern. Stack: Turborepo, Next.js 16 + tRPC + Prisma + Supabase (new project), Expo/EAS. Milestones M0–M4 with exit gates.
 
