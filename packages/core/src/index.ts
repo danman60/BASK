@@ -2,9 +2,13 @@
  * @bask/core — domain types, insight rules engine, demo clock, consent filter,
  * metric baselines. Pure TS, zero UI deps: identical on server, web, and mobile.
  *
- * M0 step 1 seeds only the package identity; the clock (step 4), Evidence schema +
- * rules engine (step 5), session state machine + EquipmentDriver (step 7) and the
- * consent filter (step 11) land in later steps.
+ * The Anthropic SDK is imported lazily inside `ai/client.ts`, so importing this
+ * barrel from a browser or React Native bundle stays safe.
+ *
+ * Landed: demo clock (step 4), Evidence + rules engine (step 5), AI module and
+ * Daybreak generation (step 6), pipeline orchestration.
+ * Still to come: session state machine + EquipmentDriver (step 7), consent
+ * filter (step 11).
  */
 
 export const PRODUCT_NAME = 'Bask';
@@ -13,3 +17,175 @@ export const SPINE_VERSION = '0.0.0-m0';
 
 /** Everything user-facing renders in this zone (see docs/plans constraint). */
 export const DISPLAY_TIMEZONE = 'America/New_York';
+
+// Demo clock (IMPLEMENTATION_SPEC §1.4)
+export {
+  SALON_TIMEZONE,
+  addDays,
+  assertDateOnly,
+  createRealClock,
+  createVirtualClock,
+  dateOnlyToUtcMidnight,
+  dateParts,
+  dayOfWeek,
+  diffDays,
+  eachDay,
+  formatLongDate,
+  offsetMinutes,
+  resolveClock,
+  toDateOnly,
+  weekdayName,
+  zonedToUtc,
+  type Clock,
+  type DateOnly,
+  type DemoStateLike,
+} from './clock';
+
+// The ONE Evidence schema (IMPLEMENTATION_SPEC §2, DESIGN_SPEC §4)
+export {
+  EVIDENCE_VERSION,
+  buildComparison,
+  buildMetric,
+  buildWindow,
+  contributingFactorSchema,
+  directionOf,
+  evidenceComparisonSchema,
+  evidenceImpactSchema,
+  evidenceMetricSchema,
+  evidenceSchema,
+  evidenceSeriesSchema,
+  evidenceWindowSchema,
+  formatCurrency,
+  formatMetricValue,
+  metricUnitSchema,
+  parseEvidence,
+  round,
+  safeParseEvidence,
+  type ContributingFactor,
+  type Evidence,
+  type EvidenceComparison,
+  type EvidenceDirection,
+  type EvidenceImpact,
+  type EvidenceMetric,
+  type EvidenceSentiment,
+  type EvidenceSeries,
+  type EvidenceWindow,
+  type ImpactCadence,
+  type MetricUnit,
+} from './evidence';
+
+// Insight rules engine
+export {
+  ALL_DETECTORS,
+  THRESHOLDS,
+  anomalyBandDetector,
+  attachmentSlipDetector,
+  failedPaymentsDetector,
+  isRecoverable,
+  lowStockDetector,
+  overstockDetector,
+  softCapacityDetector,
+} from './insights/detectors';
+export { monthlyValueOf, runInsightSweep, type SweepOptions, type SweepResult } from './insights/engine';
+export {
+  INSIGHT_SEVERITIES,
+  INSIGHT_STATES,
+  INSIGHT_TYPES,
+  LINKED_ACTION_TYPES,
+  SEVERITY_RANK,
+  type Detector,
+  type DetectorContext,
+  type InsightDraft,
+  type InsightSeverity,
+  type InsightState,
+  type InsightType,
+  type LinkedActionType,
+} from './insights/types';
+export {
+  DAYPART_LABELS,
+  daypartForHour,
+  type AttachmentFacts,
+  type CapacityFacts,
+  type CapacitySlotFacts,
+  type CategoryTrendFacts,
+  type DailyPoint,
+  type FailedMembershipFacts,
+  type FailedPaymentFacts,
+  type ProductStockFacts,
+  type PulseFacts,
+  type SalonFacts,
+  type SlotAttachmentFacts,
+  type StaffAttachmentFacts,
+} from './insights/facts';
+
+// AI module (server-side; SDK loaded lazily)
+export {
+  AI_CALL_OVERRIDES,
+  AI_MAX_TOKENS,
+  DEFAULT_AI_MODEL,
+  resolveModel,
+  type AiCall,
+  type ModelResolution,
+} from './ai/model';
+export {
+  AiUnavailableError,
+  canonicalJson,
+  generateJson,
+  hashContext,
+  isAiConfigured,
+  type AiGenerationLog,
+  type AiUsage,
+} from './ai/client';
+export {
+  DEFAULT_GUARDRAILS,
+  checkPayload,
+  checkText,
+  runGuardrails,
+  type GuardrailCode,
+  type GuardrailOptions,
+  type GuardrailResult,
+  type GuardrailViolation,
+} from './ai/guardrails';
+export {
+  BRIEF_VERSION,
+  briefActionSchema,
+  briefCardSchema,
+  briefGreetingSchema,
+  briefPulseSchema,
+  daybreakBriefSchema,
+  generatedNarrativeSchema,
+  parseBrief,
+  safeParseBrief,
+  type BriefAction,
+  type BriefCard,
+  type BriefGreeting,
+  type BriefPulse,
+  type DaybreakBrief,
+  type GeneratedNarrative,
+} from './ai/brief';
+export {
+  buildCards,
+  buildFallbackNarrative,
+  buildPromptContext,
+  buildPulse,
+  generateDaybreak,
+  type BriefInsightInput,
+  type DaybreakDeps,
+  type DaybreakInput,
+  type DaybreakResult,
+} from './ai/daybreak';
+
+// Demo pipeline
+export {
+  runPipeline,
+  type PipelineDayReport,
+  type PipelineReport,
+  type RunPipelineOptions,
+  type SalonDayReport,
+} from './pipeline/index';
+export {
+  type CampaignOutcome,
+  type InsightUpsertResult,
+  type PipelinePorts,
+  type PipelineSalon,
+} from './pipeline/ports';

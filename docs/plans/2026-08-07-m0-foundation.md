@@ -107,3 +107,77 @@ Vitest unit tests already accumulated (core engine, consent filter stub, clock, 
 - **2026-08-07 · Step 2 · turbo `generate` task added.** `build` and `typecheck` now
   depend on it so `prisma generate` runs before anything consumes the client — removes a
   clean-clone foot-gun for step 3, since `packages/db/generated/` is gitignored.
+
+- **2026-08-07 · Steps 4–6 · one new migration after all: `daybreak_brief`.**
+  The step brief expected no new migrations. Step 6 requires briefs to be *stored* and
+  *cached by prompt hash*, and there was no table that could hold day-over-day brief
+  history plus a cache key. Squeezing it into an existing Json column would have made the
+  cache unqueryable. New table, 30th RLS-enabled table, zero footprint outside `bask`
+  (verified: `information_schema` shows it in `bask` only).
+
+- **2026-08-07 · Steps 4–6 · `prisma/migrations/migration_lock.toml` was missing.**
+  `db:migration:new` fails with "Could not determine the connector from the migrations
+  directory" without it. It was never written because step 2 applied the initial
+  migration via `psql` + `migrate resolve --applied`, a path that skips it. Added.
+
+- **2026-08-07 · Step 6 · the `daybreak_brief` migration is hand-authored.**
+  Even with the lock file, Prisma 7's `migrate diff --from-migrations` requires
+  `datasource.shadowDatabaseUrl`, and this project has no shadow database. The SQL is
+  written by hand against the conventions in the init migration, fully qualified to
+  `"bask"`, and `pnpm db:check` enforces the qualification.
+
+- **2026-08-07 · Steps 4–6 · Prisma 7 needs a driver adapter, not a datasource URL.**
+  `new PrismaClient({ datasources: { db: { url } } })` no longer typechecks. Added
+  `@prisma/adapter-pg` and construct with `{ adapter: new PrismaPg({ connectionString }) }`.
+
+- **2026-08-07 · Step 4 · Sunday opens 11–17, not 9–21.**
+  Modelled as "open all day but empty", Sunday afternoon became the softest window in the
+  dataset and the `soft_capacity` detector picked it over Tuesday, stealing the beat. A
+  salon that simply opens later carries the same real-world truth without the false
+  finding.
+
+- **2026-08-07 · Step 5 · `soft_capacity` compares a slot to the same hour on other
+  days, not to an absolute threshold.** An absolute test finds 9 a.m., which is quiet
+  every day and is therefore not news. The relative test finds a Tuesday afternoon
+  running well under every other afternoon, which is something an owner can act on.
+
+- **2026-08-07 · Step 4 · the spray-tan arc is extra bookings, not a heavier draw
+  weight.** The weighted service draw runs against fixed room capacity, so raising
+  spray's weight mostly reshuffles which services get clipped at peak hours. Measured
+  against the generated rows, a 60% weight lift moved the 14-day spray count by *zero*.
+  Extra visits move it by exactly what they are — and a service trending up does mean
+  more bookings, not the same people redistributing across the menu.
+
+- **2026-08-07 · Step 4 · `visitsPerDay` is 105, higher than a first guess.**
+  Room-hour utilisation is what makes the soft-capacity finding meaningful. Below roughly
+  this volume every hour of the week reads as "soft capacity" and the one window that is
+  actually a finding is drowned.
+
+- **2026-08-07 · Steps 5–6 · impact figures are larger than the mockup's `$640/mo`.**
+  Mockup 01 is a design comp with illustrative numbers. The attachment card computes
+  ≈$8.9k/mo because the dataset genuinely runs ~96 visits/day at ~$50 per attached sale,
+  and a 6-point attachment drop on that base really is that much money. Every figure on
+  every card is derived from the rows; none is written into a template.
+
+- **2026-08-07 · Step 6 · the Daybreak headline is about *yesterday*, so `PulseFacts`
+  gained `revenueYesterday` + `revenueTypicalForYesterdayWeekday`.** "Today so far" is a
+  partial morning number (cut at 11:00 salon-local) and comparing a half-morning against
+  a full day would never light up "on pace". Caught a real bug in passing: the fallback
+  headline named *today's* weekday next to yesterday's number.
+
+- **2026-08-07 · Step 6 · the live AI path is wired and exercised, but unverified
+  against a 200.** The configured `ANTHROPIC_API_KEY` returns
+  `400 invalid_request_error: credit balance is too low`. The request was really made and
+  the failure handled: the deterministic fallback produced a valid brief and the run
+  completed. So the error path is proven end-to-end; the success path's response parsing
+  is not. Mitigated with tolerant JSON extraction so the code does not depend on
+  `output_config.format` engaging. **Re-run `demo:advance --days 0` with a funded key
+  before the pitch** to confirm generated prose.
+
+- **2026-08-07 · Step 6 · `AI_MODEL` defaults to `claude-sonnet-5`.**
+  Per IMPLEMENTATION_SPEC §1.2 ("sonnet-class default"), with `claude-haiku-4-5` as the
+  in-code override for short classification work.
+
+- **2026-08-07 · Steps 4–6 · `pulse.inSalonNow` and `pulse.roomsInUse` are 0.**
+  Both are live-floor numbers owned by the session state machine (step 7). The brief
+  renders the rows; the values fill in when that lands.

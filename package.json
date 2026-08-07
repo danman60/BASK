@@ -10,10 +10,15 @@
   "scripts": {
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
     "dev": "turbo run dev",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "demo:reset": "pnpm --filter @bask/db demo:reset",
+    "demo:advance": "pnpm --filter @bask/db demo:advance",
+    "demo:checksum": "pnpm --filter @bask/db demo:checksum",
+    "demo:dump": "pnpm --filter @bask/db demo:dump"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.0",

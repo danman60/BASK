@@ -20,6 +20,14 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    // Node scripts: plain `.mjs` files get no TS lib, so `console` and
+    // `process` are undeclared globals without this.
+    files: ['**/*.mjs', '**/scripts/**/*.{ts,mjs}'],
+    languageOptions: {
+      globals: { console: 'readonly', process: 'readonly' },
+    },
+  },
+  {
     rules: {
       '@typescript-eslint/no-unused-vars': [
         'error',
