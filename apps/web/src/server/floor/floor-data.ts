@@ -65,6 +65,8 @@ export interface ProductOption {
   brand: string | null;
   category: string | null;
   size: string | null;
+  /** Repo-local product photo, `/catalogue/<sku>.jpg`. Nothing is fetched from uvalux.com. */
+  image: string | null;
   price: number;
   onHand: number;
   barcodes: string[];
@@ -169,6 +171,7 @@ export async function readFloorCatalogue(salonId: string): Promise<FloorCatalogu
         brand: true,
         category: true,
         size: true,
+        imageUrl: true,
         retailPrice: true,
       },
     }),
@@ -226,6 +229,7 @@ export async function readFloorCatalogue(salonId: string): Promise<FloorCatalogu
         brand: p.brand,
         category: p.category,
         size: p.size,
+        image: p.imageUrl,
         price: Number(p.retailPrice),
         onHand: onHandByProduct.get(p.id) ?? 0,
         barcodes: codesByProduct.get(p.id) ?? [],

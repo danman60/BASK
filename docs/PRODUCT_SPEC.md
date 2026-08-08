@@ -146,7 +146,7 @@ Three tabs, one surface, optimized desktop/tablet.
 **Room Board** — the visual centerpiece. Every room a card on a floor-plan-ish grid: room name, equipment type + icon, state (**ready / in session with live countdown / cleaning / maintenance**), current customer first-name, session time remaining. States are driven by a real simulated-equipment state machine: assign customer → countdown runs → auto-transitions to cleaning → staff taps ready. Utilization accrues into Insights from these events. A small "T-Max integration — supported at launch" affordance sits in Settings, not on the Floor; hardware is anticipated, not faked.
 
 **Check-in flow** (the front-desk spine, must be fast):
-Search ("Sar…" → instant) → customer card slides in: photo, membership badge (**Gold Unlimited — active** / package: 3 of 10 remaining / ⚠ payment failed), eligibility (session timing rules surfaced as a friendly gate, configurable per jurisdiction — *structured control, not hardcoded law*), last visit, flags ("waiver expires next month"). → Tap service → tap ready room → session starts on the board. A quiet, dismissible one-line upsell hint when the data supports it ("Sarah bought Fiji Blend twice — restocked this week"). Walk-in new customer: 4-field quick-create + waiver marked "signed on tablet" (simulated, viewable PDF).
+Search ("Sar…" → instant) → customer card slides in: photo, membership badge (**Gold Unlimited — active** / package: 3 of 10 remaining / ⚠ payment failed), eligibility (session timing rules surfaced as a friendly gate, configurable per jurisdiction — *structured control, not hardcoded law*), last visit, flags ("waiver expires next month"). → Tap service → tap ready room → session starts on the board. A quiet, dismissible one-line upsell hint when the data supports it ("Sarah bought Botanical Sunshine Revitalizing Bronzer twice — restocked this week"). Walk-in new customer: 4-field quick-create + waiver marked "signed on tablet" (simulated, viewable PDF).
 
 **POS** — deliberately lean: product grid (with images), cart, membership/package redemption as tender types, discounts, simulated card/cash tender, receipt state. Every sale writes into the same data that Daybreak and Insights read — *sell three lotions in the demo and retail attachment visibly moves.* That closed loop **is** the demo magic.
 
@@ -164,7 +164,7 @@ Profile: visit timeline, membership/package status with payment state, spend, fa
 
 Not a blank prompt box — a **prompted creation flow that already knows the salon.**
 
-Entry points: (a) *Fix this* from an insight (arrives pre-filled: goal=fill Tuesday, audience=lapsed+flexible, offer suggested), (b) "Create content" from scratch, (c) **Idea shelf** — 4–6 standing suggestions generated from data ("Spray tans up 22% — celebrate it" · "Overstocked: Fiji Blend — retail spotlight" · "You added red light — explain it").
+Entry points: (a) *Fix this* from an insight (arrives pre-filled: goal=fill Tuesday, audience=lapsed+flexible, offer suggested), (b) "Create content" from scratch, (c) **Idea shelf** — 4–6 standing suggestions generated from data ("Spray tans up 22% — celebrate it" · "Overstocked: Premium Solution Double Dark — retail spotlight" · "You added red light — explain it").
 
 Flow: Goal → Audience (smart segments, size shown) → Offer (AI-suggested, editable, guardrailed — no medical claims, discounts capped by settings) → **Generate** → output set: Instagram post + caption, Facebook post, SMS version, email version, simple branded graphic (template + salon logo/colors + stock/salon photo). Editing inline; tone control (Fun/Premium/Straight-talk); regenerate per piece. → Preview (phone-frame mock, genuinely pretty) → Schedule/Send (simulated) → Campaign object: draft → scheduled → sent → **measured** (demo clock advances → "23 opens, 9 bookings, ~$310 attributed" flows back to Daybreak).
 
@@ -172,7 +172,7 @@ Real AI generation in first build (this is cheap and high-impact); publishing si
 
 ## 12. Inventory & UVALUX Commerce
 
-Stock list with **days-remaining forecast** (computed from real demo sell-through, not a static label): "Australian Gold Cabana Bronzer — 6 units — ~8 days left at current pace." Reorder threshold flags. Overstock flags ("Fiji Blend — 34 units, slowing — *Create retail spotlight*" → Studio).
+Stock list with **days-remaining forecast** (computed from real demo sell-through, not a static label): "Hempz Botanical Sunshine Revitalizing Bronzer — 6 units — ~8 days left at current pace." Reorder threshold flags. Overstock flags ("Premium Solution Double Dark — 34 units, slowing — *Create retail spotlight*" → Studio).
 
 **The bridge:** *Add to UVALUX order* → a **Draft Order** accumulates (recommended items + reasons: "below threshold" / "seasonal: 40% Nov lift last year") → review screen styled like a real UVALUX order (catalogue images, SKUs, wholesale-ish pricing) → *Send to UVALUX rep* (simulated) → appears in Compass on the account timeline. Explainability rule: every recommended line shows its because. This screen is the "UVALUX gets better at its core business" beat of the demo.
 
@@ -291,7 +291,7 @@ First build: responsive web app; Daybreak and Call List demo beautifully on a ph
 
 **Hero salon: "Sunset Ridge Tanning & Wellness" (Kelowna, BC)** — 8 rooms: 3 UV levels ×4 beds worth of variety (Level 1×2, Level 2, Level 3, stand-up), spray booth, red light ×2, hydromassage. ~420 customers, ~120 active members across 3 tiers + packages, 90 days of visits/sales/campaign history, 12 staff-shift patterns, ~40 retail SKUs mapped to plausible UVALUX catalogue items (Australian Gold etc.).
 
-**Seeded story arcs (must produce the demo beats naturally):** retail attachment 21%→15% over 3 weeks (concentrated in two staffers) · Tuesday 1–5 pm chronically soft · 7 failed payments, 4 recoverable · Cabana Bronzer 8 days from stockout · Fiji Blend overstocked · spray tans trending +22% · membership joins healthy, one cancellation cluster · a "best Tuesday ever" waiting to happen after the campaign (demo clock payoff).
+**Seeded story arcs (must produce the demo beats naturally):** retail attachment 21%→15% over 3 weeks (concentrated in two staffers) · Tuesday 1–5 pm chronically soft · 7 failed payments, 4 recoverable · Hempz Botanical Sunshine Revitalizing Bronzer 8 days from stockout · Norvell Premium Solution Double Dark overstocked · spray tans trending +22% · membership joins healthy, one cancellation cluster · a "best Tuesday ever" waiting to happen after the campaign (demo clock payoff).
 
 **Compass portfolio: 12 salons** across BC/AB/ON/QC with varied health — including **Maple Glow Tanning** (retail decline arc) and **Northern Sun Wellness** (expansion-ready arc) exactly as the brief sketches, plus a Private-tier salon (shows consent working), a new opening (onboarding state), and a thriving multi-location teaser account.
 
@@ -308,7 +308,7 @@ Dataset ships as seeded, regenerable fixtures — the demo must be resettable to
 **Act 1 — the owner (6 min), on the big screen.**
 1. *Insight → action:* open the Tuesday card → Show me why (heatmap) → Fix this → Studio pre-filled → generate → edit one line of the SMS live (proves it's real) → preview on phone frame → schedule.
 2. *The Floor:* room board alive, countdowns running. Check in "Sarah" — membership badge, package count, one-tap room assignment. Ring up a lotion on POS. *Beat: this is a real operational system, not a deck.*
-3. *Supply:* Inventory → Cabana Bronzer, 8 days left → Add to UVALUX order → draft order with reasons → send to rep. *Beat: software that reorders UVALUX product.*
+3. *Supply:* Inventory → Hempz Botanical Sunshine Revitalizing Bronzer, 8 days left → Add to UVALUX order → draft order with reasons → send to rep. *Beat: software that reorders UVALUX product.*
 4. *Demo clock:* advance to next Tuesday. Daybreak now reads "Yesterday was your best Tuesday in 6 weeks — the campaign brought 9 bookings (~$310)." *Beat: the loop closes; marketing is measured, not hoped.*
 
 **Act 2 — UVALUX (4 min).** Switch role. Theme flips dark.

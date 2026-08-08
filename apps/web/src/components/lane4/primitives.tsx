@@ -125,10 +125,13 @@ export function Sparkline({
 }
 
 /**
- * Catalogue tile. There are no product photographs in this dataset and inventing
- * them would be exactly the kind of fake asset DESIGN_SPEC's slop test rules out,
- * so the tile is a deterministic colour-and-initials chip derived from the SKU —
- * it reads as a bottle on a shelf without pretending to be a photograph.
+ * Catalogue tile — the real UVALUX product photograph.
+ *
+ * The photos ship in the repo (`apps/web/public/catalogue/<sku>.jpg`, pulled from uvalux.com on
+ * 2026-08-08), so the shelf shows the bottle a staffer would actually pick up and nothing is
+ * fetched over the network mid-pitch. `CATEGORY_HUES` survives as the wash behind the photo — the
+ * shot is a cut-out on white, and the wash is what keeps the category legible at a glance and
+ * gives the tile an edge. If a product has no photo the tile falls back to the old SKU chip.
  */
 const CATEGORY_HUES: Record<string, number> = {
   bronzer: 42,
@@ -144,20 +147,37 @@ const CATEGORY_HUES: Record<string, number> = {
 export function ProductSwatch({
   sku,
   category,
+  image,
+  name,
   size = 'sm',
 }: {
   sku: string;
   category: string | null;
+  /** Repo-local path, e.g. `/catalogue/BSK-10007.jpg`. */
+  image?: string | null;
+  name?: string;
   size?: 'sm' | 'lg';
 }) {
   const hue = CATEGORY_HUES[category ?? ''] ?? 42;
   // Deterministic per-SKU lightness so two bronzers do not look identical.
   const seed = [...sku].reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
   const lightness = 52 + (seed % 5) * 4;
+  const className = size === 'lg' ? 'l4-order-swatch' : 'l4-swatch';
+
+  if (image) {
+    return (
+      <span
+        className={`${className} has-photo`}
+        style={{ background: `oklch(96% 0.02 ${hue})` }}
+      >
+        <img src={image} alt={name ?? ''} loading="lazy" decoding="async" />
+      </span>
+    );
+  }
 
   return (
     <span
-      className={size === 'lg' ? 'l4-order-swatch' : 'l4-swatch'}
+      className={className}
       style={{
         background: `linear-gradient(160deg, oklch(${lightness + 10}% 0.11 ${hue}), oklch(${lightness}% 0.13 ${hue}))`,
       }}

@@ -39,7 +39,7 @@ Switch to the Floor. Rooms live, countdowns ticking, one room wearing the sunset
 > "Any barcode, any $40 scanner, or the camera in your pocket. Staff don't manage a catalogue — the catalogue builds itself."
 
 ### Beat 3 — Supply intelligence `[BM:4 inventory-low]`
-Inventory → Cabana Bronzer, ~8 days left → *Add to UVALUX order* → draft order,每 line with its reason → send to rep.
+Inventory → Hempz Botanical Sunshine Revitalizing Bronzer, ~8 days left → *Add to UVALUX order* → draft order, every line with its reason → send to rep.
 > "The software just wrote a UVALUX order. Not an ad — a forecast. That's the bridge between running the salon and supplying it."
 
 ### Beat 4 — Close the loop `[BM:5 campaign-results]`

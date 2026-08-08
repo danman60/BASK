@@ -34,7 +34,9 @@ const GIFT_CARD_AMOUNTS = [25, 50, 100];
 
 /**
  * Deterministic tile wash, so a product looks like itself every time a staffer
- * scans the grid for it.
+ * scans the grid for it. Since the real UVALUX photographs landed it is the
+ * backdrop behind the bottle rather than the whole tile — the shots are cut-outs
+ * on white and need an edge to sit on.
  *
  * Constrained to the brand's own arc — terracotta (42) through gold (85) — at
  * low chroma. The obvious version of this function spreads hue across the full
@@ -164,15 +166,20 @@ export function PosPanel({
                 })
               }
             >
-              <span className="pos-thumb" style={{ background: tileWash(p.sku) }}>
-                {p.name.charAt(0)}
+              <span
+                className={`pos-thumb${p.image ? ' has-photo' : ''}`}
+                style={{ background: tileWash(p.sku) }}
+              >
+                {p.image ? (
+                  <img src={p.image} alt="" loading="lazy" decoding="async" />
+                ) : (
+                  p.name.charAt(0)
+                )}
               </span>
               <span className="body">
+                <span className="brand-line">{p.brand}</span>
                 <span className="name">{p.name}</span>
-                <span className="brand">
-                  {p.brand}
-                  {p.size ? ` · ${p.size}` : ''}
-                </span>
+                {p.size && <span className="brand">{p.size}</span>}
               </span>
               <span className="foot">
                 <span className="price num">{money(p.price)}</span>

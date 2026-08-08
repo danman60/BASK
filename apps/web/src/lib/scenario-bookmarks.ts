@@ -56,7 +56,7 @@ export const SCENARIO_BOOKMARKS: readonly ScenarioBookmark[] = [
   {
     id: 'inventory-low',
     label: 'Low stock moment',
-    description: 'Beat 3 — the bronzer running out, ready to order.',
+    description: 'Beat 3 — the Hempz bronzer running out, ready to order.',
     path: '/inventory',
     clockDays: 2,
     role: 'owner',

@@ -45,6 +45,20 @@ export interface RecentSession {
   notes: string | null;
 }
 
+/**
+ * `equipment_device.config` is a free-form JSON column. The fixtures put the real UVALUX
+ * `{ manufacturer, model, image }` there (see `packages/db/fixtures/index.ts`); the /dev harness
+ * puts simulation knobs there. Read it defensively — neither shape is guaranteed.
+ */
+function equipmentConfig(config: unknown): { manufacturer: string | null; image: string | null } {
+  if (!config || typeof config !== 'object') return { manufacturer: null, image: null };
+  const c = config as Record<string, unknown>;
+  return {
+    manufacturer: typeof c.manufacturer === 'string' ? c.manufacturer : null,
+    image: typeof c.image === 'string' ? c.image : null,
+  };
+}
+
 export async function readFloorState(
   salonId: string,
   salonName: string,
@@ -64,7 +78,7 @@ export async function readFloorState(
         cleaningMinutes: true,
         sortOrder: true,
         roomType: { select: { label: true } },
-        equipmentDevice: { select: { address: true } },
+        equipmentDevice: { select: { address: true, config: true } },
       },
     }),
     prisma.session.findMany({
@@ -141,6 +155,10 @@ export async function readFloorState(
       cleaningMinutes: r.cleaningMinutes,
       sortOrder: r.sortOrder,
       unit: r.equipmentDevice?.address ?? null,
+      // The unit is simulated; the machine it stands for is a real UVALUX one, and
+      // `equipment_device.config` is where its make/model/photo live.
+      manufacturer: equipmentConfig(r.equipmentDevice?.config).manufacturer,
+      image: equipmentConfig(r.equipmentDevice?.config).image,
     })),
     sessions,
     recent: recent.map((s) => ({

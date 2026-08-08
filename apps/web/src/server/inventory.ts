@@ -59,7 +59,7 @@ export interface InventoryBoard {
 export async function loadInventoryBoard(facts: SalonFacts): Promise<InventoryBoard> {
   const products = await db.product.findMany({
     where: { id: { in: facts.stock.map((s) => s.productId) } },
-    select: { id: true, brand: true, size: true },
+    select: { id: true, brand: true, size: true, imageUrl: true, description: true },
   });
   const meta = new Map(products.map((p) => [p.id, p]));
 
@@ -68,6 +68,8 @@ export async function loadInventoryBoard(facts: SalonFacts): Promise<InventoryBo
       toStockRow(stock, {
         brand: meta.get(stock.productId)?.brand ?? null,
         size: meta.get(stock.productId)?.size ?? null,
+        image: meta.get(stock.productId)?.imageUrl ?? null,
+        description: meta.get(stock.productId)?.description ?? null,
       }),
     )
     .sort(
@@ -111,6 +113,8 @@ export interface DraftOrderLineView {
   brand: string | null;
   size: string | null;
   category: string | null;
+  /** Repo-local product photo, `/catalogue/<sku>.jpg`. */
+  image: string | null;
   quantity: number;
   unitPrice: number;
   lineTotal: number;
@@ -177,6 +181,7 @@ function toView(order: DraftOrderWithLines): DraftOrderView {
       brand: line.product?.brand ?? null,
       size: line.product?.size ?? null,
       category: line.product?.category ?? null,
+      image: line.product?.imageUrl ?? null,
       quantity: line.quantity,
       unitPrice,
       lineTotal: round(unitPrice * line.quantity, 2),

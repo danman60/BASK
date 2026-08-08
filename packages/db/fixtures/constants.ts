@@ -131,10 +131,10 @@ export const ARCS = {
     unrecoverableTiers: ['silver', 'bronze', 'gold'] as const,
   },
 
-  /** Cabana Bronzer ~8 days from stockout. */
+  /** Hempz Botanical Sunshine Revitalizing Bronzer (BSK-10007) ~8 days from stockout. */
   lowStock: { sku: 'BSK-10007', targetDaysRemaining: 7.5 },
 
-  /** Fiji Blend overstocked. */
+  /** Norvell Premium Solution Double Dark (BSK-10021) overstocked. */
   overstock: { sku: 'BSK-10021', onHand: 34 },
 
   /**

@@ -30,6 +30,10 @@ export type ReorderReasonKind = 'below_threshold' | 'sell_through_pace' | 'seaso
 export interface StockRow extends ProductStockFacts {
   brand: string | null;
   size: string | null;
+  /** Repo-local product photo, `/catalogue/<sku>.jpg`. */
+  image: string | null;
+  /** UVALUX product copy, HTML stripped. */
+  description: string | null;
   flag: StockFlag;
   /** The arithmetic, spelled out — shown under "how we worked this out". */
   workings: string;
@@ -52,6 +56,8 @@ export interface Recommendation {
   brand: string | null;
   size: string | null;
   category: string | null;
+  /** Repo-local product photo, `/catalogue/<sku>.jpg`. */
+  image: string | null;
   quantity: number;
   unitPrice: number;
   retailPrice: number;
@@ -155,6 +161,7 @@ export function buildRecommendations(
       brand: row.brand,
       size: row.size,
       category: row.category,
+      image: row.image,
       quantity: suggestQuantity(row),
       unitPrice: row.wholesaleCost,
       retailPrice: row.retailPrice,
@@ -218,12 +225,19 @@ export function buildRecommendations(
 /** Decorate a raw stock rollup row with everything the screen needs. */
 export function toStockRow(
   stock: ProductStockFacts,
-  extra: { brand: string | null; size: string | null },
+  extra: {
+    brand: string | null;
+    size: string | null;
+    image?: string | null;
+    description?: string | null;
+  },
 ): StockRow {
   return {
     ...stock,
     brand: extra.brand,
     size: extra.size,
+    image: extra.image ?? null,
+    description: extra.description ?? null,
     flag: flagFor(stock),
     workings: workingsFor(stock),
     coverSentence: coverSentence(stock),

@@ -190,8 +190,8 @@ the rows, so the numbers on the cards are arithmetic rather than copy.
 | Retail attachment 21% → 15% | Per-visit attachment probability ramps down over 14 days then holds at the floor for the 14 the detector measures. Two staffers (`tamsin`, `reece`) carry most of the drop. | `retail_attachment_slip` |
 | Tuesday 1–5 pm soft | Hour weights damped inside the window; traffic redistributes rather than disappearing. | `soft_capacity` |
 | 7 failed payments, 4 recoverable | Four memberships with one failed attempt and recent visits (gold + silver + 2×bronze = exactly **$284/mo**), three with 3–4 attempts. | `failed_payments` |
-| Cabana Bronzer ~8 days out | Opening stock sized from the velocity the generated sales actually produced. | `low_stock` |
-| Fiji Blend overstocked | Excluded from both retail attachment and booth consumption — no movement at all. | `overstock` |
+| Hempz Botanical Sunshine Revitalizing Bronzer ~8 days out | Opening stock sized from the velocity the generated sales actually produced. | `low_stock` |
+| Norvell Premium Solution Double Dark overstocked | Excluded from both retail attachment and booth consumption — no movement at all. | `overstock` |
 | Spray tans +22% | Extra bookings ramped over 14 days. | `anomaly_band` |
 | "Best Tuesday ever" | A campaign seeded in `scheduled` state for day zero + 5. `demo:advance --days 5` settles it into real bookings. | the day-after brief |
 

@@ -65,7 +65,7 @@ export default async function InventoryPage({
                   {board.recommendations.length}{' '}
                   {board.recommendations.length === 1 ? 'product' : 'products'}
                 </em>{' '}
-                want a decision this week.
+                {board.recommendations.length === 1 ? 'wants' : 'want'} a decision this week.
               </>
             ) : (
               <>
@@ -161,11 +161,17 @@ export default async function InventoryPage({
           <div className="l4-stock">
             {board.recommendations.map((rec) => (
               <div key={rec.productId} className="l4-stock-row" data-flag="reorder">
-                <ProductSwatch sku={rec.sku} category={rec.category} />
+                <ProductSwatch
+                  sku={rec.sku}
+                  category={rec.category}
+                  image={rec.image}
+                  name={rec.name}
+                />
                 <div>
                   <p className="l4-stock-name">{rec.name}</p>
                   <p className="l4-stock-meta">
-                    {rec.sku} · {rec.brand ?? '—'} · {rec.size ?? '—'}
+                    {rec.brand ?? '—'} · {rec.sku}
+                    {rec.size ? ` · ${rec.size}` : ''}
                   </p>
                   <p className="l4-because">
                     <b>{REASON_LABELS[rec.reasonKind]}.</b> {rec.reason}
@@ -221,11 +227,17 @@ export default async function InventoryPage({
             {overstocked.slice(0, 4).map((row) => (
               <div key={row.productId} className="l4-card">
                 <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-                  <ProductSwatch sku={row.sku} category={row.category} size="lg" />
+                  <ProductSwatch
+                    sku={row.sku}
+                    category={row.category}
+                    image={row.image}
+                    name={row.name}
+                    size="lg"
+                  />
                   <div style={{ flex: 1 }}>
                     <p className="l4-stock-name">{row.name}</p>
                     <p className="l4-stock-meta">
-                      {row.sku} · {row.onHand} on the shelf ·{' '}
+                      {row.brand ?? '—'} · {row.onHand} on the shelf ·{' '}
                       {formatCurrency(row.shelfValue)} of shelf value
                     </p>
                     <p className="l4-workings" style={{ marginTop: 8 }}>
@@ -274,12 +286,19 @@ export default async function InventoryPage({
           </div>
           {board.rows.map((row) => (
             <div key={row.productId} className="l4-stock-row" data-flag={row.flag}>
-              <ProductSwatch sku={row.sku} category={row.category} />
+              <ProductSwatch
+                sku={row.sku}
+                category={row.category}
+                image={row.image}
+                name={row.name}
+              />
               <div>
                 <p className="l4-stock-name">{row.name}</p>
                 <p className="l4-stock-meta">
-                  {row.sku} · {row.brand ?? '—'} · {row.size ?? '—'}
+                  {row.brand ?? '—'} · {row.sku}
+                  {row.size ? ` · ${row.size}` : ''}
                 </p>
+                {row.description && <p className="l4-stock-blurb">{row.description}</p>}
               </div>
               <div>
                 <p className="l4-big num">{row.onHand}</p>

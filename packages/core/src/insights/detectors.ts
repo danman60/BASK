@@ -436,7 +436,7 @@ export const softCapacityDetector: Detector = {
 };
 
 // ---------------------------------------------------------------------------
-// 4. Low stock — Cabana Bronzer, 8 days out.
+// 4. Low stock — Hempz Botanical Sunshine Revitalizing Bronzer, 8 days out.
 // ---------------------------------------------------------------------------
 
 export const lowStockDetector: Detector = {
@@ -526,7 +526,7 @@ export const lowStockDetector: Detector = {
 };
 
 // ---------------------------------------------------------------------------
-// 5. Overstock — Fiji Blend.
+// 5. Overstock — Norvell Premium Solution Double Dark.
 // ---------------------------------------------------------------------------
 
 export const overstockDetector: Detector = {

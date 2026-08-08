@@ -11,10 +11,54 @@
 - Deployment Protection is OFF (public demo). Turn back on:
   `curl -X PATCH .../projects/bask -d '{"ssoProtection":{"deploymentType":"prod_deployment_urls_and_all_previews"}}'`
 
+## Session refresh 2026-08-07 16:17
+Context rot after a long build session (M0 + M1 + deploy in one window). Fresh session started;
+nothing was in flight at the cut — the deploy is live and green.
+
 ## Active Task
-M1 web demo build COMPLETE (2026-08-07) — all six surfaces + public booking merged; `pnpm demo:verify` 12/12 on a fresh reset. Next: fund the AI key, tune fixture volume for the demo script, then M2 (mobile + barcode).
+Real UVALUX catalogue landed (2026-08-08). Demo now runs on real products and real machines.
+Next: decide the pitch.html contact line, regenerate deck slides 4/6 from the live build, then M2
+(mobile + barcode).
 
 ## Recent Changes
+- 2026-08-08 **REAL UVALUX CATALOGUE — invented demo products replaced end to end.**
+  - Source: uvalux.com **WooCommerce Store API** (`/wp-json/wc/store/v1/products`), pulled 2026-08-08.
+    1,817 products, 1,755 with real SKUs. The shop HTML does NOT parse with `li.product` selectors —
+    use the API. Curated pull kept at `packages/db/fixtures/uvalux-catalogue.json` (source of record).
+  - **40 real products, 14 real brands** (Hempz, Australian Gold, California Tan, Devoted Creations,
+    Designer Skin, Swedish Beauty, JWOWW, Supre Tan, Ed Hardy, Sunna, Norvell, Fiesta Sun, Dermasuri,
+    Uvalux) — real names, sizes, descriptions and product photography. Real order codes now populate
+    `UvaluxCatalogItem.officialSku`, `null` since M0.
+  - **Prices are CAD wholesale** — uvalux publishes exactly one price and no MSRP. `RETAIL_MARKUP = 1.5`
+    (Daniel, 2026-08-08) is the single constant deriving every retail price. Retail range $5–$97,
+    shelf value $52,542.
+  - **No brand logos exist to take** — the brand taxonomy returns `image: null` for every brand.
+    Product photography only; nothing fabricated.
+  - **Story arcs kept, on real products:** BSK-10007 = Hempz Botanical Sunshine Revitalizing Bronzer
+    (8 days to stockout), BSK-10021 = Norvell Premium Solution Double Dark (34 on shelf, never sold).
+  - **Real machines on the Floor:** Ergoline Sunrise 7200 · KBL 6800 Alpha Pearl · Ergoline SunDash
+    32/0 · KBL Space 2000 · Mystic Tan Unity · Ergoline Beauty Angel RVT 30 · Redwave Plus ·
+    Wellsystem Wave Hydro Massage Therapy. Make + model live in `EquipmentDevice.config` (JSON, no migration).
+  - **Kits are consumer-size on purpose.** The UVALUX bulk intro kits ($320–406 wholesale) are what a
+    salon buys FROM UVALUX, not what a customer buys at the till — a $600 tile between $53 lotions read
+    wrong. Swapped for real retail sets (Hempz Botanical Sunshine Gift Bag, Sunna Jet Set Travel,
+    Koffee Beauty Espresso Yourself, Devoted Creations White 2 Bronze Watermelon).
+  - Migration `20260808032522_catalogue_description_image` adds `description`/`image_url` to
+    `bask.product` + `bask.uvalux_catalog_item`. 48 images vendored to `apps/web/public/{catalogue,equipment}/`
+    so the pitch never depends on uvalux.com being reachable.
+  - **Fixed on the way:** the AI Daybreak headline had stopped opening "Good morning," which the mockups
+    and the fallback both use and `demo:verify` greps for (was failing 11/12); Inventory read "1 product
+    **want** a decision".
+  - **Fixture volume largely self-corrected:** Daybreak now reads "6% above your usual Thursday"
+    (PITCH.md wants "8% above"; it used to say 31% BELOW).
+  - 209 tests green · `demo:verify` 12/12 · `db:check` clean, zero `public` footprint.
+  - **`pnpm db:migration:new` is BROKEN under Prisma 7.9** — `--from-migrations` now demands
+    `datasource.shadowDatabaseUrl`. Worked around with `migrate diff --from-config-datasource`; the
+    script needs fixing before the next migration.
+- 2026-08-08 **`docs/pitch/pitch.html`** — self-contained presentation build of PITCH.md for the Nick
+  meeting (real Fraunces/Inter embedded, dark Compass act, run-of-show with bookmark chips, presenter-only
+  notes, prints to 18 pages). OPEN: the contact line on the last slide is a guess, and slides 4/6 use the
+  design mockups rather than live screenshots.
 - 2026-08-07 **M1 COMPLETE — 5 lanes merged, `pnpm demo:verify` 11/11 on a fresh `demo:reset`.**
   - Surfaces: `/` Today/Daybreak · `/floor` (room board, check-in, waiver signature, POS + wedge scanner, schedule, shift handoff) · `/marketing` Studio · `/customers` · `/inventory` (+ UVALUX draft order) · `/insights` (+ Peers gap slider, activity log) · `/compass` (Call List, Network, Accounts, Coaching) · `/settings/data-sharing`.
   - Lane 6 (built in main): `/book` public booking — service → day → time → name, writes a real Booking the Floor renders; slots derived from salon-local wall time via the zone so they survive DST. All 7 PITCH.md presenter bookmarks wired.

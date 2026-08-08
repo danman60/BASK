@@ -178,7 +178,7 @@ export const FLOOR = {
     tomorrow: 'First three tomorrow',
     noTomorrow: 'Nothing booked tomorrow yet.',
     noteLabel: 'Anything the next person should know?',
-    notePlaceholder: 'Bed 3 buzzes when it starts. Told the customer we would look at it.',
+    notePlaceholder: 'The SunDash buzzes when it starts. Told the customer we would look at it.',
     post: 'Post the handoff',
     posted: (when: string) => `Posted ${when}.`,
     postedToast: 'Handoff posted. The next shift sees it when they open.',

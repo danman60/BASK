@@ -26,13 +26,13 @@ function stock(overrides: Partial<ProductStockFacts> = {}): ProductStockFacts {
   return {
     productId: 'p1',
     sku: 'BSK-10007',
-    name: 'Cabana Bronzer',
+    name: 'Botanical Sunshine Revitalizing Bronzer',
     category: 'bronzer',
     onHand: 30,
     reorderPoint: 10,
     parLevel: 60,
-    retailPrice: 76,
-    wholesaleCost: 33,
+    retailPrice: 53,
+    wholesaleCost: 35,
     dailyVelocity: 1,
     daysRemaining: 30,
     unitsSoldInWindow: 30,
@@ -42,7 +42,7 @@ function stock(overrides: Partial<ProductStockFacts> = {}): ProductStockFacts {
 }
 
 const row = (overrides: Partial<ProductStockFacts> = {}) =>
-  toStockRow(stock(overrides), { brand: 'Cabana Club', size: '250 ml' });
+  toStockRow(stock(overrides), { brand: 'Hempz', size: '9oz' });
 
 describe('flagFor', () => {
   it('calls an empty shelf critical', () => {

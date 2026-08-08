@@ -64,7 +64,7 @@ Choreography: *Fix this* navigates to Studio with a context banner (3.3); *Show 
 Layout: `1fr 372px`. Compact density.
 1. **Topbar**: wordmark · segmented tab pill (Room Board / Check-in / POS / Schedule) · scanner-ready whisper (`Scanner ready — scan any product`) · live clock. The scanner whisper doubles as the wedge-listener status light.
 2. **Room board**: 4-col grid of room cards, min-height 132px. Anatomy: uppercase equipment type (11px, letterspaced) → room name 16px semibold → state zone. States: **Ready** = green wash chip · **In session** = `.in-session-ring` gradient rim + 31px tabular countdown + customer first name · **Cleaning** = amber chip with minutes · **Maintenance** = clay chip. The ring is the only color-loud element — the board reads at a glance from across a counter.
-3. **Check-in panel** (elevated, `--shadow-pop`): customer header (initials avatar in terracotta wash, name 19px, gold membership badge with dot) → 2×2 meta grid (last visit / visits / package n-of-m / session-timing verdict, verdict colored) → flags (amber wash, plain language, tells staff the 30-second fix) → upsell hint (paper-2 wash, ✦, product bolded — dismissible, never blocks) → SERVICE pill row (selected = terracotta wash+border) → READY ROOMS row → full-width **Start session — Bed 2 · 12 minutes** (button states the outcome, not "Submit").
+3. **Check-in panel** (elevated, `--shadow-pop`): customer header (initials avatar in terracotta wash, name 19px, gold membership badge with dot) → 2×2 meta grid (last visit / visits / package n-of-m / session-timing verdict, verdict colored) → flags (amber wash, plain language, tells staff the 30-second fix) → upsell hint (paper-2 wash, ✦, product bolded — dismissible, never blocks) → SERVICE pill row (selected = terracotta wash+border) → READY ROOMS row → full-width **Start session — KBL 6800 Alpha Pearl · 12 minutes** (button states the outcome, not "Submit").
 Choreography: customer search replaces panel content instantly (<100ms perceived); scan anywhere → context-routed toast; on Start, panel clears and the room card flips to ring+countdown in one 220ms crossfade — that flip IS the product moment, rehearse it in the demo.
 
 ## 3.3 Studio (campaign review) — mockup 03
@@ -94,7 +94,7 @@ All of these consume the ONE typed `Evidence` schema from `packages/core` wherev
 # 5. Copy voice on-screen (extends IMPLEMENTATION_SPEC §3)
 
 - Headlines talk to you by name and state the finding, not the feature ("Yesterday finished 8% above your usual Thursday" — never "Dashboard").
-- Buttons state outcomes: "Start session — Bed 2 · 12 minutes", "Send recovery messages", "Create a Tuesday promo". Banned: Submit, OK, Confirm, Execute.
+- Buttons state outcomes: "Start session — KBL 6800 Alpha Pearl · 12 minutes", "Send recovery messages", "Create a Tuesday promo". Banned: Submit, OK, Confirm, Execute.
 - Consequences appear as whispers at the point of action ("Goes to 43 people who agreed to texts").
 - Evidence sentences bold the numbers, keep the prose plain: "**21% to 15%** over three weeks — mostly on Tuesday and Thursday evening shifts."
 - Compass speaks about salons in third person with respect; "their request, not just our signal" is the register.

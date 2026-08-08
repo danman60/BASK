@@ -366,7 +366,10 @@ function buildPrompt(input: DaybreakInput, context: Record<string, unknown>): st
     JSON.stringify(context, null, 2),
     '',
     'Write four fields:',
-    '- headline: greet the owner by first name and state the single most important thing about yesterday.',
+    // The greeting is fixed, not stylistic: mockup 01 and the fallback headline both open
+    // "Good morning, <name>." and demo:verify greps for it. Let the model choose it and it
+    // writes "Dana, yesterday finished ..." instead, which fails the check mid-pitch.
+    '- headline: MUST begin exactly "Good morning, <first name>." and then state the single most important thing about yesterday.',
     '- emphasis: a short phrase copied verbatim from headline (usually the number).',
     '- subProse: one or two sentences of context. Mention how many things need attention and whether any look like easy wins.',
     '- narrative: two to four sentences summarising the morning for a phone screen.',

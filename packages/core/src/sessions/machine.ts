@@ -219,6 +219,10 @@ export interface RoomSnapshot {
   cleaningMinutes: number;
   sortOrder: number;
   unit: UnitAddress | null;
+  /** Real machine make, off `equipment_device.config` — e.g. `Ergoline`. */
+  manufacturer: string | null;
+  /** Repo-local equipment photo, `/equipment/<room-key>.jpg`. */
+  image: string | null;
 }
 
 /** Minimal session shape the machine needs; a superset of `bask.session`. */
@@ -244,6 +248,10 @@ export interface RoomView {
   name: string;
   roomTypeKey: string;
   equipmentLabel: string;
+  /** Real machine make, off `equipment_device.config` — e.g. `Ergoline`. */
+  manufacturer: string | null;
+  /** Repo-local equipment photo, `/equipment/<room-key>.jpg`. */
+  image: string | null;
   state: RoomStateName;
   /** "Ready" / "In session" / "Cleaning" / "Maintenance". */
   stateLabel: string;
@@ -281,6 +289,8 @@ export function deriveRoomView(
     name: room.name,
     roomTypeKey: room.roomTypeKey,
     equipmentLabel: room.equipmentLabel,
+    manufacturer: room.manufacturer,
+    image: room.image,
     state: room.state,
     stateLabel: ROOM_STATE_LABEL[room.state],
     customerName: session?.customerName ?? null,

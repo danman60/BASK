@@ -48,6 +48,8 @@ import {
   buildMemberships,
   buildPackages,
   buildStaff,
+  equipmentImage,
+  equipmentModel,
   generateDayActivity,
   historyDays,
   type ActivityContext,
@@ -98,14 +100,17 @@ export function generateFixtures(options: GenerateOptions = {}): FixtureBundle {
 
   const uvaluxCatalogItems = CATALOGUE.map((c) => ({
     id: id('catalog-item', c.sku),
-    officialSku: null, // no official SKUs exist yet (IMPLEMENTATION_SPEC §6.1)
+    officialSku: c.officialSku, // the real UVALUX order code, verbatim from uvalux.com
     name: c.name,
     brand: c.brand,
     category: c.category,
-    size: c.size,
+    size: c.size || null,
     upc: upcA(c.upcBody),
     wholesalePrice: c.wholesaleCost,
+    // `msrp` is the derived retail price (wholesale × RETAIL_MARKUP) — UVALUX publishes no MSRP.
     msrp: c.retailPrice,
+    description: c.description,
+    imageUrl: c.imageUrl,
     isActive: true,
     createdAt,
     updatedAt: createdAt,
@@ -119,9 +124,11 @@ export function generateFixtures(options: GenerateOptions = {}): FixtureBundle {
     name: c.name,
     brand: c.brand,
     category: c.category,
-    size: c.size,
+    size: c.size || null,
     retailPrice: c.retailPrice,
     wholesaleCost: c.wholesaleCost,
+    description: c.description,
+    imageUrl: c.imageUrl,
     uvaluxCatalogItemId: id('catalog-item', c.sku),
     isActive: true,
     createdAt,
@@ -221,13 +228,19 @@ export function generateFixtures(options: GenerateOptions = {}): FixtureBundle {
     };
   });
 
+  // The driver stays simulated — but the unit it stands for is a real UVALUX machine, so the
+  // config carries the real manufacturer/model instead of a placeholder.
   const equipmentDevices = rooms.map((room, index) => ({
     id: id('equipment', room.name),
     salonId: HERO_SALON_ID,
     roomId: room.id,
     driverType: 'simulated' as const,
     address: `sim://bus0/unit${index + 1}`,
-    config: { model: 'simulated-v1' },
+    config: {
+      manufacturer: ROOMS[index].manufacturer,
+      model: equipmentModel(ROOMS[index].name, ROOMS[index].manufacturer),
+      image: equipmentImage(ROOMS[index].key),
+    },
     status: 'idle',
     lastSeenAt: zonedToUtc(dayZero, 8, 45, TZ),
     createdAt: heroOpenedAt,
@@ -377,8 +390,8 @@ export function generateFixtures(options: GenerateOptions = {}): FixtureBundle {
     });
   }
 
-  // Spray solution consumed in-session. Fiji Blend gets none — that is the
-  // whole reason it reads as overstock.
+  // Spray solution consumed in-session. The Norvell Double Dark (BSK-10021) gets
+  // none — that is the whole reason it reads as overstock.
   for (const [index, sku] of SPRAY_SOLUTION_SKUS.entries()) {
     for (let week = 1; week <= 12; week += 1) {
       stockEvents.push({

@@ -7,7 +7,10 @@ import { FLOOR } from '../copy';
 /**
  * The room board (DESIGN_SPEC §3.2).
  *
- * Card anatomy is fixed: equipment type → room name → state zone. The
+ * Card anatomy is fixed: equipment type → room name → state zone. The room name
+ * is the real UVALUX machine ("Ergoline Sunrise 7200") with its own photograph,
+ * because the board is the first thing the pitch shows and a made-up bed name is
+ * the first thing a dealer would notice. The
  * `.in-session-ring` gradient rim is the only colour-loud element, which is what
  * lets the board read from across a counter — the eye finds the running beds
  * before it reads a word.
@@ -68,8 +71,20 @@ function RoomCard({
 
   return (
     <article className="room">
-      <span className="type">{view.equipmentLabel}</span>
-      <h3>{view.name}</h3>
+      {/* The make is only worth a line when the machine name does not already
+          carry it — "UV · Level 3 · Ergoline / Ergoline Sunrise 7200" says it twice. */}
+      <span className="type">
+        {view.equipmentLabel}
+        {view.manufacturer && !view.name.startsWith(view.manufacturer)
+          ? ` · ${view.manufacturer}`
+          : ''}
+      </span>
+      <div className="room-id">
+        {view.image && (
+          <img className="machine" src={view.image} alt="" loading="lazy" decoding="async" />
+        )}
+        <h3>{view.name}</h3>
+      </div>
 
       <div className="state">
         {running && (

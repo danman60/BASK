@@ -118,10 +118,10 @@ describe('story arcs (PRODUCT_SPEC §20)', () => {
     });
   });
 
-  describe('Cabana Bronzer ~8 days from stockout', () => {
+  describe('Botanical Sunshine Revitalizing Bronzer ~8 days from stockout', () => {
     const draft = draftOfType(drafts, 'low_stock');
 
-    it('fires on Cabana Bronzer', () => {
+    it('fires on the Hempz bronzer', () => {
       expect(draft).toBeDefined();
       expect((draft!.linkedActionRef as { sku: string }).sku).toBe(ARCS.lowStock.sku);
     });
@@ -140,10 +140,10 @@ describe('story arcs (PRODUCT_SPEC §20)', () => {
     });
   });
 
-  describe('Fiji Blend overstocked', () => {
+  describe('Premium Solution Double Dark overstocked', () => {
     const draft = draftOfType(drafts, 'overstock');
 
-    it('fires on Fiji Blend and nothing else', () => {
+    it('fires on the Norvell solution and nothing else', () => {
       expect(draft).toBeDefined();
       expect((draft!.linkedActionRef as { sku: string }).sku).toBe(ARCS.overstock.sku);
       const all = drafts.filter((d) => d.type === 'overstock');
@@ -151,7 +151,7 @@ describe('story arcs (PRODUCT_SPEC §20)', () => {
     });
 
     it('does not flag back-bar solutions that are consumed in-session', () => {
-      // Coastline solutions never ring through a till but are used weekly.
+      // The Sunna back-bar solutions never ring through a till but are used weekly.
       // Counting only sale lines would call all three of them dead stock.
       for (const sku of ['BSK-10018', 'BSK-10019', 'BSK-10020']) {
         const product = facts.stock.find((p) => p.sku === sku)!;

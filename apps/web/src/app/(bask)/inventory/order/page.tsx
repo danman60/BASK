@@ -108,11 +108,18 @@ export default async function DraftOrderPage() {
             <div className="l4-stock">
               {draft.lines.map((line) => (
                 <div key={line.id} className="l4-order-line">
-                  <ProductSwatch sku={line.sku} category={line.category} size="lg" />
+                  <ProductSwatch
+                    sku={line.sku}
+                    category={line.category}
+                    image={line.image}
+                    name={line.name}
+                    size="lg"
+                  />
                   <div>
                     <p className="l4-stock-name">{line.name}</p>
                     <p className="l4-stock-meta">
-                      {line.sku} · {line.brand ?? '—'} · {line.size ?? '—'}
+                      {line.brand ?? '—'} · {line.sku}
+                      {line.size ? ` · ${line.size}` : ''}
                     </p>
                   </div>
                   {line.reason && (

@@ -7,7 +7,7 @@
  *
  * The story arcs are *generated*, not asserted: retail attachment slips because
  * two staffers stop upselling, Tuesday afternoons are soft because fewer visits
- * land there, and Cabana Bronzer is eight days out because it genuinely sold
+ * land there, and the Hempz bronzer is eight days out because it genuinely sold
  * that fast. The insight engine then rediscovers all of it from the rows.
  */
 
@@ -56,7 +56,7 @@ export const HERO_SALON_ID = id('salon', HERO_SALON.slug);
 export const HERO_ORG_ID = id('org', HERO_SALON.slug);
 
 // ---------------------------------------------------------------------------
-// Rooms — names and types lifted verbatim from DESIGN mockup 02.
+// Rooms — real UVALUX equipment; keys and types lifted from DESIGN mockup 02.
 // ---------------------------------------------------------------------------
 
 export const ROOM_TYPES = [
@@ -69,16 +69,101 @@ export const ROOM_TYPES = [
   { key: 'hydromassage', label: 'Hydromassage', category: 'wellness', defaultMinutes: 25, cleaningMinutes: 8, sortOrder: 7 },
 ] as const;
 
+/**
+ * The hero salon's eight rooms — REAL UVALUX equipment.
+ *
+ * Names, manufacturers, descriptions and images come from
+ * `packages/db/fixtures/uvalux-catalogue.json` (the uvalux.com equipment catalogue, pulled
+ * 2026-08-08), verbatim. The eight `key`s and their `type` mapping are unchanged from DESIGN
+ * mockup 02 — the Floor board, the room-type lookup and the maintenance chip on `wave` all key
+ * off them.
+ *
+ * Images are repo-local (`/equipment/<key>.jpg`); nothing is fetched from uvalux.com at runtime.
+ */
 export const ROOMS = [
-  { key: 'bed-1', name: 'Bed 1 — Solstice', type: 'uv_level3' },
-  { key: 'bed-2', name: 'Bed 2 — Ember', type: 'uv_level2' },
-  { key: 'bed-3', name: 'Bed 3 — Dawn', type: 'uv_level1' },
-  { key: 'bed-4', name: 'Bed 4 — Zenith', type: 'uv_stand_up' },
-  { key: 'booth', name: 'Booth — Velvet', type: 'spray' },
-  { key: 'studio-a', name: 'Studio A — Glow', type: 'red_light' },
-  { key: 'studio-b', name: 'Studio B — Aura', type: 'red_light' },
-  { key: 'wave', name: 'Wave Room', type: 'hydromassage' },
+  {
+    key: 'bed-1',
+    name: 'Ergoline Sunrise 7200',
+    type: 'uv_level3',
+    manufacturer: 'Ergoline',
+    description: 'Stand Up Performer Stand up and stand out with the Ergoline Sunrise 7200! At first glance the vertical design inspires with its unique LED lightshow. The bright interior invites your customers to a new tanning experience. The 3D sound system with Bluetooth ® connect transforms th',
+    sourceUrl: 'https://uvalux.com/shop/equipment/uv-sun/ergoline/ergoline-sunrise-7200/',
+    sourceImageUrl: 'https://uvalux.com/wp-content/uploads/products/SNR7200.jpg',
+  },
+  {
+    key: 'bed-2',
+    name: 'KBL 6800 Alpha Pearl',
+    type: 'uv_level2',
+    manufacturer: 'KBL',
+    description: 'Take Your Tan to the Next Level Pure power can be so beautiful! Tanning with power, relaxing with style. The KBL 6800 Alpha Pearl is the high-tech eye-catcher with high-performance tubes, powerful design and a lot of wellness features. This unique bed helps you to achieve the per',
+    sourceUrl: 'https://uvalux.com/shop/equipment/uv-sun/kbl/kbl-6800-alpha-pearl/',
+    sourceImageUrl: 'https://uvalux.com/wp-content/uploads/products/KBL6800.jpg',
+  },
+  {
+    key: 'bed-3',
+    name: 'Ergoline SunDash 32/0',
+    type: 'uv_level1',
+    manufacturer: 'Ergoline',
+    description: 'Entry-Level Super Power The Ergoline SunDash 32 combines the best of both worlds: the proven performance and durability of the iconic SunDash with the leading UV technology and design expertise of Ergoline. The Ergoline SunDash has everything an entry level unit needs and more. 3',
+    sourceUrl: 'https://uvalux.com/shop/equipment/uv-sun/ergoline/ergoline-sundash-32-0/',
+    sourceImageUrl: 'https://uvalux.com/wp-content/uploads/products/SND17802.jpg',
+  },
+  {
+    key: 'bed-4',
+    name: 'KBL Space 2000',
+    type: 'uv_stand_up',
+    manufacturer: 'KBL',
+    description: 'Elegant, Comfortable & Fascinating Providing optimum power in a smaller space, the KBL Space 2000 will be a highlight of your salon. Its client-pleasing performance and stand-up design will re-energize your space and revitalize your business. The Space 2000 features high-quality ',
+    sourceUrl: 'https://uvalux.com/shop/equipment/uv-sun/kbl/kbl-space-2000/',
+    sourceImageUrl: 'https://uvalux.com/wp-content/uploads/products/KBL2000.jpg',
+  },
+  {
+    key: 'booth',
+    name: 'Mystic Tan Unity',
+    type: 'spray',
+    manufacturer: 'Mystic Tan',
+    description: 'Fully Automated Sunless System Achieving the perfect tan has never been easier with the Mystic Tan Unity™ spray booth. Unity™ offers the most technologically advanced, personalized spray tanning experience. With the customizable solution mix and MagneTan® Spray System, clients of',
+    sourceUrl: 'https://uvalux.com/shop/equipment/spray-tan/booth/mystic-tan-unity/',
+    sourceImageUrl: 'https://uvalux.com/wp-content/uploads/products/UnityOilBlue.jpg',
+  },
+  {
+    key: 'studio-a',
+    name: 'Ergoline Beauty Angel RVT 30',
+    type: 'red_light',
+    manufacturer: 'Ergoline',
+    description: 'Lighting the Way to Beautiful Skin The Ergoline Beauty Angel® RVT 30 emits light energy (non-UV) within the near infrared and visible wavelengths. It does not emit UV light and is not a tanning device. The light energy emitted is a gentle form of stimulation and is ideal for anyb',
+    sourceUrl: 'https://uvalux.com/shop/equipment/wellness/red-light/ergoline-beauty-angel-rvt-30/',
+    sourceImageUrl: 'https://uvalux.com/wp-content/uploads/products/ERG04301.jpg',
+  },
+  {
+    key: 'studio-b',
+    name: 'Redwave Plus',
+    type: 'red_light',
+    manufacturer: 'Revive',
+    description: 'Transformative Wellness, Rejuvenation to Recovery. The Redwave Plus is the first of its kind to offer infrared and red-light LED technology for the entire body. Easy to use and accessible, this cutting-edge technology comes together with form and function to create an in-demand s',
+    sourceUrl: 'https://uvalux.com/shop/equipment/wellness/red-light/redwave-plus/',
+    sourceImageUrl: 'https://uvalux.com/wp-content/uploads/products/Redwave-Plus.jpg',
+  },
+  {
+    key: 'wave',
+    name: 'Wellsystem Wave Hydro Massage Therapy',
+    type: 'hydromassage',
+    manufacturer: 'Wellness JK',
+    description: 'Relaxation for Body & Soul Back problems and stress are widespread health issues that more and more people suffer from. The dry-water massage of Wellsystem hydrojets relieves tension and helps to retain fitness in a relaxed manner. The unique dry water massage experience uses hea',
+    sourceUrl: 'https://uvalux.com/shop/equipment/wellness/massage/wellsystem-wave-hydro-massage-therapy/',
+    sourceImageUrl: 'https://uvalux.com/wp-content/uploads/products/WellsystemWave.jpg',
+  },
 ] as const;
+
+/** `Ergoline Sunrise 7200` + manufacturer `Ergoline` -> `Sunrise 7200`. Never invents a model. */
+export function equipmentModel(name: string, manufacturer: string): string {
+  return name.startsWith(`${manufacturer} `) ? name.slice(manufacturer.length + 1) : name;
+}
+
+/** Repo-local equipment photo for a room key. */
+export function equipmentImage(roomKey: string): string {
+  return `/equipment/${roomKey}.jpg`;
+}
 
 export const SERVICES = [
   { key: 'uv-l1', name: 'Level 1 UV', category: 'uv', roomTypeKey: 'uv_level1', minutes: 15, price: 16, weight: 0.9 },

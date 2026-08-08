@@ -248,9 +248,44 @@
   box-shadow: inset 0 -10px 18px oklch(0% 0 0 / 0.12);
 }
 
+/* Photo tiles: the shot is a cut-out on white, so it sits *on* the category wash
+ * rather than filling the tile — contain, small inset, no cropping of the label. */
+.l4-swatch.has-photo,
+.l4-order-swatch.has-photo {
+  /* block, not the base grid: a percentage image height inside a centred grid
+   * area resolves to auto and the shot overflows its tile. */
+  display: block;
+  overflow: hidden;
+  box-shadow: none;
+  border: 1px solid var(--line-soft);
+  padding: 2px;
+}
+
+.l4-swatch.has-photo img,
+.l4-order-swatch.has-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
 .l4-stock-name {
   font-weight: 600;
   font-size: var(--text-base);
+}
+
+/* One-line product blurb from the UVALUX catalogue — present, but never louder
+ * than the name or the numbers it sits beside. */
+.l4-stock-blurb {
+  margin-top: 4px;
+  font-size: var(--text-xs);
+  line-height: 1.45;
+  color: var(--ink-faint);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .l4-stock-meta {

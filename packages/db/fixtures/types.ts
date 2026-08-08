@@ -245,7 +245,11 @@ export interface UvaluxCatalogItemRow {
   size: string | null;
   upc: string | null;
   wholesalePrice: number | null;
+  /** Derived retail (wholesale × RETAIL_MARKUP) — UVALUX publishes no MSRP. */
   msrp: number | null;
+  description: string | null;
+  /** Repo-local image path, `/catalogue/<sku>.jpg`. */
+  imageUrl: string | null;
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -261,6 +265,9 @@ export interface ProductRow {
   size: string | null;
   retailPrice: number;
   wholesaleCost: number | null;
+  description: string | null;
+  /** Repo-local image path, `/catalogue/<sku>.jpg`. */
+  imageUrl: string | null;
   uvaluxCatalogItemId: string | null;
   isActive: boolean;
   createdAt: Date;

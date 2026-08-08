@@ -135,7 +135,7 @@ export function TokenGallery() {
           </div>
           <div className="dh-chipbar">
             <button type="button" className="btn btn-primary">
-              Start session — Bed 2 · 12 minutes
+              Start session — KBL 6800 Alpha Pearl · 12 min
             </button>
             <button type="button" className="btn btn-quiet">
               Not now
@@ -185,7 +185,7 @@ export function TokenGallery() {
                   padding: 'var(--space-5) var(--space-8)',
                 }}
               >
-                <div style={{ fontWeight: 600 }}>Bed 2</div>
+                <div style={{ fontWeight: 600 }}>KBL 6800 Alpha Pearl</div>
                 <div className="dh-meta num">in session · 4:12 left</div>
               </div>
             </div>

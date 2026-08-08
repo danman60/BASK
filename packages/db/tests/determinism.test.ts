@@ -90,17 +90,51 @@ describe('dataset shape (PRODUCT_SPEC §20)', () => {
     }
   });
 
-  it('room names and types match DESIGN mockup 02', () => {
+  // The eight room slots and their types come from DESIGN mockup 02; the names are the real
+  // UVALUX machines standing in them (uvalux.com equipment catalogue, pulled 2026-08-08).
+  it('rooms are the real UVALUX machines, in mockup 02 order', () => {
     expect(b.rooms.map((r) => r.name)).toEqual([
-      'Bed 1 — Solstice',
-      'Bed 2 — Ember',
-      'Bed 3 — Dawn',
-      'Bed 4 — Zenith',
-      'Booth — Velvet',
-      'Studio A — Glow',
-      'Studio B — Aura',
-      'Wave Room',
+      'Ergoline Sunrise 7200',
+      'KBL 6800 Alpha Pearl',
+      'Ergoline SunDash 32/0',
+      'KBL Space 2000',
+      'Mystic Tan Unity',
+      'Ergoline Beauty Angel RVT 30',
+      'Redwave Plus',
+      'Wellsystem Wave Hydro Massage Therapy',
     ]);
+    expect(b.rooms.map((r) => r.roomTypeKey)).toEqual([
+      'uv_level3',
+      'uv_level2',
+      'uv_level1',
+      'uv_stand_up',
+      'spray',
+      'red_light',
+      'red_light',
+      'hydromassage',
+    ]);
+  });
+
+  it('every room carries its real make and model on the equipment device', () => {
+    expect(b.equipmentDevices).toHaveLength(8);
+    for (const device of b.equipmentDevices) {
+      const config = device.config as { manufacturer?: string; model?: string; image?: string };
+      expect(config.manufacturer).toBeTruthy();
+      expect(config.model).toBeTruthy();
+      expect(config.image).toMatch(/^\/equipment\/[a-z0-9-]+\.jpg$/);
+    }
+  });
+
+  it('every catalogue item carries its real UVALUX order code and a repo-local photo', () => {
+    expect(b.uvaluxCatalogItems).toHaveLength(TARGETS.skus);
+    for (const item of b.uvaluxCatalogItems) {
+      expect(item.officialSku).toBeTruthy();
+      expect(item.imageUrl).toMatch(/^\/catalogue\/BSK-\d{5}\.jpg$/);
+      expect(item.description).toBeTruthy();
+    }
+    // Official SKUs are UVALUX's own codes and must not collide with the internal BSK space.
+    expect(new Set(b.uvaluxCatalogItems.map((i) => i.officialSku)).size).toBe(TARGETS.skus);
+    for (const product of b.products) expect(product.sku).toMatch(/^BSK-\d{5}$/);
   });
 
   it('has ~40 SKUs, each with a valid UPC-A barcode', () => {
