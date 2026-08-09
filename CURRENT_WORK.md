@@ -1,11 +1,19 @@
 # CURRENT_WORK — uvalux-platform
 
 ## Deployed
-- **Live:** https://bask-lub8r3iau-danman60s-projects.vercel.app (public, no auth — it is a demo)
+- **USE THIS FOR THE PITCH — stable, always the latest production build:**
+  **https://bask-psi.vercel.app** (public, no auth — it is a demo).
+  `https://bask-danman60s-projects.vercel.app` is the same build.
+  Verified 2026-08-09: both serve the real UVALUX catalogue.
+- **Do NOT hand out a `bask-<hash>-danman60s-projects.vercel.app` URL.** Those are per-deployment and
+  freeze on the build that made them — yesterday's link still showed the old invented products after a
+  new push. `vercel ls` lists those hashed URLs; the stable alias is the project's production domain
+  (`vercel project ls` → `bask  https://bask-psi.vercel.app`).
+- **The URL is NOT bask.vercel.app** — that is a Polish children's UV-swimwear company
+  ("Bask - stroje kąpielowe UV dla dzieci"), re-confirmed 2026-08-09. Never construct a URL from the
+  project name.
 - **Repo:** https://github.com/danman60/BASK (public)
 - Vercel project `bask` (team danman60s-projects), Root Directory `apps/web`, deploys on push to master.
-- **The URL is NOT bask.vercel.app** — that belongs to somebody else's project. Always read the real
-  deployment URL back from `vercel ls`; never construct it from the project name.
 - Env on Vercel: DATABASE_URL, DIRECT_DATABASE_URL, OPENAI_API_KEY, LOG_TOKEN, NEXT_PUBLIC_LOG_TOKEN,
   NEXT_PUBLIC_APP_URL. Logs: `curl "<url>/api/_logs?token=$LOG_TOKEN&since=0" | jq`
 - Deployment Protection is OFF (public demo). Turn back on:
@@ -94,14 +102,56 @@ Next: decide the pitch.html contact line, regenerate deck slides 4/6 from the li
 - 2026-08-07: 10and10 run (`docs/five-and-five-2026-08-07.md`); user picked all except #3 (Tan Safety engine — SKIPPED). Folded into specs: booking page real (M1 `/book`), presenter fire-push beat (M2), gift cards/packages at POS, activity log + ActivityEvent, Peers gap slider, real waiver SignaturePad, Floor offline mode (M3), Shift Handoff (AI table + M1), location-comparison card, Linen theme deferred, PRODUCT §21 → pointer to PITCH.md, web ZXing cut, apps/bridge out of M0, one AI env var, no-auth-before-M3 non-goal, Segments = fixed predicates, shared Evidence schema, tokens.css = packages/tokens v1, Compass Signals folded into Network. PITCH.md gained push beat, signature moment, slider moment + checklist items.
 
 ## Blockers
-- **Anthropic API credits exhausted** — blocks verifying the AI success path for Daybreak/Studio generation. Not blocking M1 build (fallback briefs work); blocking the pitch.
+None blocking. (The Anthropic-credits blocker is GONE — provider switched to OpenAI gpt-4.1 on
+2026-08-07 and the AI path is verified live: `demo:advance` reports `brief ai`.)
 
-## Next Steps
-1. Write M1 plan file (`docs/plans/YYYY-MM-DD-m1-web-demo.md`) — the five loops, per IMPLEMENTATION_SPEC M1 scope, mockups in `mockups/` as the visual acceptance bar.
-2. Execute M1 in lanes (same worktree pattern; assign per-lane dev PORTs — every lane defaulted to 3417 and collided).
-3. Fund the Anthropic key, re-run `pnpm demo:advance --days 0`, confirm real generated briefs.
-4. Tune fixture volume/seasonality so day-zero Daybreak reads "8% above" per the demo script.
-5. Then M2 (mobile + barcode). Nick meeting prep — PITCH.md + PRODUCT_SPEC §25 questions.
+## Build Status
+PASSING as of 2026-08-09. 209 tests green · `pnpm demo:verify` **12/12** on a fresh `demo:reset`
+(36,351 rows, checksum `ec83159c…`) · typecheck/lint/build clean · migration `db:check` clean with
+zero `public` footprint. Deployed and verified live on https://bask-psi.vercel.app.
+
+## Known Issues
+- **`pnpm db:migration:new` is BROKEN under Prisma 7.9** — `--from-migrations` now demands
+  `datasource.shadowDatabaseUrl`, which is not configured, so the documented migration flow fails.
+  Workaround used 2026-08-08: `prisma migrate diff --config prisma.config.migrations.ts
+  --from-config-datasource --to-schema` and hand-place the SQL. **Fix the script before the next
+  migration** or the flow in CLAUDE.md will mislead whoever runs it.
+- **Daybreak reads "6% above your usual Thursday"; PITCH.md scripts "8% above".** Close enough to
+  present, but slides 4/6 of the pitch deck still use the design mockups because of the older, much
+  worse mismatch. Regenerating those two slides from the live build is now viable.
+- **Shared-DB hazard unchanged** — the deploy and local dev both write `bask` on the CC&SS Supabase.
+  A local `demo:reset` yanks state out from under the live site. One owner per reset; never during a demo.
+- **No auth, site is public** (deliberate until M3). Anyone with the link sees Compass too.
+- 8 of the 40 products have `size: null` — uvalux.com lists no size for them. Not synthesised; the UI
+  handles the null.
+
+## Next Steps (priority order)
+1. **Pitch deck loose ends** — `docs/pitch/pitch.html`: (a) the last-slide contact line is a guess
+   (`daniel@streamstageproductions.com`), confirm or change it; (b) regenerate slides 4 and 6 from the
+   live build now that Daybreak reads "6% above" instead of "31% below"; (c) `docs/pitch/PITCH.md`
+   line ~42 contains a stray Chinese character — "draft order,每 line with its reason".
+2. **Decide whether to tune fixture volume further** — 6% vs the scripted 8%, and impact figures still
+   run above the mockups.
+3. **Fix `pnpm db:migration:new`** (see Known Issues) before any further schema work.
+4. **M2** — Expo mobile app (Bask + Compass shells) + camera barcode, per IMPLEMENTATION_SPEC.
+5. Nick meeting prep — walk PITCH.md end to end against the live URL, PRODUCT_SPEC §25 questions.
 
 ## Context for Next Session
+**Catalogue facts you should not re-derive.** The real UVALUX catalogue IS machine-readable: uvalux.com
+runs WooCommerce and its Store API is public and unauthenticated —
+`/wp-json/wc/store/v1/products?per_page=100&page=N`, 1,817 products. Scraping the shop HTML does not
+work (`li.product` selectors return 0). The curated pull lives at
+`packages/db/fixtures/uvalux-catalogue.json` and is the source of record for
+`packages/db/fixtures/catalogue.ts` — the TS entries are inlined, so **edit both** if you change a
+product. Prices are CAD **wholesale** (the only price uvalux publishes; there is no MSRP anywhere);
+retail is derived through the single `RETAIL_MARKUP = 1.5` constant. Brand logos do **not** exist to
+take — the brand taxonomy returns `image: null` for every brand.
+
+**Demo-verify needs a running server** — it targets `http://localhost:3417` (override with `BASE_URL`)
+and reports `HTTP 0` on every check if nothing is listening. Start `PORT=3417 pnpm dev` first.
+
+**Daybreak briefs are cached by context, not by prompt text.** Editing the prompt in
+`packages/core/src/ai/daybreak.ts` and re-running `demo:advance --days 0` returns a cache hit. Delete
+the row (`delete from bask.daybreak_brief where for_date = '<date>'`) to force regeneration.
+
 Working app at `~/projects/uvalux-platform` — `pnpm dev` (PORT env overridable, default 3417). Harnesses: `/dev/api` (tRPC+roles), `/dev/floor` (room board), `/dev/design` (tokens+guidance), `/compass/dev/tokens` (forced theme). Presenter Panel: ⌘⇧D. DB commands: `pnpm demo:reset` / `demo:advance --days N`. Brief + specs in `docs/`. Spec Part IX = Opus handoff with P0/P1/P2 and hard constraints. Existing `~/projects/uvalux-proposals/` is unrelated (video-business event proposals).
