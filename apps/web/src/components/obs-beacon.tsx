@@ -61,22 +61,23 @@ export default function ObsBeacon() {
           screen: `${window.screen.width}x${window.screen.height}`,
         });
 
-        // sendBeacon survives tab close; fetch does not. It cannot set custom headers,
-        // so the keys ride along as query params (PostgREST accepts both).
-        const beaconUrl = `${endpoint}?apikey=${encodeURIComponent(KEY)}`;
-        const blob = new Blob([body], { type: "application/json" });
-        if (!navigator.sendBeacon?.(beaconUrl, blob)) {
-          fetch(endpoint, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              apikey: KEY,
-              Authorization: `Bearer ${KEY}`,
-            },
-            body,
-            keepalive: true,
-          }).catch(() => {});
-        }
+        // NOT sendBeacon: it can only send CORS-safelisted content types, so a
+        // JSON blob needs a preflight it cannot perform and the browser kills it
+        // with net::ERR_FAILED. fetch+keepalive survives page unload AND handles
+        // the preflight properly. Verified in a real browser, not with curl —
+        // curl does not enforce CORS and will happily report 201 on a request
+        // the browser refuses to send.
+        fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: KEY,
+            Authorization: `Bearer ${KEY}`,
+          },
+          body,
+          keepalive: true,
+          mode: "cors",
+        }).catch(() => {});
       };
 
       send("pageview");
