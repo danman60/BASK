@@ -4,6 +4,7 @@ import { Fraunces, Inter } from 'next/font/google';
 import { Suspense } from 'react';
 import '@bask/tokens/index.css';
 import './globals.css';
+import ObsBeacon from '@/components/obs-beacon';
 
 /* DESIGN_SPEC §2.2: Fraunces (display — Daybreak narrative, screen titles) +
  * Inter (body/UI). Self-hosted via next/font so the demo survives a dead network
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeScript />
       </head>
       <body>
+        <ObsBeacon />
         <ThemeProvider>
           <Providers>
             {children}
