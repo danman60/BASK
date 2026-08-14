@@ -39,6 +39,7 @@ const CAM_KEYS: CamKey[] = [
   { frame: 60, cx: 760, cy: 300, zoom: 1.18 },
   { frame: 96, cx: 1180, cy: 430, zoom: 1.05 }, // widen as the card arrives
   { frame: 170, cx: 1300, cy: 470, zoom: 1.12 }, // settle on the customer
+  { frame: 290, cx: 1330, cy: 500, zoom: 1.2 }, // slow drift down the card, not a freeze
 ];
 
 export const S3Checkin: React.FC = () => {

@@ -39,6 +39,7 @@ const CAM_KEYS: CamKey[] = [
   { frame: CART_AT, cx: T6.x + T6.w / 2, cy: T6.y + T6.h / 2, zoom: 2.22 },
   { frame: CART_AT + 34, cx: 1180, cy: 640, zoom: 0.98 }, // out to the cart
   { frame: 200, cx: 1240, cy: 660, zoom: 1.04 },
+  { frame: 310, cx: 1300, cy: 690, zoom: 1.12 }, // slow drift onto the receipt
 ];
 
 /** The punched tile gets a terracotta edge for a beat — the product's own

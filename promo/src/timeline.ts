@@ -60,8 +60,8 @@ const voCut = seq([
   ['open', 240], // the friction line (7.4s)
   ['hero', 155], // the insight (4.8s)
   ['floor', 140], // the room board (4.25s)
-  ['checkin', 180], // the front desk — new line D
-  ['pos', 210], // the till — new line E
+  ['checkin', 290], // the front desk — line D came back 8.45s
+  ['pos', 310], // the till — line E came back 9.04s
   ['order', 195], // the shelf and the order (5.9s)
   ['titleA', 104],
   ['studio', 310], // the campaign line (9.7s)
@@ -72,4 +72,4 @@ const voCut = seq([
 export const SHOTS = captionCut.shots;
 export const TOTAL = captionCut.total; // 1709f ≈ 57.0s
 export const SHOTS_VO = voCut.shots;
-export const TOTAL_VO = voCut.total; // 2314f ≈ 77.1s
+export const TOTAL_VO = voCut.total; // 2524f ≈ 84.1s
