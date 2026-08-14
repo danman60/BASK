@@ -24,8 +24,12 @@ const S9_PUSH = 30;
 const TILE_EMBEDS = [0, 1, 2].map((i) => S9_PUSH + 14 + i * 9 + 12);
 
 export const buildSfx = (S: Shots): Cue[] => [
+  // ── S0 the opening statement ───────────────────────────────────────────────
+  { from: S.brand.from, src: 'transition-soft.mp3', volume: 0.26, note: 'film opens' },
+  { from: S.brand.from + 30, src: 'sparkle.mp3', volume: 0.22, durationInFrames: 60, note: 'the sunset rule draws under the wordmark' },
+
   // ── S1 Daybreak ────────────────────────────────────────────────────────────
-  { from: S.open.from, src: 'transition-soft.mp3', volume: 0.3, note: 'film opens on the letter' },
+  { from: S.open.from - 13, src: 'transition-soft.mp3', volume: 0.3, note: 'hand-off to the morning brief (peaks +13f)' },
   { from: S.open.from + 22, src: 'swoosh-slow.mp3', volume: 0.2, durationInFrames: 84, note: 'the crane pull-back' },
 
   // ── S2 the insight card ────────────────────────────────────────────────────
@@ -34,8 +38,8 @@ export const buildSfx = (S: Shots): Cue[] => [
   { from: S.hero.from + 77, src: 'sparkle.mp3', volume: 0.28, durationInFrames: 72, note: 'perimeter beam, lap 1' },
   { from: S.hero.from + 146, src: 'transition-snap.mp3', volume: 0.34, note: 'card reseats' },
 
-  // ── S3 title card ──────────────────────────────────────────────────────────
-  { from: S.titleA.from + 2, src: 'swoosh-quick.mp3', volume: 0.28, note: 'title card in (same sample for both cards)' },
+  // ── the one remaining title card ───────────────────────────────────────────
+  { from: S.titleA.from + 2, src: 'swoosh-quick.mp3', volume: 0.28, note: 'title card in' },
 
   // ── S4 Studio ──────────────────────────────────────────────────────────────
   { from: S.studio.from + 16, src: 'paper-page-turn.mp3', volume: 0.44, note: 'the card turns over' },
@@ -60,13 +64,6 @@ export const buildSfx = (S: Shots): Cue[] => [
     note: `shelf row ${i + 1} lands on the stack`,
   })),
   { from: S.order.from + 74, src: 'click-camera.mp3', volume: 0.55, note: 'counter locks on 5 (lands f+76)' },
-
-  // ── S7 title card ──────────────────────────────────────────────────────────
-  { from: S.titleB.from + 2, src: 'swoosh-quick.mp3', volume: 0.28, note: 'title card in' },
-
-  // ── S8 consent ─────────────────────────────────────────────────────────────
-  { from: S.consent.from - 13, src: 'transition-soft.mp3', volume: 0.22, note: 'into the consent screen (peak-compensated)' },
-  { from: S.consent.from + 6, src: 'swoosh-slow.mp3', volume: 0.14, durationInFrames: 62, note: 'low bed under the slow push — the shot was silent without it' },
 
   // ── act break: Compass shoves Bask out of frame ────────────────────────────
   { from: S.compass.from - 36, src: 'whoosh-big.mp3', volume: 0.42, note: 'the push (sample peaks +21f, lands mid-push)' },
@@ -94,13 +91,17 @@ export const buildSfx = (S: Shots): Cue[] => [
  * Clip lengths come from the split, rounded up a frame or two so nothing truncates.
  */
 export const buildVo = (S: Shots): Cue[] => [
-  { from: S.open.from + 12, src: 'vo/vo1.mp3', volume: 1, durationInFrames: 92, note: 'This is what a salon owner wakes up to.' },
+  // A, B and C are the NEW lines (see VO-SCRIPT.md §1). Until the takes land,
+  // voA/voB/voC are silent files of the estimated length, so the picture is cut
+  // to the right shape and the real takes drop straight in.
+  { from: S.brand.from + 12, src: 'vo/voA.mp3', volume: 1, durationInFrames: 140, note: 'A — what Bask is' },
+  { from: S.open.from + 14, src: 'vo/voB.mp3', volume: 1, durationInFrames: 228, note: 'B — less friction for the customer, less work for the owner' },
   { from: S.hero.from + 11, src: 'vo/vo2.mp3', volume: 1, durationInFrames: 150, note: 'Overnight, Bask read yesterday…' },
-  { from: S.studio.from + 10, src: 'vo/vo3.mp3', volume: 1, durationInFrames: 228, note: 'Studio turned that into a campaign…' },
   { from: S.floor.from + 12, src: 'vo/vo4.mp3', volume: 1, durationInFrames: 132, note: 'The floor runs live…' },
   { from: S.order.from + 8, src: 'vo/vo5.mp3', volume: 1, durationInFrames: 182, note: 'It counts the shelf…' },
-  { from: S.consent.from + 8, src: 'vo/vo6.mp3', volume: 1, durationInFrames: 180, note: 'The salon decides what crosses… (finishes over Compass)' },
-  { from: S.compass.from + 90, src: 'vo/vo7.mp3', volume: 1, durationInFrames: 124, note: 'And every UVALUX rep calls…' },
+  { from: S.order.from + 196, src: 'vo/voC.mp3', volume: 1, durationInFrames: 200, note: 'C — and most of all, UVALUX gets the data (bridges the act break)' },
+  { from: S.compass.from + 201, src: 'vo/vo7.mp3', volume: 1, durationInFrames: 124, note: 'And every UVALUX rep calls…' },
+  { from: S.studio.from + 10, src: 'vo/vo3.mp3', volume: 1, durationInFrames: 228, note: 'Studio turned that into a campaign…' },
   { from: S.outro.from + 6, src: 'vo/vo8.mp3', volume: 1, durationInFrames: 174, note: 'Bask. The salon runs better…' },
 ];
 

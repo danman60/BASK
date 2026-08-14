@@ -197,6 +197,31 @@ first cut. Report: `REVIEW.md`. What it found and what changed:
 Also added, off the back of the VO request: a `captions` input prop and a third master with the
 captions off, so a voiceover does not double the on-screen text.
 
+## 4f. Client revisions (2026-08-14) — the consent beat is out, the film now introduces itself
+
+Two directives, both structural:
+
+**1. Remove the consent beat entirely.** The "The salon decides what crosses. That's consent." card
+and the "What UVALUX sees" screen are gone, along with their voiceover line (`vo6`, retired) and the
+outro's consent-tiers element (swapped for the campaign's text message). The reasoning, in the
+client's words: UVALUX supplies the software; a salon running on it is *quietly consenting* to the
+partner who provides it seeing the operating data. Framing that as a negotiation on screen argues a
+problem the audience does not have. **This overrides §1's "consent screen is the hinge of the two
+acts" and the original brief's treatment of consent as a differentiator.** The act break still
+exists — Compass now shoves the *inventory* screen out instead of the consent screen.
+
+**2. Open by saying what Bask is.** A new first shot (`S0Brand.tsx`): the wordmark presses in, the
+sunset rule draws, and one line names the category — "All-in-one *salon management*" over "Front desk
+· inventory · marketing · the whole floor". It carries the new opening voiceover line. Not a recipe
+card; it is the brand's own letterpress treatment, already used in the outro and the title cards.
+
+Three voiceover lines are new and need recording (A, B, C — see `VO-SCRIPT.md` §1). Until they land,
+`voA/voB/voC.mp3` are silent files of the estimated length, so the picture is already cut to the
+right shape and the takes drop in with no re-timing.
+
+Delivered order: **brand card → Daybreak → insight card → the Floor → UVALUX order → Compass →
+campaign card → Studio → sign-off.** Caption cut 1299f (43.3s), voice cut 1714f (57.1s).
+
 ## 4e. Client revisions (2026-08-13, after review round 2)
 
 | Ask | What changed |

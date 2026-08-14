@@ -2,12 +2,12 @@ import { AbsoluteFill, Sequence } from 'remotion';
 
 import { BaskCaption } from './lib/BaskCaption';
 import { PaperTitleCard } from './lib/PaperTitleCard';
+import { S0Brand } from './shots/S0Brand';
 import { S1Daybreak } from './shots/S1Daybreak';
 import { S2Insight } from './shots/S2Insight';
 import { S4Studio } from './shots/S4Studio';
 import { S5Floor } from './shots/S5Floor';
 import { S6Order } from './shots/S6Order';
-import { S8Consent } from './shots/S8Consent';
 import { S9Compass } from './shots/S9Compass';
 import { S10Outro } from './shots/S10Outro';
 import { Soundtrack } from './Soundtrack';
@@ -28,12 +28,16 @@ export const Main: React.FC<{
   total: number;
 }> = ({ bgm, captions, vo = false, shots: SHOTS, total }) => (
   <AbsoluteFill style={{ backgroundColor: T.paper }}>
+    <Sequence from={SHOTS.brand.from} durationInFrames={SHOTS.brand.duration}>
+      <S0Brand duration={SHOTS.brand.duration} />
+    </Sequence>
+
     <Sequence from={SHOTS.open.from} durationInFrames={SHOTS.open.duration}>
       <S1Daybreak />
       {captions ? (
         <BaskCaption
-          lead="The morning brief was written while the salon slept."
-          sub="Daybreak · Sunset Ridge Tanning & Wellness"
+          lead="Less friction booking and coming back. Less work running the place."
+          sub="Daybreak · the morning brief, written overnight"
           from={60}
           duration={SHOTS.open.duration}
         />
@@ -71,29 +75,7 @@ export const Main: React.FC<{
       ) : null}
     </Sequence>
 
-    <Sequence from={SHOTS.titleB.from} durationInFrames={SHOTS.titleB.duration}>
-      <PaperTitleCard
-        duration={SHOTS.titleB.duration}
-        words={[
-          { text: 'The' }, { text: 'salon' }, { text: 'decides' }, { text: 'what' },
-          { text: 'crosses.' }, { text: "That's" }, { text: 'consent.', accent: true },
-        ]}
-        dark
-      />
-    </Sequence>
 
-    <Sequence from={SHOTS.consent.from} durationInFrames={SHOTS.consent.duration}>
-      <S8Consent />
-      {captions ? (
-        <BaskCaption
-          lead="Business signals only — "
-          accent="never their customer list."
-          sub="Settings · Data sharing"
-          from={4}
-          duration={SHOTS.consent.duration - 30}
-        />
-      ) : null}
-    </Sequence>
 
     {/* the Compass act starts 30f early: those frames are the act break itself,
         shoving the Bask screen up and out of frame (bottom-push seam) */}
@@ -104,9 +86,9 @@ export const Main: React.FC<{
       <S9Compass />
       {captions ? (
         <BaskCaption
-          lead="Compass: every rep calls knowing "
-          accent="exactly what changed."
-          sub="Evidence, not adjectives — and only what the salon agreed to share."
+          lead="And UVALUX sees the network it supplies — "
+          accent="salon by salon."
+          sub="Every rep calls knowing exactly what changed."
           from={78}
           duration={SHOTS.compass.duration + 30}
           dark

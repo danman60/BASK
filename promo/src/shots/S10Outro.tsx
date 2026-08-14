@@ -32,8 +32,8 @@ type FlyEl = {
   dx: number; dy: number; radius: number; cue: number;
 };
 
-// one element per surface shown: the brief, the finding, the campaign, the
-// running bed, the shelf line, the consent tiers, the rep's evidence
+// one element per surface shown: the brief, the finding, the campaign post,
+// the running bed, the shelf line, the text message, the rep's evidence
 const ELS: FlyEl[] = [
   // The centre band (y 360–780, x 420–1500) belongs to the wordmark, the rule
   // and the tagline; every element is placed clear of it.
@@ -42,7 +42,7 @@ const ELS: FlyEl[] = [
   { key: 'ig', file: 'ig-card.png', w: 401, h: 532, cx: 214, cy: 690, scale: 0.6, rot: 2.5, dx: -480, dy: 260, radius: 14, cue: 20 },
   { key: 'room', file: 'room2.png', w: 353, h: 143, cx: 1724, cy: 424, scale: 0.9, rot: -2.5, dx: 520, dy: -60, radius: 16, cue: 26 },
   { key: 'shelf', file: 'reorder-line.png', w: 1130, h: 128, cx: 660, cy: 966, scale: 0.5, rot: -1.5, dx: -180, dy: 320, radius: 12, cue: 32 },
-  { key: 'consent', file: 'consent-tiers.png', w: 1080, h: 169, cx: 1330, cy: 950, scale: 0.44, rot: 2, dx: 300, dy: 320, radius: 12, cue: 38 },
+  { key: 'sms', file: 'sms-card.png', w: 350, h: 380, cx: 1330, cy: 918, scale: 0.5, rot: 2, dx: 300, dy: 320, radius: 12, cue: 38 },
   { key: 'ctile', file: 'ctile1.png', w: 275, h: 65, cx: 1690, cy: 800, scale: 1.0, rot: -3, dx: 460, dy: 60, radius: 10, cue: 44 },
 ];
 

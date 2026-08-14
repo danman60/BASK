@@ -4,8 +4,8 @@
 export const FPS = 30;
 
 export type ShotName =
-  | 'open' | 'hero' | 'titleA' | 'studio' | 'floor'
-  | 'order' | 'titleB' | 'consent' | 'compass' | 'outro';
+  | 'brand' | 'open' | 'hero' | 'titleA' | 'studio'
+  | 'floor' | 'order' | 'compass' | 'outro';
 
 export type Shots = Record<ShotName, { from: number; duration: number }>;
 
@@ -22,22 +22,23 @@ const seq = (spec: [ShotName, number][]) => {
 /**
  * Caption cut — no voiceover.
  *
- * Shot ORDER note: the campaign beat (title card + Studio) sits LAST, after the
- * Compass act, at the client's direction. Everything in the film that comes
- * before it is the salon running itself; the marketing beat is the last thing
- * shown before the sign-off.
+ * ORDER (client-directed):
+ * - The film opens by SAYING WHAT BASK IS, before any product moves.
+ * - The consent beat is GONE. Consent is not the story here: UVALUX supplies the
+ *   software, the salon runs on it, and the data reaching UVALUX is the point of
+ *   the arrangement rather than a thing to be negotiated on screen.
+ * - The campaign beat sits last, before the sign-off.
  */
 const captionCut = seq([
+  ['brand', 120], // S0  what this is, before anything moves
   ['open', 130], // S1  Daybreak letter — crane-rise-reveal
   ['hero', 170], // S2  the insight card — spotlight-hero-card
-  ['floor', 150], // S5  the room board — grid-wave-flip
-  ['order', 145], // S6  UVALUX draft order — list-stack-press
-  ['titleB', 104], // S7  breathing card
-  ['consent', 100], // S8  what UVALUX sees (last 30f = the act-break push)
-  ['compass', 150], // S9  Compass call list — row-embed
-  ['titleA', 104], // S3  breathing card
-  ['studio', 150], // S4  insight → campaign — card-flip-reveal
-  ['outro', 180], // S10 group photo + wordmark
+  ['floor', 150], // S3  the room board — grid-wave-flip
+  ['order', 145], // S4  UVALUX draft order — list-stack-press
+  ['compass', 150], // S5  Compass call list — row-embed (last 30f of `order` = act break)
+  ['titleA', 104], // S6  breathing card
+  ['studio', 150], // S7  insight → campaign — card-flip-reveal
+  ['outro', 180], // S8  group photo + wordmark
 ]);
 
 /**
@@ -49,19 +50,18 @@ const captionCut = seq([
  * shorten because there the voice is carrying the beat, not the card.
  */
 const voCut = seq([
-  ['open', 130],
-  ['hero', 170],
-  ['floor', 150],
-  ['order', 190],
-  ['titleB', 104],
-  ['consent', 100],
-  ['compass', 216], // the consent line finishes over Compass, then the rep line
+  ['brand', 140], // carries the opening "what Bask is" line
+  ['open', 240], // the crane now runs under the whole friction line
+  ['hero', 155],
+  ['floor', 140],
+  ['order', 195],
+  ['compass', 320], // the UVALUX-data line lands on the act break, then the rep line
   ['titleA', 104],
   ['studio', 240], // holds the three-sentence campaign line
   ['outro', 180],
 ]);
 
 export const SHOTS = captionCut.shots;
-export const TOTAL = captionCut.total; // 1383f ≈ 46.1s
+export const TOTAL = captionCut.total; // 1299f ≈ 43.3s
 export const SHOTS_VO = voCut.shots;
-export const TOTAL_VO = voCut.total; // 1584f ≈ 52.8s
+export const TOTAL_VO = voCut.total; // 1714f ≈ 57.1s
