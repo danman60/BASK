@@ -1,6 +1,10 @@
 # Bask promo — design spec & storyboard
 **Mode:** video-shotcraft 自主自由创作 (autonomous free creation). Pipeline `references/pipeline.md` phases 0–7.
-**Written:** 2026-08-13 · 30fps · 1920×1080 · **final 1327f = 44.2s** (brief: 35–45s)
+**Written:** 2026-08-13 · 30fps · 1920×1080
+**Delivered:** caption cut **1383f = 46.1s** · voiceover cut **1584f = 52.8s**
+(the original brief said 35–45s; the client-supplied 41.8s read and the客户-requested
+slower title cards put the VO cut past it — noted, not hidden. `src/timeline.ts` is the
+authoritative record of shot order and duration.)
 **Masters:**
 - `out/promo-vo.mp4` — **the voiceover cut**, 1466f / 48.9s: client VO + client music bed + SFX,
   captions off. Composition `BaskPromoVO`.
@@ -192,6 +196,30 @@ first cut. Report: `REVIEW.md`. What it found and what changed:
 
 Also added, off the back of the VO request: a `captions` input prop and a third master with the
 captions off, so a voiceover does not double the on-screen text.
+
+## 4e. Client revisions (2026-08-13, after review round 2)
+
+| Ask | What changed |
+|---|---|
+| "needs UVALUX logo" | The real mark, pulled from `uvalux.com/wp-content/uploads/media/UVALUX-Logo-Web.png` (black-on-transparent, wordmark + swoosh + maple leaf), shown at 4× source in the outro sign-off under a "BUILT FOR" line at 34px. **Open question for the owner:** that lockup reads as an official relationship the pitch has not yet been granted. It is one line to change or remove. |
+| "title cards go by too fast" | Per-word delay 4→6f, each word 9→13f, underline 22–46f, cards 76/45f → **104f in both cuts**. Each card now holds its finished sentence ≥1.2s. |
+| "social media marketing campaign beat should be last" | The campaign title card + Studio shot moved from position 3–4 to position 8–9, immediately before the outro. Order is now: Daybreak → insight → Floor → Inventory → consent card → consent → Compass → campaign card → Studio → outro. The VO clips are pinned per shot, so they moved with it. |
+| "this one needs more review" | Second independent review (clean context, not the first reviewer): `REVIEW-2.md`. |
+
+**What the reorder cost, and what was done about it** (the reviewer's findings, not mine):
+- *The dark Compass act now hard-cut to an empty ivory title card* — a 193-point luminance slam onto a
+  blank frame. Fixed: the campaign card starts 22f early and **dissolves** out of Compass, with its
+  words held back until the dissolve is over.
+- *"Studio turned **that** into a campaign" lost its antecedent* — the Tuesday finding is now ~30s
+  earlier. Partly fixed: the card before it was rewritten from "And it writes the marketing." to
+  **"Back to that quiet Tuesday."**, which puts the referent back on screen immediately before the
+  line. A cleaner fix needs one re-recorded VO line (see VO-SCRIPT §6).
+- *The film now ends on its flattest beat* — a held full-page screenshot. Fixed: the Studio shot now
+  closes with a slow push onto the written pieces (the post and the message), which also takes the
+  page's model-attribution line out of the final image.
+- *Act structure*: the recorded design was "two acts joined by the consent screen". The delivered film
+  is Bask → consent → Compass → **back to Bask** → sign-off. That is the client's structure, and it is
+  no longer what §1 describes; §1 is left as written so the change is visible rather than retconned.
 
 ## 5. Deviations from the aesthetic rules
 

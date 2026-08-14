@@ -54,8 +54,10 @@ const CAM_KEYS: CamKey[] = [
   // rail (x >= 1519) outside the frame — at 1.18 it was sliced mid-word
   { frame: 0, cx: GRID.x + GRID.w / 2 - 8, cy: GRID.y + GRID.h / 2, zoom: 1.28 },
   { frame: 96, cx: GRID.x + GRID.w / 2 - 8, cy: GRID.y + GRID.h / 2, zoom: 1.28 },
-  { frame: 130, cx: C.room2.x + C.room2.w / 2, cy: C.room2.y + C.room2.h / 2 + 6, zoom: 1.42 },
-  { frame: 150, cx: C.room2.x + C.room2.w / 2, cy: C.room2.y + C.room2.h / 2 + 6, zoom: 1.42 },
+  // cx 455 puts the right edge of frame in the gap between rooms 3 and 4 rather
+  // than through a card, and the left edge on the page margin
+  { frame: 130, cx: 455, cy: C.room2.y + C.room2.h / 2 + 6, zoom: 1.42 },
+  { frame: 150, cx: 455, cy: C.room2.y + C.room2.h / 2 + 10, zoom: 1.44 },
 ];
 
 /** The running bed's countdown, re-rendered live over the texture so it ticks.

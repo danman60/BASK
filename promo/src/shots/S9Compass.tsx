@@ -34,6 +34,7 @@ const CAM_KEYS: CamKey[] = [
   { frame: PUSH + 22, cx: 706, cy: 330, zoom: 1.32 },
   { frame: PUSH + 96, cx: 706, cy: 420, zoom: 1.16 },
   { frame: PUSH + 150, cx: 706, cy: 420, zoom: 1.16 },
+  { frame: PUSH + 216, cx: 706, cy: 436, zoom: 1.2 }, // slow drift, not a freeze
 ];
 
 const FLY_EASE = Easing.bezier(0.3, 0, 0.25, 1);

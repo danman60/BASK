@@ -44,32 +44,6 @@ export const Main: React.FC<{
       <S2Insight />
     </Sequence>
 
-    <Sequence from={SHOTS.titleA.from} durationInFrames={SHOTS.titleA.duration}>
-      <PaperTitleCard
-        duration={SHOTS.titleA.duration}
-        words={[
-          { text: 'From' }, { text: 'the' }, { text: 'finding' },
-          { text: 'to' }, { text: 'the' }, { text: 'campaign.', accent: true },
-        ]}
-      />
-    </Sequence>
-
-    <Sequence from={SHOTS.studio.from} durationInFrames={SHOTS.studio.duration}>
-      <S4Studio />
-      {captions ? (
-        <BaskCaption
-          lead="Studio writes the offer, the post and the text. "
-          accent="You still press send."
-          sub="Nothing goes out until the owner says so."
-          from={72}
-          duration={SHOTS.studio.duration}
-          /* the page's own "Schedule campaign" button lives bottom-right; the
-             caption used to run straight through it */
-          rightGutter={640}
-        />
-      ) : null}
-    </Sequence>
-
     <Sequence from={SHOTS.floor.from} durationInFrames={SHOTS.floor.duration}>
       <S5Floor />
       {captions ? (
@@ -136,6 +110,42 @@ export const Main: React.FC<{
           from={78}
           duration={SHOTS.compass.duration + 30}
           dark
+        />
+      ) : null}
+    </Sequence>
+
+    {/* Starts 22f early and dissolves, so the return from the dark Compass act
+        to ivory paper is a transition rather than a one-frame slam onto an empty
+        card. The words wait out the dissolve. It also names the Tuesday finding
+        again — the campaign line that follows says "Studio turned THAT into a
+        campaign", and its referent is now half a film away. */}
+    <Sequence
+      from={SHOTS.titleA.from - 22}
+      durationInFrames={SHOTS.titleA.duration + 22}
+    >
+      <PaperTitleCard
+        duration={SHOTS.titleA.duration + 22}
+        fadeIn={22}
+        wordDelay={14}
+        words={[
+          { text: 'Back' }, { text: 'to' }, { text: 'that' },
+          { text: 'quiet' }, { text: 'Tuesday.', accent: true },
+        ]}
+      />
+    </Sequence>
+
+    <Sequence from={SHOTS.studio.from} durationInFrames={SHOTS.studio.duration}>
+      <S4Studio />
+      {captions ? (
+        <BaskCaption
+          lead="Studio writes the offer, the post and the text. "
+          accent="You still press send."
+          sub="Nothing goes out until the owner says so."
+          from={72}
+          duration={SHOTS.studio.duration}
+          /* the page's own "Schedule campaign" button lives bottom-right; the
+             caption used to run straight through it */
+          rightGutter={640}
         />
       ) : null}
     </Sequence>

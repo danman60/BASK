@@ -69,6 +69,8 @@ export const S10Outro: React.FC = () => {
   });
   const tag = interpolate(frame, [96, 108], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const sub = interpolate(frame, [106, 118], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  // the UVALUX mark arrives last, after the film has finished making its case
+  const mark = interpolate(frame, [118, 132], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const fadeOut = interpolate(frame, [duration - 10, duration], [1, 0], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
   });
@@ -309,6 +311,32 @@ export const S10Outro: React.FC = () => {
             }}
           >
             Bask · Compass
+          </div>
+
+          {/* UVALUX's own mark (uvalux.com, black-on-transparent original, shown
+              at 4x source so the swoosh and the leaf stay clean). It arrives
+              after the lockup and sits under a hairline — a sign-off, not a
+              claim about whose product this is. */}
+          <div
+            style={{
+              marginTop: 30, opacity: mark,
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18,
+              transform: `translateY(${(1 - mark) * 8}px)`,
+            }}
+          >
+            <div style={{ width: 320, height: 1, background: T.line }} />
+            <div
+              style={{
+                fontFamily: BODY, fontSize: 34, fontWeight: 500, letterSpacing: '0.16em',
+                textTransform: 'uppercase', color: T.inkSoft,
+              }}
+            >
+              Built for
+            </div>
+            <Img
+              src={staticFile('brand/uvalux-logo-4x.png')}
+              style={{ width: 264, height: 80, display: 'block', opacity: 0.92 }}
+            />
           </div>
         </div>
       </AbsoluteFill>

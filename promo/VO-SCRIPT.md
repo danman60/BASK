@@ -83,6 +83,26 @@ npx remotion render src/index.ts BaskPromo   out/promo.mp4      # caption cut, n
 Mix: bed ducked to 0.13 under the voice (0.26 in the caption cut), SFX unchanged — they are pinned
 to picture, not to the read.
 
+## 6. One line worth re-recording
+
+The campaign beat now plays **last**, at the client's direction. Its line —
+
+> "Studio turned **that** into a campaign. The offer, the post, the text. You still press send."
+
+— was written for position 3, right after "…found the quiet Tuesday". In the delivered order that
+antecedent is ~30 seconds and five sentences back, and the nearest thing "that" can attach to is the
+Compass line about the rep. The title card before it now says **"Back to that quiet Tuesday."**, which
+puts the referent on screen, but the sentence still leans on a pronoun reaching across an act break.
+
+If you re-record one line, make it this one, self-contained:
+
+```
+Studio turns a quiet Tuesday into a campaign. The offer, the post, the text. You still press send.
+```
+
+Same voice, same settings. Drop the file in and tell me — it replaces `vo/vo3.mp3`, and nothing else
+moves, because the pins are per shot.
+
 ## 5. What the VO deliberately does not say
 
 - No price, no percentage, no revenue claim. Every number in the film is a fictional seeded fixture

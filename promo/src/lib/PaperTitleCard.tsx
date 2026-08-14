@@ -15,19 +15,26 @@ export const PaperTitleCard: React.FC<{
    *  break, so it changes light — two identical paper cards read as one device
    *  used twice, and this one is already leaving Bask. */
   dark?: boolean;
-}> = ({ duration, words, sub, dark = false }) => {
+  /** Frames to dissolve in over. The default 6 is a soft cut; the card that
+   *  follows the Compass act needs a real dissolve, because a hard cut from a
+   *  dark screen to an empty ivory one is a 190-point luminance slam. */
+  fadeIn?: number;
+  /** Delay the words so they are not still arriving during a long dissolve. */
+  wordDelay?: number;
+}> = ({ duration, words, sub, dark = false, fadeIn: fadeInFrames = 6, wordDelay = 0 }) => {
   const frame = useCurrentFrame();
-  const fadeIn = interpolate(frame, [0, 6], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  // The sentence must stand still for a full second after its last word
-  // settles (R1). With per-word delays of 4 + i*4 + 9 and the rule finishing at
-  // f34, that needs the card to be ~70f long, not the reference's 52.
+  const fadeIn = interpolate(frame, [0, fadeInFrames], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  // Slowed on a note that the cards read too fast: per-word delay 4→6f, each
+  // word 9→13f, underline 16-34→22-46f. With seven words the last one settles
+  // about f55, so the cards are 88f (VO cut) / 104f (caption cut) — a full
+  // second and a half of stillness on the finished sentence.
   const fadeOut = interpolate(frame, [duration - 8, duration], [1, 0], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
   });
-  const underline = interpolate(frame, [16, 34], [0, 1], {
+  const underline = interpolate(frame, [wordDelay + 22, wordDelay + 46], [0, 1], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.3, 0, 0.2, 1),
   });
-  const subT = interpolate(frame, [12, 24], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const subT = interpolate(frame, [18, 32], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
 
   return (
     <AbsoluteFill
@@ -50,8 +57,8 @@ export const PaperTitleCard: React.FC<{
           }}
         >
           {words.map((w, i) => {
-            const delay = 4 + i * 4;
-            const t = interpolate(frame, [delay, delay + 9], [0, 1], {
+            const delay = wordDelay + 6 + i * 6;
+            const t = interpolate(frame, [delay, delay + 13], [0, 1], {
               extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: E.letterpress,
             });
             return (

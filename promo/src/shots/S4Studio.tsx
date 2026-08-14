@@ -64,7 +64,12 @@ const CAM_KEYS: CamKey[] = [
   { frame: 0, cx: IG.x + IG.w / 2, cy: IG.y + IG.h / 2, zoom: SCALE },
   { frame: 58, cx: IG.x + IG.w / 2, cy: IG.y + IG.h / 2, zoom: SCALE },
   { frame: 112, cx: 960, cy: PAGE_H / 2, zoom: 0.95 },
-  { frame: 150, cx: 960, cy: PAGE_H / 2, zoom: 0.95 },
+  { frame: 150, cx: 940, cy: PAGE_H / 2, zoom: 0.96 },
+  // Close on what Bask wrote — the post and the message — rather than holding
+  // the whole page. Keeps the right rail (and the model-attribution line under
+  // the Schedule button) out of the last thing the film shows, and gives the
+  // shot a slow drift instead of four seconds of frozen screenshot.
+  { frame: 240, cx: 640, cy: 540, zoom: 1.5 },
 ];
 
 export const S4Studio: React.FC = () => {

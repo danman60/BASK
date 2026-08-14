@@ -49,7 +49,7 @@ export const buildSfx = (S: Shots): Cue[] => [
     volume: 0.3 - i * 0.028,
     note: `room board wave front ${i + 1}`,
   })),
-  { from: S.floor.from + 48, src: 'transition-snap.mp3', volume: 0.22, note: 'last card overshoots and settles' },
+  { from: S.floor.from + 43, src: 'transition-snap.mp3', volume: 0.22, note: 'last card overshoots and settles' },
 
   // ── S6 the shelf and the order ─────────────────────────────────────────────
   { from: S.order.from - 13, src: 'transition-soft.mp3', volume: 0.26, note: 'into inventory (sample peaks +13f)' },

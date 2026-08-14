@@ -19,17 +19,24 @@ const seq = (spec: [ShotName, number][]) => {
   return { shots: out, total: at };
 };
 
-/** Caption cut — the film as designed, no voiceover. */
+/**
+ * Caption cut — no voiceover.
+ *
+ * Shot ORDER note: the campaign beat (title card + Studio) sits LAST, after the
+ * Compass act, at the client's direction. Everything in the film that comes
+ * before it is the salon running itself; the marketing beat is the last thing
+ * shown before the sign-off.
+ */
 const captionCut = seq([
   ['open', 130], // S1  Daybreak letter — crane-rise-reveal
   ['hero', 170], // S2  the insight card — spotlight-hero-card
-  ['titleA', 76], // S3  breathing card
-  ['studio', 150], // S4  insight → campaign — card-flip-reveal
   ['floor', 150], // S5  the room board — grid-wave-flip
   ['order', 145], // S6  UVALUX draft order — list-stack-press
-  ['titleB', 76], // S7  breathing card
+  ['titleB', 104], // S7  breathing card
   ['consent', 100], // S8  what UVALUX sees (last 30f = the act-break push)
   ['compass', 150], // S9  Compass call list — row-embed
+  ['titleA', 104], // S3  breathing card
+  ['studio', 150], // S4  insight → campaign — card-flip-reveal
   ['outro', 180], // S10 group photo + wordmark
 ]);
 
@@ -44,17 +51,17 @@ const captionCut = seq([
 const voCut = seq([
   ['open', 130],
   ['hero', 170],
-  ['titleA', 45],
-  ['studio', 240], // holds the three-sentence campaign line
   ['floor', 150],
   ['order', 190],
-  ['titleB', 45],
+  ['titleB', 104],
   ['consent', 100],
   ['compass', 216], // the consent line finishes over Compass, then the rep line
+  ['titleA', 104],
+  ['studio', 240], // holds the three-sentence campaign line
   ['outro', 180],
 ]);
 
 export const SHOTS = captionCut.shots;
-export const TOTAL = captionCut.total; // 1327f ≈ 44.2s
+export const TOTAL = captionCut.total; // 1383f ≈ 46.1s
 export const SHOTS_VO = voCut.shots;
-export const TOTAL_VO = voCut.total; // 1466f ≈ 48.9s
+export const TOTAL_VO = voCut.total; // 1584f ≈ 52.8s
