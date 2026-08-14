@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 import './fonts';
 import { Main } from './Main';
-import { FPS, TOTAL } from './timeline';
+import { FPS, SHOTS, SHOTS_VO, TOTAL, TOTAL_VO } from './timeline';
 
 export const schema = z.object({
   // Wraps the BGM <Audio> only; SFX stay. Renders the no-BGM deliverable from
@@ -15,14 +15,29 @@ export const schema = z.object({
 });
 
 export const RemotionRoot: React.FC = () => (
-  <Composition
-    id="BaskPromo"
-    component={Main}
-    durationInFrames={TOTAL}
-    fps={FPS}
-    width={1920}
-    height={1080}
-    schema={schema}
-    defaultProps={{ bgm: true, captions: true }}
-  />
+  <>
+    {/* Caption cut — no voiceover. */}
+    <Composition
+      id="BaskPromo"
+      component={Main}
+      durationInFrames={TOTAL}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      schema={schema}
+      defaultProps={{ bgm: true, captions: true, vo: false, shots: SHOTS, total: TOTAL }}
+    />
+    {/* Voiceover cut — the picture is held longer where the read needs it, and
+        the captions are off so the film is not read twice. */}
+    <Composition
+      id="BaskPromoVO"
+      component={Main}
+      durationInFrames={TOTAL_VO}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      schema={schema}
+      defaultProps={{ bgm: true, captions: false, vo: true, shots: SHOTS_VO, total: TOTAL_VO }}
+    />
+  </>
 );

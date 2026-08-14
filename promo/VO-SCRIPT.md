@@ -1,8 +1,18 @@
 # Bask film — voiceover script (ElevenLabs-ready)
 
-Film: 1327 frames · 44.2s · 30fps. Speech windows total ≈39s of the 44.2 (the two title cards and
-the last beat of the outro are deliberately left silent). Script below is **92 words ≈ 141 wpm** —
-an unhurried read, which is the register this brand wants.
+> **Recorded and cut in.** The take used is the client's ElevenLabs "Tessa"
+> read (41.82s), split at its own natural pauses into eight line clips
+> (`public/audio/vo/vo1..vo8.mp3`) and pinned per shot in `src/Soundtrack.tsx`.
+> The film's **VO cut is `BaskPromoVO` — 1466f, 48.9s** (the caption cut stays
+> 44.2s): the read is 41.8s of near-continuous speech, and the caption cut only
+> has ~39s of room once the two title cards are silent, so the shots carrying the
+> longest lines are held longer. No animation was re-timed; the extra frames land
+> in each shot's closing still.
+>
+> Note: a second file in the phone's Downloads (`ElevenLabs_..._Holly...`) is a
+> different project's read — the ADAPT exam-capture VO — not this script.
+
+Script: **92 words**. Recorded length 41.82s. VO cut: 1466 frames · 48.9s · 30fps.
 
 ---
 
@@ -44,42 +54,34 @@ Bask. The salon runs better. UVALUX sees the market it serves.
 If the take comes back rushed, split the block at the blank lines and generate line by line — the
 timing table below assumes each line is its own clip anyway.
 
-## 3. Timing — where each line sits against the picture
+## 3. Where each line actually sits (VO cut, as rendered)
 
-Render the lines as separate clips and drop them at these frames (30fps). Every start is the frame
-the shot's own idea becomes visible, so the read lands *with* the picture, not over its entrance.
+Clips are `public/audio/vo/vo1..vo8.mp3`, cut from the take at its own pauses. Pins live in
+`src/Soundtrack.tsx` (`buildVo`) and are relative to the shot, so the timing survives a re-time.
 
-| # | Line | Start frame | Start time | Window | Words |
+| # | Line | Clip | Starts | Ends | Shot it sits in |
 |---|---|---|---|---|---|
-| 1 | This is what a salon owner wakes up to. | 12 | 0.4s | 3.9s | 9 |
-| 2 | Overnight, Bask read yesterday — and found the quiet Tuesday. | 146 | 4.9s | 5.4s | 10 |
-| — | *(title card — silent)* | 300 | 10.0s | 2.5s | — |
-| 3 | Studio turned that into a campaign. The offer, the post, the text. You still press send. | 396 | 13.2s | 5.4s | 16 |
-| 4 | The floor runs live. Eight beds, one board. | 560 | 18.7s | 4.6s | 8 |
-| 5 | It counts the shelf, and writes the UVALUX order — with a reason on every line. | 712 | 23.7s | 4.9s | 15 |
-| — | *(title card — silent)* | 857 | 28.6s | 2.5s | — |
-| 6 | The salon decides what crosses. Business signals. Never their customer list. | 940 | 31.3s | 3.4s | 11 |
-| 7 | And every UVALUX rep calls knowing exactly what changed. | 1050 | 35.0s | 4.6s | 9 |
-| 8 | Bask. The salon runs better. UVALUX sees the market it serves. | 1200 | 40.0s | 3.6s | 11 |
+| 1 | This is what a salon owner wakes up to. | vo1 2.90s | 0.40s | 3.30s | Daybreak 0.00–4.33 |
+| 2 | Overnight, Bask read yesterday — and found the quiet Tuesday. | vo2 4.83s | 4.70s | 9.53s | the insight card 4.33–10.00 |
+| — | *(title card — silent)* | — | 10.00s | 11.50s | — |
+| 3 | Studio turned that into a campaign. The offer, the post, the text. You still press send. | vo3 7.44s | 11.83s | 19.27s | Studio 11.50–19.50 |
+| 4 | The floor runs live. Eight beds, one board. | vo4 4.28s | 19.90s | 24.18s | the Floor 19.50–24.50 |
+| 5 | It counts the shelf, and writes the UVALUX order — with a reason on every line. | vo5 5.93s | 24.77s | 30.70s | Inventory 24.50–30.83 |
+| — | *(title card — silent)* | — | 30.83s | 32.33s | — |
+| 6 | The salon decides what crosses. Business signals. Never their customer list. | vo6 5.88s | 32.60s | 38.48s | consent 32.33–35.67, **finishing over Compass** — deliberate: the consent line pays off as Compass arrives |
+| 7 | And every UVALUX rep calls knowing exactly what changed. | vo7 4.00s | 38.67s | 42.67s | Compass 35.67–42.87 |
+| 8 | Bask. The salon runs better. UVALUX sees the market it serves. | vo8 5.69s | 43.07s | 48.76s | outro 42.87–48.87 |
 
-Line 8 should finish by frame ~1290 (43.0s) — the last 37 frames are the sign-off hold and should
-carry no voice.
-
-## 4. If you use the VO, render the caption-free master
-
-The on-screen captions say roughly what the VO says; running both is a double read. The composition
-takes a `captions` input prop for exactly this:
+## 4. Rendering
 
 ```bash
 cd promo
-npx remotion render src/index.ts BaskPromo out/promo-vo.mp4 --props=props-vo.json
+npx remotion render src/index.ts BaskPromoVO out/promo-vo.mp4   # voice + bed + SFX, no captions
+npx remotion render src/index.ts BaskPromo   out/promo.mp4      # caption cut, no voice
 ```
 
-`props-vo.json` is `{"bgm": true, "captions": false}`. There is also `props-nobgm.json`
-(`{"bgm": false, "captions": true}`) for the music-free master.
-
-Recommended VO mix: duck the bed to ~0.16 under speech (currently 0.26 flat), keep the SFX where
-they are — they are pinned to picture, not to the read.
+Mix: bed ducked to 0.13 under the voice (0.26 in the caption cut), SFX unchanged — they are pinned
+to picture, not to the read.
 
 ## 5. What the VO deliberately does not say
 

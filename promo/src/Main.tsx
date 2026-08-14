@@ -11,7 +11,7 @@ import { S8Consent } from './shots/S8Consent';
 import { S9Compass } from './shots/S9Compass';
 import { S10Outro } from './shots/S10Outro';
 import { Soundtrack } from './Soundtrack';
-import { SHOTS } from './timeline';
+import type { Shots } from './timeline';
 import { T } from './tokens';
 
 /**
@@ -20,7 +20,13 @@ import { T } from './tokens';
  * places them. Every caption is written to the final picture (C1) and names a
  * product surface or a concrete benefit rather than a metaphor (C2).
  */
-export const Main: React.FC<{ bgm: boolean; captions: boolean }> = ({ bgm, captions }) => (
+export const Main: React.FC<{
+  bgm: boolean;
+  captions: boolean;
+  vo?: boolean;
+  shots: Shots;
+  total: number;
+}> = ({ bgm, captions, vo = false, shots: SHOTS, total }) => (
   <AbsoluteFill style={{ backgroundColor: T.paper }}>
     <Sequence from={SHOTS.open.from} durationInFrames={SHOTS.open.duration}>
       <S1Daybreak />
@@ -138,6 +144,6 @@ export const Main: React.FC<{ bgm: boolean; captions: boolean }> = ({ bgm, capti
       <S10Outro />
     </Sequence>
 
-    <Soundtrack bgm={bgm} />
+    <Soundtrack bgm={bgm} vo={vo} shots={SHOTS} total={total} />
   </AbsoluteFill>
 );

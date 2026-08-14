@@ -9,11 +9,9 @@
 // explicit durationInFrames; the two impacts are left to ring out on purpose.
 import { Audio, interpolate, Sequence, staticFile } from 'remotion';
 
-import { SHOTS, TOTAL } from './timeline';
+import type { Shots } from './timeline';
 
 type Cue = { from: number; src: string; volume: number; durationInFrames?: number; note: string };
-
-const S = SHOTS;
 
 // S5's diagonal wave front fires at HOLD + (row+col)*6 inside the shot
 const FLOOR_WAVE = [8, 13, 18, 23, 28, 33];
@@ -25,7 +23,7 @@ const ORDER_LANDINGS = [26, 34, 42, 50, 58].map((c) => c + 18);
 const S9_PUSH = 30;
 const TILE_EMBEDS = [0, 1, 2].map((i) => S9_PUSH + 14 + i * 9 + 12);
 
-export const SFX: Cue[] = [
+export const buildSfx = (S: Shots): Cue[] => [
   // ── S1 Daybreak ────────────────────────────────────────────────────────────
   { from: S.open.from, src: 'transition-soft.mp3', volume: 0.3, note: 'film opens on the letter' },
   { from: S.open.from + 22, src: 'swoosh-slow.mp3', volume: 0.2, durationInFrames: 84, note: 'the crane pull-back' },
@@ -89,27 +87,63 @@ export const SFX: Cue[] = [
   { from: S.outro.from + 80, src: 'sparkle.mp3', volume: 0.3, durationInFrames: 84, note: 'the sunset rule draws' },
 ];
 
-/** Tech-house bed, kept well under the template's 0.34 — this brand is quieter
- *  than the reference film and the SFX carry the beats. */
-export const BGM = { src: 'bgm-tech-house.mp3', volume: 0.26 };
+/**
+ * The client's voiceover (ElevenLabs, "Tessa"), split at its own natural pauses
+ * into one clip per script line and pinned to the shot that line belongs to.
+ * Frames are relative, so the VO cut's longer shots carry the clips unchanged.
+ * Clip lengths come from the split, rounded up a frame or two so nothing truncates.
+ */
+export const buildVo = (S: Shots): Cue[] => [
+  { from: S.open.from + 12, src: 'vo/vo1.mp3', volume: 1, durationInFrames: 92, note: 'This is what a salon owner wakes up to.' },
+  { from: S.hero.from + 11, src: 'vo/vo2.mp3', volume: 1, durationInFrames: 150, note: 'Overnight, Bask read yesterday…' },
+  { from: S.studio.from + 10, src: 'vo/vo3.mp3', volume: 1, durationInFrames: 228, note: 'Studio turned that into a campaign…' },
+  { from: S.floor.from + 12, src: 'vo/vo4.mp3', volume: 1, durationInFrames: 132, note: 'The floor runs live…' },
+  { from: S.order.from + 8, src: 'vo/vo5.mp3', volume: 1, durationInFrames: 182, note: 'It counts the shelf…' },
+  { from: S.consent.from + 8, src: 'vo/vo6.mp3', volume: 1, durationInFrames: 180, note: 'The salon decides what crosses… (finishes over Compass)' },
+  { from: S.compass.from + 90, src: 'vo/vo7.mp3', volume: 1, durationInFrames: 124, note: 'And every UVALUX rep calls…' },
+  { from: S.outro.from + 6, src: 'vo/vo8.mp3', volume: 1, durationInFrames: 174, note: 'Bask. The salon runs better…' },
+];
 
-export const Soundtrack: React.FC<{ bgm: boolean }> = ({ bgm }) => (
-  <>
-    {bgm ? (
-      <Audio
-        src={staticFile(`audio/${BGM.src}`)}
-        volume={(f) =>
-          interpolate(f, [0, 30, TOTAL - 60, TOTAL], [0, BGM.volume, BGM.volume, 0], {
-            extrapolateLeft: 'clamp',
-            extrapolateRight: 'clamp',
-          })
-        }
-      />
-    ) : null}
-    {SFX.map((c, i) => (
-      <Sequence key={i} from={c.from} durationInFrames={c.durationInFrames ?? 90}>
-        <Audio src={staticFile(`audio/${c.src}`)} volume={c.volume} />
-      </Sequence>
-    ))}
-  </>
-);
+/**
+ * The client's track, "Open Road". Window starts at 0:43 — the quietest bar in
+ * the piece, which then climbs for the next 50s, so the bed's own arc matches
+ * the film's. Ducked to 0.13 under the voice.
+ */
+export const BGM = { src: 'bgm-open-road.mp3', startSec: 43, bed: 0.26, bedUnderVo: 0.13 };
+
+export const Soundtrack: React.FC<{
+  bgm: boolean;
+  vo?: boolean;
+  shots: Shots;
+  total: number;
+}> = ({ bgm, vo = false, shots, total }) => {
+  const bed = vo ? BGM.bedUnderVo : BGM.bed;
+  const sfx = buildSfx(shots);
+  const voice = vo ? buildVo(shots) : [];
+  return (
+    <>
+      {bgm ? (
+        <Audio
+          src={staticFile(`audio/${BGM.src}`)}
+          startFrom={BGM.startSec * 30}
+          volume={(f) =>
+            interpolate(f, [0, 30, total - 70, total], [0, bed, bed, 0], {
+              extrapolateLeft: 'clamp',
+              extrapolateRight: 'clamp',
+            })
+          }
+        />
+      ) : null}
+      {sfx.map((c, i) => (
+        <Sequence key={`sfx${i}`} from={c.from} durationInFrames={c.durationInFrames ?? 90}>
+          <Audio src={staticFile(`audio/${c.src}`)} volume={c.volume} />
+        </Sequence>
+      ))}
+      {voice.map((c, i) => (
+        <Sequence key={`vo${i}`} from={c.from} durationInFrames={c.durationInFrames}>
+          <Audio src={staticFile(`audio/${c.src}`)} volume={c.volume} />
+        </Sequence>
+      ))}
+    </>
+  );
+};

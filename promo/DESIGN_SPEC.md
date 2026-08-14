@@ -1,8 +1,16 @@
 # Bask promo — design spec & storyboard
 **Mode:** video-shotcraft 自主自由创作 (autonomous free creation). Pipeline `references/pipeline.md` phases 0–7.
 **Written:** 2026-08-13 · 30fps · 1920×1080 · **final 1327f = 44.2s** (brief: 35–45s)
-**Masters:** `out/promo.mp4` (music) · `out/promo-nobgm.mp4` (SFX only, muxed onto the same video
-stream) · `out/promo-vo.mp4` (captions off, for the voiceover in `VO-SCRIPT.md`)
+**Masters:**
+- `out/promo-vo.mp4` — **the voiceover cut**, 1466f / 48.9s: client VO + client music bed + SFX,
+  captions off. Composition `BaskPromoVO`.
+- `out/promo.mp4` — caption cut, 1327f / 44.2s, music + SFX, no voice. Composition `BaskPromo`.
+- `out/promo-nobgm.mp4` — caption cut, SFX only, muxed onto the same video stream as `promo.mp4`.
+
+**Audio, as supplied by the client (2026-08-13):** voice = ElevenLabs "Tessa", 41.82s, split into
+eight line clips at its own pauses; bed = `bgm-open-road.mp3`, windowed from 0:43 (the quietest bar,
+which then climbs for ~50s so the bed's arc matches the film's), ducked to 0.13 under the voice and
+0.26 without it.
 
 ---
 
