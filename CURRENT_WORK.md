@@ -19,13 +19,58 @@
 - Deployment Protection is OFF (public demo). Turn back on:
   `curl -X PATCH .../projects/bask -d '{"ssoProtection":{"deploymentType":"prod_deployment_urls_and_all_previews"}}'`
 
-## Product film (2026-08-13) — `promo/`
-Cinematic 42.6s product video for the Nick pitch, built with the `video-shotcraft` skill in
-autonomous free-creation mode. Standalone Remotion project at `promo/` — deliberately OUTSIDE the
-pnpm workspace (`pnpm-workspace.yaml` globs only `apps/*` + `packages/*`), own `package.json` and
+## Product film (2026-08-13/14) — `promo/`  ← DELIVERED, v3
+Cinematic product video for the Nick pitch, built with the `video-shotcraft` skill in autonomous
+free-creation mode. Standalone Remotion project at `promo/` — deliberately OUTSIDE the pnpm
+workspace (`pnpm-workspace.yaml` globs only `apps/*` + `packages/*`), own `package.json` and
 `node_modules`, so it cannot affect the monorepo build.
-- **Deliverables:** `promo/out/promo.mp4` (with BGM) + `promo/out/promo-nobgm.mp4` (SFX only, same
-  timeline via the `bgm` inputProp). Spec + storyboard: `promo/DESIGN_SPEC.md`.
+
+### Four masters, all in `promo/out/` (git-ignored — re-render, don't hunt for them)
+| file | length | what |
+|---|---|---|
+| `promo-vo.mp4` | 52.8s | **the one to send** — client VO + client music bed + SFX, captions off |
+| `promo-vo-nobgm.mp4` | 52.8s | voice + SFX, no music |
+| `promo.mp4` | 46.1s | caption cut, music + SFX, no voice |
+| `promo-nobgm.mp4` | 46.1s | caption cut, SFX only (video stream bit-identical to `promo.mp4`) |
+
+Re-render: `cd promo && npx remotion render src/index.ts BaskPromoVO out/promo-vo.mp4`
+(compositions: `BaskPromo` = caption cut, `BaskPromoVO` = voice cut; props `{bgm, captions}`).
+
+### Shot order as delivered (client-directed — the campaign beat is LAST)
+Daybreak → insight card → the Floor → UVALUX order → consent card → consent → Compass →
+"Back to that quiet Tuesday." → Studio/campaign → sign-off with the UVALUX mark.
+`src/timeline.ts` is the authoritative record. `DESIGN_SPEC.md` §1 still describes the ORIGINAL
+two-act structure on purpose, so the client's change is visible rather than retconned.
+
+### Docs
+`promo/DESIGN_SPEC.md` (brief, tokens, storyboard, every deviation) · `promo/REVIEW.md` +
+`promo/REVIEW-2.md` (two independent reviews, clean context, frame-numbered evidence) ·
+`promo/VO-SCRIPT.md` (script, per-line placement, the one line worth re-recording) ·
+`promo/MESSAGE-DRAFTS.md` (cover notes for Nick).
+
+### OPEN — needs Daniel, not the next session
+1. **One VO line is worth re-recording.** The campaign line "Studio turned **that** into a
+   campaign…" was written for position 3; the reorder put it last, ~30s from its antecedent. The
+   title card before it now says "Back to that quiet Tuesday." to patch it. Clean fix, same voice
+   and settings: *"Studio turns a quiet Tuesday into a campaign. The offer, the post, the text.
+   You still press send."* — drop the mp3 in, it replaces `promo/public/audio/vo/vo3.mp3`, nothing
+   else moves (VO pins are per shot). **There is no ElevenLabs API key in `~/.env.keys`, so this
+   cannot be generated locally — it has to come from Daniel's ElevenLabs account.**
+2. **The "BUILT FOR / UVALUX" sign-off lockup** reads as an official relationship the pitch has
+   not been granted. Both the second reviewer and I flagged it; Daniel decides whether it stays,
+   softens, or goes. One line in `src/shots/S10Outro.tsx`.
+3. VO cut is 52.8s, past the original 35–45s brief — a consequence of the 41.8s supplied read plus
+   the client's slower title cards. Flagged, not hidden.
+
+### Two product bugs this work uncovered (worth fixing before the meeting)
+- **`/marketing?campaign=<id>` renders an empty page** — the Studio builder holds generated pieces
+  in component state only and never rehydrates an existing campaign. Clicking a campaign in the
+  Campaigns tab shows a step tracker over a blank body.
+- **The in-session sunset ring is never on screen** at the demo's virtual clock (5:38 p.m., every
+  bed Ready/Cleaning). The film renders the product's own `.in-session-ring` markup at capture time
+  rather than writing to the DB; the live pitch needs the clock moved or a real check-in.
+
+- Spec + storyboard: `promo/DESIGN_SPEC.md`.
 - **Captures come from the LIVE deploy** (`https://bask-psi.vercel.app`), re-runnable:
   `cd promo && CAP_BASE=https://bask-psi.vercel.app node scripts/capture.mjs` (add `GEN_CAMPAIGN=1`
   only when the Studio review screen needs re-shooting — see below).
