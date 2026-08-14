@@ -55,6 +55,18 @@ export const buildSfx = (S: Shots): Cue[] => [
   })),
   { from: S.floor.from + 43, src: 'transition-snap.mp3', volume: 0.22, note: 'last card overshoots and settles' },
 
+  // ── the front desk: typing is the one action that must have its own foley ──
+  { from: S.checkin.from + 26, src: 'keyboard.mp3', volume: 0.32, durationInFrames: 26, note: 'typing the name (long sample, cut to the action)' },
+  { from: S.checkin.from + 84, src: 'click-camera.mp3', volume: 0.5, note: 'picking the customer' },
+  { from: S.checkin.from + 92, src: 'transition-soft.mp3', volume: 0.22, note: 'their card arrives' },
+
+  // ── the till: two punches, the second lighter ──────────────────────────────
+  { from: S.pos.from + 40, src: 'whoosh-fast.mp3', volume: 0.34, note: 'crash-zoom onto the first product' },
+  { from: S.pos.from + 52, src: 'click-camera.mp3', volume: 0.45, note: 'scanned — into the cart' },
+  { from: S.pos.from + 92, src: 'whoosh-fast.mp3', volume: 0.26, note: 'second punch, softer' },
+  { from: S.pos.from + 104, src: 'click-camera.mp3', volume: 0.38, note: 'scanned again' },
+  { from: S.pos.from + 128, src: 'transition-soft.mp3', volume: 0.24, note: 'out to the till' },
+
   // ── S6 the shelf and the order ─────────────────────────────────────────────
   { from: S.order.from - 13, src: 'transition-soft.mp3', volume: 0.26, note: 'into inventory (sample peaks +13f)' },
   ...ORDER_LANDINGS.map((d, i) => ({
@@ -98,9 +110,11 @@ export const buildVo = (S: Shots): Cue[] => [
   { from: S.open.from + 14, src: 'vo/voB.mp3', volume: 1, durationInFrames: 228, note: 'B — less friction for the customer, less work for the owner' },
   { from: S.hero.from + 11, src: 'vo/vo2.mp3', volume: 1, durationInFrames: 150, note: 'Overnight, Bask read yesterday…' },
   { from: S.floor.from + 12, src: 'vo/vo4.mp3', volume: 1, durationInFrames: 132, note: 'The floor runs live…' },
+  { from: S.checkin.from + 20, src: 'vo/voD.mp3', volume: 1, durationInFrames: 156, note: 'D — the front desk (to record)' },
+  { from: S.pos.from + 20, src: 'vo/voE.mp3', volume: 1, durationInFrames: 186, note: 'E — the till (to record)' },
   { from: S.order.from + 8, src: 'vo/vo5.mp3', volume: 1, durationInFrames: 182, note: 'It counts the shelf…' },
-  { from: S.order.from + 196, src: 'vo/voC.mp3', volume: 1, durationInFrames: 256, note: 'C — and most of all, UVALUX gets the data (8.4s, lands on the act break)' },
-  { from: S.compass.from + 277, src: 'vo/vo7.mp3', volume: 1, durationInFrames: 124, note: 'And every UVALUX rep calls…' },
+  { from: S.studio.from + 308, src: 'vo/voC.mp3', volume: 1, durationInFrames: 256, note: 'C — and most of all, UVALUX gets the data (8.4s, lands ON the act break into Compass)' },
+  { from: S.compass.from + 262, src: 'vo/vo7.mp3', volume: 1, durationInFrames: 124, note: 'And every UVALUX rep calls…' },
   { from: S.studio.from + 10, src: 'vo/vo3.mp3', volume: 1, durationInFrames: 296, note: 'Studio turns a quiet Tuesday into a campaign… (re-recorded, self-contained)' },
   { from: S.outro.from + 6, src: 'vo/vo8.mp3', volume: 1, durationInFrames: 174, note: 'Bask. The salon runs better…' },
 ];

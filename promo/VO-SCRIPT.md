@@ -14,7 +14,29 @@ picture is already cut to the right shape and the real takes drop straight in wi
 
 ---
 
-## 1. Record these three — paste block
+## 0. TWO MORE TO RECORD (this pass)
+
+The film now spends real time on the salon's operational layer before it gets to
+marketing, and the UVALUX-data line moved to the very end. Two new shots need voice —
+the front desk and the till. Same voice and settings.
+
+**Do NOT paste the labels this time** — the last takes had "A, 4.4 seconds," read aloud
+and I had to cut them off. Just the sentence.
+
+**D — 5.0s target · plays over the check-in screen**
+```
+A name at the desk brings up everything about them. Last visit, package, whether their waiver is good, and which rooms are free.
+```
+
+**E — 6.0s target · plays over the till**
+```
+Staff scan a bottle, it rings up, and the shelf count moves with it. Nobody types a catalogue — it is already UVALUX's.
+```
+
+Until they land, `voD/voE.mp3` are silent files of the estimated length and the picture is
+already cut to fit them.
+
+## 1. The earlier three (recorded, in the cut)
 
 Same voice, same settings as the existing take (ElevenLabs, "Tessa", speed 1.00, stability 56,
 similarity 40, style 50). Record as three separate clips if you can; if it comes as one file, say so

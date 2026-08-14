@@ -264,6 +264,89 @@
   "compass-empty": {
    "pageH": 1588,
    "cutouts": {}
+  },
+  "checkin-empty": {
+   "pageH": 1143,
+   "cutouts": {}
+  },
+  "checkin-search": {
+   "pageH": 1143,
+   "cutouts": {
+    "checkin-results": {
+     "x": 53,
+     "y": 282,
+     "w": 1418,
+     "h": 142
+    }
+   }
+  },
+  "checkin-card": {
+   "pageH": 1143,
+   "cutouts": {
+    "checkin-panel": {
+     "x": 1516,
+     "y": 147,
+     "w": 372,
+     "h": 757
+    }
+   }
+  },
+  "pos-empty": {
+   "pageH": 1451,
+   "cutouts": {}
+  },
+  "pos-cart": {
+   "pageH": 1451,
+   "cutouts": {
+    "pos-grid": {
+     "x": 32,
+     "y": 265,
+     "w": 1460,
+     "h": 1162
+    },
+    "postile1": {
+     "x": 32,
+     "y": 265,
+     "w": 152,
+     "h": 220
+    },
+    "postile2": {
+     "x": 196,
+     "y": 265,
+     "w": 152,
+     "h": 220
+    },
+    "postile3": {
+     "x": 359,
+     "y": 265,
+     "w": 152,
+     "h": 220
+    },
+    "postile4": {
+     "x": 523,
+     "y": 265,
+     "w": 152,
+     "h": 220
+    },
+    "postile5": {
+     "x": 686,
+     "y": 265,
+     "w": 152,
+     "h": 220
+    },
+    "postile6": {
+     "x": 850,
+     "y": 265,
+     "w": 152,
+     "h": 220
+    },
+    "pos-panel": {
+     "x": 1516,
+     "y": 147,
+     "w": 372,
+     "h": 592
+    }
+   }
   }
  }
 }

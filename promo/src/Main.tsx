@@ -4,6 +4,8 @@ import { BaskCaption } from './lib/BaskCaption';
 import { PaperTitleCard } from './lib/PaperTitleCard';
 import { S0Brand } from './shots/S0Brand';
 import { S1Daybreak } from './shots/S1Daybreak';
+import { S3Checkin } from './shots/S3Checkin';
+import { S4Pos } from './shots/S4Pos';
 import { S2Insight } from './shots/S2Insight';
 import { S4Studio } from './shots/S4Studio';
 import { S5Floor } from './shots/S5Floor';
@@ -61,6 +63,33 @@ export const Main: React.FC<{
       ) : null}
     </Sequence>
 
+    <Sequence from={SHOTS.checkin.from} durationInFrames={SHOTS.checkin.duration}>
+      <S3Checkin />
+      {captions ? (
+        <BaskCaption
+          lead="A name at the desk brings up "
+          accent="everything about them."
+          sub="Last visit, package, waiver, and which rooms are free right now."
+          from={70}
+          duration={SHOTS.checkin.duration}
+        />
+      ) : null}
+    </Sequence>
+
+    <Sequence from={SHOTS.pos.from} durationInFrames={SHOTS.pos.duration}>
+      <S4Pos />
+      {captions ? (
+        <BaskCaption
+          lead="Scan a bottle. It rings up, and the shelf count "
+          accent="moves with it."
+          sub="The catalogue is the real UVALUX one — staff never build it."
+          from={96}
+          duration={SHOTS.pos.duration}
+          rightGutter={620}
+        />
+      ) : null}
+    </Sequence>
+
     <Sequence from={SHOTS.order.from} durationInFrames={SHOTS.order.duration}>
       <S6Order />
       {captions ? (
@@ -77,24 +106,6 @@ export const Main: React.FC<{
 
 
 
-    {/* the Compass act starts 30f early: those frames are the act break itself,
-        shoving the Bask screen up and out of frame (bottom-push seam) */}
-    <Sequence
-      from={SHOTS.compass.from - 30}
-      durationInFrames={SHOTS.compass.duration + 30}
-    >
-      <S9Compass />
-      {captions ? (
-        <BaskCaption
-          lead="And UVALUX sees the network it supplies — "
-          accent="salon by salon."
-          sub="Every rep calls knowing exactly what changed."
-          from={78}
-          duration={SHOTS.compass.duration + 30}
-          dark
-        />
-      ) : null}
-    </Sequence>
 
     {/* Starts 22f early and dissolves, so the return from the dark Compass act
         to ivory paper is a transition rather than a one-frame slam onto an empty
@@ -128,6 +139,25 @@ export const Main: React.FC<{
           /* the page's own "Schedule campaign" button lives bottom-right; the
              caption used to run straight through it */
           rightGutter={640}
+        />
+      ) : null}
+    </Sequence>
+
+    {/* the Compass act starts 30f early: those frames are the act break itself,
+        shoving the Bask screen up and out of frame (bottom-push seam) */}
+    <Sequence
+      from={SHOTS.compass.from - 30}
+      durationInFrames={SHOTS.compass.duration + 30}
+    >
+      <S9Compass />
+      {captions ? (
+        <BaskCaption
+          lead="And UVALUX sees the network it supplies — "
+          accent="salon by salon."
+          sub="Every rep calls knowing exactly what changed."
+          from={78}
+          duration={SHOTS.compass.duration + 30}
+          dark
         />
       ) : null}
     </Sequence>
