@@ -94,14 +94,14 @@ export const buildVo = (S: Shots): Cue[] => [
   // A, B and C are the NEW lines (see VO-SCRIPT.md §1). Until the takes land,
   // voA/voB/voC are silent files of the estimated length, so the picture is cut
   // to the right shape and the real takes drop straight in.
-  { from: S.brand.from + 12, src: 'vo/voA.mp3', volume: 1, durationInFrames: 140, note: 'A — what Bask is' },
+  { from: S.brand.from + 12, src: 'vo/voA.mp3', volume: 1, durationInFrames: 116, note: 'A — what Bask is (3.8s)' },
   { from: S.open.from + 14, src: 'vo/voB.mp3', volume: 1, durationInFrames: 228, note: 'B — less friction for the customer, less work for the owner' },
   { from: S.hero.from + 11, src: 'vo/vo2.mp3', volume: 1, durationInFrames: 150, note: 'Overnight, Bask read yesterday…' },
   { from: S.floor.from + 12, src: 'vo/vo4.mp3', volume: 1, durationInFrames: 132, note: 'The floor runs live…' },
   { from: S.order.from + 8, src: 'vo/vo5.mp3', volume: 1, durationInFrames: 182, note: 'It counts the shelf…' },
-  { from: S.order.from + 196, src: 'vo/voC.mp3', volume: 1, durationInFrames: 200, note: 'C — and most of all, UVALUX gets the data (bridges the act break)' },
-  { from: S.compass.from + 201, src: 'vo/vo7.mp3', volume: 1, durationInFrames: 124, note: 'And every UVALUX rep calls…' },
-  { from: S.studio.from + 10, src: 'vo/vo3.mp3', volume: 1, durationInFrames: 228, note: 'Studio turned that into a campaign…' },
+  { from: S.order.from + 196, src: 'vo/voC.mp3', volume: 1, durationInFrames: 256, note: 'C — and most of all, UVALUX gets the data (8.4s, lands on the act break)' },
+  { from: S.compass.from + 277, src: 'vo/vo7.mp3', volume: 1, durationInFrames: 124, note: 'And every UVALUX rep calls…' },
+  { from: S.studio.from + 10, src: 'vo/vo3.mp3', volume: 1, durationInFrames: 296, note: 'Studio turns a quiet Tuesday into a campaign… (re-recorded, self-contained)' },
   { from: S.outro.from + 6, src: 'vo/vo8.mp3', volume: 1, durationInFrames: 174, note: 'Bask. The salon runs better…' },
 ];
 

@@ -50,18 +50,18 @@ const captionCut = seq([
  * shorten because there the voice is carrying the beat, not the card.
  */
 const voCut = seq([
-  ['brand', 140], // carries the opening "what Bask is" line
-  ['open', 240], // the crane now runs under the whole friction line
+  ['brand', 130], // carries the opening "what Bask is" line (3.8s)
+  ['open', 240], // the crane runs under the whole friction line (7.4s)
   ['hero', 155],
   ['floor', 140],
   ['order', 195],
-  ['compass', 320], // the UVALUX-data line lands on the act break, then the rep line
+  ['compass', 400], // the UVALUX-data line (8.4s) lands on the act break, then the rep line
   ['titleA', 104],
-  ['studio', 240], // holds the three-sentence campaign line
+  ['studio', 310], // the re-recorded campaign line came back 9.7s long
   ['outro', 180],
 ]);
 
 export const SHOTS = captionCut.shots;
 export const TOTAL = captionCut.total; // 1299f ≈ 43.3s
 export const SHOTS_VO = voCut.shots;
-export const TOTAL_VO = voCut.total; // 1714f ≈ 57.1s
+export const TOTAL_VO = voCut.total; // 1854f ≈ 61.8s

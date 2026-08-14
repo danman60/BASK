@@ -110,8 +110,8 @@ export const Main: React.FC<{
         fadeIn={22}
         wordDelay={14}
         words={[
-          { text: 'Back' }, { text: 'to' }, { text: 'that' },
-          { text: 'quiet' }, { text: 'Tuesday.', accent: true },
+          { text: 'And' }, { text: 'it' }, { text: 'writes' },
+          { text: 'the' }, { text: 'marketing.', accent: true },
         ]}
       />
     </Sequence>
