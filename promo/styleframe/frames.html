@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Bask promo — styleframes</title>
+<style>
+  @font-face { font-family: 'Fraunces'; src: url('../public/fonts/fraunces.woff2') format('woff2'); font-weight: 100 900; font-style: normal; }
+  @font-face { font-family: 'Fraunces'; src: url('../public/fonts/fraunces-italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; }
+  @font-face { font-family: 'Inter'; src: url('../public/fonts/inter.woff2') format('woff2'); font-weight: 100 900; font-style: normal; }
+
+  :root {
+    --paper: oklch(98.2% .004 84);
+    --paper-2: oklch(96.2% .004 84);
+    --ink: oklch(21% .012 320);
+    --ink-soft: oklch(42% .014 320);
+    --ink-faint: oklch(55% .014 320);
+    --primary: oklch(58% .14 42);
+    --gold: oklch(72% .084 85);
+    --line: oklch(90% .006 84);
+    --c-paper: oklch(19.5% .012 50);
+    --c-card: oklch(24.5% .014 50);
+    --c-ink: oklch(94% .008 84);
+    --c-ink-faint: oklch(64% .014 60);
+    --c-amber: oklch(79% .125 78);
+    --grad-sunset: linear-gradient(45deg,#feda75 0%,#fa7e1e 25%,#d62976 50%,#962fbf 75%,#4f5bd5 100%);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #111; font-family: 'Inter', sans-serif; }
+  .frame {
+    width: 1920px; height: 1080px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ---- F1: breathing title card (S3) ---- */
+  .f1 { background: var(--paper); }
+  .f1::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(58% 52% at 50% 46%, oklch(99% .012 84 / .9), transparent 70%);
+  }
+  .f1 .line { position: relative; z-index: 2; text-align: center; }
+  .f1 h1 { font-family: 'Fraunces'; font-weight: 500; font-size: 116px; letter-spacing: -0.014em; color: var(--ink); line-height: 1.06; }
+  .f1 h1 em { font-style: italic; color: var(--primary); }
+  .f1 .rule { width: 220px; height: 6px; background: var(--primary); margin: 46px auto 0; border-radius: 3px; }
+  .f1 .sub { margin-top: 34px; font-size: 34px; font-weight: 500; color: var(--ink-faint); letter-spacing: .01em; }
+
+  /* ---- F2: caption over a page shot (S5 look) ---- */
+  .f2 { background: var(--paper-2); }
+  .f2 .plate { position: absolute; inset: 0; background: var(--paper); }
+  .f2 .board { position: absolute; left: 120px; top: 150px; display: grid; grid-template-columns: repeat(4, 372px); gap: 24px; }
+  .f2 .room { background: #fff; border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 1px 2px oklch(21% .012 320/.04), 0 8px 24px oklch(21% .012 320/.05); padding: 22px 24px; height: 190px; }
+  .f2 .type { font-size: 15px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+  .f2 .name { font-size: 26px; font-weight: 600; color: var(--ink); margin-top: 16px; line-height: 1.2; }
+  .f2 .chip { display: inline-block; margin-top: 22px; font-size: 18px; font-weight: 600; padding: 8px 16px; border-radius: 999px; background: oklch(96% .03 155); color: oklch(45% .1 155); }
+  .f2 .ring { background-image: linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#d62976,#fa7e1e,#feda75); padding: 4px; border-radius: 26px; }
+  .f2 .ring .room { height: 100%; margin: 0; }
+  .f2 .count { font-family: 'Inter'; font-variant-numeric: tabular-nums; font-size: 46px; font-weight: 600; color: var(--ink); margin-top: 14px; }
+  .f2 .who { font-size: 20px; color: var(--ink-soft); }
+  .f2 .cap { position: absolute; left: 120px; bottom: 96px; z-index: 5; }
+  .f2 .cap b { display: block; font-family: 'Fraunces'; font-weight: 500; font-style: normal; font-size: 62px; color: var(--ink); letter-spacing: -0.012em; }
+  .f2 .cap b em { font-style: italic; color: var(--primary); }
+  .f2 .cap span { display: block; margin-top: 14px; font-size: 34px; font-weight: 500; color: var(--ink-faint); }
+  .f2 .scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 420px; background: linear-gradient(to top, oklch(98.2% .004 84 / .96) 40%, transparent); }
+
+  /* ---- F3: Compass act + outro wordmark ---- */
+  .f3 { background: var(--c-paper); }
+  .f3 .card { position: absolute; left: 300px; top: 210px; width: 1320px; background: var(--c-card); border: 1px solid oklch(31% .014 55); border-radius: 22px; padding: 34px 38px; }
+  .f3 .salon { font-size: 34px; font-weight: 600; color: var(--c-ink); }
+  .f3 .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 26px; }
+  .f3 .tile { border: 1px solid oklch(31% .014 55); border-radius: 14px; padding: 22px 24px; }
+  .f3 .big { font-size: 48px; font-weight: 600; font-variant-numeric: tabular-nums; color: oklch(68% .15 28); }
+  .f3 .big.g { color: oklch(72% .12 155); }
+  .f3 .lbl { margin-top: 8px; font-size: 20px; color: var(--c-ink-faint); }
+  .f3 .cap { position: absolute; left: 300px; bottom: 150px; }
+  .f3 .cap b { font-family: 'Fraunces'; font-weight: 500; font-size: 62px; color: var(--c-ink); letter-spacing: -0.012em; }
+  .f3 .cap b em { font-style: italic; color: var(--c-amber); }
+
+  /* ---- F4: outro ---- */
+  .f4 { background: var(--paper); }
+  .f4 .stage { position: absolute; inset: 0; background: radial-gradient(46% 44% at 50% 50%, oklch(99.4% .014 84 / 1), transparent 72%); }
+  .f4 .wm { position: relative; z-index: 3; text-align: center; }
+  .f4 .mark { font-family: 'Fraunces'; font-style: italic; font-weight: 600; font-size: 168px; color: var(--ink); letter-spacing: -0.02em; }
+  .f4 .rule { width: 420px; height: 7px; margin: 30px auto 0; border-radius: 4px; background: var(--grad-sunset); }
+  .f4 .tag { margin-top: 40px; font-size: 38px; font-weight: 500; color: var(--ink-soft); letter-spacing: .004em; }
+  .f4 .sub { margin-top: 18px; font-size: 26px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+  .f4 .ghost { position: absolute; border-radius: 20px; background: #fff; border: 1px solid var(--line); box-shadow: 0 1px 2px oklch(21% .012 320/.04), 0 10px 30px oklch(21% .012 320/.07); }
+</style>
+</head>
+<body>
+
+<div class="frame f1" id="f1">
+  <div class="line">
+    <h1>From the finding<br>to the <em>campaign</em>.</h1>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<div class="frame f2" id="f2">
+  <div class="plate"></div>
+  <div class="board">
+    <div class="room"><div class="type">UV · LEVEL 3</div><div class="name">Ergoline Sunrise 7200</div><div class="chip">Ready</div></div>
+    <div class="ring"><div class="room"><div class="type">UV · LEVEL 2</div><div class="name">KBL 6800 Alpha Pearl</div><div class="count">08:12</div><div class="who">Rosalind</div></div></div>
+    <div class="room"><div class="type">UV · LEVEL 1</div><div class="name">Ergoline SunDash 32/0</div><div class="chip">Ready</div></div>
+    <div class="room"><div class="type">SPRAY</div><div class="name">Mystic Tan Unity</div><div class="chip">Ready</div></div>
+  </div>
+  <div class="scrim"></div>
+  <div class="cap"><b>Eight beds, one board — <em>live</em>.</b><span>Countdowns, cleaning, maintenance — read from across the counter.</span></div>
+</div>
+
+<div class="frame f3" id="f3">
+  <div class="card">
+    <div class="salon">Maple Glow Tanning <span style="color:var(--c-ink-faint);font-weight:400;font-size:26px">Burlington, ON</span></div>
+    <div class="tiles">
+      <div class="tile"><div class="big">−17%</div><div class="lbl">Retail sales, 8 weeks</div></div>
+      <div class="tile"><div class="big">62 days</div><div class="lbl">Since their last order</div></div>
+      <div class="tile"><div class="big g">Stable</div><div class="lbl">Visits, same window</div></div>
+    </div>
+  </div>
+  <div class="cap"><b>Every rep calls knowing <em>exactly what changed</em>.</b></div>
+</div>
+
+<div class="frame f4" id="f4">
+  <div class="stage"></div>
+  <div class="ghost" style="left:250px;top:210px;width:420px;height:210px"></div>
+  <div class="ghost" style="right:250px;top:250px;width:360px;height:230px"></div>
+  <div class="ghost" style="left:330px;bottom:170px;width:330px;height:180px"></div>
+  <div class="ghost" style="right:300px;bottom:190px;width:400px;height:170px"></div>
+  <div class="wm">
+    <div class="mark">Bask</div>
+    <div class="rule"></div>
+    <div class="tag">The salon runs better. UVALUX sees the market it serves.</div>
+    <div class="sub">Bask · Compass</div>
+  </div>
+</div>
+
+</body>
+</html>

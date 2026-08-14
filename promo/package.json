@@ -1,0 +1,25 @@
+{
+  "name": "bask-promo",
+  "version": "1.0.0",
+  "description": "Bask / Compass product video (video-shotcraft)",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@remotion/cli": "4.0.509",
+    "@remotion/zod-types": "4.0.509",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.509",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "remotion render src/index.ts BaskPromo out/promo.mp4",
+    "render:nobgm": "remotion render src/index.ts BaskPromo out/promo-nobgm.mp4 --props=props-nobgm.json"
+  }
+}

@@ -19,6 +19,29 @@
 - Deployment Protection is OFF (public demo). Turn back on:
   `curl -X PATCH .../projects/bask -d '{"ssoProtection":{"deploymentType":"prod_deployment_urls_and_all_previews"}}'`
 
+## Product film (2026-08-13) — `promo/`
+Cinematic 42.6s product video for the Nick pitch, built with the `video-shotcraft` skill in
+autonomous free-creation mode. Standalone Remotion project at `promo/` — deliberately OUTSIDE the
+pnpm workspace (`pnpm-workspace.yaml` globs only `apps/*` + `packages/*`), own `package.json` and
+`node_modules`, so it cannot affect the monorepo build.
+- **Deliverables:** `promo/out/promo.mp4` (with BGM) + `promo/out/promo-nobgm.mp4` (SFX only, same
+  timeline via the `bgm` inputProp). Spec + storyboard: `promo/DESIGN_SPEC.md`.
+- **Captures come from the LIVE deploy** (`https://bask-psi.vercel.app`), re-runnable:
+  `cd promo && CAP_BASE=https://bask-psi.vercel.app node scripts/capture.mjs` (add `GEN_CAMPAIGN=1`
+  only when the Studio review screen needs re-shooting — see below).
+- **Two things worth knowing about the product, found while shooting it:**
+  1. **`/marketing?campaign=<id>` renders an empty Review step.** The step tracker draws, the body
+     does not — the builder only holds generated pieces in component state, so an existing campaign
+     never rehydrates. A stakeholder clicking a campaign in the Campaigns tab gets a blank page.
+     Worth fixing before the meeting.
+  2. The **in-session sunset ring is never on screen** at the demo's current virtual clock (5:38 p.m.,
+     every bed Ready/Cleaning). The film renders the product's own `.in-session-ring` markup at
+     capture time rather than starting a real session; the pitch itself will need the clock moved or
+     a live check-in to show it.
+- **One deliberate write to the demo DB:** one campaign was generated through the pitch's own Beat 1
+  (`Create a Tuesday promo` → `Generate the campaign`) to photograph the real Studio review screen.
+  It shows in the Campaigns tab until the next `demo:reset`.
+
 ## Session refresh 2026-08-07 16:17
 Context rot after a long build session (M0 + M1 + deploy in one window). Fresh session started;
 nothing was in flight at the cut — the deploy is live and green.
