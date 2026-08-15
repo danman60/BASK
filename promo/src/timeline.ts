@@ -74,7 +74,7 @@ const voCut = seq([
   ['map', 300], // voC lands on the act break and runs over the map
   ['network', 300], // then the page itself, card by card
   ['wall', 260], // the analytics wall — new line F
-  ['compass', 200], // the rep line
+  ['compass', 160], // the rep line (trimmed: the tail drift ran on past it)
   ['outro', 250], // longer sign-off hold
 ]);
 

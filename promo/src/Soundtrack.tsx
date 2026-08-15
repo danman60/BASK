@@ -119,7 +119,7 @@ export const buildSfx = (S: Shots): Cue[] => [
 
   // ── S10 outro: the fixed riser → impact → sparkle sentence ─────────────────
   { from: S.outro.from + 34, src: 'riser-cine.mp3', volume: 0.36, durationInFrames: 46, note: 'the group photo assembles; crests into the stamp' },
-  { from: S.outro.from + 57, src: 'impact-deep-whoosh.mp3', volume: 0.55, note: 'wordmark stamps at +73 — sample peaks +16f, so pinned at +57. Loudest cue in the film' },
+  { from: S.outro.from + 57, src: 'impact-deep-whoosh.mp3', volume: 0.3, note: 'wordmark stamps at +73 — sample peaks +16f, so pinned at +57. Was 0.55 and read as a giant whoosh over the sign-off; the riser already carries the crest' },
   { from: S.outro.from + 80, src: 'sparkle.mp3', volume: 0.3, durationInFrames: 84, note: 'the sunset rule draws' },
 ];
 

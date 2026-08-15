@@ -61,8 +61,16 @@ export const S10Outro: React.FC = () => {
   const frame = useCurrentFrame();
   const duration = SHOTS.outro.duration;
 
-  const blur = interpolate(frame, [0, 24], [6, 22], {
+  // The backdrop is the Daybreak page. It used to open at 6px of blur, which is
+  // legible — so the cut out of the dark Compass act flashed a readable dashboard
+  // for a beat before the group photo assembled over it. It now starts already
+  // dissolved (20px) and fades UP out of the paper, so the first thing the eye
+  // gets is light and texture, never a screen.
+  const blur = interpolate(frame, [0, 24], [20, 22], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.4, 0, 0.4, 1),
+  });
+  const plateIn = interpolate(frame, [0, 14], [0, 1], {
+    extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.quad),
   });
   const rule = interpolate(frame, [84, 96], [0, 1], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.3, 0, 0.2, 1),
@@ -111,7 +119,9 @@ export const S10Outro: React.FC = () => {
           transformOrigin: '50% 45%',
         }}
       >
-        <PageCam src="textures/today-full.png" pageH={PAGE.pageH} keys={CAM} blur={blur} saturate={0.92} />
+        <AbsoluteFill style={{ opacity: plateIn }}>
+          <PageCam src="textures/today-full.png" pageH={PAGE.pageH} keys={CAM} blur={blur} saturate={0.92} />
+        </AbsoluteFill>
         <AbsoluteFill
           style={{
             background:
