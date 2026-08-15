@@ -19,16 +19,20 @@ aloud and had to be cut off with word timestamps. Just the sentence.
 
 **The network page — ~9.5s · plays over the whole-page descent, 72.5–82.5s**
 ```
-Every salon on one page. How each one is doing, what the whole network is telling you, and every account by name.
+Every salon on one page. What changed, what it means, and what to do about it — so the order grows, and so does the salon.
 ```
 
 **The analytics wall — ~8.0s · plays over the wall lighting up, 83.5–91.5s**
 ```
-Every account, every signal, in one place. No report anybody ran, no spreadsheet anybody kept — it is just there each morning.
+Every account, every signal, in one place — and every one of them points at something a rep can actually do on Monday.
 ```
 
-The consent/"who is sharing" clause is deliberately OUT of that line (Daniel, 2026-08-14):
-the film assumes transparency across the network rather than making sharing a beat.
+Both lines are the 2026-08-14 pass. Two decisions are baked into them:
+- The consent / "who is sharing" clause is OUT — the film assumes transparency across the
+  network rather than making sharing a beat.
+- Each line has to carry BOTH halves of the UVALUX value: units out the door AND the salon
+  still succeeding. Hence "the order grows, and so does the salon", and "something a rep
+  can actually do on Monday" — actionable and targeted, not a dashboard boast.
 
 Why the network page needs one now: line C is pinned to the act break by design
 (`S.studio.from + 308`), and the map beat took that slot. C therefore runs over the **map**
