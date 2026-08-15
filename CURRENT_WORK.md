@@ -19,6 +19,38 @@
 - Deployment Protection is OFF (public demo). Turn back on:
   `curl -X PATCH .../projects/bask -d '{"ssoProtection":{"deploymentType":"prod_deployment_urls_and_all_previews"}}'`
 
+## ⚑ IN FLIGHT (2026-08-14 20:19) — the Network map is BUILT AND DEPLOYED; the film shot is HALF-WIRED
+
+**Shipped to production, commit `6fc36fc`, pushed to master, verified live** at
+`https://bask-psi.vercel.app/compass/network`:
+- `apps/web/src/components/compass/NetworkMap.tsx` — the map PRODUCT_SPEC §14/§191 and PITCH Beat 5
+  both call for and DESIGN_SPEC §6 had deferred past M1. It did **not** exist before today; the
+  "Where they are" section was a four-bar province chart. Verified absent on prod first (one 26×26
+  icon SVG, no canvas, no map lib), then built.
+- Real geometry: public-domain Canada GeoJSON → Lambert conformal conic (standard parallels 49/77,
+  what StatCan uses) → simplified to ~32KB of baked path data. **No tiles, no mapping library, no
+  runtime fetch.** Salons plot at their real city coordinates; same-city repeats fan out so the map
+  count matches the table count.
+- Pin colour comes from `.cp-dot`'s own band colours, so map / legend / table cannot disagree.
+  Sanity check that held: the single amber (needs-attention) pin is Burlington = Maple Glow Tanning,
+  the exact account the Call List flags.
+- Verified locally at `localhost:3419` (12 pins) before pushing, and on production after.
+
+**HALF-DONE — the film shot.** `promo/src/shots/S8Map.tsx` was just written but is **NOT wired into
+`Main.tsx` or `timeline.ts` and has never been rendered.** The finale currently in the rendered mp4s
+is the older three-shot version (network page descent → analytics wall → call list) with **no map**.
+To finish: add a `map` shot to both cuts in `timeline.ts`, place `<S8Map />` ahead of the network
+descent in `Main.tsx`, move the 30f act-break push onto the map shot (S8Network currently owns it —
+only ONE shot may push), re-render, re-DM.
+Fresh textures already captured for it: `compass-network.png` (with map), `compass-network-nopins.png`
+(pins hidden, the base plate the shot drops pins onto), `network-map-card.png`, and
+`layout.json → pins[]` (12 entries: page-space x/y, fill, hollow, name — read off the live DOM).
+NOTE: the network page grew when the map went in — every `compass-network-c*` cutout was re-captured
+at its new y, and `pageH` is now 2564.
+
+A local `next dev` may still be running on port 3419 from that verification — harmless, kill it if
+it is in the way.
+
 ## Product film (2026-08-13/14) — `promo/`  ← DELIVERED, v3
 Cinematic product video for the Nick pitch, built with the `video-shotcraft` skill in autonomous
 free-creation mode. Standalone Remotion project at `promo/` — deliberately OUTSIDE the pnpm
