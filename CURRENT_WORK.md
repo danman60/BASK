@@ -36,12 +36,24 @@
   the exact account the Call List flags.
 - Verified locally at `localhost:3419` (12 pins) before pushing, and on production after.
 
-**HALF-DONE — the film shot.** `promo/src/shots/S8Map.tsx` was just written but is **NOT wired into
-`Main.tsx` or `timeline.ts` and has never been rendered.** The finale currently in the rendered mp4s
-is the older three-shot version (network page descent → analytics wall → call list) with **no map**.
-To finish: add a `map` shot to both cuts in `timeline.ts`, place `<S8Map />` ahead of the network
-descent in `Main.tsx`, move the 30f act-break push onto the map shot (S8Network currently owns it —
-only ONE shot may push), re-render, re-DM.
+**DONE 2026-08-14 20:40, commit `9960cc4`.** The map is cut into the film as its own beat, ahead of
+the network-page descent, in both cuts (`map`, 300f). Rendered and DM'd: `promo-vo.mp4` **106.2s**,
+`promo.mp4` **85.0s**.
+- Studios read as nodes (dot + ring) and an amber chain draws west to east — each salon lands on the
+  end of the line that reached for it.
+- Names take turns in ONE fixed slot on the right, not twelve labels beside twelve pins: the BC and
+  Ontario clusters overlap, so simultaneous labels were unreadable. The named pin holds its ring
+  bright, which is what ties slot to dot. Slot closes holding the amber account (Maple Glow,
+  Burlington) — the one the Call List calls two shots later.
+- Every string, position and colour is capture data off the live page. Nothing authored.
+- The act-break push moved onto the map; `S8Network`'s `PUSH` is now `0` **and guarded**
+  (`interpolate` throws on a `[0,0]` range).
+- **Bug found in the stills and fixed at the source:** `PageCam` painted an ivory `#faf7f2` surround
+  behind the page, so every dark Compass shot showed a paper band wherever the camera framing did not
+  fill the viewport (very visible at the network page's first frame). New `surround` prop, defaulted
+  to the old ivory, passed `T.cPaper` by S8Map / S8Network / S9Compass.
+- SFX: one soft tick per studio, pinned off `MAP_LANDINGS_REL` exported by S8Map so the sound table
+  cannot drift from the picture.
 Fresh textures already captured for it: `compass-network.png` (with map), `compass-network-nopins.png`
 (pins hidden, the base plate the shot drops pins onto), `network-map-card.png`, and
 `layout.json → pins[]` (12 entries: page-space x/y, fill, hollow, name — read off the live DOM).
