@@ -16,6 +16,7 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+import { NetworkMap } from '@/components/compass/NetworkMap';
 import { BAND_LABEL, BandDot, CompassEmpty, ConsentBadge } from '@/components/compass/primitives';
 import { ROLE_PARAM } from '@/lib/demo-scope';
 import { trpc } from '@/lib/trpc';
@@ -135,6 +136,23 @@ export default function NetworkPage() {
           <h2>Where they are</h2>
           <p>Twelve salons across four provinces.</p>
         </header>
+        <div className="cp-card cp-map-card">
+          <NetworkMap
+            salons={salons.map((salon) => ({
+              id: salon.envelope.accountId,
+              name: salon.account.salonName ?? 'Account',
+              region: salon.account.region ?? null,
+              band: salon.account.healthBand ?? 'unknown',
+            }))}
+          />
+          <ul className="cp-map-key">
+            {BAND_ORDER.map((band) => (
+              <li key={band}>
+                <BandDot band={band} /> {BAND_LABEL[band]}
+              </li>
+            ))}
+          </ul>
+        </div>
         <div className="cp-card cp-regions">
           {byRegion.map((entry) => (
             <div className="cp-region" key={entry.region}>
