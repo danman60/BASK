@@ -12,10 +12,13 @@ stability 56, similarity 40, style 50.
 
 ---
 
-## 0. TO RECORD (two lines)
+## 0. RECORDED 2026-08-14 20:57 — nothing outstanding
 
-**Do NOT paste the labels.** The last two takes came back with "A, 4.4 seconds," read
-aloud and had to be cut off with word timestamps. Just the sentence.
+Both lines came back in ONE 18.755s file and were split at the pause into `voG.mp3`
+(9.35s, the network page) and `voF.mp3` (8.67s, the wall). Each half was transcribed
+AFTER cutting to prove no word was clipped. This take read no labels aloud.
+
+**Every VO placeholder in the film is now a real take.** There is no silence left to fill.
 
 **The network page — ~9.5s · plays over the whole-page descent, 72.5–82.5s**
 ```
@@ -60,8 +63,8 @@ Times are absolute in `promo-vo.mp4`. "clip" is the file under `public/audio/vo/
 | 5 | It counts the shelf, and writes the UVALUX order — with a reason on every line. | vo5 | 42.43s | 48.50s | the shelf and the order |
 | 3 | Studio turned that into a campaign. The offer, the post, the text. You still press send. | vo3 | 52.47s | 62.33s | the campaign beat |
 | C | And most of all, it gives UVALUX the data behind every salon — to grow distribution, and keep every one of them succeeding. | voC | 62.40s | 70.93s | starts ON the act break, runs over the map |
-| — | *(the network page)* | **to record** | ~72.5s | ~82.0s | the whole-page descent |
-| F | *(the analytics wall)* | voF **silent** | 83.47s | 91.47s | every Compass surface lighting up |
+| G | Every salon on one page. What changed, what it means, and what to do about it — so the order grows, and so does the salon. | voG | 72.67s | 82.03s | the network page descent |
+| F | Every account, every signal, in one place — and every one of them points at something a rep can actually do on Monday. | voF | 82.73s | 91.43s | every Compass surface lighting up |
 | 7 | And every UVALUX rep calls knowing exactly what changed. | vo7 | 91.80s | 95.93s | the Compass call list |
 | 8 | Bask. The salon runs better. UVALUX sees the market it serves. | vo8 | 96.67s | 102.47s | the sign-off |
 

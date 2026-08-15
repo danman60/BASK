@@ -143,7 +143,8 @@ export const buildVo = (S: Shots): Cue[] => [
   { from: S.studio.from + 308, src: 'vo/voC.mp3', volume: 1, durationInFrames: 256, note: 'C — and most of all, UVALUX gets the data (8.4s, lands ON the act break into Compass)' },
   { from: S.compass.from + 20, src: 'vo/vo7.mp3', volume: 1, durationInFrames: 124, note: 'And every UVALUX rep calls…' },
   { from: S.studio.from + 10, src: 'vo/vo3.mp3', volume: 1, durationInFrames: 296, note: 'Studio turns a quiet Tuesday into a campaign… (re-recorded, self-contained)' },
-  { from: S.wall.from + 30, src: 'vo/voF.mp3', volume: 1, durationInFrames: 240, note: 'F — every account, every signal (to record)' },
+  { from: S.network.from + 6, src: 'vo/voG.mp3', volume: 1, durationInFrames: 281, note: 'G — every salon on one page, and what to do about it (9.35s take, 2026-08-14)' },
+  { from: S.wall.from + 8, src: 'vo/voF.mp3', volume: 1, durationInFrames: 261, note: 'F — every signal points at something a rep can do on Monday (8.67s take, 2026-08-14)' },
   { from: S.outro.from + 6, src: 'vo/vo8.mp3', volume: 1, durationInFrames: 174, note: 'Bask. The salon runs better…' },
 ];
 
