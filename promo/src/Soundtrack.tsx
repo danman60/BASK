@@ -78,17 +78,26 @@ export const buildSfx = (S: Shots): Cue[] => [
   { from: S.order.from + 74, src: 'click-camera.mp3', volume: 0.55, note: 'counter locks on 5 (lands f+76)' },
 
   // ── act break: Compass shoves Bask out of frame ────────────────────────────
-  { from: S.compass.from - 36, src: 'whoosh-big.mp3', volume: 0.42, note: 'the push (sample peaks +21f, lands mid-push)' },
-  { from: S.compass.from - 16, src: 'impact-deep-whoosh.mp3', volume: 0.3, note: 'Compass lands (sample peaks +16f)' },
+  { from: S.network.from - 36, src: 'whoosh-big.mp3', volume: 0.42, note: 'the push (sample peaks +21f, lands mid-push)' },
+  { from: S.network.from - 16, src: 'impact-deep-whoosh.mp3', volume: 0.3, note: 'Compass lands (sample peaks +16f)' },
 
   // ── S9 Compass evidence tiles ──────────────────────────────────────────────
   ...TILE_EMBEDS.map((d, i) => ({
-    from: S.compass.from - 30 + d,
+    from: S.compass.from + d - 30,
     src: 'switch-click-quick.mp3',
     volume: 0.3 - i * 0.04,
     durationInFrames: 14,
     note: `evidence tile ${i + 1} embeds`,
   })),
+
+  // ── the analytics wall: one soft tick per cell as it lights, laddered ──────
+  ...[0, 1, 2, 3, 4, 5, 6, 7].map((i) => ({
+    from: S.wall.from + 20 + i * 12,
+    src: i % 2 === 0 ? 'sweep-short.mp3' : 'wind-swoosh-short.mp3',
+    volume: 0.24 - i * 0.016,
+    note: `wall cell ${i + 1} lights`,
+  })),
+  { from: S.wall.from + 118, src: 'sparkle.mp3', volume: 0.26, durationInFrames: 70, note: 'the wall completes' },
 
   // ── S10 outro: the fixed riser → impact → sparkle sentence ─────────────────
   { from: S.outro.from + 34, src: 'riser-cine.mp3', volume: 0.36, durationInFrames: 46, note: 'the group photo assembles; crests into the stamp' },
@@ -114,8 +123,9 @@ export const buildVo = (S: Shots): Cue[] => [
   { from: S.pos.from + 20, src: 'vo/voE.mp3', volume: 1, durationInFrames: 276, note: 'E — the till (9.04s)' },
   { from: S.order.from + 8, src: 'vo/vo5.mp3', volume: 1, durationInFrames: 182, note: 'It counts the shelf…' },
   { from: S.studio.from + 308, src: 'vo/voC.mp3', volume: 1, durationInFrames: 256, note: 'C — and most of all, UVALUX gets the data (8.4s, lands ON the act break into Compass)' },
-  { from: S.compass.from + 262, src: 'vo/vo7.mp3', volume: 1, durationInFrames: 124, note: 'And every UVALUX rep calls…' },
+  { from: S.compass.from + 20, src: 'vo/vo7.mp3', volume: 1, durationInFrames: 124, note: 'And every UVALUX rep calls…' },
   { from: S.studio.from + 10, src: 'vo/vo3.mp3', volume: 1, durationInFrames: 296, note: 'Studio turns a quiet Tuesday into a campaign… (re-recorded, self-contained)' },
+  { from: S.wall.from + 30, src: 'vo/voF.mp3', volume: 1, durationInFrames: 240, note: 'F — every account, every signal (to record)' },
   { from: S.outro.from + 6, src: 'vo/vo8.mp3', volume: 1, durationInFrames: 174, note: 'Bask. The salon runs better…' },
 ];
 

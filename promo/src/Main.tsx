@@ -10,7 +10,9 @@ import { S2Insight } from './shots/S2Insight';
 import { S4Studio } from './shots/S4Studio';
 import { S5Floor } from './shots/S5Floor';
 import { S6Order } from './shots/S6Order';
+import { S8Network } from './shots/S8Network';
 import { S9Compass } from './shots/S9Compass';
+import { S9Wall } from './shots/S9Wall';
 import { S10Outro } from './shots/S10Outro';
 import { Soundtrack } from './Soundtrack';
 import type { Shots } from './timeline';
@@ -143,11 +145,44 @@ export const Main: React.FC<{
       ) : null}
     </Sequence>
 
-    {/* the Compass act starts 30f early: those frames are the act break itself,
-        shoving the Bask screen up and out of frame (bottom-push seam) */}
+    {/* ── the UVALUX finale ─────────────────────────────────────────────────
+        Three screens, because one never carried it: the whole network page,
+        then every Compass surface on a single wall, then the call the rep
+        actually makes. The act break pushes up into the first of them. */}
     <Sequence
-      from={SHOTS.compass.from - 30}
-      durationInFrames={SHOTS.compass.duration + 30}
+      from={SHOTS.network.from - 30}
+      durationInFrames={SHOTS.network.duration + 30}
+    >
+      <S8Network />
+      {captions ? (
+        <BaskCaption
+          lead="Twelve salons, "
+          accent="one picture."
+          sub="Health bands, what the network is telling you, where they are, who is sharing."
+          from={60}
+          duration={SHOTS.network.duration + 30}
+          dark
+        />
+      ) : null}
+    </Sequence>
+
+    <Sequence from={SHOTS.wall.from} durationInFrames={SHOTS.wall.duration}>
+      <S9Wall duration={SHOTS.wall.duration} />
+      {captions ? (
+        <BaskCaption
+          lead="Every account, every signal, "
+          accent="in one place."
+          sub="Rollups, spread, adoption, coaching — none of it a report anybody ran."
+          from={110}
+          duration={SHOTS.wall.duration}
+          dark
+        />
+      ) : null}
+    </Sequence>
+
+    <Sequence
+      from={SHOTS.compass.from}
+      durationInFrames={SHOTS.compass.duration}
     >
       <S9Compass />
       {captions ? (
@@ -156,7 +191,7 @@ export const Main: React.FC<{
           accent="salon by salon."
           sub="Every rep calls knowing exactly what changed."
           from={78}
-          duration={SHOTS.compass.duration + 30}
+          duration={SHOTS.compass.duration}
           dark
         />
       ) : null}

@@ -5,7 +5,7 @@ export const FPS = 30;
 
 export type ShotName =
   | 'brand' | 'open' | 'hero' | 'floor' | 'checkin' | 'pos'
-  | 'order' | 'titleA' | 'studio' | 'compass' | 'outro';
+  | 'order' | 'titleA' | 'studio' | 'network' | 'wall' | 'compass' | 'outro';
 
 export type Shots = Record<ShotName, { from: number; duration: number }>;
 
@@ -43,7 +43,10 @@ const captionCut = seq([
   ['order', 145], // UVALUX draft order — list-stack-press
   ['titleA', 104], // breathing card
   ['studio', 150], // insight → campaign — card-flip-reveal
-  ['compass', 150], // Compass — the last content beat (last 30f of `studio` = act break)
+  // the UVALUX finale — three screens, not one
+  ['network', 300], // the whole network page, card by card
+  ['wall', 240], // every Compass surface on one wall — bento-light-up
+  ['compass', 150], // and what a rep does with it — the call list
   ['outro', 220], // group photo + wordmark, longer sign-off
 ]);
 
@@ -65,11 +68,14 @@ const voCut = seq([
   ['order', 195], // the shelf and the order (5.9s)
   ['titleA', 104],
   ['studio', 310], // the campaign line (9.7s)
-  ['compass', 400], // LAST content beat: the UVALUX-data line (8.4s) on the act break, then the rep line
+  // the UVALUX finale — the voice carries it across three screens
+  ['network', 300], // voC lands on the act break and runs over the network page
+  ['wall', 260], // the analytics wall — new line F
+  ['compass', 200], // the rep line
   ['outro', 250], // longer sign-off hold
 ]);
 
 export const SHOTS = captionCut.shots;
-export const TOTAL = captionCut.total; // 1709f ≈ 57.0s
+export const TOTAL = captionCut.total; // 2249f ≈ 75.0s
 export const SHOTS_VO = voCut.shots;
-export const TOTAL_VO = voCut.total; // 2524f ≈ 84.1s
+export const TOTAL_VO = voCut.total; // 3034f ≈ 101.1s

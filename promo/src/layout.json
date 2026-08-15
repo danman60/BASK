@@ -347,6 +347,123 @@
      "h": 592
     }
    }
+  },
+  "compass-network": {
+   "pageH": 2097,
+   "cutouts": {
+    "compass-network-c1": {
+     "x": 256,
+     "y": 503,
+     "w": 287,
+     "h": 192
+    },
+    "compass-network-c2": {
+     "x": 563,
+     "y": 503,
+     "w": 287,
+     "h": 192
+    },
+    "compass-network-c3": {
+     "x": 869,
+     "y": 503,
+     "w": 287,
+     "h": 192
+    },
+    "compass-network-c4": {
+     "x": 256,
+     "y": 804,
+     "w": 900,
+     "h": 159
+    },
+    "compass-network-c5": {
+     "x": 256,
+     "y": 1072,
+     "w": 287,
+     "h": 131
+    },
+    "compass-network-c6": {
+     "x": 563,
+     "y": 1072,
+     "w": 287,
+     "h": 131
+    },
+    "compass-network-c7": {
+     "x": 869,
+     "y": 1072,
+     "w": 287,
+     "h": 131
+    },
+    "compass-network-c8": {
+     "x": 256,
+     "y": 1288,
+     "w": 900,
+     "h": 737
+    }
+   }
+  },
+  "compass-accounts": {
+   "pageH": 1090,
+   "cutouts": {
+    "compass-accounts-c1": {
+     "x": 256,
+     "y": 155,
+     "w": 900,
+     "h": 904
+    }
+   }
+  },
+  "compass-coaching": {
+   "pageH": 2265,
+   "cutouts": {
+    "compass-coaching-c1": {
+     "x": 256,
+     "y": 200,
+     "w": 440,
+     "h": 151
+    },
+    "compass-coaching-c2": {
+     "x": 716,
+     "y": 200,
+     "w": 440,
+     "h": 151
+    },
+    "compass-coaching-c3": {
+     "x": 256,
+     "y": 371,
+     "w": 440,
+     "h": 151
+    },
+    "compass-coaching-c4": {
+     "x": 716,
+     "y": 371,
+     "w": 440,
+     "h": 151
+    },
+    "compass-coaching-c5": {
+     "x": 256,
+     "y": 632,
+     "w": 440,
+     "h": 224
+    },
+    "compass-coaching-c6": {
+     "x": 716,
+     "y": 632,
+     "w": 440,
+     "h": 224
+    },
+    "compass-coaching-c7": {
+     "x": 256,
+     "y": 875,
+     "w": 440,
+     "h": 224
+    },
+    "compass-coaching-c8": {
+     "x": 716,
+     "y": 875,
+     "w": 440,
+     "h": 224
+    }
+   }
   }
  }
 }

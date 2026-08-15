@@ -26,7 +26,10 @@ import { E, T } from '../tokens';
 const PAGE = layout.pages['compass-full'];
 const C = PAGE.cutouts;
 const TILES = [C.ctile1, C.ctile2, C.ctile3];
-const PUSH = 30; // act-break duration
+// The act break moved to S8Network (the first UVALUX screen). By the time the
+// call list arrives we are already inside the Compass act, so this shot no
+// longer pushes — it just plays.
+const PUSH = 0;
 const PAGE_SRC = staticFile('textures/compass-empty.png');
 
 const CAM_KEYS: CamKey[] = [
@@ -42,8 +45,9 @@ const FLY_EASE = Easing.bezier(0.3, 0, 0.25, 1);
 export const S9Compass: React.FC = () => {
   const frame = useCurrentFrame();
 
-  // the act break: this whole screen rides up from below and shoves Bask out
-  const inP = interpolate(frame, [0, PUSH], [0, 1], {
+  // PUSH is 0 here now (the act break moved to S8Network), so this resolves to
+  // a plain, un-pushed screen — interpolate would throw on a [0,0] input range.
+  const inP = PUSH === 0 ? 1 : interpolate(frame, [0, PUSH], [0, 1], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: E.heavyOut,
   });
   const y = (1 - inP) * 1080;
@@ -131,15 +135,6 @@ export const S9Compass: React.FC = () => {
         })}
       </PageCam>
 
-      {/* 40px seam shadow riding the top edge while the act pushes in */}
-      {inP < 1 ? (
-        <div
-          style={{
-            position: 'absolute', top: -40, left: 0, right: 0, height: 40,
-            background: 'linear-gradient(to top, rgba(0,0,0,0.30), rgba(0,0,0,0))',
-          }}
-        />
-      ) : null}
       {/* unused import guard */}
       <div style={{ display: 'none' }}>{PAGE_SRC}</div>
     </AbsoluteFill>
