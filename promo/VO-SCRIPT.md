@@ -19,13 +19,16 @@ aloud and had to be cut off with word timestamps. Just the sentence.
 
 **The network page — ~9.5s · plays over the whole-page descent, 72.5–82.5s**
 ```
-Every salon on one page. How each one is doing, what the whole network is telling you, and who has chosen to share what.
+Every salon on one page. How each one is doing, what the whole network is telling you, and every account by name.
 ```
 
 **The analytics wall — ~8.0s · plays over the wall lighting up, 83.5–91.5s**
 ```
 Every account, every signal, in one place. No report anybody ran, no spreadsheet anybody kept — it is just there each morning.
 ```
+
+The consent/"who is sharing" clause is deliberately OUT of that line (Daniel, 2026-08-14):
+the film assumes transparency across the network rather than making sharing a beat.
 
 Why the network page needs one now: line C is pinned to the act break by design
 (`S.studio.from + 308`), and the map beat took that slot. C therefore runs over the **map**
