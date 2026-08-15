@@ -35,11 +35,15 @@ export const PageCam: React.FC<{
   saturate?: number;
   ease?: (t: number) => number;
   dof?: { focusY: number; strength: number };
+  /** Colour behind the page when the camera framing does not fill the viewport.
+   *  Defaults to the product's ivory paper; the Compass act passes its own dark
+   *  paper, or an ivory band shows above a dark page. */
+  surround?: string;
   // Optional absolute-frame override: when PageCam is rendered inside a
   // <Sequence> (which rebases useCurrentFrame), the parent can pass the
   // restored absolute comp frame so CAM_KEYS keep their absolute frame refs.
   frame?: number;
-}> = ({ src, pageH, keys, children, blur = 0, saturate = 1, ease = Easing.bezier(0.33, 0, 0.15, 1), dof, frame: frameProp }) => {
+}> = ({ src, pageH, keys, children, blur = 0, saturate = 1, ease = Easing.bezier(0.33, 0, 0.15, 1), dof, surround = '#faf7f2', frame: frameProp }) => {
   const ownFrame = useCurrentFrame();
   const frame = frameProp ?? ownFrame;
   // find segment
@@ -63,7 +67,7 @@ export const PageCam: React.FC<{
 
   if (!has3D) {
     return (
-      <AbsoluteFill style={{ overflow: 'hidden', backgroundColor: '#faf7f2' }}>
+      <AbsoluteFill style={{ overflow: 'hidden', backgroundColor: surround }}>
         <div
           style={{
             position: 'absolute', width: 1920, height: pageH,
@@ -88,7 +92,7 @@ export const PageCam: React.FC<{
   const persp = lerp(a.persp ?? 1400, b.persp ?? 1400, t);
 
   return (
-    <AbsoluteFill style={{ overflow: 'hidden', backgroundColor: '#faf7f2' }}>
+    <AbsoluteFill style={{ overflow: 'hidden', backgroundColor: surround }}>
       <div
         style={{
           position: 'absolute', inset: 0,

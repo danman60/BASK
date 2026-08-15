@@ -9,6 +9,7 @@
 // explicit durationInFrames; the two impacts are left to ring out on purpose.
 import { Audio, interpolate, Sequence, staticFile } from 'remotion';
 
+import { MAP_LANDINGS_REL } from './shots/S8Map';
 import type { Shots } from './timeline';
 
 type Cue = { from: number; src: string; volume: number; durationInFrames?: number; note: string };
@@ -21,6 +22,10 @@ const ORDER_LANDINGS = [26, 34, 42, 50, 58].map((c) => c + 18);
 // own 30f act-break offset, and leaving it out of this table fired every click a
 // full second before its tile landed.
 const S9_PUSH = 30;
+// S8Map exports its own landing frames, so this table cannot drift from the
+// picture. They are shot-relative and the shot is placed 30f before S.map.from
+// to carry the act-break push, hence the -30; +10 is the sample's own peak lag.
+const MAP_LANDINGS = MAP_LANDINGS_REL.map((f) => f - 30 + 10);
 const TILE_EMBEDS = [0, 1, 2].map((i) => S9_PUSH + 14 + i * 9 + 12);
 
 export const buildSfx = (S: Shots): Cue[] => [
@@ -78,8 +83,21 @@ export const buildSfx = (S: Shots): Cue[] => [
   { from: S.order.from + 74, src: 'click-camera.mp3', volume: 0.55, note: 'counter locks on 5 (lands f+76)' },
 
   // ── act break: Compass shoves Bask out of frame ────────────────────────────
-  { from: S.network.from - 36, src: 'whoosh-big.mp3', volume: 0.42, note: 'the push (sample peaks +21f, lands mid-push)' },
-  { from: S.network.from - 16, src: 'impact-deep-whoosh.mp3', volume: 0.3, note: 'Compass lands (sample peaks +16f)' },
+  // The push moved onto the MAP with the shot that owns it (S8Map, PUSH = 30);
+  // the map's Sequence starts 30f before S.map.from, so the seam is still at
+  // S.map.from and these two keep their relationship to it.
+  { from: S.map.from - 36, src: 'whoosh-big.mp3', volume: 0.42, note: 'the push (sample peaks +21f, lands mid-push)' },
+  { from: S.map.from - 16, src: 'impact-deep-whoosh.mp3', volume: 0.3, note: 'Compass lands (sample peaks +16f)' },
+
+  // ── S8 the map: one soft tick per studio as it lands, west to east ─────────
+  ...MAP_LANDINGS.map((d, i) => ({
+    from: S.map.from + d,
+    src: i % 2 === 0 ? 'sweep-short.mp3' : 'wind-swoosh-short.mp3',
+    volume: 0.22 - i * 0.011,
+    note: `studio ${i + 1} lands on the map`,
+  })),
+  { from: S.map.from + 222, src: 'sparkle.mp3', volume: 0.24, durationInFrames: 76, note: 'the last studio is down — the network is complete' },
+  { from: S.network.from - 13, src: 'transition-soft.mp3', volume: 0.26, note: 'map hands over to the page (sample peaks +13f)' },
 
   // ── S9 Compass evidence tiles ──────────────────────────────────────────────
   ...TILE_EMBEDS.map((d, i) => ({

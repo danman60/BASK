@@ -5,7 +5,7 @@ export const FPS = 30;
 
 export type ShotName =
   | 'brand' | 'open' | 'hero' | 'floor' | 'checkin' | 'pos'
-  | 'order' | 'titleA' | 'studio' | 'network' | 'wall' | 'compass' | 'outro';
+  | 'order' | 'titleA' | 'studio' | 'map' | 'network' | 'wall' | 'compass' | 'outro';
 
 export type Shots = Record<ShotName, { from: number; duration: number }>;
 
@@ -43,7 +43,9 @@ const captionCut = seq([
   ['order', 145], // UVALUX draft order — list-stack-press
   ['titleA', 104], // breathing card
   ['studio', 150], // insight → campaign — card-flip-reveal
-  // the UVALUX finale — three screens, not one
+  // the UVALUX finale — four screens, not one. The act break pushes up into the
+  // MAP, which is the screen the spec calls Nick's; the page itself follows it.
+  ['map', 300], // twelve studios land west to east, chained, each one named
   ['network', 300], // the whole network page, card by card
   ['wall', 240], // every Compass surface on one wall — bento-light-up
   ['compass', 150], // and what a rep does with it — the call list
@@ -68,8 +70,9 @@ const voCut = seq([
   ['order', 195], // the shelf and the order (5.9s)
   ['titleA', 104],
   ['studio', 310], // the campaign line (9.7s)
-  // the UVALUX finale — the voice carries it across three screens
-  ['network', 300], // voC lands on the act break and runs over the network page
+  // the UVALUX finale — the voice carries it across four screens
+  ['map', 300], // voC lands on the act break and runs over the map
+  ['network', 300], // then the page itself, card by card
   ['wall', 260], // the analytics wall — new line F
   ['compass', 200], // the rep line
   ['outro', 250], // longer sign-off hold

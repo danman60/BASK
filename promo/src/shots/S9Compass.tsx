@@ -54,7 +54,7 @@ export const S9Compass: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ transform: `translateY(${y}px)`, backgroundColor: T.cPaper }}>
-      <PageCam src="textures/compass-empty.png" pageH={PAGE.pageH} keys={CAM_KEYS} ease={E.camera}>
+      <PageCam src="textures/compass-empty.png" pageH={PAGE.pageH} keys={CAM_KEYS} ease={E.camera} surround={T.cPaper}>
         {TILES.map((r, i) => {
           const cue = PUSH + 14 + i * 9;
           const land = cue + 12;

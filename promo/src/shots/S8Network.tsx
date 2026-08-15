@@ -16,11 +16,12 @@ import layout from '../layout.json';
 import { PageCam, CamKey } from '../lib/PageCam';
 import { E, T } from '../tokens';
 
-// The act break: this screen shoves the Bask side out of frame from the bottom
-// (bottom-push-stack-wipe, single-seam use — 30f on the card's heavy ease-out
-// with its 40px top-edge seam shadow). It used to sit on the call list; the
-// UVALUX act now opens here.
-const PUSH = 30;
+// The act break used to sit here. It has moved forward onto S8Map — the map is
+// now the first UVALUX screen, so it owns the push (bottom-push-stack-wipe is a
+// single-seam move: exactly ONE shot may push, which is why this is 0 and not
+// another 30). By the time this shot starts the act is already open, so the
+// network page simply cuts in.
+const PUSH = 0;
 
 const PAGE = layout.pages['compass-network'];
 const C = PAGE.cutouts;
@@ -46,13 +47,15 @@ const CAM_KEYS: CamKey[] = [
 
 export const S8Network: React.FC = () => {
   const frame = useCurrentFrame();
-  const inP = interpolate(frame, [0, PUSH], [0, 1], {
+  // PUSH is 0 here now (the act break moved to S8Map), and interpolate throws on
+  // a [0, 0] input range — so short-circuit it the way S9Compass already does.
+  const inP = PUSH === 0 ? 1 : interpolate(frame, [0, PUSH], [0, 1], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: E.heavyOut,
   });
 
   return (
     <AbsoluteFill style={{ backgroundColor: T.cPaper, transform: `translateY(${(1 - inP) * 1080}px)` }}>
-      <PageCam src="textures/compass-network.png" pageH={PAGE.pageH} keys={CAM_KEYS} ease={E.camera}>
+      <PageCam src="textures/compass-network.png" pageH={PAGE.pageH} keys={CAM_KEYS} ease={E.camera} surround={T.cPaper}>
         {CELLS.map((r, i) => {
           const start = FIRST + i * GAP;
           const draw = interpolate(frame, [start, start + 8], [0, 1], {

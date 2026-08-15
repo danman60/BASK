@@ -10,6 +10,7 @@ import { S2Insight } from './shots/S2Insight';
 import { S4Studio } from './shots/S4Studio';
 import { S5Floor } from './shots/S5Floor';
 import { S6Order } from './shots/S6Order';
+import { S8Map } from './shots/S8Map';
 import { S8Network } from './shots/S8Network';
 import { S9Compass } from './shots/S9Compass';
 import { S9Wall } from './shots/S9Wall';
@@ -146,21 +147,34 @@ export const Main: React.FC<{
     </Sequence>
 
     {/* ── the UVALUX finale ─────────────────────────────────────────────────
-        Three screens, because one never carried it: the whole network page,
-        then every Compass surface on a single wall, then the call the rep
-        actually makes. The act break pushes up into the first of them. */}
-    <Sequence
-      from={SHOTS.network.from - 30}
-      durationInFrames={SHOTS.network.duration + 30}
-    >
-      <S8Network />
+        Four screens, because one never carried it: the map of the twelve
+        studios, the whole network page, every Compass surface on a single wall,
+        then the call the rep actually makes. The act break pushes up into the
+        MAP — it is the first thing the UVALUX act says, and the only shot in the
+        film that may push. */}
+    <Sequence from={SHOTS.map.from - 30} durationInFrames={SHOTS.map.duration + 30}>
+      <S8Map />
       {captions ? (
         <BaskCaption
           lead="Twelve salons, "
           accent="one picture."
-          sub="Health bands, what the network is telling you, where they are, who is sharing."
+          sub="Every studio on the map, in the colour of how it is doing."
           from={60}
-          duration={SHOTS.network.duration + 30}
+          duration={SHOTS.map.duration + 30}
+          dark
+        />
+      ) : null}
+    </Sequence>
+
+    <Sequence from={SHOTS.network.from} durationInFrames={SHOTS.network.duration}>
+      <S8Network />
+      {captions ? (
+        <BaskCaption
+          lead="And behind every dot, "
+          accent="the reason."
+          sub="Health bands, what the network is telling you, who is sharing, every account by name."
+          from={40}
+          duration={SHOTS.network.duration}
           dark
         />
       ) : null}
