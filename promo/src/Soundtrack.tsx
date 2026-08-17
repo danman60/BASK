@@ -118,8 +118,13 @@ export const buildSfx = (S: Shots): Cue[] => [
   { from: S.wall.from + 118, src: 'sparkle.mp3', volume: 0.26, durationInFrames: 70, note: 'the wall completes' },
 
   // ── S10 outro: the fixed riser → impact → sparkle sentence ─────────────────
-  { from: S.outro.from + 34, src: 'riser-cine.mp3', volume: 0.36, durationInFrames: 46, note: 'the group photo assembles; crests into the stamp' },
-  { from: S.outro.from + 57, src: 'impact-deep-whoosh.mp3', volume: 0.3, note: 'wordmark stamps at +73 — sample peaks +16f, so pinned at +57. Was 0.55 and read as a giant whoosh over the sign-off; the riser already carries the crest' },
+  // CUT 2026-08-17 (client: "the loud sound effect at the sign-off needs to go").
+  // Stem measurement, not guesswork: the 1:38 spike in the mix is the closing VO
+  // line at volume 1.0 (-3.2 dBFS). The SFX under it were the riser and the
+  // impact; SFX-only peaked -8.9 dBFS there, the loudest effect in the film.
+  // Both are out — the sign-off keeps only the sparkle drawing the sunset rule.
+  // { from: S.outro.from + 34, src: 'riser-cine.mp3', volume: 0.36, durationInFrames: 46, note: 'the group photo assembles; crests into the stamp' },
+  // { from: S.outro.from + 57, src: 'impact-deep-whoosh.mp3', volume: 0.3, note: 'wordmark stamps at +73 — sample peaks +16f' },
   { from: S.outro.from + 80, src: 'sparkle.mp3', volume: 0.3, durationInFrames: 84, note: 'the sunset rule draws' },
 ];
 
