@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#221c1b">
+  <title>Nick, beer sheet</title>
+  <style>
+    :root {
+      --bg: #1b1615;
+      --bg-2: #241d1c;
+      --card: #2b2322;
+      --card-2: #332927;
+      --ink: #f4ece3;
+      --muted: #a3948c;
+      --faint: #7b6d67;
+      --line: #3d312e;
+      --sunset: #d8724d;
+      --gold: #d4a44a;
+      --sage: #86a487;
+      --alert: #cc6a63;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 84% -4%, rgba(216, 114, 77, .16), transparent 20rem),
+        linear-gradient(180deg, var(--bg-2) 0, var(--bg) 16rem);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .shell {
+      width: min(560px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 18px 0 56px;
+    }
+
+    /* ---- header ---- */
+
+    .top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .top h1 {
+      margin: 0;
+      font-size: 21px;
+      letter-spacing: -.01em;
+      font-weight: 650;
+    }
+
+    .when {
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .goal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .goal span {
+      font-size: 12.5px;
+      color: var(--ink);
+      background: rgba(216, 114, 77, .14);
+      border: 1px solid rgba(216, 114, 77, .3);
+      border-radius: 999px;
+      padding: 4px 10px;
+      white-space: nowrap;
+    }
+
+    .posture {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--sage);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      font-size: 14.5px;
+      color: var(--ink);
+    }
+
+    .posture strong { color: var(--sage); font-weight: 600; }
+
+    /* ---- accordion ---- */
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    details[open] { background: var(--card-2); }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 13px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15.5px;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "+";
+      margin-left: auto;
+      color: var(--faint);
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    details[open] summary::after { content: "\2212"; }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--sunset);
+      flex: none;
+    }
+
+    .dot.gold { background: var(--gold); }
+    .dot.sage { background: var(--sage); }
+    .dot.alert { background: var(--alert); }
+
+    .hint {
+      font-size: 12px;
+      color: var(--faint);
+      font-weight: 400;
+    }
+
+    .body {
+      padding: 0 15px 15px;
+      font-size: 14.5px;
+    }
+
+    /* ---- content bits ---- */
+
+    .say {
+      color: var(--ink);
+      background: rgba(216, 114, 77, .1);
+      border-left: 2px solid var(--sunset);
+      border-radius: 0 8px 8px 0;
+      padding: 9px 11px;
+      margin: 0 0 9px;
+    }
+
+    .note {
+      color: var(--muted);
+      margin: 0 0 10px;
+    }
+
+    ul, ol { margin: 0 0 10px; padding-left: 19px; }
+    li { margin-bottom: 7px; }
+    li:last-child { margin-bottom: 0; }
+
+    ul.plain { list-style: none; padding-left: 0; }
+
+    ul.plain li {
+      padding-left: 15px;
+      position: relative;
+      color: var(--ink);
+    }
+
+    ul.plain li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .62em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--faint);
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      padding: 9px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .step:first-of-type { border-top: none; padding-top: 2px; }
+
+    .num {
+      color: var(--sunset);
+      font-size: 13px;
+      font-weight: 700;
+      padding-top: 1px;
+    }
+
+    .step b { font-weight: 600; }
+
+    .mins {
+      color: var(--faint);
+      font-size: 12px;
+      font-weight: 400;
+      margin-left: 4px;
+    }
+
+    .step p { margin: 3px 0 0; color: var(--muted); font-size: 13.5px; }
+    .step p.line { color: var(--ink); }
+
+    .qa { border-top: 1px solid var(--line); padding: 9px 0; }
+    .qa:first-of-type { border-top: none; padding-top: 2px; }
+    .qa b { font-weight: 600; color: var(--gold); }
+    .qa p { margin: 3px 0 0; color: var(--muted); font-size: 13.5px; }
+
+    .tiny {
+      font-size: 12.5px;
+      color: var(--faint);
+      margin: 10px 0 0;
+    }
+
+    .alert-text { color: var(--alert); }
+
+    a.link { color: var(--sunset); text-decoration: none; border-bottom: 1px solid rgba(216,114,77,.4); }
+
+    .foot {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .foot a {
+      flex: 1 1 auto;
+      text-align: center;
+      font-size: 13.5px;
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: var(--card);
+    }
+
+    .foot a.primary {
+      background: var(--sunset);
+      border-color: var(--sunset);
+      color: #201412;
+      font-weight: 600;
+    }
+
+    /* ---- print ---- */
+
+    @media print {
+      html, body { background: #fff; color: #000; }
+      .shell { width: 100%; padding: 0; }
+      details { background: #fff; border: 1px solid #bbb; break-inside: avoid; }
+      details[open] { background: #fff; }
+      summary::after { display: none; }
+      .posture, .say, .goal span, .foot a { background: #fff; color: #000; }
+      .note, .muted, .step p, .qa p, .tiny, .hint { color: #333; }
+      details > .body { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+
+    <div class="top">
+      <h1>Nick</h1>
+      <div class="when">Wed Aug 19, 2:00 PM</div>
+    </div>
+
+    <div class="goal">
+      <span>His read</span>
+      <span>Where the brand sits</span>
+      <span>Owners who would be honest</span>
+    </div>
+
+    <div class="posture">
+      <strong>It is a beer.</strong> He talks first and longer. Nothing needs to happen today,
+      and if he starts reaching for a decision, take the pressure off him yourself.
+    </div>
+
+    <details>
+      <summary><span class="dot"></span>Getting into it <span class="hint">easy</span></summary>
+      <div class="body">
+        <p class="note">Catch up properly first. Business comes up on its own, it always does.</p>
+        <p class="say">"How is the season treating you? What is actually keeping you busy right now?"</p>
+        <p class="note">When it turns to what you have been building, keep it small:</p>
+        <p class="say">"I have been building something for salons. I would rather know what you
+          think of it than pitch you on it, so tell me where it is wrong."</p>
+        <p class="note">Then stop talking. Whatever he says next is the meeting.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="dot sage"></span>Things worth learning <span class="hint">let them come up</span></summary>
+      <div class="body">
+        <p class="note">Not a list to work through. These are what you want to walk away knowing,
+          in whatever order they arrive.</p>
+        <ul class="plain">
+          <li>What salons are running now, and what complaints keep reaching him.</li>
+          <li>What a rep wishes they knew before they walk into a salon.</li>
+          <li>Where the privacy line is that neither UVALUX nor an owner would cross.</li>
+          <li>Whether new openings or existing salons are the easier door.</li>
+          <li>Who else at UVALUX would have to like this for it to be real.</li>
+        </ul>
+        <p class="note">Best follow up you have, and it costs nothing: <em>"What else?"</em>
+          Keep asking until he runs dry.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="dot"></span>If he wants to see it <span class="hint">15 min, phone or laptop</span></summary>
+      <div class="body">
+        <p class="note">Full route if he is into it. Cut anywhere he is not. Slow down where he
+          leans in.</p>
+
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <b>Daybreak</b><span class="mins">1 min</span>
+            <p>Home view, the slow Tuesday signal, the day's priorities.</p>
+            <p class="line">"One screen tells the owner what needs attention before the day gets away."</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            <b>Studio campaign</b><span class="mins">2 min</span>
+            <p>Fresh guided campaign off the Tuesday insight. Never a saved campaign link.</p>
+            <p class="line">"The signal turns into something you can actually do, without leaving."</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">3</div>
+          <div>
+            <b>Floor, check in, waiver, POS</b><span class="mins">4 min</span>
+            <p>One customer from arrival to checkout. Equipment state and payments are simulated.</p>
+            <p class="line">"This is the hourly stuff that mostly sits outside what UVALUX touches today."</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">4</div>
+          <div>
+            <b>Inventory and a UVALUX draft order</b><span class="mins">2 min</span>
+            <p>Product movement reaching a reorder. Catalogue is curated demo data, not a live account.</p>
+            <p class="line">"Demand can write itself back to UVALUX instead of waiting for someone to notice a shelf."</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">5</div>
+          <div>
+            <b>Campaign result and Peers</b><span class="mins">2 min</span>
+            <p>The loop closing, plus peer context. Delivery and cohorts are staged.</p>
+            <p class="line">"It is not another dashboard. You see a problem, do something, find out what changed."</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">6</div>
+          <div>
+            <b>Compass and consent</b><span class="mins">4 min</span>
+            <p>Network view, call list, then the sharing settings.</p>
+            <p class="line">"Bask helps the salon run. If the salon says yes, Compass could show UVALUX where support matters."</p>
+          </div>
+        </div>
+
+        <p class="tiny">Bask, Compass, Daybreak, Floor, Studio and Peers are working names.
+          The film is 1:44 if the room suits it.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="dot gold"></span>Straight answers <span class="hint">if he pokes</span></summary>
+      <div class="body">
+        <p class="note">He will find the edges. Getting there first is the whole credibility play.</p>
+
+        <div class="qa"><b>Is this real software?</b>
+          <p>Not yet. It is a working build to test the idea. The production work is still ahead.</p></div>
+        <div class="qa"><b>Does it run T-Max or the beds?</b>
+          <p>Not today. Designed for it, but I am not promising hardware I have not bench tested.</p></div>
+        <div class="qa"><b>Are the payments and messages real?</b>
+          <p>No. Simulated in this build. Real providers are still a decision.</p></div>
+        <div class="qa"><b>Is there an app?</b>
+          <p>No native app. What you are holding is the web version on a phone.</p></div>
+        <div class="qa"><b>Who owns the data?</b>
+          <p>The salon does, and it controls what gets shared. Compass sees business signals,
+            never customer names, contacts or transactions. Legal still has to bless that.</p></div>
+        <div class="qa"><b>What about moving salons off what they use now?</b>
+          <p>New salons first, help the rest later. Not promising a migration path before we look
+            at the systems.</p></div>
+
+        <p class="tiny">If you do not know: <em>"No idea yet. Let me check and I will tell you
+          by Friday."</em> Then write it down in front of him.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="dot gold"></span>If money comes up <span class="hint">it should not, today</span></summary>
+      <div class="body">
+        <p class="say">"We have not priced it. I would rather find out whether owners actually want
+          it before I pretend I know what it costs."</p>
+        <p class="note">That is the whole answer. Do not fill the silence after it.</p>
+        <p class="tiny">Only if he pushes for a number, and label it as thinking out loud, not a
+          quote: roughly CAD $199 a location for the core, $299 with the intelligence layer,
+          and 2 to 3 salons as a first group. None of it approved, none of it a quote.</p>
+        <p class="tiny">If he opens structure himself, let him. Reseller, revenue share, licence
+          and investment are all live. Ask which one matches how UVALUX actually works.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="dot gold"></span>Why UVALUX would care <span class="hint">only if he asks it himself</span></summary>
+      <div class="body">
+        <p class="note">Do not raise this. It is what you reach for if he asks why a distributor
+          should build software instead of selling more product.</p>
+
+        <p class="say">"The software is not the business. It makes the distribution business
+          worth more."</p>
+
+        <div class="qa"><b>The part that is not subscription revenue</b>
+          <p>Salons that run their day on it do not drift. Reps know the account before they walk
+            in. Forecasting comes off real shelf movement instead of a phone call. Reorders write
+            themselves. You can see which salon needs coaching and which one is ready to expand.
+            That lands on the customer relationship UVALUX already owns, not on a separate
+            software account.</p></div>
+
+        <div class="qa"><b>The category already pays for worse</b>
+          <p>Roughly US$100 to $200 a location a month for core salon software, before payments,
+            texting, marketing, kiosks or analytics. TanTrack claims 5,000-plus salons and one in
+            three — their claim, directional only. Helios has been at it since 1988 and still will
+            not post a price.</p></div>
+
+        <div class="qa"><b>If he wants a size, build it in front of him</b>
+          <p>Bottom-up only, never a headline market report. 10,000 locations at US$125 is US$15M
+            a year. 20,000 at US$175 is US$42M. 30,000 at US$250 is US$90M. Then say the next
+            sentence out loud: these are scenarios, not a claim that those salons exist.</p></div>
+
+        <p class="note">If it turns into a real conversation, this is the question to hand him:</p>
+        <p class="say">"Can UVALUX put a high-retention software product into a network it already
+          serves, make recurring revenue off it, strengthen the distribution business underneath,
+          and move into wellness later?"</p>
+
+        <p class="tiny">That can be a good answer even if tanning software on its own is a modest
+          category. Say that part too. The TAM is the weakest leg of this case and overselling it
+          is how you lose him.</p>
+        <p class="tiny">Anchor for the $199 / $299 above, if it is still live: it replaces salon
+          software plus a marketing subscription plus a fraction of an agency.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="dot sage"></span>Three things to plant <span class="hint">not asks</span></summary>
+      <div class="body">
+        <p class="note">Say each one once, as curiosity. Then leave it alone. Pushing any of these
+          twice is what turns a beer into a pitch.</p>
+
+        <div class="qa"><b>His read</b>
+          <p>"Be honest, where does this miss?"</p></div>
+        <div class="qa"><b>Brand</b>
+          <p>"If this ever went anywhere, would UVALUX want its name on it or sit behind it?"</p></div>
+        <div class="qa"><b>Owners</b>
+          <p>"Who are the owners who would actually tell me the truth about this?"</p></div>
+
+        <p class="note">Softest possible next step, and it beats booking anything:</p>
+        <p class="say">"Want me to send you the link so you can poke at it on your own time?"</p>
+        <p class="tiny">If he offers a real next step, take it and write down who does what and by
+          when. If he does not offer one, let it go. He will have your link.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="dot alert"></span>Do not <span class="hint">30 seconds, read before you go</span></summary>
+      <div class="body">
+        <ul class="plain">
+          <li class="alert-text">Never reset the demo data. That reset shares the production database.</li>
+          <li>Never open a saved campaign detail link. It renders blank. Start fresh from the Tuesday insight.</li>
+          <li>Only <b>bask-psi.vercel.app</b>. Not bask.vercel.app, not a hashed deploy URL.</li>
+          <li>Do not call it Bask Mobile. It is Bask on the web.</li>
+          <li>Do not imply live hardware, live payments or a signed integration.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="dot alert"></span>Before you leave <span class="hint">and if it breaks</span></summary>
+      <div class="body">
+        <ul class="plain">
+          <li>Walk the exact path once, on the phone you are bringing.</li>
+          <li>Film loaded locally and scrubbed to the end.</li>
+          <li>Battery, charger, hotspot. Phone on Do Not Disturb, personal tabs closed.</li>
+          <li>PDF of this saved offline.</li>
+        </ul>
+        <p class="note" style="margin-top:12px">If something breaks, it changes the route, not the
+          truth. No internet, play the film. Route stalls, go back to the home URL and say what you
+          meant to show rather than refreshing over and over. No bed state, run the check in and
+          skip the status ring.</p>
+      </div>
+    </details>
+
+    <div class="foot">
+      <a class="primary" href="https://bask-psi.vercel.app/">Open Bask</a>
+      <a href="../../promo/out/promo-vo-720.mp4">Film 1:44</a>
+      <a href="NICK-MEETING-CHEAT-SHEET.html">Long sheet</a>
+    </div>
+
+  </div>
+</body>
+</html>

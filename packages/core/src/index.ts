@@ -266,3 +266,21 @@ export {
   type CallBriefResult,
   type GeneratedCallBrief,
 } from './ai/call-brief';
+
+// Customer health monitor (Nick, 2026-08-19). Engine adapted from
+// CommandCentered's baseline-anchored relationship health.
+export {
+  BANDS,
+  BASELINE,
+  TUNING,
+  VISIT_POINTS,
+  bandFor,
+  computeCustomerHealth,
+  estimateBottle,
+  healthReason,
+  type BaselineKind,
+  type BottleEstimate,
+  type CustomerHealth,
+  type CustomerHealthInput,
+  type CustomerHealthBand,
+} from './health/customer-health';

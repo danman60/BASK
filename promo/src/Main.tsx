@@ -4,11 +4,8 @@ import { BaskCaption } from './lib/BaskCaption';
 import { PaperTitleCard } from './lib/PaperTitleCard';
 import { S0Brand } from './shots/S0Brand';
 import { S1Daybreak } from './shots/S1Daybreak';
-import { S3Checkin } from './shots/S3Checkin';
-import { S4Pos } from './shots/S4Pos';
 import { S2Insight } from './shots/S2Insight';
 import { S4Studio } from './shots/S4Studio';
-import { S5Floor } from './shots/S5Floor';
 import { S6Order } from './shots/S6Order';
 import { S8Map } from './shots/S8Map';
 import { S8Network } from './shots/S8Network';
@@ -53,45 +50,8 @@ export const Main: React.FC<{
       <S2Insight />
     </Sequence>
 
-    <Sequence from={SHOTS.floor.from} durationInFrames={SHOTS.floor.duration}>
-      <S5Floor />
-      {captions ? (
-        <BaskCaption
-          lead="The Floor: eight beds, one board, "
-          accent="live."
-          sub="Countdowns, cleaning, maintenance — readable from across the counter."
-          from={62}
-          duration={SHOTS.floor.duration}
-        />
-      ) : null}
-    </Sequence>
 
-    <Sequence from={SHOTS.checkin.from} durationInFrames={SHOTS.checkin.duration}>
-      <S3Checkin />
-      {captions ? (
-        <BaskCaption
-          lead="A name at the desk brings up "
-          accent="everything about them."
-          sub="Last visit, package, waiver, and which rooms are free right now."
-          from={70}
-          duration={SHOTS.checkin.duration}
-        />
-      ) : null}
-    </Sequence>
 
-    <Sequence from={SHOTS.pos.from} durationInFrames={SHOTS.pos.duration}>
-      <S4Pos />
-      {captions ? (
-        <BaskCaption
-          lead="Scan a bottle. It rings up, and the shelf count "
-          accent="moves with it."
-          sub="The catalogue is the real UVALUX one — staff never build it."
-          from={96}
-          duration={SHOTS.pos.duration}
-          rightGutter={620}
-        />
-      ) : null}
-    </Sequence>
 
     <Sequence from={SHOTS.order.from} durationInFrames={SHOTS.order.duration}>
       <S6Order />

@@ -1,0 +1,1850 @@
+
+Idea.
+
+[Speaker 1]
+For this.
+
+That was actually X when you thought it was gonna be why this is fine, right? Charles, like, that's a fabulous idea. Nick, I probably I don't lose my data.
+
+[Speaker 2]
+I don't have access to it,
+
+[Speaker 1]
+Right? I was like, what do you mean? Yeah, we Outsourced, so we host the whole thing. I was like, what if I was, so I was like, you can do that. I was like, sure, we can. I'm not clear we could or not, I just know I've got cows later.
+
+The house later, how's after? Yes, yeah. I know, I've got Wilfred in my office. Yeah, yeah, super super smart dude, and he ran data centers before, and um. Can totally 100 take it off. Um. And so I came back with Charles and went to Welfare. I was, like, Hey, listen, let's take a run with us.
+
+So, we are. We're data hosting for Sun Link, some they've wanted to get out of it because they're like we were in the software business. We want to get out of the hosting business so they hosted some clients on their own. Then, everybody else says third party to a company called Argo.
+
+So, we're taking on all of the sunlink customers now U.S, Canada. We have one in Ireland. It was only 10 customers in Canada, so we're and we're seven weeks into it. Wow, it's taken a little bit to, like, get going and ramp up. Well, maybe. Maybe a little longer?
+
+No, we're seven weeks into glow. And we started. Our first customers, probably a month before glow glow is 140 locations. They're the biggest. One of the biggest customers, certainly the fastest growing in the states right now. And so, we started with two small stores, and then it was also.
+
+Hey guys, can you take on glow? We're like, sure, like when they're like, now, we're like, f*** sure, wow, right. And so, um. So, we're bringing we're hosting all the data now. Cool, right? So, I'm going through that that passing process. We're not doing enough with it, right? We're we're not.
+
+There's insights in there. There's insights in there that we're not tapping into, nor do we have rights yet, right? Like, we haven't asked permission. We haven't done all that stuff, but we're slowly bringing all the customers on board. Um, so there's an opportunity obviously to mine and and take on that data, the?
+
+The more interesting side, and this is, this is where we might be able to do something really cool. Um. And I was having this conversation yesterday, so we hired a guy named Nick. Student from Guelph and the son of one of my partner grandson, one of my partners, and uh, he spent the summer kind of just pulled himself.
+
+Our own data put her into Zoho analytics so we can start, you know, kind of doing some better s*** with it than what we're doing today. Uh, I have an AI really any of it yet, uh, we're looking at. The Clone, highest level expert, whatever it's called, right? So, yes, we can.
+
+Kind of wall, our own data, right, as opposed to? You know, kind of being accessible from the outside world. Yeah, right, I don't want other people in my data, regardless of this atomized or not, right? Like it's, it's so we're looking at what that takes, and then to do it for ourselves.
+
+Um. And that's, that was Nick, right? Step into California, right? You know, enough work, uh. So, Mike in California, Mike lure runs, uh, California Sun, probably Sun, and he measures and analyzes absolutely everything in this stuff. He's still doing it all through Exiles. Yeah, he's a data guy. Another thing got me spending it the last one.
+
+I was, like, man, like with what you know in the data you have. Parry Matt, with some sharper tools, sharper tools, right? We'll do an amazing job. The salons that were there in the room? Um. As long as they were there in the room brought some of their data, and so as Mike was going through theirs, his they were comparing to theirs.
+
+We didn't share a lot because of everybody who's in the room, right? But they were all kind of like going through it being like, okay, where am I comparing to Mike right and so on? And I asked a question has been on my mind for four years being, like, hey guys.
+
+If you gave me your data, and I autonomized is fun to back out to you to sit there and say, this is where you fall in Canada. Would that be really interesting, right? Where do you rank? Are you in that? Yes, we are top 10 salons. Yeah, yeah, percentile, right?
+
+Like? You know, you sell 35 tanning lotion while the industry average is 22 right. So, are you above or below right, like scoreboard? Scoreboard it, right? At the same time, maybe I get access to some of the other demographic stuff, right? Yeah, yeah, good. And they're like, f***, Nick.
+
+We'd love that right. And so, I want to build something, and this is where you might come in because I just don't have the person to do it all right either. The platform that people submit their data, right? So give me your. Uh, monthly sales. Give me your unique customers.
+
+Give me your product sales. So on and so forth, right? Um, so they can drive their sets, so they so they like, you know? That's the yeah, we take it in your coaching space. Like, and we, we're spinning back to them in a coaching space. Yeah, because one of the things we've done, like, if I dig through my emails, I'll find a sample of it.
+
+Um, we've taken our data and spun it back to salons to sit there and say, okay, you buy x amount of moisturizers right now that I own the market, right? Nobody else is buying from anybody else because I'm f****** amazing. Right, we bought everybody else, washed them down to nothing.
+
+Yeah, is that the case? Now, there isn't a supplier Advantage argument anymore to be made. No, no, no, yeah, that's it. Yeah, gasped a cough. And congratulations, thank you, thank you. That's one way to win. Yeah. Take them all out. Buy them all out regardless. You know, there were salons who split their buying between us and what was Italian people, right?
+
+Yeah. And, uh, no, that's not the case. So, we have a couple stores that buy come back good time, minor numbers. But we've taken the their sales, hit purchases, and spun it back to them being like, okay. So this is where you rank compared to last year and the year before, uh, and made it.
+
+I think into a colorful thing, at least that's next Direction, right? This is where you fall in industry averages and salons, right, but it's our data. It's only based on participating. Yeah, yeah, and it's, um. Because we know price point. We know where people fall right, because I know what you buy, right?
+
+Yeah, yeah, I'm assuming you buy these. But I'd love to take that next level. And get salons to submit. That's great. So, hey, every month, you go in insights, uh, and that's that's kind of a sell to them. Like, you know, grow your business. Offer insights and then. You know, and you have a bunch already.
+
+Yeah, so you, the ones that don't participate. You can just provide that like as anonymously industry benchmarking correct, but the ones that do participate, you know, they can be visible and whatever, yeah, and where they rank, right? So leaderboards and scoreboarding, and exactly, yeah, right now.
+
+[Speaker 2]
+In a perfect world, right? Like what I love is small is just export their database and send it to me, right? And that gives me like access to all the numbers, right? So, yeah, I can go back historical. Uh, and some songs might do that, and some songs might not.
+
+Yeah, right? Like, if you? You know, they got to be something in it for them. Yeah, right? Um.
+
+[Speaker 1]
+But I want to build that platform. I think we're talking about the same thing. I don't want to be in the software business. Yeah, at the end of the day, I don't want to develop a software for salon management because there's five other guys doing it, and they are primarily U.S market, and they're all gobbling after it.
+
+Uh, I'm aligning with something. Only because of erglion. Yeah, I'm doing the data hosting, which I love because it's f****** gray margin in that. Yeah, yeah. Like, really great margin in that. Oh yeah, and I don't have development costs, and I don't have other, b******* yeah. Burn brain cells and put money into it, right?
+
+When I got quoted what it would take to make Islam softwares and millions? Well, you know, it's it's not, I know it's not, but it, but to make something that is so generalized, right? It's certainly in the hundreds of thousands, I don't know it is. I mean, can I show you?
+
+Yeah. So? I make these, uh? I have a I have a demo of this, and I have a. A video based on demo, and this is not. This is not static HTML. This is a. One day, I can show you kind of like what goes into these, but it's like it's a real app with a database with accounts with sign-ins with and
+
+[Speaker 2]
+And look, there's gonna be a couple modules in this, and we could just steal out the back two modules of it. And if you're
+
+[Speaker 1]
+Like, you know?
+
+[Speaker 2]
+But I just. I also think there's like a SAS apprehanity. I love SAS, and I think there's a and they, and they know you and trust you, I hear it. But it's, it's the back end of. It is really, really challenging, and um.
+
+[Speaker 1]
+So, maybe some of what you built is stuff that we can bolt on to front to end exactly of sunlight, right? Okay, I'll show you.
+
+[Speaker 2]
+Management software for a Tann.
+
+[Speaker 3]
+Insights.
+
+With the gun brings up everything about us last visit package, whether their waiver is good, and which rooms are free. Staff scan a bottle. It rings up and the Shelf count loose all right. Nobody touch the catalog.
+
+The reason on every line? So, here's something.
+
+To social post.
+
+[Speaker 4]
+What to do about it grows?
+
+[Speaker 3]
+Every account, every signal in one place, and every one of them points at something a rapid can actually do on Monday, and every necklace rep calls exactly won't change better, um.
+
+[Speaker 1]
+That's a much sexier clothing. Yeah, shuts up. Yeah.
+
+[Speaker 2]
+I think we're talking about the same. I think we're talking about the same thing, uh, you know, I? I wanna I wanna do that? But without getting into selling software. Yeah, you don't want to. You don't want to get into, like the. The customers. Click on the thing to book a spot or whatever you want you want to come in in the green field, and I'm doing this too.
+
+By the way, like with them, so I a quick diversion over to dance Studios. Yeah, so I
+
+[Speaker 3]
+Work
+
+[Speaker 1]
+With
+
+[Speaker 2]
+Fan Studios. I sell them recitals. I went back with software and I have a chat bot that, uh, you add this chatbots email address to your existing mailing list. It stores every email you send in a knowledge base. Parents can text the chat bot and get quick answers, so I'll just check the studio owner so much easy.
+
+[Speaker 1]
+Easy, and they
+
+[Speaker 2]
+Love it. And it works, and they love it. 30 clients right now! Awesome! I started doing Studio management software dancers, classes, registrations, parents, and all that kind of stuff. And every week, once I started building it every week, I was getting pushed to different competitor, doing it for competitors six, eight 12, and I was like, what am I doing?
+
+Like, I'm like, why? I dropped that repo entirely. Why am I building this? There's so many people doing it already. My specials, no one's doing the chatbot. It's Greenfield. So maybe what you're saying you're? Like, there's you're not interested in in consuming and going after those guys. But there's a green field in the.
+
+The
+
+[Speaker 1]
+Data
+
+[Speaker 2]
+Announced the analytics marketing that, like, you know, from a slant salon owner, like, oh, I can, like, sign up for this and it grows my business. This kind of runs my business. This grows my business. You know what I mean, um? And this,
+
+[Speaker 1]
+Right? Like, I can provide value add, right? Almost, I'd pay for it myself, right, right? You know, like, like, because it would continue to increase, right? So, all I want is your data. Yeah, right.
+
+[Speaker 2]
+Every month,
+
+[Speaker 1]
+You
+
+[Speaker 3]
+Take an
+
+[Speaker 1]
+Export file you upload to me. I will do all the analytics for you, right, right? For anybody who's hosted right and sunlight hosting? Yeah, we have that data live. We have it already, right? Yeah, and so we can give you this insight hour by hour by hour. And maybe there's other.
+
+Maybe there's ways to plug into the Helios back end that we can do the same thing at integration on live update, an API something's got an API now, right, you know, um?
+
+[Speaker 3]
+But I
+
+[Speaker 1]
+Like the data hosting, yeah, like,
+
+[Speaker 2]
+You know, and like, and just help me, like, what's your? And so you have the data you're seeing it. You're feeding it back. They're growing and buying more lotion. Yeah, yeah, that's
+
+[Speaker 3]
+Your end. Yeah, yeah, right? Like, if I can help them increase their turns or?
+
+[Speaker 1]
+Drive more memberships and buy more equipment right, and the marketing like, I just. I think that there's like the the analytics. Is the?
+
+[Speaker 2]
+You know is the is the meat, but the but the the french fries are like the? Are the? You know, the post in the market and the insights and the recommendations and that's and that we can train it on. We have tons of, you know, and you have a lot of training and coaching.
+
+And you know what I mean? Yeah, systematizing that thing that I think you're trying to do. Yeah, which
+
+[Speaker 1]
+Is, and
+
+[Speaker 2]
+You know, I came to you before, and I was, like, oh, we can do this, like series of interviews and driving more more salon owners to open up more salons and why you did. But like? Yeah, something about something about looking at their insights and providing them with like actionable things that they can do to grow their business.
+
+By the way, you know what I mean,
+
+[Speaker 1]
+Yeah,
+
+[Speaker 2]
+And you can charge them, or that can be free. You can start charging them, you know, or it can be, or it can be free because you're gonna you're gonna make it on the back. You could charge them while you. Uh, you can charge them while you pay off the development.
+
+And then, it's free. Yeah, there's a lot of ways to skin it. But, like, that's so build aboard. This is, is? That, and like, kind of like runs end to end. You know, tweaking and testing and whatever you probably have some studios in your network. Yeah, there's a couple people.
+
+You guys want to try to try this out. And yeah, and get some feedback and whatever, but I think it's great. I think we could do that, like, I think if you wanted to talk about that at the next Expo. Oh. How much time do you have and what does it take to keep it around?
+
+So, right now, yeah, let's do it. It's built. Yeah, and I think it's great. And, like, if you wanna if you want to do that, this is what I'm doing right now. I'm like. Talking to people in different different fields, pitching a little platform idea, you know, the subject.
+
+And, like, I'm the hosting, the database, the testing the like, like, if yeah, we can make it work, man like, and so yeah, like some, what's your long-term goal where you at? I'm gonna build, like, I want to like, build these, I think, in 10 years. Five years. I just think that, like, you want to be behind the camera at all.
+
+No, no, I would like to I, I love. I love. I've loved doing video, love doing live streaming, I loved. You know, it's still kind of like paying the bills right now. I have a couple of deals like this cooking that, you know, I would like sell that business.
+
+She saw that come out and help. I have a couple deals like this where it's. I'm just so much. This is gonna rain so much more to think something and curing pain. You know what I mean, and like people succeeding, I don't know, it's versus versus, well, yeah, no, like, like, like, truthfully, it's hard to scale, right?
+
+Yeah, you know, like it's, it's what you do amazing by like January, thirty first. Yeah, yeah, it's good. Okay, yeah, all right, yeah, yeah, Vancouver. Yeah, I was like, hey, I'm meeting, Daniel. Yeah, just make sure you get the insights. I do this thing now with all my conferences.
+
+I transcribe every word of the audio and be like, it's like a zoom. Summary transcript insights like the audio is the Insight all right. The video is kind of like you could if you lost, and it's happened if you lost all the video or all the audio of the thing which one's more devastating.
+
+Well, the audio because the audio is what they send into their insights and the data. Yeah, I can put whatever front on, you know what I mean. So, like I started doing that, and like all my kind of conference, like, that's amazing, like, now, it's data turn that I've turned.
+
+I see these dance Expos, and I turned three days of talking into 200 social media Graphics. I'll just quotes and insights, and most takeaways, and right, like, versus video. You're going to edit a video of yeah, anyway. Sorry, I interrupt no, no, no? Yeah, this is where I'm going these days.
+
+We haven't done this at all or certainly don't do it enough, right? Because he tend to hang out before or after. Yes, yeah, yeah.
+
+Yeah, I want to. I want to build. I want to, uh? I'd like to. I'd like to build sasses like this. And. And, you know, exit, you ever done that not well? I've sold a couple, but not not, like, like, oh my God, I should retire. Yeah, like I did once, but it was all in stock, and I'll watch it, you know?
+
+And because I was in the spicy mood, so I've been in Canada for 10 years. Yeah, can you take your cake? There's 10-year anniversary, okay, 10 years, yeah.
+
+They have wheat and weed, no tragically launched the canvas company. It was the largest Chevrolet, great. I put the hip deal together, weed stocks, weed stocks, uh. At one point, I was in the hundreds of millions. Like? Like, there's a newspaper. Articles of the top 50 people in canvas and I was in the top 10 or 15 days.
+
+While drive. Pardon. Each traffic we have took the whole thing public, probably worth a billion dollars at one point. And I want to share. I went to zero. So, yeah, I've exited and exited. Well, just got tied up in a bunch of stock and watched it all. Go to nothing.
+
+That's crazy. I just sold six canvas scores and. I joke. I put a million bucks into it at 1.1 out of it. There's worse ways to make 100 Grand. Yeah, we've done a lot less for yeah. Or, uh, there's a guy named Cote Dave Cote, who had that f****** smart dude, and uh?
+
+Uh, he's like Nick. This is three years ago coming near bankrupt. He's like, my entire goal is making a dollar. I just want you to make your money back, and I was like, dude, if you do that, if I make a dollar in this, it'll be the first dollar I'm making weed, and I've been at this for 12 f****** years, really right.
+
+So I got 1.1 or someone's out of it, but half in stock. So f****** I got two more months for it to keep up, but um. Yeah, so I. Exiting the business. Is f****** fun, yeah, selling something. Is f****** fun, yeah, right, and growing something that is sellable? Right.
+
+Yeah, it's f****** amazing. A ton of emotion selling something you put so much into. Yeah, right? And a lot of entrepreneurs sit there and say, you know, start a business with the eggs in mind. I'm not always the biggest fan of that, you seem to like care about it.
+
+I care about it, right? Um, and it's your greatest weakness. Yeah, yeah, no, it depends on who you talk to. Yeah, right, because? You know you, you do want to build something that's sexy for somebody else to buy. But with that, too much focus on the mind. I don't think you build enough.
+
+You don't put enough focus in building a good product or a good team or something else to it, right? You know you. I want to build a business that's sustainable. That's something that I want to run forever. And if it's something else that somebody's like, no, I want to take that on.
+
+Be, like, okay, fine, yeah, right, but I really like doing this right, you know, like, like? Too many entrepreneurs I know have built a business for the sole sake of selling it, and it won't get you through. You're shortcut it, right? Like, like, you build a house to flip, right, right?
+
+Instead of putting four inch baseboard on, you put three and a half inch baseboard on because it's going to save you x amount. I live in a flip toast and the Skylight just, uh, started started leaking, right? The Yan scars, yeah, oh, really? Yeah, nice, happy with the whatever, but you're just, of course, of course, you so you buy a place to flip it right.
+
+You make certain choices and decisions. That sometimes may not be the best decision for the house or in business, right? But if you build a house that you want to live in forever, and somebody else happens to want to live in it, too, and are willing to give you enough money for it.
+
+Yeah, f*** yeah, everything's got a price. Yeah, right? Somebody wanted to buy you books tomorrow if I could sell it. That'd be a f****** nice price, but you know, because I enjoy it too much, right? Like, like, I'd have to be in a position where I could walk away and make sure I can walk away.
+
+And then I'd look after the people. Yeah, Lanes, and everybody else who grew it.
+
+[Speaker 1]
+Sold uvalux, you just sit around smoking all your tragically. I don't smoke a lot of weed anymore, neither I I stopped at. My brain has never. Yeah, my brain has never been more a light. Man, I, I didn't think it slowed my thinking down until I like really stopped, and I was, like, oh s***, yeah, I'm almost unrelatable sometimes.
+
+Like, if I can't sleep at night, like, I'll take a gummy, but yeah, yeah. Uh, yeah, I should get back into it. If I, I don't know anybody who has any? Yeah. I really. I used to have a s*** time. Tory yeah.
+
+[Speaker 2]
+Yeah,
+
+[Speaker 1]
+The testing in the window in the whatever, like it takes time to deploy, you know, production, yeah, where you would have paying users or whatever, but? I have like a ton of Sharp Tools, but like not the data and the Partnerships to kind of make that works. I'm, like, yeah, someone's got a gobble gobble up that focus and attention and point it at their problem.
+
+And then, I think there's like real real damage that you can do so, um.
+
+[Speaker 2]
+My favorite business right now, partially. Because it's growing, like, mad, and it's just f****** fun is my data hosting. Like, we have a software computer company contact support. Yeah, we do, um, managed Services. We've got. Like VPS. Uh, no, we've got 700 endpoints under management. Wow, right? All small companies, right?
+
+Our own right? We've got 120 of our own.
+
+[Speaker 1]
+And
+
+[Speaker 2]
+Then we're doing a bunch of work for. And Wilfred, my, my dad's cousin. I'll call him and Uncle, but uh, super, super smart, dude. I don't know if you met Wilfred. I'll sit down.
+
+[Speaker 1]
+He's like on the technical side 100,
+
+[Speaker 2]
+All right, and lives like you, right, will get lost until 1am. Just, yes. Googling looking at s***, yeah, right? And he's my. Insight into AI attacking what's going on in the world, right? Because he's got more time, energy, and small time more passion. Yeah, yeah. In order to follow.
+
+But that's a business. We're scaling, right? And you know, we've. Uh, the data hosting falls under that, and I make really good money on the data hosting interesting, like data centers like, like server Farms like, no, no, no, so we're so. There's something data hosting is we. Um, use third party.
+
+We spin up the servers. We have guys who spin up the servers, but all the security and everything else that's needed and required, yeah. And we're doing database, Associate and database management, and been for slots, right? And some salons have these apis plugged in. These programs plugged in, so you know our guys are just?
+
+You know, kind of organizing and putting all that s*** together,
+
+[Speaker 1]
+You're already hipped. Like, that's the? That's the newest. That's the currency. Yeah, like,
+
+[Speaker 2]
+It's
+
+[Speaker 1]
+Like it was crypto. Yeah, and I still own and believe in crypto, but it's, but that's the new currency. That's the data. Is the data? Yeah, right. But it's. Super scalable. Yeah, and we're doing hosting for a partner right in sunlight.
+
+[Speaker 2]
+And literally the conversations with some link cars. No, I want you guys to develop better software because someone has some gas and really sucks in some ways, right? But I'm like, I want you guys to develop more software. Let me take care of all the other s***, so you can develop better software.
+
+You develop better software. You can bring more customers, and if I'm doing all your data hosting, right,
+
+[Speaker 1]
+Right? You know, if mergers are sick, oh yeah, right, yeah, yeah, right? And when we? I haven't really done that much with. Um, oh, hang on one second. Um. We haven't done that much on the data and data analytics within that right yet.
+
+[Speaker 2]
+But listen to Mike blower and go in there, listening to everything he's doing and listening towards along. Gobble it up and really have a gap in what they're looking at.
+
+[Speaker 1]
+They're hearing it too, and they want it, and they want.
+
+[Speaker 2]
+Yeah, they want to,
+
+[Speaker 1]
+Like, they want to grow their business. They go. I'm just gonna post on this post on the thing that they're not working from data they're not
+
+[Speaker 2]
+Working from data, and we've got this huge push to bring memberships in right, probably heard for us. Yeah, just non-stop EFT and memberships. Yeah, that was Mike's entire thing is memberships. It was interesting. Have you seen the mic video yet, not the California one, but I, I studied? I studied the last one, yeah.
+
+You want another. Let's do it. Yeah, okay. I'll be over in a minute. Thank you. Um.
+
+[Speaker 1]
+Yeah, you can read the transcript. You can throw it in your eyes, summarize it. Yeah, yeah, yeah, that's what I was telling you to do. I was, like, we gotta we gotta not let these things blow by any. No, you know? Um.
+
+[Speaker 2]
+Mike's entire goal with memberships, and he continues to add more and more modalities, not to increase his price. And I'm certainly going wait a minute, right? Like, like, our entire selling pitch, right, has been. Hey, buy a cocoon, right? Because you can. If you're on membership, you can drive your membership from 89 to a hundred dollars, right.
+
+120, right? And how many members do you think you have to upgrade in order to pay for that cocoon, like that's been our pitch, right? Mike's entire pitch is not about increasing membership prices, but it increases in the value right. And so, where? And he's got all these numbers, where the average member stays on for two and a half months, right?
+
+By adding more modalities, you've been able to change that two and a half months to three and a half.
+
+[Speaker 1]
+That's that's worth more than another customer.
+
+[Speaker 2]
+It's worth more than another customer, right? Because they're already there, they're coming in. And so if you're just doing tanning and summertime comes. Somebody will pause or cancel their membership, right? But if you're doing tanning and massage and pimp, and well, and all the other modalities and wellnesses we do, right?
+
+Someone's like, oh yeah, I don't use it for the tanning bed, even though I well, oh, since I have it, I may as well, even out. This part's 10 and wrestling is not, but I'm I stay at beaches because I have all this other s***, right? And I still see, not even that.
+
+So, it's really kind of changed the pitch. That's
+
+[Speaker 1]
+Cool. Um,
+
+[Speaker 2]
+But it's data driven. It's a hunt. Those decisions and the the coaching with the salons are 100 data driven to sit there and say. Give me your unique customers. What's your lifetime Revenue or your annual revenue off of those customers? For the services, right? This is how we proprice your memberships.
+
+This is how long your average member stays, right, you know, like, like, like, those are things that salons aren't looking at right, and those are things that Elaine, myself, and the rest of the team can take that data spend in coaching information.
+
+[Speaker 1]
+Well, that's the thing. So, so Mike, would Mike as a human as a slow and effective human would. Would like get that data and look? Do his insights on it provide? As a coaching session, Salon would pay for it, but him is, and this is what I'm pitching a lot to now.
+
+For the smes, the subject matter experts?
+
+[Speaker 2]
+Yeah, so
+
+[Speaker 1]
+Her Mosey, when you get at his newest, uh, thing this year for, like acquisition.com, because of her Mosey
+
+[Speaker 2]
+Gpt?
+
+[Speaker 1]
+And, and it's, it's, uh, it's. It's so obvious it's already been done. So, he just took all of his books. All of his training videos and whatever transcript vetted into a custom GPT ask, get. Get your coaching anytime thousand dollars a month now. People people built their own and I, and this is I, I'm this is happening to be more and more.
+
+Now, where, like I see something in announce, and I have a janky half-built version of that that I'd already kind of built because I had that idea six months. This is before they did, and then played with it, and then didn't do much with it. But I had a Hermosey gvt same thing.
+
+I just took his books and obvious, right, takes take somebody's teachings build. That into a knowledge base. Ask the knowledge base questions. Have it coach my business, but the reason he charges a thousand dollars a month because he says, I know, that you've all built your own on GitHub.
+
+You can go get a Hermozi GPT like, I know you've all built this from my books and my talks, but acquisition.com's one thousand dollar version is on my private Zoom transcripts. All my private coaching calls data that nobody has only I have. I have fine-tuned the llm on that.
+
+That's why it's worth a thousand dollars like, I'm not quite so sure. Yeah, yeah, yeah. Listen enough Mike blur's coaching that it's almost the same pitch.
+
+[Speaker 2]
+Time and time and time again, whether he doesn't want some of our Zoom calls. But
+
+[Speaker 1]
+Like, this is
+
+[Speaker 2]
+Always done it a thousand times. I was just
+
+[Speaker 1]
+Talking with another guy he does, uh, a physical product design. So, like he, you know from from your dumb idea to a Chinese supplier and everything in between and? And that's what he wants to do. What's a platform where he takes his brain and turns it into a chatbot, and and because it's not worth his time.
+
+Somebody with these inventors and they're wasted dumb ideas. It's not worth his coaching time on a zoom call, but it is worth a 149 dollar available 24, 7 to anybody in the world. Based on his experience to like, run it through his GPT, right? Yeah, um. So, I think what we could circle on is like that coaching that Mike does.
+
+What would do for a salon turning that into a? I mean, assass. Again, they can pay, they cannot pay, and you get your paid and data.
+
+[Speaker 2]
+And they'll
+
+[Speaker 1]
+Do it because they're going to grow their business. Yeah,
+
+[Speaker 2]
+You'll
+
+[Speaker 1]
+You'll do it because you'll get. You'll get action on it. I think you can get a ton of uptake, and they they buy from you right now. You just need more stuff to sell. Yeah,
+
+[Speaker 2]
+I, I'd want a link to bring that value, right? Like, if, if that makes sense, yeah,
+
+[Speaker 1]
+Right? Because, at the
+
+[Speaker 2]
+End of the day, people buy from people, and they won't buy for me and people I want to be the expert in it, right? So if I can pull some of these data, spit it out, put it back to them, and be, like, okay, okay. So, this is what we're seeing, and this is what you're missing, right?
+
+And this Lane, myself, or anybody else who we coach in order to deliver that material? Would be really interesting, right? As opposed to just a bot, right? Not, yeah. Like, like, if, cheers. Yeah.
+
+[Speaker 1]
+You know, but again, like, I like, you can capture. You can capture these people with this kind of spend, you know, these salons. Those are these ones for this one.
+
+[Speaker 2]
+Take all the Sarah s*** and Sarah's got everything recorded. Yeah, transcribe it. Put it in, put it into a GPT and.
+
+[Speaker 1]
+Make
+
+[Speaker 2]
+It a lotion specific blah, blah, blah, blah, right? They can just run on somebody's thing and be, like, hey, I'm looking for something of. Hypoallergenic, blah, blah, blah. They already come to you for this.
+
+[Speaker 1]
+They come to the Expo. They should still come to the Expo, but they come. They come to you guys and I, you've, you've so smartly been. I don't know if that was a reposition, or that was always the position, but it was, like, yeah, it's the lotion, but it's the it's the insights.
+
+It's the training, it's the community.
+
+[Speaker 2]
+Yeah, um. Yeah, like other community's, the biggest one.
+
+[Speaker 1]
+So, if the community is the biggest, I mean, that's part of the platform, too, right? So, I'm doing a thing with the guy right now. It's a social platform. It's got a fee. It's got micro. Social is becoming a thing. Yeah, like where it's? We want the fee we want the followers.
+
+We want the tracking and the profiles the leaderboard, but people are over. Like big social networks interesting, you know? It's like, a it's like, a it's like a little one old man I've tried to do this twice, just of Salon owners and invited lawn owners, you know, and it's boards and messaging.
+
+And so, I have. I built this for a guy because he, he's. When I heard his pitch, I was like, there's no money in what you're doing. But he wants to bootstrap it. So we're in business, uh, and he wants a Fine Arts organizations Opera. Ballet small, you know, where guys do theater and a small social network that posts their content as a TV app?
+
+You can watch their digital offerings and and whatever again. I was, like, No One's Gonna pay to do that, but like he, he has Partnerships he wants to see it go, so I built date social media, a micro social media platform for Fine Arts organizations to post their stuff and and track it a feed, a profile an algo subscribe follow.
+
+Yeah, I think people are like. You know, you see that people like tiring of, like the trying to penetrate on Instagram and whatever, and again, like, that's not for? For customers. But this is for owners and
+
+[Speaker 2]
+Yeah,
+
+[Speaker 1]
+Sports workers, a message board with fancy and sexy.
+
+[Speaker 2]
+Yeah, it's Chris is the old school we lived on them, right? Yeah, the
+
+[Speaker 1]
+Message Wars? Yeah, Community. Like, you're saying, you know, what I mean, like, but persistent and available all the time? That'd be part of the platform. Enemy, I hear you at the end of the day. It's like insights, manual or automated, and actions based on those insights. And then one click to book a coaching call.
+
+Yeah. You know?
+
+[Speaker 2]
+Yeah, and and maybe maybe the community is part of that. Hey guys, this is what I'm seeing in my numbers, right? Yeah, anybody else seen this or this one I'm running into?
+
+[Speaker 1]
+Well, they're doing this already. They're in like Facebook groups. They're in the Facebook groups are so much f****** negativity. It's almost noise, right? Like, I was generally always run by two loud people. Yeah, people who take over chat and people that want to post s*** because? It's
+
+[Speaker 2]
+A bunch of negativity and b*******,
+
+[Speaker 1]
+But in ours, we could do some AI moderation and curation. And again, the more they interact with it, the more data what it's everyone talking about. What are the issues that we're seeing? And whatever you know, what I mean. Build that into your thing. It's, it's just like creating that persistent space to collect the people that are already doing it.
+
+And. I'm just I, I. That's why I couldn't stop thinking about it because I was like, they know you, and they like you. And they buy from you, you just don't offer something. Yet, in this space, I don't, I don't.
+
+[Speaker 2]
+And you know, no, but I, and they'll get it because they're close to getting the data. Let me say it. Host California, right? I've got enough trust in that room if I sat there and I was, like, hey guys, right? I'll sign ndas. I'll put s*** together, like, like, I'll make sure you legally cover.
+
+You know you input your numbers? Or better yet, if you want live insights? You're the host with us will plug Us in somehow, right? And we can do this for that. Well, without the headache of? Build something.
+
+[Speaker 1]
+I mean,
+
+[Speaker 2]
+All this, maybe. At some point we built software, I'll
+
+[Speaker 1]
+Just I'll just come back to if you can get their spend because they're all spending on it. And on your website, you say? And again, it wouldn't hinge on this, right? But because you can, you can. I do like the kind of backdoor. So to speak, no judgment.
+
+[Speaker 2]
+Never me. I'm stressed. Other people enjoy it, so why not, right? No, I mean to be clear. I'll try anything twice, first time positive or negative. Bad trip bad trip had a bad trip, but like, if, like, a dime might be better, you never know, right? But if you did like, if you, if you did?
+
+If you did have, if you could build the best mouse trap? And they liked it, and it was, and it was free because you get the data. And that's part of the exchange or whatever. You, you don't.
+
+[Speaker 1]
+Like, it's, it's yours from the outfit from the onset. It's yours from The Click
+
+[Speaker 2]
+Waiver, yeah,
+
+[Speaker 1]
+Versus the other things you're kind of. You're athlete, and I'm telling you that. I, they're spending 130, you know, if you came to 50 or 20, you're free. They'd go, huh? And uvalux, whose focus grouped this with salon owners and and done whatever? And like the headaches and. I'm telling you and I, I, you know?
+
+I'll speak for the industry. I'll speak for me. Yeah.
+
+[Speaker 2]
+The
+
+[Speaker 1]
+The build and the iteration? Is?
+
+[Speaker 5]
+It's I just I, I hear you and
+
+[Speaker 1]
+You've heard quotes or whatever and these software companies are trembling.
+
+[Speaker 5]
+It's so fast, it's so fast,
+
+[Speaker 2]
+It's so fast,
+
+[Speaker 1]
+It's it's. It's a demo and it's, and it's 10 salons on on a zoom call clicking through it, and I'm just talking and then working that transcript into the app and. I'm telling you the the the speed. Is, is shocking. And yeah, like, you know, depending on the complication of it?
+
+But yeah, and. And so, I take something like, sunlink, right. I lean on because I'm closest. They have.
+
+[Speaker 2]
+The largest chains in the U.S, right Palm Beach Megatan at 200 stores glow at 100 summings. Sun Tan City at 200 stores, right? So that's POS and booking. And, yeah, right, and they have that they have that base right already. Well, they don't have as the independence. A, because they're too expensive, and B I don't think they have the right product for it, right?
+
+So, the big guys that bought on because the big guys have bought on?
+
+[Speaker 1]
+Um, and you know these guys, so maybe maybe that's a condition you're? Like, oh, I couldn't. I couldn't come out with. You know, Nick's front end because it would piss off my partners. And yeah, yeah, but if we're helping them with.
+
+[Speaker 2]
+If if they're that back end, or they're the ones running the software platform, and they continue to put the money into doing it because they've got the volume in order to do so right and integration API. I'm integration, I'm doing the data hosting, and I am, you know, providing the analytics spin back out.
+
+I think it's great and everything's great.
+
+[Speaker 1]
+Um, so look, it's green space. It's exactly me too. Yeah, you're not you're, not you're not. You're not coming in like elbows up. Like, let's, let's fight. No, it's kind
+
+[Speaker 2]
+Of, like, here's something I've always been interested in. So, look, if you wanna I, I don't know how you kind of how you kind of go to market, but if you wanted to. At your exposure salon owners prior to that, have a little rollout of like beta and talking and.
+
+[Speaker 1]
+And, or, if you have some data, you want to kind of see what insights are available. I have a copy of data.
+
+[Speaker 2]
+Because I rebuilt the salon. And here's your, as you mentioned, um, privacy, and stuff.
+
+[Speaker 1]
+So? You know, some guys are doing like local, like local llms, and looking at this at all.
+
+[Speaker 2]
+No, but.
+
+[Speaker 1]
+So, like you, I'm not sure if we're providing a value back.
+
+[Speaker 2]
+Right in the insights and what people are doing on how many people care? There's nothing for prioritarian people. Database, other than who their Tanners are, right. So,
+
+[Speaker 1]
+Dude,
+
+[Speaker 2]
+Put in the f****** contracts in that sits and says, hey, I'm not going to start marketing to your consumer, like, that's not my business. My business is, they know you want to like you, and they trust you. They took a box, and it's over. Yeah, um.
+
+[Speaker 1]
+Anthropic is a trillion dollar company. Yes, you know what, I mean, super woke, yeah, trillion dollar company. A trillion dollar company. It's just like, yeah, I don't know. I, I? Yeah, with my customers, there's clicks and boxes, and whatever my own data, I'm just like give me insights and whatever take a look.
+
+I never him, and ha about it, but you know? That if, if, like, privacy is number one, you can go down like a local llm route own some own some gpus. So, if you don't care about that, then I don't think that's the, you know, you can make it pretty deterministic and and
+
+[Speaker 2]
+Whatever, but I've got a couple people in that room that would just sit there. And even if I'm like, Hey, listen. Plug me into your data. I'm running this analytics thing, and I'm going to, you know, try with a couple customers, and it's specifically the ones in California, and they're there.
+
+I'll be like, hey. Plug me in. To come up with some sort of agreement. Plug me in. Let me let me run a couple numbers and see what. Let's get back to. So, what do you think is the most valuable output for the customer?
+
+[Speaker 1]
+Like, you know, in my, when I chased it down, it was like Tuesdays are are lagging on this click. Tuesday, you know, six week drift campaign on Tuesday's promo codes disc, uh, you know, discount marketing package, but what do you think that is I? I think it's it's
+
+[Speaker 2]
+Insight to the customer as they're coming in about that customer. It's been so long since I bought this. This is historically what they buy CRM. Like a customer sales helper, right? Like, almost, like, here's a second monitor as you're pulling somebody up. And it's, hey, Daniel's coming in? Well, hey, it's been 85 days since Daniel last spot.
+
+So, this is what he generally likes.
+
+[Speaker 1]
+You ever play The Sims? Yeah, oh,
+
+[Speaker 2]
+Long, long, long time ago. Okay, so stay with me because I built this for my business. Uh, it's one of my like, I built a.
+
+[Speaker 1]
+I'm a gamer. So, my whole, my whole CRM is, um, tactically skinned. You know, some of the military tactically on that, like Battlefield?
+
+[Speaker 2]
+So, I think your game of choice,
+
+[Speaker 1]
+My game of choice, yeah 64 player, you know what I mean, like, can you really, can you join a server in 32 and everyone's losing? But, like, you made the difference. Yeah. I'm enjoying the weight. So, so I built in my CRM. Customer health monitor and in The Sims.
+
+When you try to well, it's interesting husband would have the career go out and work. Wife would stay home as it should be and and maintain. We both know. That's how.
+
+I would love to just like raise my kids. Yeah,
+
+[Speaker 2]
+Yeah, exactly.
+
+[Speaker 1]
+Collect SAS, but like, so health monitor, uh, in The Sims, you know for the for spouse's career to advance, they had to have like the Friendship scores that were like maintained at 100 and 100 friendship score had like greened and every time at every you know lapse and it would go down Five Points.
+
+And it's like a health score of that customer of that relationship. And if you kind of pissed that person off, it would drop down 10 and you could see them all on a grid and and. Like, okay, this one's lapsing, like, maybe you want to reach out to that one you want to do that customize or reach out an email personalized email to that one and whatever.
+
+So, yeah, we could put all the we could put all their customers on a grid and go like these ones are great. They're like highly retained. These ones are lapsing, you know, like, you know, the value of a good CRM. Like, if these ones that you just send this personalized, reach out to these ones that have completely lapsed if one of them comes from that.
+
+Reach Out. Yeah, like? Are easy, you know what I mean? So, yeah, like, that would be easy, like, from the from the customer retention side or the salon, um, slow period. Side special promotion for this day. You already do this, but like in summers and and whatever or a particular day.
+
+Slun's leg. Sloan's
+
+[Speaker 2]
+100 leg.
+
+[Speaker 1]
+General knowledge ability to run a business, right, right, like,
+
+[Speaker 2]
+Like, kind of like
+
+[Speaker 1]
+Dance studio owners 100, their their personality driven they like, have like friends and and like a type, and they could. They can do it, but then, when it comes to like operating from much facts and logic and data and driving things they need that push and but, but they'll keep track of those people about 100 people.
+
+They'll keep they'll keep track of them or whatever, maybe similar, very similar right. And the number of people that were in that room in California, that?
+
+[Speaker 2]
+Know their business or run their business, and we just sit there at the end of the year. Be like, oh, there's millions, right? Like, it shocks me sometimes that, you know? They run a business like this, um? Yeah, yeah, I've got a couple slime owners. You can almost hand pick right and be like?
+
+Let me in right. Let me run some numbers analytics. Let me see what I can spit back to you.
+
+[Speaker 1]
+Well, you know, I've been doing this to you. Record it. You record a little testimonial with them on zoom and screen that at your pitch again. I don't. I'm worried about I'm, I'm worried about perfecting a product. Yes.
+
+[Speaker 2]
+Okay and analyze enough the data that we can sit there and say, okay, this is what's actually move the needle and actually move the needle, right? So, part of it, part of this evil extreme, right. Understanding unique customers and all the stuff that Mike tracks, right, like, help customer help sawn owners bring that in and see how they go naturally and how they rank can compare.
+
+But the next step two is how, what kind of dashboard can we build that can affect their ongoing business and primarily train their staff right
+
+[Speaker 1]
+Right to be better salespeople people?
+
+[Speaker 2]
+Better operators to be whatever. That's an
+
+[Speaker 1]
+Interesting one, you
+
+[Speaker 2]
+Know, and a
+
+[Speaker 1]
+Conversation flows, decision trees. Yeah, sales and CSR training. Yeah, kind of CSR trains. Take some of the Sarah stuff make it specific to customer based on their buying history and so on, right? You know, like, it's?
+
+[Speaker 2]
+The creep, the scope creep, right, which I hate in South Carolina, are that Japanese. Bonkers about it, um, is massive with this, right? So, to kind of just put the blinders on and be, like, okay, let's focus on this first highest value, highest leverage. Look like, I'm, like, you know?
+
+[Speaker 1]
+So,
+
+[Speaker 2]
+You've, you've got me. You've got obviously a Chateau in the dance industry.
+
+[Speaker 1]
+Yeah,
+
+[Speaker 2]
+Right. Where else are you? I got the guy.
+
+[Speaker 1]
+I got the, uh, there's no old stuff right now. Sorry, there's no hold stuff.
+
+[Speaker 2]
+Unfortunately, I just stayed with
+
+[Speaker 1]
+Jan, um, Jan's building his own, uh, platform. And he was too. He got like a sweetheart deal Chef. He's telling us, um. But like, no, he, it's it's, I don't think it's classified. He's building a personal finance dashboard, which is great, so I, I finally. Uh, was worth enough to have a chat with a financial planner.
+
+My wife was finally, like, what are we doing with all this? And I was, like, yeah, let's go to, uh, school to Buddy and needs assessment and a scan of all your things. So, Jan's doing a personal finance dashboard, uh, you know, Jan, Jan, Arp?
+
+[Speaker 2]
+Yeah, yeah, that's my
+
+[Speaker 1]
+Cousin.
+
+[Speaker 2]
+Oh, you didn't realize he was your cousin. Me and
+
+[Speaker 1]
+Jan Harper cousins. Oh, I didn't realize that, yeah. Did you ever attend to fintech show? Yeah. Yeah, I'll show you video. Well, you're gonna show me a video. I made the thing, I know, I know, I know. But that's how I originally. No, no, no, I didn't come into uvalux.
+
+I came into uvalux through Emily. More. Emily Moore.
+
+[Speaker 2]
+But then somewhere, I put the connection that you were. We talked about that.
+
+[Speaker 1]
+Yeah, we talked with you, Brendan, and and Holt. He's great. And, yeah, and they're great. Yeah, and I think I'm talking Brendan twice a day, three times a day. Well, they got, um. What's the one music Jan's excited about right now? 30 portfolio companies are jingles for them all.
+
+But
+
+[Speaker 2]
+I remember, but there's less homework at the moment, right? Yeah,
+
+[Speaker 1]
+No. We kind of sunset it, the the whole the whole show. Again, he's kind of gone into. Um. Those shows were super fun! The shows are super fun, and Brennan and I working on bringing it back, right? But yeah.
+
+[Speaker 2]
+Yeah, yeah, loved that whole. I'm not wearing my old shirt today. I was literally wearing yesterday, really right?
+
+But it's which was your favorite? Which was my favorite show, uh so, or open company two, one or two.
+
+[Speaker 1]
+Naoris, that's what. That's that's. What talks was the biggest launch? Yeah, Jan, sitting another when I, we, because, like, when I started with the fintech show,
+
+[Speaker 2]
+But that whole software and how he was bringing pictures in and ranking them and going through a whole decision tree and everything else.
+
+[Speaker 1]
+Great. F****** great. The coaching chain's great. He's a smart guy, he'll do it, he, I think. I don't know if he's had a big exit yet, no?
+
+Yeah. You're bit, you're barely a mentor. Nick no, no, no, I miss my. No, I miss my big exit, right? Yeah, yeah, yeah, um, no, we're just co-workers. No, but it's, it's fun to I, I.
+
+[Speaker 2]
+It's, it's.
+
+[Speaker 1]
+It's the I do the competitions with my competition platform. There's a company called dance bug, and they're at it, you
+
+[Speaker 2]
+Know. Do
+
+[Speaker 1]
+You know him, I don't know
+
+[Speaker 2]
+Him, but I, my daughter, was in comp dance for a few. So we're taking on Dan's book, and and they're begging for it, the the clients.
+
+[Speaker 1]
+You know, they don't like the deals. And they don't like the, you know, but it's. And they're they're, not their profile, or whatever, at least 30 to 30 million or something because there's business there. Um, because I come from media, video, and whatever, but now the software, and then.
+
+Now, we're all doing AI stuff, and and doing whatever there and the studios and the chat bot and the Fine Arts guy. And. Um. You have to have the paying clients. I'm doing things I got like, uh, we do homeschooling. My wife is part of a classical conversations group.
+
+We're doing it. We're doing an app.
+
+[Speaker 2]
+Do you homeschool, your kids,
+
+[Speaker 1]
+Homeschooler, kid, my wife, does it? No way, I mean.
+
+[Speaker 2]
+Those are good. We'd love five and two. We'd love to be at the office school. I mean, we. I don't know man.
+
+[Speaker 1]
+I'll I'll be kg with how much with how much talk we're talking my beliefs. But, like, yeah, we're like.
+
+[Speaker 2]
+Kg about the education system. Yeah, so are you? So am I. That's why we built it. That's why you built Independence School, exactly right? So, I believe, a lot of the teachers suck. I think it's too shin. Nice, slow. And you know, we're kind of. We're not big on institutions or.
+
+Um.
+
+[Speaker 1]
+Yeah, so, like, I mean, I I? Fun business to be somehow. Yeah. I could be somewhere in that education space, right? Yeah, doing something on that side?
+
+[Speaker 2]
+That's tight, though. I don't think money, there's no money. So, yeah, I guess, like, it'd be cool, like? The budget at the Oxford schools, literally nickels, like it's? The passion project.
+
+[Speaker 1]
+Uh, yeah, yeah, it's a fashion project. It's also the hardest thing I've ever wanted, right? I will run those thousand failing Kansas businesses before I choose to do that. Yeah, yeah, exactly. Maybe the Cannabis business was like a big exit, like I can kind of like, do something here or whatever, you know, no.
+
+But, but it's, it's people care most about their kids, and certainly their kids education. And teachers are not.
+
+[Speaker 2]
+Easy people manage.
+
+[Speaker 1]
+If you're gonna make a giant profit in education, you're gonna like be in the University administrator. You know, it's it's not for money. It's not for money. So, like, you know? We, we do it because we have 142 amazing kids there. Give or take right the year?
+
+[Speaker 2]
+And we have a faculty basis. Just phenomenal. I gotta do more external fundraising. In order to really make it because our teachers get paid less way less than the public board publicly funded board and. We don't want that, right? You know, that's how I see video in my future.
+
+Like, I have a friend, oh man, I have a, you know, the Poiries? Yeah, uh, Laura Laura. Yeah, Laura was a teacher with us. Okay,
+
+[Speaker 1]
+Yeah. Laura's daughter,
+
+[Speaker 2]
+Teal, and Olivia, yeah, a younger daughter, teal, a close friend of my wife's. Yep, growing up.
+
+[Speaker 1]
+You know, uh, super Christian, yeah, has a kid. He leaves, okay, you know, single, mother, yeah, 32, 33, 34. Just got engaged. Oh wow. It's amazing. Yeah, love to see it. Love to see it, you know? Gonna do a wedding. I'll do some video for their wedding. Like, like, like, that's how I see video of my future is kind of like, oh, I like doing this.
+
+I'm good at it, I love you. It's not to make money. You know what I mean, like, you're like, I'm not gonna get in with all the guys coming in now to shoot whatever for 300 a day and and they would like. You cut your teeth
+
+[Speaker 2]
+On it, right? It was obviously something you're really, really good at. And you know, I like doing it like I loved. I love serving the clients. I've
+
+[Speaker 1]
+Been using the AI stuff on the deliverables now, like the custom graphics and the moving logos and the 3D, whatever, like I've been adding on and and doing whatever. But yeah, Nick
+
+[Speaker 2]
+Jumping on a bike over the crowd. Let's put that in the next one. I love this, I, I would love to still. I think there's something in a generative video.
+
+[Speaker 1]
+Hey, I was a musician before this, uh, all this, and you can write songs, and I still like lead worship at my church.
+
+[Speaker 2]
+Okay,
+
+[Speaker 1]
+Uh, keyboard and singing. I'd love to play and we go to Hope in our kit. Okay, nice. It's great, great community, and great for the kids. And like, moral code and and whatever. And, like, they're kind of like, they're not super. You know, like angsty Christians? It's like, it's like a nice Vibe.
+
+I still would love to do like a I think, like the animated movie space, family animated musical. I like a passion project, I would. I would kind of do something like that. Yeah on, like the on the on, like the the platform, like I don't dream of like doing like a Facebook or a ticket.
+
+I, I would, I would have like. I would have some sass. I have an IPTV. Yeah, you know, yeah,
+
+[Speaker 2]
+Yeah, yeah, I've got one two.
+
+[Speaker 1]
+Which one do you use
+
+[Speaker 2]
+A guy of Crete, uh, his name Cree?
+
+[Speaker 1]
+So, me and Dan Poirier,
+
+[Speaker 2]
+Yeah, the
+
+[Speaker 1]
+Grandpa. We made Dan TV. He was doing IPTV reselling. I said, what do you pay? He's, like, I pay 25, and I send people up for 30. And I said, let's go find. Let's go find what the guy's giving you the credits for whatever. And I found it, and it's, and it's 250.
+
+Per credit. One credit one month shouldn't tell you this if I'm gonna pitch you as a customer. Um, no, I want to partner with you. I went and got it. Yeah, I went and bought the credits in bulk. I had to lay down like 700 bucks in crypto. Fine to buy them from, like f****** Russia and got them all.
+
+Wrote my own app, because what was the complain about is the interface. Yeah, how s***** it is wrote my own, like Netflix style app. It's me and Dan Poirier, it's called Dan TV,
+
+[Speaker 2]
+Yeah
+
+[Speaker 1]
+25, customers now s*** 250, 20 bucks a month really. So I, I bought it. And it works on a fire stick or or installed it. There's no, there's no hardware. Oh
+
+[Speaker 2]
+Yeah, I got the box. I bought it formula box. Yeah, yeah. The guy's name is pre is out of Toronto. Dunny uses them. Don't you turn me onto him and Danny's got four? Yeah, yeah, okay. And I bought one. Well, when we did Vancouver over Super Bowl weekend.
+
+[Speaker 1]
+Yep, yeah, right? And so, I was,
+
+[Speaker 2]
+Like, oh, I'm gonna buy one of these because I'm hosting a f****** bunch of people in my Suite, mostly Americans. Yeah, yeah, we're gonna. Watch f****** Canadian Super Bowl like they're going to hate this. Yeah, commercials. Yeah, yeah, don't give me the good stuff. Yeah, yeah. So I bought one to primarily host.
+
+Uh, there's a bunch of Americans, and
+
+[Speaker 1]
+Then
+
+[Speaker 2]
+I brought the box down to Florida because I was in Florida shortly.
+
+[Speaker 1]
+Yeah, they're great,
+
+[Speaker 2]
+And plugged it in! For my dad, my dad's like, oh my, God, like being in Florida being able to watch Canadian news watch Canadian hockey, right? Easy, my dad, just f****** loves it.
+
+[Speaker 1]
+Easy, yeah, so, like, ours is just an app and it works, uh, if you have a Android TV, or like, uh, somebody I just set up for my brother-in-law on Sony, Sony Bravia runs on runs on Android, brilliant Samsung. Lockdown Dev environment. Yes, you need the fire stick.
+
+[Speaker 2]
+Yeah, but then
+
+[Speaker 1]
+I built the tablet app that installs it onto the thing, and so, Dan 10, Dan Poirier, is the leg man and the big man. So I do the app and the database and manage it for our users and whatever he goes out and actually installs it. He collects all the money it's gray market, right?
+
+So I, that money hits his account. Yeah, yeah.
+
+[Speaker 2]
+And him, and I, he likes precious metals and cryptos. So, yeah, I get my payouts and precious metals and crooked. That's fine. A little stack of silver. But
+
+[Speaker 1]
+Like, it's kind of like friends and family, and I have users. I so, I think across everything I was doing last year. I had like 15 users across five different apps and whatever. Now, I have 150 users across six apps, and so all day long. I'm getting feedback from users and building features and responding to what they're saying, and I have support tickets that hit my phone, and oh, they want this, and they want that.
+
+And, like, I don't know, it's starting to feel like you're like taking care of all these people across these different things, and it's laptop life and. I gotta check my phone and. I'm driving RV around. Did I ever tell you that? We kind of, like, we kind of fled during covid, and we moved down to Mesa, Arizona, and we lived in a 33-foot Winnebago for six months.
+
+Really me and Kayla and Stella from six months to one year. Okay, Andrew's just we just had we decided to get out of here. Yeah, and no judgment, just it was, and you can do anything in Arizona. F****** it wasn't this s***? It was just my sister lives there, and that's cool.
+
+And so, we kind of my parents were there snowboarding. So, we kind of hung out there and. And I, I was still doing some live stream stuff for, uh, and whatever, but yeah, the freedom. Uh, the freedom of. Movement and go where you want to go. How old are your kids, uh, 13 and 15.
+
+So you must have on the horizon like you might travel and move around. Oh, okay, right? Like, like, there's a point that they're in University and then the university, and then they'll come home.
+
+[Speaker 2]
+Because that's what kids tend to do these days. You can't afford to f****** buy anything else you can set them up in Woodstock. Yeah, oh yeah. I don't know what my kids want to do yet, they don't know. What are they good at? My daughter's Theater, no way. Yeah, KK musical, uh, not KDK.
+
+That's the local one. We didn't love kitty cat. Yeah. She's in pack. You know, the guys from pack?
+
+[Speaker 1]
+That's the new one.
+
+[Speaker 2]
+Yeah,
+
+[Speaker 1]
+Yep, yeah, my
+
+[Speaker 2]
+Crap, my crap. I'm not sure. Mike's part of that, Christina canelos.
+
+[Speaker 1]
+Yeah, they're a client and artistic movement autistically,
+
+[Speaker 2]
+So my daughter dances at artistic movement. He's a musical theater at wci. Cool, is that I'm
+
+[Speaker 1]
+A Sheridan grad
+
+[Speaker 2]
+Are you musical theater? There you go three
+
+[Speaker 1]
+Years, tap alley.
+
+[Speaker 2]
+Yeah, my not that as a straight guy going to musical, not bad at all. Yeah, my, uh? Who likes anal sex, but that's oh well, no judgment.
+
+[Speaker 1]
+A bit of that at Sheridan. Yeah.
+
+[Speaker 2]
+If you're thinking about where to send your kids, it's a spectrum, you know, they're straight in game. There's a whole bunch of s*** in the middle. There's no titles anymore, definitely there. Yeah. No, my daughter is dancing X and acts also, so she's right. But, uh. And loves it, right?
+
+Yeah. Plus, I'm still fighting his way super smart kid.
+
+[Speaker 1]
+Yeah,
+
+[Speaker 2]
+He's going in grade eight. You know, he's still gonna do
+
+[Speaker 1]
+You like video games and Technology. Yeah, he likes Tech. He plays a lot of games, um, robotics, and like not into that. All that yet, huh? That it might be more. Oh. He's almost too smart for his own good, right, like?
+
+[Speaker 2]
+Pull ladies of math for not doing anything. Yeah, do do something, you know, it's got 190s, right? Yeah, yeah, it's like, you just need to apply yourself a little bit. Yeah, yeah, um. He whenever? He can Ruby's Cube in under a minute amazing, right? Because he's facial, like,
+
+[Speaker 1]
+Yeah,
+
+[Speaker 2]
+He just figured it out and figured out the patterns, right? And he's just like. And so, when he's into something, he's really, really, into it lately. It's fishing, which is okay,
+
+[Speaker 1]
+You know, and a
+
+[Speaker 2]
+Bunch of his brothers are into it, too. It's so
+
+[Speaker 4]
+Hard with AI. I don't think of what they're gonna do, yeah, you
+
+[Speaker 2]
+Know. And so, to me if, if so, I like theater. I'd really like theater because I think you come out of theater with the ability to talk to people. You're really walk into the with your kid. No, no, I played saxophone, but you know? Like, I was an actor.
+
+No, it was on my on my thing. Um. I like sales into girls, but?
+
+A total heart drop.
+
+Like, hello, curly hair. Yeah, and the embouchure with a straight. You see that Whiplash? Yes, yeah, good lash is actually one of those movies that if I can't sleep at night, no way. Yeah, not quit my tempo. Yeah, yeah. Were you rushing? Were you oh, so you can count?
+
+Yeah, yeah, that was a great film. That was a great film. There's a couple like Whiplash Moneyball. You know, like, stuff that you put on a night that have seen, like, a thousand times? Yeah, fall asleep, too. It's
+
+[Speaker 1]
+Napoleon Dynamite,
+
+[Speaker 2]
+Napoleon Diamond. What a great one. That's mine.
+
+[Speaker 1]
+That's like, you know, like the kind of like the Hopeless, the Hopeless nerd, who does the dance solo at the end? Yeah, and
+
+[Speaker 2]
+It's not doesn't have anything super loud. It's gonna wake you up. No super flashy, even the office. The theme song comes on. It's like.
+
+I've been watching Law & Order SVU at night like,
+
+[Speaker 1]
+Oh yeah, yeah, which
+
+[Speaker 2]
+I think f**** with my mind and my dreams in a negative way. Like, like, probably not the best s***. They were
+
+[Speaker 1]
+Good together. Marissa hardigy and Chris Maloney, like they were good. They were good to get it. Yeah, I love Law and Order man, like, so do I? I love, like, uh, True Crime in cases, and you know, but
+
+[Speaker 2]
+Watching, you know, shows about those girls, yeah? Um, on your IPTV. Yeah, exactly. I actually don't run IPT at home and everything.
+
+[Speaker 1]
+Well, you have it, but you
+
+[Speaker 2]
+Have it. And you don't, you don't only have it on the box. Like, I have a full control for house, right? So control 4 is. Hot light system automation. I've never I've never been over, so I've got it. Let me plug a USB key into that and see what?
+
+I bought the house with this whole system in it and very quickly became friends with the integrator, and that's cool. Done a lot of my own programming over the years, sweet. Like a Jarvis Vibe. A little bit.
+
+[Speaker 1]
+Yeah, yeah,
+
+[Speaker 2]
+So, but it's, it's a lot to keep up on, right? It's just like anything, right? Yeah, yeah. Every day
+
+[Speaker 1]
+Home assistant, I have some like lights on program like, not, like, well, and the nest. Yeah, I think the thing is still around. Dude. So when we got the house, um?
+
+Got the nest, and they were like, that's what Ness was great, then bought by Google. Yeah, you're like, do you want a 75 prepaid Mastercard by joining this program where we can control the temperature of your house according to demand across the town. And I was like 75 prepaid Mastercards sign me up.
+
+And we did and then f****** one night like Kayla's like. Putting the kids to bed, and she's like, it's so f****** hot in this house, like, what the f***** going on, and she, I was, like, let's go turn the air. We always say, she goes, turn the air down, and I was like, does that mean you just say, make it cold or make it hot.
+
+Go turn the air up.
+
+[Speaker 5]
+Half my energy is spent understanding it turn that turn the turn the heat up, like when Cheryl calls. She's like the TV's, not working. I was, like, okay. There must be more. Before I can diagnose what might be wrong with the TV. Oh, this is my life. What part of it is not working?
+
+You're in tech support. This is actually not.
+
+[Speaker 3]
+Okay, have you tried? Does Apple TV work and Rogers does not like, like, help me understand?
+
+[Speaker 2]
+It's like, I don't know the TV's, just not working. Yeah,
+
+[Speaker 1]
+But like, oh, you just texted me the second you had a problem, like, no,
+
+[Speaker 2]
+My. My whole home is. Get it wired up. And yeah, I can control every light, like each room, and all the lights. F*** with your kids. And yeah, my daughter's shower lays on right now. It does not need to be on right now. Do not need to be on right now.
+
+Benny's shower also not be on. He's probably in his bedroom, right? I don't know why my vanity's on right now. Like, seriously, guys come on. I'm paying for this.
+
+[Speaker 1]
+That's, like, the ultimate f****** dad move. You're gonna be, like, oh
+
+[Speaker 2]
+No, Ultimate dad mood is when your f****** kids aren't answering the phone, and they need to be up for whatever reason. I'm out of town. I will turn lights on and off. I'll turn TVs on. I'll turn them blasting. I'll play music in some rooms. I can play music in some I can't.
+
+Yeah, yeah, I've got speakers or not, right? That's dope, but I literally will, like, like, and he's like the whole house is going crazy. Like, I didn't know what to stop. Like, the TV was on. It was super loud, lou. Like, answer your phone.
+
+I did all that just to wake you up, so you call me so you. Don't be f****** late for dance. That's awesome. Why don't they, like, it's like, it's like, they send you a text like I need this? You're like, it's right there anyways. Um. I don't know how we got stop it.
+
+Yeah, how do we get into Smart Homes, but think of it? Think of the data.
+
+[Speaker 1]
+Oh, so I was talking about the nest 750 gift card. My wife was like f****** turn the air conditioning, make it colder. Yeah, and I go, and it was, like, I'm sorry. You've participated in our? 75 dollar program. She was like, what the f*** did you do, and I was, like, well, look, I can cancel.
+
+But if we just leave it like this for 10 more days? I'm gonna get 75, I think, which I think I lost.
+
+But it was like, not. Your current area is under Peak Hydro. That's that's what. That's what they're coming to, right, like a soul free. Smart, whatever. But it's the data. And then it's the control. And it's the oh, you know, you don't, who owns this house, so I
+
+[Speaker 2]
+Got the 75 thing put. It loaded it into my phone, and then yes, cancel it. No, thanks. No, thanks guys. They want my house 19 degrees. I want my house in 19 degrees. Yeah, what the f*** is going on. Everywhere else? Do you have, you know, as like as like a high net worth individual?
+
+I'm assuming, except for the except for the weed stock, f******.
+
+[Speaker 1]
+Do you ever use anyone other stuff you think about, like, like a big idea, like in the like, a platform you were kind of Riff on that stuff. If you, I used to all the time I used to like in the app craze app ideas, that's what I love now that I'm, like, oh, I can actually like, Chase that down.
+
+I can, like, make, make that kind of thing, but I used to have so many ideas, and I do, and I've expressed I have like 130 repos right now. Like, there's a lot of stuff, but I use. I made a game for my kids. It's called flock around. And it's.
+
+Ar, making Pokemon go?
+
+[Speaker 2]
+So, I
+
+[Speaker 1]
+Made it for, like my,
+
+[Speaker 2]
+I'll
+
+[Speaker 5]
+Type without a game. So, yo hit
+
+[Speaker 1]
+It, and you open up a map, and you drop Birds on a map around your neighborhood, and then you go with your kids, and you put your phone in your pocket. And as you walk around, there's a chirping and the chirping gets louder. The closer you get to the birds and there's a David I, I cloned David Attenborough's voice, and he's, like, you're not going anywhere near the bed.
+
+So, go down here. You might be closer very close to the murder. Mr, I guess on the phone, and then she holds up her phone and there's a camera. And then there's a real 3D polygon bird. Around, and s***, she has to capture the bird and we go for a giant walk around.
+
+It's which way to get your kids walking and my wife was like, don't have her hold up a screen until she captures the bird, right? You're not walking around with the phone out.
+
+[Speaker 2]
+You're walking
+
+[Speaker 4]
+David
+
+[Speaker 1]
+Out in Burrows and we walk around and and then they kind of killer app. I never released it, I should. But it was like, you could take a family photo of like of your dad and then press a button. It turns your dad into one of the birds. So, like it takes a photo to 3D model with a voice, and then you capture it and.
+
+Was, like, you know, why are you putting me in the cage kid? It goes into your phone, so you walk around capturing your family members flock or flock around another. One of it was, um, did you ever play a jack box? Yeah. So, we like to equiplash as a family, and it was like you had to like it was a prompt, and it was kind of like.
+
+You know, I don't know, the prompt would be like, what's something that your family hates to do, and everyone put a different answer? And then you get to vote for your favorite, and you pair your phone onto the TV and you vote for your favorite answer.
+
+[Speaker 2]
+So basically, jackbox remote likes the show family.
+
+[Speaker 1]
+You see, exactly. So, we would
+
+[Speaker 2]
+Do that much. You
+
+[Speaker 1]
+Can even not zoom and like, classic, kind of. So, do you know, suno? Suno was like AI music generations, so if you put in a prompt to create a song and like, they're crazy like the the quality of the the quality of the song. Um, so you like, talk it, and it creates like a top 10 song anyway, so we did a, uh?
+
+I
+
+[Speaker 6]
+Was at a cottage and Skoka with my family and my sister and her kids 12 of us in college, and I was passing around my phone.
+
+[Speaker 1]
+Uh, everyone was coming with their own pseudo prompt, and they're like talking into the phone. I do a lot of like voice to AI versus like typing. At different songs, and people started being like making fun of each other for, like, falling down the water cities and making fun of each other for, like, I crashed my drone, and
+
+[Speaker 5]
+Yeah,
+
+[Speaker 1]
+Teasing each other. All these pseuno songs and everyone was laughing, so by the next night at the cottage, I made a game which I integrated into Dan TV, and you loaded up. Everyone scans their phones. Everyone puts in their song prompt and then on the screen like Jack box and puts up each song You vote for your favorite song and whatever.
+
+And I clone Simon Cowell's voice, oh, that was. Terrible soul for s***.
+
+[Speaker 7]
+And and whatever. And then we
+
+[Speaker 1]
+Played it for the first night. They're, like, oh, this was good. Let's fix this by the next night, there was the new build, and by the next night, there was, by the end, I was, like, we f******, so it's like, this is like a fun family game I paid.
+
+Like, you know, through the suno API, and I pay like, you know, uh, six cents per song, yeah, or something. And I was, like, oh, people would love this and whatever. And then, I just high school build something else. Yeah, you know, that's my. Uh, because you asked my greatest weakness right now.
+
+It's a shiny object like I go to, I go to build, and I'm like, I'd rather I build something. So I really this year tried to focus on like, where's the revenue, and it's the it's the chat bottom and Studios. It's the dance competition clients because these deals are like when they when they get it for a season.
+
+It's like, depending on the size they're seeing 60, 80, 100, or clients, you know, like, it's something. It's like, it's, it's elevated me out of into a builder, um. But it's not like a big exit, because even what do you think? I think I think that. I love your use case for your business and helping you like.
+
+Drive more or whatever. Yeah.
+
+You know?
+
+[Speaker 4]
+North America
+
+[Speaker 1]
+On the town. Ten thousand salons, like, gonna get yeah, like, it's all the same, right. Is that, what yeah, or do you want to like serve your focus Clan first? Yeah, 100, right?
+
+[Speaker 6]
+And see kind of where that goes, and I'm gonna give it themselves.
+
+[Speaker 4]
+Yeah, I'm gonna change.
+
+[Speaker 1]
+I've been doing that too, and like standing up with my performance and with my trades like standing up with a deck at a trade show, like pitching stuff, you're just gonna. I've been kind of interested in, and I'm like, there's something I built. Course. I built my own trade show flow like a kiosk where, like people, tap on a tablet in a different video comes up, and then I run the deck off myself.
+
+It's like built into my phone with a volume button clicks the deck QR code. I did my I did my presentation and got 20 signups to my app. Yeah, I got the thing. So, yeah, like, I think there's, I think there's pinching, I think. Anyways, I think you can get it.
+
+Get all your customers using it and then, and then drive your business. Yeah, is there like a bigger exit for, like all the? All the tanning salons, their verticals. So right now. There's a.
+
+S*** ton of Medi Spa.
+
+[Speaker 7]
+Stuff like that popping up and a lot of them are using Jane. I'm not Jane using. I'm right now. I'm building a chain replacement.
+
+[Speaker 1]
+For a friend who has a yoga thing, and they were like, it's expensive. Can you build me? That's so f****** good. It's f****** awesome. You can never like, you know, replace the years of time that are doing it. But like, this is the this is the wild west we're in right now.
+
+No, so I, I love the integrating salon data pulling it out, developed something cool that way. Um.
+
+[Speaker 2]
+And obviously doing it with you, right? Like, you've got three years of listening, f****** Danny knowledge, and yeah. And then, one, one year of pretty serious building and the hosting and the infrastructure I'm on, like, vps's, and, and whatever, but? Um.
+
+[Speaker 1]
+Yeah, I don't know, like, like anything from managed Services server point of view my guys.
+
+[Speaker 2]
+F****** blow it out of the water, right? I connect you with Wilfred at some point. Yeah, you
+
+[Speaker 1]
+Know, you guys can geek out and do your own thing, right? And certainly, as we're pulling more and more salons on board from a data hosting point of view.
+
+[Speaker 2]
+It's a natural end to sit here and say, hey, we can. Add this to this, right? That will be the HubSpot integration that will be. Right, you know, like? So, like CRM, you seem to kind of land on like CRM for them. Like, you know, bring back customers? And whatever, and then the kind of insights into, like the operational and promotions.
+
+And marketing, yeah. I'm not Henry Ford, right? Like, so, my one of my favorite lines came from Hanging Florida if I listened to people. I would have built a faster horse.
+
+[Speaker 1]
+Yes,
+
+[Speaker 2]
+Right,
+
+[Speaker 1]
+Yeah, yeah, yeah,
+
+[Speaker 2]
+You know. And, and so it, would it really is kind of listening to salon owners giving them something? Yeah, and
+
+[Speaker 1]
+Being,
+
+[Speaker 2]
+Like, okay, how can we refine this? How can we make this better, right? If you're talking about, like, What's it gonna cost? I'm these days with building stuff. It's the equity and cash.
+
+[Speaker 1]
+Equity or Equity or cash equity and equity and cash? You, you own it, you own it for some cash. You, uh, don't want to spend any cash we own it together and kind of see what happens. I
+
+[Speaker 2]
+Have no s*** with you. You know, like, like, like? I like you enough.
+
+I'm unfortunate enough. That I can live by zero a****** policy in my life. Don't don't do business with assholes. Yeah, right? Like, it's just, I mean, enough, right, moves? I mean enough wrong moves. A lot of wrong moves, right, that I just I? If I can't sit down, have a beer with you then.
+
+I'm not gonna be f****** pregnant. Well, you're gonna talk a lot. No, we're not going to be partners right, like, yeah, if if I can't go to a ball game with you or sit down, have a beer with you and actually enjoy the conversation. Whatever it might be, yeah, we're not gonna be partners because that's something to do.
+
+Yeah, fun, right, like, like, and there's no?
+
+Partners you don't like or respect, you have no. And I'm typically on the receiving end of this because I'm more of a nice guy right than the Kevin O'Leary. Um. Yeah, I'll put up with a s***** client. I'll put it with a s***** client.
+
+[Speaker 1]
+But not a s***** person
+
+[Speaker 2]
+And and if you have a s***** partner and you don't have a personal relationship with it, they're very quick to f*** you over, screw you over and be like no f*** you. And I've been struggled. Literally f***** right, and I mean a lawsuit now, because? Wheat stocks. Sweet socks!
+
+[Speaker 5]
+I've been two losses because the weed s***, but sorry, man, you know, I'm not pruned even soon.
+
+[Speaker 1]
+As soon as small claims, small claims. Yeah, you suit that, but it came after you. Didn't pay a guy, and he because he f***** up. And then he came after me, and I went to the thing, and I was, like, he f***** up. And they were, like, you're right, small claims doesn't count, but he, just like.
+
+[Speaker 2]
+Like, Google my name Ontario support quarter Justice, sorry man you. I went through a pushed far enough, you're.
+
+[Speaker 1]
+I went through a landlord tenant board. Oh,
+
+[Speaker 2]
+Really. Want to thank that, sucks, and it did. Suck and I built built my. I'm always building right. I'm Tony Stark in the cave and I built a.
+
+[Speaker 1]
+A little thing that listens and is undetectable and listen. While I was in this resolver, Zoom listens to out loud to the zoom and transcribed it on a screen and offers insights based on a framework. So while I was in the hearing, it was like, oh, that contradicted what they said in this thing.
+
+And then, whatever, I was, like, sorry, uh, just making sure in whatever. And I was like using these insights
+
+[Speaker 2]
+Live and
+
+[Speaker 1]
+In the whatever. So that's that's what I'm doing now. I'm like, I have a problem, like my wife's, like it should take you 10 minutes. I'm like, I'm gonna take five days to build this app. And whatever. But that sucks, sorry, man. Sorry, sorry, no. So, look if if I can't take it personal, but um?
+
+If it was like, if your thing, if I didn't really believe there was like business in your thing, then I'd be like, oh, they'll pay much cash and do things, but because I actually. You have all these partners, and like, I just think, if we did it properly, and you were behind it, it would kind of go or whatever, then, yeah, and I'm happy
+
+[Speaker 2]
+To pay cash because I'm I. I want to make sure it's better than the table, right? And not to say, I don't see value in, like, because I do. I see a ton of value in you and
+
+[Speaker 1]
+I love writing new checks, right? Yeah, because you can
+
+[Speaker 2]
+Continue develop, and that's why we're booking you a year and a year and a half out, right? Yeah, yeah, you continue to just do a great job when you've been. Thanks partner on the evil side, and I'll sing your Praises to the f****** thousands degree. Likewise, yeah. Um. But I.
+
+I need somebody to take the lead on this Salon data side, right? I love the way that you're incorporating AI into it and thinking about outside of the box. Like, I am just like, it's like, it's.
+
+[Speaker 1]
+It's a problem, if anything, not for my clients. No. No, but it it? Like, like?
+
+[Speaker 2]
+So, I'm asking, you make me a proposal. Be, like, hey, Nick, I'm gonna hang out with you, right? This is the time I can dedicate for you. This is what I want to look for in return, right? This is, I understand where you understand better now, where I see the market like, you don't want to chase property building a product, right?
+
+But I do want to chase the moving space and the analytics of it. Yeah, not to say the product can't come. I'm just going for a low hanging fruit. I
+
+[Speaker 1]
+Like that angle, but you're right. And, like, that's great because I could think, like, I was thinking of it. Like, kind of like, broad, and then you, you really kind of narrowly defined with your expertise in the market of the industry. Where we can come in. Yeah, and like, really, kind of like a week, a weak spot.
+
+[Speaker 2]
+There's no, there's a gap, right. Like, there's literally, I wouldn't know it's not. It's not tracking minutes and putting butts in beds, right? It's not that it's what to do with that data. Yeah,
+
+[Speaker 1]
+Right. And how to really
+
+[Speaker 2]
+Monetize that and maximize it, right? And we see it in our business and I, I know, there's a demand from the customers because they're saying, yeah, you know what I could? We'd love to see the insights and see how they bounce off Across the Nation. But beyond that, you know, there's things in that presentation and actually.
+
+A really good business analytics that don't come up today, right? And it's, uh, again.
+
+[Speaker 1]
+I have crazy Sharp Tools, yeah, and no data, and you have data and all tools, so I think that's why. I think the opportunity is, yeah, the the guy stageable is the Fine Arts platform. I was, like, I, I do kind of think you can do something with it.
+
+I don't think it's worth a lot of money, and I said to him, and then I, I built a deal calculator with, like, you know, Equity, cash, and? And he was, like, oh no, this is a great idea, and I don't want to do any Equity. So, what is this much cash by me?
+
+And I was like, like that, that much cash buys everything. Like, yeah,
+
+[Speaker 2]
+Because I
+
+[Speaker 1]
+Kind of, don't really. I think it's great. I think it could, but it's so much like work and networking and relationships that he doesn't kind of have that. I was, like, yeah, it's got to be a lot of cash. Whereas I really do think with with this, there's just so much built.
+
+That's why I kept thinking about. There's so much built into it. And obviously, then I come and talk to you, and you've been thinking about it obviously because you're a smart guy, and you paying attention, the way it's been going so anyways, whatever whatever that is and and I literally, see, you know?
+
+The US market is 10 times a Canadian Market ten times, yeah, right?
+
+[Speaker 2]
+And will always be that, right?
+
+[Speaker 1]
+Yeah, so population and base and so on. You do see something Beyond like propping up your clients in something emotion, right? So if
+
+[Speaker 2]
+I can do something in the Canadian side, let's say we do something in the Canadian side. We do a proof of concept, and you show the fact that we can increase non-revenue by X, and this is the impact that it's had. Yeah, and then all of a sudden, we sit there and say, okay.
+
+Now, we're gonna go to a couple U.S trade shows, and we're going to go and use our data hosting customers, right? Because I'm pulling them in, and then
+
+[Speaker 1]
+They've checked the box. Like, we, we can kind of work with that, not yet right, but just.
+
+[Speaker 2]
+It there and say, hey, we're going to add this on to the thing, and this is what it's going to cost. Right, then we're selling something. Yeah,
+
+[Speaker 1]
+Right, you
+
+[Speaker 2]
+Know. So, if I can provide a service for the Canadians, we do approve a concept. I'll pay you for that, right. But then, together, we build something that we can sell to Canada and abroad. Like, like, right now, sunlink is in Europe, and it's in Hollings, and we're bringing on our first.
+
+Uh, customer from Ireland, right, you know. And so, you know, the data hosting side of what I'm doing? Because it's so scalable and so Global, right? Um. And it's great, the. Partner, we picked. I think it's called digitalocean, which means.
+
+[Speaker 1]
+That's the best of. This is a hosting provider. It's a hosting provider, right? There's a much cheaper one, just so you know, uh, but there is, but you know somebody there? Wait, no, we we had certain needs and requirements. Okay, yeah, and we.
+
+[Speaker 2]
+Wilford did all the research on it, right? They are. They are like a leader in. Yeah, yeah. And we need somebody who's Global. We want to make sure Canadian does. David was hosting Canada. Yes, Irish data was hosted in Ireland, right. Like, like, you know, we wanted somebody that
+
+[Speaker 1]
+100, you know,
+
+[Speaker 2]
+That that had that and had the ability that we can build, and if awesome, I'm Scrappy on my own projects.
+
+[Speaker 1]
+Yeah, yeah, but we, we needed somebody that we can count on. We could scale makes sense. We're taking. The entire business's value is based on their data and what their customers are. It's custody there, too. It's custody, right? And so, we, you take a tremendous amount of.
+
+[Speaker 2]
+Uh, weight to that, because if we f***** that up and 100, the salon shut down, and I'm gonna yes, I'm in a much bigger.
+
+Right, um? But I'll I'll introduce you to Wilfred because Wilfred's a f***,
+
+[Speaker 1]
+That's great. If he's smart ass, if he's kind of going and a smart ass dude, but I'd love to build something that can value that can serve. Canadians have a direct impact to my business. And then there's like a, and then an exit piece. As in, yeah, as in,
+
+[Speaker 2]
+Like,
+
+[Speaker 1]
+Uh, yeah, I'm sorry, not the word exit, but there's there's a, there's a, there's a wider piece of like, there's a bigger Tam there, where you can kind of exactly go after to serve, which is, which is kind of like.
+
+[Speaker 4]
+You know, maybe
+
+[Speaker 1]
+A uvelox independent Business nurturing business insight? Oh,
+
+[Speaker 2]
+It's got a separate name on it, right? Like, like, if we want to take the name Bask, right? Yeah, yeah, as an example, or however, like, it's, we're trying to build something that will build analytics. And take, replace the HootSuite integration. And yeah, you know, really, kind of, build a dashboard and?
+
+You know the lotion training side of things and really kind of some customer insights and knowledge, right, and customer insights in the CRM of the of the customers?
+
+[Speaker 1]
+You know, like, oh, they reach out to this person or whatever, but as they
+
+[Speaker 2]
+Come up, but it's literally like, like the salons right now. The big salons in the US, we'll have. Um, computers, yeah,
+
+[Speaker 1]
+Right. So,
+
+[Speaker 2]
+As people are coming in, hey, I'm working with you and we're Consulting, and I'm selling you, whatever? Whatever.
+
+[Speaker 1]
+Yeah, next
+
+[Speaker 2]
+Person comes in. Oh yeah, I'm working with you, and next person goes in. Hey, just going for a 10, I got you right, right, you know? So, the big songs will have two or three, all right, different things. But if we can Coast those Salon staffs and how to?
+
+More efficiently sell products. Based on even listening within that conversation, right? Brilliant, you know? I'm a big believer in. Less these days, listening and transcribing.
+
+[Speaker 1]
+I mean, just one, that one thing that you ripped on that just popped into my brain right here. They, they buy a, they buy a bottle, they bring it in, uh, are we tracking? Are we tracking the level of their ball? I'm not
+
+[Speaker 2]
+Tracking the level of their bottle. We're tracking the number of Tans they've used and the last time they bought it, you
+
+[Speaker 1]
+Can estimate we've an estimate. We know that the average person uses.
+
+[Speaker 2]
+Yeah, I think it's half an ounce per tan, right? You know so, you without weighing their bottle. We know how many cans that's your main customer
+
+[Speaker 1]
+Ding. That's a good time to yeah. Oh,
+
+[Speaker 2]
+Hey, you know, you've used this product. How's that going, you know, actually the sister product to that? Is this if you find you've had Plateau you find it's best? If you do this, this and that's right, uh, ding sales flow.
+
+[Speaker 1]
+Like, you know, mention this like, and then they pre-trained on the sales flow, like just kind of automating a little bit of like, still, a human face talking to each other, but that cue, yeah, to like, cue them to do the next thing. I'm a big believer in that too, right?
+
+My demo calls that it's like, I work from. I used to wing it. Yeah. And now, I'm
+
+[Speaker 2]
+Like,
+
+[Speaker 1]
+You're just, you're just stepping through a flow. Yeah, this one, then this one, then this one. And it's, I used to get all excited, and now the more boring that I'm kind of stepping through the flow, but it works, but it works. Yeah, yeah, the proof's in the pudding?
+
+And there's. All right, um two, there's a yeah, um. Everyone's fine. The symptotherium. Oh wait, no, we're up 10 on the day no s***. Love to see it. Oh, there you go.
+
+[Speaker 2]
+A lot. You never have enough. Never had enough.
+
+Yeah. Brendan does.
+
+[Speaker 1]
+No, I, I think. I think I think a road map could look like, I
+
+[Speaker 2]
+Don't know they're listening to slum. B****** is really interesting, so there's a slot owner. Her name is Chaz. She's a good friend of mine. She's down in Utah, and I was FaceTiming her for something. And she's, like, oh, I got a customer and just put my phone down and she put her phone down.
+
+I'm listening to this, b**** and I'm just like, I'm like, holy. F****** I came off and I was like, yes, that pitch was f****** amazing, like, like, honest, to God, like if I could take that pitch bottle it up? Serve it up and have other customers drink it right.
+
+Like, you know, you can. You can right. So, to set something up, that is listening to people just providing coaching conversations as a result of that, right?
+
+[Speaker 1]
+I'm a data for that salon owner. I'm really into, like the transcription, like the the insights that live and as humans. We're kind of just like talking
+
+[Speaker 2]
+The insights that
+
+[Speaker 1]
+Live in the moments that blow by like. After this, I'm gonna go, and I'm gonna like, yeah, dump everything into a voice note. No, I should, yeah,
+
+[Speaker 2]
+Yeah,
+
+[Speaker 1]
+Um, do
+
+[Speaker 2]
+You have a plug? I
+
+[Speaker 1]
+Don't. I, like, uh, I, I'd expose, I run, like, just like a road mic like Charlie Kirk, Christmas run, a road mic. I bought a clothes you like it.
+
+[Speaker 2]
+You know, some?
+
+Sometimes sometimes.
+
+[Speaker 1]
+Ontario does have single-party consent by the way. As in like, you could record our conversation. We wouldn't need my consignment. Yeah, I'm just. It's only for proper use internally. Yeah, yeah, right? You're getting sued. You know these things? No?
+
+[Speaker 2]
+If we were recording in store, what people were saying this customer needs, customer doesn't need to know they don't. Does the employee need to know? Single party consent. There's something there. There's something to play with. Single party consent. They consented when they sign up.
+
+[Speaker 1]
+Yeah, single party content. You need a device.
+
+[Speaker 2]
+Yeah, no, no problem, like, but they would. They would have consent at that point or the owner. Would the owner would? One of my, uh, if if I can write on, the owners could listen to the conversations what their sales people are doing, right, wrong and otherwise, like? Dude.
+
+So one of my products, uh, for
+
+[Speaker 1]
+Dance studios, it's called reflect. And basically, we've, um, when you're in a dance class, your dance dad, uh, when they finish dance class, the choreographer goes okay. Let's do the choreography. I'm gonna record it so we can all remember it. Right, every time. So I built a product that two Studios are doing pre-testing this fall.
+
+It's called reflect,
+
+[Speaker 2]
+And you put an
+
+[Speaker 1]
+Old Android phone up on the roll, and it turns into a node engineer studio. So, right away, you can have a TV in the lobby, and you can have a. Like a CCTV style. Yeah. So, when everybody's
+
+[Speaker 2]
+Waiting in the lobby for their kids to finish these, but that right now, that's three thousand dollars. So, if cameras and equipment so old Android phones and a TV?
+
+[Speaker 1]
+Microphone records everything in the class, and you get like a zoom AI transcription of every class. Every decision that was made in the choreography everything that was done. Cool, uh, guest teachers, and you're the owner. You're liable for the guest teacher says. Do you even remember what they said, is anybody remember, they said, there's like a parent complaining full transcript of the class.
+
+That's kind of going out that same Tech inside your thing for like sales, or you know what I mean, uh oh, that that employee of yours is could use some coaching like that kind of interaction, did they did they not? I I brought this to Expo got a lot of feedback, um, privacy, and like doing.
+
+How do we want to? How do we want to present that to people, and I was like, well, on my feet, sales training, selling steam mops, and chamois, and whatever I was like, I mean, I worked in direct sales, and I do you have to say something immediately, right?
+
+Yeah, and I was, like, well, I wonder. So, my wife and I like, share our share our Google Maps location because I'm sick of her, asking me where I am or whatever, and I just I just. I just don't cheat, you know? In different relationships over the years now.
+
+Just much calmer this way and? I live transparently. And I said, maybe your studio becomes what we have a new tournament transparent. This is a transparent Studio. Every class is recorded. We have. We have easy able to go back and find out what happened. We just this is a business.
+
+Who who has a right to privacy working with youth in your business? Yeah,
+
+[Speaker 2]
+Who has a right
+
+[Speaker 1]
+To privacy? Explain it to me. This is some flock camera s***, right? Like, this is like, this is, like, but, uh, yeah, you know, you're the owner? You know, this is your premises. You're liable for everything says. Maybe this is a transparent space where we? And then the insights are very valuable as to.
+
+Well, how did that sales conversation go? It's not that hard to put a sign up and say, hey, you know, um?
+
+[Speaker 2]
+We, we have cameras, right. Most Studios have cameras now. From my knowledge, you can't record video and audio. You have to choose one or the other. Or your video can't report on you. But if there's? Um.
+
+For the Safety and Security of our salon staff, we make sure that all audio is recorded, you know, within here. So you're hitting on my girl?
+
+[Speaker 1]
+Putting.
+
+Putting a putting a sock over my junk. Yeah, standing up in there, putting my thing in your trunk by the way. And I like it. I like it for years. No, but, but I like, I, you know, obviously, privacy. Yeah, with the exclusion of, you know, I mean, but like, yeah, but I know Studios that, uh, will record audio in a spray tan room.
+
+[Speaker 2]
+Specifically for clients and, and right, because there's somebody in there,
+
+[Speaker 1]
+Yeah,
+
+[Speaker 2]
+Somebody, and you're naked, right? There's obviously no video but to sit there and record audio just from a.
+
+[Speaker 1]
+How many?
+
+Any swans you serve? Oh. So, we have. The guys that's acquired 1800 active customers. I think the last number was, you know, most? There'd be 300. That would be real salons. That's, like, you know? There's just like, like they, they know you. They, like, you, you just kind of need it.
+
+You just kind of need it enabled. We're not, we're not doing a whole bunch of, like. Acquisition, and you know,
+
+[Speaker 2]
+They're kind of there, like, no, so? So, in my in my mind, let's build a product that can serve Canadians. I'll have a direct influence on my business, right? And what would that take right? Have you around for a bit easy? And uh, then, how do we scale that to something we can?
+
+You know, put in boxing cell and go on the road. Bring it to the U.S and
+
+[Speaker 1]
+Easy phases. Product Market fit with, uh, with like a small group of demo stakeholders product Market fit with. Something retail for Canadians products we're approving at each step at a risk that's like, you know, chill that that matches each step. And then, like, you know, a big bite. And, yeah, and if you, you know, I started tanning, right, which is my low hanging fruit?
+
+Yeah.
+
+[Speaker 2]
+But I hired somebody specific because we have so much f****** wellness equipment now, and I continue to. Evolve and find more and bring more into the office. So we hired a salesperson specifically. Her name's Angie. We have two Andrews. Uh, and her entire role is not to walk into a dance line, right?
+
+[Speaker 1]
+I was, like, Angie,
+
+[Speaker 2]
+I don't ever want to see you walk in, retain a song. If I look on your call sheet does not include anything that says Tanya, right, it's got to be Spas, maybe Spas, gems, right, Wellness. Sauna centers, right, like, like? Take our product conference,
+
+[Speaker 1]
+So check our products. Don't you have a lead? Don't you have a warm lead of good life?
+
+[Speaker 2]
+And Life's a tough Beast, like, really good, lots of tuffies. Hey, because they like s***, really cheap, and be the the sales cycle in order to get through, that is really long. And because I'm my brother's brother? And my wife. My wife literally runs recovery rooms like, like, that's, you know, a big part of her job, which is where I would fit.
+
+Because she can't be self-serving.
+
+[Speaker 1]
+No, it's kind of painting yourself into a corner there.
+
+[Speaker 2]
+Yeah, the barrier of Entry's got to be like, no, I need to really prove the fact that I'm here, and that's how you
+
+[Speaker 1]
+Don't need anything. No, I think we're good. I think somebody got wives. We gotta get back. Unfortunately, I'm cooking dinner right now. Oh, I got ribs in the oven. Yeah, um, because I've got.
+
+[Speaker 2]
+Prove myself better than all the competition, right? Like, it's, you know, good life's a tough not to try interesting and they? Like if?
+
+What we're able to produce. You can plug in and fit into any of these other platforms. You to serve an API? Yeah, as she's knocking the doors of these. Alternative Wellness centers right have a product to say hey, Tanning industry's not right. Yes, I think that with the dance studios, but you know?
+
+Sports karate gymnastics.
+
+[Speaker 1]
+What once you kind of prove the, uh, once you kind of at churches I was, I was talking. I was talking to church. I was talking to my church people. It was Studio Sage is my chatbot, and I actually everyone I mentioned. Oh, we should have that we should have that a quick like store, the knowledge, text it, get a quick answer.
+
+Because now I'm kind of so deep, but it's it's 3, 000 lines of code like, it's tiny. Yeah, but it's, it's that's not always. It's not how complicated it is, what it delivers. Um, okay, yeah, I can, uh, I can. I can pitch what that would look like. And then, like, look, I'm excited about it.
+
+So I'm just I'm just happy to, uh, whatever, whatever it is in those stages. I just think that it's worth testing
+
+[Speaker 2]
+In those
+
+[Speaker 1]
+Stages, so I'm I'm happy to make that. You know, it's fit, kind of like independent contractor kind of thing. Yep, keep it easy. And whatever and? Yeah, just something in mind, like of, like?
+
+[Speaker 2]
+So, I don't know what you pay. I don't know what you're worth. I know what I pay you to record video and do cool, s*** yeah, yeah, yeah, um.
+
+[Speaker 1]
+So, why don't we just make it easy in like this, like this, like, little, like, let's get some. This p, there's some people biting, and this sort of thing, and then this might be a little biting, and then maybe around between this and this, there's like a there's like more of a formal like ownership
+
+[Speaker 2]
+And Equity conversation, because I think like off the top, you know, not that I don't like, not that I'm like, there's no competitors.
+
+[Speaker 1]
+You already mean, so it's kind of like, no, but
+
+[Speaker 2]
+It. It is something that would scale outside of. It was certainly some of their skills outside the Canadian Canadian industry. Yeah, something I think that could scale outside the Canyon industry, right, you know,
+
+[Speaker 1]
+Insights
+
+[Speaker 2]
+On
+
+[Speaker 1]
+On, you know. And, and then we, we kind of talked about at the end here, a discovery of the transparency of the of the insights audio recording in the thing. Oversight. As an owner into the day-to-day operations. And the conversations, and then the booking day.
+
+[Speaker 2]
+Right, right? You know if? What's happening in that? Yes, you know, hey, you like this car
+
+[Speaker 1]
+Back on your calls going back on the back on the insights with the spine of with the rag knowledge base spine of experts like Elaine, yeah, and
+
+[Speaker 2]
+On the
+
+[Speaker 1]
+Data, because it's like, Mike, yeah,
+
+[Speaker 2]
+You know what,
+
+[Speaker 1]
+I mean, SME conversion into knowledge spaces? Of. You know, and then analyzing the activities and insights, and then that driving growth over periods since activating it easy. Like, yeah, yeah, it's compelling. By why?
+
+[Speaker 2]
+Right, and be able to go out to. I'll turn the market and be like. We know that we can be in the retail business. Retail service business. Yeah, our business, however, right, and we can have it this much impact.
+
+[Speaker 8]
+There's something 48.2 increase in, right,
+
+[Speaker 2]
+Like, like, improval with data? Yes, right? Yeah,
+
+[Speaker 1]
+Yeah, I think there's really something in like the one click campaign. Two, like, I think a lot of people are using a lot of small business owners are using chargbt and automations to be like, make me a 12-week campaign based on this copy. And based on this thing, and it's it's up, it's sloping.
+
+You can fine tune it or whatever, but like.
+
+[Speaker 2]
+All looks the same. It all looks the same, but to, like, you
+
+[Speaker 1]
+Know, to fine tune that for the industry, and then have it be data driven, as in we've noticed Thursdays. We've noticed this and whatever, and then there's a whole campaign targeting that one spot in a click versus like export it out and do it manually and and whatever, I don't know.
+
+You know, your owner is better than I do. But, like, I'm thinking of owners and like the value they kind of, and that customer Health
+
+[Speaker 3]
+Dashboard is, I
+
+[Speaker 2]
+Think the customer help dashboard the staff help, right, is really interesting.
+
+[Speaker 1]
+Right of efficacy of this of the of the operator, right? So we, we know.
+
+[Speaker 2]
+Calls.
+
+Let's look at the continent of those emails like right, and so if we're able to take that down to a granular level, right? Take the Auto industry as an example, right? We have a listening device sitting there in my little cubicle with people.
+
+[Speaker 4]
+Yeah,
+
+[Speaker 2]
+Be like, why is this guy's closing ratio perhaps of another guy's closing ratio, right? And and?
+
+[Speaker 1]
+And the flow and and the help. Yeah,
+
+[Speaker 2]
+You know, the the
+
+[Speaker 1]
+Analytics, the analytics, the Insight diagnosis, the help, yeah, and
+
+[Speaker 2]
+The
+
+[Speaker 1]
+Success measured. Yeah, how could I have done that better, right, right? Based on everything you just learned in that half hours I spent with that customer? Wherever the points. I did really well, and where are the points at? That's cool. Yeah, on the build, there's like, there's. There's an agnosticism of sector and tenant you can build into it from the get-go for.
+
+Fast sector, switching down down the
+
+[Speaker 2]
+Line. What's just? What's the knowledge base right plugged into off the top? What's our SME? Yep, Elaine, Mike, you know, um? That's really cool.
+
+[Speaker 1]
+Will you text the guy the kind of thing, but you're a bill? You're a builder. This is, uh, I'm trying to spend more time, which is kind of like, why I've been meaning to like, you know, sit down with you for a while. I'm trying to kind of improve my, you know, that five average trying to try to rank it up a little bit?
+
+Love my friends! But I think I just notice I'm like, I'm I'm the thinking and building guy of the people that I'm hanging out with. There's more thinkers and Builders I'm getting pushed. I'm getting pushed lots of like. Are you an entrepreneur? Can you tell me yes, are you trying to scale you or whatever?
+
+Yes, are you age 23 to 32, no?
+
+[Speaker 2]
+Is there a slower one? Is there a tear? That's, uh, for, like, you know, like a?
+
+[Speaker 1]
+I have very young kids for my age. Yeah, look at your kids. Look at my kids.
+
+[Speaker 2]
+Yeah,
+
+[Speaker 4]
+Come on, man, our
+
+[Speaker 2]
+Little ladies.
+
+[Speaker 1]
+It's good. I'm glad I started with this 60s and new 50s, right? Yeah, I would have had kids with my first wife. It would have been a very, very different. So, oh,
+
+[Speaker 2]
+Really much. I can go around.
+
+[Speaker 1]
+Second, go around. It was like, a, you know, it cost me nothing in terms of family cost me about a quarter million dollars at the time. You know, I divorce is so expensive, because that's worth it.
+
+[Speaker 3]
+Honestly, right,
+
+[Speaker 2]
+It's the best. It's the best. It's the bunny one just going through. It took him three years of a fight, and he's like, I'm 46, starting off with zero again.
+
+[Speaker 1]
+Alyssa Luis, just like Luis CK, he was like, you're better off to be like 45 and broke sleeping on a friend's couch. Yeah, in a right relationship or in no relationship. Yeah, like in the wrong relationship. Yeah, and a million dollars in the bank in a beautiful house. Yeah, it's every.
+
+Your spouse is everything, and like. It's such a, it's such a big thing. Acting like, you know, yeah, I traded up. Man, like, yeah, I know, I did, right? Yeah, yeah, at some point, you'll meet my wife and I'm, I hope to meet yours and it's.
+
+[Speaker 2]
+Well, they'll have a lot of talk about. They're both, uh, from the dance world, and my wife was, uh, she was. We both were in Show Business, right? Like, I was.
+
+[Speaker 1]
+Uh, Show Business oh,
+
+[Speaker 2]
+Really. Yeah, I mean, like,
+
+[Speaker 1]
+Not on a job. Like, through a friend in Show Business, but we both did 20 years in Show Business? Oh
+
+[Speaker 2]
+S***,
+
+[Speaker 1]
+I had professional actor, music director, composer she was. She was a dancer performer. Understudy played leads. She was in the she was in the top five percent musical theater tap dancers in Canada, as in like Holiday Inn at the Stratford Festival, and she was. She was, like, the top.
+
+You know, she
+
+[Speaker 2]
+Was a career at it
+
+[Speaker 1]
+Career when she was like when it was, you know, an urn, which netsia 80 Grand a year. Like to be clear, it's not the top. It's like, give me the topic anything else. I was never the top at anything. I, I had a lot of potential the whole time.
+
+They worked. It was my full-time job, but like, you know, she, like, you know, she was a well regarded, especially in tap in everything, but actually, like, tap dancer. Um, you shoot the big tap musicals,
+
+[Speaker 2]
+And you watch them up there. Oh my gosh, it's like a rock cat. She could have been a rock cat. She gotta didn't go down. We knew some Rockets. Yeah. But. You're definitely married up then!
+
+[Speaker 1]
+Oh, that's great man. Okay, well, yeah, I think I think there's. I'm excited. There's lots. There's me too. I, like, I love your thought in the direction, right in which you're heading, and I literally sat.
+
+[Speaker 2]
+Nick, who's been my data guy this summer, has been a great time. He's a student, right?
+
+[Speaker 1]
+Yeah, yeah. And
+
+[Speaker 2]
+It's been fun. And I've got Wilfried and I had Greg with my sister and I was like a controller and I was like. I do not have the bandwidth at a time. In order to do this, but I know there's money, and I know there's opportunity. Yeah, sitting here and I'm kind of.
+
+I was,
+
+[Speaker 1]
+Like guys, give me who I need and I'm kind of. I'm kind of like Sharp Tools, and like pointing at a different problems. But I'm like, I would love a big problem to, like, digest. I think the shape of what we discussed is. Buildable, it's not, it's it's not, it's not out there.
+
+It's built, it's buildable, it's useful, and we get. We can test it with the people you already have again. Some of your friendlies, the Expo, and some of your customers and then and then Beyond easy.
+
+[Speaker 2]
+Hey, Kev for the men's? Good bud, you? Okay, you can't twist today. You okay.
+
+[Speaker 8]
+Happy birthday!
+
+Thank you.
+
+[Speaker 2]
+So, you say why?
+
+How's your pain back?
+
+[Speaker 5]
+Like on a slide, just I, I don't want to get the whole options, right?
+
+[Speaker 2]
+Yeah, no, no, it's a little concerning, right, like? Yeah, he worked all summer. We paid him all summer like he was working around the the school and painting and doing everything right. So, it's not from the lack of work.
+
+Yeah. No, really nice. And the fact he's not talking to animals? Um. Uh, weird due for a beer, but I know you're wrapping up. A lot of s***. What's your schedule?
+
+Yeah, yeah, I just I want to follow up on how the year went. Yeah, yeah, please, right? But I just I want to touch base the how the year went. Oh, let's see. How you're doing and?
+
+Okay.
+
+All right, awesome, all right. Okay, yeah, let's touch week after next.
+
+[Speaker 6]
+I got you down for okay, bud. Okay, thanks. Thanks for the heads up. Okay, bye. Everyone's texting me right now. That's the five
+
+[Speaker 1]
+Day Bitcoin shirt everyone's texting me right now. I'm, like, please stop.
+
+But, of course, I won't. I just stack of stack.
+
+[Speaker 2]
+I had a bunch get stolen. Oh, really,
+
+[Speaker 4]
+How? Uh, I had it on Exchange and got my email hack and logged into my chain and I used to have a lot of chain links. I had about 15, 000, and.
+
+[Speaker 3]
+Uh, that was now. We were like a million dollars, and I got it all stolen, and I bought back enough. But now, it's worth like 10, 000.
+
+[Speaker 2]
+And then it was worth fifty dollars. And now.
+
+[Speaker 5]
+Oh, it was a great story. I was for fintech show. I was downloading a cracked version of PowerPoint because I had to like, quickly, like, show a deck and my slides. And I was, like, oh, I had a crackboard in the PowerPoint. And while I was in a zoom meeting, like, not paying attention.
+
+The crack ran, and there was a key logger and. The rest is history. I bought a lot of it back, but you know, I had like 17, 000. I wasn't using, like?
+
+[Speaker 3]
+Ledgers, and I wasn't using offline stories. Yeah, my Securities. This was like, seven years ago, eight years ago or whatever, but no, I've had. I've had some near misses at making it too man, but that's like guys. Guys, like us, seem to be all have that story. You have to come back, you double down, you come back and double down.
+
+[Speaker 4]
+Yeah, okay, man, you wouldn't be honest. Oh great, man! Hey, you like mine? Let's do a thing, yeah? How about you? Yeah! Yeah, I think like this, this, uh, Q Fork? Oh my, gosh! Q3 Q4, yeah, no, no, this is something. Someone else is doing it. Yeah, yeah, yeah, yeah.
+
+[Speaker 3]
+Waiting, preparing.

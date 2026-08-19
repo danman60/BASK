@@ -4,7 +4,7 @@
 export const FPS = 30;
 
 export type ShotName =
-  | 'brand' | 'open' | 'hero' | 'floor' | 'checkin' | 'pos'
+  | 'brand' | 'open' | 'hero'
   | 'order' | 'titleA' | 'studio' | 'map' | 'network' | 'wall' | 'compass' | 'outro';
 
 export type Shots = Record<ShotName, { from: number; duration: number }>;
@@ -37,9 +37,12 @@ const captionCut = seq([
   ['brand', 120], // what this is, before anything moves
   ['open', 130], // Daybreak letter — crane-rise-reveal
   ['hero', 170], // the insight card — spotlight-hero-card
-  ['floor', 150], // the room board — grid-wave-flip
-  ['checkin', 170], // the front desk — type-and-filter
-  ['pos', 200], // the till — crash-zoom-punch
+  // CUT 2026-08-19 after the Nick meeting: floor (room board), checkin (front
+  // desk) and pos (the till) are gone. He ruled out salon management software
+  // in the meeting — "it's not tracking minutes and putting butts in beds, it's
+  // what to do with that data" — and he hosts Sun Link, so a competing front
+  // end is off the table for him structurally. The shot components still exist;
+  // they are simply not in the cut. See docs/meetings/2026-08-19-nick-debrief.md.
   ['order', 145], // UVALUX draft order — list-stack-press
   ['titleA', 104], // breathing card
   ['studio', 150], // insight → campaign — card-flip-reveal
@@ -64,9 +67,9 @@ const voCut = seq([
   ['brand', 130], // "what Bask is" (3.8s)
   ['open', 240], // the friction line (7.4s)
   ['hero', 155], // the insight (4.8s)
-  ['floor', 140], // the room board (4.25s)
-  ['checkin', 290], // the front desk — line D came back 8.45s
-  ['pos', 310], // the till — line E came back 9.04s
+  // CUT 2026-08-19 (see captionCut above). Their three VO lines go with them:
+  // vo4 (the floor runs live), voD (the front desk), voE (the till). The
+  // remaining read is still continuous because every clip is pinned per shot.
   ['order', 195], // the shelf and the order (5.9s)
   ['titleA', 104],
   ['studio', 310], // the campaign line (9.7s)

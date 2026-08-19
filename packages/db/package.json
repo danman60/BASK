@@ -19,7 +19,8 @@
     "demo:reset": "tsx scripts/demo-reset.ts",
     "demo:advance": "tsx scripts/demo-advance.ts",
     "demo:checksum": "tsx scripts/demo-checksum.ts",
-    "demo:dump": "tsx scripts/demo-dump.ts"
+    "demo:dump": "tsx scripts/demo-dump.ts",
+    "health:distribution": "tsx scripts/health-distribution.ts"
   },
   "devDependencies": {
     "prisma": "7.9.1",

@@ -14,8 +14,6 @@ import type { Shots } from './timeline';
 
 type Cue = { from: number; src: string; volume: number; durationInFrames?: number; note: string };
 
-// S5's diagonal wave front fires at HOLD + (row+col)*6 inside the shot
-const FLOOR_WAVE = [8, 13, 18, 23, 28, 33];
 // S6's five rows land at CUES[i] + DUR
 const ORDER_LANDINGS = [26, 34, 42, 50, 58].map((c) => c + 18);
 // S9's three evidence tiles embed at PUSH + 14 + i*9 + 12 — PUSH is S9Compass's
@@ -50,27 +48,6 @@ export const buildSfx = (S: Shots): Cue[] => [
   { from: S.studio.from + 16, src: 'paper-page-turn.mp3', volume: 0.44, note: 'the card turns over' },
   { from: S.studio.from + 42, src: 'transition-snap.mp3', volume: 0.24, note: 'flip settles on the campaign' },
   { from: S.studio.from + 39, src: 'transition-soft.mp3', volume: 0.24, note: 'the Studio page arrives behind it (sample peaks +13f)' },
-
-  // ── S5 the Floor: six wave fronts, two alternating samples, level ladder ────
-  ...FLOOR_WAVE.map((d, i) => ({
-    from: S.floor.from + d,
-    src: i % 2 === 0 ? 'sweep-short.mp3' : 'wind-swoosh-short.mp3',
-    volume: 0.3 - i * 0.028,
-    note: `room board wave front ${i + 1}`,
-  })),
-  { from: S.floor.from + 43, src: 'transition-snap.mp3', volume: 0.22, note: 'last card overshoots and settles' },
-
-  // ── the front desk: typing is the one action that must have its own foley ──
-  { from: S.checkin.from + 26, src: 'keyboard.mp3', volume: 0.32, durationInFrames: 26, note: 'typing the name (long sample, cut to the action)' },
-  { from: S.checkin.from + 84, src: 'click-camera.mp3', volume: 0.5, note: 'picking the customer' },
-  { from: S.checkin.from + 92, src: 'transition-soft.mp3', volume: 0.22, note: 'their card arrives' },
-
-  // ── the till: two punches, the second lighter ──────────────────────────────
-  { from: S.pos.from + 40, src: 'whoosh-fast.mp3', volume: 0.34, note: 'crash-zoom onto the first product' },
-  { from: S.pos.from + 52, src: 'click-camera.mp3', volume: 0.45, note: 'scanned — into the cart' },
-  { from: S.pos.from + 92, src: 'whoosh-fast.mp3', volume: 0.26, note: 'second punch, softer' },
-  { from: S.pos.from + 104, src: 'click-camera.mp3', volume: 0.38, note: 'scanned again' },
-  { from: S.pos.from + 128, src: 'transition-soft.mp3', volume: 0.24, note: 'out to the till' },
 
   // ── S6 the shelf and the order ─────────────────────────────────────────────
   { from: S.order.from - 13, src: 'transition-soft.mp3', volume: 0.26, note: 'into inventory (sample peaks +13f)' },
@@ -141,9 +118,6 @@ export const buildVo = (S: Shots): Cue[] => [
   { from: S.brand.from + 12, src: 'vo/voA.mp3', volume: 1, durationInFrames: 116, note: 'A — what Bask is (3.8s)' },
   { from: S.open.from + 14, src: 'vo/voB.mp3', volume: 1, durationInFrames: 228, note: 'B — less friction for the customer, less work for the owner' },
   { from: S.hero.from + 11, src: 'vo/vo2.mp3', volume: 1, durationInFrames: 150, note: 'Overnight, Bask read yesterday…' },
-  { from: S.floor.from + 12, src: 'vo/vo4.mp3', volume: 1, durationInFrames: 132, note: 'The floor runs live…' },
-  { from: S.checkin.from + 20, src: 'vo/voD.mp3', volume: 1, durationInFrames: 258, note: 'D — the front desk (8.45s)' },
-  { from: S.pos.from + 20, src: 'vo/voE.mp3', volume: 1, durationInFrames: 276, note: 'E — the till (9.04s)' },
   { from: S.order.from + 8, src: 'vo/vo5.mp3', volume: 1, durationInFrames: 182, note: 'It counts the shelf…' },
   { from: S.studio.from + 308, src: 'vo/voC.mp3', volume: 1, durationInFrames: 256, note: 'C — and most of all, UVALUX gets the data (8.4s, lands ON the act break into Compass)' },
   { from: S.compass.from + 20, src: 'vo/vo7.mp3', volume: 1, durationInFrames: 124, note: 'And every UVALUX rep calls…' },
