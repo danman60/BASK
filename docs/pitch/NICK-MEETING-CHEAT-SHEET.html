@@ -1,0 +1,1151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3b302f">
+  <title>Nick Meeting Cheat Sheet | Bask Concept for UVALUX</title>
+  <style>
+    :root {
+      --paper: #fbf7ef;
+      --paper-deep: #f3eadf;
+      --ink: #302827;
+      --muted: #716461;
+      --line: #dccfc2;
+      --sunset: #b95536;
+      --sunset-dark: #8f3d29;
+      --sunset-wash: #f6dfd5;
+      --gold: #b8862f;
+      --gold-wash: #f5e9c9;
+      --compass: #3b302f;
+      --sage: #5e765f;
+      --sage-wash: #e4ede2;
+      --alert: #8c3030;
+      --alert-wash: #f4dcdc;
+      --shadow: 0 12px 36px rgba(63, 45, 40, .09);
+      --radius: 22px;
+      --radius-small: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper-deep);
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 88% 0%, rgba(184, 134, 47, .12), transparent 27rem),
+        linear-gradient(180deg, #fffaf3 0, var(--paper) 22rem, var(--paper-deep) 100%);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.48;
+    }
+
+    a { color: inherit; }
+
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .shell {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 20px 0 80px;
+    }
+
+    .utility {
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 8px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(220, 207, 194, .9);
+      border-radius: 999px;
+      background: rgba(251, 247, 239, .92);
+      box-shadow: 0 8px 24px rgba(63, 45, 40, .08);
+      backdrop-filter: blur(14px);
+      scrollbar-width: none;
+    }
+
+    .utility::-webkit-scrollbar { display: none; }
+
+    .utility a {
+      flex: 0 0 auto;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 15px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      letter-spacing: .01em;
+    }
+
+    .utility a:first-child {
+      color: #fff9f2;
+      background: var(--sunset);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(24px, 5vw, 58px);
+      border-radius: 30px;
+      color: #fff9f2;
+      background:
+        radial-gradient(circle at 92% 12%, rgba(235, 183, 83, .34), transparent 17rem),
+        linear-gradient(135deg, #3b302f 0%, #56403a 58%, #793f2c 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -70px;
+      bottom: -95px;
+      width: 250px;
+      height: 250px;
+      border: 1px solid rgba(255, 249, 242, .2);
+      border-radius: 50%;
+      box-shadow: 0 0 0 28px rgba(255, 249, 242, .035), 0 0 0 58px rgba(255, 249, 242, .025);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--sunset);
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .hero .eyebrow { color: #f3c574; }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1, h2, .big-number {
+      font-family: Fraunces, Iowan Old Style, Georgia, serif;
+      font-weight: 650;
+      letter-spacing: -.025em;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 14px;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: .98;
+    }
+
+    .meeting-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 25px;
+    }
+
+    .meeting-line span {
+      display: inline-flex;
+      min-height: 35px;
+      align-items: center;
+      padding: 6px 11px;
+      border: 1px solid rgba(255, 249, 242, .2);
+      border-radius: 999px;
+      color: #f7eee4;
+      background: rgba(255, 255, 255, .07);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .mission {
+      position: relative;
+      z-index: 1;
+      max-width: 890px;
+      padding: 18px 20px;
+      border-left: 4px solid #e6ad4b;
+      border-radius: 0 var(--radius-small) var(--radius-small) 0;
+      background: rgba(0, 0, 0, .14);
+      font-size: clamp(16px, 2.4vw, 20px);
+      font-weight: 720;
+    }
+
+    .mission strong { color: #f7cb7e; }
+
+    .hero-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 17px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 850;
+      text-decoration: none;
+    }
+
+    .button-primary {
+      color: var(--compass);
+      background: #f3c574;
+    }
+
+    .button-ghost {
+      color: #fff9f2;
+      border-color: rgba(255, 249, 242, .34);
+      background: rgba(255, 255, 255, .07);
+    }
+
+    main { margin-top: 18px; }
+
+    .section {
+      margin-top: 18px;
+      padding: clamp(20px, 4vw, 34px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 252, 247, .88);
+      box-shadow: 0 8px 28px rgba(63, 45, 40, .05);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head h2 {
+      margin-bottom: 0;
+      font-size: clamp(29px, 4vw, 43px);
+      line-height: 1.02;
+    }
+
+    .section-note {
+      max-width: 370px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: right;
+    }
+
+    .grid-2, .grid-3, .agenda, .quick-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .quick-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-small);
+      background: #fffaf4;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+
+    .card p:last-child, .card ul:last-child, .card ol:last-child { margin-bottom: 0; }
+
+    .card p, li {
+      color: #514542;
+    }
+
+    .card p { margin-bottom: 10px; }
+
+    .accent { border-top: 4px solid var(--sunset); }
+    .gold { border-top: 4px solid var(--gold); background: #fffaf0; }
+    .compass { border-top: 4px solid var(--compass); }
+    .safe { border-top: 4px solid var(--sage); background: #f7fbf5; }
+    .danger { border-top: 4px solid var(--alert); background: #fff8f7; }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 25px;
+      padding: 3px 8px;
+      margin-bottom: 9px;
+      border-radius: 999px;
+      color: var(--sunset-dark);
+      background: var(--sunset-wash);
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .label.gold-label { color: #785416; background: var(--gold-wash); }
+    .label.safe-label { color: #39513d; background: var(--sage-wash); }
+    .label.dark-label { color: #fff8f0; background: var(--compass); }
+    .label.alert-label { color: #722a2a; background: var(--alert-wash); }
+
+    .script {
+      margin: 0;
+      padding: 18px 19px;
+      border-left: 4px solid var(--sunset);
+      border-radius: 0 var(--radius-small) var(--radius-small) 0;
+      color: var(--ink);
+      background: var(--sunset-wash);
+      font-family: Fraunces, Iowan Old Style, Georgia, serif;
+      font-size: clamp(18px, 2.3vw, 23px);
+      font-weight: 590;
+      line-height: 1.38;
+    }
+
+    .script + .script { margin-top: 12px; }
+
+    .small-script {
+      padding: 13px 14px;
+      font-size: 17px;
+    }
+
+    .source {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    ul, ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    li + li { margin-top: 7px; }
+
+    .checklist {
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      position: relative;
+      min-height: 28px;
+      padding-left: 29px;
+    }
+
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: 17px;
+      height: 17px;
+      border: 2px solid #baa99d;
+      border-radius: 5px;
+      background: #fff;
+    }
+
+    .agenda {
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-small);
+      overflow: hidden;
+    }
+
+    .agenda-time, .agenda-body {
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .agenda-time {
+      color: var(--sunset-dark);
+      background: var(--sunset-wash);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .agenda-body { background: #fffaf4; }
+    .agenda-body strong { display: block; margin-bottom: 3px; }
+    .agenda-body p { margin: 0; color: var(--muted); font-size: 14px; }
+    .agenda > :nth-last-child(-n+2) { border-bottom: 0; }
+
+    .demo-step {
+      display: grid;
+      grid-template-columns: 50px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .demo-step:last-child { border-bottom: 0; }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff8f0;
+      background: var(--sunset);
+      font-weight: 900;
+    }
+
+    .demo-step h3 { margin-bottom: 4px; }
+    .demo-step p { margin-bottom: 7px; color: var(--muted); }
+
+    .say {
+      color: var(--ink) !important;
+      font-weight: 750;
+    }
+
+    .time-chip {
+      display: inline-block;
+      margin-left: 6px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .question-list {
+      counter-reset: question;
+      padding: 0;
+      list-style: none;
+    }
+
+    .question-list li {
+      counter-increment: question;
+      position: relative;
+      min-height: 38px;
+      padding: 8px 0 8px 44px;
+      color: var(--ink);
+      font-weight: 680;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .question-list li:last-child { border-bottom: 0; }
+
+    .question-list li::before {
+      content: counter(question, decimal-leading-zero);
+      position: absolute;
+      top: 8px;
+      left: 0;
+      color: var(--sunset);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .08em;
+    }
+
+    .listen {
+      display: inline-block;
+      min-width: 92px;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .hypothesis {
+      position: relative;
+      padding-top: 41px;
+    }
+
+    .hypothesis::before {
+      content: "WORKING HYPOTHESIS";
+      position: absolute;
+      top: 13px;
+      left: 17px;
+      color: #785416;
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .09em;
+    }
+
+    .price {
+      margin: 0 0 6px;
+      font-family: Fraunces, Iowan Old Style, Georgia, serif;
+      font-size: 27px;
+      font-weight: 650;
+      line-height: 1;
+    }
+
+    .objection {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .objection:first-child { padding-top: 0; }
+    .objection:last-child { padding-bottom: 0; border-bottom: 0; }
+    .objection h3 { margin-bottom: 6px; color: var(--sunset-dark); }
+    .objection p { margin: 0; }
+
+    .close-flow {
+      counter-reset: close;
+      display: grid;
+      gap: 12px;
+    }
+
+    .close-step {
+      counter-increment: close;
+      position: relative;
+      padding: 17px 17px 17px 62px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-small);
+      background: #fffaf4;
+    }
+
+    .close-step::before {
+      content: counter(close);
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 31px;
+      height: 31px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff8f0;
+      background: var(--compass);
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .close-step h3 { margin-bottom: 6px; }
+    .close-step p { margin-bottom: 7px; }
+    .close-step p:last-child { margin-bottom: 0; }
+
+    .silence {
+      color: var(--alert) !important;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .quick-link {
+      min-height: 92px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-small);
+      color: var(--ink);
+      background: #fffaf4;
+      text-decoration: none;
+    }
+
+    .quick-link strong { font-size: 14px; }
+    .quick-link span { color: var(--muted); font-size: 11px; overflow-wrap: anywhere; }
+
+    .truth-band {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 13px;
+      align-items: center;
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-small);
+      color: #f8eee4;
+      background: var(--compass);
+    }
+
+    .truth-band strong {
+      color: #f3c574;
+      font-family: Fraunces, Iowan Old Style, Georgia, serif;
+      font-size: 24px;
+    }
+
+    .truth-band p { margin: 0; font-size: 13px; }
+
+    .footer {
+      margin-top: 18px;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .footer strong { color: var(--ink); }
+
+    @media (max-width: 860px) {
+      .grid-3, .quick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 660px) {
+      .shell { width: min(100% - 18px, 1180px); padding-top: 9px; }
+      .utility { top: 6px; margin-bottom: 9px; }
+      .hero { border-radius: 22px; }
+      h1 { font-size: 43px; }
+      .section { padding: 19px 16px; border-radius: 18px; }
+      .section-head { display: block; }
+      .section-note { margin-top: 7px; text-align: left; }
+      .grid-2, .grid-3, .quick-grid { grid-template-columns: 1fr; }
+      .agenda { grid-template-columns: 74px minmax(0, 1fr); }
+      .agenda-time, .agenda-body { padding: 13px 11px; }
+      .mission { padding: 15px; }
+      .truth-band { grid-template-columns: 1fr; gap: 2px; }
+    }
+
+    @media print {
+      @page { size: letter; margin: 10mm; }
+      html, body { background: #fff; }
+      body { color: #211c1b; font-size: 10.5pt; }
+      .shell { width: 100%; margin: 0; padding: 0; }
+      .utility, .hero-actions { display: none !important; }
+      .hero {
+        padding: 12mm;
+        border-radius: 0;
+        box-shadow: none;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      h1 { font-size: 37pt; }
+      .mission { font-size: 13pt; }
+      main { margin-top: 5mm; }
+      .section {
+        margin-top: 5mm;
+        padding: 7mm;
+        border-radius: 0;
+        box-shadow: none;
+        background: #fff;
+      }
+      .section-head h2 { font-size: 24pt; }
+      .section, .hero, .card, .close-step, .demo-step, .agenda, .objection, .quick-link {
+        break-inside: avoid;
+      }
+      .print-break { break-before: page; }
+      .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .grid-2, .quick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .button { color: #211c1b; }
+      a { text-decoration: none; }
+      .footer { padding-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <nav class="utility" aria-label="Cheat sheet sections">
+      <a href="#open">Open</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#demo">Demo</a>
+      <a href="#discover">Ask Nick</a>
+      <a href="#commercial">Commercial</a>
+      <a href="#objections">Objections</a>
+      <a href="#close">Close</a>
+      <a href="#fallbacks">Fallbacks</a>
+    </nav>
+
+    <header class="hero">
+      <p class="eyebrow">Bask concept for UVALUX | In-person meeting station</p>
+      <h1>Nick meeting cheat sheet</h1>
+      <div class="meeting-line">
+        <span>Wednesday, August 19, 2026</span>
+        <span>1:00 to 2:00 PM Eastern</span>
+        <span>In person</span>
+        <span>Nick, President of UVALUX</span>
+      </div>
+      <div class="mission">
+        <strong>Leave with four things:</strong> Nick's honest concept read, branding direction, introductions to 3 to 5 trusted salon owners, and a named next step with a date.
+      </div>
+      <div class="hero-actions">
+        <a class="button button-primary" href="https://bask-psi.vercel.app/">Open live Bask</a>
+        <a class="button button-ghost" href="../../promo/out/promo-vo-720.mp4">Open 1:44.8 film</a>
+        <a class="button button-ghost" href="#close">Jump to close</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="section" id="open">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Start with his outcome</p>
+            <h2>First five minutes</h2>
+          </div>
+          <p class="section-note">Existing relationship. Talk with Nick, not at him. Discovery comes before the product tour.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card accent">
+            <span class="label">Say this first</span>
+            <p class="script">Nick, before we get into it, I have a few things I want to make sure we cover. I am sure you do as well. Exactly what is the most important thing you want to accomplish today?</p>
+            <p class="source">FounderVision: outcome-first opening</p>
+          </article>
+
+          <article class="card gold">
+            <span class="label gold-label">Set the contract</span>
+            <p class="script">At the end of our conversation, there are really three outcomes: yes, no, or we need more information. Any of those are fine with me. Can we agree to be honest about where we stand?</p>
+            <p class="source">FounderVision: up-front contract</p>
+          </article>
+        </div>
+
+        <div class="truth-band">
+          <strong>Posture</strong>
+          <p>Do not force the prepared tour over Nick's stated outcome. Listen, summarize, then show only the Bask and Compass moments that answer what he said.</p>
+        </div>
+      </section>
+
+      <section class="section" id="preflight">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">No surprises in the room</p>
+            <h2>Preflight</h2>
+          </div>
+          <p class="section-note">The real artifact is the screen Nick sees. Check the composited path before leaving.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card accent">
+            <span class="label">30 minutes before</span>
+            <ul class="checklist">
+              <li>Open only <strong>bask-psi.vercel.app</strong>.</li>
+              <li>Walk the exact guided path once.</li>
+              <li>Load <strong>promo-vo-720.mp4</strong> locally and scrub to its end.</li>
+              <li>Confirm laptop sound, battery, charger, and hotspot.</li>
+              <li>Put phone on Do Not Disturb.</li>
+            </ul>
+          </article>
+
+          <article class="card safe">
+            <span class="label safe-label">Phone setup</span>
+            <ul class="checklist">
+              <li>Open responsive live web on phone.</li>
+              <li>Call it Bask on the web, not Bask Mobile.</li>
+              <li>Keep base URL bookmarked.</li>
+              <li>Close personal tabs and notifications.</li>
+              <li>Keep PDF available offline.</li>
+            </ul>
+          </article>
+
+          <article class="card danger">
+            <span class="label alert-label">Never before meeting</span>
+            <ul>
+              <li>Do not reset demo data. Local reset shares production database.</li>
+              <li>Do not open a saved campaign detail URL.</li>
+              <li>Do not use bask.vercel.app or a hashed deployment URL.</li>
+              <li>Do not install updates in the room.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="agenda">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">60-minute map</p>
+            <h2>Meeting run of show</h2>
+          </div>
+          <p class="section-note">Demo ceiling: 15 minutes. Give the saved time back to Nick.</p>
+        </div>
+
+        <div class="agenda">
+          <div class="agenda-time">0 to 5</div>
+          <div class="agenda-body"><strong>Reconnect, outcome, up-front contract</strong><p>Ask what Nick wants from the hour. Agree on yes, no, or more information.</p></div>
+
+          <div class="agenda-time">5 to 15</div>
+          <div class="agenda-body"><strong>Discovery before demo</strong><p>Current salon software, recurring complaints, rep needs, useful signals, privacy boundary.</p></div>
+
+          <div class="agenda-time">15 to 17</div>
+          <div class="agenda-body"><strong>Play the 1:44.8 film</strong><p>Use promo-vo-720.mp4. One sentence after: this is the operating system and network view the live build explores.</p></div>
+
+          <div class="agenda-time">17 to 32</div>
+          <div class="agenda-body"><strong>Guided product demo</strong><p>Show only the route below. Slow down where Nick leans in. Skip what does not map to his answer.</p></div>
+
+          <div class="agenda-time">32 to 45</div>
+          <div class="agenda-body"><strong>Deep discovery</strong><p>Brand, customer access, owner introductions, commercial preference, objections.</p></div>
+
+          <div class="agenda-time">45 to 52</div>
+          <div class="agenda-body"><strong>Tie the bow and test fit</strong><p>Summarize current state, desired state, and Bask's possible role. Ask if it matches.</p></div>
+
+          <div class="agenda-time">52 to 60</div>
+          <div class="agenda-body"><strong>Make the ask and calendar next step</strong><p>Concept read. Brand direction. 3 to 5 introductions. Owner, action, date.</p></div>
+        </div>
+      </section>
+
+      <section class="section" id="demo">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Maximum 15 minutes</p>
+            <h2>Live demo route</h2>
+          </div>
+          <p class="section-note">Responsive web on phone or laptop. It is not a native app.</p>
+        </div>
+
+        <div class="demo-step">
+          <div class="step-number">1</div>
+          <div>
+            <h3>Daybreak <span class="time-chip">1 minute</span></h3>
+            <p>Open the home view. Show the slow-Tuesday signal and the day's operating priorities.</p>
+            <p class="say">Say: "One screen tells the owner what needs attention before the day gets away from them."</p>
+          </div>
+        </div>
+
+        <div class="demo-step">
+          <div class="step-number">2</div>
+          <div>
+            <h3>Studio campaign <span class="time-chip">2 minutes</span></h3>
+            <p>Start a fresh guided campaign from the Tuesday insight. Do not open an old campaign detail link.</p>
+            <p class="say">Say: "The signal turns into a usable action without leaving the operating system."</p>
+          </div>
+        </div>
+
+        <div class="demo-step">
+          <div class="step-number">3</div>
+          <div>
+            <h3>Floor, check-in, waiver, POS <span class="time-chip">4 minutes</span></h3>
+            <p>Show one customer path from arrival through service and checkout. Equipment state and payment events are simulated in this build.</p>
+            <p class="say">Say: "This is the hourly layer that largely sits outside the current UVALUX relationship: service, retail, staff, equipment, and customer flow."</p>
+          </div>
+        </div>
+
+        <div class="demo-step">
+          <div class="step-number">4</div>
+          <div>
+            <h3>Inventory and UVALUX draft order <span class="time-chip">2 minutes</span></h3>
+            <p>Show product movement reaching a reorder decision. Catalogue and pricing are curated demo data, not a live account integration.</p>
+            <p class="say">Say: "Operations can write demand back toward UVALUX instead of waiting for the owner to notice a shelf."</p>
+          </div>
+        </div>
+
+        <div class="demo-step">
+          <div class="step-number">5</div>
+          <div>
+            <h3>Campaign result and Peers <span class="time-chip">2 minutes</span></h3>
+            <p>Show the closed loop and peer context. Campaign delivery, results, and benchmark cohorts are staged for discovery.</p>
+            <p class="say">Say: "The value is not another dashboard. It is seeing an issue, taking action, and learning what changed."</p>
+          </div>
+        </div>
+
+        <div class="demo-step">
+          <div class="step-number">6</div>
+          <div>
+            <h3>Compass and consent <span class="time-chip">4 minutes</span></h3>
+            <p>Open network, call-list concept, then data-sharing settings. Show derived business signals without exposing customer names, contacts, or transactions.</p>
+            <p class="say">Say: "Bask helps the salon run. With explicit salon consent, Compass could help UVALUX see where support matters across the network."</p>
+          </div>
+        </div>
+
+        <div class="truth-band">
+          <strong>Truth line</strong>
+          <p>"This is a polished interactive discovery build. It is here to test the workflows and partnership shape. Production integrations, authentication, hardware verification, and compliance work remain." Bask, Compass, Daybreak, Floor, Studio, and Peers are working names.</p>
+        </div>
+      </section>
+
+      <section class="section" id="discover">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">His answers shape the deal</p>
+            <h2>Questions for Nick</h2>
+          </div>
+          <p class="section-note">Ask, listen, write his words. Use "What else?" until the answer is dry.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card accent">
+            <span class="label">Must ask</span>
+            <ol class="question-list">
+              <li>What is the most important thing you want to accomplish today?<span class="listen">Listen for outcome</span></li>
+              <li>What software are salons using now, and what complaints keep reaching you?<span class="listen">Listen for pain</span></li>
+              <li>What does a UVALUX rep wish they knew before calling or visiting a salon?<span class="listen">Listen for signal</span></li>
+              <li>Where is the privacy line that UVALUX and salon owners cannot cross?<span class="listen">Listen for trust</span></li>
+              <li>How should UVALUX show up: UVALUX-branded, co-branded, powered by, or behind the scenes?<span class="listen">Listen for brand</span></li>
+              <li>Who are 3 to 5 trusted owners you would introduce so we can learn what survives contact with a real salon?<span class="listen">Listen for access</span></li>
+            </ol>
+          </article>
+
+          <article class="card compass">
+            <span class="label dark-label">Question bank</span>
+            <ol class="question-list">
+              <li>How many active salon customers does UVALUX serve, and what share includes tanning?</li>
+              <li>How many new salon openings does the team touch in a typical year?</li>
+              <li>Where do incumbents create the most friction for owners or reps?</li>
+              <li>Which signals matter most: struggling location, expansion, equipment, retail, staffing, or retention?</li>
+              <li>Would the best first wedge be new openings, existing salons, or a specific owner group?</li>
+              <li>If owner conversations validate this, which structure fits UVALUX best: license, reseller or revenue share, investment, or another model?</li>
+              <li>Who besides you needs to believe this before a next step is real?</li>
+              <li>What would make you say no?</li>
+            </ol>
+          </article>
+        </div>
+
+        <article class="card gold" style="margin-top:14px">
+          <span class="label gold-label">Tie the bow before showing more</span>
+          <p class="script small-script">It sounds like you are at [current state], trying to get to [future state], and you think [the role Bask or Compass could play] could help get you there. Does that sound right, or am I forgetting anything?</p>
+          <p class="source">FounderVision: current state to future state summary</p>
+        </article>
+      </section>
+
+      <section class="section" id="commercial">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Discuss only after fit</p>
+            <h2>Commercial working board</h2>
+          </div>
+          <p class="section-note">These are exploration anchors. None is approved pricing, a quote, or agreed structure.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card gold hypothesis">
+            <p class="price">CAD $199</p>
+            <h3>Core per location, monthly</h3>
+            <p>Internal product hypothesis for salon operating software. Not a quote.</p>
+          </article>
+          <article class="card gold hypothesis">
+            <p class="price">CAD $299</p>
+            <h3>Intelligence per location, monthly</h3>
+            <p>Internal product hypothesis for expanded intelligence. Not a quote.</p>
+          </article>
+          <article class="card gold hypothesis">
+            <p class="price">2 to 3 salons</p>
+            <h3>Small validation group</h3>
+            <p>Possible learning shape only. The build is not yet pilot-ready.</p>
+          </article>
+        </div>
+
+        <div class="grid-2" style="margin-top:14px">
+          <article class="card compass">
+            <span class="label dark-label">Structure options to test</span>
+            <ul>
+              <li><strong>Reseller or revenue share:</strong> UVALUX carries the relationship and participates in recurring value.</li>
+              <li><strong>License:</strong> clear rights and economics around a UVALUX-positioned product.</li>
+              <li><strong>Investment:</strong> capital plus distribution alignment.</li>
+              <li><strong>Another structure:</strong> ask Nick what matches how UVALUX actually operates.</li>
+            </ul>
+          </article>
+          <article class="card safe">
+            <span class="label safe-label">Safe pricing answer</span>
+            <p class="script small-script">We have internal working hypotheses, not final pricing. I want the owner conversations and UVALUX structure to shape the real offer before I pretend the number is settled.</p>
+            <p class="source">Use only if Nick asks for price before validation.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section print-break" id="objections">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Short, honest answers</p>
+            <h2>Objection lines</h2>
+          </div>
+          <p class="section-note">Answer, verify understanding, return to discovery. Do not defend what is not built.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card accent">
+            <div class="objection"><h3>"Is this production software?"</h3><p>No. It is a deployed interactive discovery build. It demonstrates proposed workflows for evaluation. Production work remains.</p></div>
+            <div class="objection"><h3>"Does it run T-Max or bed timers?"</h3><p>Not today. The integration boundary is designed, but hardware needs bench verification before I promise compatibility.</p></div>
+            <div class="objection"><h3>"Are payments and messages real?"</h3><p>No. Payment events, campaign publishing, and results are simulated in this build. Production providers are still a decision.</p></div>
+            <div class="objection"><h3>"Where is the mobile app?"</h3><p>A native app is not built. What you are seeing on the phone is the responsive live web product.</p></div>
+          </article>
+
+          <article class="card compass">
+            <div class="objection"><h3>"Who owns the data?"</h3><p>The design gives the salon explicit sharing controls. Compass uses derived business signals, not customer names, contacts, or transactions. Legal and compliance work still needs to validate that design.</p></div>
+            <div class="objection"><h3>"How would migration work?"</h3><p>Working direction is new salons first and concierge import later. I will not promise payment-token portability or a migration path before we verify the source systems.</p></div>
+            <div class="objection"><h3>"What does this cost?"</h3><p>The current numbers are hypotheses, not a quote. First validate owner demand and choose the UVALUX structure, then price the real scope.</p></div>
+            <div class="objection"><h3>"What do you need from me?"</h3><p>Your honest read, brand direction, introductions to 3 to 5 trusted owners, and a dated next step if the concept earns one.</p></div>
+          </article>
+        </div>
+
+        <div class="truth-band">
+          <strong>Unknown answer</strong>
+          <p>"I do not know yet. I will verify that and send you the answer by [day and time]." Write it down before moving on.</p>
+        </div>
+      </section>
+
+      <section class="section" id="close">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">FounderVision close sequence</p>
+            <h2>Close the meeting</h2>
+          </div>
+          <p class="section-note">No vague "let me know." Every good outcome receives an owner, action, and date.</p>
+        </div>
+
+        <div class="close-flow">
+          <article class="close-step">
+            <h3>Tie current state to future state</h3>
+            <p>Use his words, not your pitch language. Ask whether the summary is right or missing anything.</p>
+          </article>
+
+          <article class="close-step">
+            <h3>Test fit</h3>
+            <p class="script small-script">Does that match what you need?</p>
+            <p class="silence">Stop talking</p>
+          </article>
+
+          <article class="close-step">
+            <h3>Ask for Nick's read</h3>
+            <p class="script small-script">What is your honest read on the concept? What feels strongest, and what misses?</p>
+            <p class="silence">Listen through the pause</p>
+          </article>
+
+          <article class="close-step">
+            <h3>Ask for brand direction</h3>
+            <p class="script small-script">If this earns a place with UVALUX, how should UVALUX show up: UVALUX-branded, co-branded, powered by, or behind the scenes?</p>
+          </article>
+
+          <article class="close-step">
+            <h3>Ask for market access</h3>
+            <p class="script small-script">Would you introduce me to 3 to 5 salon owners you trust so we can learn what survives contact with the real operation?</p>
+            <p class="silence">Make the ask once, then silence</p>
+          </article>
+
+          <article class="close-step">
+            <h3>If he stalls, flip the perfect deal</h3>
+            <p class="script small-script">I hear you. I understand. What would need to be included to make this perfect for you?</p>
+            <p>Then ask "What else?" until no condition remains.</p>
+          </article>
+
+          <article class="close-step">
+            <h3>If he opens commercial structure</h3>
+            <p class="script small-script">How are you feeling so far? Ready to tackle investment or structure? Want to go over it?</p>
+            <p>State the working hypothesis once, label it unapproved, then wait.</p>
+          </article>
+
+          <article class="close-step">
+            <h3>Calendar the next move before standing up</h3>
+            <p class="script small-script">Let us put the next move on the calendar now: [action], owned by [name], on [date and time].</p>
+            <p>If no decision: "If I have not heard by [day], I will follow up. Fair enough?"</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="fallbacks">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Stay calm, preserve trust</p>
+            <h2>Fallback map</h2>
+          </div>
+          <p class="section-note">A broken route changes the route, not the truth.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card safe"><span class="label safe-label">Internet fails</span><h3>Film plus PDF</h3><p>Play local 720p film. Use this sheet to tell three beats: salon operations, closed-loop action, consent-gated UVALUX intelligence.</p></article>
+          <article class="card safe"><span class="label safe-label">Route stalls</span><h3>Return to base URL</h3><p>Do not start a refresh cascade. Return to home, explain what you intended to show, and move to the next working route.</p></article>
+          <article class="card safe"><span class="label safe-label">Campaign blank</span><h3>Use fresh guided path</h3><p>Never use a saved campaign detail link. Start from the current Tuesday insight or skip the detail.</p></article>
+          <article class="card gold"><span class="label gold-label">No active bed state</span><h3>Show the workflow</h3><p>Run check-in and the guided state change, or skip the status ring. Do not imply live hardware.</p></article>
+          <article class="card gold"><span class="label gold-label">Nick wants business</span><h3>Stop touring</h3><p>Skip remaining product screens. Ask brand, access, structure, and decision-process questions.</p></article>
+          <article class="card danger"><span class="label alert-label">Nick says no</span><h3>Do not argue</h3><p>Ask: "What misses?" Learn the condition, confirm it, and leave with a clean no or a specific next step.</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="red-lines">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Trust protection</p>
+            <h2>Red lines</h2>
+          </div>
+          <p class="section-note">Say less. Do not upgrade hypotheses into facts.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card danger">
+            <span class="label alert-label">Do not claim</span>
+            <ul>
+              <li>Native Bask or Compass mobile app exists.</li>
+              <li>Product is production-ready or pilot-ready.</li>
+              <li>T-Max or other hardware is certified or integrated.</li>
+              <li>Payments, messages, campaign results, or benchmark data are live.</li>
+              <li>Pricing or commercial structure is approved.</li>
+              <li>UVALUX branding or participation is approved.</li>
+              <li>Migration, privacy compliance, or payment-token portability is solved.</li>
+              <li>Unknown UVALUX customer counts or market figures are facts.</li>
+            </ul>
+          </article>
+
+          <article class="card safe">
+            <span class="label safe-label">Do say</span>
+            <ul>
+              <li>Polished interactive discovery build.</li>
+              <li>Responsive live web on phone.</li>
+              <li>Hardware designed as an integration boundary, verification pending.</li>
+              <li>Simulated events and staged data where relevant.</li>
+              <li>Working pricing and structure hypotheses.</li>
+              <li>Consent-gated product design, legal validation pending.</li>
+              <li>Unknowns get a named verification date.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="pack">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Door checklist</p>
+            <h2>Bring and leave with</h2>
+          </div>
+          <p class="section-note">Physical meeting. Offline copy, power, connection, and a place to capture Nick's exact words.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card accent">
+            <span class="label">Bring</span>
+            <ul class="checklist">
+              <li>Laptop and charger</li>
+              <li>Phone or tablet with responsive Bask bookmarked</li>
+              <li>Hotspot and charging cable</li>
+              <li>HDMI or USB-C display adapter if a screen is expected</li>
+              <li>promo-vo-720.mp4 stored offline</li>
+              <li>This PDF stored offline and one printed copy</li>
+              <li>Notebook and pen</li>
+              <li>Optional lotion or barcode prop only if already available</li>
+            </ul>
+          </article>
+          <article class="card compass">
+            <span class="label dark-label">Leave with</span>
+            <ul class="checklist">
+              <li>Nick's exact strongest point</li>
+              <li>Nick's exact concern or no condition</li>
+              <li>Branding preference</li>
+              <li>Names of 3 to 5 possible owner introductions</li>
+              <li>Other decision-makers named</li>
+              <li>Every unknown assigned a response date</li>
+              <li>Next action, owner, and date on calendar</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="links">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">One-tap recovery</p>
+            <h2>Live links</h2>
+          </div>
+          <p class="section-note">No campaign ID links. Start from stable route surfaces.</p>
+        </div>
+
+        <div class="quick-grid">
+          <a class="quick-link" href="https://bask-psi.vercel.app/"><strong>Daybreak</strong><span>bask-psi.vercel.app</span></a>
+          <a class="quick-link" href="https://bask-psi.vercel.app/floor"><strong>Floor</strong><span>/floor</span></a>
+          <a class="quick-link" href="https://bask-psi.vercel.app/marketing"><strong>Studio</strong><span>/marketing</span></a>
+          <a class="quick-link" href="https://bask-psi.vercel.app/inventory"><strong>Inventory</strong><span>/inventory</span></a>
+          <a class="quick-link" href="https://bask-psi.vercel.app/insights"><strong>Peers</strong><span>/insights</span></a>
+          <a class="quick-link" href="https://bask-psi.vercel.app/compass"><strong>Compass</strong><span>/compass</span></a>
+          <a class="quick-link" href="https://bask-psi.vercel.app/settings/data-sharing"><strong>Consent</strong><span>/settings/data-sharing</span></a>
+          <a class="quick-link" href="../../promo/out/promo-vo-720.mp4"><strong>Offline film</strong><span>promo-vo-720.mp4</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <strong>Sources:</strong> live calendar and deployment checks; Bask pitch script, product spec, discovery brief, mobile placeholder README, and current promo artifacts; FounderVision live-call close and coaching guidance. Commercial figures and structures remain hypotheses. Prepared August 18, 2026 Eastern for the August 19 meeting.
+    </footer>
+  </div>
+</body>
+</html>

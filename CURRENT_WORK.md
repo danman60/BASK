@@ -136,11 +136,22 @@ Context rot after a long build session (M0 + M1 + deploy in one window). Fresh s
 nothing was in flight at the cut — the deploy is live and green.
 
 ## Active Task
-Real UVALUX catalogue landed (2026-08-08). Demo now runs on real products and real machines.
-Next: decide the pitch.html contact line, regenerate deck slides 4/6 from the live build, then M2
-(mobile + barcode).
+Nick in-person meeting preparation for August 19, 2026 at 1:00 PM Eastern. Full phone-ready HTML and
+14-page printable PDF delivered by Telegram. Sheet covers discovery, live demo route, commercial
+hypotheses, honest objection lines, FounderVision close sequence, fallbacks, and packing list.
 
 ## Recent Changes
+- 2026-08-18 **NICK IN-PERSON MEETING CHEAT SHEET DELIVERED.**
+  - Source: `docs/pitch/NICK-MEETING-CHEAT-SHEET.html`.
+  - Offline print artifact: `docs/pitch/NICK-MEETING-CHEAT-SHEET.pdf`, 14 Letter pages.
+  - Stable product link: `https://bask-psi.vercel.app`. Phone path is responsive web, not native.
+  - Current film: `promo/out/promo-vo-720.mp4`, 104.853 seconds.
+  - Commercial figures and structures are labeled working hypotheses. Discovery build is not called
+    production-ready, pilot-ready, hardware-certified, or officially approved by UVALUX.
+  - Independent artifact review: 0 blockers. Final screenshots and both deliverables sent by Telegram
+    in messages 13351 through 13354.
+  - QA Agent model blocked before verdict 1: two HTTP 500 responses and two timeouts. Exact log at
+    `tests/reports/qa-20260819-034719/agent-log.md`; 0 pass, 0 fail, 0 of 11 adjudicated.
 - 2026-08-08 **REAL UVALUX CATALOGUE — invented demo products replaced end to end.**
   - Source: uvalux.com **WooCommerce Store API** (`/wp-json/wc/store/v1/products`), pulled 2026-08-08.
     1,817 products, 1,755 with real SKUs. The shop HTML does NOT parse with `li.product` selectors —
@@ -214,8 +225,9 @@ Next: decide the pitch.html contact line, regenerate deck slides 4/6 from the li
 - 2026-08-07: 10and10 run (`docs/five-and-five-2026-08-07.md`); user picked all except #3 (Tan Safety engine — SKIPPED). Folded into specs: booking page real (M1 `/book`), presenter fire-push beat (M2), gift cards/packages at POS, activity log + ActivityEvent, Peers gap slider, real waiver SignaturePad, Floor offline mode (M3), Shift Handoff (AI table + M1), location-comparison card, Linen theme deferred, PRODUCT §21 → pointer to PITCH.md, web ZXing cut, apps/bridge out of M0, one AI env var, no-auth-before-M3 non-goal, Segments = fixed predicates, shared Evidence schema, tokens.css = packages/tokens v1, Compass Signals folded into Network. PITCH.md gained push beat, signature moment, slider moment + checklist items.
 
 ## Blockers
-None blocking. (The Anthropic-credits blocker is GONE — provider switched to OpenAI gpt-4.1 on
-2026-08-07 and the AI path is verified live: `demo:advance` reports `brief ai`.)
+QA Agent verification is blocked by its LLM service: two HTTP 500 responses and two timeouts before
+the first checklist verdict on 2026-08-18. This did not block artifact delivery. Independent source,
+visual, HTML, PDF, and link review completed with 0 material blockers.
 
 ## Build Status
 PASSING as of 2026-08-09. 209 tests green · `pnpm demo:verify` **12/12** on a fresh `demo:reset`
@@ -246,7 +258,8 @@ zero `public` footprint. Deployed and verified live on https://bask-psi.vercel.a
    run above the mockups.
 3. **Fix `pnpm db:migration:new`** (see Known Issues) before any further schema work.
 4. **M2** — Expo mobile app (Bask + Compass shells) + camera barcode, per IMPLEMENTATION_SPEC.
-5. Nick meeting prep — walk PITCH.md end to end against the live URL, PRODUCT_SPEC §25 questions.
+5. Nick meeting delivery is complete. Use `docs/pitch/NICK-MEETING-CHEAT-SHEET.html` during the room
+   conversation and the PDF as the offline fallback.
 
 ## Context for Next Session
 **Catalogue facts you should not re-derive.** The real UVALUX catalogue IS machine-readable: uvalux.com
