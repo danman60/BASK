@@ -28,11 +28,18 @@ RUNNER="/home/danman60/projects/qa-agent/ollama-runner.py"
 
 # ---- [D8] host and model are config, not code -------------------------------
 # Point a lane at a different card by editing here or exporting these.
+# Lanes are named by CARD CLASS, not by model — the skill's rule is that a lane
+# name must not encode a model, or git provenance goes false the moment a lane
+# is re-pointed. `big` is whichever card can hold a 30B; `small` is the 12B card.
+#
+# Routing is by weight, and the weights matter more than they look: measured,
+# qwen3-coder:30b on a 4090 runs ~30s/file where gemma4:12b on a 3060 runs
+# ~18min/file on the same task shape. 45x. So `big` takes everything with real
+# branching and `small` takes only tasks that cannot become the critical path.
 case "$LANE" in
-  ui)   HOST="${UI_HOST:-http://localhost:11434}";   MODEL="${UI_MODEL:-gemma4:12b}" ;;
-  core) HOST="${CORE_HOST:-http://localhost:11434}"; MODEL="${CORE_MODEL:-gemma4:12b}" ;;
-  docs) HOST="${DOCS_HOST:-http://localhost:11434}"; MODEL="${DOCS_MODEL:-gemma4:12b}" ;;
-  *) echo "unknown lane: $LANE (ui|core|docs)" >&2; exit 2 ;;
+  big)   HOST="${BIG_HOST:-http://100.75.112.14:11434}"; MODEL="${BIG_MODEL:-qwen3-coder:30b}" ;;
+  small) HOST="${SMALL_HOST:-http://localhost:11434}";   MODEL="${SMALL_MODEL:-gemma4:12b}" ;;
+  *) echo "unknown lane: $LANE (big|small)" >&2; exit 2 ;;
 esac
 
 MAX_ATTEMPTS=2                  # [§9] after two local failures the supervisor builds it
