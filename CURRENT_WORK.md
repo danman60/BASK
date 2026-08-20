@@ -1,5 +1,27 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session refresh 2026-08-20 15:10 EDT — HEALTH UI LIVE AND FILM SHOT
+
+### Active Task
+Health and peer scoreboard UI shipped. Live capture complete. VO-only promo rendered; new ElevenLabs audio still pending.
+
+### Recent Changes (2026-08-20)
+- `packages/core` customer health engine wired through API and `/customers`.
+- `/customers` now shows band totals, health grid, and slipping customer table.
+- `/insights/peers` now shows scoreboard tiles and cohort comparison table.
+- Production deployed to `https://bask-psi.vercel.app`; Vercel build passed.
+- Shotcraft capture includes `customers-*` and `peers-*` assets from production.
+- `promo/src/shots/S9Wall.tsx` includes live health and peer scoreboard cutouts.
+- VO-only render: `promo/out/promo-vo.mp4`, 43.3 MB. Caption render intentionally skipped.
+- VO script DM sent: `promo/VO-SCRIPT-V2.md`.
+- Commits pushed: `44288fc`, `7c2ddec`, `b1b9a4f`.
+
+### Next Steps
+1. Replace existing VO audio with ElevenLabs output from `VO-SCRIPT-V2.md`.
+2. Rerender `BaskPromoVO` after audio arrives.
+
+---
+
 ## Session refresh 2026-08-19 19:46 EDT — THE NICK MEETING CHANGED THE PRODUCT
 Fresh session started (context rot after a long day: film sound fix → ASTEROID demo setup →
 the Nick meeting → transcript analysis → health engine build). Nothing was mid-flight at the cut
