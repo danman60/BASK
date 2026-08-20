@@ -21,3 +21,7 @@
 20-wilfred-packet	big	docs/pitch/TECHNICAL-PACKET.md	md	heavy
 21-fences	big	docs/pitch/FENCES.md	md	medium
 22-community-feed	small	packages/ui/src/components/CommunityFeed.tsx	tsx	medium
+23-kb-migration	big	packages/db/prisma/migrations/20260820000000_knowledge_base/migration.sql	sql	heavy
+24-kb-retrieve	big	packages/core/src/knowledge/retrieve.ts	ts2	heavy
+25-tenure-server	big	packages/core/src/metrics/membership.ts	ts2	heavy
+26-kb-embed-script	big	packages/db/scripts/knowledge/embed.ts	script	heavy

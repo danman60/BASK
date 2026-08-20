@@ -154,6 +154,61 @@ gate_sweep() {
   return $errs
 }
 
+# Migration SQL. The task says write-don't-run; this gate proves the SQL itself
+# cannot escape the bask schema, because the database is shared with 574 tables
+# belonging to other products.
+gate_sql() {
+  local f="$REPO/$1" errs=0
+  [[ -s "$f" ]] || { echo "gate: missing or empty"; return 1; }
+  grep -q 'CREATE TABLE "bask"."knowledge_doc"' "$f" || { echo "gate: no knowledge_doc"; errs=1; }
+  grep -q 'CREATE TABLE "bask"."knowledge_chunk"' "$f" || { echo "gate: no knowledge_chunk"; errs=1; }
+  grep -q 'public.vector(1536)' "$f" || { echo "gate: wrong or missing vector type"; errs=1; }
+  grep -q 'match_knowledge' "$f" || { echo "gate: no retrieval function"; errs=1; }
+  grep -qi 'CREATE EXTENSION' "$f" && { echo "gate: touches extensions on a shared DB"; errs=1; }
+  grep -qiE '^\s*DROP ' "$f" && { echo "gate: contains DROP"; errs=1; }
+  # every CREATE TABLE / CREATE INDEX must name the bask schema explicitly
+  grep -iE '^\s*CREATE TABLE' "$f" | grep -v '"bask"\.' | grep -q . \
+    && { echo "gate: an unqualified CREATE TABLE would land in public"; errs=1; }
+  grep -iE '^\s*CREATE (UNIQUE )?INDEX' "$f" | grep -v '"bask"\.' | grep -q . \
+    && { echo "gate: an index targets outside bask"; errs=1; }
+  return $errs
+}
+
+# A pure TS module in core that is NOT a sweep (no InsightDraft contract).
+gate_ts2() {
+  local rel="$1" task="$2" abs="$REPO/$1" errs=0
+  [[ -s "$abs" ]] || { echo "gate: missing or empty"; return 1; }
+  grep -q 'export function' "$abs" || { echo "gate: no exported function"; errs=1; }
+  grep -qE 'Date\.now\(\)|new Date\(\)' "$abs" && { echo "gate: reads the clock"; errs=1; }
+  grep -q 'Math.random' "$abs" && { echo "gate: nondeterministic"; errs=1; }
+  grep -qE ':\s*any\b' "$abs" && { echo "gate: uses any"; errs=1; }
+  case "$task" in
+    24-kb-retrieve)
+      grep -q "'interpolated'" "$abs" || { echo "gate: no confidence handling"; errs=1; }
+      grep -qE "prisma|@bask/db|from 'pg'" "$abs" && { echo "gate: imports a db client — query is injected"; errs=1; }
+      # the safety rule: an interpolated citation must not carry a speaker name
+      grep -q 'DEFAULT_THRESHOLD' "$abs" || { echo "gate: no threshold constant"; errs=1; } ;;
+    25-tenure-server)
+      grep -q 'averageTenureMonths' "$abs" || { echo "gate: no tenure computation"; errs=1; } ;;
+  esac
+  tsc_attributed "packages/core" "$rel" || errs=1
+  return $errs
+}
+
+# A db script. Must be written, never run — and must be gated behind a confirm.
+gate_script() {
+  local rel="$1" abs="$REPO/$1" errs=0
+  [[ -s "$abs" ]] || { echo "gate: missing or empty"; return 1; }
+  grep -q 'EMBED_CONFIRM' "$abs" || { echo "gate: no confirmation guard on a shared-DB write"; errs=1; }
+  grep -q 'text-embedding-3-small' "$abs" || { echo "gate: wrong embedding model"; errs=1; }
+  grep -q 'chunkText' "$abs" || { echo "gate: does not use the shared chunker"; errs=1; }
+  grep -q 'uvalux26-expo.jsonl' "$abs" || { echo "gate: does not read the corpus"; errs=1; }
+  grep -q 'process.env.DATABASE_URL' "$abs" && { echo "gate: reads DATABASE_URL directly"; errs=1; }
+  grep -qE ':\s*any\b' "$abs" && { echo "gate: uses any"; errs=1; }
+  tsc_attributed "packages/db" "$rel" || errs=1
+  return $errs
+}
+
 gate_html() {
   local f="$REPO/$1" task="$2" errs=0
   [[ -s "$f" ]] || { echo "gate: missing or empty"; return 1; }
@@ -243,7 +298,10 @@ run_gate() {
   case "$kind" in
     tsx)   gate_tsx   "$target" "$task" ;;
     ts)    gate_ts    "$target" ;;
-    sweep) gate_sweep "$target" "$task" ;;
+    sweep)  gate_sweep  "$target" "$task" ;;
+    ts2)    gate_ts2    "$target" "$task" ;;
+    sql)    gate_sql    "$target" ;;
+    script) gate_script "$target" ;;
     html)  gate_html  "$target" "$task" ;;
     calc)  gate_calc  "$target" ;;
     md)    gate_md    "$target" "$task" ;;
