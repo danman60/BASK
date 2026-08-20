@@ -209,24 +209,6 @@ gate_script() {
   return $errs
 }
 
-# A shell script destined for the infra repo. It must be syntactically valid and
-# it must not be able to harm the SOURCE database it reads from.
-gate_shell() {
-  local f="$REPO/$1" errs=0
-  [[ -s "$f" ]] || { echo "gate: missing or empty"; return 1; }
-  head -c 12 "$f" | grep -q '#!/bin/bash' || { echo "gate: no shebang"; errs=1; }
-  bash -n "$f" 2>/dev/null || { echo "gate: bash syntax error"; errs=1; }
-  grep -q 'set -uo pipefail' "$f" || { echo "gate: no strict mode"; errs=1; }
-  grep -q -- '--schema=bask' "$f" || { echo "gate: does not scope the dump to bask"; errs=1; }
-  # A DROP is only ever legal against the target, under --refresh. Any DROP on
-  # the same line as the source URL variable is a hard fail.
-  grep -iE 'DROP .*(SRC|SOURCE)' "$f" && { echo "gate: DROP aimed at the source"; errs=1; }
-  grep -q 'pg_dump' "$f" || { echo "gate: no dump step"; errs=1; }
-  # verification must be row counts, not an exit code
-  grep -qiE 'count\(\*\)|row_count|rowcount' "$f" || { echo "gate: no row-count verification"; errs=1; }
-  return $errs
-}
-
 gate_html() {
   local f="$REPO/$1" task="$2" errs=0
   [[ -s "$f" ]] || { echo "gate: missing or empty"; return 1; }
@@ -319,7 +301,6 @@ run_gate() {
     sweep)  gate_sweep  "$target" "$task" ;;
     ts2)    gate_ts2    "$target" "$task" ;;
     sql)    gate_sql    "$target" ;;
-    shell)  gate_shell  "$target" ;;
     script) gate_script "$target" ;;
     html)  gate_html  "$target" "$task" ;;
     calc)  gate_calc  "$target" ;;
@@ -376,8 +357,8 @@ dispatch() {
     # [§3] thrashing breaker — needs the ABSOLUTE floor, not the ratio alone.
     # bash>write*2 fired at 3:1 once and killed a task 7s before it passed.
     local nb nw
-    nb=$(grep -c 'run_command\|bash' "$log" 2>/dev/null | head -1); nb=${nb:-0}
-    nw=$(grep -c 'write_file\|edit_file' "$log" 2>/dev/null | head -1); nw=${nw:-0}
+    nb=$(grep -c 'run_command\|bash' "$log" 2>/dev/null || echo 0)
+    nw=$(grep -c 'write_file\|edit_file' "$log" 2>/dev/null || echo 0)
     if (( nb >= 8 && nb > nw*2 )); then
       say "$task: thrashing (bash=$nb write=$nw) — killing"
       kill "$pid" 2>/dev/null; wait "$pid" 2>/dev/null

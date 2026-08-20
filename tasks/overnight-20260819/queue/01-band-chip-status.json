@@ -1,0 +1,13 @@
+{
+  "state": "running",
+  "turns": 12,
+  "tool_calls": 11,
+  "errors": 1,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/ui/src/components/BandChip.tsx"
+  ],
+  "elapsed": "42s",
+  "updated": "03:09:10",
+  "provider_history": [],
+  "provider_switched": false
+}

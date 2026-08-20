@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 5,
+  "tool_calls": 5,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/ui/src/components/HealthGrid.tsx']",
+  "elapsed": "224s",
+  "updated": "03:12:11",
+  "provider_history": [],
+  "provider_switched": false
+}

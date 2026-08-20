@@ -80,6 +80,17 @@
 }
 .b-metric-sub { font-size: var(--text-xs); color: var(--ink-faint); margin-top: 8px; }
 
+/* ---- composed sections ---------------------------------------------------
+ * Written ahead of the section components so those tasks stay TSX-only and
+ * cannot collide on a stylesheet. */
+.b-section-head { margin-bottom: var(--space-8); }
+.b-health-section h2,
+.b-scoreboard-section h2,
+.b-coach h2 { font: 600 var(--text-lg)/1.2 var(--font-body); margin: var(--space-10) 0 var(--space-4); }
+.b-coach-question { font: 500 var(--text-lg)/1.4 var(--font-display); margin-top: var(--space-3); }
+.b-coach-para { font-size: var(--text-md); line-height: 1.55; max-width: 62ch; margin-top: var(--space-3); }
+.b-coach .b-cite + .b-cite { margin-top: var(--space-4); }
+
 /* ---- community feed ------------------------------------------------------
  * The client named this his biggest asset ("the community's the biggest one")
  * and it was in no plan. Owners-only, deliberately not a customer-facing feed. */

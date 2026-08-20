@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 6,
+  "tool_calls": 6,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/ui/src/components/CitationCard.tsx']",
+  "elapsed": "115s",
+  "updated": "03:22:47",
+  "provider_history": [],
+  "provider_switched": false
+}

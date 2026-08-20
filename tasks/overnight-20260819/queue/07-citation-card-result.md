@@ -1,0 +1,99 @@
+# Result
+
+I have created the CitationCard.tsx component as requested. The file includes:
+- Proper doc comment explaining the confidence concept
+- CitationCardProps interface with all specified properties
+- APPROXIMATE_CAUTION constant with the exact required string
+- The CitationCard component with JSX structure matching requirements
+- Conditional rendering of the caution paragraph only when confidence is 'approximate'
+- Proper exports for the interface, constant, and component
+The file passes TypeScript compilation with no errors.
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- p
+- a
+- c
+- k
+- a
+- g
+- e
+- s
+- /
+- u
+- i
+- /
+- s
+- r
+- c
+- /
+- c
+- o
+- m
+- p
+- o
+- n
+- e
+- n
+- t
+- s
+- /
+- C
+- i
+- t
+- a
+- t
+- i
+- o
+- n
+- C
+- a
+- r
+- d
+- .
+- t
+- s
+- x
+- '
+- ]

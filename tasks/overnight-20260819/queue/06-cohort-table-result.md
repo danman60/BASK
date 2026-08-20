@@ -1,0 +1,101 @@
+# Result
+
+I have created the CohortTable.tsx component according to the specifications. The file includes:
+- Proper imports from './BandChip'
+- Exported CohortRow and CohortTableProps interfaces
+- CohortTable component with correct structure including:
+  - Section with card class and data-testid="cohort-table"
+  - Table with proper headers (Category, You, Cohort median, Position)
+  - Body rows with formatted numbers using toLocaleString()
+  - BandChip component for position display
+  - Empty state handling when rows.length === 0
+  - Optional unitNote paragraph display
+- All requirements met including TypeScript compilation success
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- p
+- a
+- c
+- k
+- a
+- g
+- e
+- s
+- /
+- u
+- i
+- /
+- s
+- r
+- c
+- /
+- c
+- o
+- m
+- p
+- o
+- n
+- e
+- n
+- t
+- s
+- /
+- C
+- o
+- h
+- o
+- r
+- t
+- T
+- a
+- b
+- l
+- e
+- .
+- t
+- s
+- x
+- '
+- ]

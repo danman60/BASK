@@ -1,0 +1,13 @@
+{
+  "state": "done",
+  "turns": 6,
+  "tool_calls": 7,
+  "errors": 0,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/ui/src/components/CommunityFeed.tsx"
+  ],
+  "elapsed": "41s",
+  "updated": "03:11:28",
+  "provider_history": [],
+  "provider_switched": false
+}
