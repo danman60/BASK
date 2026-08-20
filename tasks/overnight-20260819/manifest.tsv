@@ -1,5 +1,11 @@
 #task	lane	target	gate	weight
-01-scoreboard	pages	mockups/06-scoreboard.html	html	heavy
-02-customer-health	pages	mockups/07-customer-health.html	html	heavy
-03-coach	pages	mockups/08-coach.html	html	medium
-04-chunker	core	packages/core/src/knowledge/chunk.ts	ts	light
+01-band-chip	ui	packages/ui/src/components/BandChip.tsx	tsx	light
+02-health-band-tiles	ui	packages/ui/src/components/HealthBandTiles.tsx	tsx	light
+03-health-grid	ui	packages/ui/src/components/HealthGrid.tsx	tsx	medium
+04-slipping-list	ui	packages/ui/src/components/SlippingList.tsx	tsx	medium
+05-metric-tile	ui	packages/ui/src/components/MetricTile.tsx	tsx	light
+06-cohort-table	ui	packages/ui/src/components/CohortTable.tsx	tsx	medium
+07-citation-card	ui	packages/ui/src/components/CitationCard.tsx	tsx	medium
+08-chunker	core	packages/core/src/knowledge/chunk.ts	ts	heavy
+09-proposal-html	docs	docs/pitch/PROPOSAL-NICK.html	html	heavy
+10-vo-script	docs	promo/VO-SCRIPT-V2.md	md	heavy

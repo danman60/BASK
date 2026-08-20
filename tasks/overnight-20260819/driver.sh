@@ -29,9 +29,10 @@ RUNNER="/home/danman60/projects/qa-agent/ollama-runner.py"
 # ---- [D8] host and model are config, not code -------------------------------
 # Point a lane at a different card by editing here or exporting these.
 case "$LANE" in
-  pages) HOST="${PAGES_HOST:-http://localhost:11434}"; MODEL="${PAGES_MODEL:-gemma4:12b}" ;;
-  core)  HOST="${CORE_HOST:-http://localhost:11434}";  MODEL="${CORE_MODEL:-gemma4:12b}" ;;
-  *) echo "unknown lane: $LANE" >&2; exit 2 ;;
+  ui)   HOST="${UI_HOST:-http://localhost:11434}";   MODEL="${UI_MODEL:-gemma4:12b}" ;;
+  core) HOST="${CORE_HOST:-http://localhost:11434}"; MODEL="${CORE_MODEL:-gemma4:12b}" ;;
+  docs) HOST="${DOCS_HOST:-http://localhost:11434}"; MODEL="${DOCS_MODEL:-gemma4:12b}" ;;
+  *) echo "unknown lane: $LANE (ui|core|docs)" >&2; exit 2 ;;
 esac
 
 MAX_ATTEMPTS=2                  # [§9] after two local failures the supervisor builds it
@@ -67,28 +68,67 @@ say "lane=$LANE host=$HOST model=$MODEL smoke=$SMOKE"
 # ---- gates -------------------------------------------------------------------
 # [D11] every gate proves the file DOES something, never just that it compiles.
 
+# typecheck a package, attributing errors [D6]: only this task's own file fails
+# it. Unrelated breakage elsewhere must never park an innocent task.
+tsc_attributed() {
+  local pkg="$1" rel="$2" base out
+  base="$(basename "$rel")"
+  out=$(cd "$REPO/$pkg" && npx tsc --noEmit 2>&1)
+  if echo "$out" | grep -q "$base"; then
+    echo "gate: tsc errors in this file:"; echo "$out" | grep "$base" | head -5; return 1
+  elif [[ -n "$out" ]]; then
+    echo "note: tsc errors elsewhere, NOT this task's fault:"; echo "$out" | head -3
+  fi
+  return 0
+}
+
+# React component. [D11] must export, must return JSX, must not be a stub.
+gate_tsx() {
+  local rel="$1" task="$2" abs="$REPO/$1" errs=0
+  [[ -s "$abs" ]] || { echo "gate: missing or empty"; return 1; }
+  grep -q 'export function' "$abs" || { echo "gate: no exported component"; errs=1; }
+  grep -qE 'return \(|=> \(|return <' "$abs" || { echo "gate: returns no JSX — stub"; errs=1; }
+  grep -q 'data-testid' "$abs" || { echo "gate: no data-testid"; errs=1; }
+  grep -q 'export default' "$abs" && { echo "gate: default export banned"; errs=1; }
+  grep -qE ':\s*any\b|<any>' "$abs" && { echo "gate: uses any"; errs=1; }
+  grep -q 'useState\|useEffect' "$abs" && { echo "gate: presentational component has state"; errs=1; }
+  grep -q 'style={{' "$abs" && { echo "gate: inline style — classes are in health.css"; errs=1; }
+  case "$task" in
+    01-band-chip)
+      grep -q 'BAND_LABEL' "$abs" || { echo "gate: missing BAND_LABEL"; errs=1; }
+      grep -q "'bottom'" "$abs" || { echo "gate: PositionBand incomplete"; errs=1; } ;;
+    07-citation-card)
+      grep -q "confidence === 'approximate'" "$abs" || { echo "gate: caution not conditional"; errs=1; }
+      grep -q 'APPROXIMATE_CAUTION' "$abs" || { echo "gate: missing APPROXIMATE_CAUTION"; errs=1; } ;;
+  esac
+  tsc_attributed "packages/ui" "$rel" || errs=1
+  return $errs
+}
+
+gate_ts() {
+  local rel="$1" abs="$REPO/$1" errs=0
+  [[ -s "$abs" ]] || { echo "gate: missing or empty"; return 1; }
+  for sym in CHUNK_TARGET CHUNK_OVERLAP DEFAULT_MAX_CHUNKS ChunkResult chunkText estimateTokens; do
+    grep -q "export .*$sym" "$abs" || { echo "gate: does not export $sym"; errs=1; }
+  done
+  grep -q 'return' "$abs" || { echo "gate: no return statement — stub"; errs=1; }
+  grep -qE ':\s*any\b' "$abs" && { echo "gate: uses any"; errs=1; }
+  tsc_attributed "packages/core" "$rel" || errs=1
+  return $errs
+}
+
 gate_html() {
   local f="$REPO/$1" task="$2" errs=0
   [[ -s "$f" ]] || { echo "gate: missing or empty"; return 1; }
   head -c 20 "$f" | grep -qi '<!doctype html' || { echo "gate: no doctype"; errs=1; }
-  grep -q 'tokens.css' "$f" || { echo "gate: does not link tokens.css"; errs=1; }
   grep -qi '<script' "$f" && { echo "gate: contains a <script tag"; errs=1; }
-  # shape assertion: it must actually render structure, not be a stub
-  grep -q '<main' "$f" || { echo "gate: no <main>"; errs=1; }
-  grep -q 'class="card' "$f" || { echo "gate: no card element — nothing was built"; errs=1; }
-  # required headings, per task
+  [[ $(grep -o '<h2' "$f" | wc -l) -ge 4 ]] || { echo "gate: fewer than 4 h2 headings"; errs=1; }
   case "$task" in
-    01-scoreboard)
-      grep -q 'category by category' "$f" || { echo "gate: missing category section"; errs=1; }
-      grep -q 'What to do about it' "$f" || { echo "gate: missing actions section"; errs=1; } ;;
-    02-customer-health)
-      grep -q 'Worth a call today' "$f" || { echo "gate: missing worklist section"; errs=1; }
-      [[ $(grep -o '<span' "$f" | wc -l) -ge 120 ]] || { echo "gate: fewer than 120 grid squares"; errs=1; } ;;
-    03-coach)
-      grep -q 'Where this came from' "$f" || { echo "gate: missing sources section"; errs=1; }
-      grep -q 'placed by the clock' "$f" || { echo "gate: MISSING the attribution caution line"; errs=1; } ;;
+    09-proposal-html)
+      grep -q 'mark class="todo"' "$f" || { echo "gate: [[ ]] placeholders not marked"; errs=1; }
+      grep -q 'Margin note' "$f" && { echo "gate: author margin notes leaked into client doc"; errs=1; }
+      grep -q '@media print' "$f" || { echo "gate: no print stylesheet"; errs=1; } ;;
   esac
-  # well-formedness, cheap
   python3 - "$f" <<'PY' || errs=1
 import sys, html.parser
 class P(html.parser.HTMLParser):
@@ -101,30 +141,27 @@ PY
   return $errs
 }
 
-gate_ts() {
-  local rel="$1" abs="$REPO/$1" errs=0
-  [[ -s "$abs" ]] || { echo "gate: missing or empty"; return 1; }
-  for sym in CHUNK_TARGET CHUNK_OVERLAP DEFAULT_MAX_CHUNKS ChunkResult chunkText estimateTokens; do
-    grep -q "export .*$sym" "$abs" || { echo "gate: does not export $sym"; errs=1; }
-  done
-  grep -q 'return' "$abs" || { echo "gate: no return statement — stub"; errs=1; }
-  grep -qE '\bany\b' "$abs" && { echo "gate: uses any"; errs=1; }
-  # [D6] typecheck whole project (path aliases) but ATTRIBUTE: only fail on
-  # errors naming this task's own file. Anything else is not this task's fault.
-  local out; out=$(cd "$REPO/packages/core" && npx tsc --noEmit 2>&1)
-  if echo "$out" | grep -q "$(basename "$rel")"; then
-    echo "gate: tsc errors in this file:"; echo "$out" | grep "$(basename "$rel")" | head -5; errs=1
-  elif [[ -n "$out" ]]; then
-    echo "note: tsc errors elsewhere, NOT this task's fault:"; echo "$out" | head -3
-  fi
+gate_md() {
+  local f="$REPO/$1" task="$2" errs=0
+  [[ -s "$f" ]] || { echo "gate: missing or empty"; return 1; }
+  case "$task" in
+    10-vo-script)
+      local beats; beats=$(grep -c '^### Beat' "$f")
+      [[ "$beats" -eq 9 ]] || { echo "gate: $beats beats, expected exactly 9"; errs=1; }
+      grep -q 'DRAFT — generated overnight' "$f" || { echo "gate: missing DRAFT warning"; errs=1; }
+      grep -q 'Total estimated read' "$f" || { echo "gate: missing total read time"; errs=1; }
+      grep -qi 'built for UVALUX' "$f" && { echo "gate: overclaims a UVALUX partnership"; errs=1; } ;;
+  esac
   return $errs
 }
 
 run_gate() {
   local kind="$1" target="$2" task="$3"
   case "$kind" in
-    html) gate_html "$target" "$task" ;;
+    tsx)  gate_tsx  "$target" "$task" ;;
     ts)   gate_ts   "$target" ;;
+    html) gate_html "$target" "$task" ;;
+    md)   gate_md   "$target" "$task" ;;
     *) echo "gate: unknown kind $kind"; return 1 ;;
   esac
 }
@@ -199,9 +236,12 @@ dispatch() {
 shopt -s nullglob
 for taskfile in "$QUEUE"/*.md; do
   task="$(basename "$taskfile" .md)"
+  lane="$(manifest_field "$task" 2)"
   target="$(manifest_field "$task" 3)"
   kind="$(manifest_field "$task" 4)"
   [[ -n "$target" ]] || { say "$task: not in manifest, skipping"; continue; }
+  # Lanes share one queue directory; each driver takes only its own tasks.
+  [[ "$lane" == "$LANE" ]] || continue
 
   attempts=0
   passed=0
