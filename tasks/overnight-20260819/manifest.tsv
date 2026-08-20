@@ -1,0 +1,5 @@
+#task	lane	target	gate	weight
+01-scoreboard	pages	mockups/06-scoreboard.html	html	heavy
+02-customer-health	pages	mockups/07-customer-health.html	html	heavy
+03-coach	pages	mockups/08-coach.html	html	medium
+04-chunker	core	packages/core/src/knowledge/chunk.ts	ts	light
