@@ -15,3 +15,4 @@
 01-band-chip	small	packages/ui/src/components/BandChip.tsx	tsx	light
 05-metric-tile	small	packages/ui/src/components/MetricTile.tsx	tsx	light
 02-health-band-tiles	small	packages/ui/src/components/HealthBandTiles.tsx	tsx	light
+17-shot-plan	big	promo/SHOT-PLAN-V2.md	md	heavy

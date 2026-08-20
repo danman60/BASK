@@ -182,6 +182,13 @@ gate_md() {
   local f="$REPO/$1" task="$2" errs=0
   [[ -s "$f" ]] || { echo "gate: missing or empty"; return 1; }
   case "$task" in
+    17-shot-plan)
+      local beats; beats=$(grep -c '^## Beat' "$f")
+      [[ "$beats" -eq 9 ]] || { echo "gate: $beats beats, expected exactly 9"; errs=1; }
+      grep -q 'PLAN — generated overnight' "$f" || { echo "gate: missing PLAN warning"; errs=1; }
+      local tex; tex=$(grep -c 'Textures needed:' "$f")
+      [[ "$tex" -ge 9 ]] || { echo "gate: only $tex beats name their textures"; errs=1; }
+      grep -qi 'built for UVALUX' "$f" && { echo "gate: overclaims a UVALUX partnership"; errs=1; } ;;
     10-vo-script)
       local beats; beats=$(grep -c '^### Beat' "$f")
       [[ "$beats" -eq 9 ]] || { echo "gate: $beats beats, expected exactly 9"; errs=1; }
