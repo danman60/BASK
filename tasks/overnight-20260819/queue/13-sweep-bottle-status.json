@@ -1,0 +1,13 @@
+{
+  "state": "running",
+  "turns": 20,
+  "tool_calls": 19,
+  "errors": 2,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/core/src/insights/sweeps/bottle.ts"
+  ],
+  "elapsed": "108s",
+  "updated": "03:30:39",
+  "provider_history": [],
+  "provider_switched": false
+}

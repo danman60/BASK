@@ -1,0 +1,117 @@
+/**
+ * Seasonal pause versus real lapse.
+ *
+ * Tanning has a summer trough. Treating an expected seasonal pause as churn
+ * turns the board red every July and teaches the owner to ignore it, which is
+ * worse than showing nothing. So a quiet member in a quiet month is reported as
+ * PAUSED and is not counted as at-risk.
+ *
+ * The month profile is the salon's own history, never a constant — a salon with
+ * a winter trough must not be judged against a summer one.
+ */
+
+export interface MonthActivity {
+  /** 1–12. */
+  month: number;
+  /** Visits in that month across all customers, from the salon's own history. */
+  visits: number;
+}
+
+import { buildMetric, buildWindow } from '../../evidence';
+import type { DetectorContext, InsightDraft } from '../types';
+import { buildSweepEvidence } from './evidence';
+
+export interface PausedMemberRow {
+  membershipId: string;
+  /** ISO date of the last visit, or null if never. */
+  lastVisitAt: string | null;
+  /** True when the membership is frozen/on hold rather than cancelled. */
+  frozen: boolean;
+  /** True when the membership has been cancelled outright. */
+  cancelled: boolean;
+}
+
+export const MIN_MEMBERS = 20;
+/** A month at or under this share of the salon's best month is a trough. */
+export const TROUGH_RATIO = 0.75;
+
+/**
+ * True when `month` is a seasonal trough for this salon, judged against its own
+ * busiest month rather than an assumption about the industry.
+ */
+export function isTroughMonth(profile: readonly MonthActivity[], month: number): boolean {
+  if (profile.length === 0) return false;
+  
+  const peak = Math.max(...profile.map(m => m.visits));
+  if (peak === 0) return false;
+  
+  const activity = profile.find(m => m.month === month);
+  if (!activity) return false;
+  
+  return activity.visits / peak <= TROUGH_RATIO;
+}
+
+export function sweepSeasonalPause(
+  rows: readonly PausedMemberRow[],
+  profile: readonly MonthActivity[],
+  ctx: DetectorContext,
+): InsightDraft[] {
+  if (rows.length < MIN_MEMBERS) {
+    return [];
+  }
+  
+  // Read current month from ctx.today (characters 5 and 6 of ISO string)
+  const monthStr = ctx.today.substring(4, 6);
+  const currentMonth = Number(monthStr);
+  
+  // Count frozen and cancelled members
+  let frozenCount = 0;
+  let cancelledCount = 0;
+  
+  for (const row of rows) {
+    if (row.frozen && !row.cancelled) {
+      frozenCount++;
+    } else if (row.cancelled) {
+      cancelledCount++;
+    }
+  }
+  
+  if (frozenCount === 0) {
+    return [];
+  }
+  
+  // Determine if current month is a trough
+  const troughMonth = isTroughMonth(profile, currentMonth);
+  
+  // Build insight draft
+  return [{
+    dedupeKey: `seasonal_pause:${ctx.salonId}`,
+    type: 'seasonal_pause',
+    severity: troughMonth ? 'info' : 'medium',
+    title: troughMonth 
+      ? `${frozenCount} members are paused, which is normal for this month`
+      : `${frozenCount} members are paused outside your quiet season`,
+    summary: troughMonth
+      ? `Your quiet season explains most of this. These members have not left — they are on hold, and ${cancelledCount} have actually cancelled.`
+      : `This is not your quiet season, so these pauses are worth a look. ${cancelledCount} members have cancelled outright.`,
+    impactEstimate: 0,
+    impactCurrency: ctx.currency,
+    linkedActionType: 'review_membership',
+    linkedActionRef: { 
+      salonId: ctx.salonId, 
+      frozenCount, 
+      cancelledCount, 
+      troughMonth 
+    },
+    primaryActionLabel: 'See who is on hold',
+    forDate: ctx.today,
+    evidence: buildSweepEvidence({
+      metric: buildMetric('paused_count', 'Paused members', 'count', frozenCount),
+      window: buildWindow('Current month', ctx.today, ctx.today, 1),
+      impact: 0,
+      currency: ctx.currency,
+      basis: 'Counts paused members; no revenue value claimed.',
+      sentence: `${frozenCount} members are paused and ${cancelledCount} have cancelled.`,
+    }),
+  }];
+}

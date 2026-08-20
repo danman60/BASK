@@ -32,6 +32,15 @@ export { WhisperNote } from './guidance/WhisperNote';
 export { TeachingEmptyState } from './guidance/TeachingEmptyState';
 export { Tour, useTourSeen } from './guidance/Tour';
 
+export { BandChip, type BandChipProps, type ChipBand, type HealthBand } from './components/BandChip';
+export { HealthBandTiles, type HealthBandCount, type HealthBandTilesProps } from './components/HealthBandTiles';
+export { HealthGrid, type HealthGridCell, type HealthGridProps } from './components/HealthGrid';
+export { SlippingList, type SlippingListProps, type SlippingRow } from './components/SlippingList';
+export { MetricTile, MetricRow, type MetricTileProps, type MetricRowProps } from './components/MetricTile';
+export { CohortTable, type CohortRow, type CohortTableProps } from './components/CohortTable';
+export { CommunityFeed, type CommunityFeedProps, type CommunityPost } from './components/CommunityFeed';
+export { default as CitationCard, type CitationCardProps } from './components/CitationCard';
+
 export {
   EMPTY_STATES,
   GUIDED_UI,

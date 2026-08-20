@@ -1,0 +1,13 @@
+{
+  "state": "running",
+  "turns": 18,
+  "tool_calls": 19,
+  "errors": 0,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/core/src/insights/sweeps/first-visit.ts"
+  ],
+  "elapsed": "137s",
+  "updated": "03:42:18",
+  "provider_history": [],
+  "provider_switched": false
+}

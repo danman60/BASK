@@ -12,6 +12,7 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { trpc } from '@/lib/trpc';
+import { HealthBandTiles, HealthGrid, SlippingList } from '@bask/ui';
 
 import { formatDay, formatMoney } from '../marketing/pieces';
 import { CUSTOMERS_COPY as C } from './copy';
@@ -25,7 +26,7 @@ export function CustomersSurface() {
   const [segment, setSegment] = useState<string | null>(params.get('segment'));
   const [selected, setSelected] = useState<string | null>(params.get('customer'));
 
-  const list = trpc.customers.list.useQuery({ search, segment, limit: 200 });
+  const list = trpc.customers.list.useQuery({ search, segment, limit: 500 });
 
   useEffect(() => {
     // Keep a selection that is still in the filtered list; otherwise fall to the
@@ -64,6 +65,41 @@ export function CustomersSurface() {
               <h1>{C.title}</h1>
               <p>{C.body}</p>
             </div>
+
+            {list.data && (
+              <>
+                <HealthBandTiles
+                  counts={(['healthy', 'slipping', 'lapsed'] as const).map((band) => ({
+                    band,
+                    count: list.data!.customers.filter((customer) => customer.health.band === band).length,
+                  }))}
+                />
+                <HealthGrid
+                  cells={list.data.customers.map((customer) => ({
+                    id: customer.id,
+                    band: customer.health.band,
+                    title: `${customer.name} · ${customer.health.score}/100`,
+                  }))}
+                />
+                <SlippingList
+                  rows={list.data.customers
+                    .filter((customer) => customer.health.band === 'slipping')
+                    .slice(0, 20)
+                    .map((customer) => ({
+                      id: customer.id,
+                      name: customer.name,
+                      band: customer.health.band,
+                      lastVisit: customer.health.daysSinceLastVisit === null
+                        ? 'Never visited'
+                        : `${customer.health.daysSinceLastVisit} days ago`,
+                      usual: customer.health.usualEveryDays === null
+                        ? 'No pattern yet'
+                        : `Every ${customer.health.usualEveryDays} days`,
+                      why: customer.health.reason,
+                    }))}
+                />
+              </>
+            )}
 
             <div className="cu-search">
               <input

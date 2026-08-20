@@ -12,7 +12,15 @@
  * `new Date()`: advancing the clock must move the segments with it.
  */
 
-import { addDays, dateOnlyToUtcMidnight, toDateOnly, type DateOnly } from '@bask/core';
+import {
+  addDays,
+  computeCustomerHealth,
+  dateOnlyToUtcMidnight,
+  healthReason,
+  toDateOnly,
+  type CustomerHealthBand,
+  type DateOnly,
+} from '@bask/core';
 import type { PrismaClient } from '@bask/db';
 
 export const SEGMENT_KEYS = [
@@ -56,6 +64,13 @@ export interface SegmentCustomer {
   packageExpiresInDays: number | null;
   membershipTier: string | null;
   membershipPaymentState: string | null;
+  health: {
+    score: number;
+    band: CustomerHealthBand;
+    reason: string;
+    daysSinceLastVisit: number | null;
+    usualEveryDays: number | null;
+  };
 }
 
 export interface SegmentDefinition {
@@ -220,7 +235,7 @@ export async function loadSegmentCustomers(
     }),
     db.saleLine.findMany({
       where: { salonId, soldAt: { gte: windowStart, lt: todayEnd }, customerId: { not: null } },
-      select: { customerId: true, lineTotal: true },
+      select: { customerId: true, lineTotal: true, soldAt: true },
     }),
     db.package.findMany({
       where: { salonId, status: 'active' },
@@ -228,14 +243,15 @@ export async function loadSegmentCustomers(
     }),
     db.membership.findMany({
       where: { salonId, status: { not: 'cancelled' } },
-      select: { customerId: true, tier: true, paymentState: true },
+      select: { customerId: true, tier: true, paymentState: true, status: true },
     }),
   ]);
 
-  const visitsBy = new Map<string, { total: number; midweek: number }>();
+  const visitsBy = new Map<string, { total: number; midweek: number; rows: { at: Date; retailAttached: boolean }[] }>();
   for (const v of visits) {
-    const bucket = visitsBy.get(v.customerId) ?? { total: 0, midweek: 0 };
+    const bucket = visitsBy.get(v.customerId) ?? { total: 0, midweek: 0, rows: [] };
     bucket.total += 1;
+    bucket.rows.push({ at: v.checkedInAt, retailAttached: false });
     // Tue(2) · Wed(3) · Thu(4) in the salon's own reckoning. The seeded data is
     // generated in salon-local time, so UTC day-of-week is the same bucket.
     const dow = v.checkedInAt.getUTCDay();
@@ -244,9 +260,12 @@ export async function loadSegmentCustomers(
   }
 
   const spendBy = new Map<string, number>();
+  const lastRetailBy = new Map<string, Date>();
   for (const line of saleLines) {
     if (!line.customerId) continue;
     spendBy.set(line.customerId, (spendBy.get(line.customerId) ?? 0) + Number(line.lineTotal));
+    const previous = lastRetailBy.get(line.customerId);
+    if (!previous || line.soldAt > previous) lastRetailBy.set(line.customerId, line.soldAt);
   }
 
   const packageBy = new Map<string, { credits: number; expiresInDays: number | null }>();
@@ -266,17 +285,34 @@ export async function loadSegmentCustomers(
     }
   }
 
-  const membershipBy = new Map<string, { tier: string; paymentState: string }>();
+  const membershipBy = new Map<string, { tier: string; paymentState: string; status: string }>();
   for (const m of memberships) {
     if (!membershipBy.has(m.customerId)) {
-      membershipBy.set(m.customerId, { tier: m.tier, paymentState: m.paymentState });
+      membershipBy.set(m.customerId, { tier: m.tier, paymentState: m.paymentState, status: m.status });
     }
   }
 
   const rows: SegmentCustomer[] = customers.map((c) => {
-    const v = visitsBy.get(c.id) ?? { total: 0, midweek: 0 };
+    const v = visitsBy.get(c.id) ?? { total: 0, midweek: 0, rows: [] };
     const pkg = packageBy.get(c.id) ?? null;
     const mem = membershipBy.get(c.id) ?? null;
+    const healthVisits = v.rows.length > 0
+      ? v.rows
+      : c.lastVisitAt
+        ? [{ at: c.lastVisitAt, retailAttached: false }]
+        : [];
+    const health = computeCustomerHealth({
+      baselineKind: mem ? 'member' : pkg ? 'packageHolder' : 'payAsYouGo',
+      visits: healthVisits,
+      lastRetailAt: lastRetailBy.get(c.id) ?? null,
+      membership: mem
+        ? {
+            status: mem.status === 'frozen' ? 'frozen' : mem.status === 'cancelled' ? 'cancelled' : 'active',
+            paymentFailed: mem.paymentState === 'failed',
+          }
+        : null,
+      now: dateOnlyToUtcMidnight(today),
+    });
     return {
       id: c.id,
       firstName: c.firstName,
@@ -296,6 +332,13 @@ export async function loadSegmentCustomers(
       packageExpiresInDays: pkg ? pkg.expiresInDays : null,
       membershipTier: mem?.tier ?? null,
       membershipPaymentState: mem?.paymentState ?? null,
+      health: {
+        score: health.score,
+        band: health.band,
+        reason: healthReason(health),
+        daysSinceLastVisit: health.daysSinceLastVisit,
+        usualEveryDays: v.total > 1 ? Math.max(1, Math.round(90 / v.total)) : null,
+      },
     };
   });
 
