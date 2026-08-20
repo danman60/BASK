@@ -32,7 +32,13 @@ export { WhisperNote } from './guidance/WhisperNote';
 export { TeachingEmptyState } from './guidance/TeachingEmptyState';
 export { Tour, useTourSeen } from './guidance/Tour';
 
-export { BandChip, type BandChipProps, type ChipBand, type HealthBand } from './components/BandChip';
+export {
+  BandChip,
+  type BandChipProps,
+  type ChipBand,
+  type HealthBand,
+  type PositionBand,
+} from './components/BandChip';
 export { HealthBandTiles, type HealthBandCount, type HealthBandTilesProps } from './components/HealthBandTiles';
 export { HealthGrid, type HealthGridCell, type HealthGridProps } from './components/HealthGrid';
 export { SlippingList, type SlippingListProps, type SlippingRow } from './components/SlippingList';

@@ -1,7 +1,15 @@
 import Link from 'next/link';
 import { MIN_COHORT_SIZE, formatCurrency, formatLongDate } from '@bask/core';
 import { db } from '@bask/db';
-import { Guided, TeachingEmptyState, WhisperNote } from '@bask/ui';
+import {
+  CohortTable,
+  Guided,
+  MetricRow,
+  MetricTile,
+  TeachingEmptyState,
+  WhisperNote,
+  type PositionBand,
+} from '@bask/ui';
 
 import '@/components/lane4/lane4.css';
 import { GapSlider } from '@/components/lane4/GapSlider';
@@ -156,6 +164,48 @@ export default async function PeersPage({
       ) : (
         <>
           <WhisperNote note="peersAnonymous" count={selected.contributorCount} />
+
+          <section className="l4-section b-scoreboard-section">
+            <SectionHead
+              title="Scoreboard"
+              note="Your position against the cohort median, in the same measures used for the gap calculation."
+            />
+            <MetricRow>
+              {selected.gaps.map((gap) => {
+                const position: PositionBand = gap.winning
+                  ? gap.percentile >= 75
+                    ? 'top'
+                    : 'above'
+                  : gap.percentile <= 25
+                    ? 'bottom'
+                    : 'below';
+                return (
+                  <MetricTile
+                    key={gap.key}
+                    label={gap.label}
+                    value={`${gap.yourValue}%`}
+                    position={position}
+                    sub={`Median ${gap.cohortMedian}% · top ${gap.cohortTopQuartile}%`}
+                  />
+                );
+              })}
+            </MetricRow>
+            <CohortTable
+              rows={selected.gaps.map((gap) => ({
+                category: gap.label,
+                you: gap.yourValue,
+                median: gap.cohortMedian,
+                position: gap.winning
+                  ? gap.percentile >= 75
+                    ? 'top'
+                    : 'above'
+                  : gap.percentile <= 25
+                    ? 'bottom'
+                    : 'below',
+              }))}
+              unitNote="Percentages are rounded. Cohort values are anonymous and suppressed below the minimum group size."
+            />
+          </section>
 
           {/* ------------------------------------------------ gap cards */}
           <section className="l4-section">

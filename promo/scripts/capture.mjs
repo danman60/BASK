@@ -139,6 +139,29 @@ const newCtx = async (scale) => {
   await page.addStyleTag({ content: HIDE_CSS });
   console.log('inventory');
   await shoot(page, 'inventory-full');
+  const shelfRows = await page.locator('.l4-stock-row[data-flag]').count();
+  for (let i = 0; i < Math.min(shelfRows, 5); i++) {
+    await cut(page, 'inventory-full', `shelfrow${i + 1}`, '.l4-stock-row[data-flag]', i);
+  }
+
+  // ---- Customer health ----
+  await page.goto(`${BASE}/customers`, { waitUntil: 'networkidle' });
+  await settle(page, 600);
+  await page.addStyleTag({ content: HIDE_CSS });
+  console.log('customer health');
+  await shoot(page, 'customers-full');
+  await cut(page, 'customers-full', 'customers-health-tiles', '.b-bandtiles');
+  await cut(page, 'customers-full', 'customers-health-grid', '.b-healthgrid-wrap');
+  await cut(page, 'customers-full', 'customers-slipping', '.b-dtable');
+
+  // ---- Peer scoreboard ----
+  await page.goto(`${BASE}/insights/peers?cohort=size`, { waitUntil: 'networkidle' });
+  await settle(page, 600);
+  await page.addStyleTag({ content: HIDE_CSS });
+  console.log('peer scoreboard');
+  await shoot(page, 'peers-full');
+  await cut(page, 'peers-full', 'peers-metrics', '.b-metrics');
+  await cut(page, 'peers-full', 'peers-table', '[data-testid="cohort-table"]');
 
   // ---- Inventory → the UVALUX draft order ----
   await page.goto(`${BASE}/inventory/order`, { waitUntil: 'networkidle' });
@@ -177,6 +200,44 @@ const newCtx = async (scale) => {
   });
   await page.waitForTimeout(200);
   await shoot(page, 'compass-empty');
+
+  // ---- Compass network map ----
+  await page.goto(`${BASE}/compass/network?role=uvalux_rep`, { waitUntil: 'networkidle' });
+  await settle(page, 600);
+  await page.addStyleTag({ content: HIDE_CSS });
+  console.log('compass network');
+  await shoot(page, 'compass-network');
+  await cut(page, 'compass-network', 'map-card', '.cp-map-card');
+  const networkCards = await page.locator('.cp-card').count();
+  for (let i = 0; i < Math.min(networkCards, 8); i++) {
+    await cut(page, 'compass-network', `compass-network-c${i + 1}`, '.cp-card', i);
+  }
+  const pins = await page.locator('.cp-pin').evaluateAll((nodes) => {
+    const svg = document.querySelector('.cp-map svg');
+    if (!svg) return [];
+    const box = svg.getBoundingClientRect();
+    const viewBox = (svg.getAttribute('viewBox') ?? '0 0 1 1').split(/\s+/).map(Number);
+    const [vx, vy, vw, vh] = viewBox;
+    return nodes.map((node) => {
+      const circles = [...node.querySelectorAll('circle')];
+      const dot = circles[1];
+      const cx = Number(dot?.getAttribute('cx') ?? 0);
+      const cy = Number(dot?.getAttribute('cy') ?? 0);
+      const fill = dot?.getAttribute('style')?.match(/fill:\s*([^;]+)/)?.[1] ?? 'var(--c-ink-faint)';
+      const title = node.querySelector('title')?.textContent ?? 'Account';
+      return {
+        x: Math.round(box.left + ((cx - vx) / vw) * box.width + window.scrollX),
+        y: Math.round(box.top + ((cy - vy) / vh) * box.height + window.scrollY),
+        fill,
+        hollow: fill.includes('none'),
+        name: title,
+      };
+    });
+  });
+  layout.pins = pins;
+  const mapCard = page.locator('.cp-map-card');
+  await page.locator('.cp-pin').evaluateAll((nodes) => nodes.forEach((node) => { node.style.visibility = 'hidden'; }));
+  await mapCard.screenshot({ path: `${outDir}/compass-network-nopins.png` });
 
   await ctx.close();
 }

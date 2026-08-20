@@ -47,6 +47,7 @@ const ORDER = [...PINS]
 // out of the colours themselves rather than naming a salon: the highest b* in
 // lab() is the yellow one. Its chip is the only one that holds to the end.
 const bStar = (c: string) => {
+  if (c.includes('amber')) return 100;
   const m = /lab\(\s*[\d.-]+\s+[\d.-]+\s+([\d.-]+)/.exec(c);
   return m ? Number(m[1]) : -Infinity;
 };

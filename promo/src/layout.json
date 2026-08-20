@@ -130,45 +130,33 @@
   "inventory-full": {
    "pageH": 5660,
    "cutouts": {
-    "reorder-line": {
+    "shelfrow1": {
      "x": 395,
      "y": 476,
      "w": 1130,
      "h": 128
     },
-    "shelfrow1": {
+    "shelfrow2": {
      "x": 395,
      "y": 1032,
      "w": 1130,
      "h": 104
     },
-    "shelfrow2": {
+    "shelfrow3": {
      "x": 395,
      "y": 1137,
      "w": 1130,
      "h": 104
     },
-    "shelfrow3": {
+    "shelfrow4": {
      "x": 395,
      "y": 1241,
      "w": 1130,
      "h": 104
     },
-    "shelfrow4": {
-     "x": 395,
-     "y": 1345,
-     "w": 1130,
-     "h": 104
-    },
     "shelfrow5": {
      "x": 395,
-     "y": 1450,
-     "w": 1130,
-     "h": 127
-    },
-    "shelfrow6": {
-     "x": 395,
-     "y": 1577,
+     "y": 1345,
      "w": 1130,
      "h": 104
     }
@@ -265,89 +253,6 @@
    "pageH": 1588,
    "cutouts": {}
   },
-  "checkin-empty": {
-   "pageH": 1143,
-   "cutouts": {}
-  },
-  "checkin-search": {
-   "pageH": 1143,
-   "cutouts": {
-    "checkin-results": {
-     "x": 53,
-     "y": 282,
-     "w": 1418,
-     "h": 142
-    }
-   }
-  },
-  "checkin-card": {
-   "pageH": 1143,
-   "cutouts": {
-    "checkin-panel": {
-     "x": 1516,
-     "y": 147,
-     "w": 372,
-     "h": 757
-    }
-   }
-  },
-  "pos-empty": {
-   "pageH": 1451,
-   "cutouts": {}
-  },
-  "pos-cart": {
-   "pageH": 1451,
-   "cutouts": {
-    "pos-grid": {
-     "x": 32,
-     "y": 265,
-     "w": 1460,
-     "h": 1162
-    },
-    "postile1": {
-     "x": 32,
-     "y": 265,
-     "w": 152,
-     "h": 220
-    },
-    "postile2": {
-     "x": 196,
-     "y": 265,
-     "w": 152,
-     "h": 220
-    },
-    "postile3": {
-     "x": 359,
-     "y": 265,
-     "w": 152,
-     "h": 220
-    },
-    "postile4": {
-     "x": 523,
-     "y": 265,
-     "w": 152,
-     "h": 220
-    },
-    "postile5": {
-     "x": 686,
-     "y": 265,
-     "w": 152,
-     "h": 220
-    },
-    "postile6": {
-     "x": 850,
-     "y": 265,
-     "w": 152,
-     "h": 220
-    },
-    "pos-panel": {
-     "x": 1516,
-     "y": 147,
-     "w": 372,
-     "h": 592
-    }
-   }
-  },
   "compass-network": {
    "pageH": 2564,
    "cutouts": {
@@ -404,178 +309,92 @@
      "y": 1539,
      "w": 287,
      "h": 131
-    },
-    "compass-network-c9": {
-     "x": 256,
-     "y": 1755,
-     "w": 900,
-     "h": 737
     }
    }
-  },
-  "compass-accounts": {
-   "pageH": 1090,
-   "cutouts": {
-    "compass-accounts-c1": {
-     "x": 256,
-     "y": 155,
-     "w": 900,
-     "h": 904
-    }
-   }
-  },
-  "compass-coaching": {
-   "pageH": 2265,
-   "cutouts": {
-    "compass-coaching-c1": {
-     "x": 256,
-     "y": 200,
-     "w": 440,
-     "h": 151
-    },
-    "compass-coaching-c2": {
-     "x": 716,
-     "y": 200,
-     "w": 440,
-     "h": 151
-    },
-    "compass-coaching-c3": {
-     "x": 256,
-     "y": 371,
-     "w": 440,
-     "h": 151
-    },
-    "compass-coaching-c4": {
-     "x": 716,
-     "y": 371,
-     "w": 440,
-     "h": 151
-    },
-    "compass-coaching-c5": {
-     "x": 256,
-     "y": 632,
-     "w": 440,
-     "h": 224
-    },
-    "compass-coaching-c6": {
-     "x": 716,
-     "y": 632,
-     "w": 440,
-     "h": 224
-    },
-    "compass-coaching-c7": {
-     "x": 256,
-     "y": 875,
-     "w": 440,
-     "h": 224
-    },
-    "compass-coaching-c8": {
-     "x": 716,
-     "y": 875,
-     "w": 440,
-     "h": 224
-    }
-   }
-  },
-  "compass-network-nopins": {
-   "pageH": 2564,
-   "cutouts": {}
   }
  },
  "pins": [
   {
-   "x": 369.9,
-   "y": 1037.8,
-   "fill": "lab(69.0926 -37.9818 19.5473)",
-   "stroke": "none",
+   "x": 370,
+   "y": 1038,
+   "fill": "var(--c-green)",
    "hollow": false,
    "name": "Sunset Ridge Tanning & Wellness — Kelowna, BC"
   },
   {
-   "x": 856.9,
-   "y": 1181.2,
-   "fill": "lab(75.6628 13.603 53.3901)",
-   "stroke": "none",
+   "x": 857,
+   "y": 1181,
+   "fill": "var(--c-amber)",
    "hollow": false,
    "name": "Maple Glow Tanning — Burlington, ON"
   },
   {
-   "x": 410.9,
-   "y": 951.8,
-   "fill": "lab(69.0926 -37.9818 19.5473)",
-   "stroke": "none",
+   "x": 411,
+   "y": 952,
+   "fill": "var(--c-green)",
    "hollow": false,
    "name": "Northern Sun Wellness — Grande Prairie, AB"
   },
   {
-   "x": 930.6,
-   "y": 1098.6,
+   "x": 931,
+   "y": 1099,
    "fill": "none",
-   "stroke": "lab(58.2124 2.39787 4.68566)",
    "hollow": true,
    "name": "Rivière Lumière — Trois-Rivières, QC"
   },
   {
-   "x": 316.6,
-   "y": 1029.3,
+   "x": 317,
+   "y": 1029,
    "fill": "none",
-   "stroke": "lab(58.2124 2.39787 4.68566)",
    "hollow": true,
    "name": "Harbourlight Studio — Nanaimo, BC"
   },
   {
    "x": 436,
-   "y": 1038.2,
-   "fill": "lab(69.0926 -37.9818 19.5473)",
-   "stroke": "none",
+   "y": 1038,
+   "fill": "var(--c-green)",
    "hollow": false,
    "name": "Aurora Collective — Westside — Calgary, AB"
   },
   {
-   "x": 431.2,
-   "y": 1046.6,
-   "fill": "lab(58.2124 2.39787 4.68566)",
-   "stroke": "none",
+   "x": 431,
+   "y": 1047,
+   "fill": "var(--c-ink-faint)",
    "hollow": false,
    "name": "Aurora Collective — Beltline — Calgary, AB"
   },
   {
-   "x": 366.2,
+   "x": 366,
    "y": 1021,
    "fill": "none",
-   "stroke": "lab(58.2124 2.39787 4.68566)",
    "hollow": true,
    "name": "Copperline Tan Bar — Kamloops, BC"
   },
   {
-   "x": 898.2,
-   "y": 1128.3,
-   "fill": "lab(69.0926 -37.9818 19.5473)",
-   "stroke": "none",
+   "x": 898,
+   "y": 1128,
+   "fill": "var(--c-green)",
    "hollow": false,
    "name": "Glasswing Sun Studio — Ottawa, ON"
   },
   {
-   "x": 944.7,
-   "y": 1111.7,
+   "x": 945,
+   "y": 1112,
    "fill": "none",
-   "stroke": "lab(58.2124 2.39787 4.68566)",
    "hollow": true,
    "name": "Petit Soleil — Sherbrooke, QC"
   },
   {
-   "x": 317.1,
-   "y": 1044.4,
-   "fill": "lab(58.2124 2.39787 4.68566)",
-   "stroke": "none",
+   "x": 317,
+   "y": 1044,
+   "fill": "var(--c-ink-faint)",
    "hollow": false,
    "name": "Saltspray Tan & Spa — Victoria, BC"
   },
   {
-   "x": 720.6,
-   "y": 1111.3,
+   "x": 721,
+   "y": 1111,
    "fill": "none",
-   "stroke": "lab(58.2124 2.39787 4.68566)",
    "hollow": true,
    "name": "Ironwood Tanning Co. — Thunder Bay, ON"
   }
