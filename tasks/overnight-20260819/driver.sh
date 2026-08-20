@@ -124,6 +124,36 @@ gate_ts() {
   return $errs
 }
 
+# Signal sweep: a pure function of rows. The purity checks are the point —
+# a sweep that reads the clock breaks demo reproducibility silently.
+gate_sweep() {
+  local rel="$1" task="$2" abs="$REPO/$1" errs=0
+  [[ -s "$abs" ]] || { echo "gate: missing or empty"; return 1; }
+  grep -q 'export function sweep' "$abs" || { echo "gate: no exported sweep function"; errs=1; }
+  grep -q 'return \[\]' "$abs" || { echo "gate: no early exit — sweep always fires"; errs=1; }
+  grep -q 'InsightDraft' "$abs" || { echo "gate: does not emit InsightDraft"; errs=1; }
+  grep -q 'dedupeKey' "$abs" || { echo "gate: no dedupeKey"; errs=1; }
+  grep -q 'EVIDENCE_VERSION' "$abs" || { echo "gate: evidence not versioned"; errs=1; }
+  # purity
+  grep -qE 'Date\.now\(\)|new Date\(\)' "$abs" && { echo "gate: reads the clock — breaks reproducibility"; errs=1; }
+  grep -q 'Math.random' "$abs" && { echo "gate: nondeterministic"; errs=1; }
+  grep -qE 'await |fetch\(|prisma|db\.' "$abs" && { echo "gate: does I/O — sweeps are pure"; errs=1; }
+  grep -qE ':\s*any\b' "$abs" && { echo "gate: uses any"; errs=1; }
+  # dedupeKey must not embed a date, or tomorrow duplicates today
+  grep -qE 'dedupeKey.*(today|forDate)' "$abs" && { echo "gate: dedupeKey contains a date"; errs=1; }
+  case "$task" in
+    13-sweep-bottle)
+      grep -q 'estimateBottle' "$abs" || { echo "gate: does not reuse estimateBottle"; errs=1; }
+      grep -qE '0\.5|ouncesPerTan' "$abs" && { echo "gate: reimplements the half-ounce math"; errs=1; } ;;
+    11-sweep-tenure)
+      grep -q 'MIN_COHORT' "$abs" || { echo "gate: no cohort minimum"; errs=1; } ;;
+    14-sweep-category-gap)
+      grep -q 'MIN_COHORT' "$abs" || { echo "gate: no cohort minimum"; errs=1; } ;;
+  esac
+  tsc_attributed "packages/core" "$rel" || errs=1
+  return $errs
+}
+
 gate_html() {
   local f="$REPO/$1" task="$2" errs=0
   [[ -s "$f" ]] || { echo "gate: missing or empty"; return 1; }
@@ -165,8 +195,9 @@ gate_md() {
 run_gate() {
   local kind="$1" target="$2" task="$3"
   case "$kind" in
-    tsx)  gate_tsx  "$target" "$task" ;;
-    ts)   gate_ts   "$target" ;;
+    tsx)   gate_tsx   "$target" "$task" ;;
+    ts)    gate_ts    "$target" ;;
+    sweep) gate_sweep "$target" "$task" ;;
     html) gate_html "$target" "$task" ;;
     md)   gate_md   "$target" "$task" ;;
     *) echo "gate: unknown kind $kind"; return 1 ;;

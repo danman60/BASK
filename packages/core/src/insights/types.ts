@@ -9,7 +9,16 @@
 import type { Evidence } from '../evidence';
 import type { SalonFacts } from './facts';
 
-/** One per detector in `detectors.ts`. */
+/**
+ * One per detector in `detectors.ts`, plus the sweeps in `sweeps/`.
+ *
+ * The second group came out of the 2026-08-19 client meeting and the metric
+ * definitions given on stage at the expo. They answer the question the first six
+ * do not: not "what happened in the salon today" but "how does this salon compare,
+ * and how long do its members stay" — which is the part the client said nobody is
+ * doing ("it's not tracking minutes and putting butts in beds, it's what to do
+ * with that data"). See `docs/SIGNAL_SWEEPS.md`.
+ */
 export const INSIGHT_TYPES = [
   'retail_attachment_slip',
   'failed_payments',
@@ -17,6 +26,13 @@ export const INSIGHT_TYPES = [
   'low_stock',
   'overstock',
   'anomaly_band',
+  // sweeps/ — benchmarking and membership economics
+  'member_tenure_gap',
+  'seasonal_pause',
+  'bottle_depletion',
+  'category_gap',
+  'first_visit_lapse',
+  'upgrade_headroom',
 ] as const;
 export type InsightType = (typeof INSIGHT_TYPES)[number];
 
@@ -28,6 +44,10 @@ export const LINKED_ACTION_TYPES = [
   'draft_order',
   'review_product',
   'open_report',
+  // sweeps/
+  'open_cohort',
+  'draft_reachout',
+  'review_membership',
 ] as const;
 export type LinkedActionType = (typeof LINKED_ACTION_TYPES)[number];
 

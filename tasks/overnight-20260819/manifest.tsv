@@ -2,6 +2,12 @@
 09-proposal-html	big	docs/pitch/PROPOSAL-NICK.html	html	heavy
 10-vo-script	big	promo/VO-SCRIPT-V2.md	md	heavy
 08-chunker	big	packages/core/src/knowledge/chunk.ts	ts	heavy
+11-sweep-tenure	big	packages/core/src/insights/sweeps/tenure.ts	sweep	heavy
+12-sweep-seasonal-pause	big	packages/core/src/insights/sweeps/seasonal-pause.ts	sweep	heavy
+14-sweep-category-gap	big	packages/core/src/insights/sweeps/category-gap.ts	sweep	heavy
+16-sweep-upgrade-headroom	big	packages/core/src/insights/sweeps/upgrade-headroom.ts	sweep	medium
+13-sweep-bottle	big	packages/core/src/insights/sweeps/bottle.ts	sweep	medium
+15-sweep-first-visit	big	packages/core/src/insights/sweeps/first-visit.ts	sweep	medium
 03-health-grid	big	packages/ui/src/components/HealthGrid.tsx	tsx	medium
 04-slipping-list	big	packages/ui/src/components/SlippingList.tsx	tsx	medium
 06-cohort-table	big	packages/ui/src/components/CohortTable.tsx	tsx	medium
