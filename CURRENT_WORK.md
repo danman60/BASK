@@ -1,5 +1,82 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session refresh 2026-08-19 19:46 EDT — THE NICK MEETING CHANGED THE PRODUCT
+Fresh session started (context rot after a long day: film sound fix → ASTEROID demo setup →
+the Nick meeting → transcript analysis → health engine build). Nothing was mid-flight at the cut
+except the film re-cut, which is committed and typechecking but NOT re-rendered.
+
+### Active Task
+Rebuilding the product around what Nick actually asked for. Two open decisions and one build.
+
+**The meeting (2026-08-19, 2:00 PM) — read `docs/meetings/2026-08-19-nick-debrief.md` FIRST,
+then `docs/meetings/2026-08-19-nick-analysis.md`.** Transcript at
+`transcripts/2026-08-19-1412-conversation.txt` (auto-transcribed, speaker labels unreliable and
+swap mid-file, names ASR-mangled — never quote it as verbatim to anyone).
+
+**What changed:** Nick ruled out salon management software. *"I don't want to develop software for
+salon management — there's five other guys doing it."* He hosts Sun Link's data, so a competing
+front end "would piss off my partners." His definition of the gap: **"It's not tracking minutes and
+putting butts in beds. It's what to do with that data."** The Floor, POS and booking are OUT of the
+pitch and out of the film. Daybreak, Peers benchmarking, Customers, Studio, the UVALUX draft order,
+Compass and consent all survive.
+
+**He asked for a proposal, unprompted** — time committed, what Daniel wants in return, engagement
+shape. Draft at `docs/pitch/PROPOSAL-NICK.md` with four `[[ ]]` markers only Daniel can fill.
+Decisions already made: present all three deal structures and let him pick · two days a week ·
+staff conversation recording left out entirely (legal exposure).
+
+### Recent Changes (this session)
+- `promo/`: sign-off SFX removed (riser + impact) after stem measurement — 1:38 went -3.2 → -8.9
+  dBFS. Commit `a47846d`. Masters re-rendered, 720 send-copy DM'd.
+- ASTEROID is the demo machine. Film + two URL shortcuts on `C:\Users\Daniel\Desktop`, SHA256
+  verified. ASTEROID is ONLINE (sysadmin machine table says offline 12d — that row is stale).
+- `promo/src/timeline.ts` + `Main.tsx` + `Soundtrack.tsx`: floor/checkin/pos cut with their sound
+  cues and VO lines. `tsc` clean. **NOT re-rendered** — waiting on the new surfaces.
+- `packages/core/src/health/customer-health.ts` — NEW. Customer health engine, baseline-anchored,
+  adapted from CommandCentered `app/src/lib/allies/health.ts`. Plus `estimateBottle()`.
+- `packages/db/scripts/health-distribution.ts` — read-only tuning instrument, `pnpm health:distribution`.
+  420 customers: 69.8% healthy / 23.3% slipping / 6.9% lapsed, median 78.
+- Commits `8a29308`, `a47846d`, `b6c9e94`. **Nothing pushed** — promo commits from the 14th are
+  also still local.
+
+### Next Steps
+1. **Two open decisions blocking the build** (see analysis doc §2):
+   a. Health scoring constants. The transcript says average member tenure is **2.5–3.5 months**, so
+      my 90-day staleness curve spans an entire customer lifetime — recommend full drain at ~45
+      days, flags at 14/30/45. Also seasonality: *"if you're just doing tanning and summertime
+      comes, somebody will pause or cancel"* — a flat recency model turns the board red every July.
+      Need paused (seasonal) vs lapsed (worth a call) as separate states. Ceiling compression
+      (visit cap 30→20, member baseline 65→60) is the least urgent of the three.
+   b. Whether to fold the **equipment-payback case** into the proposal and film first (see below).
+2. **Build**: customer health board + slipping list on `/customers`; scoreboard framing on
+   `/insights/peers` (percentile/cohortMedian/cohortTopQuartile ALREADY computed in
+   `apps/web/src/server/peers.ts` behind the consent gate — presentation problem, not a build).
+3. **Then** re-render the film. Nothing renders until the hero beats exist.
+4. Fill the `[[ ]]` numbers in the proposal and send it.
+
+### Context the next session must not re-derive
+- **The strongest commercial finding** (analysis §1): UVALUX sells equipment financed by membership
+  arithmetic — Nick's own pitch is "buy a cocoon, upgrade N members from 89 → 100 → 120 to pay for
+  it." Mike's counter-thesis: add modalities, tenure goes 2.5 → 3.5 months, *"worth more than
+  another customer."* A product proving "this modality extends tenure by X, machine pays back in N
+  months" is an EQUIPMENT SALES INSTRUMENT, not a retention feature. Should lead pitch and film.
+- **Average member tenure is nowhere in Bask** and it is the headline metric of this product.
+- **Community is the gap.** Nick: the salons come for the lotion but really *"the community's the
+  biggest one."* It is in no plan, no proposal, no film. Daniel already built a micro-social
+  platform for the Fine Arts client — a port, not a build.
+- **The beachhead, in his words:** chains are taken (Sun Link runs Palm Beach Megatan ~200, Sun Tan
+  City ~200, Glow ~140); independents are unserved "because they're too expensive, and I don't
+  think they have the right product for it."
+- **Rights are NOT secured** — *"there's insights in there that we're not tapping into, nor do we
+  have rights yet."* Consent layer is the licence to operate, not a demo beat.
+- **Fences:** never compete with Sun Link's front end · never market to salon customers (he'd put
+  it in the contract) · don't pitch him an exit (cannabis went ~$1B → zero on him) · don't let
+  phase 1 look big (he named scope creep as his own allergy).
+- People: **Wilfred** (his technical lead, intro offered twice — the due-diligence gate) · **Elaine**
+  (coaching) · **Mike** (California, the data-coaching exemplar) · **Sarah** (recorded material) ·
+  **Angie** (wellness/spa/gym sales, banned from tanning) · **Nick the student** (Guelph, ≠ Nick).
+- The demo clock reads **2026-08-06** — August, peak seasonal-pause month. Relevant to what we show.
+
 ## Deployed
 - **USE THIS FOR THE PITCH — stable, always the latest production build:**
   **https://bask-psi.vercel.app** (public, no auth — it is a demo).

@@ -20,7 +20,8 @@
     "demo:advance": "tsx scripts/demo-advance.ts",
     "demo:checksum": "tsx scripts/demo-checksum.ts",
     "demo:dump": "tsx scripts/demo-dump.ts",
-    "health:distribution": "tsx scripts/health-distribution.ts"
+    "health:distribution": "tsx scripts/health-distribution.ts",
+    "knowledge:extract": "tsx scripts/knowledge/extract-expo.ts"
   },
   "devDependencies": {
     "prisma": "7.9.1",
