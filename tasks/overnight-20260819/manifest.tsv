@@ -16,3 +16,8 @@
 05-metric-tile	small	packages/ui/src/components/MetricTile.tsx	tsx	light
 02-health-band-tiles	small	packages/ui/src/components/HealthBandTiles.tsx	tsx	light
 17-shot-plan	big	promo/SHOT-PLAN-V2.md	md	heavy
+18-payback-calculator	big	docs/pitch/PAYBACK-CALCULATOR.html	calc	heavy
+19-sample-report	big	docs/pitch/SAMPLE-SALON-REPORT.html	html	heavy
+20-wilfred-packet	big	docs/pitch/TECHNICAL-PACKET.md	md	heavy
+21-fences	big	docs/pitch/FENCES.md	md	medium
+22-community-feed	small	packages/ui/src/components/CommunityFeed.tsx	tsx	medium

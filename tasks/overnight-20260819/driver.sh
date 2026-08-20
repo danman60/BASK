@@ -178,10 +178,49 @@ PY
   return $errs
 }
 
+# The payback calculator is the ONE artifact allowed to ship JavaScript, because
+# it is interactive by design. Everything else in docs/pitch is static.
+gate_calc() {
+  local f="$REPO/$1" errs=0
+  [[ -s "$f" ]] || { echo "gate: missing or empty"; return 1; }
+  head -c 20 "$f" | grep -qi '<!doctype html' || { echo "gate: no doctype"; errs=1; }
+  [[ $(grep -o '<input' "$f" | wc -l) -ge 6 ]] || { echo "gate: fewer than 6 inputs"; errs=1; }
+  grep -q 'paybackMonths' "$f" || { echo "gate: no payback calculation"; errs=1; }
+  grep -q 'These are your numbers, not ours' "$f" || { echo "gate: missing honesty line"; errs=1; }
+  # self-contained: fonts link is the only permitted external reference
+  grep -oP 'src="https?://[^"]+' "$f" | grep -v 'fonts\.' | head -3 | grep -q . \
+    && { echo "gate: external script source"; errs=1; }
+  grep -q 'fetch(' "$f" && { echo "gate: makes a network call"; errs=1; }
+  # it must actually compute, not just display constants
+  grep -qE 'addEventListener|oninput' "$f" || { echo "gate: inputs are not wired"; errs=1; }
+  return $errs
+}
+
 gate_md() {
   local f="$REPO/$1" task="$2" errs=0
   [[ -s "$f" ]] || { echo "gate: missing or empty"; return 1; }
   case "$task" in
+    20-wilfred-packet)
+      grep -q 'DRAFT — generated overnight' "$f" || { echo "gate: missing DRAFT line"; errs=1; }
+      grep -q '^## Open' "$f" || { echo "gate: no Open section — the honest half is missing"; errs=1; }
+      for s in 'bask' 'Row Level Security' 'residency' 'no authentication'; do
+        grep -q "$s" "$f" || { echo "gate: missing required fact '$s'"; errs=1; }
+      done
+      # invented assurances. This reader is an ex-data-centre engineer; one
+      # unearned certification claim loses him permanently.
+      for bad in 'SOC 2' 'ISO 27001' 'HIPAA' 'PIPEDA compliant' '99.9' 'bank-grade' 'military-grade' 'end-to-end encrypted'; do
+        grep -qi "$bad" "$f" && { echo "gate: INVENTED ASSURANCE '$bad'"; errs=1; }
+      done ;;
+    21-fences)
+      grep -q 'DRAFT — generated overnight' "$f" || { echo "gate: missing DRAFT line"; errs=1; }
+      local fences; fences=$(grep -c '^## ' "$f")
+      [[ "$fences" -eq 4 ]] || { echo "gate: $fences fences, expected exactly 4"; errs=1; }
+      for s in 'Sunlync' 'consent' '12 salons'; do
+        grep -q "$s" "$f" || { echo "gate: missing '$s'"; errs=1; }
+      done
+      for bad in 'hereinafter' 'warrants and represents' 'shall indemnify'; do
+        grep -qi "$bad" "$f" && { echo "gate: legalese '$bad' — this is plain-language intent"; errs=1; }
+      done ;;
     17-shot-plan)
       local beats; beats=$(grep -c '^## Beat' "$f")
       [[ "$beats" -eq 9 ]] || { echo "gate: $beats beats, expected exactly 9"; errs=1; }
@@ -205,8 +244,9 @@ run_gate() {
     tsx)   gate_tsx   "$target" "$task" ;;
     ts)    gate_ts    "$target" ;;
     sweep) gate_sweep "$target" "$task" ;;
-    html) gate_html "$target" "$task" ;;
-    md)   gate_md   "$target" "$task" ;;
+    html)  gate_html  "$target" "$task" ;;
+    calc)  gate_calc  "$target" ;;
+    md)    gate_md    "$target" "$task" ;;
     *) echo "gate: unknown kind $kind"; return 1 ;;
   esac
 }
