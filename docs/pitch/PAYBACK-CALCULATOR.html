@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Equipment Payback Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background: #faf7f2;
+            --ink: #2a2028;
+            --accent: #c4643c;
+            --light: #f8f5f0;
+            --border-radius: 8px;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--ink);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 46rem;
+            width: 100%;
+        }
+        
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--ink);
+            text-align: center;
+        }
+        
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        input {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .result-tile {
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .result-label {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+        
+        .result-value {
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--ink);
+        }
+        
+        .sentence-box {
+            background-color: var(--accent);
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        
+        .honesty-line {
+            font-size: 0.85rem;
+            color: #666;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 640px) {
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Equipment Payback Calculator</h1>
+        
+        <div class="input-grid">
+            <div class="input-group">
+                <label for="price">Machine Price ($)</label>
+                <input type="number" id="price" value="28000">
+            </div>
+            
+            <div class="input-group">
+                <label for="current">Current Membership Price ($)</label>
+                <input type="number" id="current" value="89">
+            </div>
+            
+            <div class="input-group">
+                <label for="upgraded">Upgraded Membership Price ($)</label>
+                <input type="number" id="upgraded" value="120">
+            </div>
+            
+            <div class="input-group">
+                <label for="members">Members You Could Upgrade</label>
+                <input type="number" id="members" value="40">
+            </div>
+            
+            <div class="input-group">
+                <label for="tenureNow">Average Tenure Today (months)</label>
+                <input type="number" id="tenureNow" value="2.5" step="0.1">
+            </div>
+            
+            <div class="input-group">
+                <label for="tenureAfter">Tenure After Modality (months)</label>
+                <input type="number" id="tenureAfter" value="3.5" step="0.1">
+            </div>
+        </div>
+        
+        <div class="results-grid">
+            <div class="result-tile">
+                <div class="result-label">Monthly Uplift</div>
+                <div class="result-value" id="monthlyUplift">$0</div>
+            </div>
+            
+            <div class="result-tile">
+                <div class="result-label">Payback</div>
+                <div class="result-value" id="payback">—</div>
+            </div>
+            
+            <div class="result-tile">
+                <div class="result-label">Value of Extra Tenure</div>
+                <div class="result-value" id="retainedValue">$0</div>
+            </div>
+            
+            <div class="result-tile">
+                <div class="result-label">First-Year Return</div>
+                <div class="result-value" id="firstYearReturn">$0</div>
+            </div>
+        </div>
+        
+        <div class="sentence-box" id="sentence">
+            Upgrading 40 members from $89 to $120 pays for a $28,000 machine in 22.6 months — and if it moves average tenure from 2.5 to 3.5 months, that extra month is worth another $4,800 a year.
+        </div>
+        
+        <div class="honesty-line">
+            These are your numbers, not ours. Tenure figures come from what UVALUX's own coaching has measured; the rest is arithmetic.
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            // Get input values
+            const price = parseFloat(document.getElementById('price').value) || 0;
+            const current = parseFloat(document.getElementById('current').value) || 0;
+            const upgraded = parseFloat(document.getElementById('upgraded').value) || 0;
+            const members = parseFloat(document.getElementById('members').value) || 0;
+            const tenureNow = parseFloat(document.getElementById('tenureNow').value) || 0;
+            const tenureAfter = parseFloat(document.getElementById('tenureAfter').value) || 0;
+            
+            // Calculate the values
+            const monthlyUplift = Math.round((upgraded - current) * members);
+            const paybackMonths = (monthlyUplift > 0) ? (price / monthlyUplift).toFixed(1) : Infinity;
+            const tenureGain = tenureAfter - tenureNow;
+            const retainedValue = Math.round(tenureGain * upgraded * members);
+            const firstYearReturn = Math.round((monthlyUplift * 12) + retainedValue - price);
+            
+            // Update the display
+            document.getElementById('monthlyUplift').textContent = '$' + monthlyUplift.toLocaleString();
+            
+            if (isFinite(paybackMonths)) {
+                document.getElementById('payback').textContent = paybackMonths + ' months';
+            } else {
+                document.getElementById('payback').textContent = '—';
+            }
+            
+            document.getElementById('retainedValue').textContent = '$' + retainedValue.toLocaleString();
+            document.getElementById('firstYearReturn').textContent = '$' + firstYearReturn.toLocaleString();
+            
+            // Update the sentence
+            const sentenceElement = document.getElementById('sentence');
+            if (isFinite(paybackMonths)) {
+                sentenceElement.textContent = `Upgrading ${members} members from $${current} to $${upgraded} pays for a $${price.toLocaleString()} machine in ${paybackMonths} months — and if it moves average tenure from ${tenureNow} to ${tenureAfter} months, that extra month is worth another $${retainedValue.toLocaleString()} a year.`;
+            } else {
+                sentenceElement.textContent = `Upgrading ${members} members from $${current} to $${upgraded} pays for a $${price.toLocaleString()} machine in — months — and if it moves average tenure from ${tenureNow} to ${tenureAfter} months, that extra month is worth another $${retainedValue.toLocaleString()} a year.`;
+            }
+        }
+        
+        // Add event listeners to all inputs
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('input', calculate);
+        });
+        
+        // Initial calculation
+        calculate();
+    </script>
+</body>
+</html>
