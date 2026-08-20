@@ -162,6 +162,46 @@
     }
    }
   },
+  "customers-full": {
+   "pageH": 2676,
+   "cutouts": {
+    "customers-health-tiles": {
+     "x": 410,
+     "y": 246,
+     "w": 1100,
+     "h": 140
+    },
+    "customers-health-grid": {
+     "x": 410,
+     "y": 386,
+     "w": 1100,
+     "h": 199
+    },
+    "customers-slipping": {
+     "x": 411,
+     "y": 585,
+     "w": 1098,
+     "h": 1123
+    }
+   }
+  },
+  "peers-full": {
+   "pageH": 2199,
+   "cutouts": {
+    "peers-metrics": {
+     "x": 394,
+     "y": 529,
+     "w": 1132,
+     "h": 160
+    },
+    "peers-table": {
+     "x": 394,
+     "y": 689,
+     "w": 1132,
+     "h": 160
+    }
+   }
+  },
   "order-full": {
    "pageH": 1080,
    "cutouts": {

@@ -9,9 +9,9 @@
 // never Math.random), and the whole wall taking a 1 → 1.04 push once every cell
 // is lit, then holding still.
 //
-// The cells are not a synthetic grid: they are real cutouts from three Compass
-// screens — the network rollups, the provincial spread, adoption, the account
-// table, the coaching board, a call card and an evidence tile. The point of the
+// The cells are not a synthetic grid: they are real cutouts from the live product
+// — customer health, the peer scoreboard, network rollups, the account table,
+// the coaching board, a call card and an evidence tile. The point of the
 // shot is quantity: one screen was never going to carry "this is what you get
 // across the network".
 import { AbsoluteFill, Easing, Img, interpolate, staticFile, useCurrentFrame } from 'remotion';
@@ -27,7 +27,9 @@ const CELLS: Cell[] = [
   { file: 'compass-network-c2.png', x: 1298, y: 92, w: 520, h: 348, label: 'rollup' },
   { file: 'compass-network-c8.png', x: 104, y: 214, w: 558, h: 457, label: 'every account' },
   { file: 'compass-coaching-c1.png', x: 1298, y: 470, w: 520, h: 178, label: 'coaching' },
-  { file: 'compass-network-c5.png', x: 700, y: 500, w: 560, h: 256, label: 'adoption' },
+  { file: 'peers-metrics.png', x: 700, y: 500, w: 560, h: 79, label: 'the scoreboard' },
+  { file: 'customers-health-tiles.png', x: 1298, y: 470, w: 520, h: 66, label: 'customer health' },
+  { file: 'customers-health-grid.png', x: 1298, y: 558, w: 520, h: 94, label: 'who is slipping' },
   { file: 'callcard1.png', x: 1298, y: 676, w: 520, h: 194, label: 'the call' },
   { file: 'ctile1.png', x: 700, y: 790, w: 550, h: 130, label: 'evidence' },
 ];
