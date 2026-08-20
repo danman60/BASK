@@ -1,6 +1,46 @@
 # CURRENT_WORK — uvalux-platform
 
-## Session refresh 2026-08-20 15:10 EDT — HEALTH UI LIVE AND FILM SHOT
+## Session refresh 2026-08-20 15:20 EDT — PRODUCT POSITIONING CORRECTION FOR NEXT TOOL
+
+### User Correction / Handoff Analysis
+
+The current video is incomplete in two separate ways:
+
+1. It does not visibly present the new **Customer Health** and **Analytics** tabs as first-class product surfaces. Capturing health tiles and peer metrics inside the wall is not enough. The viewer must see the navigation, enter both surfaces, and understand what each one changes for an owner or rep.
+2. It presents disconnected screens, not the product's commercial role. The product must read as a **business-intelligence and sales-driving layer** over salon data and UVALUX knowledge. It is not salon-management software. It turns operating data into decisions, coaching, retention actions, inventory/order actions, campaigns, and equipment-sales evidence.
+
+### Required product story
+
+`Existing salon data + UVALUX knowledge/training + consent → business intelligence → sales and operating actions.`
+
+The next film/UI pass must make this chain explicit:
+
+- **Customer Health:** identifies healthy, slipping, and lapsed customers; gives the team a concrete retention/call list.
+- **Analytics / Peers:** shows anonymous benchmark position, the dollar value of gaps, and the target the team can act on.
+- **Knowledge / Coaching:** explains why the recommendation exists using UVALUX recordings, training, and evidence.
+- **Sales-driving actions:** turns findings into campaigns, staff challenges, coaching requests, draft orders, and equipment/payback conversations.
+- **Compass / network layer:** shows UVALUX seeing patterns across consenting salons and turning them into rep/coaching leverage.
+- **Consent:** establishes that sharing is controlled by the salon; this is the licence to operate.
+
+### Acceptance criteria for next tool
+
+- Live nav visibly includes **Customer Health** and **Analytics** (not only a generic Customers/Insights label).
+- Film has a clear business-intelligence thesis in the opening or act break, not only feature narration.
+- Film shows the path from signal → interpretation → dollar opportunity → action → sales outcome.
+- Customer Health and Analytics each get a readable product beat at composited full-screen scale.
+- Existing UVALUX order, marketing, coaching, Compass, and consent surfaces are connected by narration or on-screen transitions into one layer.
+- Equipment payback / tenure is treated as the commercial endpoint where supported by the current product evidence; do not invent metrics or fields.
+- No captions. Final output is VO-only until the new ElevenLabs recording arrives.
+- Do not rebuild salon-management features. Preserve the existing data/consent boundary.
+
+### Deliverable boundary
+
+This is an analysis and handoff, not an implementation. Next tool should inspect the current live nav, `promo/src/timeline.ts`, the Shotcraft capture assets, and `promo/VO-SCRIPT-V2.md`, then produce the revised story/shot plan before editing or rendering.
+
+### Active Task
+Next tool: rebuild the product story and film around Customer Health + Analytics as the visible business-intelligence and sales-driving layer.
+
+### Recent Changes (2026-08-20)
 
 ### Active Task
 Health and peer scoreboard UI shipped. Live capture complete. VO-only promo rendered; new ElevenLabs audio still pending.
