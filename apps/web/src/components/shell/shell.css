@@ -119,6 +119,12 @@
   }
 }
 
+/* Full-width surfaces (Monitor) own their own internal columns and must not
+   inherit the Today rail grid, which would clip a nested two-column layout. */
+.b-shell-wide {
+  display: block;
+}
+
 /* ------------------------------------------------------------------ mobile */
 /* mockup 05: appbar is wordmark + avatar only; the six destinations move to a
    fixed glass tab bar so everything stays thumb-reachable. */

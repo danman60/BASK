@@ -24,14 +24,16 @@ export default async function MonitorPage({
   await resolveSalonScope(salonParam);
 
   return (
-    <main className="b-shell">
-      <header className="b-oppfeed">
-        <h1 className="b-oppfeed-head">Front Desk Monitor</h1>
-        <p className="b-oppfeed-sub">
-          What your team does well, heard in the open and turned into coaching.
-        </p>
-      </header>
-      <MonitorClient data={DEMO_MONITOR} />
+    <main className="b-shell b-shell-wide">
+      <div className="b-monitor">
+        <header className="b-oppfeed">
+          <h1 className="b-oppfeed-head">Front Desk Monitor</h1>
+          <p className="b-oppfeed-sub">
+            What your team does well, heard in the open and turned into coaching.
+          </p>
+        </header>
+        <MonitorClient data={DEMO_MONITOR} />
+      </div>
     </main>
   );
 }
