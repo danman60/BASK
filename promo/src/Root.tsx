@@ -3,7 +3,9 @@ import { z } from 'zod';
 
 import './fonts';
 import { Main } from './Main';
+import { MainV3 } from './MainV3';
 import { FPS, SHOTS, SHOTS_VO, TOTAL, TOTAL_VO } from './timeline';
+import { TOTAL_V3 } from './timelineV3';
 
 export const schema = z.object({
   // Wraps the BGM <Audio> only; SFX stay. Renders the no-BGM deliverable from
@@ -16,6 +18,17 @@ export const schema = z.object({
 
 export const RemotionRoot: React.FC = () => (
   <>
+    {/* v3 salon-intelligence cut (2026-08-21) — picture-only review cut, no
+        Soundtrack, no captions. VO comes from Daniel's ElevenLabs record of
+        VO-SCRIPT-V3.md; SFX re-pin after. */}
+    <Composition
+      id="BaskPromoV3"
+      component={MainV3}
+      durationInFrames={TOTAL_V3}
+      fps={FPS}
+      width={1920}
+      height={1080}
+    />
     {/* Caption cut — no voiceover. */}
     <Composition
       id="BaskPromo"
