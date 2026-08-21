@@ -284,3 +284,48 @@ export {
   type CustomerHealthInput,
   type CustomerHealthBand,
 } from './health/customer-health';
+
+// Opportunity Engine (2026-08-21 brainstorm) — the execution-package layer
+// above the insight detectors. Fixtures land in ./opportunities/fixtures.
+export {
+  OPPORTUNITY_CATEGORIES,
+  OPPORTUNITY_CATEGORY_LABEL,
+  OPPORTUNITY_CONFIDENCES,
+  OPPORTUNITY_CONFIDENCE_LABEL,
+  OPPORTUNITY_URGENCIES,
+  OPPORTUNITY_URGENCY_LABEL,
+  type ActionKind,
+  type CoachingRequestAction,
+  type EmailAction,
+  type FrontDeskScriptAction,
+  type HandleItPlan,
+  type Opportunity,
+  type OpportunityAction,
+  type OpportunityCategory,
+  type OpportunityConfidence,
+  type OpportunityOutcome,
+  type OpportunityUrgency,
+  type SmsAction,
+  type SocialAction,
+  type StaffChallengeAction,
+  type StaffTaskAction,
+  type UvaluxOrderAction,
+} from './opportunities/types';
+
+// Front Desk Monitor (2026-08-21) — listener device → scored interactions →
+// coaching insights. Demo depth: fixtures only, no audio anywhere.
+export {
+  INTERACTION_OUTCOMES,
+  INTERACTION_OUTCOME_LABEL,
+  MOMENT_KEYS,
+  MOMENT_LABEL,
+  type EmployeeSalesStats,
+  type InteractionOutcome,
+  type ListenerStatus,
+  type MomentKey,
+  type MomentScores,
+  type MonitorFixture,
+  type MonitorInsight,
+  type SalesInteraction,
+  type TranscriptLine,
+} from './monitor/types';

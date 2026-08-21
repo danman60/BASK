@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 
 import '@bask/ui/components.css';
 import '@bask/ui/health.css';
+import '@bask/ui/opportunity.css';
 import './bask.css';
 import '@/components/shell/shell.css';
 

@@ -1,0 +1,287 @@
+/* Opportunity Engine + Front Desk Monitor vocabulary.
+ *
+ * SUPERVISOR-OWNED. Written as task zero of the 2026-08-21 build so that the
+ * component tasks cannot collide editing one shared stylesheet and cannot each
+ * invent their own money line. Component tasks write TSX only and use these
+ * class names verbatim.
+ *
+ * Imported alongside the others:
+ *   import '@bask/ui/components.css';
+ *   import '@bask/ui/health.css';
+ *   import '@bask/ui/opportunity.css';
+ */
+
+/* ---- opportunity card ----------------------------------------------------- */
+.b-opp { display: grid; gap: var(--space-3); }
+.b-opp-head { display: flex; align-items: baseline; gap: var(--space-3); }
+.b-opp-rank {
+  flex: none;
+  width: 26px; height: 26px;
+  border-radius: 999px;
+  display: grid; place-items: center;
+  background: var(--primary-wash);
+  color: var(--primary-deep);
+  font: 700 var(--text-xs) / 1 var(--font-body);
+}
+.b-opp-cat {
+  font: 600 var(--text-xs) / 1.2 var(--font-body);
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.b-opp-title { font: 600 var(--text-lg) / 1.25 var(--font-display); color: var(--ink); }
+.b-opp-changed { font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink-soft); }
+.b-opp-why { font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink-faint); }
+.b-opp-impact {
+  font: 700 var(--text-lg) / 1.1 var(--font-display);
+  color: var(--success);
+  font-variant-numeric: tabular-nums;
+}
+.b-opp-meta { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.b-opp-conf {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  white-space: nowrap;
+}
+.b-opp-conf[data-conf='high'] { color: var(--success); background: var(--success-wash); }
+.b-opp-conf[data-conf='worth_testing'] { color: var(--warn); background: var(--warn-wash); }
+.b-opp-urgency { font: 600 var(--text-xs) / 1 var(--font-body); color: var(--ink-faint); }
+.b-opp-confnote { font: 400 var(--text-xs) / 1.4 var(--font-body); color: var(--ink-faint); }
+
+/* ---- action button row ---------------------------------------------------- */
+.b-actionrow { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+/* ---- opportunity feed section --------------------------------------------- */
+.b-oppfeed { display: grid; gap: var(--space-5); }
+.b-oppfeed-head { font: 600 var(--text-xl, 1.35rem) / 1.2 var(--font-display); color: var(--ink); }
+.b-oppfeed-sub { font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink-faint); }
+.b-oppfeed-list { display: grid; gap: var(--space-4); }
+
+/* ---- sms preview ----------------------------------------------------------- */
+.b-msg { display: grid; gap: var(--space-3); }
+.b-msg-bubble {
+  border-radius: 14px 14px 14px 4px;
+  padding: var(--space-3) var(--space-4);
+  background: var(--primary-wash);
+  color: var(--ink);
+  font: 400 var(--text-sm) / 1.5 var(--font-body);
+  max-width: 42ch;
+}
+.b-msg-meta { font: 400 var(--text-xs) / 1.4 var(--font-body); color: var(--ink-faint); }
+
+/* the one approve button style, shared by sms/email/handle-it */
+.b-approve {
+  justify-self: start;
+  border: 0;
+  border-radius: var(--radius-sm);
+  padding: 9px 16px;
+  background: var(--primary-deep);
+  color: var(--paper, #fff);
+  font: 600 var(--text-sm) / 1 var(--font-body);
+  cursor: pointer;
+}
+.b-approve:hover { filter: brightness(1.08); }
+
+/* ---- email preview --------------------------------------------------------- */
+.b-mailprev { display: grid; gap: var(--space-2); }
+.b-mailprev-subject { font: 600 var(--text-sm) / 1.3 var(--font-body); color: var(--ink); }
+.b-mailprev-body { font: 400 var(--text-sm) / 1.55 var(--font-body); color: var(--ink-soft); }
+
+/* ---- social post ----------------------------------------------------------- */
+.b-social { display: grid; gap: var(--space-3); }
+.b-social-net {
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.b-social-copy { font: 400 var(--text-sm) / 1.55 var(--font-body); color: var(--ink); }
+.b-social-cta { font: 600 var(--text-sm) / 1.3 var(--font-body); color: var(--primary-deep); }
+.b-social-img {
+  border-left: 3px solid var(--line);
+  padding-left: var(--space-3);
+  font: 400 var(--text-xs) / 1.5 var(--font-body);
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+/* ---- staff task ------------------------------------------------------------ */
+.b-stask { display: grid; gap: var(--space-3); }
+.b-stask-goal { font: 600 var(--text-md) / 1.35 var(--font-body); color: var(--ink); }
+.b-stask-target { font: 600 var(--text-sm) / 1.3 var(--font-body); color: var(--primary-deep); }
+.b-stask-list { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.b-stask-list li {
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font: 500 var(--text-xs) / 1.2 var(--font-body);
+  color: var(--ink-soft);
+}
+
+/* ---- front-desk script ----------------------------------------------------- */
+.b-script { display: grid; gap: var(--space-3); }
+.b-script-who { display: flex; align-items: center; gap: var(--space-3); }
+.b-script-level {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font: 700 var(--text-xs) / 1 var(--font-body);
+  white-space: nowrap;
+}
+.b-script-level[data-level='high'] { color: var(--success); background: var(--success-wash); }
+.b-script-level[data-level='medium'] { color: var(--warn); background: var(--warn-wash); }
+.b-script-quote {
+  border-left: 3px solid var(--primary-deep);
+  padding-left: var(--space-4);
+  font: 400 var(--text-md) / 1.55 var(--font-body);
+  color: var(--ink);
+}
+
+/* ---- staff challenge ------------------------------------------------------- */
+.b-chal { display: grid; gap: var(--space-3); }
+.b-chal-name { font: 600 var(--text-md) / 1.3 var(--font-body); color: var(--ink); }
+.b-chal-meta { font: 400 var(--text-xs) / 1.4 var(--font-body); color: var(--ink-faint); }
+.b-chal-row { display: grid; grid-template-columns: 90px minmax(0, 1fr) 48px; gap: var(--space-3); align-items: center; }
+.b-chal-row-name { font: 500 var(--text-sm) / 1.2 var(--font-body); color: var(--ink-soft); }
+.b-chal-bar { height: 8px; border-radius: 999px; background: var(--line-soft); overflow: hidden; }
+.b-chal-fill { height: 100%; border-radius: 999px; background: var(--success); }
+.b-chal-count { font: 600 var(--text-xs) / 1 var(--font-body); color: var(--ink-faint); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ---- outcome card ("did it work") ------------------------------------------ */
+.b-outcome { display: grid; gap: var(--space-3); }
+.b-outcome-funnel { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.b-outcome-step {
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font: 500 var(--text-xs) / 1.3 var(--font-body);
+  color: var(--ink-soft);
+}
+.b-outcome-arrow { color: var(--ink-faint); font-size: var(--text-xs); }
+.b-outcome-rev {
+  font: 700 var(--text-lg) / 1.1 var(--font-display);
+  color: var(--success);
+  font-variant-numeric: tabular-nums;
+}
+.b-outcome-learned {
+  border-left: 3px solid var(--success);
+  padding-left: var(--space-3);
+  font: 400 var(--text-sm) / 1.5 var(--font-body);
+  color: var(--ink-soft);
+}
+
+/* ---- handle-it plan -------------------------------------------------------- */
+.b-handle { display: grid; gap: var(--space-3); }
+.b-handle-steps { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.b-handle-step { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: var(--space-3); }
+.b-handle-k { font: 600 var(--text-xs) / 1.6 var(--font-body); color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+.b-handle-v { font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink); }
+.b-handle-note { font: 400 var(--text-xs) / 1.4 var(--font-body); color: var(--ink-faint); }
+
+/* ---- listener status ------------------------------------------------------- */
+.b-listener { display: grid; gap: var(--space-3); }
+.b-listener-head { display: flex; align-items: center; gap: var(--space-3); }
+.b-listener-dot { width: 10px; height: 10px; border-radius: 999px; flex: none; }
+.b-listener-dot[data-on='true'] { background: var(--success); box-shadow: 0 0 0 4px var(--success-wash); }
+.b-listener-dot[data-on='false'] { background: var(--risk); box-shadow: 0 0 0 4px var(--risk-wash); }
+.b-listener-name { font: 600 var(--text-md) / 1.3 var(--font-body); color: var(--ink); }
+.b-listener-bars { display: flex; align-items: flex-end; gap: 3px; height: 26px; }
+.b-listener-bar {
+  width: 4px;
+  border-radius: 2px;
+  background: var(--primary-deep);
+  animation: b-listen 1.1s ease-in-out infinite;
+}
+.b-listener-bar:nth-child(2) { animation-delay: 0.15s; }
+.b-listener-bar:nth-child(3) { animation-delay: 0.3s; }
+.b-listener-bar:nth-child(4) { animation-delay: 0.45s; }
+.b-listener-bar:nth-child(5) { animation-delay: 0.6s; }
+@keyframes b-listen {
+  0%, 100% { height: 6px; opacity: 0.55; }
+  50% { height: 24px; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .b-listener-bar { animation: none; height: 12px; }
+}
+.b-listener-stats { display: flex; flex-wrap: wrap; gap: var(--space-5); }
+
+/* ---- interaction card ------------------------------------------------------ */
+.b-inter { display: grid; gap: var(--space-3); }
+.b-inter-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3); }
+.b-inter-time { font: 600 var(--text-xs) / 1.2 var(--font-body); color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+.b-inter-emp { font: 600 var(--text-sm) / 1.2 var(--font-body); color: var(--ink); }
+.b-inter-cust { font: 400 var(--text-xs) / 1.2 var(--font-body); color: var(--ink-faint); }
+.b-inter-transcript { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.b-inter-line { font: 400 var(--text-sm) / 1.45 var(--font-body); }
+.b-inter-line[data-speaker='staff'] { color: var(--ink); }
+.b-inter-line[data-speaker='customer'] { color: var(--ink-soft); font-style: italic; }
+.b-inter-line b { font-weight: 600; color: var(--ink-faint); font-style: normal; }
+.b-inter-scores { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+.b-inter-score { display: grid; gap: 3px; }
+.b-inter-score-k { font: 500 var(--text-xs) / 1.2 var(--font-body); color: var(--ink-faint); }
+.b-inter-dots { display: flex; gap: 3px; }
+.b-inter-dot { width: 7px; height: 7px; border-radius: 999px; background: var(--line-soft); }
+.b-inter-dot[data-hit='true'] { background: var(--primary-deep); }
+.b-inter-outcome {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  white-space: nowrap;
+}
+.b-inter-outcome[data-outcome='sale'] { color: var(--success); background: var(--success-wash); }
+.b-inter-outcome[data-outcome='membership'] { color: var(--success); background: var(--success-wash); }
+.b-inter-outcome[data-outcome='no_sale'] { color: var(--ink-faint); background: var(--line-soft); }
+.b-inter-outcome[data-outcome='missed_opportunity'] { color: var(--warn); background: var(--warn-wash); }
+.b-inter-coach {
+  border-left: 3px solid var(--warn);
+  padding-left: var(--space-3);
+  font: 400 var(--text-sm) / 1.5 var(--font-body);
+  color: var(--ink-soft);
+}
+
+/* ---- employee sales table -------------------------------------------------- */
+.b-etable { width: 100%; border-collapse: collapse; }
+.b-etable th {
+  text-align: left;
+  font: 600 var(--text-xs) / 1.4 var(--font-body);
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--line);
+}
+.b-etable td {
+  font: 400 var(--text-sm) / 1.4 var(--font-body);
+  color: var(--ink);
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--line-soft);
+}
+.b-etable td.num { font-variant-numeric: tabular-nums; text-align: right; }
+.b-etable-trend[data-trend='up'] { color: var(--success); }
+.b-etable-trend[data-trend='flat'] { color: var(--ink-faint); }
+.b-etable-trend[data-trend='down'] { color: var(--warn); }
+.b-etable-flag { font: 500 var(--text-xs) / 1.3 var(--font-body); color: var(--warn); }
+
+/* ---- monitor insight ------------------------------------------------------- */
+.b-mon-insight { display: grid; gap: var(--space-3); }
+.b-mon-pattern { font: 600 var(--text-md) / 1.4 var(--font-body); color: var(--ink); }
+.b-mon-evidence { font: 400 var(--text-xs) / 1.4 var(--font-body); color: var(--ink-faint); }
+.b-mon-suggestion { font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink-soft); }
+
+/* ---- consent pledge -------------------------------------------------------- */
+.b-pledge {
+  border-left: 3px solid var(--primary-deep);
+  display: grid; gap: var(--space-2);
+}
+.b-pledge-title { font: 600 var(--text-sm) / 1.3 var(--font-body); color: var(--ink); }
+.b-pledge-line { font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink-soft); }
+
+/* ---- monitor surface layout ------------------------------------------------ */
+.b-monitor { display: grid; gap: var(--space-6, 24px); }
+.b-monitor-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: var(--space-5); }
+@media (max-width: 900px) { .b-monitor-grid { grid-template-columns: 1fr; } }
+.b-monitor-main { display: grid; gap: var(--space-4); align-content: start; }
+.b-monitor-rail { display: grid; gap: var(--space-4); align-content: start; }
