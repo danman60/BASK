@@ -40,6 +40,19 @@ This is an analysis and handoff, not an implementation. Next tool should inspect
 ### Active Task
 Next tool: rebuild the product story and film around Customer Health + Analytics as the visible business-intelligence and sales-driving layer.
 
+### Parallel Handoff Queued
+
+Swarm plan: `docs/plans/2026-08-21-business-intelligence-film-swarm.md`.
+
+Tasks split for local parallel execution:
+
+- A: make Customer Health and Analytics first-class visible nav/surfaces.
+- B: rewrite product thesis, shot plan, and VO around data → intelligence → dollar opportunity → action → sales outcome.
+- C: recapture production UI with readable nav and full-screen Customer Health/Analytics beats.
+- D: dependent final integration; render VO-only, inspect output artifact, DM final video.
+
+No worker started in this session. Task D depends on A/B/C.
+
 ### Recent Changes (2026-08-20)
 
 ### Active Task
