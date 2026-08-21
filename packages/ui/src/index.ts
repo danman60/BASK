@@ -94,3 +94,58 @@ export {
   type ComparisonMetric,
 } from './components/ComparisonCard';
 export { UndoToast, type UndoToastProps } from './components/UndoToast';
+
+// Opportunity Engine + Front Desk Monitor (2026-08-21 build). Presentational;
+// data comes from @bask/core fixtures. Sections compose the cards.
+export { ActionRow, type ActionRowProps } from './components/ActionRow';
+export { OpportunityCard, type OpportunityCardProps } from './components/OpportunityCard';
+export { SmsPreviewCard, type SmsPreviewCardProps } from './components/SmsPreviewCard';
+export { EmailPreviewCard, type EmailPreviewCardProps } from './components/EmailPreviewCard';
+export { SocialPostCard, type SocialPostCardProps } from './components/SocialPostCard';
+export { StaffTaskCard, type StaffTaskCardProps } from './components/StaffTaskCard';
+export {
+  FrontDeskScriptCard,
+  type FrontDeskScriptCardProps,
+} from './components/FrontDeskScriptCard';
+export {
+  StaffChallengeCard,
+  type StaffChallengeCardProps,
+} from './components/StaffChallengeCard';
+export { OutcomeCard, type OutcomeCardProps } from './components/OutcomeCard';
+export { HandleItPlanCard, type HandleItPlanCardProps } from './components/HandleItPlanCard';
+export {
+  ListenerStatusCard,
+  type ListenerStatusCardProps,
+} from './components/ListenerStatusCard';
+export { InteractionCard, type InteractionCardProps } from './components/InteractionCard';
+export {
+  EmployeeSalesTable,
+  type EmployeeSalesTableProps,
+} from './components/EmployeeSalesTable';
+export {
+  MonitorInsightCard,
+  type MonitorInsightCardProps,
+} from './components/MonitorInsightCard';
+export {
+  ConsentPledgeCard,
+  PLEDGE_LINES,
+  type ConsentPledgeCardProps,
+} from './components/ConsentPledgeCard';
+export {
+  OpportunityFeedSection,
+  type OpportunityFeedSectionProps,
+} from './components/OpportunityFeedSection';
+export { MonitorSurface, type MonitorSurfaceProps } from './components/MonitorSurface';
+
+// Previous build (2026-08-19/20) components that never got their export line —
+// the queue deliberately left index.ts to the supervisor.
+export { CoachAnswer, type CoachAnswerProps } from './components/CoachAnswer';
+export {
+  CustomerHealthSection,
+  type CustomerHealthSectionProps,
+} from './components/CustomerHealthSection';
+export {
+  ScoreboardSection,
+  type ScoreboardMetric,
+  type ScoreboardSectionProps,
+} from './components/ScoreboardSection';

@@ -1,12 +1,15 @@
+import { DEMO_MONITOR } from '@bask/core';
+
+import { MonitorClient } from '@/components/monitor/MonitorClient';
 import { resolveSalonScope, SALON_PARAM } from '@/lib/salon-scope';
 
 /**
- * Front Desk Monitor — scaffold.
+ * Front Desk Monitor — the listener surface.
  *
- * The full surface (`MonitorSurface` from @bask/ui, data from
- * `DEMO_MONITOR` in @bask/core) lands when the 2026-08-21 build queue
- * drains; this scaffold exists so the nav destination resolves from the
- * moment the label ships. Replaced by the supervisor at integration.
+ * A device at the front desk hears each sales conversation; the system scores
+ * the coachable moments and turns patterns into coaching. Demo depth: all data
+ * is `DEMO_MONITOR` from @bask/core — no audio is processed anywhere. The
+ * consent pledge renders on the surface itself (ConsentPledgeCard), on purpose.
  */
 
 export const dynamic = 'force-dynamic';
@@ -22,8 +25,13 @@ export default async function MonitorPage({
 
   return (
     <main className="b-shell">
-      <h1 className="b-oppfeed-head">Front Desk Monitor</h1>
-      <p className="b-oppfeed-sub">The listener is warming up.</p>
+      <header className="b-oppfeed">
+        <h1 className="b-oppfeed-head">Front Desk Monitor</h1>
+        <p className="b-oppfeed-sub">
+          What your team does well, heard in the open and turned into coaching.
+        </p>
+      </header>
+      <MonitorClient data={DEMO_MONITOR} />
     </main>
   );
 }

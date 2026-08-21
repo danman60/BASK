@@ -311,6 +311,7 @@ export {
   type StaffTaskAction,
   type UvaluxOrderAction,
 } from './opportunities/types';
+export { DEMO_OPPORTUNITIES, DEMO_OUTCOMES } from './opportunities/fixtures';
 
 // Front Desk Monitor (2026-08-21) — listener device → scored interactions →
 // coaching insights. Demo depth: fixtures only, no audio anywhere.
@@ -329,3 +330,4 @@ export {
   type SalesInteraction,
   type TranscriptLine,
 } from './monitor/types';
+export { DEMO_MONITOR } from './monitor/fixtures';

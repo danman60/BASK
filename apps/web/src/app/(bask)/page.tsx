@@ -11,8 +11,11 @@ import {
   type PulseRow,
 } from '@bask/ui';
 
+import { DEMO_OPPORTUNITIES, DEMO_OUTCOMES } from '@bask/core';
+
 import { AttentionQueue } from '@/components/today/AttentionQueue';
 import { DaybreakLetter } from '@/components/today/DaybreakLetter';
+import { OpportunityFeed } from '@/components/today/OpportunityFeed';
 import { resolveSalonScope, readVirtualToday, SALON_PARAM } from '@/lib/salon-scope';
 import { loadToday } from '@/lib/today-data';
 
@@ -80,6 +83,12 @@ export default async function TodayPage({
             <PulseChips rows={pulseRows} label={TODAY_UI.pulseHeading} />
           </div>
         )}
+
+        {/* The Opportunity feed leads Today — money-first, ranked, one-click.
+            This is the product's primary interface (brainstorm §23/§29): the
+            owner reads dollars and actions, not analytics. The insight queue
+            below it stays as the finer-grained "what changed" detail. */}
+        <OpportunityFeed opportunities={DEMO_OPPORTUNITIES} outcomes={DEMO_OUTCOMES} />
 
         <h2 className="b-q-label">
           <span className="b-full">{TODAY_UI.queueHeading}</span>
