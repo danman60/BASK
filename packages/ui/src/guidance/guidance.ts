@@ -365,10 +365,11 @@ export const SHELL_UI = {
   nav: {
     today: 'Today',
     floor: 'The Floor',
-    customers: 'Customers',
+    customers: 'Customer Health',
     marketing: 'Marketing',
     inventory: 'Inventory',
-    insights: 'Insights',
+    insights: 'Analytics',
+    monitor: 'Monitor',
   },
   /**
    * Tab-bar labels. Six 10px labels across a 390px bar leaves ~64px each, so the
@@ -378,10 +379,11 @@ export const SHELL_UI = {
   navShort: {
     today: 'Today',
     floor: 'Floor',
-    customers: 'Customers',
+    customers: 'Health',
     marketing: 'Marketing',
     inventory: 'Inventory',
-    insights: 'Insights',
+    insights: 'Analytics',
+    monitor: 'Monitor',
   },
   navLandmark: 'Main sections',
   avatarLabel: (name: string) => `Signed in as ${name}`,

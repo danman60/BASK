@@ -1,5 +1,61 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session refresh 2026-08-21 08:28 EDT — OVERNIGHT LOCAL-MODEL QUEUE COMPLETE (31/31)
+
+**Reason for refresh:** long session (transcript mining → proposal rewrite → 31-task local-model
+build queue → triage). Nothing in flight. Fresh start requested.
+
+### Active Task
+None. The overnight queue is fully drained and committed. Awaiting direction.
+
+### What completed this session
+- **Third-pass transcript mining** → `docs/meetings/2026-08-19-nick-mining-pass3.md`. Twelve
+  findings the first two passes missed. Load-bearing ones: he **offered a real salon data export**
+  (nobody logged it), the **only price anchor** in the meeting is ~$130/mo incumbent → position at
+  $20–50, he has **no anchor for software work** ("I don't know what you pay"), Canada is
+  **~10 hosted salons vs ~300 purchase-data salons** (the proposal conflated them), a **frozen
+  baseline** is required before the pilot or the lift claim is unprovable, and he named
+  **HootSuite/HubSpot** as displacement targets.
+- **`docs/pitch/PROPOSAL-NICK.md` rewritten** to the three-phase escalating ladder (evidence →
+  product at the January Expo → US play + ownership trigger). Four `[[ ]]` markers remain — only
+  Daniel sets those numbers.
+- **Expo knowledge corpus extracted**: `pnpm knowledge:extract` → 22 session docs, 91,046 of
+  102,292 words, at `packages/db/fixtures/knowledge/uvalux26-expo.jsonl`.
+- **`docs/SIGNAL_SWEEPS.md`** — 22 sweeps, tiered by data source.
+- **31-task local-model queue built and drained.** All 31 targets present, `core`/`ui`/`db`
+  typecheck clean, tree clean. Task files all in `tasks/overnight-20260819/done/`.
+
+### Two findings worth not re-deriving
+1. **Room B expo session labels are NOT trustworthy.** Clock-derived boundaries drift — one slice
+   labelled "The Power of Numbers — Mike Blore" is actually a New Sunshine rep. 16 of 22 docs carry
+   `titleConfidence: 'interpolated'`. Retrieval must cite **room + timestamp** (exact) and must
+   never attribute a quote to a named speaker from an interpolated doc. `CitationCard` and
+   `retrieve.ts` both enforce this.
+2. **Most "gate failures" were not model failures.** 12 tasks failed; 9 had correct artifacts on
+   disk and failed on literal greps (`export function` vs `React.FC`, `EVIDENCE_VERSION` moved into
+   a shared helper). Check the artifact before believing a verdict log.
+
+### Next Steps (superseded 2026-08-21 09:00 — see the opportunity build below)
+1. Wire the landed components into `/customers` and `/insights/peers` (`CustomersSurface.tsx` is
+   580 lines and still segment-based; the health engine from `8a29308` is built but unconsumed).
+2. `packages/ui/src/index.ts` — export the 11 new components (deliberately left to the supervisor;
+   every task would have collided on it).
+3. Add `/customers` + `/insights/peers` to `promo/scripts/capture.mjs`, then re-cut the film off the
+   shot plan (`promo/SHOT-PLAN-V2.md`).
+4. Netcup switchover — runbook at `docs/NETCUP-CUTOVER.md`, migration script at
+   `docs/netcup/migrate-bask-schema.sh`. **Not executed.** Bask takes Kong port 8103; pgvector 0.8.2
+   is present; `migrate-from-hosted.sh` does NOT fit (it filters by table prefix in `public`, Bask
+   owns a whole schema).
+5. Apply `packages/db/prisma/migrations/20260820000000_knowledge_base/` and run
+   `packages/db/scripts/knowledge/embed.ts` (gated behind `EMBED_CONFIRM=yes`). **Both need explicit
+   approval — shared CC&SS database.**
+
+### Blocked on Daniel, not on code
+- The three cash figures for the proposal phases.
+- **Ask Nick for the data export he offered** — cheapest high-value unblock available.
+- **Ask when the January Expo is** — only external deadline anyone named.
+- VO re-record: **no ElevenLabs key exists on this machine** (verified directly, not inherited).
+
 ## Session refresh 2026-08-20 15:20 EDT — PRODUCT POSITIONING CORRECTION FOR NEXT TOOL
 
 ### User Correction / Handoff Analysis
