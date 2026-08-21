@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 10,
+  "tool_calls": 10,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/ui/src/components/CoachAnswer.tsx']",
+  "elapsed": "113s",
+  "updated": "11:05:56",
+  "provider_history": [],
+  "provider_switched": false
+}

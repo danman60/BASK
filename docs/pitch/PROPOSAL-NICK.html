@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposal — salon data, insights and coaching · UVALUX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#faf7f2;--ink:#2a2028;--soft:#5c5158;--faint:#8a7f78;--line:#e6ded4;--brand:#c4643c}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font:400 1.02rem/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:44rem;margin:0 auto;padding:3rem 1.5rem 4rem}
+  h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:500;letter-spacing:-.015em}
+  h1{font-size:2.4rem;line-height:1.15;margin:0 0 .4rem}
+  h2{font-size:1.5rem;margin:3rem 0 1rem;padding-top:1.4rem;border-top:1px solid var(--line)}
+  h3{font-size:1.15rem;margin:2rem 0 .5rem}
+  .sub{color:var(--faint);font-size:.9rem;margin:0 0 2rem}
+  p{margin:0 0 1rem}
+  ul,ol{margin:0 0 1rem;padding-left:1.2rem}
+  li{margin-bottom:.5rem}
+  strong{font-weight:600}
+  blockquote{margin:1.2rem 0;padding-left:1rem;border-left:3px solid var(--brand);font-style:italic;color:var(--soft)}
+  mark.todo{background:#ffe9c7;color:#8a5a00;padding:2px 6px;border-radius:4px;font-weight:600}
+  table{width:100%;border-collapse:collapse;margin:0 0 1.2rem}
+  th{font:600 .68rem/1 Inter,sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--faint);text-align:left;padding:0 .8rem .5rem}
+  td{padding:.6rem .8rem;border-top:1px solid var(--line);font-size:.94rem;vertical-align:top}
+  hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+  .phase{background:#fff;border-radius:1rem;padding:1.4rem 1.5rem;margin:1.2rem 0;box-shadow:0 1px 2px rgba(42,32,40,.04),0 8px 24px rgba(42,32,40,.05)}
+  .phase h3{margin-top:0}
+  .terms{background:rgba(196,100,60,.07);border-radius:1rem;padding:1.2rem 1.4rem;margin:1.5rem 0}
+  @media print{
+    body{background:#fff;font-size:12pt}
+    .wrap{padding:1.5cm}
+    .phase,.terms{box-shadow:none;border:1px solid var(--line);page-break-inside:avoid}
+    h2{page-break-after:avoid}
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Proposal — salon data, insights and coaching</h1>
+<p class="sub"><strong>For:</strong> Nick, UVALUX · <strong>From:</strong> Daniel Abrahamson · <strong>Date:</strong> 2026-08-19</p>
+
+<blockquote><mark class="todo">[[ ]]</mark> marks the numbers only Daniel sets. Fill them before this goes out.</blockquote>
+
+<h2>What I heard</h2>
+<p>You don't want to be in the salon management software business. Five other companies are already fighting over it, they're US-first, and you host Sunlync's data — a competing front end would put you offside with your own partners. That's not the opportunity.</p>
+<p>The opportunity is the sentence you said: <strong>it's not tracking minutes and putting butts in beds, it's what to do with that data.</strong></p>
+<p>You've been circling this for four years. You already ask salons for numbers and hand back a rank. You already have data flowing through the hosting business and you already know you're not mining it. What you don't have is someone to take the lead on it.</p>
+<p>That's what this is for.</p>
+
+<h2>What I'm proposing to build</h2>
+<p><strong>A benchmarking, insight and coaching layer for salons, fed by data you already hold.</strong></p>
+<p>Not a POS. Not booking. Not a room board. Those come out.</p>
+<ol>
+  <li><strong>The scoreboard.</strong> A salon's numbers come back as a rank — percentile against the group, by category, month over month. Participants see themselves; non-participants see the anonymized industry line. The thing owners in California told you they'd love. <strong>Units as well as dollars</strong>, because "you sell 35 tanning lotion while the average is 22" is the version that lands.</li>
+  <li><strong>Customer health.</strong> Every customer scored on one grid — loyal, slipping, gone. Lapsed ones come with a reach-out ready to send. At the desk, whoever is serving someone sees that it's been 85 days and what that person usually buys.</li>
+  <li><strong>Bottle depletion.</strong> You don't track how full the bottle is, but you track tans used, last purchase, and roughly half an ounce per tan — so it's computable. The reorder conversation happens before the customer thinks of it, and it cues the sister product when they've plateaued.</li>
+  <li><strong>Campaigns off the data.</strong> One click from "Thursdays are soft" to the offer, the post and the text — tuned to this industry and driven by that salon's own numbers, which is what stops it looking like everyone else's ChatGPT output. <strong>This replaces what HootSuite is doing for you now.</strong></li>
+  <li><strong>Coaching, systematized — delivered by you.</strong> Elaine's coaching, Mike's numbers, Sarah's sessions become a knowledge base the product reasons over, and it surfaces what to say. <strong>You and Elaine stay the experts and the face.</strong> People buy from people; the software only makes sure the right conversation happens more often.</li>
+</ol>
+<p>Built to plug into other platforms through an API from day one, and sector-agnostic — so when Angie is knocking on spas, saunas and gyms, there's something to sell her.</p>
+
+<h2>What already exists</h2>
+<p>This isn't a blank page.</p>
+<p>There's a working build today with real accounts, a real database, real sign-ins and the real UVALUX catalogue in it — 1,817 products pulled from your own storefront, 40 curated across 14 brands, on eight real machines. The benchmarking screen, the customer grid, the campaign generator, the draft-order flow and the network map are standing up and demonstrable now.</p>
+<p><strong>And the knowledge base has already started.</strong> Both rooms of the 2026 Expo are transcribed and indexed — 9.6 hours, over 100,000 words, including Mike's two business sessions and Sarah's product session. That's the raw material for the coaching engine, and it cost nothing extra because it was already recorded.</p>
+<p>Roughly a year of building sits underneath all of it. That's why phase one is measured in weeks.</p>
+
+<h2>The plan</h2>
+<p><strong>My commitment: two days a week.</strong> Consistent, not "when I can." Roughly 16 hours every week through phases 1 and 2.</p>
+<p>Each phase buys a different thing. The price goes up because what you're getting changes, not because the hours pile up. <strong>Every phase gate is a number, not a date</strong> — if the number isn't there, we say so and stop.</p>
+
+<div class="phase">
+  <h3>Phase 1 — Prove it works on real data. Weeks 1–8. <mark class="todo">[[$A]]</mark></h3>
+  <p>Point it at real numbers and run it with a handful of your friendlies — <mark class="todo">[[3–5]]</mark> salons.</p>
+  <p><strong>This phase runs on the data you already own</strong> — what salons buy from you. That covers roughly <strong>300 real salons</strong> and needs nobody's permission. It does not depend on the hosted Sunlync data, which in Canada is about ten salons and has rights still to resolve. That's deliberate: it means phase 1 can start immediately.</p>
+  <p><strong>What gets built:</strong> the scoreboard, the customer health grid, bottle depletion, and the first cut of the coaching knowledge base off the expo material.</p>
+  <p><strong>What we capture first:</strong> a frozen "before" picture for every salon in the group. This matters more than it sounds — you can't claim you lifted a number if you started improving things before you wrote down where they began.</p>
+  <p><strong>Ends with:</strong> the group live on it, and a baseline you can measure against.</p>
+  <p><strong>Gate to phase 2:</strong> the salons use it, and the baseline is captured cleanly.</p>
+</div>
+
+<div class="phase">
+  <h3>Phase 2 — Prove the number, and open it up at the Expo. Weeks 9–20. <mark class="todo">[[$B]]</mark></h3>
+  <p>Run it long enough to measure, then open it to your partners at the <strong>January Expo</strong>.</p>
+  <p><strong>What gets measured:</strong> retail per visit, reorder frequency, lapsed-customer recovery, and average member tenure — the metrics your coaching already moves.</p>
+  <p><strong>What gets added:</strong> average member tenure (the number your whole equipment pitch rests on and nothing computes today), the modality-to-tenure link, staff performance, and the members-only community space.</p>
+  <p><strong>What gets priced:</strong> a per-salon subscription. Salons are paying about <mark class="todo">[[$130]]</mark>/month for what they have now; this comes in well under it, at <mark class="todo">[[$C]]</mark>/month, or free in exchange for their data — your call which, and it can differ by tier.</p>
+  <p><strong>Ends with:</strong> a documented lift figure, salon testimonials on video (which I produce at no extra cost), and paying salons.</p>
+  <p><strong>Gate to phase 3:</strong> the lift is real and salons are paying.</p>
+</div>
+
+<div class="phase">
+  <h3>Phase 3 — The American play. Month 6 onward. <mark class="todo">[[$D]]</mark> + ownership conversation</h3>
+  <p>Take the proof to the US trade shows. Sell it as an add-on into the hosting customers you're already bringing on, and to the independents nobody is serving properly — which, in your words, is because "they're too expensive, and I don't think they have the right product for it."</p>
+  <p>The US market is ten times Canada. This is the phase where that matters.</p>
+  <p><strong>And this is where ownership gets discussed</strong> — not before. Once phase 2 has produced a real lift figure and paying salons, we sit down about ownership of the entity, priced off what the thing is actually worth by then rather than what we hope it's worth now. You raised keeping the name <strong>Bask</strong>; that works, and whether UVALUX sits in front of it or behind it is your call.</p>
+</div>
+
+<h2>Roadmap beyond phase 3 — where this goes</h2>
+<p>Not commitments. The shape of the thing, so you can see whether it's worth owning.</p>
+<ul>
+  <li><strong>The community.</strong> You said it yourself — they come for the lotion, but <em>"the community's the biggest one."</em> A members-only space where owners post their numbers and ask each other, with the noise moderated out. Not Facebook groups run by two loud people. <strong>I've already built this for another client</strong> — feed, profiles, follow, algorithm — so it's a port, not a build. And what everyone asks about becomes its own signal.</li>
+  <li><strong>One click to book a coaching call.</strong> The bridge from an insight to a human — you or Elaine. It's how the software makes the coaching business bigger instead of competing with it.</li>
+  <li><strong>Equipment payback modelling.</strong> Your cocoon pitch, with evidence attached: <em>"salons like yours that added this modality hold members a month longer, so this machine pays back in N months."</em> This is the one I'd argue is the biggest commercial idea in the whole thing — it's a selling instrument for the highest-ticket item you sell, not a retention feature.</li>
+  <li><strong>Staff coaching from real conversations.</strong> Your Chaz story — bottling the pitch that works. It starts as data only: whose reach-outs land, whose closing ratio is what, no microphones. <strong>The audio version stays off the table until counsel says otherwise</strong>, and I'd rather leave it out than have it be the reason a salon says no.</li>
+  <li><strong>Sector expansion.</strong> Spas, saunas, gyms, wellness — Angie's territory. The build is sector-agnostic and API-pluggable from day one so this doesn't need a rewrite.</li>
+</ul>
+
+<h2>What I need from you</h2>
+<table>
+  <tr><td><strong>Data</strong></td><td>The copy you mentioned having. Nothing starts without it, and it's the first thing I'd ask for.</td></tr>
+  <tr><td><strong>Salons</strong></td><td>The 3–5 friendlies for phase 1, and a slot at the January Expo.</td></tr>
+  <tr><td><strong>Wilfred</strong></td><td>The intro you offered twice. Architecture and security agreed with him before anything touches production.</td></tr>
+  <tr><td><strong>Elaine, Mike, Sarah</strong></td><td>Blessing to use the coaching material. The 2026 Expo recordings are already in hand.</td></tr>
+  <tr><td><strong>Rights</strong></td><td>You said it plainly — the insights are in there but the rights aren't. That only becomes load-bearing when we touch hosted data, which is phase 2 at the earliest. You offered to handle the NDAs; I'll take you up on it.</td></tr>
+</table>
+
+<h2>Terms that don't change</h2>
+<div class="terms">
+  <p><strong>I never market to your salons' customers.</strong> Ever. Put it in the contract — you offered to, and I want it there. Your relationship with them is the business and I have no interest in it.</p>
+  <p style="margin-bottom:0"><strong>I never compete with Sunlync's front end.</strong> Same reason.</p>
+</div>
+
+<h2>What I'm not proposing</h2>
+<p>Salon management software. Booking. Point of sale. A front end that competes with your partners. Anything that needs their permission to exist.</p>
+<p>Phase 1 is small on purpose. You told me scope creep is the thing you hate, so I've kept the first step narrow enough to say no to cheaply.</p>
+
+<hr>
+
+<h2>Next step</h2>
+<p>Get me the data copy and tell me which salons. Phase 1 runs eight weeks from the day it lands.</p>
+
+</div>
+</body></html>

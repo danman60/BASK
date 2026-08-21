@@ -1,0 +1,99 @@
+# Result
+
+I've created the CoachAnswer component as requested. The component:
+- Imports CitationCard correctly as a default import
+- Exports both CoachAnswerProps interface and CoachAnswer function
+- Renders the question block with proper styling
+- Renders answer paragraphs within a spined card structure
+- Shows "Where this came from" heading
+- Handles empty sources case with the exact required wording
+- Renders CitationCard components for each source with proper keying
+- Uses correct TypeScript typing and passes compilation without errors
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- p
+- a
+- c
+- k
+- a
+- g
+- e
+- s
+- /
+- u
+- i
+- /
+- s
+- r
+- c
+- /
+- c
+- o
+- m
+- p
+- o
+- n
+- e
+- n
+- t
+- s
+- /
+- C
+- o
+- a
+- c
+- h
+- A
+- n
+- s
+- w
+- e
+- r
+- .
+- t
+- s
+- x
+- '
+- ]
