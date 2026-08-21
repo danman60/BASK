@@ -1,0 +1,13 @@
+{
+  "state": "done",
+  "turns": 16,
+  "tool_calls": 16,
+  "errors": 4,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/ui/src/components/ScoreboardSection.tsx"
+  ],
+  "elapsed": "70s",
+  "updated": "11:02:56",
+  "provider_history": [],
+  "provider_switched": false
+}
