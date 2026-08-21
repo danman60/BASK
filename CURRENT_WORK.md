@@ -1,5 +1,51 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-21 (midday) — OPPORTUNITY ENGINE + FRONT DESK MONITOR + v3 FILM
+
+**Ask:** feature Bask as salon *sales intelligence* — analyze data → find gaps → one-click actions
+(SMS/email/social/staff challenge/order/coaching) + a front-desk listening Monitor → get the new
+promo video recorded ASAP. Brainstorm dump at `docs/meetings/2026-08-21-salon-intelligence-brainstorm.md`
+(the Opportunity Engine). Decisions: transform Today into the opportunity feed; Monitor is a new
+surface (patterns from the REFLECT app).
+
+### Shipped this session (all committed to master, pushed)
+- **Opportunity Engine + Monitor vocabulary** in `@bask/core` (`opportunities/types.ts`,
+  `monitor/types.ts`) + fixtures (`DEMO_OPPORTUNITIES`, `DEMO_OUTCOMES`, `DEMO_MONITOR`).
+- **21-task local-parallel queue** `tasks/opportunity-20260821/` — 21/21 passed, 0 failures
+  (qwen3-coder:30b on FIRMAMENT + gemma4:12b smoke). 17 UI components + 2 fixtures + VO-v3 + shot-plan-v3.
+- **Supervisor integration:** exported all new components from `@bask/ui`; **Today now leads with the
+  ranked money-first Opportunity feed** (one-click action buttons + outcome/proof cards); new
+  **`/monitor`** renders the full Front Desk Monitor (listener tile, scored conversations, coaching
+  patterns, team table, consent pledge). Nav: customers→**Customer Health**, insights→**Analytics**,
+  new **Monitor** destination.
+- **Layout fix:** `.b-shell-wide` so Monitor's own 2-col grid isn't clipped by the Today rail grid.
+- Both hero surfaces screenshotted + DM'd (msgs 13482/13483), web build PASS.
+- **v3 film** `promo/` — `BaskPromoV3` composition (`MainV3.tsx`, `timelineV3.ts`,
+  `shots/PageBeat.tsx`), 10 beats, 83s, picture-only review cut (no Soundtrack/captions). New beats:
+  opportunity feed + one-click money shot, customer health, peers, Monitor, proof; proven UVALUX
+  finale (map→network→wall→compass→outro) reused. `capture.mjs` updated to shoot `/monitor` +
+  opportunity-feed textures (captured against localhost).
+
+### Open / blocked
+- **Vercel auto-deploy webhook has NOT fired** for this session's pushes (~1hr). `/monitor` is 404 on
+  https://bask-psi.vercel.app. Git is connected; webhook stalled. Needs an explicit
+  `DEPLOY_OK=1 vercel --prod` (user approval) OR wait for the webhook. Video used localhost textures,
+  unaffected.
+- **v3 render:** first pass failed at 2401/2490 on a transient Fraunces font-load timeout under
+  parallel-tab memory pressure (NOT a defect, NOT a missing texture). Re-rendering at
+  `--concurrency=2` → `out/promo-v3.mp4`. On success: DM it + `promo/VO-SCRIPT-V3.md` for Daniel's
+  ElevenLabs record (no key on this machine).
+- VO/SFX come after the ElevenLabs record; the review cut is silent by design.
+
+### Also this session — Constellation Field Station (SEPARATE new repo)
+- Gmail-draft directive ("constellation field session") = a field appliance that acquires business
+  data off legacy tanning-salon PCs over one Ethernet cable → manifest → Constellation agents.
+  Scaffolded at **`~/projects/constellation-field-station`** (Vite+React+TS): frozen data model,
+  operator-console theme, brief at `docs/DRAFT-brief.md`, **12-task local-parallel queue**
+  (`tasks/build-20260821/`, big lane = FIRMAMENT 4090 so it doesn't fight the render). Acquisition
+  engine (networking/Windows agent/PXE) is supervisor/later, out of the queue by rule. Smoke +
+  full drain in flight.
+
 ## Session refresh 2026-08-21 08:28 EDT — OVERNIGHT LOCAL-MODEL QUEUE COMPLETE (31/31)
 
 **Reason for refresh:** long session (transcript mining → proposal rewrite → 31-task local-model
