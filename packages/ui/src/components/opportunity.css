@@ -147,6 +147,19 @@
 .b-chal-row-name { font: 500 var(--text-sm) / 1.2 var(--font-body); color: var(--ink-soft); }
 .b-chal-bar { height: 8px; border-radius: 999px; background: var(--line-soft); overflow: hidden; }
 .b-chal-fill { height: 100%; border-radius: 999px; background: var(--success); }
+/* fill widths resolve from data-pct (component rounds to the nearest ten) —
+   inline styles are banned in this package, so the scale is enumerated */
+.b-chal-fill[data-pct='0'] { width: 2%; }
+.b-chal-fill[data-pct='10'] { width: 10%; }
+.b-chal-fill[data-pct='20'] { width: 20%; }
+.b-chal-fill[data-pct='30'] { width: 30%; }
+.b-chal-fill[data-pct='40'] { width: 40%; }
+.b-chal-fill[data-pct='50'] { width: 50%; }
+.b-chal-fill[data-pct='60'] { width: 60%; }
+.b-chal-fill[data-pct='70'] { width: 70%; }
+.b-chal-fill[data-pct='80'] { width: 80%; }
+.b-chal-fill[data-pct='90'] { width: 90%; }
+.b-chal-fill[data-pct='100'] { width: 100%; }
 .b-chal-count { font: 600 var(--text-xs) / 1 var(--font-body); color: var(--ink-faint); text-align: right; font-variant-numeric: tabular-nums; }
 
 /* ---- outcome card ("did it work") ------------------------------------------ */
