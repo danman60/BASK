@@ -87,6 +87,16 @@ const newCtx = async (scale) => {
   console.log('today');
   await shoot(page, 'today-full');
   await cut(page, 'today-full', 'letter', '.b-daybreak');
+  // Opportunity feed (2026-08-21): the ranked money-first cards that now lead Today.
+  await cut(page, 'today-full', 'oppfeed', '[data-testid="opportunity-feed-section"]');
+  const oppCount = await page.locator('[data-testid="opportunity-card"]').count();
+  for (let i = 0; i < Math.min(oppCount, 6); i++) {
+    await cut(page, 'today-full', `opp${i + 1}`, '[data-testid="opportunity-card"]', i);
+  }
+  const outCount = await page.locator('[data-testid="outcome-card"]').count();
+  for (let i = 0; i < Math.min(outCount, 2); i++) {
+    await cut(page, 'today-full', `outcome${i + 1}`, '[data-testid="outcome-card"]', i);
+  }
   for (let i = 0; i < 5; i++) await cut(page, 'today-full', `insight${i + 1}`, '.b-insight', i);
   await cut(page, 'today-full', 'rail-pulse', '.b-rail-card', 0);
   await cut(page, 'today-full', 'rail-next', '[data-testid="next-up"]');
@@ -162,6 +172,24 @@ const newCtx = async (scale) => {
   await shoot(page, 'peers-full');
   await cut(page, 'peers-full', 'peers-metrics', '.b-metrics');
   await cut(page, 'peers-full', 'peers-table', '[data-testid="cohort-table"]');
+
+  // ---- Front Desk Monitor (2026-08-21) ----
+  await page.goto(`${BASE}/monitor`, { waitUntil: 'networkidle' });
+  await settle(page, 600);
+  await page.addStyleTag({ content: HIDE_CSS });
+  console.log('front desk monitor');
+  await shoot(page, 'monitor-full');
+  await cut(page, 'monitor-full', 'monitor-listener', '[data-testid="listener-status-card"]');
+  await cut(page, 'monitor-full', 'monitor-pledge', '[data-testid="consent-pledge-card"]');
+  const monInsights = await page.locator('[data-testid="monitor-insight-card"]').count();
+  for (let i = 0; i < Math.min(monInsights, 3); i++) {
+    await cut(page, 'monitor-full', `monitor-insight${i + 1}`, '[data-testid="monitor-insight-card"]', i);
+  }
+  const monInter = await page.locator('[data-testid="interaction-card"]').count();
+  for (let i = 0; i < Math.min(monInter, 3); i++) {
+    await cut(page, 'monitor-full', `monitor-conv${i + 1}`, '[data-testid="interaction-card"]', i);
+  }
+  await cut(page, 'monitor-full', 'monitor-team', '[data-testid="employee-sales-table"]');
 
   // ---- Inventory → the UVALUX draft order ----
   await page.goto(`${BASE}/inventory/order`, { waitUntil: 'networkidle' });
