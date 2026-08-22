@@ -48,6 +48,11 @@ export function OpportunityCard({ opportunity, rank, onAction, children, classNa
         <span className="b-opp-urgency">{OPPORTUNITY_URGENCY_LABEL[opportunity.urgency]}</span>
       </div>
       <p className="b-opp-confnote">{opportunity.confidenceNote}</p>
+      {opportunity.methodSource && (
+        <p className="b-opp-method" data-testid="opp-method">
+          <span className="b-opp-method-k">Method</span> {opportunity.methodSource.label} · {opportunity.methodSource.basis}
+        </p>
+      )}
       <ActionRow actions={opportunity.actions} onAction={onAction} />
       {children}
     </article>

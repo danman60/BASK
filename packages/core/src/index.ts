@@ -331,3 +331,10 @@ export {
   type TranscriptLine,
 } from './monitor/types';
 export { DEMO_MONITOR } from './monitor/fixtures';
+
+// Method-source provenance (de-identified — app never renders an advisor's name).
+export {
+  METHOD_SOURCES,
+  methodSourceFor,
+  type MethodSource,
+} from './sources/experts';

@@ -298,3 +298,7 @@
 @media (max-width: 900px) { .b-monitor-grid { grid-template-columns: 1fr; } }
 .b-monitor-main { display: grid; gap: var(--space-4); align-content: start; }
 .b-monitor-rail { display: grid; gap: var(--space-4); align-content: start; }
+
+/* method-source attribution — de-identified (never a person's name) */
+.b-opp-method { font: 400 var(--text-xs) / 1.4 var(--font-body); color: var(--ink-faint); }
+.b-opp-method-k { font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary-deep); margin-right: 6px; }

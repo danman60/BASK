@@ -168,6 +168,12 @@ export interface Opportunity {
   urgency: OpportunityUrgency;
   actions: OpportunityAction[];
   handleIt?: HandleItPlan;
+  /**
+   * Where this opportunity's METHOD comes from — the UVALUX analytics advisory.
+   * De-identified by rule: this is the source's app label, never a person's name.
+   * Rendered as a small "Method" line on the card.
+   */
+  methodSource?: { label: string; basis: string };
 }
 
 /* ---- measured outcomes (brainstorm §12–13) -------------------------------- */

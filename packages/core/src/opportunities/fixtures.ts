@@ -8,6 +8,8 @@ import type { Opportunity, OpportunityOutcome } from './types';
 export const DEMO_OPPORTUNITIES: Opportunity[] = [
   {
     id: 'opp-retail-attach',
+    methodSource: { label: 'UVALUX analytics method', basis: 'Retail attachment benchmarked across 300+ salons' },
+
     category: 'retail',
     title: 'Improve evening retail sales',
     whatChanged: 'Retail attachment fell from 21% to 14% while visits stayed normal; most of the drop is evening shifts.',
@@ -48,6 +50,8 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
   },
   {
     id: 'opp-membership-convert',
+    methodSource: { label: 'UVALUX analytics method', basis: 'Membership-conversion profile from the advisory playbook' },
+
     category: 'membership',
     title: 'Convert 17 regulars to members',
     whatChanged: '17 frequent visitors match the high-conversion profile (3+ visits in first 21 days converts at 31% vs 9% overall).',
@@ -83,6 +87,8 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
   },
   {
     id: 'opp-recover-payments',
+    methodSource: { label: 'UVALUX analytics method', basis: 'Failed-payment recovery benchmark' },
+
     category: 'membership',
     title: 'Recover seven failed payments',
     whatChanged: 'Seven membership payments failed this month; the members still visit.',
