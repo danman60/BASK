@@ -89,6 +89,23 @@ async function main() {
     await chunkedCreate('saleLines', saleLines, (b) => tx.saleLine.createMany({ data: b as never[], skipDuplicates: true }));
   };
 
+  // INGEST_WIPE=yes clears THIS org's tenant first (deterministic ids +
+  // skipDuplicates would otherwise skip corrected rows on a re-load).
+  if (CONFIRM && process.env.INGEST_WIPE === 'yes') {
+    const salonIds = salons.map((s) => s.id);
+    console.log(`\nwiping tenant (${salonIds.length} salons) before reload…`);
+    await db.saleLine.deleteMany({ where: { salonId: { in: salonIds } } });
+    await db.sale.deleteMany({ where: { salonId: { in: salonIds } } });
+    await db.visit.deleteMany({ where: { salonId: { in: salonIds } } });
+    await db.membership.deleteMany({ where: { salonId: { in: salonIds } } });
+    await db.inventoryLevel.deleteMany({ where: { salonId: { in: salonIds } } });
+    await db.customer.deleteMany({ where: { salonId: { in: salonIds } } });
+    await db.staff.deleteMany({ where: { salonId: { in: salonIds } } });
+    await db.salon.deleteMany({ where: { id: { in: salonIds } } });
+    await db.org.deleteMany({ where: { id: orgId } });
+    console.log('  wiped.');
+  }
+
   const ROLLBACK = Symbol('rollback');
   try {
     await db.$transaction(

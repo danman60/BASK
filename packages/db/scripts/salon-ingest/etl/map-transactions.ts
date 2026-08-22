@@ -43,7 +43,7 @@ export function mapSaleLines(
       salonId: remapId('salon', r.salon_id),
       saleId: remapId('sale', r.transaction_id),
       customerId: t?.customer_id ? remapId('customer', t.customer_id) : null,
-      productId: r.item_type === 'retail' && r.product_id ? remapId('product', r.product_id) : null,
+      productId: r.item_type === 'product' && r.product_id ? remapId('product', r.product_id) : null,
       quantity: qty,
       unitPrice: unit,
       discount: 0,
