@@ -1,5 +1,73 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-22 (overnight) — UVALUX AUDIO CORPUS → SALON ADVICE (running)
+
+**Ask (verbatim):** transcribe all the local UVALUX audio/video and search it for good salon
+ownership/management advice. **Goal:** "fully analysed/parsed report ready for me in the morning of
+what can be ingested into the app with discrete provenance."
+
+Plan: `docs/plans/2026-08-22-salon-transcript-mining.md`. Manifest (ground truth):
+`data/salon-transcripts/manifest.json`.
+
+### Corpus (ffprobe-verified, not assumed)
+15 usable source files → **18 audio streams → 13 h 27 m 53 s**. Sources on FIRMAMENT `J:`/`M:`
+(148 GB). One file EXCLUDED: `P1060689.MOV.reclaimtmp.mov` — `moov atom not found`, unindexed
+recovery fragment, reported SKIP not PASS.
+
+### Findings so far
+- `P1060689.MOV` is 57.3 GB but its header claims 53:58 (142 Mbps implied) — duration **suspect**,
+  verified at transcription rather than assumed either way.
+- `P1060689` streams a2/a3 compress to **637 KB for 54 min** = digital silence. That camera
+  recorded 2 real channels, not 4.
+- Audio runs **hot**: −8.6 LUFS integrated, true peak **+1.3 dBFS** (clipping). A 90 s smoke
+  transcription with large-v3 came back clean and correctly English — quality is not a blocker.
+- The smoke slice was MC housekeeping (Woodstock thank-yous, January 31 East Coast expo) — i.e. the
+  junk Daniel warned about. Empty extraction on such windows is the correct answer, not a failure.
+- **Ingest socket already exists in the app:** `MonitorInsight.knowledgeRef` in
+  `packages/core/src/monitor/types.ts` is documented as *"pointer into the UVALUX knowledge corpus,
+  e.g. `Room A · 10:42`"*. Mining emits into the app's OWN taxonomies — `OPPORTUNITY_CATEGORIES`
+  (marketing/membership/retail/operations/customer/coaching) and `MOMENT_KEYS`
+  (greeting/needs/product/membership/close) — rather than inventing categories.
+- `packages/db/scripts/salon-ingest/` is the **POS-data ETL**, NOT the target for advice content.
+  Checked, not assumed.
+
+### RESULT — pipeline complete 2026-08-22 02:22 EDT
+**Deliverable: `docs/ingest/2026-08-22-salon-advice-corpus.md`** (1712 lines, 224 distinct pieces of
+advice, every one anchored to a verbatim quote + file + stream + timecode).
+
+- Transcribed **15:15:50 of stream-time** (13:27:53 of unique recorded audio) → **9,017 segments,
+  114,775 words**. 17/17 streams, coverage ≥98% on every speech-bearing file.
+- Mined **244 anchored statements**, **58 rejected** by the verbatim-quote gate, **0 malformed
+  model responses**. 6 window-overlap duplicates collapsed → 238 unique → **224 clusters**.
+- Yield by category: operations 63, marketing, coaching, membership, retail, customer. 14 are
+  literal front-desk scripts; 57 map to a scored `MOMENT_KEYS` moment.
+
+### Verified during the run (each had been a guess or a risk beforehand)
+- `P1060689.MOV`'s 57 GB / 54 min mismatch was **not** truncation — transcribed 99.9% of its stated
+  duration. It is simply a 142 Mbps 4K HEVC file. Risk closed.
+- `P1060689` a2/a3 are **digital silence** — 0 segments across 54 min each. 2 real channels, not 4.
+- The Summer 2025 recorder set is a **vendor pitch competition**, not management teaching:
+  `REC00241`/`REC00334` yielded 0 advice from 31 min each. The Room B presentation files carry 67%
+  of all speech and nearly all the advice.
+
+### Gotchas learned (cost real time — do not repeat)
+- **`gemma4:12b` does NOT self-expire off the 3060.** The broker keeps refreshing it. A 40-minute
+  wait loop built on that assumption timed out and then ran anyway into 3.3 GB of headroom,
+  cascading OOM across every file. Check `broker /api/state` `running` — `mode: paused` does NOT
+  mean idle.
+- **Batched whisper OOMs in that headroom; unbatched fits.** Measured: large-v3 int8 unbatched uses
+  1906 MiB, leaves ~900 MiB, runs 15–19x realtime. Do not reintroduce `BatchedInferencePipeline`
+  without re-measuring free VRAM.
+- **Probing the GPU perturbs the job.** A latency probe forced a 22.5 s gemma4 reload which squeezed
+  whisper and caused an OOM seconds later. Read progress off the filesystem, not the GPU.
+- **Windows `dir` reports a stale 0-byte size for an open file handle.** A finished ffmpeg job looked
+  stalled for minutes. Believe the completion log, not the directory entry.
+- **Harness background tasks get killed (~38 min).** Long media pipelines need `setsid` detachment.
+- 45 s window overlap double-extracts the same sentence — dedupe anchors by (stream, span, quote)
+  or `times_said` lies.
+
+---
+
 ## Session 2026-08-21 (late) — REAL DATA INGESTION + DETECTOR GRADING + VO FILM
 
 **Practice dataset ingested + graded end-to-end.** `~/projects/uvalux-platform/tmp-salon-data/`
