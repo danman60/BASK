@@ -9,7 +9,9 @@ import { ExpectedSignal, DetectedSignal, GradeRow } from './contract';
 const KIND_WORDS: Record<string, string[]> = {
   retail_attachment_slip: ['retail', 'attachment'],
   failed_payments: ['payment', 'failure', 'failed'],
+  low_stock: ['inventory', 'stockout', 'reorder', 'stock'],
   bottle_depletion: ['inventory', 'stockout', 'reorder', 'stock'],
+  soft_capacity: ['capacity', 'demand', 'utilization', 'utilis', 'afternoon', 'peak'],
   seasonal_pause: ['seasonal', 'pause'],
   member_tenure_gap: ['tenure', 'membership'],
   category_gap: ['category'],
