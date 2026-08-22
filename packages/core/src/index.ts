@@ -332,6 +332,47 @@ export {
 } from './monitor/types';
 export { DEMO_MONITOR } from './monitor/fixtures';
 
+// Knowledge curation (claims, provenance, review state, the curation graph).
+// This module existed but was never barrelled, so `@bask/core` did not expose
+// Claim or claimConfidence — every Compass knowledge component that imported
+// them failed with TS2305 "has no exported member", and the failure looked like
+// the component's fault rather than a missing export here.
+export {
+  ALERT_KINDS,
+  ALERT_LABEL,
+  CLAIM_ACTIONS,
+  CLAIM_CATEGORIES,
+  CLAIM_MOMENTS,
+  CLAIM_SHAPES,
+  GRAPH_EDGE_KINDS,
+  GRAPH_NODE_KINDS,
+  REVIEW_STATES,
+  REVIEW_STATE_LABEL,
+  claimConfidence,
+  formatTimecode,
+  reviewProgress,
+  type AlertKind,
+  type AlertSeverity,
+  type Claim,
+  type ClaimAction,
+  type ClaimCategory,
+  type ClaimEvent,
+  type ClaimFilters,
+  type ClaimMoment,
+  type ClaimPage,
+  type ClaimProvenance,
+  type ClaimShape,
+  type CurationAlert,
+  type CurationGraph,
+  type GraphEdge,
+  type GraphEdgeKind,
+  type GraphNode,
+  type GraphNodeKind,
+  type PaletteItem,
+  type PaletteItemKind,
+  type ReviewState,
+} from './knowledge/curation/types';
+
 // Method-source provenance (de-identified — app never renders an advisor's name).
 export {
   METHOD_SOURCES,
