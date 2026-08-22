@@ -1,0 +1,10 @@
+#task	lane	target	kind	exports
+01-map-salons	big	packages/db/scripts/salon-ingest/etl/map-salons.ts	ts	mapOrg,mapSalons
+02-map-staff	big	packages/db/scripts/salon-ingest/etl/map-staff.ts	ts	mapStaff
+03-map-products	big	packages/db/scripts/salon-ingest/etl/map-products.ts	ts	mapProducts
+04-map-inventory	big	packages/db/scripts/salon-ingest/etl/map-inventory.ts	ts	mapInventory
+05-map-customers	big	packages/db/scripts/salon-ingest/etl/map-customers.ts	ts	mapCustomers
+06-map-memberships	big	packages/db/scripts/salon-ingest/etl/map-memberships.ts	ts	mapMemberships
+07-map-visits	big	packages/db/scripts/salon-ingest/etl/map-visits.ts	ts	mapVisits
+08-map-transactions	big	packages/db/scripts/salon-ingest/etl/map-transactions.ts	ts	mapSales,mapSaleLines
+09-grade	big	packages/db/scripts/salon-ingest/etl/grade.ts	ts	grade
