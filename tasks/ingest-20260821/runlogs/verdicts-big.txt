@@ -1,0 +1,57 @@
+--- 01-map-salons attempt 1 2026-08-22T03:22:03+00:00
+gate_rc=0
+
+--- 02-map-staff attempt 1 2026-08-22T03:24:13+00:00
+gate_rc=0
+
+--- 03-map-products attempt 1 2026-08-22T03:25:24+00:00
+gate_rc=0
+
+--- 04-map-inventory attempt 1 2026-08-22T03:27:33+00:00
+gate_rc=0
+note: tsc errors elsewhere, NOT this task's fault:
+scripts/salon-ingest/etl/run.ts(32,30): error TS2307: Cannot find module './map-customers' or its corresponding type declarations.
+scripts/salon-ingest/etl/run.ts(33,32): error TS2307: Cannot find module './map-memberships' or its corresponding type declarations.
+scripts/salon-ingest/etl/run.ts(34,27): error TS2307: Cannot find module './map-visits' or its corresponding type declarations.
+--- 05-map-customers attempt 1 2026-08-22T03:29:50+00:00
+gate_rc=0
+note: tsc errors elsewhere, NOT this task's fault:
+scripts/salon-ingest/etl/run.ts(33,32): error TS2307: Cannot find module './map-memberships' or its corresponding type declarations.
+scripts/salon-ingest/etl/run.ts(34,27): error TS2307: Cannot find module './map-visits' or its corresponding type declarations.
+scripts/salon-ingest/etl/run.ts(35,40): error TS2307: Cannot find module './map-transactions' or its corresponding type declarations.
+--- 06-map-memberships attempt 1 2026-08-22T03:38:06+00:00
+gate_rc=1
+gate: tsc errors in this file:
+scripts/salon-ingest/etl/map-memberships.ts(1,10): error TS2300: Duplicate identifier 'MembershipInput'.
+scripts/salon-ingest/etl/map-memberships.ts(1,27): error TS2300: Duplicate identifier 'membershipStatus'.
+scripts/salon-ingest/etl/map-memberships.ts(1,45): error TS2300: Duplicate identifier 'num'.
+scripts/salon-ingest/etl/map-memberships.ts(1,50): error TS2300: Duplicate identifier 'parseDate'.
+scripts/salon-ingest/etl/map-memberships.ts(1,61): error TS2300: Duplicate identifier 'remapId'.
+scripts/salon-ingest/etl/map-memberships.ts(1,76): error TS2307: Cannot find module '@/lib/contract' or its corresponding type declarations.
+--- 06-map-memberships attempt 2 2026-08-22T03:38:11+00:00
+gate_rc=1
+gate: tsc errors in this file:
+scripts/salon-ingest/etl/map-memberships.ts(1,10): error TS2300: Duplicate identifier 'MembershipInput'.
+scripts/salon-ingest/etl/map-memberships.ts(1,27): error TS2300: Duplicate identifier 'membershipStatus'.
+scripts/salon-ingest/etl/map-memberships.ts(1,45): error TS2300: Duplicate identifier 'num'.
+scripts/salon-ingest/etl/map-memberships.ts(1,50): error TS2300: Duplicate identifier 'parseDate'.
+scripts/salon-ingest/etl/map-memberships.ts(1,61): error TS2300: Duplicate identifier 'remapId'.
+scripts/salon-ingest/etl/map-memberships.ts(1,76): error TS2307: Cannot find module '@/lib/contract' or its corresponding type declarations.
+--- 07-map-visits attempt 1 2026-08-22T03:39:31+00:00
+gate_rc=0
+note: tsc errors elsewhere, NOT this task's fault:
+scripts/salon-ingest/etl/map-memberships.ts(1,10): error TS2300: Duplicate identifier 'MembershipInput'.
+scripts/salon-ingest/etl/map-memberships.ts(1,27): error TS2300: Duplicate identifier 'membershipStatus'.
+scripts/salon-ingest/etl/map-memberships.ts(1,45): error TS2300: Duplicate identifier 'num'.
+--- 08-map-transactions attempt 1 2026-08-22T03:41:33+00:00
+gate_rc=0
+note: tsc errors elsewhere, NOT this task's fault:
+scripts/salon-ingest/etl/map-memberships.ts(1,10): error TS2300: Duplicate identifier 'MembershipInput'.
+scripts/salon-ingest/etl/map-memberships.ts(1,27): error TS2300: Duplicate identifier 'membershipStatus'.
+scripts/salon-ingest/etl/map-memberships.ts(1,45): error TS2300: Duplicate identifier 'num'.
+--- 09-grade attempt 1 2026-08-22T03:43:20+00:00
+gate_rc=0
+note: tsc errors elsewhere, NOT this task's fault:
+scripts/salon-ingest/etl/map-memberships.ts(1,10): error TS2300: Duplicate identifier 'MembershipInput'.
+scripts/salon-ingest/etl/map-memberships.ts(1,27): error TS2300: Duplicate identifier 'membershipStatus'.
+scripts/salon-ingest/etl/map-memberships.ts(1,45): error TS2300: Duplicate identifier 'num'.

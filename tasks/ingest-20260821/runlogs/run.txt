@@ -1,0 +1,51 @@
+[03:22:22] lane=big host=http://100.75.112.14:11434 model=qwen3-coder:30b smoke=0 contract=contract.ts
+[03:22:22] 01-map-salons-log: not in manifest, skip
+[03:22:22] 01-map-salons-result: not in manifest, skip
+[03:22:22] === 02-map-staff attempt 1/2 ===
+[03:22:22] 02-map-staff -> packages/db/scripts/salon-ingest/etl/map-staff.ts
+[03:24:13] 02-map-staff: STRAY, reverting those only:
+[03:24:13] 02-map-staff: PASS, committed
+[03:24:13] === 03-map-products attempt 1/2 ===
+[03:24:13] 03-map-products -> packages/db/scripts/salon-ingest/etl/map-products.ts
+[03:25:24] 03-map-products: STRAY, reverting those only:
+[03:25:25] 03-map-products: PASS, committed
+[03:25:25] === 04-map-inventory attempt 1/2 ===
+[03:25:25] 04-map-inventory -> packages/db/scripts/salon-ingest/etl/map-inventory.ts
+[03:27:33] 04-map-inventory: STRAY, reverting those only:
+[03:27:33] 04-map-inventory: PASS, committed
+[03:27:33] === 05-map-customers attempt 1/2 ===
+[03:27:33] 05-map-customers -> packages/db/scripts/salon-ingest/etl/map-customers.ts
+[03:29:50] 05-map-customers: STRAY, reverting those only:
+[03:29:50] 05-map-customers: PASS, committed
+[03:29:50] === 06-map-memberships attempt 1/2 ===
+[03:29:50] 06-map-memberships -> packages/db/scripts/salon-ingest/etl/map-memberships.ts
+[03:38:06] 06-map-memberships: gate FAIL: gate: tsc errors in this file:
+scripts/salon-ingest/etl/map-memberships.ts(1,10): error TS2300: Duplicate identifier 'MembershipInput'.
+scripts/salon-ingest/etl/map-memberships.ts(1,27): error TS2300: Duplicate identifier 'membershipStatus'.
+scripts/salon-ingest/etl/map-memberships.ts(1,45): error TS2300: Duplicate identifier 'num'.
+scripts/salon-ingest/etl/map-memberships.ts(1,50): error TS2300: Duplicate identifier 'parseDate'.
+scripts/salon-ingest/etl/map-memberships.ts(1,61): error TS2300: Duplicate identifier 'remapId'.
+scripts/salon-ingest/etl/map-memberships.ts(1,76): error TS2307: Cannot find module '@/lib/contract' or its corresponding type declarations.
+[03:38:06] === 06-map-memberships attempt 2/2 ===
+[03:38:06] 06-map-memberships -> packages/db/scripts/salon-ingest/etl/map-memberships.ts
+[03:38:11] 06-map-memberships: gate FAIL: gate: tsc errors in this file:
+scripts/salon-ingest/etl/map-memberships.ts(1,10): error TS2300: Duplicate identifier 'MembershipInput'.
+scripts/salon-ingest/etl/map-memberships.ts(1,27): error TS2300: Duplicate identifier 'membershipStatus'.
+scripts/salon-ingest/etl/map-memberships.ts(1,45): error TS2300: Duplicate identifier 'num'.
+scripts/salon-ingest/etl/map-memberships.ts(1,50): error TS2300: Duplicate identifier 'parseDate'.
+scripts/salon-ingest/etl/map-memberships.ts(1,61): error TS2300: Duplicate identifier 'remapId'.
+scripts/salon-ingest/etl/map-memberships.ts(1,76): error TS2307: Cannot find module '@/lib/contract' or its corresponding type declarations.
+[03:38:11] 06-map-memberships: FAIL_FINAL — supervisor builds this one
+[03:38:11] === 07-map-visits attempt 1/2 ===
+[03:38:11] 07-map-visits -> packages/db/scripts/salon-ingest/etl/map-visits.ts
+[03:39:31] 07-map-visits: STRAY, reverting those only:
+[03:39:31] 07-map-visits: PASS, committed
+[03:39:31] === 08-map-transactions attempt 1/2 ===
+[03:39:31] 08-map-transactions -> packages/db/scripts/salon-ingest/etl/map-transactions.ts
+[03:41:33] 08-map-transactions: STRAY, reverting those only:
+[03:41:33] 08-map-transactions: PASS, committed
+[03:41:33] === 09-grade attempt 1/2 ===
+[03:41:33] 09-grade -> packages/db/scripts/salon-ingest/etl/grade.ts
+[03:43:20] 09-grade: STRAY, reverting those only:
+[03:43:20] 09-grade: PASS, committed
+[03:43:20] lane big drained

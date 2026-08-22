@@ -1,0 +1,7 @@
+[03:17:45] lane=big host=http://100.75.112.14:11434 model=qwen3-coder:30b smoke=1 contract=contract.ts
+[03:17:45] === 01-map-salons attempt 1/2 ===
+[03:17:45] 01-map-salons -> packages/db/scripts/salon-ingest/etl/map-salons.ts
+[03:22:03] 01-map-salons: STRAY, reverting those only:
+[03:22:04] 01-map-salons: PASS, committed
+[03:22:04] smoke complete, stopping
+[03:22:04] lane big drained

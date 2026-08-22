@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 21,
+  "tool_calls": 21,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/db/scripts/salon-ingest/etl/map-memberships.ts']",
+  "elapsed": "492s",
+  "updated": "03:38:03",
+  "provider_history": [],
+  "provider_switched": false
+}

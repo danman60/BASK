@@ -1,0 +1,99 @@
+# Result
+
+I have successfully created the grade.ts file at /home/danman60/projects/uvalux-platform/packages/db/scripts/salon-ingest/etl/grade.ts. The file implements the grade function that matches expected signals with detected ones based on salon ID and keyword overlap, as specified in the requirements. The implementation includes:
+- Proper doc comment explaining the function's purpose
+- Import of ExpectedSignal, DetectedSignal, and GradeRow types from './contract'
+- Definition of KIND_WORDS constant mapping detected kinds to identifying keywords
+- Export of the grade function that returns GradeRow[] with proper matching logic
+- TypeScript compilation passes without errors
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- p
+- a
+- c
+- k
+- a
+- g
+- e
+- s
+- /
+- d
+- b
+- /
+- s
+- c
+- r
+- i
+- p
+- t
+- s
+- /
+- s
+- a
+- l
+- o
+- n
+- -
+- i
+- n
+- g
+- e
+- s
+- t
+- /
+- e
+- t
+- l
+- /
+- g
+- r
+- a
+- d
+- e
+- .
+- t
+- s
+- '
+- ]

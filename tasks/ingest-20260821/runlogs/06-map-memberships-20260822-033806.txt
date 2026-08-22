@@ -1,0 +1,4 @@
+  Contract: /home/danman60/projects/uvalux-platform/packages/db/scripts/salon-ingest/etl/contract.ts (26 symbols, 983 bytes appended to prompt)
+  preflight: /home/danman60/projects/uvalux-platform/packages/db/scripts/salon-ingest/etl/map-memberships.ts ALREADY EXISTS (1967 bytes, no stub markers)
+  preflight: REFUSING to dispatch — every target already exists. Verify with the project's own tsc, then delete the task or pass --force.
+SKIPPED: nothing to build. (--force overrides)

@@ -1,0 +1,13 @@
+{
+  "state": "done",
+  "turns": 8,
+  "tool_calls": 8,
+  "errors": 0,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/db/scripts/salon-ingest/etl/map-products.ts"
+  ],
+  "elapsed": "69s",
+  "updated": "03:25:22",
+  "provider_history": [],
+  "provider_switched": false
+}
