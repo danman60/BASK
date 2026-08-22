@@ -1,5 +1,51 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-21 (late) — REAL DATA INGESTION + DETECTOR GRADING + VO FILM
+
+**Practice dataset ingested + graded end-to-end.** `~/projects/uvalux-platform/tmp-salon-data/`
+(UVALUX synthetic practice dataset: 6 salons, 4,500 customers, 50,511 visits/txns, Jan25–Jun26,
+plus a hidden `evaluation/expected_signals.csv` answer key of 8 planted anomalies).
+
+### ETL pipeline (built, works)
+- **`packages/db/scripts/salon-ingest/`** — `profile.mjs` (format-agnostic profiler),
+  `etl/contract.ts` (id-remap/enum-maps/parse), 8 pure CSV→Bask mappers (local-built via
+  `tasks/ingest-20260821/`, single-lane no-worktree queue), `map-memberships` hand-built (§9),
+  `run.ts` (gated loader: dry-run rollback default; `INGEST_CONFIRM=yes` commits; `INGEST_WIPE=yes`
+  clears the tenant first), `grade-run.ts` (real `buildFacts`→`runInsightSweep`→`grade()` vs answer key).
+- **Loads into a fresh Org** (deterministic uuid `d5732f2f-...`) — never the demo tenant.
+- **Bugs found + fixed via the grade loop:** (1) signed name-hash shift `>>`→`>>>` (undefined
+  lastName); (2) Membership.tier missing; (3) **`item_type==='product'` not `'retail'`** — the big
+  one: retail lines lost productId → attachment read 0% + stock velocity 0 everywhere.
+- **CAUTION shared DB:** the load writes ~185k rows into `bask` under the new Org. `demo:reset`
+  truncates bask and would wipe it — grade right after loading, never reset in between. Reload
+  MUST use `INGEST_WIPE=yes` (deterministic ids + skipDuplicates skip corrected rows otherwise).
+
+### Grade result (first pass, before item_type fix)
+1/8 planted signals — **SIG002 payment-failure spike (SAL004) HIT** ("32 memberships failed, $699").
+Retail (SIG001) + stockout (SIG007) missed due to the productId bug — **now fixed, re-loading +
+re-grading in flight** (background load; then `EVAL_DIR=<eval> tsx grade-run.ts`).
+Equipment/capacity/staff signals (SIG003–006) need Session/room data not loaded → genuine detector
+gaps, not data bugs.
+
+### Method-source registry (Mike Blore, DE-IDENTIFIED)
+- **`packages/core/src/sources/experts.ts`** — techniques mined from Mike Blore's expo talk
+  "The Evidence Behind Your Business" (attachment math, cohort ranking, visit-frequency,
+  membership penetration, revenue hygiene). **App NEVER renders his name** (owner directive) —
+  app label is "UVALUX analytics method"; his identity is internal-audit-only (`INTERNAL_PROVENANCE`,
+  not exported). NOT yet wired into the opportunity cards/UI — that's the next step.
+
+### VO film — DELIVERED
+- **`promo/out/promo-v3-vo.mp4`** (83.8s, video+audio) — new ElevenLabs read
+  (`public/audio/vo/uvaint-v3.mp3`) over old `bgm-open-road.mp3` bed. Composition `BaskPromoV3VO`.
+  DM'd (msg 13560). Clean VO script at `promo/VO-SCRIPT-V3-CLEAN.txt` (11 takes incl. Beat 0 intro).
+
+### Open goal (Stop-hook): full data analysis + app workflow tested + report on predictive
+business improvement.
+### Next steps
+1. Finish re-load + re-grade (expect SIG001/002/007 HIT now). Write the report.
+2. Wire de-identified method-source attribution into opportunity/insight cards + deploy.
+3. Ingest more of Mike's material (coaching corpus → retrieval backing each signal).
+
 ## Session 2026-08-21 (midday) — OPPORTUNITY ENGINE + FRONT DESK MONITOR + v3 FILM
 
 **Ask:** feature Bask as salon *sales intelligence* — analyze data → find gaps → one-click actions
