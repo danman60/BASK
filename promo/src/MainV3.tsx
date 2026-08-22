@@ -4,7 +4,7 @@
 // New beats (opportunity feed, health, peers, monitor, proof) are driven by the
 // reusable PageBeat shots. The UVALUX finale (map → network → wall → compass →
 // outro) is the proven set from the shipped film, reused verbatim.
-import { AbsoluteFill, Sequence } from 'remotion';
+import { AbsoluteFill, Audio, Sequence, staticFile } from 'remotion';
 
 import { S0Brand } from './shots/S0Brand';
 import { S1Daybreak } from './shots/S1Daybreak';
@@ -17,10 +17,18 @@ import { SHealth, SMonitor, SOppFeed, SPeers, SProof } from './shots/PageBeat';
 import { SHOTS_V3 } from './timelineV3';
 import { T } from './tokens';
 
-export const MainV3: React.FC = () => {
+export const MainV3: React.FC<{ audio?: boolean }> = ({ audio = false }) => {
   const S = SHOTS_V3;
   return (
     <AbsoluteFill style={{ backgroundColor: T.paper }}>
+      {audio && (
+        <>
+          {/* New ElevenLabs VO (UvaInt v3, ~83.7s) over the old open-road bed,
+              held low so the read sits on top. */}
+          <Audio src={staticFile('audio/bgm-open-road.mp3')} volume={0.14} />
+          <Audio src={staticFile('audio/vo/uvaint-v3.mp3')} volume={1} />
+        </>
+      )}
       <Sequence from={S.brand.from} durationInFrames={S.brand.duration}>
         <S0Brand duration={S.brand.duration} />
       </Sequence>

@@ -29,6 +29,16 @@ export const RemotionRoot: React.FC = () => (
       width={1920}
       height={1080}
     />
+    {/* Same picture, with the new ElevenLabs VO over the old open-road bed. */}
+    <Composition
+      id="BaskPromoV3VO"
+      component={MainV3}
+      durationInFrames={2512}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      defaultProps={{ audio: true }}
+    />
     {/* Caption cut — no voiceover. */}
     <Composition
       id="BaskPromo"
