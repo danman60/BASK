@@ -5,6 +5,9 @@ VO is pinned per shot, so separate files (vo1.mp3 … vo10.mp3) drop straight in
 
 ────────────────────────────────────────
 
+[0]  (opening brand card)
+Bask is salon intelligence. It turns your salon's own data into the few moves worth making today — each one ready to run.
+
 [1]
 You already know something is off. You just can't see where.
 
