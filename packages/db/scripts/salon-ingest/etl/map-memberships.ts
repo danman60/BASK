@@ -32,6 +32,7 @@ export function mapMemberships(
       customerId: remapId('customer', m.customer_id),
       status: membershipStatus(m.status),
       paymentState,
+      tier: (m.plan_name || 'standard').toLowerCase(),
       monthlyPrice: num(m.monthly_price),
       billingDayOfMonth: start ? start.getUTCDate() : 1,
       startedAt: start ?? new Date('2025-01-01'),

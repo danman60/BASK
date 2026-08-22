@@ -11,7 +11,7 @@ const LAST = ['Lee', 'Patel', 'Nguyen', 'Brown', 'Silva', 'Cohen', 'Reyes', 'Kha
 function nameFor(id: string): { firstName: string; lastName: string } {
   let h = 0;
   for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) >>> 0;
-  return { firstName: FIRST[h % FIRST.length], lastName: LAST[(h >> 8) % LAST.length] };
+  return { firstName: FIRST[h % FIRST.length], lastName: LAST[(h >>> 8) % LAST.length] };
 }
 
 export function mapCustomers(

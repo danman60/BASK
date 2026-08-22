@@ -156,7 +156,7 @@ export interface InventoryLevelInput {
 
 export interface MembershipInput {
   id: string; salonId: string; customerId: string; status: string; paymentState: string;
-  monthlyPrice: number; billingDayOfMonth: number; startedAt: Date;
+  tier: string; monthlyPrice: number; billingDayOfMonth: number; startedAt: Date;
   nextBillingAt: Date | null; lastPaymentAt: Date | null; failedPaymentCount: number;
   cancelledAt: Date | null; cancelReason: string | null;
 }
