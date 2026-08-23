@@ -101,7 +101,8 @@ export interface Claim {
   /** How many SEPARATE events said it. >1 is corroboration; 1 drives `single_source`. */
   distinctEvents: number;
   extractedBy: string;
-  lens: 'advice' | 'recall';
+  /** Which extraction pass produced this. `marketing` is voice-of-customer. */
+  lens: 'advice' | 'recall' | 'marketing';
   reviewState: ReviewState;
   reviewedBy: string | null;
   reviewedAt: string | null;
@@ -200,6 +201,12 @@ export interface CurationGraph {
 
 export interface ClaimFilters {
   corpus?: string;
+  /**
+   * Which extraction lens. The corpus holds four passes over the same audio and
+   * they answer different questions, so the curation queue defaults to the
+   * advice lenses and treats `marketing` as opt-in.
+   */
+  lens?: string[];
   reviewState?: ReviewState[];
   category?: ClaimCategory[];
   moment?: ClaimMoment[];

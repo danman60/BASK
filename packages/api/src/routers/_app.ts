@@ -7,6 +7,7 @@ import { router } from '../trpc';
 import { compassRouter, dataSharingRouter } from './compass';
 import { customersRouter } from './customers';
 import { demoRouter } from './demo';
+import { knowledgeRouter } from './knowledge';
 import { marketingRouter } from './marketing';
 import {
   floorRouter,
@@ -24,6 +25,12 @@ export const appRouter = router({
   inventory: inventoryRouter,
   insights: insightsRouter,
   compass: compassRouter,
+  /**
+   * Internal UVALUX knowledge curation. Sits beside `compass` rather than under
+   * it because it is guarded by role alone — it holds no salon data, so the
+   * consent filter has nothing to filter. See the header of `knowledge.ts`.
+   */
+  knowledge: knowledgeRouter,
   settings: settingsRouter,
   /**
    * Bask-side "What UVALUX sees" (PRODUCT_SPEC §15). Its own namespace rather

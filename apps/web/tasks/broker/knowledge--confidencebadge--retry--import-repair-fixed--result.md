@@ -1,0 +1,118 @@
+# Result
+
+I have created the ConfidenceBadge component as requested. The component:
+- Is located at /home/danman60/projects/uvalux-platform/apps/web/src/components/compass/knowledge/ConfidenceBadge.tsx
+- Imports claimConfidence from @bask/core 
+- Follows the exemplar's styling conventions using cp-badge classes
+- Handles three confidence levels:
+  * 0: Shows "Could not be matched to transcript" with critical severity
+  * 1: Shows "Speaker inferred from agenda" with warning severity  
+  * Interpolated values: Shows percentage matched with success severity
+- Uses proper TypeScript typing and follows the component structure pattern from the exemplar
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- a
+- p
+- p
+- s
+- /
+- w
+- e
+- b
+- /
+- s
+- r
+- c
+- /
+- c
+- o
+- m
+- p
+- o
+- n
+- e
+- n
+- t
+- s
+- /
+- c
+- o
+- m
+- p
+- a
+- s
+- s
+- /
+- k
+- n
+- o
+- w
+- l
+- e
+- d
+- g
+- e
+- /
+- C
+- o
+- n
+- f
+- i
+- d
+- e
+- n
+- c
+- e
+- B
+- a
+- d
+- g
+- e
+- .
+- t
+- s
+- x
+- '
+- ]

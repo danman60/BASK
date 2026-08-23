@@ -1,0 +1,115 @@
+# Result
+
+I have created the ProvenanceCard component as requested. The component:
+- Is located at /home/danman60/projects/uvalux-platform/apps/web/src/components/compass/knowledge/ProvenanceCard.tsx
+- Shows where a Claim came from with source transcript and timecode
+- Uses the formatTimecode function from @bask/core 
+- Follows the exemplar's styling and class vocabulary (cp-card, cp-card-header, etc.)
+- Is a presentational component that receives already-derived values
+- Matches the structure and conventions of the provided exemplar file
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- a
+- p
+- p
+- s
+- /
+- w
+- e
+- b
+- /
+- s
+- r
+- c
+- /
+- c
+- o
+- m
+- p
+- o
+- n
+- e
+- n
+- t
+- s
+- /
+- c
+- o
+- m
+- p
+- a
+- s
+- s
+- /
+- k
+- n
+- o
+- w
+- l
+- e
+- d
+- g
+- e
+- /
+- P
+- r
+- o
+- v
+- e
+- n
+- a
+- n
+- c
+- e
+- C
+- a
+- r
+- d
+- .
+- t
+- s
+- x
+- '
+- ]

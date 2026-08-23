@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 13,
+  "tool_calls": 13,
+  "errors": 1,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/apps/web/src/components/compass/usage/MetricTile.tsx']",
+  "elapsed": "24s",
+  "updated": "20:24:35",
+  "provider_history": [],
+  "provider_switched": false
+}

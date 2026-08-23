@@ -45,6 +45,30 @@ const FOREIGN_SCHEMAS = [
 ];
 const FOREIGN_REF = new RegExp(`"?(${FOREIGN_SCHEMAS.join('|')})"?\\s*\\.\\s*"?[a-z_]`, 'i');
 
+/**
+ * The ONE legitimate reason to name `public` in a Bask migration.
+ *
+ * `vector` is pgvector's TYPE, and an extension installs its types into the
+ * schema it was created in — `public` on this database. Writing
+ * `embedding public.vector(1536)` does not create or touch anything in `public`;
+ * it declares a Bask column whose type happens to live there. Unqualified
+ * `vector(1536)` would break the moment a migration runs with a search_path that
+ * does not include `public`, so the qualification is correct, not sloppy.
+ *
+ * This allowance is deliberately a TYPE REFERENCE ONLY — `public.vector(...)`
+ * with an opening paren. It cannot match `CREATE TABLE public.vector` or any
+ * other DDL against `public`, which is what this guard exists to stop.
+ *
+ * Found because `pnpm db:check` was already failing at HEAD on the committed
+ * 20260820000000_knowledge_base migration, blocking every later deploy.
+ */
+const PGVECTOR_TYPE_REF = /\bpublic\.vector\s*\(/i;
+const FOREIGN_REF_ALLOWED = (line) => {
+  // Strip the allowed type references, then see if any foreign ref survives.
+  const stripped = line.replace(/\bpublic\.vector\s*\(\s*\d+\s*\)/gi, 'vector_type');
+  return PGVECTOR_TYPE_REF.test(line) && !FOREIGN_REF.test(stripped);
+};
+
 /** Statements allowed to be unqualified — they name the schema themselves. */
 const SCHEMA_LEVEL = /^\s*(CREATE|ALTER)\s+SCHEMA\s+/i;
 /** Session-level settings that carry no object of their own. */
@@ -77,8 +101,8 @@ for (const file of files) {
   lines.forEach((line, i) => {
     const loc = `${path.relative(MIGRATIONS_DIR, file)}:${i + 1}`;
 
-    // Referencing another app's schema is always wrong.
-    if (FOREIGN_REF.test(line)) {
+    // Referencing another app's schema is always wrong — except a pgvector type.
+    if (FOREIGN_REF.test(line) && !FOREIGN_REF_ALLOWED(line)) {
       violations.push(`${loc}  references a foreign schema: ${line.trim()}`);
     }
 

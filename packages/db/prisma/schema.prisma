@@ -1359,3 +1359,76 @@ model AppLog {
   @@map("app_log")
   @@schema("bask")
 }
+
+/// One machine-extracted claim from the UVALUX audio corpus, awaiting or carrying
+/// a human verdict. Spec: docs/superpowers/specs/2026-08-22-compass-knowledge-curation-design.md
+///
+/// NOT tenant-scoped: this is UVALUX's own training corpus, not salon data, so it
+/// carries no salon_id and no RLS salon-isolation policy. It is internal-only and
+/// never reaches a salon-facing surface.
+///
+/// `docId` points at bask.knowledge_doc, which is a RAW-SQL table (pgvector) and
+/// therefore not a Prisma model — so this is a plain uuid with a database-level
+/// foreign key added in the migration, not a Prisma relation. Null is meaningful:
+/// it means no session could be matched, and it drives the `orphan` alert.
+///
+/// `quote` is NEVER empty. A claim without a verbatim quote is not a claim; the
+/// loader refuses it and a CHECK constraint enforces it at the database boundary.
+model KnowledgeClaim {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  corpus         String
+  claim          String
+  quote          String
+  category       String
+  moment         String    @default("none")
+  shape          String?
+  specificity    String    @default("general")
+  isScript       Boolean   @default(false) @map("is_script")
+  sourceStream   String    @map("source_stream")
+  sourceFile     String    @map("source_file")
+  audioStreamIx  Int       @default(0) @map("audio_stream_ix")
+  tStart         Float     @map("t_start")
+  tEnd           Float     @map("t_end")
+  docId          String?   @map("doc_id") @db.Uuid
+  timesSaid      Int       @default(1) @map("times_said")
+  distinctEvents Int       @default(1) @map("distinct_events")
+  extractedBy    String    @map("extracted_by")
+  lens           String    @default("advice")
+  reviewState    String    @default("unreviewed") @map("review_state")
+  reviewedBy     String?   @map("reviewed_by")
+  reviewedAt     DateTime? @map("reviewed_at") @db.Timestamptz(6)
+  reviewNote     String?   @map("review_note")
+  metadata       Json?
+  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  events KnowledgeClaimEvent[]
+
+  @@unique([corpus, sourceStream, tStart, quote], map: "knowledge_claim_anchor_key")
+  @@index([reviewState])
+  @@index([lens, category])
+  @@index([corpus])
+  @@map("knowledge_claim")
+  @@schema("bask")
+}
+
+/// Append-only audit of every curation decision.
+///
+/// Deliberately not columns on KnowledgeClaim: "who decided this was wrong, when,
+/// and what did it say before" is the entire value of a curated corpus, and a
+/// mutable row destroys it. It is also what makes undo trivial.
+model KnowledgeClaimEvent {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  claimId   String   @map("claim_id") @db.Uuid
+  action    String
+  actor     String
+  before    Json?
+  after     Json?
+  note      String?
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  claim KnowledgeClaim @relation(fields: [claimId], references: [id], onDelete: Cascade)
+
+  @@index([claimId, createdAt])
+  @@map("knowledge_claim_event")
+  @@schema("bask")
+}

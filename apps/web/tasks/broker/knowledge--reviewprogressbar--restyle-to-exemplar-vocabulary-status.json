@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 18,
+  "tool_calls": 18,
+  "errors": 1,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/apps/web/src/components/compass/knowledge/ReviewProgressBar.tsx']",
+  "elapsed": "29s",
+  "updated": "20:24:06",
+  "provider_history": [],
+  "provider_switched": false
+}

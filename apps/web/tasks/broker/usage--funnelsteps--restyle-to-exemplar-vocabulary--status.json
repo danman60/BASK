@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 14,
+  "tool_calls": 14,
+  "errors": 1,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/apps/web/src/components/compass/usage/FunnelSteps.tsx']",
+  "elapsed": "30s",
+  "updated": "20:25:12",
+  "provider_history": [],
+  "provider_switched": false
+}

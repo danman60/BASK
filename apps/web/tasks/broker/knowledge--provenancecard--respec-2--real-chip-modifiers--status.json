@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 11,
+  "tool_calls": 11,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/apps/web/src/components/compass/knowledge/ProvenanceCard.tsx']",
+  "elapsed": "14s",
+  "updated": "19:49:59",
+  "provider_history": [],
+  "provider_switched": false
+}

@@ -34,6 +34,7 @@ const NAV = [
   { href: '/compass', label: 'Call List' },
   { href: '/compass/accounts', label: 'Accounts' },
   { href: '/compass/coaching', label: 'Coaching' },
+  { href: '/compass/knowledge', label: 'Knowledge' },
 ] as const;
 
 const DEFAULT_COMPASS_ROLE: DemoRole = 'uvalux_rep';

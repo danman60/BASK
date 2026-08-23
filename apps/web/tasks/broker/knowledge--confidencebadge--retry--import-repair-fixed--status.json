@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 9,
+  "tool_calls": 9,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/apps/web/src/components/compass/knowledge/ConfidenceBadge.tsx']",
+  "elapsed": "11s",
+  "updated": "19:32:47",
+  "provider_history": [],
+  "provider_switched": false
+}

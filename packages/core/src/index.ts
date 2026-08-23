@@ -379,3 +379,8 @@ export {
   methodSourceFor,
   type MethodSource,
 } from './sources/experts';
+
+// Curation logic over the claim corpus. Pure modules — no IO, no React — so the
+// API router and the Compass page can share one implementation of "what does
+// this corpus look like" rather than each growing its own.
+export { buildCurationGraph } from './knowledge/curation/graph';
