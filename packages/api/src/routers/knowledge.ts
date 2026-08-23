@@ -30,6 +30,8 @@ import {
   CLAIM_MOMENTS,
   REVIEW_STATES,
   buildCurationGraph,
+  claimAlerts,
+  buildPaletteIndex,
   formatTimecode,
   type Claim,
   type ClaimProvenance,
@@ -356,6 +358,8 @@ export const knowledgeRouter = router({
       const claims = (rows as ClaimRow[]).map(toClaim);
       return {
         graph: buildCurationGraph(claims, input.maxNodes),
+        alerts: claimAlerts(claims),
+        palette: buildPaletteIndex(claims),
         claimsInGraph: claims.length,
         claimsTotal: total,
         capped: claims.length < total,

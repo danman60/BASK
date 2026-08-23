@@ -384,3 +384,7 @@ export {
 // API router and the Compass page can share one implementation of "what does
 // this corpus look like" rather than each growing its own.
 export { buildCurationGraph } from './knowledge/curation/graph';
+// Aliased: the module exports `generateAlerts`; the rest of the codebase calls it
+// `claimAlerts`. Renaming the export would be churn for no gain.
+export { generateAlerts as claimAlerts } from './knowledge/curation/alerts';
+export { buildPaletteIndex, filterPalette } from './knowledge/curation/palette';

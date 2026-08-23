@@ -1207,3 +1207,9 @@
   color: var(--c-paper);
   opacity: 0.75;
 }
+
+.cp-corpus-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
