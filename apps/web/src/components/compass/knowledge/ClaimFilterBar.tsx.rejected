@@ -1,0 +1,92 @@
+import type { ClaimFilters } from '@bask/core';
+import { REVIEW_STATES, REVIEW_STATE_LABEL, CLAIM_CATEGORIES } from '@bask/core';
+
+export function ClaimFilterBar({
+  filters,
+  onChange,
+}: {
+  filters: ClaimFilters;
+  onChange: (filters: ClaimFilters) => void;
+}) {
+  const { reviewState, category, lens } = filters;
+
+  const toggleFilter = (filterName: keyof ClaimFilters, value: string) => {
+    const currentValues = Array.isArray(filters[filterName]) ? filters[filterName] as string[] : [];
+    const newValues = currentValues.includes(value)
+      ? currentValues.filter((v) => v !== value)
+      : [...currentValues, value];
+    
+    onChange({
+      ...filters,
+      [filterName]: newValues,
+    });
+  };
+
+  const clearAllFilters = () => {
+    onChange({ reviewState: [], category: [], lens: [] });
+  };
+
+  const hasActiveFilters = (reviewState?.length || 0) + (category?.length || 0) + (lens?.length || 0) > 0;
+
+  return (
+    <div className="cp-filterbar">
+      {/* State group */}
+      <div className="cp-filtergroup">
+        <span className="cp-filtergroup-label">State</span>
+        {REVIEW_STATES.map((state) => (
+          <button
+            key={state}
+            className={`cp-chip ${Array.isArray(reviewState) && reviewState.includes(state) ? 'cp-chip--on' : ''}`}
+            onClick={() => toggleFilter('reviewState', state)}
+          >
+            {REVIEW_STATE_LABEL[state]}
+          </button>
+        ))}
+      </div>
+
+      {/* Topic group */}
+      <div className="cp-filtergroup">
+        <span className="cp-filtergroup-label">Topic</span>
+        {CLAIM_CATEGORIES.map((categoryName) => (
+          <button
+            key={categoryName}
+            className={`cp-chip ${Array.isArray(category) && category.includes(categoryName) ? 'cp-chip--on' : ''}`}
+            onClick={() => toggleFilter('category', categoryName)}
+          >
+            {categoryName}
+          </button>
+        ))}
+      </div>
+
+      {/* Lens group */}
+      <div className="cp-filtergroup">
+        <span className="cp-filtergroup-label">Lens</span>
+        <button
+          className={`cp-chip ${Array.isArray(lens) && lens.includes('advice') ? 'cp-chip--on' : ''}`}
+          onClick={() => toggleFilter('lens', 'advice')}
+        >
+          Advice
+        </button>
+        <button
+          className={`cp-chip ${Array.isArray(lens) && lens.includes('recall') ? 'cp-chip--on' : ''}`}
+          onClick={() => toggleFilter('lens', 'recall')}
+        >
+          War stories
+        </button>
+        <button
+          className={`cp-chip ${Array.isArray(lens) && lens.includes('marketing') ? 'cp-chip--on' : ''}`}
+          onClick={() => toggleFilter('lens', 'marketing')}
+        >
+          Voice-of-customer
+        </button>
+      </div>
+
+      {/* Clear all button */}
+      {hasActiveFilters && (
+        <button className="cp-chip cp-chip--clear" onClick={clearAllFilters}>
+          Clear all
+        </button>
+      )}
+    </div>
+  );
+}

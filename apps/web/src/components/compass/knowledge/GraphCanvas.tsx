@@ -23,6 +23,7 @@
 import type React from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
+import SpriteText from 'three-spritetext';
 
 import type { CurationGraph, GraphNode, ReviewState } from '@bask/core';
 
@@ -76,6 +77,22 @@ const STATE_TOKEN: Record<ReviewState, string> = {
   unreviewed: '--c-ink-faint',
 };
 
+/**
+ * Colour buckets for VERIFIED SHARE — the map's primary channel.
+ *
+ * Previously colour carried per-claim review state, which is uniform until
+ * curation has already happened. That made the map blank exactly when it was
+ * most needed: at the start, when you are deciding where to spend effort. Share
+ * of verified claims is knowable on day one, so an untouched topic and a
+ * finished one look different immediately.
+ */
+const RATIO_TOKEN: [number, string][] = [
+  [0.999, '--success'],
+  [0.5, '--c-green'],
+  [0.001, '--warn'],
+  [-1, '--c-ink-faint'],
+];
+
 /** Grouping nodes have no review state; they take the accent. */
 const KIND_TOKEN: Record<string, string> = {
   corpus: '--c-amber-deep',
@@ -118,6 +135,9 @@ export function GraphCanvas({ graph, onSelectNode, focusNodeId, height = 560 }: 
       kinds: Object.fromEntries(
         Object.entries(KIND_TOKEN).map(([k, t]) => [k, token(t, '#c9a227')]),
       ) as Record<string, string>,
+      ratios: Object.fromEntries(
+        RATIO_TOKEN.map(([, t]) => [t, token(t, '#c9a227')]),
+      ) as Record<string, string>,
     }),
     [],
   );
@@ -136,11 +156,12 @@ export function GraphCanvas({ graph, onSelectNode, focusNodeId, height = 560 }: 
   }, [focusNodeId, reducedMotion]);
 
   const nodeColor = (n: GraphNode) => {
-    const base =
-      n.reviewState != null
-        ? colours.states[n.reviewState]
-        : (colours.kinds[n.kind] ?? colours.kinds.topic);
-    return base;
+    // A claim still shows its own verdict — rejected must look rejected.
+    if (n.kind === 'claim' && n.reviewState != null) {
+      return colours.states[n.reviewState];
+    }
+    const bucket = RATIO_TOKEN.find(([min]) => n.verifiedRatio > min);
+    return colours.ratios[bucket ? bucket[1] : '--c-ink-faint'] ?? colours.kinds.topic;
   };
 
   return (
@@ -157,10 +178,6 @@ export function GraphCanvas({ graph, onSelectNode, focusNodeId, height = 560 }: 
         nodeRelSize={4}
         nodeVal={(n: unknown) => Math.max(1, (n as GraphNode).weight)}
         nodeColor={(n: unknown) => nodeColor(n as GraphNode)}
-        nodeLabel={(n: unknown) => {
-          const g = n as GraphNode;
-          return `${g.label}${g.alertCount > 0 ? ` · ${g.alertCount} alert(s)` : ''}`;
-        }}
         linkColor={() => colours.edge}
         linkOpacity={0.22}
         linkWidth={0.5}
@@ -171,6 +188,27 @@ export function GraphCanvas({ graph, onSelectNode, focusNodeId, height = 560 }: 
         showNavInfo={false}
         warmupTicks={reducedMotion ? 60 : 0}
         cooldownTicks={reducedMotion ? 0 : 200}
+        // Only GROUPING nodes get a label. Labelling every claim would render
+        // the map unreadable, which is the opposite of the point.
+        nodeLabel={(n: unknown) => {
+          const g = n as GraphNode;
+          const pct = Math.round(g.verifiedRatio * 100);
+          return g.kind === 'claim'
+            ? g.label
+            : `${g.label} — ${g.weight} claims, ${pct}% verified`;
+        }}
+        nodeThreeObjectExtend
+        nodeThreeObject={(n: unknown) => {
+          const g = n as GraphNode;
+          if (g.kind === 'claim' || g.kind === 'corpus') return null;
+          const sprite = new SpriteText(g.label, 9, nodeColor(g));
+          sprite.fontFace = 'Inter, system-ui, sans-serif';
+          // Lift the label clear of the node. SpriteText's own typings do not
+          // expose Object3D members, so reach position through the base type.
+          const obj = sprite as unknown as { position: { set: (x: number, y: number, z: number) => void } };
+          obj.position.set(0, Math.cbrt(Math.max(1, g.weight)) * 3.6 + 3, 0);
+          return sprite;
+        }}
         onNodeClick={(n: unknown) => onSelectNode?.((n as GraphNode).id)}
       />
       {graph.collapsed ? (

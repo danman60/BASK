@@ -1,37 +1,35 @@
 import type { Claim } from '@bask/core';
-import { REVIEW_STATE_LABEL, formatTimecode } from '@bask/core';
+import { formatTimecode, REVIEW_STATE_LABEL } from '@bask/core';
 
-export function ClaimRow({
-  claim,
-  focused,
-  onSelect,
-  onVerify,
-  onReject,
-}: {
+interface ClaimRowProps {
   claim: Claim;
   focused: boolean;
   onSelect: () => void;
-  onVerify: () => void;
-  onReject: () => void;
-}) {
-  const { claim: claimText, category, moment, distinctEvents, provenance } = claim;
-  
-  // Guard against empty provenance array
-  const firstProvenance = provenance.length > 0 ? provenance[0] : null;
+}
+
+export function ClaimRow({ claim, focused, onSelect }: ClaimRowProps) {
+  const state = claim.reviewState;
+  const stateLabel = REVIEW_STATE_LABEL[state];
   
   return (
     <tr
       className={`cp-claim-row ${focused ? 'cp-claim-row--focused' : ''}`}
       onClick={onSelect}
     >
-      <td>{REVIEW_STATE_LABEL[claim.reviewState]}</td>
       <td>
-        <span className="cp-claim-text">{claimText}</span>
+        <span className={`cp-state-dot cp-state-dot--${state}`} aria-hidden="true" />
+        <span className="cp-sr-only">State: {stateLabel}
+        </span>
       </td>
-      <td>{category}</td>
-      <td>{moment}</td>
-      <td>{distinctEvents}</td>
-      <td>{firstProvenance ? formatTimecode(firstProvenance.tStart) : '-'}</td>
+      <td className="cp-claim-cell">
+        <span className="cp-claim-text">{claim.claim}</span>
+      </td>
+      <td className="cp-topic-cell">
+        {claim.category}
+      </td>
+      <td className="cp-at-cell">
+        {claim.provenance.length > 0 ? formatTimecode(claim.provenance[0].tStart) : ''}
+      </td>
     </tr>
   );
 }

@@ -143,7 +143,14 @@ export default function KnowledgePage() {
         corpusName={filters.corpus ?? 'All corpora'}
         total={summary.data?.total ?? total}
         decided={summary.data?.decided ?? 0}
-        alertCount={0}
+        alertCount={graphQ.data?.alerts.length ?? 0}
+        onJumpToNext={() => {
+          const ix = rows.findIndex((r) => r.reviewState === 'unreviewed');
+          if (ix >= 0) {
+            setFocusIx(ix);
+            setSelectedId(rows[ix].id);
+          }
+        }}
       />
 
       <ClaimFilterBar
@@ -177,7 +184,7 @@ export default function KnowledgePage() {
         </button>
       </div>
 
-      <div className="cp-knowledge-split">
+      <div className={view === 'graph' ? 'cp-knowledge-split cp-knowledge-split--map' : 'cp-knowledge-split'}>
         <div className="cp-knowledge-work">
           {view === 'graph' ? (
             graphQ.error ? (
@@ -214,11 +221,9 @@ export default function KnowledgePage() {
             <table className="cp-table cp-knowledge-table">
               <thead>
                 <tr>
-                  <th scope="col">State</th>
+                  <th scope="col"><span className="cp-sr-only">State</span></th>
                   <th scope="col">Claim</th>
                   <th scope="col">Topic</th>
-                  <th scope="col">Moment</th>
-                  <th scope="col">Sources</th>
                   <th scope="col">At</th>
                 </tr>
               </thead>
@@ -232,8 +237,6 @@ export default function KnowledgePage() {
                       setSelectedId(claim.id);
                       setFocusIx(ix);
                     }}
-                    onVerify={() => decide(claim, 'verified')}
-                    onReject={() => decide(claim, 'rejected')}
                   />
                 ))}
               </tbody>

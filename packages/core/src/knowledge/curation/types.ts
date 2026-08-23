@@ -169,6 +169,18 @@ export interface GraphNode {
   /** Drives node BRIGHTNESS. 0–1. Low = shaky provenance. */
   confidence: number;
   alertCount: number;
+  /**
+   * Share of the claims under this node that a human has VERIFIED, 0–1.
+   *
+   * This is the map's primary colour channel. It is knowable on day one, unlike
+   * per-claim review state, which is uniform until curation has already
+   * happened — a map whose signal only appears after the work is done cannot
+   * tell you where to start the work.
+   *
+   * For a claim node it is 1 or 0. For a grouping node it is the real ratio
+   * across its children, never a placeholder.
+   */
+  verifiedRatio: number;
   /** Set when LOD has collapsed children into this node. */
   collapsedCount?: number;
 }

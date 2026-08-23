@@ -58,6 +58,7 @@ export function buildCurationGraph(
       weight: 0, // Will be set later when counting claims
       confidence: 0,
       alertCount: 0,
+      verifiedRatio: 0,
     });
   });
 
@@ -71,6 +72,7 @@ export function buildCurationGraph(
       weight: 0, // Will be set later when counting claims
       confidence: 0,
       alertCount: 0,
+      verifiedRatio: 0,
       collapsedCount: 0,
     });
   });
@@ -86,6 +88,7 @@ export function buildCurationGraph(
         weight: 0, // Will be set later when counting claims
         confidence: 0,
         alertCount: 0,
+        verifiedRatio: 0,
       });
     }
   });
@@ -100,6 +103,7 @@ export function buildCurationGraph(
       weight: 0, // Will be set later when counting claims
       confidence: 0,
       alertCount: 0,
+      verifiedRatio: 0,
     });
   });
 
@@ -113,6 +117,7 @@ export function buildCurationGraph(
       weight: 0, // Will be set later when counting claims
       confidence: 0,
       alertCount: 0,
+      verifiedRatio: 0,
     });
   });
 
@@ -133,7 +138,8 @@ export function buildCurationGraph(
       reviewState: claim.reviewState,
       weight: claim.distinctEvents,
       confidence: claimConfidence(claim),
-      alertCount: 0, // Will be set later
+      alertCount: 0,
+      verifiedRatio: claim.reviewState === 'verified' ? 1 : 0, // Will be set later
     };
     
     claimNodes.push(claimNode);
@@ -256,23 +262,49 @@ export function buildCurationGraph(
     }
   });
 
-  // Set confidence for grouping nodes as mean of children (simplified)
-  // For topic nodes, we'll use a basic approach since we don't track individual child claims
-  const topicNodes = nodes.filter(n => n.kind === 'topic');
-  topicNodes.forEach(topicNode => {
-    if (!collapsed) {
-      // Set to 0.5 as placeholder - in reality this would need to be calculated from children
-      topicNode.confidence = 0.5;
+  // Grouping-node confidence and verified ratio, computed from the real children.
+  //
+  // These were previously hardcoded to 0.5 with a "placeholder" comment, which
+  // meant brightness on every topic and session node was a fabricated number
+  // rendered as if it were data. A map that invents its own signal is worse than
+  // one that shows nothing, because it looks informative.
+  const rollup = (
+    kind: GraphNode['kind'],
+    keyOf: (claim: Claim) => string | null,
+  ) => {
+    const buckets = new Map<string, Claim[]>();
+    for (const claim of claims) {
+      const key = keyOf(claim);
+      if (key == null) continue;
+      const list = buckets.get(key);
+      if (list) list.push(claim);
+      else buckets.set(key, [claim]);
     }
-  });
+    for (const node of nodes) {
+      if (node.kind !== kind) continue;
+      const members = buckets.get(node.id) ?? [];
+      if (members.length === 0) {
+        node.confidence = 0;
+        node.verifiedRatio = 0;
+        continue;
+      }
+      node.confidence =
+        members.reduce((sum, c) => sum + claimConfidence(c), 0) / members.length;
+      node.verifiedRatio =
+        members.filter((c) => c.reviewState === 'verified').length / members.length;
+    }
+  };
 
-  // Set confidence for session nodes (simplified)
-  const sessionNodes = nodes.filter(n => n.kind === 'session');
-  sessionNodes.forEach(sessionNode => {
-    if (!collapsed) {
-      // Simple confidence - would be more complex in real implementation
-      sessionNode.confidence = 0.5;
-    }
+  rollup('topic', (c) => `topic:${c.category}`);
+  rollup('moment', (c) => (c.moment === 'none' ? null : `moment:${c.moment}`));
+  rollup('corpus', (c) => `corpus:${c.corpus}`);
+  rollup('session', (c) => {
+    const title = c.provenance.find((p) => p.sessionTitle)?.sessionTitle;
+    return title ? `session:${title}` : null;
+  });
+  rollup('speaker', (c) => {
+    const sp = c.provenance.find((p) => p.speaker)?.speaker;
+    return sp ? `speaker:${sp}` : null;
   });
 
   return {

@@ -1,45 +1,49 @@
+/**
+ * Compass component vocabulary (DESIGN_SPEC §4): `ReviewProgressBar`.
+ *
+ * This component displays a summary of corpus review progress, showing the remaining
+ * work and supporting statistics.
+ */
+
 import { ReviewProgressBar } from './ReviewProgressBar';
 
-/**
- * Header strip above the claims table.
- *
- * Every number here appears with its denominator. A bare "6%" tells a curator
- * nothing about whether the corpus is 100 claims or 1,000, and this surface
- * exists to make the shape of the corpus obvious at a glance.
- */
 export function CorpusSummary({
   corpusName,
   total,
   decided,
   alertCount,
+  onJumpToNext,
 }: {
   corpusName: string;
   total: number;
   decided: number;
   alertCount: number;
+  onJumpToNext?: () => void;
 }) {
   if (total === 0) {
     return (
       <div className="cp-corpus-summary">
-        <h2 className="cp-head">{corpusName}</h2>
-        <p className="cp-note">
-          No claims are loaded yet. Run{' '}
-          <code>tsx scripts/knowledge/load-claims.ts --commit</code> from{' '}
-          <code>packages/db</code> to load the mined corpora.
-        </p>
+        <p className="cp-corpus-lead">The corpus is empty and loads via the load-claims script.</p>
       </div>
     );
   }
 
+  const remaining = total - decided;
+
   return (
     <div className="cp-corpus-summary">
-      <h2 className="cp-head">{corpusName}</h2>
+      <p className="cp-corpus-lead">
+        <strong className="cp-corpus-count">{remaining.toLocaleString()}</strong> claims to review
+      </p>
       <p className="cp-note">
-        {total.toLocaleString()} claims · {decided.toLocaleString()} decided ·{' '}
-        {(total - decided).toLocaleString()} still to review
-        {alertCount > 0 ? ` · ${alertCount.toLocaleString()} alerts` : ''}
+        {total.toLocaleString()} total claims • {decided.toLocaleString()} decided
       </p>
       <ReviewProgressBar decided={decided} total={total} />
+      {onJumpToNext && (
+        <button className="cp-btn" onClick={onJumpToNext}>
+          Next unreviewed
+        </button>
+      )}
     </div>
   );
 }
