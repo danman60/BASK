@@ -39,7 +39,7 @@ export function ClaimFilterBar({
     (lens?.length || 0) > 0;
 
   return (
-    <>
+    <div className="cp-filterbar">
       {REVIEW_STATES.map((state) => (
         <button
           key={state}
@@ -74,13 +74,10 @@ export function ClaimFilterBar({
       ))}
 
       {hasActiveFilters && (
-        <button
-          type="button"
-          onClick={clearAll}
-        >
+        <button type="button" className="cp-chip cp-chip--clear" onClick={clearAll}>
           Clear all
         </button>
       )}
-    </>
+    </div>
   );
 }

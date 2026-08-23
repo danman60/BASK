@@ -1,51 +1,36 @@
 /**
- * Compass component vocabulary (DESIGN_SPEC §4): `ReviewProgressBar`
+ * How much of the corpus a human has decided on.
  *
- * A slim horizontal progress bar showing how much of the corpus a human has decided on.
- * Props: decided and total counts. Show the bar, then a plain sentence beneath giving
- * both absolute numbers and the percentage - never a bare percentage, because a
- * percentage without its denominator misleads. When total is zero, show an empty
- * state sentence instead of a zero-width bar and do not divide.
+ * The bar's colour comes from `--c-amber` via `.cp-progress-fill`. The first
+ * version of this file hardcoded `#3b82f6` — a blue bar in an amber product —
+ * which is exactly why the house rule is that no component carries a colour
+ * literal. If a shade looks wrong, the token is wrong, not the component.
+ *
+ * The sentence beneath always carries both absolute numbers. A bare "6%" hides
+ * whether the corpus is 100 claims or 1,000.
  */
-
-type ReviewProgressBarProps = {
-  decided: number;
-  total: number;
-};
-
-export function ReviewProgressBar({ decided, total }: ReviewProgressBarProps) {
+export function ReviewProgressBar({ decided, total }: { decided: number; total: number }) {
   if (total === 0) {
-    return (
-      <div className="cp-empty">
-        <p className="cp-note">No claims to review</p>
-      </div>
-    );
+    return <p className="cp-note">Nothing to review yet.</p>;
   }
 
-  const percentage = Math.round((decided / total) * 100);
-  
+  const pct = Math.round((decided / total) * 100);
+
   return (
-    <div className="cp-statrow">
-      <span className="l">Review progress</span>
-      <span className="v">
-        <div className="cp-ev">
-          <div className="cp-ev-item">
-            <div style={{ width: '100%', height: '8px', backgroundColor: '#e5e7eb' }}>
-              <div 
-                style={{ 
-                  width: `${percentage}%`, 
-                  height: '100%',
-                  backgroundColor: '#3b82f6'
-                }}
-              />
-            </div>
-            <div className="k">claims decided</div>
-          </div>
-        </div>
-        <p className="cp-note">
-          {decided} of {total} claims decided ({percentage}%)
-        </p>
-      </span>
+    <div className="cp-progress-wrap">
+      <div
+        className="cp-progress"
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={total}
+        aria-valuenow={decided}
+        aria-label="Claims decided"
+      >
+        <div className="cp-progress-fill" style={{ width: `${pct}%` }} />
+      </div>
+      <p className="cp-note">
+        {decided.toLocaleString()} of {total.toLocaleString()} claims decided ({pct}%)
+      </p>
     </div>
   );
 }

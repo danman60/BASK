@@ -49,11 +49,24 @@ interface Props {
   height?: number;
 }
 
-/** Read a CSS custom property off the live theme so colour stays token-driven. */
+/**
+ * Resolve a design token to an rgb() string.
+ *
+ * Reading the custom property directly returns its AUTHORED text, which for this
+ * palette is `oklch(...)`. three.js and its colour helpers cannot parse oklch and
+ * throw. Painting the token onto a probe element and reading back the COMPUTED
+ * `color` makes the browser do the conversion, so we get `rgb(r, g, b)` — parseable
+ * everywhere, and still driven entirely by the token rather than a literal.
+ */
 function token(name: string, fallback: string): string {
   if (typeof window === 'undefined') return fallback;
-  const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  return v || fallback;
+  const probe = document.createElement('span');
+  probe.style.color = `var(${name})`;
+  probe.style.display = 'none';
+  document.body.appendChild(probe);
+  const resolved = getComputedStyle(probe).color;
+  probe.remove();
+  return resolved && resolved.startsWith('rgb') ? resolved : fallback;
 }
 
 const STATE_TOKEN: Record<ReviewState, string> = {

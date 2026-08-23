@@ -62,7 +62,7 @@ export function buildPaletteIndex(claims: readonly Claim[]): PaletteItem[] {
 
   // 4. Add items for distinct non-null speakers
   const speakers = new Set(
-    claims.map((c) => c.speaker).filter((s) => s !== null)
+    claims.map((c) => c.provenance[0]?.speaker).filter((s) => s !== null)
   );
   for (const speaker of speakers) {
     items.push({
