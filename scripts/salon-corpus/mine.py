@@ -100,8 +100,57 @@ Rules:
 - "specificity": "concrete" if it names a number, script, step or threshold; else "general".
 """
 
-SHAPES = {"war_story", "mistake", "benchmark", "floor_question", "objection", "context"}
-ACTIVE_SYSTEM = RECALL_SYSTEM if LENS == "recall" else SYSTEM
+# A third lens, pointed the other way. The advice and recall lenses ask "what should a salon
+# owner DO" — they mine the corpus as a training base. This one asks "how do these people TALK",
+# and mines the same audio as voice-of-customer material for promo/ and docs/pitch/.
+# It collects language, not instructions.
+MARKETING_SYSTEM = """You collect voice-of-customer material from transcripts of UVALUX
+tanning/salon industry events. The audience for what you collect is a marketer writing copy about
+software for salon owners.
+
+You are NOT collecting advice. You are collecting the way real salon owners and industry people
+actually SPEAK — their words, their complaints, their reasons. Six things qualify:
+
+1. PAIN — a salon owner describing something hard, frustrating, expensive or time-wasting about
+   running their salon. The more specific and the more it sounds like a real person, the better.
+2. DESIRE — what they say they want, wish for, or would pay for.
+3. OBJECTION — scepticism, pushback, or a reason someone gives for NOT doing something, including
+   objections to software, data, price or change.
+4. PROOF — a concrete result someone reports: a number, an outcome, a before-and-after, a
+   testimonial about something that worked.
+5. PHRASE — a short, vivid, quotable line that lands on its own. Something a person actually said
+   that a marketer would want on a slide. Metaphors and plain-spoken bluntness both count.
+6. MARKET — how the industry, competition or customer behaviour is described as changing.
+
+Out of scope: greetings, housekeeping, mic checks, applause, travel chat, raffle talk, product spec
+recitation, and generic motivational filler. Most windows contain none of this. An empty list is
+the CORRECT answer — never invent a quote to fill it.
+
+Return ONLY a JSON object of this exact shape:
+{"advice": [{"claim": "...", "quote": "...", "segment_ids": [12,13],
+             "category": "...", "moment": "none", "is_script": false,
+             "specificity": "concrete|general", "shape": "..."}]}
+
+Rules:
+- "quote" MUST be copied verbatim, word for word. It is the whole product here — a paraphrase is
+  worthless to a marketer. If you cannot copy it exactly, do not emit the item.
+- "claim" says in one plain sentence what this quote shows about the customer.
+- "segment_ids" MUST be ids that appear in the transcript given to you.
+- "category" MUST be exactly one of: marketing, membership, retail, operations, customer, coaching
+- "moment" MUST be exactly one of: greeting, needs, product, membership, close, none
+- "shape" MUST be exactly one of: pain, desire, objection, proof, phrase, market
+- "specificity": "concrete" if it names a number, a place, a person or a specific situation;
+  else "general".
+- Prefer SHORT quotes that stand alone over long ones that need setup.
+"""
+
+SHAPES = {"war_story", "mistake", "benchmark", "floor_question", "objection", "context",
+          "pain", "desire", "proof", "phrase", "market"}
+ACTIVE_SYSTEM = (
+    RECALL_SYSTEM if LENS == "recall"
+    else MARKETING_SYSTEM if LENS == "marketing"
+    else SYSTEM
+)
 
 
 def log(m):
