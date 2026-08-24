@@ -1292,3 +1292,35 @@
 .cp-legend-dot--some { background: var(--warn); }
 .cp-legend-dot--most { background: var(--c-green); }
 .cp-legend-dot--all  { background: var(--success); }
+
+/* Corpus management — the CorpusList grid + CorpusCard leaf. */
+.cp-corpus-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-3);
+}
+.cp-corpus-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  background: var(--c-card);
+}
+.cp-corpus-card--archived { opacity: 0.6; }
+.cp-corpus-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.cp-corpus-card-title { font-weight: 600; color: var(--c-ink); }
+.cp-corpus-card-actions { display: flex; gap: var(--space-2); margin-top: var(--space-1); }
+.cp-badge {
+  font-size: var(--text-xs);
+  color: var(--c-ink-soft);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-sm);
+  padding: 0 var(--space-1);
+}
