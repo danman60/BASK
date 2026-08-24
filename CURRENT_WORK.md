@@ -1,5 +1,115 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-24 (13:40) — SALONTOUCH FIELD ACQUISITION + corpus/bask-strip
+
+### SalonTouch data acquisition (the big one) — COMPLETE, all local + private in `~/salon-pull`
+On-site pull of a client's dead tanning-salon PC (host + salon name in local notes). Owner gave
+permission. **Creds + IPs in `~/.env.keys` / local vault — NOT here (public repo).** Playbook that
+worked: mint a throwaway local admin over SMB → live SQL DB is locked → **VSS snapshot**
+(SQLWriter-consistent, zero downtime) → copy out of the shadow → pull. SSH set up for durable access
+(Kaspersky blocked the Windows-feature SSH install, so served OpenSSH-Win64 + a setup `.bat` off a
+LAN http server; key `id_ed25519_spyballoon` in `administrators_authorized_keys`).
+
+**Haul (`~/salon-pull/`):**
+- `live/` — SalonTouchDB + SalonTouchTracer MDF/LDF, VSS snapshot, **byte-verified** (MDF 2447638528).
+- `Databases/` — 2018 + 2019 consistent backups (attachable).
+- SalonTouch app 6.1 GB (SMB pull) + `system/*.tar` (inetpub web-booking, t-max bed-control,
+  Program Files SalonTouch deps) + `config/*.reg` (SalonTouch, ODBC DSNs, SQL, EFT, installed progs).
+- `_reverse/SalonTouch_unpacked.exe` — UPX-unpacked VB6 for a screen decompile (do on FIRMAMENT).
+- Operator files (Desktop/Docs/Downloads, 1.5 GB) ALSO copied to `D:\Shared\SalonTouch-Review\
+  operator-files\` for the user to review/delete (has personal material — a T4 tax slip, personal
+  photos). Core DB/app stays LOCAL, not on any share.
+
+**Live DB summary (queried via local SQL2022 docker `salondb`; sa pw in local notes):** ~20k clients,
+431k tan sessions, 122k payments over 2009→2022, a handful of EFT memberships; healthy through 2019 →
+COVID collapse 2020 → dormant by 2022. PII scan: **no SSN, no DL#, no bank/routing, no stored card
+numbers**; has names/DOB/contact + ~200 client photos (DB BLOBs). Identity model: `ClientUID`/
+`SalonUID`; `ST*` names are views over `_General`/`_Prices` base tables (int `NumberID` PK, `Deleted`
+soft-delete). Exact figures/client name in local notes, not this public file.
+
+**Dossier:** `docs/research/salontouch-dossier.md` — features, arch (VB6+SQL2008R2+Crystal), verified
+schema + row counts, SalonTouch→Bask parity map. Strategic read: don't rebuild the POS — **ingest its
+data, win on the intelligence layer** (health, peers, EFT-failure, equipment payback). Real 12-yr
+dataset now available to grade Bask's detectors against instead of synthetic fixtures.
+
+**Loose ends:** salon PC still ONLINE with `datapull` admin + OpenSSH installed — clean-exit
+(`net user datapull /del` + remove OpenSSH) or leave to die with the box. SalonTouchTracer not yet
+attached (audit/change log). VB6 decompile pending.
+
+### Also shipped this session (committed + pushed to master)
+- **`c23ba45`** — `CorpusOverviewRow` contract in `@bask/core` (corpus-management surface).
+- **`8e32efc`** — Bask strip: removed Floor + Inventory from nav, repointed orphaned Today actions
+  to `/insights` (routes still exist, off-nav, reversible). Product narrows to sales-insights engine.
+- **`562889e`** — corpus-management leaves `CorpusCard` + `CorpusList` (props-only, typed against
+  `CorpusOverviewRow`, reuse `ReviewProgressBar`). **STILL SUPERVISOR-OWNED:** the `knowledge.corpora`
+  + `archiveCorpus` tRPC endpoints, the `knowledge_corpus` soft-archive migration (shared bask DB —
+  needs explicit go), and composing the list into `/compass/knowledge`.
+- Fixed the v3 promo film: `S0Brand.tsx` opened with "All-in-one salon management" (contradicted the
+  intelligence VO); now "Salon intelligence" + dropped floor/inventory subtitle. Re-rendered
+  `promo/out/promo-v3-vo.mp4`, verified the composited brand frame, DM'd.
+- Restored 3 core `knowledge/curation/*.ts` files deleted in the working tree from last session's
+  broker quarantine (were blocking `@bask/core` typecheck).
+
+### Local pipeline BROKEN (bug filed to sysadmin INBOX)
+Optimizer auto-assigned deleted `qwen3.5:27b` → 404; and "process exited before status file created —
+launch failure" even with explicit `qwen3-coder:30b`. 9+ failures. Built the 2 corpus leaves by hand.
+Cloud fallbacks dead too (minimax-m2.5 retired, glm-5.1 needs subscription).
+
+---
+
+## Session 2026-08-24 (09:02) — /fresh HANDOFF
+
+**Reason for refresh:** long session (audio corpus → knowledge surface → QA walkthrough).
+Context is large; restarting clean.
+
+### DO NOT KILL — live background work
+- **QA agent PID 1035405** is mid-run: the full 164-check walkthrough against
+  `https://bask-psi.vercel.app`, driven by `qwen3-coder:30b` on the 4090.
+  Started ~07:44, elapsed 1 h 20 m+ at handoff. Observed pace is ~100 s/check, so
+  expect **4–5 hours total**. Live dashboard: `http://192.168.0.134:9876`.
+  Reports land in `~/projects/qa-agent/tests/reports/`.
+- A local prod server runs on **:3418** (`next start`). Another window owns **:3417**.
+
+### Active task at handoff
+Waiting on that QA walkthrough to finish, then read the report and fix what it finds.
+
+### Shipped and verified LIVE this session
+- `/compass/knowledge` — the knowledge curation surface. **741 claims** render in
+  production (1,007 loaded, minus 266 marketing which is opt-in via the Lens filter).
+  Verify-a-claim works end to end: keypress → tRPC → transaction → Postgres, survives
+  reload, writes an audit row. Confirmed in SQL, not just on screen.
+- 3D coverage map (`react-force-graph-3d`): size = claims, colour = verified share,
+  brightness = provenance strength, topic hubs labelled.
+- Polish pass on all six review findings (readable claim column, grouped filter chips,
+  full-bleed map, header leads with remaining work).
+- Marketing lens: 270 voice-of-customer quotes at
+  `docs/ingest/2026-08-23-marketing-voice-of-customer.md`.
+- Repeatable QA harness: `scripts/qa/walkthrough.sh [url]` — assembles
+  `tests/agent/walkthrough/*.md` + `tests/agent/compass-knowledge.md` into one checklist,
+  runs it via the QA agent on a local model. Includes a **route guard** that fails the run
+  if the checklist names a route with no matching `page.tsx`.
+
+### Next steps
+1. Read the QA report when PID 1035405 exits; triage real failures vs checklist noise.
+2. Known-not-built, must be reported SKIP not PASS: command palette (⌘K), audio playback
+   (media lives on FIRMAMENT, unreachable from the web host), `contradiction` alerts,
+   speaker attribution (no diarization; corpus not joined to `knowledge_doc`).
+3. `bask.knowledge_doc` holds **0 rows** — the 22 expo docs are a JSONL fixture only.
+   `core/knowledge/retrieve.ts` is built but unwired.
+
+### Hard-won gotchas (full detail in ~/vault/Knowledge/uvalux-platform-Memory.md)
+- **Every `/compass` route needs `?role=uvalux_rep`** or tRPC returns FORBIDDEN, which
+  renders as a broken page.
+- After `pnpm add`, **`git add pnpm-lock.yaml` explicitly** — a path-scoped add misses it
+  and Vercel fails `--frozen-lockfile`. This cost two failed deploys.
+- The broker gate is a **repo-wide `tsc`**: never leave composition code importing
+  not-yet-built leaves, or every correct local deliverable gets quarantined as `.rejected`.
+- A `.rejected` file is evidence the GATE failed, not that the model did.
+- `qwen3.5:27b` is **gone** from the 4090 despite the registry listing it. Check
+  `/api/tags` before naming a model.
+
+---
+
 ## Session 2026-08-22 (overnight) — UVALUX AUDIO CORPUS → SALON ADVICE (running)
 
 **Ask (verbatim):** transcribe all the local UVALUX audio/video and search it for good salon

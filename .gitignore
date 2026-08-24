@@ -20,3 +20,6 @@ pnpm-debug.log*
 # Prisma generated client
 packages/db/generated/
 .vercel
+
+# Client-confidential — SalonTouch field acquisition (PII/financials, keep local)
+docs/research/salontouch-dossier.md
