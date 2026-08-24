@@ -236,6 +236,35 @@ export interface ClaimPage {
   cursor: string | null;
 }
 
+// ------------------------------------------------------- corpus overview (management)
+
+/**
+ * One corpus as the management surface sees it — a training corpus is a named
+ * group of claims (one extraction pass over one body of audio), not its own
+ * table. This row is what `CorpusList`/`CorpusCard` render: the identity, the
+ * review progress, and whether the UVALUX operator has archived it.
+ *
+ * `archived` is a SOFT state — an archived corpus is hidden from the curation
+ * queue and the graph but its rows stay in the shared `bask` schema, so the
+ * action is always reversible. There is no hard delete on this surface.
+ */
+export interface CorpusOverviewRow {
+  /** Stable key, e.g. `salon-advice` — matches `Claim.corpus`. */
+  corpus: string;
+  /** Human label, e.g. "Salon advice (gemma pass)". Falls back to `corpus`. */
+  label: string;
+  /** Total claims in this corpus. */
+  total: number;
+  /** Verified + rejected. */
+  decided: number;
+  /** Verified only. */
+  verified: number;
+  /** Whether the operator has archived (soft-hidden) this corpus. */
+  archived: boolean;
+  /** ISO timestamp of the most recent claim/review activity, or null. */
+  lastActivity: string | null;
+}
+
 // ------------------------------------------------------- palette (type-to-complete)
 
 export type PaletteItemKind = GraphNodeKind | 'command';

@@ -362,6 +362,7 @@ export {
   type ClaimPage,
   type ClaimProvenance,
   type ClaimShape,
+  type CorpusOverviewRow,
   type CurationAlert,
   type CurationGraph,
   type GraphEdge,
