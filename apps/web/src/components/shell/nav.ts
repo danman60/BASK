@@ -27,10 +27,8 @@ const dest = (key: NavKey, href: string, icon: string): NavDestination => ({
 
 export const NAV: readonly NavDestination[] = [
   dest('today', '/', '☀'),
-  dest('floor', '/floor', '◉'),
   dest('customers', '/customers', '☺'),
   dest('marketing', '/marketing', '✉'),
-  dest('inventory', '/inventory', '▤'),
   dest('insights', '/insights', '◈'),
   dest('monitor', '/monitor', '◎'),
 ];

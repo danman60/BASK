@@ -78,8 +78,8 @@ export interface TodayData {
 const ACTION_ROUTES: Record<string, string> = {
   create_campaign: '/marketing',
   recover_payment: '/customers',
-  draft_order: '/inventory/order',
-  review_product: '/inventory',
+  draft_order: '/insights',
+  review_product: '/insights',
   open_heatmap: '/insights',
   open_report: '/insights',
 };
