@@ -1,79 +1,72 @@
-/**
- * Curation alerts — pure helpers for detecting issues in claim data.
- *
- * This file is the API surface every curation component builds against. It is
- * TYPES AND PURE HELPERS ONLY — no data access, no React, no side effects — so it
- * can be injected as a contract into a build without dragging the app in with it.
- */
-
-import {
-  ALERT_KINDS,
-  ALERT_LABEL,
-  Claim,
-  CurationAlert,
-  ClaimCategory,
-  ReviewState,
-} from './types';
+import { ALERT_KINDS, ALERT_LABEL, AlertSeverity, Claim, ClaimCategory, CurationAlert, ReviewState, claimConfidence } from "./types";
 
 /**
  * Generate curation alerts for a set of claims.
  *
- * @param claims - The claims to analyze
- * @returns Array of alerts detected in the claims
+ * This function is pure - it has no side effects and only uses the input data
+ * to determine which alerts should be generated. It does not perform any IO
+ * operations or interact with React components.
  */
-export function generateAlerts(claims: readonly Claim[]): CurationAlert[] {
+export function generateCurationAlerts(claims: readonly Claim[]): CurationAlert[] {
   const alerts: CurationAlert[] = [];
-  
-  // Track categories and their claim counts for thin_topic alert
-  const categoryCounts: Record<ClaimCategory, number> = {
-    marketing: 0,
-    membership: 0,
-    retail: 0,
-    operations: 0,
-    customer: 0,
-    coaching: 0,
+
+  // Group claims by category for thin_topic alert
+  const claimsByCategory: Record<ClaimCategory, Claim[]> = {
+    marketing: [],
+    membership: [],
+    retail: [],
+    operations: [],
+    customer: [],
+    coaching: [],
   };
-  
-  // Count claims per category
+
   for (const claim of claims) {
-    if (claim.reviewState === 'verified') categoryCounts[claim.category]++;
+    claimsByCategory[claim.category].push(claim);
   }
 
-  // Bug fix: thin_topic is a fact about a TOPIC, not about each claim in it.
-  // Emitting it inside the per-claim loop produced one duplicate alert per
-  // verified claim, so a thin topic shouted louder the more you verified it.
-  for (const category of Object.keys(categoryCounts) as (keyof typeof categoryCounts)[]) {
-    if (categoryCounts[category] < 5) {
-      const nodeId = `topic:${category}`;
+  // thin_topic alert - fires per category when that category has fewer than five claims
+  // whose reviewState is verified
+  for (const [category, categoryClaims] of Object.entries(claimsByCategory)) {
+    const verifiedClaims = categoryClaims.filter(
+      (c) => c.reviewState === 'verified'
+    );
+    if (verifiedClaims.length < 5) {
       alerts.push({
-        id: `thin_topic-${nodeId}`,
+        id: `thin_topic_${category}`,
         kind: 'thin_topic',
         severity: 'attention',
-        nodeId,
-        message: `Only ${categoryCounts[category]} verified claims cover ${category}. This topic needs more building.`,
-        claimIds: claims.filter((c) => c.category === category).map((c) => c.id),
+        nodeId: `topic:${category}`,
+        message: `Topic ${category} has fewer than five verified claims`,
+        claimIds: verifiedClaims.map((c) => c.id),
       });
     }
   }
-  
-  // Check each claim for alerts
+
+  // single_source alert - fires per claim when distinctEvents equals one and specificity is concrete
   for (const claim of claims) {
-    // single_source - fires per claim when distinctEvents equals one and specificity is concrete
-    if (claim.distinctEvents === 1 && claim.specificity === 'concrete') {
+    if (
+      claim.distinctEvents === 1 &&
+      claim.specificity === 'concrete'
+    ) {
       alerts.push({
-        id: `single_source-${claim.id}`,
+        id: `single_source_${claim.id}`,
         kind: 'single_source',
         severity: 'attention',
         nodeId: claim.id,
-        message: `This claim was said only once and is concrete`,
+        message: `Claim was said once, by one person`,
         claimIds: [claim.id],
       });
     }
-    
-    // unanchored_attribution - fires when any provenance entry has titleConfidence interpolated
-    if (claim.provenance.some(p => p.titleConfidence === 'interpolated')) {
+  }
+
+  // unanchored_attribution alert - fires when any provenance entry has titleConfidence interpolated
+  for (const claim of claims) {
+    const hasInterpolated = claim.provenance.some(
+      (p) => p.titleConfidence === 'interpolated'
+    );
+    if (hasInterpolated) {
       alerts.push({
-        id: `unanchored_attribution-${claim.id}`,
+        id: `unanchored_attribution_${claim.id}`,
         kind: 'unanchored_attribution',
         severity: 'attention',
         nodeId: claim.id,
@@ -81,33 +74,16 @@ export function generateAlerts(claims: readonly Claim[]): CurationAlert[] {
         claimIds: [claim.id],
       });
     }
-    
-    // contradiction - return nothing (this is a model-based detection that's outside the scope of this pure module)
-    // Note: Detecting opposing sentiment needs a model and this module is pure
-    
-    // stale - fires when reviewState is verified and reviewedAt is more than twelve months old
-    if (claim.reviewState === 'verified' && claim.reviewedAt) {
-      const reviewedDate = new Date(claim.reviewedAt);
-      const now = new Date();
-      const diffInMonths = (now.getFullYear() - reviewedDate.getFullYear()) * 12 + 
-                          (now.getMonth() - reviewedDate.getMonth());
-      
-      if (diffInMonths > 12) {
-        alerts.push({
-          id: `stale-${claim.id}`,
-          kind: 'stale',
-          severity: 'info',
-          nodeId: claim.id,
-          message: `This claim was verified more than twelve months ago`,
-          claimIds: [claim.id],
-        });
-      }
-    }
-    
-    // orphan - fires when every provenance entry has a null sessionTitle
-    if (claim.provenance.every(p => p.sessionTitle === null)) {
+  }
+
+  // orphan alert - fires when every provenance entry has a null sessionTitle
+  for (const claim of claims) {
+    const allNullSession = claim.provenance.every(
+      (p) => p.sessionTitle === null
+    );
+    if (allNullSession) {
       alerts.push({
-        id: `orphan-${claim.id}`,
+        id: `orphan_${claim.id}`,
         kind: 'orphan',
         severity: 'attention',
         nodeId: claim.id,
@@ -115,11 +91,16 @@ export function generateAlerts(claims: readonly Claim[]): CurationAlert[] {
         claimIds: [claim.id],
       });
     }
-    
-    // provenance_drift - fires when any provenance entry has quoteVerified false, severity blocking
-    if (claim.provenance.some(p => !p.quoteVerified)) {
+  }
+
+  // provenance_drift alert - fires when any provenance entry has quoteVerified false, severity blocking
+  for (const claim of claims) {
+    const hasDrift = claim.provenance.some(
+      (p) => !p.quoteVerified
+    );
+    if (hasDrift) {
       alerts.push({
-        id: `provenance_drift-${claim.id}`,
+        id: `provenance_drift_${claim.id}`,
         kind: 'provenance_drift',
         severity: 'blocking',
         nodeId: claim.id,
@@ -128,6 +109,34 @@ export function generateAlerts(claims: readonly Claim[]): CurationAlert[] {
       });
     }
   }
-  
+
+  // stale alert - fires when reviewState is verified and reviewedAt is more than twelve months old
+  for (const claim of claims) {
+    if (
+      claim.reviewState === 'verified' &&
+      claim.reviewedAt !== null
+    ) {
+      const reviewedDate = new Date(claim.reviewedAt);
+      const now = new Date();
+      const diffMonths = (now.getFullYear() - reviewedDate.getFullYear()) * 12 +
+        (now.getMonth() - reviewedDate.getMonth());
+      
+      if (diffMonths > 12) {
+        alerts.push({
+          id: `stale_${claim.id}`,
+          kind: 'stale',
+          severity: 'info',
+          nodeId: claim.id,
+          message: `Verified a long time ago`,
+          claimIds: [claim.id],
+        });
+      }
+    }
+  }
+
+  // contradiction alert - return nothing, as detecting opposing sentiment needs a model
+  // and this module is pure
+  // No implementation needed for contradiction
+
   return alerts;
 }

@@ -1,24 +1,12 @@
-import { CLAIM_CATEGORIES, REVIEW_STATE_LABEL } from '@bask/core';
 import type { ClaimFilters } from '@bask/core';
+import { REVIEW_STATES, REVIEW_STATE_LABEL, CLAIM_CATEGORIES } from '@bask/core';
 
 /**
- * Filter chips, in three LABELLED groups.
+ * A horizontal bar of filter chips for claims.
  *
- * The labels are not decoration. Before them this was twelve undifferentiated
- * pills containing the word "marketing" TWICE — once as a topic, once as a lens —
- * adjacent and meaning different things. Grouping them and renaming the lens to
- * "Voice-of-customer" is what makes the bar readable.
+ * @param filters - The current filter state.
+ * @param onChange - Callback when a filter is toggled.
  */
-
-/** Only these three fields on ClaimFilters are arrays; the rest are not. */
-type ArrayFilterKey = 'reviewState' | 'category' | 'lens';
-
-const LENSES: { value: string; label: string }[] = [
-  { value: 'advice', label: 'Advice' },
-  { value: 'recall', label: 'War stories' },
-  { value: 'marketing', label: 'Voice-of-customer' },
-];
-
 export function ClaimFilterBar({
   filters,
   onChange,
@@ -26,76 +14,89 @@ export function ClaimFilterBar({
   filters: ClaimFilters;
   onChange: (filters: ClaimFilters) => void;
 }) {
-  // One narrowing point. Indexing ClaimFilters by a bare `keyof` widens to a
-  // union spanning strings and booleans, which is what made every call site
-  // fight the compiler.
-  const valuesFor = (key: ArrayFilterKey): string[] =>
-    (filters[key] as string[] | undefined) ?? [];
+  const isAnyFilterActive =
+    (filters.reviewState && filters.reviewState.length > 0) ||
+    (filters.category && filters.category.length > 0) ||
+    (filters.lens && filters.lens.length > 0);
 
-  const isAnyActive =
-    valuesFor('reviewState').length > 0 ||
-    valuesFor('category').length > 0 ||
-    valuesFor('lens').length > 0;
-
-  const toggle = (key: ArrayFilterKey, value: string) => {
-    const current = valuesFor(key);
+  const handleToggle = (type: 'reviewState' | 'category' | 'lens', value: string) => {
+    const current = filters[type] || [];
     const next = current.includes(value)
-      ? current.filter((v) => v !== value)
+      ? current.filter((v: string) => v !== value)
       : [...current, value];
-    onChange({ ...filters, [key]: next });
-  };
 
-  const clearAll = () =>
-    onChange({ ...filters, reviewState: [], category: [], lens: [] });
+    onChange({
+      ...filters,
+      [type]: next,
+    });
+  };
 
   return (
     <div className="cp-filterbar">
-      <div className="cp-filtergroup">
-        <span className="cp-filtergroup-label">State</span>
-        {(Object.keys(REVIEW_STATE_LABEL) as Array<keyof typeof REVIEW_STATE_LABEL>).map(
-          (key) => (
+      {/* Review State Filter */}
+      <div className="cp-filterbar-group">
+        {REVIEW_STATES.map((state) => {
+          const isSelected = (filters.reviewState || []).includes(state);
+          return (
             <button
-              key={key}
+              key={state}
               type="button"
-              className={`cp-chip ${valuesFor('reviewState').includes(key) ? 'cp-chip--on' : ''}`}
-              onClick={() => toggle('reviewState', key)}
+              className={`cp-chip ${isSelected ? 'cp-chip--on' : ''}`}
+              onClick={() => handleToggle('reviewState', state)}
             >
-              {REVIEW_STATE_LABEL[key]}
+              {REVIEW_STATE_LABEL[state]}
             </button>
-          ),
-        )}
+          );
+        })}
       </div>
 
-      <div className="cp-filtergroup">
-        <span className="cp-filtergroup-label">Topic</span>
-        {CLAIM_CATEGORIES.map((cat) => (
-          <button
-            key={cat}
-            type="button"
-            className={`cp-chip ${valuesFor('category').includes(cat) ? 'cp-chip--on' : ''}`}
-            onClick={() => toggle('category', cat)}
-          >
-            {cat}
-          </button>
-        ))}
+      {/* Category Filter */}
+      <div className="cp-filterbar-group">
+        {CLAIM_CATEGORIES.map((category) => {
+          const isSelected = (filters.category || []).includes(category);
+          return (
+            <button
+              key={category}
+              type="button"
+              className={`cp-chip ${isSelected ? 'cp-chip--on' : ''}`}
+              onClick={() => handleToggle('category', category)}
+            >
+              {category}
+            </button>
+          );
+        })}
       </div>
 
-      <div className="cp-filtergroup">
-        <span className="cp-filtergroup-label">Lens</span>
-        {LENSES.map((l) => (
-          <button
-            key={l.value}
-            type="button"
-            className={`cp-chip ${valuesFor('lens').includes(l.value) ? 'cp-chip--on' : ''}`}
-            onClick={() => toggle('lens', l.value)}
-          >
-            {l.label}
-          </button>
-        ))}
+      {/* Lens Filter */}
+      <div className="cp-filterbar-group">
+        {['advice', 'recall', 'marketing'].map((lens) => {
+          const isSelected = (filters.lens || []).includes(lens);
+          return (
+            <button
+              key={lens}
+              type="button"
+              className={`cp-chip ${isSelected ? 'cp-chip--on' : ''}`}
+              onClick={() => handleToggle('lens', lens)}
+            >
+              {lens}
+            </button>
+          );
+        })}
       </div>
 
-      {isAnyActive && (
-        <button type="button" className="cp-chip cp-chip--clear" onClick={clearAll}>
+      {/* Clear All Button */}
+      {isAnyFilterActive && (
+        <button
+          type="button"
+          className="cp-button"
+          onClick={() =>
+            onChange({
+              reviewState: [],
+              category: [],
+              lens: [],
+            })
+          }
+        >
           Clear all
         </button>
       )}
