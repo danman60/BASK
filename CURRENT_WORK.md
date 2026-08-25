@@ -1,8 +1,57 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-25 (08:30–09:00) — WINS FEED SHIPPED · ORPHAN GATE · BROKER FIX ROUTED
+
+### DONE — wins feed is LIVE (`9b55c47`)
+Kept the **RICH** WinCard. Decider was not taste: `WinsFeed.tsx` was already written against the
+rich props (`note`, `likeLabel`, `onLike`, `onMessage`), and the stripped variant the broker gate
+passed reused classes from the opportunity/outcome cards (`.b-opp-cat` as container AND children,
+`.b-outcome-rev` for delta + metric + button) so town/timestamp collided into "KINGSTON ON3 DAYS
+AGO" and the button rendered as bare text. **The gate proves compilation, never correctness.**
+
+Verified on production, not assumed: 4 cards, 4 social rows, 4 owner notes, 4 like buttons,
+Message present, 0px clipped, no JS errors. Towns Kingston/Barrie/London/Sudbury — no Toronto, so
+`isNonCompeting` is genuinely filtering rather than a curated list.
+
+`WinCard.tsx.rejected` and the junk `WinCard.tsx\n` are both gone — resolved, not lost.
+
+### THE ORPHAN PROBLEM — quantified and gated (`1b5afdd`)
+**13 of 40 exported components render for nobody.** Not 13 mistakes — one structural gap 13 times.
+`scripts/qa/orphan-check.sh` now exits 1 on any un-allowlisted orphan. Deliberate parking needs a
+reason in ALLOWLIST (PulseCard is parked that way).
+
+Still orphaned, each a built feature nobody can see: `CoachAnswer`, `CommunityComposer`,
+`CommunityFeed`, `CustomerHealthSection`, `EmailPreviewCard`, `FrontDeskScriptCard`,
+`HandleItPlanCard`, `NetworkOutcomeCard`, `ScoreboardSection`, `SmsPreviewCard`, `SocialPostCard`,
+`StaffChallengeCard`, `StaffTaskCard`.
+
+**Method warning:** counting usage only in `apps/` reports 24 orphans and is WRONG — it misses
+composition inside `packages/ui` (`EmployeeSalesTable` is rendered by `MonitorSurface.tsx:52`).
+Count JSX sites in both trees.
+
+### UNRESOLVED PRODUCT CONFLICT — the two social surfaces disagree on identity
+- `CommunityFeed` (on master, unwired): names people and salons — "Dana R. · Sunset Ridge,
+  Burlington ON". Owner-authored posts, `replyCount`, has a composer. **`CommunityComposer` is
+  UNSTYLED** — labels and Post render as bare text.
+- `WinsFeed` (now live): **town only, never a business name**, non-compete filtered, machine-derived
+  from measured outcomes, likes/comments/Message, no composer.
+
+Both cannot be the rule. Decide whether the social layer is one surface or two, and which identity
+rule wins, before wiring CommunityFeed to anything.
+
+### Broker design fix — routed to sysadmin (tmux 0)
+The durable fix for "pushed but invisible" is not more model quality, it is the **definition of
+done**. Broker's terminal state is "artifact exists + tsc passes", which a component nobody imports
+satisfies perfectly. Proposed: (1) batches declare a destination surface, (2) acceptance gate gains
+a render assertion against the deployed URL, (3) broker auto-pings ONE supervisor integration pass
+per batch when it drains. Wiring cannot be pushed down to locals — it is the cross-file/design work
+the routing rules already reserve for the architect.
+
+---
+
 ## Session 2026-08-25 (00:51–05:30) — UNATTENDED OVERNIGHT · MERGE+DEPLOY PIPELINE + MOBILE QA
 
-### ⚠️ ONE DECISION WAITING ON DANIEL — nothing else is blocked
+### ~~ONE DECISION WAITING ON DANIEL~~ — RESOLVED ABOVE, rich shipped in `9b55c47`
 `WinCard.tsx` exists in two versions on disk. **Both left untouched by design.**
 
 | file | bytes | what it has |
