@@ -54,6 +54,13 @@
 .b-healthgrid-caption { font-size: var(--text-xs); color: var(--ink-faint); margin-bottom: var(--space-4); }
 
 /* ---- shared table shape (slipping list, cohort table) -------------------- */
+/* `width: 100%` cannot shrink a table below its min-content, so at a 390px
+   viewport this table is 494px and its card clipped 145px of customer rows —
+   html/body are overflow-x:clip, so those columns were unreachable, not just
+   off-screen. The card scrolls the table inside its own box instead; the page
+   itself never scrolls sideways. Same remedy as .b-etable-scroll, applied at
+   the container because six components share .b-dtable. */
+.card:has(> .b-dtable) { overflow-x: auto; }
 .b-dtable { width: 100%; border-collapse: collapse; }
 .b-dtable th {
   font: 600 var(--text-xs) / 1 var(--font-body);
