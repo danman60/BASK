@@ -59,47 +59,52 @@ export function CommunityComposer({
 
   return (
     <form
-      className={['card', className].filter(Boolean).join(' ')}
+      className={['card', 'b-composer', className].filter(Boolean).join(' ')}
       data-testid="community-composer"
       onSubmit={handleSubmit}
     >
       {!disabledReason ? (
         <>
-          <div>
-            <label htmlFor="community-composer-body">
+          <div className="b-composer-field">
+            <label className="b-composer-label" htmlFor="community-composer-body">
               Share a question with the community
             </label>
             <textarea
+              className="b-composer-body"
               id="community-composer-body"
+              rows={3}
+              placeholder="What are you seeing that you cannot explain?"
               value={body}
               onChange={(e) => onBodyChange(e.target.value)}
             />
           </div>
 
           {(onFigureValueChange || onFigureCaptionChange) && (
-            <div>
-              <div>
-                <label>Add a figure</label>
-              </div>
-              <div>
-                <div>
-                  <label htmlFor="community-composer-figure-value">
+            <div className="b-composer-field">
+              <span className="b-composer-label">Add a figure (optional)</span>
+              <div className="b-composer-figure">
+                <div className="b-composer-field">
+                  <label className="b-composer-sub" htmlFor="community-composer-figure-value">
                     Value
                   </label>
                   <input
+                    className="b-composer-input"
                     id="community-composer-figure-value"
                     type="text"
+                    placeholder="5.9% vs 3.1%"
                     value={figureValue || ''}
                     onChange={(e) => onFigureValueChange?.(e.target.value)}
                   />
                 </div>
-                <div>
-                  <label htmlFor="community-composer-figure-caption">
+                <div className="b-composer-field">
+                  <label className="b-composer-sub" htmlFor="community-composer-figure-caption">
                     Caption
                   </label>
                   <input
+                    className="b-composer-input"
                     id="community-composer-figure-caption"
                     type="text"
+                    placeholder="product per visit, AM vs PM"
                     value={figureCaption || ''}
                     onChange={(e) => onFigureCaptionChange?.(e.target.value)}
                   />
@@ -108,17 +113,19 @@ export function CommunityComposer({
             </div>
           )}
 
-          <div>
+          <div className="b-composer-foot">
+            <span className="b-composer-fence">Owners only · your town, never your business name</span>
             <button
               type="submit"
+              className="btn btn-primary b-composer-post"
               disabled={isSubmitDisabled}
             >
-              {submitting ? 'Posting...' : 'Post'}
+              {submitting ? 'Posting…' : 'Post'}
             </button>
           </div>
         </>
       ) : (
-        <div>{disabledReason}</div>
+        <div className="b-composer-disabled">{disabledReason}</div>
       )}
     </form>
   );

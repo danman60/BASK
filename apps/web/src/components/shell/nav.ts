@@ -31,6 +31,7 @@ export const NAV: readonly NavDestination[] = [
   dest('marketing', '/marketing', '✉'),
   dest('insights', '/insights', '◈'),
   dest('monitor', '/monitor', '◎'),
+  dest('community', '/community', '◇'),
 ];
 
 /** Longest-prefix match, so `/customers/123` still lights up Customers. */

@@ -370,6 +370,7 @@ export const SHELL_UI = {
     inventory: 'Inventory',
     insights: 'Analytics',
     monitor: 'Monitor',
+    community: 'Community',
   },
   /**
    * Tab-bar labels. Six 10px labels across a 390px bar leaves ~64px each, so the
@@ -384,6 +385,7 @@ export const SHELL_UI = {
     inventory: 'Inventory',
     insights: 'Analytics',
     monitor: 'Monitor',
+    community: 'Community',
   },
   navLandmark: 'Main sections',
   avatarLabel: (name: string) => `Signed in as ${name}`,

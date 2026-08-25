@@ -123,6 +123,45 @@
 .b-post-figure small { display: block; margin-top: 6px; font: 500 var(--text-xs)/1 var(--font-body); color: var(--ink-faint); }
 .b-post-foot { display: flex; gap: var(--space-4); margin-top: var(--space-4); font-size: var(--text-xs); color: var(--ink-faint); }
 
+/* min-width:0 on the children so a long post body cannot widen the column —
+   the same grid default that clipped 242px off the Monitor page. */
+.b-community { display: grid; gap: var(--space-5); min-width: 0; }
+.b-community > * { min-width: 0; }
+
+/* ---- community composer --------------------------------------------------
+   The component shipped with no classNames at all, so every label, input and
+   the Post button rendered as bare text on a card. Styling matches the post
+   cards it sits above rather than introducing a second form language. */
+.b-composer { display: grid; gap: var(--space-4); padding: var(--space-5) var(--space-6); }
+.b-composer-field { display: grid; gap: var(--space-2); min-width: 0; }
+.b-composer-label { font: 600 var(--text-sm) / 1.3 var(--font-body); color: var(--ink); }
+.b-composer-sub { font: 500 var(--text-xs) / 1.3 var(--font-body); color: var(--ink-faint); }
+.b-composer-body,
+.b-composer-input {
+  width: 100%;
+  font: 400 var(--text-sm) / 1.5 var(--font-body);
+  color: var(--ink);
+  background: var(--surface, #fff);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  padding: var(--space-3);
+}
+.b-composer-body { resize: vertical; min-height: 76px; }
+.b-composer-body::placeholder,
+.b-composer-input::placeholder { color: var(--ink-faint); }
+.b-composer-body:focus-visible,
+.b-composer-input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+/* min(220px,100%) so the two fields stack instead of overflowing at 390px */
+.b-composer-figure { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: var(--space-3); }
+.b-composer-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
+.b-composer-fence { font: 500 var(--text-xs) / 1.4 var(--font-body); color: var(--ink-faint); }
+.b-composer-post:disabled { opacity: 0.5; cursor: not-allowed; }
+.b-composer-disabled { font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink-faint); }
+
 /* ---- citation card ------------------------------------------------------- */
 .b-cite { padding: var(--space-5) var(--space-6); }
 .b-cite-title { font: 600 var(--text-md) / 1.3 var(--font-body); }

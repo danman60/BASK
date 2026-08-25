@@ -327,6 +327,11 @@ export {
   type ViewerContext,
   type WinFeedOptions,
 } from './network/wins';
+export {
+  DEMO_COMMUNITY_POSTS,
+  DEMO_COMMUNITY_TODAY,
+  type CommunityPostSeed,
+} from './network/community';
 
 // Front Desk Monitor (2026-08-21) — listener device → scored interactions →
 // coaching insights. Demo depth: fixtures only, no audio anywhere.
