@@ -3,15 +3,13 @@ import Link from 'next/link';
 import {
   ComparisonCard,
   Guided,
-  PulseCard,
-  PulseChips,
   TeachingEmptyState,
   TODAY_UI,
-  type MetricKey,
-  type PulseRow,
 } from '@bask/ui';
 
 import { DEMO_OPPORTUNITIES, DEMO_OUTCOMES } from '@bask/core';
+
+import { WinsFeed } from '@/components/today/WinsFeed';
 
 import { AttentionQueue } from '@/components/today/AttentionQueue';
 import { DaybreakLetter } from '@/components/today/DaybreakLetter';
@@ -37,14 +35,6 @@ import { dismissInsight, markInsightSeen, restoreInsight } from './actions';
 // The demo clock moves under the app; a cached Today is a Today that lies on stage.
 export const dynamic = 'force-dynamic';
 
-/** Which explainer belongs to which pulse row. Keyed by the row's stored label. */
-const PULSE_METRICS: Record<string, MetricKey> = {
-  Revenue: 'revenueToday',
-  'Bookings today': 'bookingsToday',
-  'In the salon now': 'inSalonNow',
-  'Rooms in use': 'roomsInUse',
-};
-
 export default async function TodayPage({
   searchParams,
 }: {
@@ -64,9 +54,8 @@ export default async function TodayPage({
 
   const today = await readVirtualToday();
   const scopeQuery = buildScopeQuery(params);
-  const { brief, cards, nextUp, comparison } = await loadToday(salon, today, scopeQuery);
+  const { brief, cards, comparison } = await loadToday(salon, today, scopeQuery);
 
-  const pulseRows: PulseRow[] = brief?.pulse.rows ?? [];
 
   return (
     <main className="b-shell">
@@ -77,18 +66,17 @@ export default async function TodayPage({
           <TeachingEmptyState state="daybreak" />
         )}
 
-        {/* mockup 05: the pulse sits between the letter and the queue on mobile. */}
-        {pulseRows.length > 0 && (
-          <div className="b-mobile-only b-pulse-strip">
-            <PulseChips rows={pulseRows} label={TODAY_UI.pulseHeading} />
-          </div>
-        )}
-
         {/* The Opportunity feed leads Today — money-first, ranked, one-click.
             This is the product's primary interface (brainstorm §23/§29): the
             owner reads dollars and actions, not analytics. The insight queue
             below it stays as the finer-grained "what changed" detail. */}
         <OpportunityFeed opportunities={DEMO_OPPORTUNITIES} outcomes={DEMO_OUTCOMES} />
+
+        {/* The social layer sits directly under the money, and above the
+            analytics. Thesis: owners are moved by a salon like theirs having
+            already done the thing, in that owner's own words — so the proof
+            follows the recommendation instead of being buried on another page. */}
+        <WinsFeed />
 
         <h2 className="b-q-label">
           <span className="b-full">{TODAY_UI.queueHeading}</span>
@@ -106,40 +94,13 @@ export default async function TodayPage({
       </section>
 
       <aside className="b-rail">
-        {/* No rows means no brief for this salon yet — the letter's empty state has
-            already said so, and a heading over nothing repeats it badly. */}
-        <div className="b-desktop-only" hidden={pulseRows.length === 0}>
-          <PulseCard
-            heading={TODAY_UI.pulseHeading}
-            rows={pulseRows}
-            explain={(row) =>
-              PULSE_METRICS[row.label] ? (
-                <Guided metric={PULSE_METRICS[row.label]!} affordance="quiet">
-                  {row.label}
-                </Guided>
-              ) : (
-                row.label
-              )
-            }
-          />
-        </div>
-
-        <section className="card b-rail-card" data-testid="next-up">
-          <h4>{TODAY_UI.nextUpHeading}</h4>
-          {nextUp.length > 0 ? (
-            nextUp.map((booking) => (
-              <div className="b-book" key={booking.id}>
-                <time>{booking.time}</time>
-                <span className="b-book-who">{booking.who}</span>
-                <span className="b-book-what">{booking.what}</span>
-                {booking.confirmed && <span className="b-book-dot" aria-hidden />}
-              </div>
-            ))
-          ) : (
-            <TeachingEmptyState state="nextUp" icon="◷" />
-          )}
-        </section>
-
+        {/* The rail deliberately carries NO operational cards. "Today so far"
+            (revenue/bookings/in-the-salon-now/rooms-in-use) and "Next up" were
+            floor-ops readouts — the same framing the product dropped when Floor
+            and Inventory left the nav. Bask is a sales-intelligence layer, not a
+            front-desk console; the rail is for comparison and story, and the
+            money-first opportunity feed owns the main column. */
+        }
         {comparison &&
           (comparison.hasActivity ? (
             <ComparisonCard

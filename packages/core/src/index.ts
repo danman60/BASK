@@ -312,6 +312,21 @@ export {
   type UvaluxOrderAction,
 } from './opportunities/types';
 export { DEMO_OPPORTUNITIES, DEMO_OUTCOMES } from './opportunities/fixtures';
+export {
+  DEMO_WINS,
+  DEMO_WIN_NOTES,
+  DEMO_WIN_ENGAGEMENT,
+  DEMO_WIN_TODAY,
+} from './network/fixtures';
+export {
+  distanceKm,
+  isNonCompeting,
+  rankWins,
+  DEFAULT_WIN_FEED_OPTIONS,
+  type SalonWin,
+  type ViewerContext,
+  type WinFeedOptions,
+} from './network/wins';
 
 // Front Desk Monitor (2026-08-21) — listener device → scored interactions →
 // coaching insights. Demo depth: fixtures only, no audio anywhere.

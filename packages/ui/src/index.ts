@@ -46,6 +46,12 @@ export { MetricTile, MetricRow, type MetricTileProps, type MetricRowProps } from
 export { CohortTable, type CohortRow, type CohortTableProps } from './components/CohortTable';
 export { CommunityFeed, type CommunityFeedProps, type CommunityPost } from './components/CommunityFeed';
 export { CommunityComposer, type CommunityComposerProps } from './components/CommunityComposer';
+export { WinCard, type WinCardProps } from './components/WinCard';
+export {
+  WinsFeedSection,
+  type WinsFeedSectionProps,
+  type WinsFeedItem,
+} from './components/WinsFeedSection';
 export { NetworkOutcomeCard, type NetworkOutcomeCardProps } from './components/NetworkOutcomeCard';
 export { default as CitationCard, type CitationCardProps } from './components/CitationCard';
 
