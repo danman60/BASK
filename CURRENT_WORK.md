@@ -1,5 +1,151 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-25 (00:51–05:30) — UNATTENDED OVERNIGHT · MERGE+DEPLOY PIPELINE + MOBILE QA
+
+### ⚠️ ONE DECISION WAITING ON DANIEL — nothing else is blocked
+`WinCard.tsx` exists in two versions on disk. **Both left untouched by design.**
+
+| file | bytes | what it has |
+|---|---|---|
+| `WinCard.tsx` | 1658 | stripped — town/action/signal/metric/delta/time/days + "try this". **This is what the gate passed.** |
+| `WinCard.tsx.rejected` | 4707 | rich — Daniel's social thesis in the header comment, `note` (owner's own words), like/comment/**Message** buttons, town initials badge |
+
+The wins-feed CSS already committed (`.b-win-note`, `.b-win-social`, `.b-win-act`) was authored
+for the RICH version, so restoring it is a file copy with no CSS work. Pick one, then the held-back
+wins-feed cluster can land.
+
+Also on disk: a junk file literally named `WinCard.tsx\n` (trailing newline in the filename, 1653b,
+broker shell-quoting artifact). Not imported by anything. Left in place; delete when convenient.
+**Do not `git add -A`** without excluding it.
+
+### Shipped and verified live on https://bask-psi.vercel.app
+Four commits, each deployed and re-measured on production, not assumed:
+- **`bf28ad6`** — EmployeeSalesTable scroll wrapper + curation alerts/graph + ClaimFilterBar +
+  the landed broker leaves (`flags.ts`, `network/standing.ts`, `GrowthRail`, `PeerStandingCard`).
+- **`c171609`** — Monitor clipped 242px at mobile. Root cause was NOT the table: grid/flex children
+  default to `min-width:auto`, so the mobile track `grid-template-columns: 1fr` grew to the table's
+  616px min-content. Pinned every track to `minmax(0,…)`/`min-width:0`.
+- **`012d3db`** — `.b-dtable` (6 components share it) clipped 145px of customer rows. Fixed at the
+  container: `.card:has(> .b-dtable) { overflow-x:auto }`.
+- **`3a6ad44`** — Compass: `.cp-card:has(.cp-table)` scrolls; `minmax(320px,1fr)` →
+  `minmax(min(320px,100%),1fr)` (identical on desktop, yields only when the column can't fit).
+
+**PRODUCTION WAS BROKEN FOR 2 HOURS AND NOBODY KNEW.** The 03:01 deploy failed with
+`Export generateCurationAlerts doesn't exist in target module`. Cause: the broker delivered that
+function into `alerts.ts` at 22:01 but the file was never committed, so master's `core/index.ts`
+aliased `generateCurationAlerts as claimAlerts` against a module that lacked it. Local `tsc` passed
+because the working tree had the fix; Vercel built from master, which didn't. `bf28ad6` repaired it.
+**Lesson: a green local tsc proves nothing about master when broker output sits uncommitted.**
+
+### Mobile QA — 17 routes at 390×844, production
+All **17 routes HTTP 200, zero JS errors**. Clipping (px of content unreachable, because html/body
+are `overflow-x:clip` — this is silent data loss, not off-screen content):
+
+| route | before | after |
+|---|---|---|
+| /monitor | 242 | **0** |
+| /compass/accounts | 646 | 42 |
+| /compass/network | 410 | 28 |
+| /compass/coaching | 186 | 97 |
+| /customers | 145 | 8 |
+| /compass/knowledge | 72 | 3 (72 on prod — more claims than local) |
+| /insights/peers | 17 | **0** |
+| /compass | 51 | 51 |
+| /marketing | 27 | 27 |
+| /floor | 357 | 359 (off-nav since `8e32efc`) |
+
+Repeatable check committed: `node scripts/qa/mobile-clip-check.mjs`.
+
+### NEEDS A DESIGN DECISION — deliberately not fixed
+`.cp-layout` is `grid-template-columns: 216px minmax(0,1fr)` with **no mobile breakpoint anywhere**.
+The Compass sidebar never collapses, eating 216 of 390px. That is the entire remaining 28–97px on
+every Compass route. How Compass nav should behave on mobile is a product call, so it was left
+alone. Is Compass even meant to be usable on a phone? If yes, this is the next fix.
+
+### CORRECTION — a stale fact was being carried in CLAUDE.md and CURRENT_WORK.md
+**"AI runs the deterministic fallback everywhere — the Anthropic key is out of credits" is FALSE.**
+`packages/core/src/ai/client.ts:9` — the provider was **already switched to OpenAI on 2026-08-07**.
+`isAiConfigured` gates on `OPENAI_API_KEY`, which is set on Vercel (17d ago), and a live call to
+`gpt-4.1` with the local key returned HTTP 200. So "switch the LLM off Anthropic" is already done.
+If a surface still shows the fallback label, the cause is something else and needs a fresh look —
+do not re-derive it from the old story. Model config: `DEFAULT_AI_MODEL = 'gpt-4.1'`,
+`insight.classify` → `gpt-4.1-mini`, override via `AI_MODEL`.
+
+### Open, still unanswered
+- **Demo date** — now asked five times.
+- Wins feed exclusion radius + auto-publish vs opt-in → Daniel said these become **UVALUX-
+  configurable in Compass**, so they are a settings surface, not constants. Not built yet.
+- Pitch page: **stays gitignored** (decided).
+
+### Gotcha learned tonight
+`vercel ls` prints its table to **stderr**. Any `vercel ls ... 2>/dev/null | sed -n '4p'` poll loop
+hangs forever waiting on empty stdout. Cost two 10-minute timeouts.
+
+---
+
+## Session 2026-08-24 (23:28) — /fresh HANDOFF · SALON DATA GRADED + SOCIAL LAYER STARTED
+
+**Reason for refresh:** very long session (SalonTouch grading → Phase 1 proposal → pitch page ×3 →
+social/wins feed build). Context is large; restarting clean.
+
+### Active task at handoff
+Wins feed is LIVE on the Today landing page at localhost:3417 (4 cards render, tsc clean across
+core/ui/web). **Nothing committed since `e750201`.** Remaining leaves (`GrowthRail`,
+`PeerStandingCard`, `flags.ts`, `standing.ts`) are queued on the broker but had not landed.
+
+### THE STANDING DIRECTIVE — read `docs/DIRECTIVE.md` FIRST
+`docs/pitch/PROPOSAL-PHASE1-UVALUX.md` (gitignored, carries pricing) is the scope authority and
+SUPERSEDES `PROPOSAL-NICK.md`. Priorities: (1) threshold recalibration — detectors cannot fire on
+real 5.28% attachment; (2) signal→coaching→action join (`experts.ts` unwired) = success criterion 4;
+(3) coefficients from natural experiments.
+
+### The real salon dataset — graded, and it moved the pitch
+- Extractor `packages/db/scripts/salon-ingest/salontouch-extract.mjs` → canonical CSVs, dry-run
+  validated: 194,672 visits / 53,839 sales / 20,179 customers, **12/12 referential checks**.
+- **4 trading salons** (Toronto, Woodbridge, Bolton, Vaughan), verified 3 ways. A 5th SalonUID
+  exists and is an EMPTY setup artifact — 1 orphaned employee row, zero everything else.
+- Coefficients (`docs/research/salontouch-coefficients.md`, gitignored): attachment ceiling HOLDS
+  (8.48% best staffer vs 5.28% house) · reactivation baseline HOLDS (**30d silent → 71.2% return
+  unprompted, avg 207 days**) · upgrade = association only · **modality→tenure DOES NOT HOLD**
+  (31.80 vs 31.89 months controlled — do not pitch it; take it to Mike as a question).
+- **77.7% of this salon's $433,333 product spend was UVALUX brands.** Sales fell 37% 2017→2019
+  while visits fell only 13% — they kept customers and stopped selling. That is the UVALUX pitch.
+- Corpus audit: 224 clusters, **ZERO reactivation coaching** against 13,807 lapsed customers.
+
+### Shipped this session
+- `docs/DIRECTIVE.md`, `docs/plans/2026-08-24-salontouch-counterfactual-replay.md`,
+  `docs/plans/2026-08-25-wins-feed.md` (wins feed + merged leaderboard + social thesis).
+- Pitch page rebuilt twice → FIRMAMENT desktop `UVALUX-The-Loop.html` + artifact
+  https://claude.ai/code/artifact/366c6536-2fd5-49b5-8924-b03c77780c2d
+- Commit `e750201`: network-outcome + community leaves, `scaling.ts`, extractor, ETL env overrides,
+  two pre-existing tsc fixes (`palette.ts` imported types from a .md spec; `index.ts` wrong alias).
+- UNCOMMITTED: `WinCard`, `WinsFeedSection`, `WinsFeed`, `network/fixtures.ts`, wins CSS,
+  `EmployeeSalesTable` scroll-wrapper fix, Today rail strip (PulseCard/Next up/PulseChips removed).
+
+### Gotchas learned TODAY — do not relearn
+- **"PUSHED BUT INVISIBLE"**: the local lane builds LEAVES, so a fully successful batch produces
+  exactly the invisible half. Run `grep -rn "<Component" apps/*/src` before saying anything shipped.
+- **A queued local task can CLOBBER supervisor work on the same file.** `win-card` landed after the
+  social thesis and overwrote the richer version. Kill stale tasks when requirements change.
+- A `.rejected` file usually means the REPO-WIDE gate failed on breakage ELSEWHERE. The rejected
+  `EmployeeSalesTable` was correct and was restored as-is.
+- Mobile clipping root cause was a 7-column `<table>` (616px min-content) dragging the page to
+  618px at a 390px viewport. Tables need a WRAPPER with overflow-x; `display:block` makes it worse.
+
+### Next steps (do NOT auto-start — wait for the user)
+1. Commit the uncommitted wins-feed work.
+2. Threshold recalibration — `scaling.ts` exists but no detector calls it yet.
+3. Signal → coaching → action join.
+4. Compose `GrowthRail` / `PeerStandingCard` when they land.
+
+### Open, blocking, cannot self-answer
+- **Demo date** — asked four times, still unanswered.
+- AI layer runs the deterministic fallback: verified live HTTP 400, "credit balance is too low".
+- **No QA evidence for this demo exists on disk at all** — not a blocked run, none.
+- Wins feed: exclusion radius (25km default) and auto-publish vs opt-in are Daniel's calls.
+
+---
+
 ## Session 2026-08-24 (13:40) — SALONTOUCH FIELD ACQUISITION + corpus/bask-strip
 
 ### SalonTouch data acquisition (the big one) — COMPLETE, all local + private in `~/salon-pull`
