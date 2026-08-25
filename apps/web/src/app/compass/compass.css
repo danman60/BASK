@@ -566,12 +566,16 @@
   gap: var(--space-5);
 }
 
+/* `minmax(320px, …)` is a floor the track cannot go below, so on a viewport
+   narrower than the floor the grid overflows instead of collapsing. `min(320px,
+   100%)` keeps the identical desktop behaviour and only yields once the column
+   no longer fits — the standard remedy for an auto-fit grid on small screens. */
 .cp-grid--3 {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
 }
 
 .cp-grid--2 {
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
 }
 
 .cp-card {
@@ -784,6 +788,12 @@
 }
 
 /* ---------------------------------------------------------------- accounts */
+
+/* At 390px the accounts table is 763px and its card clipped 646px of it. Because
+   html/body are overflow-x:clip that surplus was unreachable, not just off-screen
+   — on the Compass surfaces UVALUX is shown, whole columns were simply missing.
+   The card scrolls the table in its own box; the page never scrolls sideways. */
+.cp-card:has(.cp-table) { overflow-x: auto; }
 
 .cp-table {
   width: 100%;
@@ -1296,7 +1306,7 @@
 /* Corpus management — the CorpusList grid + CorpusCard leaf. */
 .cp-corpus-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
   gap: var(--space-3);
 }
 .cp-corpus-card {
