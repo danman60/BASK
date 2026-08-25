@@ -123,6 +123,49 @@
 .b-post-figure small { display: block; margin-top: 6px; font: 500 var(--text-xs)/1 var(--font-body); color: var(--ink-faint); }
 .b-post-foot { display: flex; gap: var(--space-4); margin-top: var(--space-4); font-size: var(--text-xs); color: var(--ink-faint); }
 
+/* ---- community reactions + replies ---------------------------------------
+   Shape ported from Stageable's ReactionBar and CommentSection: pill chips
+   carrying glyph + label + count with one active reaction per post, and the
+   conversation rendered inline rather than hidden behind a count. Styling is
+   this product's tokens, not Stageable's. */
+.b-react { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin-top: var(--space-4); }
+.b-react-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 11px;
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-faint);
+  font: 500 var(--text-xs) / 1.2 var(--font-body);
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease, background 120ms ease;
+}
+.b-react-chip:hover { border-color: var(--line); color: var(--ink-soft); }
+.b-react-chip:active { transform: scale(0.97); }
+.b-react-chip:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.b-react-chip[data-active='true'] {
+  border-color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 10%, transparent);
+  color: var(--primary-deep, var(--primary));
+  font-weight: 600;
+}
+.b-react-glyph { font-size: 12px; line-height: 1; }
+.b-react-count { font-variant-numeric: tabular-nums; }
+.b-react-reply { margin-left: auto; }
+
+.b-replies { display: grid; gap: var(--space-2); margin-top: var(--space-4); padding-left: var(--space-4); border-left: 2px solid var(--line-soft); }
+.b-reply { display: grid; gap: 4px; padding: var(--space-3); border-radius: 10px; background: var(--surface-sunk, oklch(97% 0.004 84)); }
+.b-reply-head { display: flex; align-items: center; gap: var(--space-2); }
+.b-reply-mark {
+  width: 22px; height: 22px; border-radius: 7px; display: grid; place-items: center;
+  background: color-mix(in oklab, var(--primary) 12%, transparent);
+  color: var(--primary-deep, var(--primary));
+  font: 600 9px / 1 var(--font-body); letter-spacing: 0.02em;
+}
+.b-reply-who { font: 600 var(--text-xs) / 1.3 var(--font-body); color: var(--ink); }
+.b-reply-when { margin-left: auto; font: 400 var(--text-xs) / 1 var(--font-body); color: var(--ink-faint); }
+.b-reply-body { font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink-soft); }
+
 /* min-width:0 on the children so a long post body cannot widen the column —
    the same grid default that clipped 242px off the Monitor page. */
 .b-community { display: grid; gap: var(--space-5); min-width: 0; }

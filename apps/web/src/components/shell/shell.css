@@ -127,9 +127,18 @@
 
 /* ------------------------------------------------------------------ mobile */
 /* mockup 05: appbar is wordmark + avatar only; the six destinations move to a
-   fixed glass tab bar so everything stays thumb-reachable. */
+   fixed glass tab bar so everything stays thumb-reachable.
+ *
+ * BREAKPOINT IS 999px, NOT 720px. The desktop topbar is wordmark + six nav
+ * pills + salon chip + avatar, which needs ~996px to lay out. Stopping the
+ * mobile treatment at 720px left 721–999px with no rule that fits: the row
+ * simply overflowed, and because html/body are overflow-x:clip the surplus was
+ * cut off rather than scrollable. Measured at 768px: 126px lost with five nav
+ * pills, 228px once Community made it six. Every tablet and small laptop was
+ * losing the right end of the topbar. The mobile treatment now covers every
+ * width below the one where the desktop row actually fits. */
 
-@media (max-width: 720px) {
+@media (max-width: 999px) {
   .b-topbar {
     padding: 18px 20px;
     gap: var(--space-3);

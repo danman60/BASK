@@ -16,8 +16,13 @@
 
 import { useState } from 'react';
 
-import { DEMO_COMMUNITY_POSTS, DEMO_COMMUNITY_TODAY, type CommunityPostSeed } from '@bask/core';
-import { CommunityFeed, CommunityComposer, type CommunityPost } from '@bask/ui';
+import { DEMO_COMMUNITY_POSTS, DEMO_COMMUNITY_TODAY } from '@bask/core';
+import {
+  CommunityFeed,
+  CommunityComposer,
+  type CommunityPost,
+  type CommunityReaction,
+} from '@bask/ui';
 
 function whenLabel(occurredAtDay: number, today: number): string {
   const days = Math.max(0, today - occurredAtDay);
@@ -27,24 +32,47 @@ function whenLabel(occurredAtDay: number, today: number): string {
   return `${weeks} weeks ago`;
 }
 
-function toPost(seed: CommunityPostSeed): CommunityPost {
-  return {
-    id: seed.id,
-    townLabel: seed.townLabel,
-    roleLabel: seed.roleLabel,
-    when: whenLabel(seed.occurredAtDay, DEMO_COMMUNITY_TODAY),
-    body: seed.body,
-    figure: seed.figure ? { value: seed.figure.value, caption: seed.figure.caption } : undefined,
-    replyCount: seed.replyCount,
-  };
-}
-
 export default function CommunityPage() {
   const [body, setBody] = useState('');
   const [figureValue, setFigureValue] = useState('');
   const [figureCaption, setFigureCaption] = useState('');
 
-  const posts = DEMO_COMMUNITY_POSTS.map(toPost);
+  /** Which reaction the viewer has left per post — one at a time, as in Stageable. */
+  const [mine, setMine] = useState<Record<string, CommunityReaction | null>>(() =>
+    Object.fromEntries(DEMO_COMMUNITY_POSTS.map((p) => [p.id, p.mine ?? null])),
+  );
+
+  const posts: CommunityPost[] = DEMO_COMMUNITY_POSTS.map((seed) => {
+    const chosen = mine[seed.id] ?? null;
+    const seeded = seed.mine ?? null;
+    // Show the count the viewer's own tap implies without recomputing anything
+    // the server owns — the card itself never does arithmetic.
+    const countFor = (kind: CommunityReaction) => {
+      const base = seed.reactions[kind];
+      const shown = base + (chosen === kind ? 1 : 0) - (seeded === kind ? 1 : 0);
+      return shown > 0 ? String(shown) : '';
+    };
+    return {
+      id: seed.id,
+      townLabel: seed.townLabel,
+      roleLabel: seed.roleLabel,
+      when: whenLabel(seed.occurredAtDay, DEMO_COMMUNITY_TODAY),
+      body: seed.body,
+      figure: seed.figure ? { value: seed.figure.value, caption: seed.figure.caption } : undefined,
+      reactions: { same: countFor('same'), helpful: countFor('helpful'), watching: countFor('watching') },
+      mine: chosen,
+      onReact: (kind: CommunityReaction) =>
+        setMine((prev) => ({ ...prev, [seed.id]: prev[seed.id] === kind ? null : kind })),
+      replies: seed.replies.map((r) => ({
+        id: r.id,
+        townLabel: r.townLabel,
+        when: whenLabel(r.occurredAtDay, DEMO_COMMUNITY_TODAY),
+        body: r.body,
+      })),
+      replyLabel: seed.replies.length === 1 ? '1 reply' : `${seed.replies.length} replies`,
+      onReply: () => undefined,
+    };
+  });
 
   return (
     <div className="b-community">

@@ -44,7 +44,16 @@ export { HealthGrid, type HealthGridCell, type HealthGridProps } from './compone
 export { SlippingList, type SlippingListProps, type SlippingRow } from './components/SlippingList';
 export { MetricTile, MetricRow, type MetricTileProps, type MetricRowProps } from './components/MetricTile';
 export { CohortTable, type CohortRow, type CohortTableProps } from './components/CohortTable';
-export { CommunityFeed, type CommunityFeedProps, type CommunityPost } from './components/CommunityFeed';
+export {
+  CommunityFeed,
+  COMMUNITY_BLURB,
+  COMMUNITY_REACTIONS,
+  COMMUNITY_REACTION_META,
+  type CommunityFeedProps,
+  type CommunityPost,
+  type CommunityReply,
+  type CommunityReaction,
+} from './components/CommunityFeed';
 export { CommunityComposer, type CommunityComposerProps } from './components/CommunityComposer';
 export { WinCard, type WinCardProps } from './components/WinCard';
 export {
