@@ -12,8 +12,30 @@
  */
 
 /* ---- opportunity card ----------------------------------------------------- */
-.b-opp { display: grid; gap: var(--space-3); }
-.b-opp-head { display: flex; align-items: baseline; gap: var(--space-3); }
+/* DEFENSIVE min-width:0, and it belongs on the card itself.
+   Grid and flex children default to min-width:auto, so a long title, a wide
+   action row or an unbreakable figure sets a floor the column cannot go below.
+   An ancestor then clips the horizontal overflow, so the right-hand text
+   DISAPPEARS instead of wrapping — the card looks fine, the sentence is cut.
+   Every other surface got this treatment while the opportunity card, which is
+   the first thing on Today, never did. */
+/* `.card` in tokens.css carries background, border and shadow but deliberately
+   NO padding — every card type supplies its own (.b-post, .b-win, .b-metric all
+   do). `.b-opp` never did, so the highest-traffic card in the product rendered
+   with its text flush against both edges: measured `padding: 0px` with every
+   child at x=1. That is what "text clipping the side of the card" was. */
+.b-opp { display: grid; gap: var(--space-3); min-width: 0; padding: var(--space-5) var(--space-6); }
+.b-opp > * { min-width: 0; }
+.b-opp-head { display: flex; align-items: baseline; gap: var(--space-3); min-width: 0; }
+.b-opp-head > * { min-width: 0; }
+/* Long words and unbroken figures must break rather than set the floor. */
+.b-opp-title,
+.b-opp-changed,
+.b-opp-why,
+.b-opp-confnote { overflow-wrap: anywhere; }
+.b-oppfeed,
+.b-oppfeed-list { min-width: 0; }
+.b-oppfeed-list > * { min-width: 0; }
 .b-opp-rank {
   flex: none;
   width: 26px; height: 26px;
