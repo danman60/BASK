@@ -211,6 +211,21 @@
   border-radius: 999px;
   padding: 6px 12px;
   white-space: nowrap;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* `margin-left:auto` plus `white-space:nowrap` meant the chip was pushed to the
+   right AND could not shrink, so it ran 206px past its card at 320px. The chip
+   is rendered by a shared primitive under several different parents, so the fix
+   belongs on the chip: below the sidebar breakpoint it stops pushing and is
+   allowed to wrap, which lets it shrink inside any row. */
+@media (max-width: 900px) {
+  .cp-chip {
+    margin-left: 0;
+    white-space: normal;
+    line-height: 1.3;
+  }
 }
 
 .cp-chip--watch {
@@ -1333,4 +1348,43 @@
   border: 1px solid var(--c-line);
   border-radius: var(--radius-sm);
   padding: 0 var(--space-1);
+}
+
+/* --------------------------------------------------------- mobile compass --
+   The 216px sidenav had NO mobile breakpoint, so on a 390px phone it ate more
+   than half the viewport and every Compass route overflowed the page by
+   28–121px. Below 900px the nav becomes a horizontal scrolling strip above the
+   content instead of a fixed column.
+
+   AT THE END OF THE FILE ON PURPOSE. A media query adds no specificity, so an
+   earlier placement lost on source order to `.cp-layout { 216px … }` and to
+   `.cp-nav { flex-direction: column }` — the fix silently did nothing and the
+   checker still reported the same 121px. */
+@media (max-width: 900px) {
+  .cp-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cp-sidenav {
+    position: static;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--c-line);
+    padding: var(--space-4) var(--space-5);
+  }
+  .cp-nav {
+    flex-direction: row;
+    margin-top: var(--space-4);
+    gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .cp-nav a {
+    white-space: nowrap;
+  }
+  .cp-rep {
+    display: none;
+  }
+  .cp-main {
+    padding: var(--space-6) var(--space-5);
+  }
 }

@@ -498,18 +498,28 @@
      survives on web (the native app uses a swipe, which a browser does not have)
      but is pushed to the far edge as a quiet text affordance, so the row still
      reads as a pair of buttons rather than a crowd of three. */
+  /* Three actions in a row cannot fit a narrow phone. Flex children default to
+     min-width:auto, so they refuse to shrink below their own text and the row
+     runs out past the card's right edge — measured 77px past at 320px, 37px at
+     360px, 7px at 390px, with `margin-left:auto` shoving Dismiss furthest out.
+     The card clips it, so page-level overflow checks read zero and never
+     caught it. Wrapping plus min-width:0 lets the row reflow instead. */
   .b-insight-actions {
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: stretch;
     gap: 8px;
+    min-width: 0;
   }
   .b-insight-actions > * {
     font-size: 12px;
     padding: 9px 14px;
+    min-width: 0;
   }
   .b-insight-actions > .btn-ghost {
     margin-left: auto;
     padding-right: 0;
+    flex-shrink: 0;
   }
   .b-full {
     display: none;

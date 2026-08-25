@@ -721,11 +721,21 @@
   max-width: 58ch;
   line-height: 1.55;
 }
+/* This strip holds the tabs AND the "Start a campaign" button, so it cannot
+   simply scroll — the primary action would scroll out of sight. It wraps, and
+   the button drops to its own line on a phone. Measured 97px past the viewport
+   at 320px before this. */
 .st-tabs {
   display: flex;
   gap: 6px;
   margin: var(--space-6) 0 var(--space-6);
   border-bottom: 1px solid var(--line-soft);
+  flex-wrap: wrap;
+  align-items: center;
+  min-width: 0;
+}
+.st-tabs > * {
+  min-width: 0;
 }
 .st-tab {
   background: none;
@@ -744,7 +754,7 @@
 
 .st-shelf {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
   gap: var(--space-5);
 }
 .st-idea {
