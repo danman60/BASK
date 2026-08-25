@@ -52,9 +52,12 @@ rows in `bask.app_log`. Pull from anywhere:
 `curl "https://<deploy>/api/_logs?token=$LOG_TOKEN&since=0" | jq`
 
 ## Known state
-- **AI runs the deterministic fallback everywhere** — the Anthropic key is out of credits (HTTP 400).
-  Every generated surface labels which path ran. Fund the key, re-run `pnpm demo:advance --days 0`;
-  no code change needed.
+- **The "Anthropic key is out of credits" story is STALE — do not repeat it.** Verified 2026-08-25:
+  `packages/core/src/ai/client.ts:9` records the provider was switched to **OpenAI on 2026-08-07**;
+  `isAiConfigured()` gates on `OPENAI_API_KEY`, that var IS set on Vercel, and a live `gpt-4.1` call
+  returned HTTP 200. Models: `DEFAULT_AI_MODEL='gpt-4.1'`, `insight.classify`→`gpt-4.1-mini`,
+  override with `AI_MODEL`. Every generated surface still labels which path ran — if one reads
+  `fallback`, diagnose it fresh against the OpenAI path rather than inheriting the Anthropic story.
 - Fixture volume: day-zero Daybreak reads "31% below your usual Monday" where PITCH.md wants
   "8% above"; impact figures run ~10× the mockups (~96 visits/day). Arithmetic is right, volume is
   a design decision.
