@@ -301,11 +301,20 @@
 .b-pledge-line { font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink-soft); }
 
 /* ---- monitor surface layout ------------------------------------------------ */
-.b-monitor { display: grid; gap: var(--space-6, 24px); }
-.b-monitor-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: var(--space-5); }
-@media (max-width: 900px) { .b-monitor-grid { grid-template-columns: 1fr; } }
-.b-monitor-main { display: grid; gap: var(--space-4); align-content: start; }
-.b-monitor-rail { display: grid; gap: var(--space-4); align-content: start; }
+/* Grid and flex children default to min-width:auto, so a track refuses to shrink
+   below its content. The 7-column team table has a 616px min-content width, which
+   inflated the whole Monitor column to 632px at a 390px viewport. Because html/body
+   are overflow-x:clip, that surplus was not scrollable — it was silently cut off.
+   Every track that can hold the table is therefore pinned to minmax(0, …) / min-width:0,
+   which is what lets .b-etable-scroll actually constrain and scroll it. */
+.b-monitor { display: grid; gap: var(--space-6, 24px); min-width: 0; }
+.b-monitor > * { min-width: 0; }
+.b-monitor-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: var(--space-5); min-width: 0; }
+@media (max-width: 900px) { .b-monitor-grid { grid-template-columns: minmax(0, 1fr); } }
+.b-monitor-main { display: grid; gap: var(--space-4); align-content: start; min-width: 0; }
+.b-monitor-main > * { min-width: 0; }
+.b-monitor-rail { display: grid; gap: var(--space-4); align-content: start; min-width: 0; }
+.b-monitor-rail > * { min-width: 0; }
 
 /* method-source attribution — de-identified (never a person's name) */
 .b-opp-method { font: 400 var(--text-xs) / 1.4 var(--font-body); color: var(--ink-faint); }
