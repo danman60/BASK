@@ -22,4 +22,6 @@ packages/db/generated/
 .vercel
 
 # Client-confidential — SalonTouch field acquisition (PII/financials, keep local)
-docs/research/salontouch-dossier.md
+docs/research/salontouch-*
+# Commercial pricing for a named client — repo is public.
+docs/pitch/PROPOSAL-PHASE1-UVALUX.md

@@ -40,7 +40,10 @@ if (!DATA_DIR) {
   process.exit(1);
 }
 const CONFIRM = process.env.INGEST_CONFIRM === 'yes';
-const AS_OF = new Date('2026-06-30'); // dataset ends here; drives customer recency status
+// Dataset end date; drives customer recency status. Overridable because the
+// SalonTouch file ends in 2020, not 2026, and a wrong as-of makes every
+// customer read inactive.
+const AS_OF = new Date(process.env.INGEST_AS_OF || '2026-06-30');
 const BATCH = 5000;
 
 const csv = (name: string) => readCsv(path.join(DATA_DIR, `${name}.csv`));

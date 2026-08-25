@@ -15,7 +15,11 @@ import * as fs from 'node:fs';
 
 /* ---- deterministic id remap (source id → stable UUIDv5-style) ------------- */
 
-const NS = 'uvalux-practice-2026'; // fixed namespace → reproducible ids across runs
+// Fixed namespace → reproducible ids across runs. Overridable per dataset so a
+// second source (the real SalonTouch file) cannot collide with the practice
+// load's ids in the shared bask schema. Default is unchanged, so the practice
+// dataset still reproduces exactly.
+const NS = process.env.INGEST_NS || 'uvalux-practice-2026';
 
 /** Deterministic UUID for a source key. Same (prefix, srcId) → same uuid, always. */
 export function remapId(prefix: string, srcId: string): string {

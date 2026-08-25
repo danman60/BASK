@@ -45,6 +45,8 @@ export { SlippingList, type SlippingListProps, type SlippingRow } from './compon
 export { MetricTile, MetricRow, type MetricTileProps, type MetricRowProps } from './components/MetricTile';
 export { CohortTable, type CohortRow, type CohortTableProps } from './components/CohortTable';
 export { CommunityFeed, type CommunityFeedProps, type CommunityPost } from './components/CommunityFeed';
+export { CommunityComposer, type CommunityComposerProps } from './components/CommunityComposer';
+export { NetworkOutcomeCard, type NetworkOutcomeCardProps } from './components/NetworkOutcomeCard';
 export { default as CitationCard, type CitationCardProps } from './components/CitationCard';
 
 export {
