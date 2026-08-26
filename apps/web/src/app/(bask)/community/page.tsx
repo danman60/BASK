@@ -71,29 +71,50 @@ export default function CommunityPage() {
    * the fence under the composer says so rather than implying it uploaded.
    * Limits match Stageable's, which is where the pattern came from.
    */
-  const handleMedia = (file: File | null) => {
-    if (!file) {
+  const handleMedia = (files: File[]) => {
+    if (files.length === 0) {
       setMedia(null);
       setMediaError(null);
       return;
     }
-    const isImage = file.type.startsWith('image/');
-    const isVideo = file.type.startsWith('video/');
-    if (!isImage && !isVideo) {
+    const kindOf = (f: File) =>
+      f.type.startsWith('video/') ? 'video' : f.type.startsWith('image/') ? 'image' : null;
+
+    if (files.some((f) => kindOf(f) === null)) {
       setMedia(null);
       setMediaError('type');
       return;
     }
-    const cap = isVideo ? COMMUNITY_MEDIA_LIMITS.videoBytes : COMMUNITY_MEDIA_LIMITS.imageBytes;
-    if (file.size > cap) {
+    const tooBig = files.some(
+      (f) =>
+        f.size >
+        (kindOf(f) === 'video'
+          ? COMMUNITY_MEDIA_LIMITS.videoBytes
+          : COMMUNITY_MEDIA_LIMITS.imageBytes),
+    );
+    if (tooBig) {
       setMedia(null);
       setMediaError('size');
       return;
     }
-    const url = URL.createObjectURL(file);
-    objectUrls.current.push(url);
+
+    const urlFor = (f: File) => {
+      const url = URL.createObjectURL(f);
+      objectUrls.current.push(url);
+      return url;
+    };
     setMediaError(null);
-    setMedia({ kind: isVideo ? 'video' : 'image', url, alt: file.name });
+
+    // More than one picture is a set, which is what a carousel is for. A video
+    // is always on its own — a mixed strip of stills and clips has no sensible
+    // playback behaviour, so the first file wins and the rest are ignored.
+    const images = files.filter((f) => kindOf(f) === 'image');
+    if (images.length > 1) {
+      setMedia({ kind: 'carousel', items: images.map((f) => ({ url: urlFor(f), alt: f.name })) });
+      return;
+    }
+    const first = files[0]!;
+    setMedia({ kind: kindOf(first) === 'video' ? 'video' : 'image', url: urlFor(first), alt: first.name });
   };
 
   /** Which reaction the viewer has left per post — one at a time, as in Stageable. */

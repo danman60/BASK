@@ -143,6 +143,20 @@
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+/* The order summary rail. This was an inline style on the page —
+   `minmax(0, 1fr) 320px` with no breakpoint anywhere — so at 320px the rail
+   kept its full 320 and pushed the card 32px off the right edge, taking the
+   order total and the send button with it. It stacks under the lines on
+   anything narrower than a small laptop. */
+.l4-grid-order {
+  grid-template-columns: minmax(0, 1fr) 320px;
+}
+@media (max-width: 900px) {
+  .l4-grid-order {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* ------------------------------------------------------------------- chips */
 
 .l4-chip {

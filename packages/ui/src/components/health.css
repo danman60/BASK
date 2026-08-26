@@ -150,6 +150,68 @@
   object-fit: contain;
   background: var(--paper-2);
 }
+/* ---- carousel -------------------------------------------------------------
+   Scroll-snap does the work: no transform track, no width arithmetic, and a
+   drag on a phone is the browser's own momentum scroll rather than a JS
+   reimplementation of it. The scrollbar is hidden because the dots are the
+   affordance. */
+.b-carousel { position: relative; }
+.b-carousel-strip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.b-carousel-strip::-webkit-scrollbar { display: none; }
+.b-carousel-slide {
+  scroll-snap-align: center;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 620px;
+  object-fit: contain;
+  background: var(--paper-2);
+}
+/* Counter and dots sit ON the picture, so they cost no vertical space and read
+   the same way they do in every feed. Both are legible over a light or dark
+   photo because they carry their own scrim. */
+.b-carousel-count {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  background: oklch(0% 0 0 / 0.55);
+  color: oklch(100% 0 0);
+  border-radius: 999px;
+  padding: 3px 9px;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  pointer-events: none;
+}
+.b-carousel-dots {
+  position: absolute;
+  bottom: var(--space-3);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+.b-carousel-dot {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  background: oklch(100% 0 0 / 0.55);
+  box-shadow: 0 0 3px oklch(0% 0 0 / 0.45);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.b-carousel-dot[data-active='true'] { background: oklch(100% 0 0); }
+.b-carousel-dot:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
 /* The card's own rounding only reaches the media when it is the last thing in
    the card — otherwise the reactions sit under a curved edge for no reason. */
 .b-post-media:last-child {

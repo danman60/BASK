@@ -35,11 +35,10 @@ export interface CommunityPostSeed {
    * or a room far faster by showing it. Same identity rule as everything else
    * here: nothing in frame may identify the business.
    */
-  readonly media?: {
-    readonly kind: 'image' | 'video';
-    readonly url: string;
-    readonly alt?: string;
-  };
+  readonly media?:
+    | { readonly kind: 'image'; readonly url: string; readonly alt?: string }
+    | { readonly kind: 'video'; readonly url: string; readonly alt?: string; readonly poster?: string }
+    | { readonly kind: 'carousel'; readonly items: readonly { readonly url: string; readonly alt?: string }[] };
   /** Counts per reaction kind. "same" is the finding, not a like: an owner
    *  asking "anyone else seeing this?" is asking how many others are. */
   readonly reactions: { readonly same: number; readonly helpful: number; readonly watching: number };
@@ -54,6 +53,71 @@ export interface CommunityPostSeed {
 }
 
 export const DEMO_COMMUNITY_POSTS: readonly CommunityPostSeed[] = [
+  {
+    /* The before/after set. A shelf question is answered with pictures faster
+       than with any paragraph, which is the whole argument for media in here. */
+    id: 'post-wall',
+    townLabel: 'St. Catharines ON',
+    occurredAtDay: 120,
+    body: 'Moved my whole retail wall up to eye level and faced everything forward. Took an afternoon. Before and after plus the two shelves I care about. Has anyone actually measured whether this does anything, or did I just spend a Sunday tidying?',
+    media: {
+      kind: 'carousel',
+      items: [
+        { url: '/community/wall-before.webp', alt: 'A crowded retail shelf with lotion bottles at waist height, some lying on their side' },
+        { url: '/community/wall-after.webp', alt: 'The same shelf tidied, bottles standing in rows and faced forward' },
+        { url: '/community/wall-eye.webp', alt: 'A close view of a row of lotion bottles at eye level with price cards below' },
+        { url: '/community/wall-counter.webp', alt: 'Three bottles standing beside the till on the front counter' },
+      ],
+    },
+    reactions: { same: 6, helpful: 31, watching: 18 },
+    mine: null,
+    replies: [
+      {
+        id: 'post-wall-r1',
+        townLabel: 'Oshawa ON',
+        occurredAtDay: 120,
+        body: 'It does something. I did the same in February and product per visit went from 3.4% to 5.1% over about six weeks. Nothing else changed that I know of.',
+      },
+      {
+        id: 'post-wall-r2',
+        townLabel: 'Guelph ON',
+        occurredAtDay: 119,
+        body: 'The counter shot is the one that matters. Mine sells more off three bottles beside the till than off the whole wall.',
+      },
+    ],
+  },
+  {
+    /* The app's own output, shared by the owner it was made for. This is the
+       one post where a picture carries words, because the app wrote them. */
+    id: 'post-generated',
+    townLabel: 'London ON',
+    occurredAtDay: 119,
+    body: 'These are the three the app wrote for me on Monday. I have never posted three times in one week in my life. Genuinely asking — is anyone getting bookings off these, or do they just sit there getting likes?',
+    media: {
+      kind: 'carousel',
+      items: [
+        { url: '/community/promo-1.webp', alt: 'A cream and terracotta promo graphic reading "Tuesday afternoons are quiet, 20% off 1-4pm this week"' },
+        { url: '/community/promo-2.webp', alt: 'A promo graphic reading "Your membership costs less than you think, ask us at the desk"' },
+        { url: '/community/promo-3.webp', alt: 'A promo graphic reading "We missed you, come back for a free upgrade"' },
+      ],
+    },
+    reactions: { same: 11, helpful: 8, watching: 22 },
+    mine: null,
+    replies: [
+      {
+        id: 'post-generated-r1',
+        townLabel: 'Kingston ON',
+        occurredAtDay: 119,
+        body: 'The quiet-afternoon one filled four beds for me. The other two did nothing. I think it is the specific hour that does the work, not the offer.',
+      },
+      {
+        id: 'post-generated-r2',
+        townLabel: 'Barrie ON',
+        occurredAtDay: 118,
+        body: 'Same. Anything with a time in it works. Anything that just says come back does not.',
+      },
+    ],
+  },
   {
     /* The one post carrying a picture, because a question about a specific
        bottle is exactly the kind an owner answers with a photo rather than a
@@ -107,6 +171,11 @@ export const DEMO_COMMUNITY_POSTS: readonly CommunityPostSeed[] = [
     townLabel: 'Kingston ON',
     occurredAtDay: 116,
     body: 'What do you actually SAY to someone who has been gone four months? Not a discount blast — the wording. I have a list of about six hundred and no script I believe in.',
+    media: {
+      kind: 'image',
+      url: '/community/desk-owner.webp',
+      alt: 'An owner at the front desk looking at a booking calendar on a laptop',
+    },
     reactions: { same: 23, helpful: 5, watching: 11 },
     mine: 'same',
     replies: [
@@ -135,6 +204,11 @@ export const DEMO_COMMUNITY_POSTS: readonly CommunityPostSeed[] = [
     townLabel: 'Barrie ON',
     occurredAtDay: 113,
     body: 'How do you bring up unlimited without it feeling like a pitch? I have people coming four times a month on a session pack and I know I am charging them the hard way, but I do not want to sound like I am upselling every visit.',
+    media: {
+      kind: 'image',
+      url: '/community/room-bed.webp',
+      alt: 'A clean empty tanning bed in a small private room, lid open',
+    },
     reactions: { same: 11, helpful: 8, watching: 4 },
     mine: null,
     replies: [
@@ -152,6 +226,11 @@ export const DEMO_COMMUNITY_POSTS: readonly CommunityPostSeed[] = [
     occurredAtDay: 110,
     body: 'Is anyone actually making Tuesday afternoons work, or do you all just accept them? I have tried discounting and it moved nothing except my margin. Wondering whether to cut the hours instead.',
     figure: { value: '31 visits', caption: 'Tuesday 1–5pm, four-week average' },
+    media: {
+      kind: 'image',
+      url: '/community/room-quiet.webp',
+      alt: 'An empty salon reception area on a quiet weekday afternoon',
+    },
     reactions: { same: 19, helpful: 2, watching: 9 },
     mine: null,
     replies: [
@@ -174,6 +253,11 @@ export const DEMO_COMMUNITY_POSTS: readonly CommunityPostSeed[] = [
     townLabel: 'Peterborough ON',
     occurredAtDay: 107,
     body: 'Those of you who added a second modality — how long before you could tell whether it was paying for itself? Everyone quotes me a payback number and I do not know what to believe.',
+    media: {
+      kind: 'image',
+      url: '/community/room-redlight.webp',
+      alt: 'A red light therapy bed with its panels switched on, nobody in the room',
+    },
     reactions: { same: 8, helpful: 4, watching: 21 },
     mine: null,
     replies: [

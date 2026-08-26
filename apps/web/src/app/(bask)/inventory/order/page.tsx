@@ -103,7 +103,7 @@ export default async function DraftOrderPage() {
           )}
         </div>
       ) : (
-        <div className="l4-grid" style={{ gridTemplateColumns: 'minmax(0, 1fr) 320px' }}>
+        <div className="l4-grid l4-grid-order">
           <div>
             <div className="l4-stock">
               {draft.lines.map((line) => (

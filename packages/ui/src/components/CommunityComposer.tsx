@@ -38,8 +38,8 @@ export interface CommunityComposerProps {
   onFigureCaptionChange?: (value: string) => void;
   /** The attached photo or clip, if the owner picked one. */
   media?: CommunityMedia | null;
-  /** Fires with the picked file, or null when the owner removes the attachment. */
-  onMediaChange?: (file: File | null) => void;
+  /** Fires with every picked file, or an empty list when the owner clears it. */
+  onMediaChange?: (files: File[]) => void;
   /** Why the last pick was refused. The composer states it rather than failing quietly. */
   mediaError?: CommunityMediaError | null;
   /** Handler for the submission. */
@@ -140,6 +140,12 @@ export function CommunityComposer({
                 <div className="b-composer-media">
                   {media.kind === 'video' ? (
                     <video className="b-composer-media-el" src={media.url} muted playsInline controls />
+                  ) : media.kind === 'carousel' ? (
+                    <>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img className="b-composer-media-el" src={media.items[0]?.url} alt="" />
+                      <span className="b-composer-media-count num">{media.items.length} pictures</span>
+                    </>
                   ) : (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img className="b-composer-media-el" src={media.url} alt="" />
@@ -147,7 +153,7 @@ export function CommunityComposer({
                   <button
                     type="button"
                     className="btn btn-quiet b-composer-media-drop"
-                    onClick={() => onMediaChange(null)}
+                    onClick={() => onMediaChange([])}
                   >
                     Remove
                   </button>
@@ -159,9 +165,13 @@ export function CommunityComposer({
                     id="community-composer-media"
                     type="file"
                     accept="image/*,video/*"
-                    onChange={(e) => onMediaChange(e.target.files?.[0] ?? null)}
+                    multiple
+                    onChange={(e) => onMediaChange(Array.from(e.target.files ?? []))}
                   />
-                  <span className="b-composer-sub">Pictures up to 8MB, video up to 50MB.</span>
+                  <span className="b-composer-sub">
+                    Pictures up to 8MB, video up to 50MB. Pick more than one picture and they post
+                    as a set.
+                  </span>
                 </>
               )}
               {mediaError && (

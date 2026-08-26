@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * The owners-only feed — a room of QUESTIONS, not a second leaderboard.
@@ -56,14 +56,17 @@ export interface CommunityReply {
  * a browser — an uploaded object URL in the demo, a storage URL once a bucket
  * exists. The card does not care which.
  */
-export interface CommunityMedia {
-  kind: 'image' | 'video';
+export interface CommunitySlide {
   url: string;
   /** Describes the picture for anyone who cannot see it. Never decorative. */
   alt?: string;
-  /** Still frame for a video, if one is available. */
-  poster?: string;
 }
+
+export type CommunityMedia =
+  | ({ kind: 'image' } & CommunitySlide)
+  | ({ kind: 'video'; poster?: string } & CommunitySlide)
+  /** Several shots in one post — a before/after, or a set the app generated. */
+  | { kind: 'carousel'; items: readonly CommunitySlide[] };
 
 export interface CommunityPost {
   id: string;
@@ -120,7 +123,7 @@ function townMark(town: string): string {
  * never ten videos decoding at once. Controls stay on, so sound is one tap
  * away — muted autoplay is the only kind a browser will start unprompted.
  */
-function FeedVideo({ media }: { media: CommunityMedia }) {
+function FeedVideo({ media }: { media: Extract<CommunityMedia, { kind: 'video' }> }) {
   const ref = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -155,6 +158,65 @@ function FeedVideo({ media }: { media: CommunityMedia }) {
       controls
       preload="metadata"
     />
+  );
+}
+
+/**
+ * A swipeable set of shots, the way every social feed shows more than one
+ * picture: a scroll-snapping strip with a counter and dots. Scroll position is
+ * the source of truth for which slide is active — no index state to drift out
+ * of sync with what the user actually dragged, and it keeps native momentum
+ * scrolling and keyboard scrolling working for free.
+ */
+function FeedCarousel({ items }: { items: readonly CommunitySlide[] }) {
+  const stripRef = useRef<HTMLDivElement | null>(null);
+  const [active, setActive] = useState(0);
+
+  const onScroll = () => {
+    const el = stripRef.current;
+    if (!el) return;
+    const i = Math.round(el.scrollLeft / Math.max(1, el.clientWidth));
+    setActive(Math.min(items.length - 1, Math.max(0, i)));
+  };
+
+  const goTo = (i: number) => {
+    const el = stripRef.current;
+    if (!el) return;
+    el.scrollTo({ left: i * el.clientWidth, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="b-carousel">
+      <div className="b-carousel-strip" ref={stripRef} onScroll={onScroll}>
+        {items.map((slide, i) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={slide.url}
+            className="b-carousel-slide"
+            src={slide.url}
+            alt={slide.alt ?? ''}
+            loading={i === 0 ? undefined : 'lazy'}
+          />
+        ))}
+      </div>
+      <span className="b-carousel-count num" aria-hidden="true">
+        {active + 1}/{items.length}
+      </span>
+      <div className="b-carousel-dots" role="tablist" aria-label="Pictures in this post">
+        {items.map((slide, i) => (
+          <button
+            key={slide.url}
+            type="button"
+            role="tab"
+            className="b-carousel-dot"
+            data-active={i === active ? 'true' : 'false'}
+            aria-selected={i === active}
+            aria-label={`Picture ${i + 1} of ${items.length}`}
+            onClick={() => goTo(i)}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -196,7 +258,9 @@ export function CommunityFeed({ posts, className }: CommunityFeedProps) {
               stays portrait rather than being cropped to a bad square. */}
           {post.media && (
             <div className="b-post-media">
-              {post.media.kind === 'video' ? (
+              {post.media.kind === 'carousel' ? (
+                <FeedCarousel items={post.media.items} />
+              ) : post.media.kind === 'video' ? (
                 <FeedVideo media={post.media} />
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element
