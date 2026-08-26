@@ -13,6 +13,7 @@ import { TeachingEmptyState } from '@bask/ui';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
+import { PageContainer } from '@/components/page/PageContainer';
 import { trpc } from '@/lib/trpc';
 
 import { STUDIO_COPY as C } from './copy';
@@ -34,7 +35,7 @@ export function StudioHub() {
           crumb that the h1 immediately below already said, and it was sticky at
           `z-index: 20` over AppShell's 5. AppShell owns the chrome; the page
           starts at its own heading. */}
-      <main className="st-shell">
+      <PageContainer>
         <div className="st-hub-head">
           <h1>{C.hub.title}</h1>
           <p>{C.hub.body}</p>
@@ -64,7 +65,7 @@ export function StudioHub() {
         {tab === 'ideas' && <IdeaShelf />}
         {tab === 'campaigns' && <CampaignList />}
         {tab === 'calendar' && <CampaignCalendar />}
-      </main>
+      </PageContainer>
     </>
   );
 }

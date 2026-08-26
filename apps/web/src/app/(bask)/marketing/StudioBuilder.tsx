@@ -20,6 +20,7 @@ import { WHISPERS, WhisperNote } from '@bask/ui';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
+import { PageContainer } from '@/components/page/PageContainer';
 import { trpc } from '@/lib/trpc';
 
 import { STUDIO_COPY as C } from './copy';
@@ -222,7 +223,7 @@ export function StudioBuilder({
         </div>
       </nav>
 
-      <main className="st-shell">
+      <PageContainer>
         {/* Provenance stays put for the whole flow — the owner never loses sight
             of which finding this campaign is answering. */}
         {fixing && (
@@ -711,7 +712,7 @@ export function StudioBuilder({
         {(context.isPending && !initialCampaignId) || (existing.isPending && initialCampaignId) ? (
           <p className="st-busy">{C.loadingContext}</p>
         ) : null}
-      </main>
+      </PageContainer>
 
       {toast && <div className="st-toast">{toast}</div>}
     </>

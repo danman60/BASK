@@ -19,10 +19,14 @@ export function EmailPreviewCard({ action, onPress, className }: EmailPreviewCar
       <div className="b-mailprev-subject">{action.subject}</div>
       <p className="b-mailprev-body">{action.body}</p>
       <div className="b-actionrow">
-        <button type="button" className="btn btn-ghost" onClick={onPress ? () => onPress('preview') : undefined}>
+        {/* `btn-ghost` is colour only — no background, no border — so Preview
+            and Edit rendered as two bare words floating above the send button.
+            Quiet, which carries a real border, is the honest shape for a
+            secondary control that is still a control. */}
+        <button type="button" className="btn btn-quiet" onClick={onPress ? () => onPress('preview') : undefined}>
           Preview
         </button>
-        <button type="button" className="btn btn-ghost" onClick={onPress ? () => onPress('edit') : undefined}>
+        <button type="button" className="btn btn-quiet" onClick={onPress ? () => onPress('edit') : undefined}>
           Edit
         </button>
         <button type="button" className="b-approve" onClick={onPress ? () => onPress('send') : undefined}>

@@ -31,8 +31,5 @@
     "turbo": "^2.10.8",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.47.0"
-  },
-  "dependencies": {
-    "openai": "^7.4.0"
   }
 }

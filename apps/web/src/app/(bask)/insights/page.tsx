@@ -3,33 +3,32 @@ import { formatCurrency, formatLongDate } from '@bask/core';
 import { Guided, TeachingEmptyState, WhisperNote } from '@bask/ui';
 
 import '@/components/lane4/lane4.css';
+import { PageContainer } from '@/components/page/PageContainer';
 import { InsightsTabs } from '@/components/lane4/InsightsTabs';
 import { Chip, EvidenceSentence, SectionHead, Sparkline, StatRow } from '@/components/lane4/primitives';
 import { UtilizationHeatmap } from '@/components/lane4/UtilizationHeatmap';
+import { actionHref } from '@/lib/today-data';
 import { loadSalonFacts } from '@/server/facts';
 import { loadInsightsView, WHAT_CHANGED_DAYS } from '@/server/insights-data';
 import { getDemoSalon } from '@/server/salon';
 
 export const dynamic = 'force-dynamic';
 
-const ACTION_HREFS: Record<string, string> = {
-  create_campaign: '/marketing',
-  recover_payment: '/customers',
-  draft_order: '/inventory',
-  review_product: '/inventory',
-  open_heatmap: '/insights#utilisation',
-  open_report: '/insights',
-};
-
-export default async function InsightsPage() {
-  const salon = await getDemoSalon();
+export default async function InsightsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ salon?: string }>;
+}) {
+  // Honour `?salon=` exactly as Today does — before this, a deep link showed
+  // two different salons on the two screens.
+  const salon = await getDemoSalon((await searchParams).salon);
   const facts = await loadSalonFacts(salon);
   const view = await loadInsightsView(salon, facts);
 
   const areas = [view.areas.revenue, view.areas.retail, view.areas.memberships, view.areas.campaigns];
 
   return (
-    <main className="l4">
+    <PageContainer>
       <header className="l4-head">
         <div>
           <p className="eyebrow">Insights · {formatLongDate(salon.today)}</p>
@@ -108,7 +107,7 @@ export default async function InsightsPage() {
                   <div className="l4-actions" style={{ marginTop: 16 }}>
                     <Link
                       className="btn btn-primary"
-                      href={`${ACTION_HREFS[item.linkedActionType ?? ''] ?? '/insights'}?from=insight&insightId=${item.id}`}
+                      href={actionHref(item.linkedActionType, item.id, '')}
                     >
                       {String(
                         (item.linkedActionRef as Record<string, unknown>)?.primaryActionLabel ??
@@ -256,6 +255,6 @@ export default async function InsightsPage() {
         </div>
         <WhisperNote note="figuresFromYourTill" />
       </section>
-    </main>
+    </PageContainer>
   );
 }

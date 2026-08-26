@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { addDays, weekdayName, type DateOnly } from '@bask/core';
+import { addDays, formatHour, weekdayName, type DateOnly } from '@bask/core';
 
 import type { ScheduleBooking } from '@/server/floor/floor-data';
 
@@ -254,12 +254,6 @@ function Row({
       })}
     </>
   );
-}
-
-function formatHour(hour: number): string {
-  const suffix = hour >= 12 ? 'pm' : 'am';
-  const twelve = hour % 12 === 0 ? 12 : hour % 12;
-  return `${twelve}${suffix}`;
 }
 
 /**

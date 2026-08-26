@@ -110,8 +110,14 @@
 
 /* --------------------------------------------------------------------- main */
 
+/* Horizontal padding comes off `--page-gutter`, the one gutter token, not off a
+   hardcoded 40px. Compass grew up as a fifth page shell and never read it, so
+   the whole of Act 2 held a 40px gutter from 1000px all the way down to 901px
+   while every Bask surface had already narrowed to 20px, and the ≤900px rule
+   below stopped at 20px where the token drops to 16px under 380px. Vertical
+   padding is Compass's own decision and stays local. */
 .cp-main {
-  padding: var(--space-8) var(--space-10);
+  padding: var(--space-8) var(--page-gutter);
   max-width: 980px;
   width: 100%;
 }
@@ -248,7 +254,10 @@
 .cp-ev {
   padding: var(--space-4) var(--space-6) 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* Column count comes from `--cp-ev-cols`, set inline by `EvidenceTileRow`.
+     See the note there: the count used to be an inline `grid-template-columns`,
+     which no media query can beat. */
+  grid-template-columns: repeat(var(--cp-ev-cols, 3), minmax(0, 1fr));
   gap: var(--space-3);
 }
 
@@ -606,6 +615,18 @@
   margin-bottom: var(--space-2);
 }
 
+/* Title + StatusChip on one line inside a `.cp-card` — the Coaching targets use
+   it. Same shape as `.cp-call-head`, but a card head rather than a call head. */
+.cp-cardhead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.cp-cardhead h3 {
+  margin-bottom: 0;
+}
+
 .cp-card p {
   color: var(--c-ink-soft);
   font-size: var(--text-sm);
@@ -809,6 +830,39 @@
    — on the Compass surfaces UVALUX is shown, whole columns were simply missing.
    The card scrolls the table in its own box; the page never scrolls sideways. */
 .cp-card:has(.cp-table) { overflow-x: auto; }
+
+/* …and it says so. The containment was silent: on a laptop between 900px and
+   ~1150px the roster still runs wider than its card, and a scrollable box with
+   no edge treatment reads as a finished table that happens to stop. The two
+   `local` gradients are painted in card colour and travel WITH the table; the
+   two fixed shadows sit under them at the card's edges. At rest the covers hide
+   the shadows, so nothing is drawn when the table fits — the shadow only appears
+   on the side that has more table behind it. Below 900px the table is a stack of
+   cards and this is switched off with the scrolling. */
+@media (min-width: 901px) {
+  .cp-card:has(.cp-table) {
+    background-image:
+      linear-gradient(to right, var(--c-card) 30%, transparent),
+      linear-gradient(to left, var(--c-card) 30%, transparent),
+      /* Light, not black. Compass is a dark surface, and a black shadow at the
+         edge of a near-black card is invisible — the first attempt at this
+         painted correctly and could not be seen. */
+      linear-gradient(to right, oklch(100% 0 0 / 0.2), transparent),
+      linear-gradient(to left, oklch(100% 0 0 / 0.2), transparent);
+    background-position:
+      left center,
+      right center,
+      left center,
+      right center;
+    background-size:
+      var(--space-10) 100%,
+      var(--space-10) 100%,
+      var(--space-6) 100%,
+      var(--space-6) 100%;
+    background-repeat: no-repeat;
+    background-attachment: local, local, scroll, scroll;
+  }
+}
 
 .cp-table {
   width: 100%;
@@ -1186,7 +1240,15 @@
   gap: var(--space-2);
   align-items: center;
 }
-.cp-chip {
+/* The FILTER chip — a toggle you press. Scoped to `button` on purpose: this
+   block used to be a bare `.cp-chip`, and because it sits ~980 lines after the
+   StatusChip block it silently repainted every status chip in Compass. The Call
+   List's "Needs attention" / "Ready to grow" badges lost their semantic wash to
+   `background: transparent`, lost their on-wash label colour, and picked up
+   `cursor: pointer` on a span nobody can click. Every filter chip is a
+   `<button>` and every status chip is a `<span>`, so the element selector is the
+   whole fix and no markup moves. */
+button.cp-chip {
   font-size: var(--text-xs);
   padding: 3px var(--space-3);
   border-radius: 999px;
@@ -1195,7 +1257,7 @@
   color: var(--c-ink-soft);
   cursor: pointer;
 }
-.cp-chip--on {
+button.cp-chip--on {
   background: var(--c-amber-wash);
   border-color: var(--c-amber);
   color: var(--c-amber-deep);
@@ -1363,28 +1425,227 @@
 @media (max-width: 900px) {
   .cp-layout {
     grid-template-columns: minmax(0, 1fr);
+    /* Without explicit rows the two stacked children split `min-height:100vh`
+       between them, so on a short page (Knowledge's empty state) the nav strip
+       inflated to half the screen and left a 500px hole under the tabs. */
+    grid-template-rows: auto minmax(0, 1fr);
   }
   .cp-sidenav {
     position: static;
     height: auto;
     border-right: 0;
     border-bottom: 1px solid var(--c-line);
-    padding: var(--space-4) var(--space-5);
+    /* Same gutter as `.cp-main`, so the wordmark and the tabs line up with the
+       headline underneath instead of sitting on their own private margin. */
+    padding: var(--space-4) var(--page-gutter);
   }
+  /* The strip WRAPS, it does not scroll. As a scroller it had no affordance and
+     no snap, and `Knowledge` sat 62px past a 390px viewport and 130px past a
+     320px one — on a phone the fifth Compass destination did not exist. Five
+     short labels fold onto two rows inside 288px, so every destination is on
+     screen at 320px with nothing to discover. */
   .cp-nav {
     flex-direction: row;
+    flex-wrap: wrap;
     margin-top: var(--space-4);
-    gap: 4px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    gap: var(--space-1) var(--space-2);
+    overflow: visible;
   }
   .cp-nav a {
     white-space: nowrap;
+    padding: 8px var(--space-3);
+    border: 1px solid transparent;
+  }
+  /* A wrapped row of same-coloured words needs the current one to read as a
+     destination, not as bold text — the pill carries that on a phone. */
+  .cp-nav a[aria-current='page'] {
+    border-color: var(--c-line);
   }
   .cp-rep {
     display: none;
   }
   .cp-main {
-    padding: var(--space-6) var(--space-5);
+    /* Bottom clearance is the feedback button's 44px + its 12px inset + a gap,
+       so the last card or table row can always be read past it. */
+    padding: var(--space-6) var(--page-gutter) calc(var(--space-8) + 56px);
+  }
+
+  /* The cross-project feedback button is injected by a third-party script AFTER
+     this stylesheet, so it wins on source order at equal specificity — hence
+     `body #fw-btn`. At 52px with a 24px inset it landed on top of the first call
+     card at 390px and over an accounts row at 320px. Smaller, tucked further
+     into the corner, and with `.cp-main` reserving room for it below. */
+  body #fw-btn {
+    width: 44px;
+    height: 44px;
+    right: var(--space-3);
+    bottom: var(--space-3);
+  }
+  body #fw-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  body #fw-card {
+    right: var(--space-3);
+    bottom: calc(44px + var(--space-3) * 2);
+    width: min(340px, calc(100vw - var(--space-3) * 2));
+  }
+}
+
+/* ------------------------------------------------- phone: cards, not columns */
+
+/* 620px is where the three-up evidence row stops being readable: below it each
+   tile holds under 90px, which is where "Needs attention" starts wrapping onto
+   three lines and clipping. */
+@media (max-width: 620px) {
+  /* One tile per row, read as `value — caption` on a single line instead of a
+     narrow column that wraps the caption four times. */
+  .cp-ev {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-4) var(--space-5) 0;
+    gap: var(--space-2);
+  }
+  .cp-ev-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+  }
+  .cp-ev-item .k {
+    margin-top: 0;
+    text-align: right;
+    min-width: 0;
+  }
+
+  /* The card head is name / region / chip on one line at desk width. On a phone
+     the chip squeezed the salon name to two or three lines; giving the name the
+     full row and letting region + chip share the next one keeps all three and
+     stops the name from breaking. */
+  .cp-call-head {
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+    padding: var(--space-5) var(--space-5) 0;
+  }
+  .cp-call-head h3 {
+    flex: 1 1 100%;
+  }
+  .cp-call-head .cp-chip {
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* Coaching targets, same reason: the chip was squeezing "Sunset Ridge Tanning
+     & Wellness" onto three lines and still wrapping itself onto two. */
+  .cp-cardhead {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  .cp-cardhead h3 {
+    flex: 1 1 100%;
+  }
+  .cp-cardhead .cp-chip {
+    white-space: nowrap;
+  }
+
+  .cp-suggest {
+    margin: var(--space-4) var(--space-5);
+  }
+  .cp-actions {
+    padding: 0 var(--space-5) var(--space-5);
+  }
+  .cp-thread,
+  .cp-inline {
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+}
+
+/* Accounts / Network roster. `.cp-card:has(.cp-table)` above scrolls the table
+   inside its own box, which is the right containment — but at 320px a 763px
+   table showed Salon and half of Where, and Health, Signal and Sharing (the
+   whole point of the page) were off-screen with nothing saying so. Below 900px
+   each row becomes a small card: the salon is the heading, every other cell is a
+   labelled line. NO COLUMN IS DROPPED — the header row is what disappears,
+   because each cell now carries its own label.
+
+   900px, not a table-specific number, so the roster changes shape at the same
+   width the Compass shell does — one breakpoint, one story. It also covers the
+   tablet: at 768px the accounts table needed 760px inside a 696px card, so the
+   Sharing badge read "Benchmarks + Coaching" with `view` sliced off the end. */
+@media (max-width: 900px) {
+  .cp-card:has(.cp-table) {
+    overflow-x: visible;
+  }
+  .cp-table,
+  .cp-table tr,
+  .cp-table td {
+    display: block;
+    width: 100%;
+  }
+  /* One column on a phone, two on a tablet. A stacked roster held to a single
+     column left the right half of a 768px screen empty; `auto-fill` with a
+     `min()` floor is the same pattern `.cp-grid--3` already uses here, so the
+     roster densifies with the viewport instead of at a second breakpoint. */
+  .cp-table tbody {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    gap: var(--space-2) var(--space-6);
+    width: 100%;
+  }
+  /* `display:block` has already dissolved the table's row/column semantics, so a
+     visually-hidden header row would announce seven headings attached to
+     nothing. The label moves into each cell instead. */
+  .cp-table thead {
+    display: none;
+  }
+  /* Every row carries its own top rule, including the first. In two columns a
+     `:first-child` exception would strip the rule from one card and not the one
+     beside it, which reads as a rendering fault rather than a decision. */
+  .cp-table tr {
+    border-top: 1px solid var(--c-line);
+    padding: var(--space-4) 0 var(--space-2);
+  }
+  /* The label is taken OUT OF FLOW rather than made a flex item or an inline
+     hanging indent. A cell like Health is `<dot> Thriving` — a span plus a bare
+     text node — which flex would split into two items and push apart, and which
+     an inline label overlaps as soon as the value is wide enough to wrap (the
+     Sharing badge did exactly that). Absolute keeps the gutter honest for any
+     cell content, wrapped or not. */
+  .cp-table td {
+    --cp-row-label: 5.5rem;
+    position: relative;
+    border-top: 0;
+    padding: 3px 0 3px calc(var(--cp-row-label) + var(--space-3));
+    min-height: 1.6em;
+  }
+  .cp-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: var(--cp-row-label);
+    font: 600 var(--text-xs) / 1.5 var(--font-body);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-ink-faint);
+  }
+  /* The salon name is the card's title, so it takes the full width and needs no
+     label beside it. */
+  .cp-table td:first-child {
+    padding: 0 0 var(--space-2);
+    font-size: var(--text-md);
+  }
+  .cp-table td:first-child::before {
+    display: none;
+  }
+  .cp-table tbody tr:hover {
+    background: transparent;
+  }
+  /* "Benchmarks + Coaching view" is 189px of nowrap text and the value column
+     holds 156px at 320px, so the pill ran off the card. It wraps to two lines
+     rather than losing the second half of what the salon agreed to. */
+  .cp-table .cp-consent {
+    white-space: normal;
   }
 }

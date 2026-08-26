@@ -82,6 +82,43 @@
 .b-oppfeed-list { display: grid; gap: var(--space-4); }
 
 /* ---- sms preview ----------------------------------------------------------- */
+/* ---- the prepared-artifact cards ------------------------------------------
+   THE SAME BUG `.b-opp` HAD, IN SEVEN MORE PLACES. `.card` in tokens.css is
+   background + border + shadow and deliberately NO padding; every card type
+   supplies its own. These seven never did — they were built as leaves in the
+   2026-08-19/21 batches, compiled clean, and were never rendered by anything,
+   so nobody ever saw that their text sits flush against the border on both
+   sides. Measured at 320px on 2026-08-26, the moment the action sheet started
+   opening them: subject line at x=0 inside the card, `17 messages · about
+   $1.20` touching the left edge, the SMS bubble running under the border.
+
+   `min-width: 0` for the same reason it is on `.b-opp`: grid and flex children
+   default to `min-width: auto`, so one long unbroken customer name or figure
+   sets a floor the sheet cannot go below and the right-hand text is clipped
+   away rather than wrapped. */
+.b-msg,
+.b-mailprev,
+.b-stask,
+.b-script,
+.b-chal,
+.b-outcome,
+.b-handle {
+  padding: var(--space-5) var(--space-6);
+  min-width: 0;
+}
+.b-msg > *,
+.b-mailprev > *,
+.b-stask > *,
+.b-script > *,
+.b-chal > *,
+.b-outcome > *,
+.b-handle > * { min-width: 0; }
+.b-mailprev-subject,
+.b-mailprev-body,
+.b-stask-goal,
+.b-script-quote,
+.b-handle-v { overflow-wrap: anywhere; }
+
 .b-msg { display: grid; gap: var(--space-3); }
 .b-msg-bubble {
   border-radius: 14px 14px 14px 4px;
@@ -209,7 +246,12 @@
 
 /* ---- front-desk script ----------------------------------------------------- */
 .b-script { display: grid; gap: var(--space-3); }
-.b-script-who { display: flex; align-items: center; gap: var(--space-3); }
+/* Wraps, because at 320px the "Strong opportunity" pill and a customer line
+   like "Regular · visits 2×/week" cannot share a row — the name ran into the
+   pill and broke mid-phrase against it. The pill keeps its intrinsic width
+   (`flex: none`) so it never squashes into an ellipsis. */
+.b-script-who { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+.b-script-level { flex: none; }
 .b-script-level {
   display: inline-block;
   border-radius: 999px;
@@ -276,6 +318,12 @@
 .b-handle { display: grid; gap: var(--space-3); }
 .b-handle-steps { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
 .b-handle-step { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: var(--space-3); }
+/* An 88px label column plus the card's own padding leaves the value about
+   130px inside a 320px sheet, which turns "24 customers who usually visit on
+   weekday afternoons" into a ragged nine-line column. Stack instead. */
+@media (max-width: 380px) {
+  .b-handle-step { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
 .b-handle-k { font: 600 var(--text-xs) / 1.6 var(--font-body); color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; }
 .b-handle-v { font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink); }
 .b-handle-note { font: 400 var(--text-xs) / 1.4 var(--font-body); color: var(--ink-faint); }

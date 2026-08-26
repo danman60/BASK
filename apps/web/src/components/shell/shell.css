@@ -73,6 +73,39 @@
   font-weight: 600;
 }
 
+/* ---------------------------------------------------------- narrow desktop */
+/* Eight nav pills, not six. Measured on the real topbar at 1000px: wordmark +
+   eight full-size pills + the salon name + avatar needs 1177px, so the row that
+   fit at 999px before Floor and Inventory came back now overruns every laptop
+   between 1000 and 1179px — and html/body are overflow-x:clip, so it is cut off
+   rather than scrollable.
+ *
+ * Rather than push another 180px of widths onto the bottom tab bar, this band
+ * buys the 177px back where it costs least: tighter pill padding, a smaller
+ * gutter, and the salon name ellipsised (it is decorative text — the owner's
+ * identity is on the avatar, and the name is already hidden below 1000px).
+ * Measured after: 1000px fits with 43px to spare, no pill clipped. */
+
+@media (min-width: 1000px) and (max-width: 1179px) {
+  .b-topbar {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+    gap: var(--space-4);
+  }
+  .b-nav {
+    margin-left: var(--space-4);
+    gap: 2px;
+  }
+  .b-nav-pill {
+    padding: 8px 9px;
+  }
+  .b-salon-chip {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
 .b-topbar-right {
   margin-left: auto;
   display: flex;
@@ -99,6 +132,29 @@
 /* Bottom tab bar exists only at mobile widths. */
 .b-tabbar {
   display: none;
+}
+
+/* How much room the fixed tab bar needs at the bottom of a scrolling surface.
+ *
+ * This is a TOKEN, not a per-surface number, because the clearance has to be
+ * read by files that are not this one — `.page-shell` lives in
+ * `page/page-container.css`, `.floor` in `(bask)/floor/floor.css` — and a
+ * custom property resolves the same regardless of which stylesheet loads first.
+ * That ordering is the whole bug: the `max-width:600px` rule below used to set
+ * `padding-bottom` on `.page-shell` directly, but `page-container.css` cascades
+ * AFTER this file and its `padding` SHORTHAND re-set the bottom edge to
+ * `--space-12`. Same specificity, later source, shorthand wins — so every
+ * PageContainer surface (Analytics, Inventory, Customers, Marketing) ran its
+ * last row under a 94px tab bar at EVERY mobile width, not just the 601–999
+ * band. A shorthand silently beating a longhand from another file is invisible
+ * in both files; a token is not.
+ *
+ * Values track `.b-tabbar`'s measured height + breathing room:
+ *   ≤600px  two rows of four  → 94px bar
+ *   ≤999px  one row of eight  → 55px bar
+ */
+:root {
+  --tabbar-clearance: 0px;
 }
 
 /* -------------------------------------------------------------- page shell */
@@ -139,6 +195,9 @@
  * width below the one where the desktop row actually fits. */
 
 @media (max-width: 999px) {
+  :root {
+    --tabbar-clearance: 96px;
+  }
   .b-topbar {
     padding: 18px 20px;
     gap: var(--space-3);
@@ -163,8 +222,18 @@
      the opportunity feed and the wins feed carried none at all. 96px of
      bottom padding still clears the fixed tab bar. */
   .b-shell {
-    padding: var(--space-6) var(--page-gutter) 96px;
+    padding: var(--space-6) var(--page-gutter) var(--tabbar-clearance);
     gap: 0;
+  }
+
+  /* The cross-project feedback widget (root layout) is `position:fixed` at
+     `bottom:24px` with `z-index:99999`, so at mobile widths it landed ON the
+     tab bar — covering the fourth tab of the top row and the "Community"
+     label under it. Measured at 390px: the 52px button sat at y=824–876
+     inside a bar occupying y=805–900. It is shipped UI, so it moves up rather
+     than away; the bar is the thing the owner taps constantly. */
+  #fw-btn {
+    bottom: calc(var(--tabbar-clearance) - 24px + env(safe-area-inset-bottom)) !important;
   }
 
   .b-tabbar {
@@ -174,7 +243,12 @@
     right: 0;
     z-index: 30;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    /* Eight destinations. One row of eight needs ~62px a tab before the longest
+       label ("Community", "Marketing") starts ellipsising at 10px — so a single
+       row is only honest from ~560px up. Below that the bar wraps to two rows of
+       four; see the 600px rule underneath. Leaving this at `repeat(6, 1fr)`
+       wrapped the last two tabs onto a lopsided second row at EVERY width. */
+    grid-template-columns: repeat(8, 1fr);
     background: oklch(100% 0 0 / 0.92);
     backdrop-filter: blur(12px);
     border-top: 1px solid var(--line-soft);
@@ -197,5 +271,22 @@
   }
   .b-tab[data-active] {
     color: var(--primary-deep);
+  }
+}
+
+/* ------------------------------------------------------------ phone widths */
+/* Eight tabs across a 320px bar leaves 39px each — "Marketing", "Inventory" and
+   "Community" all clip, and a clipped destination is a destination the owner
+   cannot read. Nothing is dropped: the bar becomes two rows of four (78px a
+   tab at 320px, every label whole), and the shell's bottom padding grows to
+   clear the taller bar. */
+
+@media (max-width: 600px) {
+  :root {
+    --tabbar-clearance: 128px;
+  }
+  .b-tabbar {
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 6px;
   }
 }

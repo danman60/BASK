@@ -21,6 +21,7 @@ cd "$(dirname "$0")/../.." || exit 2
 # name:reason — parked on purpose, not lost.
 ALLOWLIST="
 PulseCard:removed from Today on purpose (operational, not opportunity)
+CoachAnswer:no coaching surface yet — needs a real answer AND real citations from the expo corpus; the only action that could open it (coaching_request) carries a topic and nothing else, and writing the prose to fill it would be fabricating advice
 "
 
 BARREL="packages/ui/src/index.ts"

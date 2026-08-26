@@ -3,6 +3,7 @@ import { formatCurrency, formatLongDate, round } from '@bask/core';
 import { Guided, TeachingEmptyState, WhisperNote } from '@bask/ui';
 
 import '@/components/lane4/lane4.css';
+import { PageContainer } from '@/components/page/PageContainer';
 import { Chip, ProductSwatch, SectionHead } from '@/components/lane4/primitives';
 import {
   getLastSubmittedOrder,
@@ -24,8 +25,12 @@ export const dynamic = 'force-dynamic';
  * every line still carries the reason it is there. That combination is the beat:
  * a purchase order that can explain itself.
  */
-export default async function DraftOrderPage() {
-  const salon = await getDemoSalon();
+export default async function DraftOrderPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ salon?: string }>;
+}) {
+  const salon = await getDemoSalon((await searchParams).salon);
   const [draft, lastSubmitted] = await Promise.all([
     getOpenDraftOrder(salon.salonId),
     getLastSubmittedOrder(salon.salonId),
@@ -41,7 +46,7 @@ export default async function DraftOrderPage() {
     draft && draft.total > 0 ? round(((draft.retailValue - draft.total) / draft.total) * 100, 0) : 0;
 
   return (
-    <main className="l4">
+    <PageContainer>
       <header className="l4-head">
         <div>
           <p className="eyebrow">UVALUX order · {formatLongDate(salon.today)}</p>
@@ -261,6 +266,6 @@ export default async function DraftOrderPage() {
           </aside>
         </div>
       )}
-    </main>
+    </PageContainer>
   );
 }

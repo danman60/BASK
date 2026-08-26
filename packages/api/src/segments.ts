@@ -304,6 +304,8 @@ export async function loadSegmentCustomers(
     const health = computeCustomerHealth({
       baselineKind: mem ? 'member' : pkg ? 'packageHolder' : 'payAsYouGo',
       visits: healthVisits,
+      // Staleness anchor for anyone with no visit at all — see CustomerHealthInput.
+      customerSince: c.joinedAt,
       lastRetailAt: lastRetailBy.get(c.id) ?? null,
       membership: mem
         ? {

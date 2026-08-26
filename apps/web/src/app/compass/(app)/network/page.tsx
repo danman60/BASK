@@ -214,12 +214,12 @@ export default function NetworkPage() {
                       {salon.account.salonName}
                     </Link>
                   </td>
-                  <td className="num">{salon.account.region}</td>
-                  <td>
+                  <td className="num" data-label="Where">{salon.account.region}</td>
+                  <td data-label="Band">
                     <BandDot band={salon.account.healthBand ?? 'unknown'} />{' '}
                     {BAND_LABEL[salon.account.healthBand ?? 'unknown']}
                   </td>
-                  <td>
+                  <td data-label="Sharing">
                     <ConsentBadge tier={salon.consentTier} />
                   </td>
                 </tr>

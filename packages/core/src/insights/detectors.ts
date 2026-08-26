@@ -25,7 +25,8 @@ import {
   type EvidenceSeries,
   EVIDENCE_VERSION,
 } from '../evidence';
-import { addDays, weekdayName } from '../clock';
+import { addDays } from '../clock';
+import { formatHour, formatHourRange, numberWord, weekdayNameForIndex } from '../format';
 import { daypartForHour, type CapacitySlotFacts, type ProductStockFacts } from './facts';
 import type { Detector, InsightSeverity } from './types';
 
@@ -134,8 +135,8 @@ export const attachmentSlipDetector: Detector = {
     for (const slot of softSlots) {
       factors.push({
         key: `slot:${slot.weekday}:${slot.daypart}`,
-        label: `${weekdayNameFor(slot.weekday)} ${slot.daypart}`,
-        detail: `${weekdayNameFor(slot.weekday)} ${slot.daypart} shifts attached ${round(slot.currentRate, 0)}% of visits.`,
+        label: `${weekdayNameForIndex(slot.weekday)} ${slot.daypart}`,
+        detail: `${weekdayNameForIndex(slot.weekday)} ${slot.daypart} shifts attached ${round(slot.currentRate, 0)}% of visits.`,
         share: null,
         direction: 'down',
       });
@@ -365,7 +366,7 @@ export const softCapacityDetector: Detector = {
     if (weeklyImpact < ctx.minImpact) return [];
 
     const unbooked = round(100 - mean(best.slots.map((s) => s.utilisation)), 0);
-    const label = `${weekdayNameFor(best.weekday)} ${formatHourRange(best.startHour, best.endHour)}`;
+    const label = `${weekdayNameForIndex(best.weekday)} ${formatHourRange(best.startHour, best.endHour)}`;
     const nextOccurrence = nextWeekday(ctx.today, best.weekday);
 
     const sentence =
@@ -393,7 +394,7 @@ export const softCapacityDetector: Detector = {
         currency: ctx.currency,
         cadence: 'per_week',
         basis:
-          `${round(emptyPerWeek, 0)} empty room-hours each ${weekdayNameFor(best.weekday)}, ` +
+          `${round(emptyPerWeek, 0)} empty room-hours each ${weekdayNameForIndex(best.weekday)}, ` +
           `filling one in four at ${formatCurrency(averageValue, ctx.currency)} a visit.`,
         confidence: 'medium',
         chipLabel: 'Opportunity',
@@ -415,7 +416,7 @@ export const softCapacityDetector: Detector = {
         dedupeKey: `${ctx.salonId}:soft_capacity:${best.weekday}:${best.startHour}`,
         type: 'soft_capacity',
         severity: 'info',
-        title: `${weekdayNameFor(best.weekday)} ${daypartForHour(best.startHour)} is wide open next week`,
+        title: `${weekdayNameForIndex(best.weekday)} ${daypartForHour(best.startHour)} is wide open next week`,
         summary: `${formatHourRange(best.startHour, best.endHour)} runs ${unbooked}% unbooked.`,
         evidence,
         impactEstimate: weeklyImpact,
@@ -428,7 +429,7 @@ export const softCapacityDetector: Detector = {
           endHour: best.endHour,
           targetDate: nextOccurrence,
         },
-        primaryActionLabel: `Create a ${weekdayNameFor(best.weekday)} promo`,
+        primaryActionLabel: `Create a ${weekdayNameForIndex(best.weekday)} promo`,
         forDate: ctx.today,
       },
     ];
@@ -727,20 +728,6 @@ function mean(values: number[]): number {
   return values.reduce((a, b) => a + b, 0) / values.length;
 }
 
-function weekdayNameFor(weekday: number): string {
-  return weekdayName(addDays('2026-01-04', weekday)); // 2026-01-04 is a Sunday
-}
-
-function formatHour(hour: number): string {
-  const suffix = hour >= 12 ? 'pm' : 'am';
-  const h = hour % 12 === 0 ? 12 : hour % 12;
-  return `${h}${suffix}`;
-}
-
-function formatHourRange(start: number, end: number): string {
-  return `${formatHour(start)}–${formatHour(end)}`;
-}
-
 function describeSpan(days: number): string {
   if (days % 7 === 0) {
     const weeks = days / 7;
@@ -749,13 +736,9 @@ function describeSpan(days: number): string {
   return `${days} days`;
 }
 
-function numberWord(n: number): string {
-  return ['zero', 'one', 'two', 'three', 'four', 'five', 'six'][n] ?? String(n);
-}
-
 function describeWhere(staffNames: string[], slots: CapacitySlotLike[]): string {
   if (slots.length > 0) {
-    const parts = slots.map((s) => `${weekdayNameFor(s.weekday)} ${s.daypart}`);
+    const parts = slots.map((s) => `${weekdayNameForIndex(s.weekday)} ${s.daypart}`);
     return ` — mostly on ${joinAnd(parts)} shifts`;
   }
   if (staffNames.length > 0) return ` — concentrated on ${joinAnd(staffNames)}'s shifts`;

@@ -14,7 +14,7 @@
  */
 
 import type { CallStatus, EvidenceTile as EvidenceTileData, TrendDirection } from '@bask/core';
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
 /* -------------------------------------------------------------- StatusChip */
 
@@ -49,9 +49,17 @@ export function EvidenceTileRow({ tiles }: { tiles: EvidenceTileData[] }) {
   return (
     // The row is 3-up by design, but a short row fills the width rather than
     // leaving dead columns — a gap where a number should be reads as a bug.
+    //
+    // The count rides on a CUSTOM PROPERTY, never on `gridTemplateColumns`
+    // directly. An inline `grid-template-columns` beats every stylesheet rule
+    // including media queries, so the phone breakpoint in compass.css could not
+    // collapse this row and each tile kept ~60px of content at 390px — long
+    // enough to wrap "Needs attention" onto three lines and clip it. A custom
+    // property is still inline, but the breakpoint overrides the real property
+    // instead of the variable, so it wins.
     <div
       className="cp-ev"
-      style={{ gridTemplateColumns: `repeat(${Math.min(tiles.length, 3)}, minmax(0, 1fr))` }}
+      style={{ '--cp-ev-cols': Math.min(tiles.length, 3) } as CSSProperties}
     >
       {tiles.map((tile, index) => (
         <div className="cp-ev-item" key={`${tile.caption}-${index}`}>

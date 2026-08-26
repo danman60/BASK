@@ -23,10 +23,10 @@
  * as a last resort for a database seeded some other way.
  */
 
-import { HERO_SALON_ID } from '@bask/db/fixtures';
 import { db, type PrismaClient, type ScopedDb, withSalonScope } from '@bask/db';
 
 import { type DemoRole, parseDemoRole, ROLE_HEADER, SALON_HEADER } from './roles';
+import { resolveSalon, SALON_PARAM } from './salon-scope';
 
 export { ROLE_HEADER, SALON_HEADER };
 
@@ -67,39 +67,14 @@ function readParam(options: CreateContextOptions, header: string, param: string)
   }
 }
 
-const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-/**
- * Resolve `?salon=` by slug OR id — but only ask Postgres about `id` when the
- * value could actually BE one.
- *
- * M1 lane 5 fix: the original `{ OR: [{ slug }, { id }] }` sent the raw string to
- * a `uuid` column, and Postgres does not shrug at that — it aborts the whole
- * query with `invalid input syntax for type uuid`. So every `?salon=<slug>` link
- * 500'd, including the ones the consent demo depends on. The OR was right; the
- * unguarded cast was not.
- */
-function salonWhere(value: string) {
-  return UUID.test(value) ? { OR: [{ slug: value }, { id: value }] } : { slug: value };
-}
-
 export async function createContext(options: CreateContextOptions): Promise<Context> {
   const role = parseDemoRole(readParam(options, ROLE_HEADER, 'role'));
-  const requestedSalon = readParam(options, SALON_HEADER, 'salon');
+  const requestedSalon = readParam(options, SALON_HEADER, SALON_PARAM);
 
-  const salon = requestedSalon
-    ? await db.salon.findFirst({
-        where: salonWhere(requestedSalon),
-        select: { id: true, slug: true },
-      })
-    : ((await db.salon.findUnique({
-        where: { id: HERO_SALON_ID },
-        select: { id: true, slug: true },
-      })) ??
-      (await db.salon.findFirst({
-        orderBy: { createdAt: 'asc' },
-        select: { id: true, slug: true },
-      })));
+  // One resolver, shared with the app shell — see `./salon-scope`. This used to
+  // be an inline copy of the same fallback chain and the same UUID guard, and a
+  // fix to one copy did not reach the other two.
+  const salon = await resolveSalon(requestedSalon);
 
   const salonId = salon?.id ?? null;
 

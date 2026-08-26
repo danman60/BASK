@@ -2,8 +2,10 @@
  * @bask/core — domain types, insight rules engine, demo clock, consent filter,
  * metric baselines. Pure TS, zero UI deps: identical on server, web, and mobile.
  *
- * The Anthropic SDK is imported lazily inside `ai/client.ts`, so importing this
- * barrel from a browser or React Native bundle stays safe.
+ * The only LLM provider is OpenAI, and its SDK is imported lazily — a
+ * `await import('openai')` inside `generateJson` in `ai/client.ts`, reached only
+ * when `OPENAI_API_KEY` is set — so importing this barrel from a browser or
+ * React Native bundle stays safe.
  *
  * Landed: demo clock (step 4), Evidence + rules engine (step 5), AI module and
  * Daybreak generation (step 6), pipeline orchestration.
@@ -40,6 +42,11 @@ export {
   type DateOnly,
   type DemoStateLike,
 } from './clock';
+
+// Label formatters — the ONE hour/weekday/number-word renderer. Four private
+// copies had drifted (`2pm` in the insight card vs `2 pm` in the campaign
+// generated from that same slot); this is the single source.
+export { formatHour, formatHourRange, numberWord, weekdayNameForIndex } from './format';
 
 // The ONE Evidence schema (IMPLEMENTATION_SPEC §2, DESIGN_SPEC §4)
 export {
@@ -196,6 +203,7 @@ export {
   CONSENT_TIERS,
   COMPASS_FIELDS,
   CONSENT_FIELD_LABELS,
+  DEFAULT_CONSENT_TIER,
   MIN_COHORT_SIZE,
   allowedFields,
   allowedGroups,
@@ -207,6 +215,7 @@ export {
   labelForConsentField,
   receivesBenchmarks,
   repMaySeeSignals,
+  resolveConsentTier,
   type CohortAggregate,
   type CohortResult,
   type CompassFieldGroup,
@@ -415,3 +424,11 @@ export {
   type NetworkOutcomeRecord,
   type NetworkOutcomeSummary,
 } from './network/outcomes';
+// The proof shown under a prepared action. Records are a demo fixture and the
+// module says so at the top; the percentages are computed, and the confidence
+// floor really does suppress the card. Read that header before quoting a number.
+export {
+  networkProofFor,
+  DEMO_NETWORK_OUTCOMES,
+  type OpportunityNetworkProof,
+} from './network/opportunity-proof';

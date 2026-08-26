@@ -1,7 +1,12 @@
 import { SHELL_UI, type NavKey } from '@bask/ui';
 
 /**
- * The app's information architecture — six destinations, PRODUCT_SPEC/§7 order.
+ * The app's information architecture — eight destinations, PRODUCT_SPEC/§7 order.
+ *
+ * Floor and Inventory are Beats 2 and 3 of the pitch (`docs/pitch/PITCH.md`) and
+ * `scenario-bookmarks.ts` still opens them, so they belong in the nav even though
+ * `8e32efc` briefly took them out. Eight 10px labels do not fit one 320px tab row —
+ * the bar wraps to two rows of four below 600px; see `shell.css`.
  *
  * Routing lives here; the LABELS live in the guidance dictionary, so a copy pass
  * never has to open a routing file. Lanes 2–4 fill these routes; lane 1 owns this
@@ -11,7 +16,7 @@ export interface NavDestination {
   key: NavKey;
   href: string;
   label: string;
-  /** Tab-bar label — same word, no article (six across 390px). */
+  /** Tab-bar label — same word, no article (four across a 320px row). */
   short: string;
   /** Bottom-tab glyph at mobile widths (mockup 05). */
   icon: string;
@@ -27,8 +32,10 @@ const dest = (key: NavKey, href: string, icon: string): NavDestination => ({
 
 export const NAV: readonly NavDestination[] = [
   dest('today', '/', '☀'),
+  dest('floor', '/floor', '◉'),
   dest('customers', '/customers', '☺'),
   dest('marketing', '/marketing', '✉'),
+  dest('inventory', '/inventory', '▤'),
   dest('insights', '/insights', '◈'),
   dest('monitor', '/monitor', '◎'),
   dest('community', '/community', '◇'),

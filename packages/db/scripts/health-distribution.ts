@@ -37,8 +37,19 @@ async function main() {
   const salons = await db.salon.findMany({
     select: { id: true, name: true, slug: true, _count: { select: { customers: true } } },
   });
-  const salon = salons.sort((a, b) => b._count.customers - a._count.customers)[0];
-  if (!salon || salon._count.customers === 0) {
+
+  // `--salon <slug>` because "the salon with the most customers" is no longer
+  // the salon anyone is looking at: the ETL-ingested tenants are the biggest and
+  // their visit history stops in 2020, which makes every customer read as
+  // never-visited regardless of what the scorer does.
+  const wantSlug = process.argv[process.argv.indexOf('--salon') + 1];
+  const salon = process.argv.includes('--salon')
+    ? salons.find((s) => s.slug === wantSlug || s.name === wantSlug)
+    : salons.sort((a, b) => b._count.customers - a._count.customers)[0];
+  if (!salon) {
+    throw new Error(`No salon matching "${wantSlug}". Slugs: ${salons.map((s) => s.slug).join(', ')}`);
+  }
+  if (salon._count.customers === 0) {
     throw new Error('No salon with customers — run `pnpm demo:reset` first.');
   }
 
@@ -55,6 +66,7 @@ async function main() {
       firstName: true,
       lastName: true,
       lastVisitAt: true,
+      joinedAt: true,
       memberships: {
         where: { status: { not: 'cancelled' } },
         select: { status: true, paymentState: true, failedPaymentCount: true },
@@ -73,7 +85,7 @@ async function main() {
     },
   });
 
-    const scored: { name: string; health: CustomerHealth }[] = [];
+    const scored: { name: string; health: CustomerHealth; hasVisited: boolean }[] = [];
 
   for (const c of customers) {
     const membership = c.memberships[0] ?? null;
@@ -90,6 +102,8 @@ async function main() {
         retailAttached: v.sales.some((s) => Number(s.total) > 0),
       })),
       lastRetailAt: c.sales[0]?.soldAt ?? null,
+      // Staleness anchor for anyone with no visit in the window.
+      customerSince: c.joinedAt,
       membership: membership
         ? {
             status: membership.status === 'frozen' ? 'frozen' : 'active',
@@ -99,7 +113,11 @@ async function main() {
       now,
     });
 
-    scored.push({ name: `${c.firstName} ${c.lastName}`, health });
+    scored.push({
+      name: `${c.firstName} ${c.lastName}`,
+      health,
+      hasVisited: c.visits.length > 0,
+    });
   }
 
   // ── distribution ──────────────────────────────────────────────────────────
@@ -118,11 +136,28 @@ async function main() {
       `staleness full at ${TUNING.stalenessFullDays}d (cap -${TUNING.stalenessCap})\n`,
   );
 
+  console.log(`${'BAND'.padEnd(9)} ${'ALL'.padStart(5)} ${'SHARE'.padStart(7)} ${'zero-visit'.padStart(11)} ${'has-visited'.padStart(12)}`);
   for (const band of BAND_ORDER) {
     const rows = scored.filter((s) => s.health.band === band);
     const share = ((rows.length / scored.length) * 100).toFixed(1);
-    console.log(`${band.toUpperCase().padEnd(9)} ${String(rows.length).padStart(4)}  ${share.padStart(5)}%`);
+    const zero = rows.filter((s) => !s.hasVisited).length;
+    console.log(
+      `${band.toUpperCase().padEnd(9)} ${String(rows.length).padStart(5)} ${(share + '%').padStart(7)} ` +
+        `${String(zero).padStart(11)} ${String(rows.length - zero).padStart(12)}`,
+    );
   }
+
+  // The number the bug was hiding behind: a never-visited customer must never
+  // out-score someone who actually came in.
+  const visited = scored.filter((s) => s.hasVisited);
+  const zeroVisit = scored.filter((s) => !s.hasVisited);
+  const maxOf = (rows: typeof scored) =>
+    rows.length === 0 ? 'n/a' : String(Math.max(...rows.map((s) => s.health.score)));
+  console.log(
+    `\nHas-visited: ${visited.length} (max score ${maxOf(visited)}) · ` +
+      `zero-visit: ${zeroVisit.length} (max score ${maxOf(zeroVisit)}) · ` +
+      `zero-visit in healthy band: ${zeroVisit.filter((s) => s.health.band === 'healthy').length}`,
+  );
 
   const scores = scored.map((s) => s.health.score).sort((a, b) => a - b);
   const at = (p: number) => scores[Math.min(scores.length - 1, Math.floor((scores.length - 1) * p))];

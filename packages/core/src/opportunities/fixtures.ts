@@ -2,13 +2,40 @@
  * Demo dataset for Sunset Ridge Tanning (August 2026).
  *
  * Ranking is by `impactMonthly` descending, pre-sorted here.
+ *
+ * `methodSource` comes off the registry in `../sources/experts.ts` — it is NOT
+ * typed out here. Three of these opportunities used to carry hand-copied label
+ * and basis strings, which meant the registry (the thing that enforces the
+ * de-identification rule) was imported by nobody and a future edit could put a
+ * person's name on a card without tripping anything. Naming the technique makes
+ * the registry the single place attribution copy can come from.
+ *
+ * An opportunity whose technique is not in the registry gets NO method line.
+ * `opp-fill-tuesday` (off-peak capacity), `opp-reorder-bronzer` (stock cover)
+ * and `opp-redlight-use` (idle equipment) are those cases — they are left bare
+ * rather than given the nearest-sounding method, because a method line that
+ * does not match the method is worse than no method line.
  */
+import { methodSourceFor } from '../sources/experts';
+
 import type { Opportunity, OpportunityOutcome } from './types';
+
+/**
+ * Registry lookup, narrowed to what a card renders.
+ *
+ * Throws on an unknown key rather than silently dropping the line: a typo'd
+ * technique should fail at import, not quietly un-cite a recommendation.
+ */
+function method(technique: string): { label: string; basis: string } {
+  const source = methodSourceFor(technique);
+  if (!source) throw new Error(`Unknown method technique: ${technique}`);
+  return { label: source.label, basis: source.basis };
+}
 
 export const DEMO_OPPORTUNITIES: Opportunity[] = [
   {
     id: 'opp-retail-attach',
-    methodSource: { label: 'UVALUX analytics method', basis: 'Retail attachment benchmarked across 300+ salons' },
+    methodSource: method('retail_attachment'),
 
     category: 'retail',
     title: 'Improve evening retail sales',
@@ -54,7 +81,7 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
   },
   {
     id: 'opp-membership-convert',
-    methodSource: { label: 'UVALUX analytics method', basis: 'Membership-conversion profile from the advisory playbook' },
+    methodSource: method('membership_penetration'),
 
     category: 'membership',
     title: 'Convert 17 regulars to members',
@@ -91,7 +118,7 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
   },
   {
     id: 'opp-recover-payments',
-    methodSource: { label: 'UVALUX analytics method', basis: 'Failed-payment recovery benchmark' },
+    methodSource: method('revenue_hygiene'),
 
     category: 'membership',
     title: 'Recover seven failed payments',

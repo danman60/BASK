@@ -1021,3 +1021,139 @@
   max-width: 42ch;
   margin: 0 auto;
 }
+
+/* ------------------------------------------------------------ phone widths -- */
+/* The Floor had NO mobile rule at all. Every consequence below was measured in
+ * a browser at 320/360/390, not inferred:
+ *
+ *  - `.floor-topbar` is one rigid flex row (tabs, scanner whisper, two actions,
+ *    clock). At 390px it laid out to 741px, so the WHOLE surface — every tab,
+ *    not just the board — scrolled sideways into 351px of empty paper.
+ *  - The room grid stayed at two columns, which leaves ~130px of card. Real
+ *    machine names ("Wellsystem Wave Hydro Massage Therapy") broke out of the
+ *    card, the `.type` eyebrow ellipsised to "HYDROMASSAG…", and the countdown's
+ *    "left" printed outside the card entirely.
+ *  - Nothing cleared the fixed tab bar, so the check-in panel ended under it.
+ */
+
+/* The bar is allowed to wrap everywhere the fixed tab bar exists, not just on
+ * phones. The `.b-tabbar` breakpoint is 999px, and the Floor topbar does not
+ * fit its own row well before that either: measured at 700px the clock alone
+ * ran 41px past the viewport. Wrapping is enough up here — every control still
+ * fits on two rows at tablet width, so only the phone block below needs to
+ * start hiding and restacking things. */
+@media (max-width: 999px) {
+  .floor-topbar {
+    flex-wrap: wrap;
+    row-gap: var(--space-3);
+  }
+  /* The Floor is not inside `.b-shell` or `.page-shell`, so it has to claim
+     the fixed tab bar's clearance itself. */
+  .floor {
+    padding-bottom: var(--tabbar-clearance, 0px);
+  }
+}
+
+@media (max-width: 640px) {
+  /* Two honest rows instead of one row that does not fit: the tab strip owns
+     row one, the clock and the two shift actions share row two. */
+  .floor-topbar {
+    gap: var(--space-3);
+    padding: 10px var(--page-gutter);
+  }
+  .floor-tabs {
+    order: 1;
+    width: 100%;
+    margin-left: 0;
+  }
+  /* Equal thirds beat intrinsic width here: at 320px the four tabs needed
+     372px and "Schedule" was simply cut in half by the viewport edge. Each tab
+     now takes a quarter of the bar and wraps to two lines if its label needs
+     to ("Room Board"), which keeps every destination readable and tappable
+     rather than hiding one off-screen. */
+  .floor-tabs a {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px 6px;
+    font-size: var(--text-xs);
+    line-height: 1.2;
+    min-height: 38px;
+  }
+  /* The scanner whisper is the status light for a USB wedge scanner. There is
+     no wedge scanner on a phone, and it was the widest thing in the bar. */
+  .floor-scan-hint {
+    display: none;
+  }
+  .floor-clock {
+    order: 2;
+    margin-left: 0;
+    margin-right: auto;
+  }
+  .floor-topbar-action {
+    order: 3;
+    margin-left: 0;
+  }
+
+  .floor-layout {
+    padding: var(--space-5) var(--page-gutter);
+    gap: var(--space-5);
+  }
+  .floor-head {
+    gap: var(--space-3);
+  }
+  .floor-legend {
+    margin-left: 0;
+    flex-wrap: wrap;
+    row-gap: 6px;
+  }
+  /* "In session" is two words and was wrapping to two lines mid-legend. */
+  .floor-legend span {
+    white-space: nowrap;
+  }
+}
+
+/* One column, not two. At 390px a two-up board gives each card ~165px, which
+ * is narrower than the machine names the salon actually owns — the board's
+ * whole job is reading state at a glance, and a card whose name is clipped or
+ * broken out of its border is not glanceable. One column that reads properly
+ * beats two that clip. */
+@media (max-width: 480px) {
+  .floor-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* 132px is the mockup's height for a card in a four-up grid, where it is the
+     shortest the tallest card can be. Stacked one-up it becomes a floor no card
+     needs: "KBL 6800 Alpha Pearl / Ready" is two lines of content holding open
+     ~60px of blank paper, and seven of those turn the board into scrolling. The
+     card hugs its content instead; `.state` still pins to the bottom, there is
+     just no longer a bottom to travel to. */
+  .room-slot,
+  .room,
+  .in-session-ring .room {
+    min-height: 0;
+  }
+  .room {
+    gap: var(--space-2);
+  }
+}
+
+/* Belt and braces for any width: a flex item defaults to `min-width:auto`, so
+ * the name could not shrink below its longest word and overran the card's
+ * right border. These two lines are what actually stop the overflow; the
+ * one-column rule above is what makes it look intentional. */
+.room-id {
+  min-width: 0;
+}
+.room-id h3 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.room .state {
+  flex-wrap: wrap;
+  min-width: 0;
+}

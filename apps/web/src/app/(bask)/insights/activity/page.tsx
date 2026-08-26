@@ -2,6 +2,7 @@ import { formatLongDate } from '@bask/core';
 import { TeachingEmptyState } from '@bask/ui';
 
 import '@/components/lane4/lane4.css';
+import { PageContainer } from '@/components/page/PageContainer';
 import { InsightsTabs } from '@/components/lane4/InsightsTabs';
 import { Chip, SectionHead } from '@/components/lane4/primitives';
 import { loadActivity } from '@/server/insights-data';
@@ -24,8 +25,12 @@ const ACTOR_TONE = {
   uvalux_rep: 'good',
 } as const;
 
-export default async function ActivityPage() {
-  const salon = await getDemoSalon();
+export default async function ActivityPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ salon?: string }>;
+}) {
+  const salon = await getDemoSalon((await searchParams).salon);
   const rows = await loadActivity(salon);
 
   const formatter = new Intl.DateTimeFormat('en-CA', {
@@ -37,7 +42,7 @@ export default async function ActivityPage() {
   });
 
   return (
-    <main className="l4">
+    <PageContainer>
       <header className="l4-head">
         <div>
           <p className="eyebrow">Who did what · {formatLongDate(salon.today)}</p>
@@ -77,6 +82,6 @@ export default async function ActivityPage() {
           )}
         </div>
       </section>
-    </main>
+    </PageContainer>
   );
 }

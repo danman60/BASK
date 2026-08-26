@@ -32,6 +32,37 @@
 export const CONSENT_TIERS = ['private', 'benchmarks', 'coaching'] as const;
 export type ConsentTier = (typeof CONSENT_TIERS)[number];
 
+/**
+ * What a salon gets when nobody has recorded an answer for it.
+ *
+ * It is `private`, and it is the closed end of the scale on purpose: a salon
+ * that has never been asked has never said yes. Reading a missing
+ * `consent_profile` row as `benchmarks` — which five call sites did until
+ * 2026-08-26 — silently enrolled real customer data into network benchmarking
+ * on the strength of an absent row. Silence is not consent; it is silence.
+ *
+ * This is a FAIL-CLOSED default, not a preference. The DB column still carries
+ * `@default(benchmarks)`, which only applies when a row is INSERTed without a
+ * tier — it says nothing about a salon with no row at all. Changing that column
+ * default needs a migration; this constant is the read-side guarantee that no
+ * amount of missing data can widen what UVALUX sees.
+ */
+export const DEFAULT_CONSENT_TIER: ConsentTier = 'private';
+
+/**
+ * Turn a nullable `consent_profile` relation into a tier — the ONE place a
+ * missing profile is interpreted.
+ *
+ * Every Compass/Peers read that touches `salon.consentProfile` goes through
+ * here rather than writing its own `?? '<tier>'`, because a default spelled out
+ * at seven call sites is seven chances to spell it wrong, and six of them were.
+ */
+export function resolveConsentTier(
+  profile: { tier: ConsentTier | null | undefined } | null | undefined,
+): ConsentTier {
+  return profile?.tier ?? DEFAULT_CONSENT_TIER;
+}
+
 /** Below this many contributing salons, a cohort aggregate is suppressed. */
 export const MIN_COHORT_SIZE = 8;
 

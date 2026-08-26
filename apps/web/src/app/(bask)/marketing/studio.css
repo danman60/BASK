@@ -57,11 +57,10 @@
   color: var(--line);
 }
 
-.st-shell {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: var(--space-8) var(--page-gutter) var(--space-12);
-}
+/* `.st-shell` was the third copy of the centred page container, identical to
+   `.l4` and `.cu-shell` down to the byte. Marketing now renders inside
+   `PageContainer` (`@/components/page/PageContainer`) and the rule lives once,
+   in `page-container.css`. */
 
 /* --- context banner (mockup 03 `.context`) -------------------------------- */
 .st-context {

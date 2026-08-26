@@ -24,6 +24,7 @@ import {
   generateCallBrief,
   healthBandFactors,
   healthDistribution,
+  resolveConsentTier,
   suggestionFor,
   type AccountSignalInput,
   type CallStatus,
@@ -218,7 +219,7 @@ function signalOf(row: AccountRow): AccountSignalInput | null {
 }
 
 function viewOf(row: AccountRow, cohort: HealthCohort): CompassAccountView {
-  const tier = row.salon.consentProfile?.tier ?? 'benchmarks';
+  const tier = resolveConsentTier(row.salon.consentProfile);
   const roomTypes = [
     ...new Set(
       row.salon.rooms
@@ -289,7 +290,7 @@ async function loadPortfolio(db: never, repName?: string | null): Promise<Loaded
   // a smaller denominator is exactly how a cohort becomes re-identifiable.
   const cohort = buildHealthCohort(
     rows.map((row) => ({
-      consentTier: row.salon.consentProfile?.tier ?? 'benchmarks',
+      consentTier: resolveConsentTier(row.salon.consentProfile),
       healthScore: row.healthScore,
     })),
   );
@@ -408,7 +409,7 @@ export const compassRouter = router({
         .sort((a, b) => b.score - a.score);
 
       const all = rows.map((row) => ({
-        consentTier: row.salon.consentProfile?.tier ?? ('benchmarks' as ConsentTier),
+        consentTier: resolveConsentTier(row.salon.consentProfile),
         healthScore: row.healthScore,
       }));
 
@@ -452,7 +453,7 @@ export const compassRouter = router({
     });
 
     const all = rows.map((row) => ({
-      consentTier: row.salon.consentProfile?.tier ?? ('benchmarks' as ConsentTier),
+      consentTier: resolveConsentTier(row.salon.consentProfile),
       healthScore: row.healthScore,
     }));
 
@@ -1077,7 +1078,7 @@ export const dataSharingRouter = router({
       client.salon.findUnique({ where: { id: ctx.salonId }, select: { name: true, slug: true } }),
     ]);
 
-    const tier: ConsentTier = profile?.tier ?? 'benchmarks';
+    const tier: ConsentTier = resolveConsentTier(profile);
 
     return {
       salonName: salon?.name ?? 'Your salon',

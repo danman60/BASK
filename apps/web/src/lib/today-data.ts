@@ -71,16 +71,23 @@ export interface TodayData {
  * routing key — the same value the detectors already write — so a new detector
  * lands with a working button and no change here.
  *
- * These point at routes other lanes own. Linking correctly now means the button
- * works the moment those lanes merge; building the destination here would be the
- * duplicate-feature mistake the plan's merge protocol exists to prevent.
+ * THIS IS THE ONLY COPY. The Analytics surface used to keep a second table that
+ * disagreed with this one on two counts — it sent stock actions to `/inventory`
+ * while this one sent them to `/insights`, and it wrote the deep-link id as
+ * `insightId`, a key nothing reads — so its buttons landed on the Studio hub
+ * instead of a pre-filled campaign. Every surface now calls `actionHref`.
+ *
+ * `/inventory` is right for the stock actions: the route exists and is back in
+ * the nav (Beat 3 of `docs/pitch/PITCH.md`).
+ *
+ * A value may carry a `#fragment`; the query goes before it, as a URL requires.
  */
 const ACTION_ROUTES: Record<string, string> = {
   create_campaign: '/marketing',
   recover_payment: '/customers',
-  draft_order: '/insights',
-  review_product: '/insights',
-  open_heatmap: '/insights',
+  draft_order: '/inventory',
+  review_product: '/inventory',
+  open_heatmap: '/insights#utilisation',
   open_report: '/insights',
 };
 
@@ -89,10 +96,12 @@ export function actionHref(
   insightId: string,
   scopeQuery: string,
 ): string {
-  const base = (actionType && ACTION_ROUTES[actionType]) ?? '/insights';
+  const route = (actionType && ACTION_ROUTES[actionType]) ?? '/insights';
+  const [base = '/insights', hash] = route.split('#');
   const params = new URLSearchParams(scopeQuery);
+  // `insight` — the key `MarketingSurface` actually reads to open the builder.
   params.set('insight', insightId);
-  return `${base}?${params.toString()}`;
+  return `${base}?${params.toString()}${hash ? `#${hash}` : ''}`;
 }
 
 export async function loadToday(

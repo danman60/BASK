@@ -7,11 +7,10 @@
    the h1 underneath it — at `z-index: 20` over AppShell's 5, so it covered the
    real navigation as the page scrolled. AppShell owns the product chrome. */
 
-.cu-shell {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: var(--space-8) var(--page-gutter) var(--space-12);
-}
+/* `.cu-shell` is gone too, for the same reason: it was a verbatim third copy of
+   the centred page container. Customers now renders inside `PageContainer`
+   (`@/components/page/PageContainer`), which carries the one `.page-shell`
+   rule. */
 
 /* Title block on the left, the Recovery action on the right. It wraps rather
    than squeezing, which is what the old topbar could not do on a phone. */

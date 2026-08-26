@@ -418,13 +418,27 @@
    phone. */
 .b-postsheet { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: var(--space-5); }
 .b-postsheet-scrim { position: absolute; inset: 0; background: oklch(0% 0 0 / 0.42); backdrop-filter: blur(2px); }
+/* The head is a SIBLING of the scroller, not inside it. It used to share one
+   overflowing box with the content, so on a phone the close button scrolled off
+   the top the moment the sheet had more than a screenful in it — and the sheet
+   now carries a prepared artifact, the network proof and sometimes a whole
+   Handle-it plan. Title and close stay put; only the content moves. */
 .b-postsheet-body {
   position: relative;
   width: min(440px, 100%);
   max-height: min(88vh, 900px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: var(--space-3);
+}
+.b-postsheet-scroll {
   overflow-y: auto;
+  /* Keep a flick at the end of the list from scrolling Today underneath. */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   display: grid;
   gap: var(--space-3);
+  align-content: start;
 }
 .b-postsheet-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
 .b-postsheet-title {
@@ -487,6 +501,71 @@
   line-height: 1;
   cursor: pointer;
   padding: 0 4px;
+}
+
+/* ---- sheet + toast on a phone ---------------------------------------------
+   Two things were wrong below 999px, both of them caused by the fixed tab bar.
+
+   1. The toast sat at `bottom: var(--space-8)`, which is INSIDE the tab bar.
+      z-index 40 beats the bar's 30, so it did not disappear — it printed on top
+      of the destinations, which is worse: two live controls in one place.
+   2. `.b-toast-msg` is `white-space: nowrap` with an ellipsis. That is fine for
+      a five-word desktop toast; at 320px it truncated every acknowledgement to
+      about three words, so the "nothing sends until you say so" promise — the
+      one sentence the whole approval flow rests on — was never legible on the
+      device most owners hold. It wraps here instead, and the pill becomes a
+      rounded block because a two-line pill reads as a mistake. */
+/* `left: 50%` + `translateX(-50%)` has to go with it. A fixed element with
+   `width: auto` shrink-to-fits into the space between its `left` edge and the
+   viewport's right edge — so `left: 50%` caps the toast at HALF the screen no
+   matter what `max-width` says. At 320px that is 160px, and the wrapped
+   sentence stacked into six ragged lines. It never showed on desktop because
+   the un-wrapped text was always shorter than the cap. Pin both edges instead
+   and let the box be as wide as the phone. */
+@media (max-width: 999px) {
+  .b-toast {
+    bottom: 88px;
+    left: var(--space-5);
+    right: var(--space-5);
+    transform: none;
+    max-width: none;
+    border-radius: 16px;
+    align-items: flex-start;
+    animation-name: b-toast-in-edge;
+  }
+  /* The shared keyframe re-applies `translateX(-50%)`, which would drag the
+     toast half off the left of the screen once `left` is no longer 50%. */
+  @keyframes b-toast-in-edge {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+  .b-toast-msg {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+  /* A 26x18px close target is not tappable. Both the toast dismiss and the
+     sheet close use this class, so both get a real thumb target. */
+  .b-toast-x {
+    min-width: 40px;
+    min-height: 40px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+  }
+  .b-postsheet {
+    padding: var(--space-4);
+  }
+}
+
+/* The tab bar wraps to two rows of four at this width (see shell.css), so the
+   toast has to clear a taller bar. */
+@media (max-width: 600px) {
+  .b-toast {
+    bottom: 108px;
+    left: var(--space-4);
+    right: var(--space-4);
+  }
 }
 
 /* ------------------------------------------------------------------ mobile */

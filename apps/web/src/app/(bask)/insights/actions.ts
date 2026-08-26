@@ -15,13 +15,24 @@ import { getDemoSalon } from '@/server/salon';
  * building it this way round.
  */
 
+/**
+ * The salon a write belongs to. Server actions have no URL to read, so the page
+ * that renders the form carries `?salon=` into it as a hidden field — otherwise
+ * a write from a deep-linked salon lands on the hero salon instead. Absent means
+ * "no salon was pinned", which resolves to the hero salon exactly as before.
+ */
+function salonFrom(formData: FormData): string | undefined {
+  const value = String(formData.get('salon') ?? '').trim();
+  return value.length > 0 ? value : undefined;
+}
+
 /** Ask UVALUX for coaching on a gap. Lands on the rep's account timeline. */
 export async function requestCoachingAction(formData: FormData) {
   const topic = String(formData.get('topic') ?? '').trim();
   const message = String(formData.get('message') ?? '').trim();
   if (!topic) return;
 
-  const salon = await getDemoSalon();
+  const salon = await getDemoSalon(salonFrom(formData));
   const account = await db.account.findUnique({
     where: { salonId: salon.salonId },
     select: { id: true, assignedRepId: true },
@@ -74,7 +85,7 @@ export async function createStaffChallengeAction(formData: FormData) {
   const target = Number(formData.get('target') ?? 0);
   if (!metric || target <= 0) return;
 
-  const salon = await getDemoSalon();
+  const salon = await getDemoSalon(salonFrom(formData));
   await db.activityEvent.create({
     data: {
       salonId: salon.salonId,

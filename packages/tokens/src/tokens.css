@@ -43,14 +43,22 @@
   --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
   --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px;
 
-  /* The one horizontal page gutter. Four page shells grew up separately —
+  /* The one horizontal page gutter. Five page shells grew up separately —
      `b-shell` (Today, Monitor), `l4` (Analytics, Inventory), `cu-shell`
-     (Customers), `st-shell` (Marketing) — and each picked its own side padding.
-     They disagreed in both directions: b-shell deleted its gutter outright
-     below 999px so content sat on the viewport edge, while cu-shell and
-     st-shell kept a 40px desktop gutter down to 320px, leaving 240px of usable
-     width on a phone. Every shell now reads this token, so the gutter is one
-     decision made once rather than four that drift. */
+     (Customers), `st-shell` (Marketing) and `cp-main` (all of Compass) — and
+     each picked its own side padding. They disagreed in both directions:
+     b-shell deleted its gutter outright below 999px so content sat on the
+     viewport edge, while cu-shell and st-shell kept a 40px desktop gutter down
+     to 320px, leaving 240px of usable width on a phone. Every shell now reads
+     this token, so the gutter is one decision made once rather than five that
+     drift.
+
+     Two of those names are now retired: `l4`, `cu-shell` and `st-shell` were
+     byte-identical once they all read this token, and have collapsed into the
+     single `.page-shell` rule owned by `PageContainer`
+     (`apps/web/src/components/page/`). `b-shell` and `cp-main` still declare
+     their own padding — they have layouts of their own — but both take the
+     horizontal value from here. */
   --page-gutter: var(--space-10);
 
   --text-xs: 11px; --text-sm: 13px; --text-base: 14.5px; --text-md: 16px;

@@ -16,6 +16,17 @@ export { appRouter, type AppRouter } from './routers/_app';
 
 export { createContext, ROLE_HEADER, SALON_HEADER, type Context } from './context';
 
+// The one salon resolver — tRPC context AND the app shell read `?salon=` through
+// this. See `./salon-scope` for why it lives here and not in `apps/web`.
+export {
+  SALON_PARAM,
+  loadSalonSiblings,
+  readVirtualToday,
+  resolveSalon,
+  salonWhere,
+  type ResolvedSalon,
+} from './salon-scope';
+
 export {
   DEMO_ROLES,
   DEMO_ROLE_LABELS,

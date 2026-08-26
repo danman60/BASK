@@ -8,10 +8,17 @@
  * frequency, membership penetration, revenue hygiene), it carries a
  * `MethodSource` and the app shows the source.
  *
- * ⚠️ NAMES NEVER RENDER. The app must never display the individual advisor's
- * name (owner directive, 2026-08-22). App-facing attribution is the UVALUX
- * advisory program only. The originating expert is recorded for our own audit
- * in `INTERNAL_PROVENANCE` below, which no UI code imports — do not surface it.
+ * ⚠️ NAMES NEVER RENDER, AND NAMES ARE NEVER VALUES. The app must never display
+ * the individual advisor's name (owner directive, 2026-08-22). App-facing
+ * attribution is the UVALUX advisory program only.
+ *
+ * "Not rendered" is a weaker guarantee than it sounds, and this file learned it
+ * the hard way — see the audit-trail note at the bottom. This barrel is
+ * re-exported from `@bask/core/index.ts`, which client components import values
+ * from, so ANY string constant in this file is downloaded by every browser that
+ * opens Today whether a component reads it or not. The advisor's identity is
+ * therefore kept in documentation, not in code. Do not add it back as a
+ * `const`, however dead the binding looks.
  *
  * More advisory material is being ingested; each new technique attaches here.
  */
@@ -75,14 +82,24 @@ export function methodSourceFor(technique: string): MethodSource | null {
   return METHOD_SOURCES[technique] ?? null;
 }
 
-/**
- * INTERNAL audit trail only — the originating advisor behind these techniques.
- * NOT exported into any surface; the app never reads this. Kept so we can trace
- * provenance in our own records as more material is ingested.
+/*
+ * INTERNAL AUDIT TRAIL — kept as a COMMENT, deliberately, not as a value.
+ *
+ * The originating advisor, the talk and the room are already recorded in
+ * `docs/SIGNAL_SWEEPS.md` (and the plan that produced it,
+ * `docs/plans/2026-08-19-knowledge-base-and-signal-sweeps.md`) — documentation
+ * no bundler can see. Nothing was lost by taking them out of this file.
+ *
+ * They used to live here as a `const INTERNAL_PROVENANCE` that nothing read,
+ * guarded by a `void` so the compiler stayed quiet. That guard protects
+ * nothing: this barrel is re-exported from `@bask/core/index.ts`, client
+ * components import values from that barrel, and a `const` is a runtime string
+ * whether or not anybody reads it. Measured on 2026-08-26 against the running
+ * dev server: the advisor's name, the talk title and the room were all present
+ * in `_next/static/chunks/*.js` — 1.0 MB of JavaScript sent to every browser
+ * that opened Today. Nothing RENDERED it, which is exactly why it survived a
+ * year of reading the screen and believing the fence held.
+ *
+ * A comment cannot be shipped. Keep it that way: no name, no talk title and no
+ * room in any binding in this file, however dead the binding looks.
  */
-const INTERNAL_PROVENANCE = {
-  advisor: 'Mike Blore',
-  talk: 'The Evidence Behind Your Business',
-  ref: 'Room B · UVALUX Expo 2026',
-} as const;
-void INTERNAL_PROVENANCE;

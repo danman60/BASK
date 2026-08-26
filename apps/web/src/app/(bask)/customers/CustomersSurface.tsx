@@ -11,6 +11,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import { PageContainer } from '@/components/page/PageContainer';
 import { trpc } from '@/lib/trpc';
 import { HealthBandTiles, HealthGrid, SlippingList } from '@bask/ui';
 
@@ -53,7 +54,7 @@ export function CustomersSurface() {
 
   return (
     <>
-      <main className="cu-shell">
+      <PageContainer>
         {view === 'recovery' ? (
           <>
             <div className="cu-head">
@@ -192,7 +193,7 @@ export function CustomersSurface() {
             </div>
           </>
         )}
-      </main>
+      </PageContainer>
     </>
   );
 }

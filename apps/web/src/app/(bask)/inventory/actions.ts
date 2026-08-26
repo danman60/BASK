@@ -72,6 +72,17 @@ function revalidateLane4() {
 }
 
 /** Add one recommended line, carrying its "because" onto the row. */
+/**
+ * The salon a write belongs to. Server actions have no URL to read, so the page
+ * that renders the form carries `?salon=` into it as a hidden field — otherwise
+ * a write from a deep-linked salon lands on the hero salon instead. Absent means
+ * "no salon was pinned", which resolves to the hero salon exactly as before.
+ */
+function salonFrom(formData: FormData): string | undefined {
+  const value = String(formData.get('salon') ?? '').trim();
+  return value.length > 0 ? value : undefined;
+}
+
 export async function addLineAction(formData: FormData) {
   const productId = String(formData.get('productId') ?? '');
   const quantity = Number(formData.get('quantity') ?? 0);
@@ -79,7 +90,7 @@ export async function addLineAction(formData: FormData) {
   const reason = String(formData.get('reason') ?? '');
   if (!productId || quantity <= 0) return;
 
-  const salon = await getDemoSalon();
+  const salon = await getDemoSalon(salonFrom(formData));
   const draftOrderId = await ensureDraftOrder(salon.salonId);
   const product = await db.product.findUnique({ where: { id: productId } });
 
@@ -112,8 +123,8 @@ export async function addLineAction(formData: FormData) {
 }
 
 /** Add every recommendation the engine currently makes, reasons and all. */
-export async function addAllRecommendedAction() {
-  const salon = await getDemoSalon();
+export async function addAllRecommendedAction(formData: FormData) {
+  const salon = await getDemoSalon(salonFrom(formData));
   const facts = await loadSalonFacts(salon);
   const board = await loadInventoryBoard(facts);
   const recommendations = buildRecommendations(board.rows, board.risingCategories);
@@ -174,7 +185,7 @@ export async function submitOrderAction(formData: FormData) {
   const note = String(formData.get('note') ?? '').trim();
   if (!orderId) return;
 
-  const salon = await getDemoSalon();
+  const salon = await getDemoSalon(salonFrom(formData));
   const order = await db.draftOrder.findUnique({
     where: { id: orderId },
     include: { lines: true },
@@ -216,7 +227,7 @@ export async function receiveScanAction(formData: FormData) {
   const quantity = Number(formData.get('quantity') ?? 1);
   if (!code || quantity <= 0) return;
 
-  const salon = await getDemoSalon();
+  const salon = await getDemoSalon(salonFrom(formData));
   const barcode = await db.barcode.findFirst({
     where: { value: code },
     include: { product: true },

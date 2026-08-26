@@ -1,18 +1,27 @@
 import 'server-only';
 
-import { ensureDemoState } from '@bask/api';
-import { toDateOnly, type ConsentTier, type DateOnly } from '@bask/core';
-import { db } from '@bask/db';
-import { HERO_SALON_ID } from '@bask/db/fixtures';
+import { readVirtualToday, resolveSalon } from '@bask/api';
+import { type ConsentTier, type DateOnly } from '@bask/core';
+
+export { readVirtualToday };
 
 /**
  * Who "we" are on a salon-facing surface, and what day it is.
  *
- * No auth until M3 (IMPLEMENTATION_SPEC §7 non-goal), so the salon is the hero
- * fixture id and the date is the demo clock's `virtual_today`. Both come from
- * code that already exists — `ensureDemoState` (packages/api/demo/clock) and
- * `HERO_SALON_ID` (packages/db/fixtures) — so Lane 4 cannot drift from the
- * clock the Presenter Panel drives.
+ * No auth until M3 (IMPLEMENTATION_SPEC §7 non-goal), so the salon comes from
+ * `?salon=` and the date from the demo clock's `virtual_today`.
+ *
+ * THE BUG THIS FILE USED TO BE: `getDemoSalon()` took no argument and was
+ * hard-pinned to `HERO_SALON_ID`, while Today resolved `?salon=` properly. So
+ * `/insights?salon=aurora-westside` rendered Insights for Sunset Ridge — two
+ * different salons on two screens of one session, from one deep link. Same
+ * class of bug as commit `e426f3d` ("the salon switcher moved the chrome but
+ * never the data"); it recurred because that fix landed in one of three copies
+ * of the resolver. There is now one copy (`packages/api/src/salon-scope.ts`)
+ * and this is a thin shape over it.
+ *
+ * `salonParam` is optional and omitting it still resolves the hero salon, so the
+ * server actions that have no URL to read keep working exactly as before.
  */
 
 export interface DemoSalonContext {
@@ -27,20 +36,8 @@ export interface DemoSalonContext {
   consentTier: ConsentTier;
 }
 
-/** Demo-clock today. The column is a bare `date`; Prisma returns UTC midnight. */
-export async function readVirtualToday(): Promise<DateOnly> {
-  const state = await ensureDemoState(db);
-  return toDateOnly(state.virtualToday, 'UTC');
-}
-
-export async function getDemoSalon(): Promise<DemoSalonContext> {
-  const [salon, today] = await Promise.all([
-    db.salon.findUnique({
-      where: { id: HERO_SALON_ID },
-      include: { consentProfile: true },
-    }),
-    readVirtualToday(),
-  ]);
+export async function getDemoSalon(salonParam?: string | null): Promise<DemoSalonContext> {
+  const [salon, today] = await Promise.all([resolveSalon(salonParam), readVirtualToday()]);
 
   if (!salon) {
     throw new Error(
@@ -55,6 +52,10 @@ export async function getDemoSalon(): Promise<DemoSalonContext> {
     currency: 'CAD',
     region: salon.region,
     today,
-    consentTier: (salon.consentProfile?.tier ?? 'benchmarks') as ConsentTier,
+    /**
+     * Already resolved through `@bask/core/consent` — a salon with no
+     * `consent_profile` row lands on the CLOSED tier, not on `benchmarks`.
+     */
+    consentTier: salon.consentTier,
   };
 }

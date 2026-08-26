@@ -6,6 +6,7 @@ import {
   filterCohort,
   formatCurrency,
   receivesBenchmarks,
+  resolveConsentTier,
   round,
   type ConsentTier,
   type SalonFacts,
@@ -201,7 +202,7 @@ export async function loadPeers(
 
   const all: PeerRow[] = accounts.map((a) => ({
     salonId: a.salonId,
-    tier: (a.salon.consentProfile?.tier ?? 'private') as ConsentTier,
+    tier: resolveConsentTier(a.salon.consentProfile),
     region: a.salon.region,
     status: a.salon.status,
     healthScore: a.healthScore ?? 50,

@@ -4,6 +4,7 @@ import { db } from '@bask/db';
 import { Guided, TeachingEmptyState, WhisperNote } from '@bask/ui';
 
 import '@/components/lane4/lane4.css';
+import { PageContainer } from '@/components/page/PageContainer';
 import { Chip, ProductSwatch, SectionHead, StatRow } from '@/components/lane4/primitives';
 import { ScanReceiving } from '@/components/lane4/ScanReceiving';
 import { loadSalonFacts } from '@/server/facts';
@@ -31,10 +32,10 @@ const REASON_LABELS = {
 export default async function InventoryPage({
   searchParams,
 }: {
-  searchParams: Promise<{ from?: string; insightId?: string }>;
+  searchParams: Promise<{ from?: string; insightId?: string; salon?: string }>;
 }) {
   const params = await searchParams;
-  const salon = await getDemoSalon();
+  const salon = await getDemoSalon(params.salon);
   const facts = await loadSalonFacts(salon);
   const [board, draft] = await Promise.all([
     loadInventoryBoard(facts),
@@ -54,7 +55,7 @@ export default async function InventoryPage({
   const inDraft = new Set(draft?.lines.map((line) => line.productId) ?? []);
 
   return (
-    <main className="l4">
+    <PageContainer>
       <header className="l4-head">
         <div>
           <p className="eyebrow">Inventory · {formatLongDate(salon.today)}</p>
@@ -145,6 +146,7 @@ export default async function InventoryPage({
           aside={
             board.recommendations.length > 0 ? (
               <form action={addAllRecommendedAction}>
+                <input type="hidden" name="salon" value={params.salon ?? ''} />
                 <button type="submit" className="btn btn-primary">
                   Add all {board.recommendations.length} to the order
                 </button>
@@ -200,6 +202,7 @@ export default async function InventoryPage({
                     </Chip>
                   ) : (
                     <form action={addLineAction}>
+                      <input type="hidden" name="salon" value={params.salon ?? ''} />
                       <input type="hidden" name="productId" value={rec.productId} />
                       <input type="hidden" name="quantity" value={rec.quantity} />
                       <input type="hidden" name="unitPrice" value={rec.unitPrice} />
@@ -358,6 +361,6 @@ export default async function InventoryPage({
           </div>
         </div>
       </section>
-    </main>
+    </PageContainer>
   );
 }

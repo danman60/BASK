@@ -4,9 +4,29 @@
  * deep link, so a fumbled live demo recovers in one keystroke and any segment of
  * the pitch can be rehearsed in isolation.
  *
- * Applying one always resets to day-zero first, then advances — that is what makes
- * a bookmark a POSITION rather than a relative nudge, and it is why two clicks of
- * the same bookmark land in the same state.
+ * WHAT APPLYING ONE ACTUALLY DOES — read this before trusting `clockDays`.
+ *
+ * It calls `demo.jumpTo`, which is FORWARD-ONLY: the clock advances by the
+ * difference between today and `clockDays`, or does not move at all if the
+ * bookmark sits at or behind today. It then deep-links to `path` in `role`.
+ *
+ * It does NOT rewind. The earlier design reset the clock to day zero and
+ * re-advanced, on the belief that this made a bookmark a POSITION rather than a
+ * relative nudge. It did not: `demo.reset` moves the date pointer and leaves
+ * every row the pipeline wrote — visits, sales, settled campaigns, insights,
+ * briefs — exactly where it was. Re-advancing therefore re-ran those days on top
+ * of a world that had already lived them, so two clicks of one bookmark produced
+ * two different states — the precise opposite of the guarantee.
+ *
+ * So the honest guarantee is narrower, and it is the one that matters mid-demo:
+ * pressing the same bookmark twice is IDEMPOTENT (the second press moves the
+ * clock zero days and is a pure navigation), and no bookmark can ever silently
+ * un-live a day. Going BACKWARDS lands you on that beat's screen at the current
+ * day, not at the past. The only true rewind is `pnpm demo:reset` in a terminal,
+ * which rebuilds all 36,351 rows in ~32s.
+ *
+ * Practical consequence for rehearsal: run the beats in ascending `clockDays`
+ * order — which is the order PITCH.md tells them in.
  *
  * All seven of §0.1's set are wired now that M1's surfaces exist. Each one names
  * the PITCH.md beat it recovers, because that is what a presenter is reaching for
@@ -22,7 +42,11 @@ export interface ScenarioBookmark {
   description: string;
   /** Route to deep-link to. */
   path: string;
-  /** Days past day-zero this scenario sits at. 0 = fresh reset. */
+  /**
+   * Days past fixture day-zero this scenario is written for. The jump advances
+   * TO this day if the clock is behind it, and leaves the clock alone if it is
+   * already at or past it — see the module note.
+   */
   clockDays: number;
   /** Role the scenario is told from. */
   role: DemoRole;

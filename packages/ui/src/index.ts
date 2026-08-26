@@ -163,12 +163,8 @@ export { MonitorSurface, type MonitorSurfaceProps } from './components/MonitorSu
 // Previous build (2026-08-19/20) components that never got their export line —
 // the queue deliberately left index.ts to the supervisor.
 export { CoachAnswer, type CoachAnswerProps } from './components/CoachAnswer';
-export {
-  CustomerHealthSection,
-  type CustomerHealthSectionProps,
-} from './components/CustomerHealthSection';
-export {
-  ScoreboardSection,
-  type ScoreboardMetric,
-  type ScoreboardSectionProps,
-} from './components/ScoreboardSection';
+// `CustomerHealthSection` and `ScoreboardSection` were deleted on 2026-08-26.
+// Both were second compositions of a screen that already exists: `/customers`
+// composes `HealthBandTiles`, `HealthGrid` and `SlippingList` itself
+// (`CustomersSurface.tsx:15`), so the wrapper was a fork of a live layout that
+// nothing rendered and every future edit would have had to be made twice.

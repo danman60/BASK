@@ -14,7 +14,15 @@
  *     segment size.
  */
 
-import { toDateOnly, addDays, dateOnlyToUtcMidnight, weekdayName, type DateOnly } from '@bask/core';
+import {
+  toDateOnly,
+  addDays,
+  dateOnlyToUtcMidnight,
+  formatHourRange,
+  weekdayName,
+  weekdayNameForIndex,
+  type DateOnly,
+} from '@bask/core';
 import type { PrismaClient } from '@bask/db';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
@@ -777,7 +785,7 @@ function defaultChannels(insightType: string | null): Channel[] {
 
 function goalFromRef(ref: LinkedCampaignRef, fallback: string): string {
   if (ref.weekday !== undefined && ref.startHour !== undefined && ref.endHour !== undefined) {
-    return `Fill ${weekdayNameFromIndex(ref.weekday)} ${formatHourRange(ref.startHour, ref.endHour)}`;
+    return `Fill ${weekdayNameForIndex(ref.weekday)} ${formatHourRange(ref.startHour, ref.endHour)}`;
   }
   return fallback;
 }
@@ -797,23 +805,6 @@ function dayQualifier(today: DateOnly, target: DateOnly): string {
     (Date.parse(`${target}T00:00:00Z`) - Date.parse(`${today}T00:00:00Z`)) / 86_400_000,
   );
   return days <= 7 ? 'this' : 'next';
-}
-
-function weekdayNameFromIndex(index: number): string {
-  return (
-    ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][index] ??
-    'Tuesday'
-  );
-}
-
-function formatHourRange(startHour: number, endHour: number): string {
-  return `${formatHour(startHour)}–${formatHour(endHour)}`;
-}
-
-function formatHour(hour: number): string {
-  const suffix = hour >= 12 ? 'pm' : 'am';
-  const h = hour % 12 === 0 ? 12 : hour % 12;
-  return `${h} ${suffix}`;
 }
 
 /**

@@ -1,0 +1,31 @@
+/* The one centred page shell.
+ *
+ * Analytics/Inventory (`.l4`), Customers (`.cu-shell`) and Marketing
+ * (`.st-shell`) each declared their own copy of this rule. Once `--page-gutter`
+ * landed the three copies were byte-identical, which is the state a shared
+ * rule is supposed to be in *before* it drifts — the previous round of drift is
+ * why the gutter token exists at all. They are now one class, owned by
+ * `PageContainer`, so the next change to page width or page padding is one edit
+ * rather than three that have to be kept in step by hand.
+ *
+ * `.b-shell` (Today, Monitor, Community, the (bask) loading state) deliberately
+ * stayed out: it is a two-column grid with a 320px rail, different vertical
+ * padding, a 900px column collapse and a 999px rule that adds 96px of bottom
+ * clearance for the mobile tab bar. Folding it in would mean carrying that
+ * entire layout as a variant of a container whose whole job is that it has no
+ * layout — a rewrite of the primary route group, not a de-duplication.
+ */
+
+/* The bottom edge adds `--tabbar-clearance` (declared in `shell/shell.css`
+ * beside `.b-tabbar`, 0 above 999px). It has to be added HERE, inside the
+ * shorthand, rather than as a `padding-bottom` override in shell.css: this
+ * file cascades after that one at equal specificity, so the shorthand won and
+ * every PageContainer surface ran its last row underneath the fixed tab bar at
+ * every mobile width. Keep the clearance in the shorthand and the two files
+ * cannot fight. */
+.page-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--page-gutter)
+    calc(var(--space-12) + var(--tabbar-clearance, 0px));
+}

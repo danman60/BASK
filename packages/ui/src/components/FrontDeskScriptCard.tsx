@@ -24,14 +24,20 @@ export function FrontDeskScriptCard({ action, onOutcome, className }: FrontDeskS
         <span className="b-inter-emp">{action.customer}</span>
       </div>
       <blockquote className="b-script-quote">{action.script}</blockquote>
+      {/* `btn` alone is the SHARED SHAPE, not a variant: transparent border, no
+          background. `btn-ghost` adds only a faint ink colour. So these three
+          outcomes rendered as plain words on a phone — nothing looked pressable,
+          which is fatal for the one control staff are meant to tap after a
+          conversation. Same trap, same fix as `ActionRow`: primary for the
+          affirmative, `btn-quiet` (which has a real border) for the rest. */}
       <div className="b-actionrow">
-        <button type="button" className="btn btn-ghost" onClick={onOutcome ? () => onOutcome('presented') : undefined}>
-          Talked about it
-        </button>
-        <button type="button" className="btn" onClick={onOutcome ? () => onOutcome('accepted') : undefined}>
+        <button type="button" className="btn btn-primary" onClick={onOutcome ? () => onOutcome('accepted') : undefined}>
           They said yes
         </button>
-        <button type="button" className="btn btn-ghost" onClick={onOutcome ? () => onOutcome('declined') : undefined}>
+        <button type="button" className="btn btn-quiet" onClick={onOutcome ? () => onOutcome('presented') : undefined}>
+          Talked about it
+        </button>
+        <button type="button" className="btn btn-quiet" onClick={onOutcome ? () => onOutcome('declined') : undefined}>
           Not today
         </button>
       </div>

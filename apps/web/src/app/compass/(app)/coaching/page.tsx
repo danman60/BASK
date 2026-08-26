@@ -62,8 +62,11 @@ export default function CoachingPage() {
           <div className="cp-grid cp-grid--2">
             {targets.map((target) => (
               <div className="cp-card" key={target.slug}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
-                  <h3 style={{ margin: 0 }}>
+                {/* `cp-cardhead`, not an inline flex row: the phone breakpoint
+                    has to be able to let this wrap, and a rule cannot reach an
+                    inline style. */}
+                <div className="cp-cardhead">
+                  <h3>
                     <Link
                       href={`/compass/accounts/${target.slug}?${ROLE_PARAM}=${role}`}
                       style={{ color: 'inherit', textDecoration: 'none' }}

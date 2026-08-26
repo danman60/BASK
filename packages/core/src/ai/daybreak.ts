@@ -16,6 +16,7 @@
 
 import { formatCurrency, type Evidence } from '../evidence';
 import { addDays, formatLongDate, weekdayName, type DateOnly } from '../clock';
+import { numberWord } from '../format';
 import type { InsightSeverity } from '../insights/types';
 import type { PulseFacts } from '../insights/facts';
 import {
@@ -384,9 +385,4 @@ function stripBold(text: string): string {
 
 function capitalise(text: string): string {
   return text.charAt(0).toUpperCase() + text.slice(1);
-}
-
-function numberWord(n: number): string {
-  // Lower case: these land mid-sentence and `capitalise` handles the start.
-  return ['zero', 'one', 'two', 'three', 'four', 'five'][n] ?? String(n);
 }

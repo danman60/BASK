@@ -12,6 +12,7 @@ import {
 } from '@bask/ui';
 
 import '@/components/lane4/lane4.css';
+import { PageContainer } from '@/components/page/PageContainer';
 import { GapSlider } from '@/components/lane4/GapSlider';
 import { InsightsTabs } from '@/components/lane4/InsightsTabs';
 import { Chip, SectionHead } from '@/components/lane4/primitives';
@@ -41,10 +42,10 @@ const COACHING_TOPICS: Record<PeerGap['key'], string> = {
 export default async function PeersPage({
   searchParams,
 }: {
-  searchParams: Promise<{ cohort?: string }>;
+  searchParams: Promise<{ cohort?: string; salon?: string }>;
 }) {
   const params = await searchParams;
-  const salon = await getDemoSalon();
+  const salon = await getDemoSalon(params.salon);
   const facts = await loadSalonFacts(salon);
   const [peers, openRequests] = await Promise.all([
     loadPeers(salon, facts),
@@ -58,7 +59,7 @@ export default async function PeersPage({
 
   if (!peers.eligible) {
     return (
-      <main className="l4">
+      <PageContainer>
         <header className="l4-head">
           <div>
             <p className="eyebrow">Peers · {formatLongDate(salon.today)}</p>
@@ -71,7 +72,7 @@ export default async function PeersPage({
         <div className="l4-card">
           <TeachingEmptyState state="peersPrivate" />
         </div>
-      </main>
+      </PageContainer>
     );
   }
 
@@ -79,7 +80,7 @@ export default async function PeersPage({
   const selected = peers.cohorts.find((c) => c.definition.key === selectedKey) ?? peers.cohorts[0]!;
 
   return (
-    <main className="l4">
+    <PageContainer>
       <header className="l4-head">
         <div>
           <p className="eyebrow">Peers · {formatLongDate(salon.today)}</p>
@@ -250,6 +251,7 @@ export default async function PeersPage({
 
                     <div className="l4-actions" style={{ marginTop: 22 }}>
                       <form action={createStaffChallengeAction}>
+                        <input type="hidden" name="salon" value={params.salon ?? ''} />
                         <input type="hidden" name="metric" value={gap.key} />
                         <input type="hidden" name="label" value={gap.label} />
                         <input type="hidden" name="target" value={Math.round(gap.cohortMedian)} />
@@ -271,6 +273,7 @@ export default async function PeersPage({
                         </Chip>
                       ) : (
                         <form action={requestCoachingAction}>
+                          <input type="hidden" name="salon" value={params.salon ?? ''} />
                           <input type="hidden" name="topic" value={COACHING_TOPICS[gap.key]} />
                           <input
                             type="hidden"
@@ -322,6 +325,6 @@ export default async function PeersPage({
           )}
         </>
       )}
-    </main>
+    </PageContainer>
   );
 }

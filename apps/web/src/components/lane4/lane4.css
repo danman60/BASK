@@ -7,11 +7,11 @@
  * the sunset gradient appears once per screen at most.
  */
 
-.l4 {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: var(--space-8) var(--page-gutter) var(--space-12);
-}
+/* The `.l4` page shell that used to sit here is gone. It was one of three
+   byte-identical copies of the same centred container; they are now the single
+   `.page-shell` rule owned by `PageContainer`
+   (`@/components/page/PageContainer`). The `.l4-*` vocabulary below is unique
+   to Analytics and Inventory and stays. */
 
 /* ---------------------------------------------------------------- page head */
 
@@ -747,5 +747,77 @@
 
   .l4-log-row {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* `.l4-stock-row` carries SIX children — swatch, name, on-shelf, days-left,
+     selling, state — and the two-track rule above dropped four of them into the
+     44px swatch column. Measured at 390px: "suggested · $35 each" wrapped to
+     three lines and still ran 16px past its cell, and "Selling" lost 7px. Six
+     equal tracks give the name the rest of row one and split the three metrics
+     evenly across row two, which is the shape the desktop table already has,
+     just stacked. */
+  .l4-stock-row {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    column-gap: var(--space-3);
+    /* `center` is right for a single-line desktop row and wrong the moment the
+       row stacks: each cell centres against the tallest, so "14", "8" and
+       "1.70" sat at three different heights depending on how many lines their
+       own caption wrapped to. Top-aligned, the three numbers share a baseline
+       and read as one row of figures again. */
+    align-items: start;
+  }
+  .l4-stock-row > :nth-child(1) {
+    grid-column: 1 / 2;
+  }
+  .l4-stock-row > :nth-child(2) {
+    grid-column: 2 / -1;
+  }
+  .l4-stock-row > :nth-child(3) {
+    grid-column: 1 / 3;
+  }
+  .l4-stock-row > :nth-child(4) {
+    grid-column: 3 / 5;
+  }
+  .l4-stock-row > :nth-child(5) {
+    grid-column: 5 / -1;
+  }
+  /* The state chip and the order-line actions get the full width — a Chip plus
+     its workings sentence in a third of a phone is a column of single words. */
+  .l4-stock-row > :nth-child(6) {
+    grid-column: 1 / -1;
+  }
+
+  /* A column header is a promise that the columns line up underneath it. Once
+     the row stacks, that promise is broken: the six labels wrapped into a
+     zig-zag reading "PRODUCT / ON SHELF / DAYS LEFT / SELLING / STATE" down the
+     card with nothing beneath them. Every stacked row labels its own numbers
+     with `.l4-workings`, so the header is redundant here, not lost. */
+  .l4-stock-head {
+    display: none;
+  }
+}
+
+/* The heatmap is 12 hours wide. `minmax(30px, 1fr)` is a 30px FLOOR, so the
+ * grid could not shrink to fit: 44 + 12×30 + 13×3 = 443px inside a ~342px card
+ * at 390px. `.l4-heat` scrolls, so no page-level check ever saw it, but the
+ * cells were sliced off at the card's edge with no gutter and no fade — hours
+ * 17 through 20 simply looked absent, and "how full your rooms are" with the
+ * evening missing is the wrong answer, not a smaller one. Below 640px the
+ * cells shrink to fit instead so the whole week is on screen at once. */
+@media (max-width: 640px) {
+  .l4-heat-row {
+    grid-template-columns: 30px repeat(var(--heat-cols), minmax(0, 1fr));
+    gap: 2px;
+  }
+  .l4-heat-label {
+    font-size: 10px;
+    padding-right: 2px;
+  }
+  .l4-heat-cell {
+    height: 22px;
+    border-radius: 4px;
+  }
+  .l4-heat {
+    gap: 2px;
   }
 }

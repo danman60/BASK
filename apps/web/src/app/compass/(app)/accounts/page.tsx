@@ -76,8 +76,8 @@ export default function AccountsPage() {
                     <div className="cp-note">Asked for coaching</div>
                   )}
                 </td>
-                <td className="num">{row.account.region}</td>
-                <td>
+                <td className="num" data-label="Where">{row.account.region}</td>
+                <td data-label="Health">
                   {row.account.healthBand ? (
                     <>
                       <BandDot band={row.account.healthBand} /> {BAND_LABEL[row.account.healthBand]}
@@ -86,26 +86,26 @@ export default function AccountsPage() {
                     <span className="cp-note">—</span>
                   )}
                 </td>
-                <td>
+                <td data-label="Sales">
                   {row.account.revenueTrendDirection ? (
                     <TrendArrow direction={row.account.revenueTrendDirection} />
                   ) : (
                     <span className="cp-note">—</span>
                   )}
                 </td>
-                <td>
+                <td data-label="Members">
                   {row.account.membershipTrendDirection ? (
                     <TrendArrow direction={row.account.membershipTrendDirection} />
                   ) : (
                     <span className="cp-note">—</span>
                   )}
                 </td>
-                <td className="num">
+                <td className="num" data-label="Last order">
                   {row.account.orderRecencyDays !== undefined && row.account.orderRecencyDays !== null
                     ? `${row.account.orderRecencyDays} days ago`
                     : '—'}
                 </td>
-                <td>
+                <td data-label="Sharing">
                   <ConsentBadge tier={row.consentTier} />
                 </td>
               </tr>

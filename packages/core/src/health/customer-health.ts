@@ -18,7 +18,8 @@
  *             + visitBoost      (recent visits, decaying over ~45d)
  *             + signalNudges    (retail bought +, booking coming +,
  *                                payment failed −, membership frozen −)
- *             − staleness       (only once they have actually visited)
+ *             − staleness       (time since we last saw them — and if we have
+ *                                NEVER seen them, time since they signed up)
  *             clamped 0-100
  *
  * Every deduction also emits a RISK FLAG, because a band with no reason is not
@@ -91,6 +92,17 @@ export interface CustomerHealthInput {
   lastRetailAt?: Date | null;
   /** Next booked appointment in the future, if any. */
   nextBookingAt?: Date | null;
+  /**
+   * When this person became a customer — `Customer.joinedAt`. This is the
+   * staleness anchor for someone with no visit in `visits`: without it a
+   * never-visited customer accrued ZERO staleness and sat at exactly their
+   * baseline, so an active member who has never walked in scored 65 against a
+   * 65 cut-off and rendered GREEN, above every customer who actually came in
+   * and paid staleness for it. Omitted/null means we cannot date the
+   * relationship at all, and the one thing we do know — that they have never
+   * been in — is charged at the full staleness cap rather than at nothing.
+   */
+  customerSince?: Date | null;
   /** Membership payment state, when they have a membership. */
   membership?: {
     status: 'active' | 'frozen' | 'cancelled';
@@ -176,20 +188,30 @@ export function computeCustomerHealth(input: CustomerHealthInput): CustomerHealt
     riskFlags.push('bottle_likely_empty');
   }
 
-  // ── staleness: only drains once they have actually been in ──
+  // ── staleness: how long since we last saw this person ──
+  // The clock we measure from is their last visit. Where there ISN'T one, the
+  // clock is how long they have been signed up without ever coming in — silence
+  // from someone who has never been in is not neutral, it is the longest
+  // silence there is. Charging nothing here put never-visited customers at
+  // exactly their baseline, i.e. ABOVE every customer with a real visit history.
+  const stalenessFrom = (days: number) =>
+    Math.min(TUNING.stalenessCap, (Math.max(0, days) / TUNING.stalenessFullDays) * TUNING.stalenessCap);
+
   let staleness = 0;
   let daysSinceLastVisit: number | null = null;
   if (lastVisitAt) {
     daysSinceLastVisit = Math.max(0, Math.round(daysBetween(now, lastVisitAt)));
-    staleness = Math.min(
-      TUNING.stalenessCap,
-      (daysSinceLastVisit / TUNING.stalenessFullDays) * TUNING.stalenessCap,
-    );
+    staleness = stalenessFrom(daysSinceLastVisit);
     if (daysSinceLastVisit >= 30) riskFlags.push('quiet_30d');
     if (daysSinceLastVisit >= 60) riskFlags.push('quiet_60d');
     if (daysSinceLastVisit >= 90) riskFlags.push('quiet_90d');
   } else {
     riskFlags.push('never_visited');
+    // No `customerSince` means the caller could not date the relationship. Fall
+    // back to the full cap: we still know for certain they have never been in.
+    staleness = input.customerSince
+      ? stalenessFrom(Math.round(daysBetween(now, input.customerSince)))
+      : TUNING.stalenessCap;
   }
 
   const raw = baseline + (input.manualAdjustment ?? 0) + visitBoost + signalNudge - staleness;
