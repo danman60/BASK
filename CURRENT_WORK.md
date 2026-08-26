@@ -51,6 +51,43 @@ scroll-snap, counter and dots. Composer takes several files; more than one pictu
 - **Identity fence held:** no signage, no business name, no logo in any generated frame. The first
   promo pass invented a wordmark ("MODERN SALON") and was regenerated.
 
+
+### SALONTOUCH FIELD DATA — audited, loaded, and three defects fixed getting there
+**It had never been wired in.** It existed only as 49MB of CSV in `~/salon-pull/canonical/`; the
+database held the synthetic practice set (6 salons, 50,511 visits, 2025–26) and the demo fixture
+salon. Now loaded as its own org `salontouch-real` (`50094662-…`): **4 salons, 194,672 visits,
+2016-01-02 → 2020-03-14, 20,179 customers, 53,839 sales** — verified by query, alongside the
+practice org, not on top of it. Salons are de-identified `Salon A–D`; no client name in the repo.
+
+**Three defects found by trying to use it:**
+1. **The salon switcher was cosmetic.** Server components read `?salon=` off the URL; tRPC reads it
+   from a header on a SEPARATE request and `providers.tsx` forwarded only `ROLE_HEADER`. Every
+   tRPC-backed surface silently answered for `HERO_SALON_ID` — "Salon A" in the topbar above Sunset
+   Ridge's 420 customers and a visit "Today" for a salon that closed in March 2020. Nothing errored.
+   The Presenter Panel's salon switch had been fake on Customers, Marketing, Monitor and Insights.
+2. **ETL data-loss landmine.** `run.ts` hardcoded the practice org id while `map-salons.ts` honoured
+   `INGEST_ORG_SLUG`, and `INGEST_WIPE` deletes by that id — so wiping before loading a SECOND
+   dataset would have deleted the PRACTICE org and spared the incoming one.
+3. **Name pool 10×10 = 100 combos** over 9,382 customers ≈ 94 per name, and the list sorts
+   alphabetically → a wall of one name. Hash was fine, pool was not. Now 48×48 → 2,302 distinct
+   names, max 18 repeats. Applied in place (a full reload has to delete 194k visits first, which
+   times out through the pooler; none of those rows change).
+
+**Known-empty by design, verified not a bug:** `membership_payments` (FAILEDLYNK is 0 on all 121,058
+source rows) and `inventory_snapshots` (adjustment ledger negative for 1,039/1,147 product-salon
+pairs — receiving was never entered). Consequence: **failed-payment recovery and stock velocity have
+no real data behind them** and demo on fixtures only.
+
+**Gotcha:** `INGEST_WIPE` on the loader times out through the pgbouncer pooler when deleting 194k
+visits. The transaction rolls back cleanly (verified — all rows intact), so it fails safe, but a
+reload of this dataset needs a different path than the wipe flag.
+
+### CONSENT GATE FAILS OPEN — worth a decision
+`compass.ts` uses `row.salon.consentProfile?.tier ?? 'benchmarks'` in five places: a salon with NO
+consent profile is treated as consenting to benchmark sharing rather than excluded. It does not bite
+today (Compass reads through `dealer_account` rows and the SalonTouch salons have none), but consent
+is the licence-to-operate story in the pitch and the default is the wrong way round.
+
 ### OPEN — needs Daniel, not code
 1. **Customer health scoring is inverted at the top.** `pnpm health:distribution`: 3 of 750 healthy
    (0.4%), and **all three have never visited**. Max real customer scores 56 against a
