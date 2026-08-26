@@ -56,9 +56,18 @@ async function chunkedCreate<T>(label: string, rows: T[], create: (batch: T[]) =
 }
 
 async function main() {
-  const orgId = remapId('org', 'uvalux-practice');
-  console.log(`\n=== ETL: UVALUX practice → bask ===`);
-  console.log(`mode: ${CONFIRM ? 'COMMIT' : 'DRY RUN (rollback)'} | target Org ${orgId} | source ${DATA_DIR}`);
+  /* The org key MUST come from the same place `mapOrg`/`mapSalons` read it.
+     This line hardcoded 'uvalux-practice' while map-salons.ts honoured
+     INGEST_ORG_SLUG, so overriding the slug produced two different org ids in
+     one run: the banner announced the practice org while the rows were built
+     for another, and — much worse — the INGEST_WIPE branch below deletes
+     `where: { id: orgId }`, so wiping before loading a SECOND dataset would
+     have deleted the PRACTICE org and left the incoming one's org row alone.
+     One source of truth, and the banner now names the dataset it is loading. */
+  const orgKey = process.env.INGEST_ORG_SLUG || 'uvalux-practice';
+  const orgId = remapId('org', orgKey);
+  console.log(`\n=== ETL: ${orgKey} → bask ===`);
+  console.log(`mode: ${CONFIRM ? 'COMMIT' : 'DRY RUN (rollback)'} | target Org ${orgId} (${orgKey}) | source ${DATA_DIR}`);
 
   // ---- read + map (pure) ----
   const org = mapOrg();

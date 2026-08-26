@@ -43,6 +43,21 @@ export function readRoleFromLocation(): DemoRole {
 }
 
 /**
+ * Reads the salon slug straight off `window.location`, for the same reason the
+ * role is read this way: the tRPC link runs outside React.
+ *
+ * This did not exist, and the link forwarded only the role — so a `?salon=`
+ * switch moved the SERVER-rendered chrome (the topbar name, the page shell)
+ * while every tRPC query kept falling back to `HERO_SALON_ID`. The header said
+ * one salon and the numbers were another's, which is the worst possible version
+ * of the bug: nothing errors and the screen looks right.
+ */
+export function readSalonFromLocation(): string {
+  if (typeof window === 'undefined') return '';
+  return new URLSearchParams(window.location.search).get('salon') ?? '';
+}
+
+/**
  * Stamps the theme on the document root.
  *
  * STUB — M0 step 8 owns the real ThemeProvider (`@bask/tokens`: CSS vars at root,

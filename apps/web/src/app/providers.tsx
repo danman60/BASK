@@ -14,10 +14,10 @@ import { httpBatchLink, loggerLink } from '@trpc/client';
 import { useState } from 'react';
 import superjson from 'superjson';
 
-import { ROLE_HEADER } from '@bask/api/roles';
+import { ROLE_HEADER, SALON_HEADER } from '@bask/api/roles';
 
 import { trpc } from '@/lib/trpc';
-import { readRoleFromLocation } from '@/lib/demo-scope';
+import { readRoleFromLocation, readSalonFromLocation } from '@/lib/demo-scope';
 
 function createQueryClient() {
   return new QueryClient({
@@ -42,7 +42,15 @@ export function Providers({ children }: { children: React.ReactNode }) {
         httpBatchLink({
           url: '/api/trpc',
           transformer: superjson,
-          headers: () => ({ [ROLE_HEADER]: readRoleFromLocation() }),
+          headers: () => {
+            // Both scope keys travel together. Sending only the role let the
+            // salon silently fall back to the hero tenant on every query.
+            const salon = readSalonFromLocation();
+            return {
+              [ROLE_HEADER]: readRoleFromLocation(),
+              ...(salon ? { [SALON_HEADER]: salon } : {}),
+            };
+          },
         }),
       ],
     }),
