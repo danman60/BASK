@@ -1,5 +1,176 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-26 — PICKED UP THE ABANDONED CODEX RUN · 18-ITEM AUDIT CLOSED · COMMUNITY IS A FEED
+
+### What was inherited (tmux13, Codex gpt-5.6-sol, killed by usage limit 00:35)
+Capture was COMPLETE and is the only thing worth keeping from it: 96 Bask cases (454 vertical
+tiles) + 40 Compass cases. Review was ~15 tiles in. Fixes: **0 of 4 usable.**
+
+All four broker `.visual.*` candidates were gate-gaming and are DELETED, not merged:
+`shell.visual.css` `.rejected` after 47 turns/17 errors · `CohortTable.visual.tsx` added zero
+`data-label`s and stripped `className="num"` · `SlippingList.visual.tsx` deleted `b-dtable-who`,
+`b-dtable-why`, `btn btn-quiet` · `health.visual.css` nested `@media (min-width:701px)` INSIDE
+`@media (max-width:700px)` (unreachable) and targeted two orphaned components.
+**The lesson repeats: the gate proves compilation, never correctness.**
+
+### The audit now lives in the repo
+`docs/2026-08-25-visual-qa-audit.md` — pulled out of the Gmail draft so it stops living behind a
+message id that rotates on every save. **All 18 findings were still open.** All 18 now addressed.
+
+### The root cause, fixed once — `--page-gutter`
+Four page shells each picked their own side padding and disagreed in BOTH directions: `b-shell`
+deleted its gutter outright below 999px (content on the viewport edge); `cu-shell`/`st-shell` kept
+40px down to 320px (240px of usable width on a phone). One token in `packages/tokens/src/tokens.css`,
+read by all four. Closes audit 4, 5, 6, 18 and the 721–999px hybrid band at its cause.
+
+### Shipped
+`ee605ee` gutter token · removed `cu-topbar` + both `st-topbar`s · Community into a container ·
+Marketing phone preview `min(300px,100%)` · campaign rows collapse <600px · calendar becomes a
+chronological agenda <700px · context banner stacks · Insights sub-tabs scroll · opportunity actions
+name their channel (two pairs were letter-for-letter identical; the `social` ones claimed to "send
+to N customers" when they post to Facebook/Instagram).
+`e1c0384` carousels + 11 generated stills + media on six posts + two defects found BY LOOKING.
+`9ff936c` two sora-2 talking-head clips.
+
+### Two defects the audit missed, found by opening screenshots
+- **ActionRow rendered every action as plain text.** Bare `.btn` is the shared SHAPE —
+  `border: 1px solid transparent`, no background — and `btn-ghost` adds no border either. The money
+  row on Today, the one thing a stakeholder clicks, did not look pressable at any width.
+- **`/inventory/order`** carried `minmax(0,1fr) 320px` as an INLINE STYLE with no breakpoint, so at
+  320px the summary rail pushed the order total and the send button off the right edge.
+
+### Community is now a feed, with demo content
+600px centred column (was full 1180px at ~110 characters a line). Carousel media type with
+scroll-snap, counter and dots. Composer takes several files; more than one picture posts as a set.
+- **11 stills** via `gpt-image-1` (730KB as webp) — before/after retail wall, quiet reception,
+  red-light room, tanning bed, owner at the booking calendar, three app-output promo slides.
+- **2 clips** via `sora-2`, 720×1280 vertical, 4.1s, h264+aac (ffprobe-verified, not trusted).
+- **H3 could not run.** It peaks at 22.7–23.9GB of the 4090's 24.5GB and Daniel's DESKTOP holds
+  7.6GB (dwm, Steam, Sunshine, FounderVision, Edge webviews). Nothing was killed. KIE has $0.98,
+  short of one Veo generation. Free the desktop if you want H3 next time.
+- **Identity fence held:** no signage, no business name, no logo in any generated frame. The first
+  promo pass invented a wordmark ("MODERN SALON") and was regenerated.
+
+### OPEN — needs Daniel, not code
+1. **Customer health scoring is inverted at the top.** `pnpm health:distribution`: 3 of 750 healthy
+   (0.4%), and **all three have never visited**. Max real customer scores 56 against a
+   `BANDS.healthy` cut-off of 65 — no genuine regular can be healthy. Cause: `customer-health.ts`
+   only accrues staleness once `lastVisitAt` exists, so a never-visited member keeps baseline 65 with
+   zero drain. Tuning the constants is a business call. NOTE: that script's dataset is 750 customers
+   while `/customers` shows 420 with 291 healthy — DIFFERENT TENANTS, check the page's own numbers
+   before trusting either.
+2. **Community persistence.** No posts table, no media bucket. Attachments are object URLs that live
+   as long as the tab. Said on screen rather than faked. Real persistence needs a migration on the
+   shared `bask` schema + a storage bucket — both need an explicit go.
+3. **Demo date** — asked seven times.
+
+### Credential exposure — ROTATE
+`source ~/.env.keys` hit lines whose names contain `-` (not legal shell identifiers), so bash
+echoed them WITH VALUES into the session. Exposed: `GEMINI_KEY_meeting-copilot`,
+`GEMINI_KEY_CompPortal-validator-v2`, `SI_DATABASE_URL` (full Postgres URL with password).
+Rotate all three; quote or rename those lines.
+
+---
+
+## Session 2026-08-25 (09:00–20:30) — /fresh HANDOFF · VISUAL QA, AND WHY IT TOOK NINE ROUNDS
+
+**Reason for refresh:** long session, and the working method was wrong for most of it.
+
+### THE LESSON THIS SESSION COST NINE ROUNDS TO LEARN
+**A metric was substituted for looking, over and over.** The check measured
+`body.scrollWidth - clientWidth` and reported "all 17 routes clean" while Daniel was staring at
+visibly broken cards. Three separate blind spots:
+1. Page-level overflow cannot see an element clipped by its own **card** — the page stays 0.
+2. Only **390px** was tested for hours. The topbar was losing 236px at 768px the whole time.
+3. Only the **right** edge was checked. Left-edge and *missing padding* are invisible to it.
+
+**The actual bug, found only by screenshotting the card and looking at it:**
+`.b-opp` had **`padding: 0px`**. `.card` in `tokens.css` carries background/border/shadow but
+deliberately NO padding — every card type supplies its own (`.b-post`, `.b-win`, `.b-metric` all
+do). The opportunity card, the first thing on Today, never did. Its text sat flush against both
+edges. The clipped-element count was **0 at all nine widths before AND after** the fix, because
+nothing was overflowing — the padding simply did not exist. Fixed in `a0ef2ee`.
+
+**Rule for the next session: screenshot the surface and LOOK at the image before claiming a fix.**
+`scripts/qa/mobile-clip-check.mjs` is a tripwire, never a verdict.
+
+### Shipped and verified live this session
+`bf28ad6` etable scroll wrapper + landed broker leaves · `c171609` Monitor 242px→0 ·
+`012d3db` data tables · `3a6ad44` Compass tables/grids · `fd05f2c` QA check + handoff ·
+`659987a` CLAUDE.md AI-provider correction · `9b55c47` **wins feed live** ·
+`2ad8538` docs · `c819d63` **community wired, town-only identity** ·
+`8000c73` community = questions + Stageable reaction/reply pattern + topbar 999px ·
+`4239b60` clipping sweep (33 fixes) · `a0ef2ee` **opportunity card padding**
+
+### AUTHORITATIVE TASK LIST — `docs/INSPECTION-BRIEF.md` + the audit in Daniel's Gmail draft
+Daniel commissioned a second tool. Its audit (`BASK Visual QA Audit.md`, attached to the Gmail
+draft titled **"bask notes"**) found **18 issues** and is better than anything produced here.
+Pull it: the draft's message id CHANGES on every save — list drafts, find subject `bask notes`,
+read the full attachmentId (319 chars, do not truncate).
+
+**Its HIGH findings, none of them fixed yet:**
+1. `/customers` and `/marketing` each render a **second Bask header** (`cu-topbar`, `st-topbar`),
+   sticky `top:0 z-index:20` over the shell's `z-index:5` — the page bar climbs over the real nav.
+2. **Community has no page container** — shipped that way this morning. Bare `.b-community`, no
+   `b-shell`, so no max-width and no gutter. MINE.
+3. **721–999px is a hybrid band** — mobile bottom nav + desktop content styling + no page gutter.
+   Half-created here by moving the shell breakpoint to 999px while page rules stayed at 720px.
+4. **Five page-shell systems coexist**: `b-shell`, `l4`, `cu-shell`, `st-shell`, none on Community.
+   Root cause of most of the above. Recommends one `PageContainer` primitive.
+5. **Duplicate CTAs** on Opportunity 2 and 4 ("Approve & send to N customers" twice) — visible in
+   a screenshot that was sent to Daniel without noticing.
+Plus Marketing builder steps/300px phone preview, campaign rows, mobile calendar, Insights subnav.
+
+It also **validates** as correct: Monitor table scrolling, customer search `min-width:0`, customer
+tabs, chip wrapping, the 999px topbar fix.
+
+### ⚠ CONCURRENT WRITER — CHECK BEFORE EDITING ANY CSS
+Another job was writing **uncommitted** `.visual.*` files at 19:55–20:21:
+`packages/ui/src/components/health.visual.css`, `apps/web/src/components/shell/shell.visual.css`,
+`CohortTable.visual.tsx`, `SlippingList.visual.tsx`, plus
+`apps/web/tasks/broker/inspection-bask-shell-responsive.md`. It works in parallel `.visual.*`
+copies rather than editing originals. **The page-gutter fix is in its lane — do not duplicate it.**
+`git status` before touching shell or health CSS.
+
+### Next steps (do NOT auto-start — wait for the user)
+1. The 18 audit items, in its stated fix order: duplicate headers → universal page gutter →
+   Community page container → Marketing builder → campaign rows → calendar → duplicate CTAs.
+2. Reconcile with the concurrent `.visual.*` work before editing shared CSS.
+3. 11 components still render for nobody (`bash scripts/qa/orphan-check.sh`).
+
+### Open, unanswered
+- **Demo date** — asked six times.
+- Wins-feed exclusion radius / auto-publish are meant to be **UVALUX-configurable in Compass**;
+  the settings surface does not exist yet.
+- Pitch page stays gitignored (decided).
+
+---
+
+
+## Session 2026-08-25 15:35 EDT — FULL VISUAL INSPECTION ACTIVE
+
+### Active Task
+Run `docs/INSPECTION-BRIEF.md` to completion: 17 production routes × 8 widths, every screenshot
+viewed, every defect fixed or explicitly accounted for. All fix implementation routes through the
+local-model broker.
+
+### Recent Changes
+- Started parallel read-only Bask and Compass QA Agent sweeps.
+- Started graph refresh because `graphify-out` was 41 commits behind live HEAD.
+- Wrote `docs/plans/2026-08-25-visual-inspection-completion.md` with requirement-level gates.
+
+### Blockers
+- None. Existing unrelated dirty worktree preserved.
+
+### Next Steps
+1. Complete and review 136-case evidence matrix.
+2. Dispatch confirmed fixes through broker with affected-symbol blast radius.
+3. Verify locally and on production with opened after-screenshots.
+
+### Context for Next Session
+Purpose: stakeholder can open any screen at any width and see nothing broken. Production alias is
+`https://bask-psi.vercel.app`; every Compass route needs `?role=uvalux_rep`; never run `demo:reset`.
+
 ## Session 2026-08-25 (08:30–09:00) — WINS FEED SHIPPED · ORPHAN GATE · BROKER FIX ROUTED
 
 ### DONE — wins feed is LIVE (`9b55c47`)

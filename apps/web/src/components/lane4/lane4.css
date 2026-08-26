@@ -732,6 +732,19 @@
     row-gap: var(--space-2);
   }
 
+  /* The narrow track exists for the product swatch and nothing else. The
+     quantity form and the two price cells were flowing into it — a 72px number
+     input plus an Update button inside a 44px column, which overran the cell
+     beside it and printed "Update" on top of "your cost". They take the whole
+     row instead. */
+  .l4-order-qty,
+  .l4-order-cell {
+    grid-column: 1 / -1;
+  }
+  .l4-order-qty {
+    align-items: center;
+  }
+
   .l4-log-row {
     grid-template-columns: minmax(0, 1fr);
   }

@@ -127,7 +127,7 @@ export default async function DraftOrderPage() {
                       <b>Why this is here.</b> {line.reason}
                     </p>
                   )}
-                  <form action={updateLineAction} className="l4-actions">
+                  <form action={updateLineAction} className="l4-actions l4-order-qty">
                     <input type="hidden" name="lineId" value={line.id} />
                     <input
                       name="quantity"
@@ -150,14 +150,14 @@ export default async function DraftOrderPage() {
                       Update
                     </button>
                   </form>
-                  <div>
+                  <div className="l4-order-cell">
                     <p className="l4-big num">{formatCurrency(line.unitPrice)}</p>
                     <p className="l4-workings">
                       <Guided tip="wholesalePrice">your cost</Guided> · sells at{' '}
                       {formatCurrency(line.retailPrice)}
                     </p>
                   </div>
-                  <div>
+                  <div className="l4-order-cell">
                     <p className="l4-big num">{formatCurrency(line.lineTotal)}</p>
                     <p className="l4-workings">
                       {line.quantity} × {formatCurrency(line.unitPrice)}

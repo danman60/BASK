@@ -327,7 +327,11 @@ export async function loadSegmentCustomers(
       spend90: round2(spendBy.get(c.id) ?? 0),
       visits90: v.total,
       midweekVisits90: v.midweek,
-      daysSinceLastVisit: c.lastVisitAt ? daysBetween(c.lastVisitAt, today) : null,
+      // Floored, matching `computeCustomerHealth`, which has always clamped this.
+      // Unclamped, a visit dated ahead of the demo clock rendered as "-1 days
+      // ago" on the customer row while the same customer's health block — the
+      // clamped copy of the same field — read 0. One field, two rules.
+      daysSinceLastVisit: c.lastVisitAt ? Math.max(0, daysBetween(c.lastVisitAt, today)) : null,
       packageCreditsLeft: pkg ? pkg.credits : null,
       packageExpiresInDays: pkg ? pkg.expiresInDays : null,
       membershipTier: mem?.tier ?? null,
