@@ -30,6 +30,16 @@ export interface CommunityPostSeed {
   readonly body: string;
   /** Evidence FOR the question, never a result. */
   readonly figure?: { readonly value: string; readonly caption: string };
+  /**
+   * A picture or clip of the thing being asked about. Owners describe a shelf
+   * or a room far faster by showing it. Same identity rule as everything else
+   * here: nothing in frame may identify the business.
+   */
+  readonly media?: {
+    readonly kind: 'image' | 'video';
+    readonly url: string;
+    readonly alt?: string;
+  };
   /** Counts per reaction kind. "same" is the finding, not a like: an owner
    *  asking "anyone else seeing this?" is asking how many others are. */
   readonly reactions: { readonly same: number; readonly helpful: number; readonly watching: number };
@@ -44,6 +54,31 @@ export interface CommunityPostSeed {
 }
 
 export const DEMO_COMMUNITY_POSTS: readonly CommunityPostSeed[] = [
+  {
+    /* The one post carrying a picture, because a question about a specific
+       bottle is exactly the kind an owner answers with a photo rather than a
+       paragraph. The image is a catalogue product shot already in the repo —
+       nothing in frame identifies a salon. */
+    id: 'post-0',
+    townLabel: 'Cambridge ON',
+    occurredAtDay: 119,
+    body: 'This one has sat on my shelf since spring and barely moves. My rep says it is their best seller. Is it just me, or is anyone actually selling it?',
+    media: {
+      kind: 'image',
+      url: '/catalogue/BSK-10004.jpg',
+      alt: 'A bottle of Fitspiration Ultimate Natural Bronzer, 400 mL',
+    },
+    reactions: { same: 9, helpful: 12, watching: 4 },
+    mine: null,
+    replies: [
+      {
+        id: 'post-0-r1',
+        townLabel: 'Barrie ON',
+        occurredAtDay: 119,
+        body: 'It moves for me but only when it is at eye level. It was on my bottom shelf for a year doing nothing.',
+      },
+    ],
+  },
   {
     id: 'post-1',
     townLabel: 'Burlington ON',

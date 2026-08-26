@@ -36,34 +36,42 @@ export function CustomersSurface() {
     setSelected(list.data.customers[0]?.id ?? null);
   }, [list.data, selected]);
 
+  /* The Recovery toggle used to live in a `cu-topbar` — a second sticky bar
+     carrying a second Bask wordmark and a crumb that repeated the h1 directly
+     below it. At `z-index: 20` against the shell's 5, it climbed over the real
+     navigation on scroll. The chrome belongs to AppShell; the action belongs to
+     the page heading, so that is where it went. */
+  const recoveryAction = (
+    <button
+      type="button"
+      className={view === 'recovery' ? 'btn btn-quiet' : 'btn btn-primary'}
+      onClick={() => setView(view === 'recovery' ? 'list' : 'recovery')}
+    >
+      {view === 'recovery' ? C.recovery.back : C.recovery.open}
+    </button>
+  );
+
   return (
     <>
-      <header className="cu-topbar">
-        <a className="cu-wordmark" href="/">
-          Bask
-        </a>
-        <span className="cu-crumb">
-          <b>{view === 'recovery' ? C.recovery.title : C.title}</b>
-        </span>
-        <div className="cu-right">
-          <button
-            type="button"
-            className={view === 'recovery' ? 'btn btn-quiet' : 'btn btn-primary'}
-            onClick={() => setView(view === 'recovery' ? 'list' : 'recovery')}
-          >
-            {view === 'recovery' ? C.recovery.back : C.recovery.open}
-          </button>
-        </div>
-      </header>
-
       <main className="cu-shell">
         {view === 'recovery' ? (
-          <RecoveryFlow />
+          <>
+            <div className="cu-head">
+              <div>
+                <h1>{C.recovery.title}</h1>
+              </div>
+              {recoveryAction}
+            </div>
+            <RecoveryFlow />
+          </>
         ) : (
           <>
             <div className="cu-head">
-              <h1>{C.title}</h1>
-              <p>{C.body}</p>
+              <div>
+                <h1>{C.title}</h1>
+                <p>{C.body}</p>
+              </div>
+              {recoveryAction}
             </div>
 
             {list.data && (

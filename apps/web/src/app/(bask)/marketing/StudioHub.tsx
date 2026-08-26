@@ -18,6 +18,9 @@ import { trpc } from '@/lib/trpc';
 import { STUDIO_COPY as C } from './copy';
 import { BoldFacts, StateChip, formatDay, formatMoney } from './pieces';
 
+/** Column headers on the month grid, and the day label in the phone agenda. */
+const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] as const;
+
 type Tab = 'ideas' | 'campaigns' | 'calendar';
 
 export function StudioHub() {
@@ -27,15 +30,10 @@ export function StudioHub() {
 
   return (
     <>
-      <header className="st-topbar">
-        <a className="st-wordmark" href="/">
-          Bask
-        </a>
-        <span className="st-crumb">
-          <b>Marketing</b>
-        </span>
-      </header>
-
+      {/* No `st-topbar` here. It carried a second Bask wordmark and a "Marketing"
+          crumb that the h1 immediately below already said, and it was sticky at
+          `z-index: 20` over AppShell's 5. AppShell owns the chrome; the page
+          starts at its own heading. */}
       <main className="st-shell">
         <div className="st-hub-head">
           <h1>{C.hub.title}</h1>
@@ -213,7 +211,7 @@ function CampaignCalendar() {
       </div>
       <div className="st-cal">
         <div className="st-cal-head">
-          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => (
+          {DOW.map((d) => (
             <span key={d}>{d}</span>
           ))}
         </div>
@@ -224,6 +222,14 @@ function CampaignCalendar() {
               className={`st-cal-day ${cell.date === data.today ? 'is-today' : ''}`}
             >
               {cell.day && <span className="st-cal-num num">{cell.day}</span>}
+              {/* Only ever visible in the phone agenda layout, where the column
+                  headers are gone and a bare date number says very little.
+                  Parsed as UTC because `cell.date` is a plain ISO day. */}
+              {cell.day && (
+                <span className="st-cal-dow" aria-hidden>
+                  {DOW[new Date(`${cell.date}T00:00:00Z`).getUTCDay()]}
+                </span>
+              )}
               {(data.days[cell.date] ?? []).map((c) => (
                 <button
                   type="button"

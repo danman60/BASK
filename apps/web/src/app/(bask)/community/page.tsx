@@ -14,12 +14,15 @@
  * on screen rather than faked.
  */
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { DEMO_COMMUNITY_POSTS, DEMO_COMMUNITY_TODAY } from '@bask/core';
 import {
   CommunityFeed,
   CommunityComposer,
+  COMMUNITY_MEDIA_LIMITS,
+  type CommunityMedia,
+  type CommunityMediaError,
   type CommunityPost,
   type CommunityReaction,
 } from '@bask/ui';
@@ -32,15 +35,87 @@ function whenLabel(occurredAtDay: number, today: number): string {
   return `${weeks} weeks ago`;
 }
 
+/** A post the viewer wrote this session. Nothing is persisted — see the fence below. */
+interface DraftPost {
+  id: string;
+  body: string;
+  figure?: { value: string; caption: string };
+  media?: CommunityMedia;
+}
+
 export default function CommunityPage() {
   const [body, setBody] = useState('');
   const [figureValue, setFigureValue] = useState('');
   const [figureCaption, setFigureCaption] = useState('');
+  const [media, setMedia] = useState<CommunityMedia | null>(null);
+  const [mediaError, setMediaError] = useState<CommunityMediaError | null>(null);
+  const [posted, setPosted] = useState<DraftPost[]>([]);
+
+  /**
+   * Every object URL handed to an <img>/<video> has to be handed back, or the
+   * blob stays in memory for the life of the document. Revoking on unmount
+   * covers both the attachment and anything already posted this session.
+   */
+  const objectUrls = useRef<string[]>([]);
+  useEffect(
+    () => () => {
+      objectUrls.current.forEach((url) => URL.revokeObjectURL(url));
+      objectUrls.current = [];
+    },
+    [],
+  );
+
+  /**
+   * Reads the picked file straight into an object URL. There is no storage
+   * bucket behind this yet, so an attachment lives as long as the tab does —
+   * the fence under the composer says so rather than implying it uploaded.
+   * Limits match Stageable's, which is where the pattern came from.
+   */
+  const handleMedia = (file: File | null) => {
+    if (!file) {
+      setMedia(null);
+      setMediaError(null);
+      return;
+    }
+    const isImage = file.type.startsWith('image/');
+    const isVideo = file.type.startsWith('video/');
+    if (!isImage && !isVideo) {
+      setMedia(null);
+      setMediaError('type');
+      return;
+    }
+    const cap = isVideo ? COMMUNITY_MEDIA_LIMITS.videoBytes : COMMUNITY_MEDIA_LIMITS.imageBytes;
+    if (file.size > cap) {
+      setMedia(null);
+      setMediaError('size');
+      return;
+    }
+    const url = URL.createObjectURL(file);
+    objectUrls.current.push(url);
+    setMediaError(null);
+    setMedia({ kind: isVideo ? 'video' : 'image', url, alt: file.name });
+  };
 
   /** Which reaction the viewer has left per post — one at a time, as in Stageable. */
   const [mine, setMine] = useState<Record<string, CommunityReaction | null>>(() =>
     Object.fromEntries(DEMO_COMMUNITY_POSTS.map((p) => [p.id, p.mine ?? null])),
   );
+
+  /* Anything written this session sits at the top of the feed, the way it does
+     in any feed — an owner who posts and sees nothing happen assumes it broke. */
+  const own: CommunityPost[] = posted.map((draft) => ({
+    id: draft.id,
+    townLabel: 'Burlington ON',
+    roleLabel: 'Owner',
+    when: 'just now',
+    body: draft.body,
+    figure: draft.figure,
+    media: draft.media,
+    reactions: { same: '', helpful: '', watching: '' },
+    mine: null,
+    replies: [],
+    replyLabel: 'No replies yet',
+  }));
 
   const posts: CommunityPost[] = DEMO_COMMUNITY_POSTS.map((seed) => {
     const chosen = mine[seed.id] ?? null;
@@ -59,7 +134,12 @@ export default function CommunityPage() {
       when: whenLabel(seed.occurredAtDay, DEMO_COMMUNITY_TODAY),
       body: seed.body,
       figure: seed.figure ? { value: seed.figure.value, caption: seed.figure.caption } : undefined,
-      reactions: { same: countFor('same'), helpful: countFor('helpful'), watching: countFor('watching') },
+      media: seed.media ? { ...seed.media } : undefined,
+      reactions: {
+        same: countFor('same'),
+        helpful: countFor('helpful'),
+        watching: countFor('watching'),
+      },
       mine: chosen,
       onReact: (kind: CommunityReaction) =>
         setMine((prev) => ({ ...prev, [seed.id]: prev[seed.id] === kind ? null : kind })),
@@ -75,34 +155,64 @@ export default function CommunityPage() {
   });
 
   return (
-    <div className="b-community">
-      <header className="b-winfeed-head">
-        <div>
-          <h1 className="b-winfeed-title">Community</h1>
-          <p className="b-winfeed-sub">
-            Owners only. Not your customers, not the public — a room where you can put a real
-            number on the table and ask what other people are seeing.
-          </p>
-        </div>
-        <span className="b-winfeed-fence">Your town, never your business name</span>
-      </header>
+    /* Two elements on purpose. The shell owns the page gutter and the outer
+       max-width; the feed column owns its own much narrower one. Putting both
+       classes on one element made them fight over `max-width` at equal
+       specificity, and source order — not intent — decided it. */
+    <main className="b-shell b-shell-wide">
+      <div className="b-community">
+        <header className="b-winfeed-head">
+          <div>
+            <h1 className="b-winfeed-title">Community</h1>
+            <p className="b-winfeed-sub">
+              Owners only. Not your customers, not the public — a room where you can put a real
+              number on the table and ask what other people are seeing.
+            </p>
+          </div>
+          <span className="b-winfeed-fence">Your town, never your business name</span>
+        </header>
 
-      <CommunityComposer
-        body={body}
-        onBodyChange={setBody}
-        figureValue={figureValue}
-        onFigureValueChange={setFigureValue}
-        figureCaption={figureCaption}
-        onFigureCaptionChange={setFigureCaption}
-        submitting={false}
-        onSubmit={() => {
-          setBody('');
-          setFigureValue('');
-          setFigureCaption('');
-        }}
-      />
+        <CommunityComposer
+          body={body}
+          onBodyChange={setBody}
+          figureValue={figureValue}
+          onFigureValueChange={setFigureValue}
+          figureCaption={figureCaption}
+          onFigureCaptionChange={setFigureCaption}
+          media={media}
+          onMediaChange={handleMedia}
+          mediaError={mediaError}
+          submitting={false}
+          onSubmit={() => {
+            setPosted((prev) => [
+              {
+                id: `own-${prev.length + 1}`,
+                body: body.trim(),
+                figure:
+                  figureValue.trim() || figureCaption.trim()
+                    ? { value: figureValue.trim(), caption: figureCaption.trim() }
+                    : undefined,
+                media: media ?? undefined,
+              },
+              ...prev,
+            ]);
+            setBody('');
+            setFigureValue('');
+            setFigureCaption('');
+            setMedia(null);
+            setMediaError(null);
+          }}
+        />
 
-      <CommunityFeed posts={posts} />
-    </div>
+        {/* Said out loud rather than faked: there is no posts table and no media
+          bucket behind this room yet, so a post lives in this tab. */}
+        <p className="b-community-fence">
+          Nothing here is saved yet — posts and attachments stay in this tab until the community
+          room is connected to the server.
+        </p>
+
+        <CommunityFeed posts={[...own, ...posts]} />
+      </div>
+    </main>
   );
 }

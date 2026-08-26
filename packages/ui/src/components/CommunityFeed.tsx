@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
 /**
  * The owners-only feed — a room of QUESTIONS, not a second leaderboard.
  *
@@ -47,6 +51,20 @@ export interface CommunityReply {
   body: string;
 }
 
+/**
+ * A photo or a video attached to a post. `url` is whatever the caller can hand
+ * a browser — an uploaded object URL in the demo, a storage URL once a bucket
+ * exists. The card does not care which.
+ */
+export interface CommunityMedia {
+  kind: 'image' | 'video';
+  url: string;
+  /** Describes the picture for anyone who cannot see it. Never decorative. */
+  alt?: string;
+  /** Still frame for a video, if one is available. */
+  poster?: string;
+}
+
 export interface CommunityPost {
   id: string;
   /**
@@ -63,6 +81,12 @@ export interface CommunityPost {
   body: string;
   /** Evidence for the question, never a celebrated result. */
   figure?: { value: string; caption: string };
+  /**
+   * A picture or clip of the thing being asked about — the shelf, the room, the
+   * bed, the receipt. Owners describe a layout problem far faster by showing it
+   * than by writing it, which is the whole reason this room gets media.
+   */
+  media?: CommunityMedia;
   /** Counts per reaction, ALREADY FORMATTED — the card never does arithmetic. */
   reactions: Readonly<Record<CommunityReaction, string>>;
   /** Which reaction the viewer has left, if any. One per post, as in Stageable. */
@@ -88,6 +112,50 @@ function townMark(town: string): string {
   if (parts.length === 0) return '—';
   if (parts.length === 1) return parts[0]!.slice(0, 2).toUpperCase();
   return (parts[0]![0]! + parts[1]![0]!).toUpperCase();
+}
+
+/**
+ * Stageable's `AutoVideo`, reduced to what this room needs: a clip plays muted
+ * while it is on screen and pauses when it is not, so a feed of ten posts is
+ * never ten videos decoding at once. Controls stay on, so sound is one tap
+ * away — muted autoplay is the only kind a browser will start unprompted.
+ */
+function FeedVideo({ media }: { media: CommunityMedia }) {
+  const ref = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        if (entry.isIntersecting) {
+          // A rejected play() is normal (reduced-motion, data saver, no gesture
+          // budget). The poster stays up and the controls still work.
+          void el.play().catch(() => undefined);
+        } else {
+          el.pause();
+        }
+      },
+      { threshold: 0.5 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      className="b-post-media-el"
+      src={media.url}
+      poster={media.poster}
+      muted
+      loop
+      playsInline
+      controls
+      preload="metadata"
+    />
+  );
 }
 
 export function CommunityFeed({ posts, className }: CommunityFeedProps) {
@@ -120,6 +188,25 @@ export function CommunityFeed({ posts, className }: CommunityFeedProps) {
             <div className="b-post-figure">
               {post.figure.value}
               <small>{post.figure.caption}</small>
+            </div>
+          )}
+
+          {/* Full-bleed to the card edges, the way a photo reads in any feed
+              worth scrolling. Aspect is never forced — a portrait phone photo
+              stays portrait rather than being cropped to a bad square. */}
+          {post.media && (
+            <div className="b-post-media">
+              {post.media.kind === 'video' ? (
+                <FeedVideo media={post.media} />
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  className="b-post-media-el"
+                  src={post.media.url}
+                  alt={post.media.alt ?? ''}
+                  loading="lazy"
+                />
+              )}
             </div>
           )}
 

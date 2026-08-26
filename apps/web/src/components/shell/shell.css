@@ -106,7 +106,7 @@
 .b-shell {
   max-width: 1180px;
   margin: 0 auto;
-  padding: var(--space-10);
+  padding: var(--space-10) var(--page-gutter);
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
   gap: var(--space-10);
@@ -156,8 +156,14 @@
     font-size: 11px;
   }
 
+  /* The gutter comes off the token, not off zero. This rule used to read
+     `padding: 0 0 96px`, which put every mobile and tablet surface flush
+     against the viewport edge; Today's older sections compensated with their
+     own 20px, so the same page carried two different grids and Monitor,
+     the opportunity feed and the wins feed carried none at all. 96px of
+     bottom padding still clears the fixed tab bar. */
   .b-shell {
-    padding: 0 0 96px;
+    padding: var(--space-6) var(--page-gutter) 96px;
     gap: 0;
   }
 

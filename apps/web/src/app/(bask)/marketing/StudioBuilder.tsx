@@ -192,13 +192,12 @@ export function StudioBuilder({
 
   return (
     <>
-      <header className="st-topbar">
-        <a className="st-wordmark" href="/marketing">
-          Bask
-        </a>
-        <span className="st-crumb">
-          <a href="/marketing">Marketing</a> · <b>New campaign</b>
-        </span>
+      {/* The wordmark and crumb that used to sit here were a second Bask header
+          over AppShell's real one. What this bar is actually for is the step
+          indicator, so that is all it carries now — and it scrolls sideways
+          rather than overflowing, because five steps plus separators cannot fit
+          across a 320px phone at any font size worth reading. */}
+      <nav className="st-stepbar" aria-label="Campaign steps">
         <div className="st-steps">
           {STEP_ORDER.map((s, index) => {
             const currentIndex = STEP_ORDER.indexOf(step);
@@ -221,7 +220,7 @@ export function StudioBuilder({
             );
           })}
         </div>
-      </header>
+      </nav>
 
       <main className="st-shell">
         {/* Provenance stays put for the whole flow — the owner never loses sight

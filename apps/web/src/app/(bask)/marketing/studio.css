@@ -5,45 +5,36 @@
  * Every colour, space and type value comes from @bask/tokens. */
 
 /* --- chrome --------------------------------------------------------------- */
-.st-topbar {
-  display: flex;
-  align-items: center;
-  gap: var(--space-6);
-  padding: 14px var(--space-10);
+/* `.st-topbar`, `.st-wordmark` and `.st-crumb` are gone. Both Marketing screens
+   drew a second sticky Bask header — wordmark plus a crumb the h1 repeated —
+   at `z-index: 20` over AppShell's 5, so it rode up over the real navigation.
+   What survives is the step indicator, which is the only thing that bar was
+   genuinely for. */
+.st-stepbar {
   border-bottom: 1px solid var(--line-soft);
   background: oklch(98.2% 0.004 84 / 0.85);
   backdrop-filter: blur(12px);
-  position: sticky;
-  top: 0;
-  z-index: 20;
+  padding: 12px var(--page-gutter);
 }
-.st-wordmark {
-  font: italic 600 22px/1 var(--font-display);
-  color: var(--ink);
-  text-decoration: none;
-}
-.st-crumb {
-  font: 500 var(--text-sm) / 1 var(--font-body);
-  color: var(--ink-faint);
-}
-.st-crumb b {
-  color: var(--ink);
-  font-weight: 600;
-}
-.st-crumb a {
-  color: inherit;
-  text-decoration: none;
-}
-.st-crumb a:hover {
-  color: var(--ink);
-}
+/* Five steps with separators need roughly 430px. On a 320px phone that is not
+   a wrapping problem, it is a scrolling one — wrapping five pills onto three
+   lines reads as broken. The row scrolls, and the current step is what the
+   owner is looking at anyway. */
 .st-steps {
-  margin-left: auto;
   display: flex;
   gap: var(--space-2);
   align-items: center;
   font: 600 var(--text-xs) / 1 var(--font-body);
   color: var(--ink-faint);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.st-steps::-webkit-scrollbar {
+  display: none;
+}
+.st-steps > * {
+  flex: none;
 }
 .st-step {
   padding: 6px 12px;
@@ -69,7 +60,7 @@
 .st-shell {
   max-width: 1180px;
   margin: 0 auto;
-  padding: var(--space-8) var(--space-10) var(--space-12);
+  padding: var(--space-8) var(--page-gutter) var(--space-12);
 }
 
 /* --- context banner (mockup 03 `.context`) -------------------------------- */
@@ -103,6 +94,22 @@
   margin-left: auto;
   white-space: nowrap;
   flex: none;
+}
+/* One flex row of decorative bar + long explanation + a `flex: none` action is
+   a guaranteed squeeze on a phone. Below 620px it stacks and the action stops
+   competing with the sentence for width. */
+@media (max-width: 620px) {
+  .st-context {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .st-context p {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  .st-context .st-why {
+    margin-left: 0;
+  }
 }
 .st-why-panel {
   margin: calc(var(--space-8) * -1) 0 var(--space-8);
@@ -599,7 +606,7 @@
 /* --- phone frame preview -------------------------------------------------- */
 .st-phone-wrap {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
   gap: var(--space-8);
   align-items: start;
 }
@@ -608,8 +615,12 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+/* Hard-coded 300px inside a gutter-padded shell: at a 320px viewport the
+   content box is narrower than the phone, so the mockup had to either escape
+   its container or get clipped. It now yields when it cannot fit and is
+   identical everywhere it can. */
 .st-phone {
-  width: 300px;
+  width: min(300px, 100%);
   border-radius: 34px;
   border: 1px solid var(--line);
   background: var(--card);
@@ -848,6 +859,23 @@
   color: var(--ink);
   font-weight: 600;
 }
+/* Four columns, two of them `white-space: nowrap`, with no narrow-screen rule:
+   the campaign name was compressed to nothing long before the row ran out of
+   width. Below 600px the row becomes a stacked card — name and goal on their
+   own line, the two metadata figures and the state chip on a wrapping row
+   underneath, left-aligned because right-alignment against nothing reads as a
+   mistake. */
+@media (max-width: 600px) {
+  .st-camp {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+  .st-camp-meta {
+    text-align: left;
+    white-space: normal;
+  }
+}
+
 .st-state {
   border-radius: 999px;
   padding: 6px 11px;
@@ -932,6 +960,52 @@
 .st-cal-pill.is-measured {
   background: var(--success-wash);
   color: var(--success-on-wash);
+}
+
+/* The weekday label only earns its place in the agenda layout below. */
+.st-cal-dow {
+  display: none;
+}
+
+/* Seven equal columns at 96px minimum height puts each day at ~40px wide on a
+   phone, so campaign names wrap to one letter per line. Below 700px the month
+   grid becomes a chronological agenda: days with nothing scheduled disappear,
+   and the ones that remain read as a date followed by its campaigns. The month
+   navigation above it is unchanged, so this is still a month at a time. */
+@media (max-width: 700px) {
+  .st-cal-head {
+    display: none;
+  }
+  .st-cal-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .st-cal-day {
+    min-height: 0;
+    border-right: 0;
+    display: grid;
+    grid-template-columns: auto auto minmax(0, 1fr);
+    align-items: baseline;
+    gap: var(--space-2) var(--space-3);
+    padding: var(--space-3) var(--space-4);
+  }
+  /* An empty square is a shape on a month grid. In a list it is a blank row. */
+  .st-cal-day:not(:has(.st-cal-pill)) {
+    display: none;
+  }
+  .st-cal-dow {
+    display: block;
+    font: 600 var(--text-xs) / 1 var(--font-body);
+    color: var(--ink-faint);
+  }
+  .st-cal-day.is-today .st-cal-dow {
+    color: var(--accent-on-wash);
+  }
+  .st-cal-pill {
+    grid-column: 3;
+    margin-top: 0;
+    font-size: var(--text-xs);
+    padding: 7px 10px;
+  }
 }
 
 .st-empty {

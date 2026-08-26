@@ -53,8 +53,14 @@ export {
   type CommunityPost,
   type CommunityReply,
   type CommunityReaction,
+  type CommunityMedia,
 } from './components/CommunityFeed';
-export { CommunityComposer, type CommunityComposerProps } from './components/CommunityComposer';
+export {
+  CommunityComposer,
+  COMMUNITY_MEDIA_LIMITS,
+  type CommunityComposerProps,
+  type CommunityMediaError,
+} from './components/CommunityComposer';
 export { WinCard, type WinCardProps } from './components/WinCard';
 export {
   WinsFeedSection,

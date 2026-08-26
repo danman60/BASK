@@ -130,6 +130,34 @@
   font: 600 var(--text-md)/1 var(--font-body); font-variant-numeric: tabular-nums;
 }
 .b-post-figure small { display: block; margin-top: 6px; font: 500 var(--text-xs)/1 var(--font-body); color: var(--ink-faint); }
+
+/* Media runs to the card edges. `.b-post` carries its own padding, so the
+   negative margins undo exactly that and nothing else; the radius is clipped
+   back on so a photo never squares off a rounded card. Height is capped
+   because a tall portrait photo should not push the reactions off screen. */
+.b-post-media {
+  margin: var(--space-4) calc(var(--space-6) * -1) 0;
+  overflow: hidden;
+  background: var(--paper-2);
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+.b-post-media-el {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 620px;
+  object-fit: contain;
+  background: var(--paper-2);
+}
+/* The card's own rounding only reaches the media when it is the last thing in
+   the card — otherwise the reactions sit under a curved edge for no reason. */
+.b-post-media:last-child {
+  margin-bottom: calc(var(--space-5) * -1);
+  border-bottom: 0;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
 .b-post-foot { display: flex; gap: var(--space-4); margin-top: var(--space-4); font-size: var(--text-xs); color: var(--ink-faint); }
 
 /* ---- community reactions + replies ---------------------------------------
@@ -177,7 +205,24 @@
 
 /* min-width:0 on the children so a long post body cannot widen the column —
    the same grid default that clipped 242px off the Monitor page. */
-.b-community { display: grid; gap: var(--space-5); min-width: 0; }
+/* A FEED COLUMN, NOT A PAGE OF ROWS.
+ *
+ * This used to be a bare grid with no width of its own, inside a page that had
+ * no shell either, so every post stretched the full 1180px: ~110 characters a
+ * line, which reads as a support queue rather than somewhere you scroll. A
+ * social feed is a narrow column — Instagram sits near 470px, Twitter near 600.
+ * 600px here, because a post can carry a figure block that needs the room.
+ *
+ * The column is centred rather than left-aligned so the page does not look
+ * abandoned on a wide monitor. */
+.b-community {
+  display: grid;
+  gap: var(--space-5);
+  min-width: 0;
+  max-width: 600px;
+  margin-inline: auto;
+  width: 100%;
+}
 .b-community > * { min-width: 0; }
 
 /* ---- community composer --------------------------------------------------
@@ -212,7 +257,47 @@
 .b-composer-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
 .b-composer-fence { font: 500 var(--text-xs) / 1.4 var(--font-body); color: var(--ink-faint); }
 .b-composer-post:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* --- composer attachment --------------------------------------------------
+   A dashed well, so it reads as a drop target rather than another text field.
+   The file button is restyled through ::file-selector-button because the
+   browser default is the one control on this page that ignores the tokens. */
+.b-composer-file {
+  display: block;
+  width: 100%;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper-2);
+  padding: var(--space-3);
+  font: 500 var(--text-xs) / 1.4 var(--font-body);
+  color: var(--ink-faint);
+  cursor: pointer;
+}
+.b-composer-file::file-selector-button {
+  margin-right: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  padding: 6px 12px;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.b-composer-file:hover { border-color: var(--primary); }
+.b-composer-file:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+.b-composer-media { position: relative; border-radius: var(--radius-sm); overflow: hidden; background: var(--paper-2); }
+.b-composer-media-el { display: block; width: 100%; height: auto; max-height: 320px; object-fit: contain; }
+.b-composer-media-drop { position: absolute; top: var(--space-2); right: var(--space-2); background: var(--card); }
+.b-composer-media-error { font: 500 var(--text-xs) / 1.5 var(--font-body); color: var(--risk); }
 .b-composer-disabled { font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink-faint); }
+/* Stated under the composer, not hidden: the room has no server behind it yet. */
+.b-community-fence {
+  font: 500 var(--text-xs) / 1.5 var(--font-body);
+  color: var(--ink-faint);
+  text-align: center;
+  padding: 0 var(--space-2);
+}
 
 /* ---- citation card ------------------------------------------------------- */
 .b-cite { padding: var(--space-5) var(--space-6); }

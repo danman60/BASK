@@ -191,9 +191,14 @@
   display: none;
 }
 
+/* The 20px side padding these rules used to carry was compensation for
+   `.b-shell` deleting its own gutter below 999px. The shell now keeps a real
+   gutter at every width (`--page-gutter`), so repeating it here would double
+   it — and it only ever applied below 720px, which is why the same page had
+   inset headings and edge-to-edge opportunity cards. Vertical rhythm stays. */
 @media (max-width: 720px) {
   .b-daybreak {
-    padding: 22px 20px 6px;
+    padding: 22px 0 6px;
     margin-bottom: 0;
   }
   .b-daybreak h1 {
@@ -211,23 +216,19 @@
     display: block;
   }
   .b-mobile-only.b-pulse-strip {
-    padding: 16px 20px;
+    padding: 16px 0;
   }
 
   .b-q-label {
     font-size: var(--text-xs);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    padding: 8px 20px 10px;
+    padding: 8px 0 10px;
     margin: 0;
   }
 
-  .b-queue {
-    padding: 0 20px;
-  }
-
   .b-rail {
-    padding: var(--space-6) 20px 0;
+    padding: var(--space-6) 0 0;
   }
   /* "Today so far" is already up top as chips — the stacked card would repeat it. */
   .b-rail .b-desktop-only {

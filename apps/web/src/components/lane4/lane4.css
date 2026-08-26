@@ -10,7 +10,7 @@
 .l4 {
   max-width: 1180px;
   margin: 0 auto;
-  padding: var(--space-8) var(--space-6) var(--space-12);
+  padding: var(--space-8) var(--page-gutter) var(--space-12);
 }
 
 /* ---------------------------------------------------------------- page head */
@@ -46,6 +46,12 @@
 
 /* ------------------------------------------------------------------ subnav */
 
+/* "What changed · Peers · Who did what" plus six sets of pill padding needs
+   more than the ~272px a 320px phone leaves after the page gutter. It neither
+   wrapped nor scrolled, so the third tab was simply unreachable — and because
+   html/body are `overflow-x: clip`, unreachable meant gone, not off-screen.
+   `max-width: 100%` is what makes the inline-flex row actually scrollable;
+   without it the pill container just grows past its parent. */
 .l4-tabs {
   display: inline-flex;
   gap: 2px;
@@ -53,6 +59,16 @@
   background: var(--paper-2);
   border-radius: 999px;
   border: 1px solid var(--line-soft);
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.l4-tabs::-webkit-scrollbar {
+  display: none;
+}
+.l4-tabs > * {
+  flex: none;
 }
 
 .l4-tab {

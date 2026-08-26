@@ -34,7 +34,7 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
       },
       {
         kind: 'social',
-        label: 'Approve & send to 24 customers',
+        label: 'Approve & post to Facebook and Instagram',
         facebook: 'Post about featured lotion',
         instagram: 'Story promoting featured lotion',
         cta: 'Try it for yourself',
@@ -71,14 +71,14 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
       },
       {
         kind: 'sms',
-        label: 'Approve & send to 17 customers',
+        label: 'Approve & text 17 customers',
         recipientCount: 17,
         message: 'Hi there! Did you know that a membership could save you money compared to pay-per-visit pricing?',
         costNote: '17 messages · about $1.20'
       },
       {
         kind: 'email',
-        label: 'Approve & send to 17 customers',
+        label: 'Approve & email 17 customers',
         recipientCount: 17,
         subject: 'Do the math on your membership savings',
         body: 'We calculated that a membership would actually cost less than paying per visit for your regular visits.'
@@ -101,7 +101,7 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
     actions: [
       {
         kind: 'sms',
-        label: 'Approve & send to 7 customers',
+        label: 'Approve & text 7 customers',
         recipientCount: 7,
         message: 'Hi there! We had trouble processing your payment. Could you please update your card details?',
         costNote: '7 messages · about $0.50'
@@ -129,14 +129,14 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
     actions: [
       {
         kind: 'sms',
-        label: 'Approve & send to 24 customers',
+        label: 'Approve & text 24 customers',
         recipientCount: 24,
         message: 'We have a special offer for Tuesday afternoons this week. Come enjoy a discount on your usual services.',
         costNote: '24 messages · about $1.80'
       },
       {
         kind: 'social',
-        label: 'Approve & send to 24 customers',
+        label: 'Approve & post to Facebook and Instagram',
         facebook: 'Post about Tuesday afternoon special',
         instagram: 'Story promoting Tuesday afternoon offer',
         cta: 'Book now',
@@ -191,7 +191,7 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
     actions: [
       {
         kind: 'email',
-        label: 'Approve & send to 112 customers',
+        label: 'Approve & email 112 customers',
         recipientCount: 112,
         subject: 'Special offer for red-light services',
         body: 'We have a special offer for our red-light services that might interest you.'

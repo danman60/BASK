@@ -12,6 +12,17 @@
  */
 
 
+import type { CommunityMedia } from './CommunityFeed';
+
+/** What the browser rejected, so the composer can say why in plain words. */
+export type CommunityMediaError = 'size' | 'type';
+
+/** Ported from Stageable's PostComposer, which enforces the same two limits. */
+export const COMMUNITY_MEDIA_LIMITS = {
+  imageBytes: 8 * 1024 * 1024,
+  videoBytes: 50 * 1024 * 1024,
+} as const;
+
 export interface CommunityComposerProps {
   /** The body of the post. */
   body: string;
@@ -25,6 +36,12 @@ export interface CommunityComposerProps {
   figureCaption?: string;
   /** Handler for figure caption changes. */
   onFigureCaptionChange?: (value: string) => void;
+  /** The attached photo or clip, if the owner picked one. */
+  media?: CommunityMedia | null;
+  /** Fires with the picked file, or null when the owner removes the attachment. */
+  onMediaChange?: (file: File | null) => void;
+  /** Why the last pick was refused. The composer states it rather than failing quietly. */
+  mediaError?: CommunityMediaError | null;
   /** Handler for the submission. */
   onSubmit: () => void;
   /** Whether the form is currently submitting. */
@@ -42,6 +59,9 @@ export function CommunityComposer({
   onFigureValueChange,
   figureCaption,
   onFigureCaptionChange,
+  media,
+  onMediaChange,
+  mediaError,
   onSubmit,
   submitting,
   disabledReason,
@@ -54,7 +74,7 @@ export function CommunityComposer({
 
   const isSubmitDisabled =
     submitting ||
-    !body.trim() ||
+    (!body.trim() && !media) ||
     !!disabledReason;
 
   return (
@@ -110,6 +130,48 @@ export function CommunityComposer({
                   />
                 </div>
               </div>
+            </div>
+          )}
+
+          {onMediaChange && (
+            <div className="b-composer-field">
+              <span className="b-composer-label">Add a photo or video (optional)</span>
+              {media ? (
+                <div className="b-composer-media">
+                  {media.kind === 'video' ? (
+                    <video className="b-composer-media-el" src={media.url} muted playsInline controls />
+                  ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img className="b-composer-media-el" src={media.url} alt="" />
+                  )}
+                  <button
+                    type="button"
+                    className="btn btn-quiet b-composer-media-drop"
+                    onClick={() => onMediaChange(null)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <input
+                    className="b-composer-file"
+                    id="community-composer-media"
+                    type="file"
+                    accept="image/*,video/*"
+                    onChange={(e) => onMediaChange(e.target.files?.[0] ?? null)}
+                  />
+                  <span className="b-composer-sub">Pictures up to 8MB, video up to 50MB.</span>
+                </>
+              )}
+              {mediaError && (
+                <p className="b-composer-media-error" role="alert">
+                  {mediaError === 'size'
+                    ? 'That file is too big. Pictures can be up to 8MB and video up to 50MB.'
+                    : 'That file type will not play here. Use a picture or a video.'}{' '}
+                  Nothing was attached.
+                </p>
+              )}
             </div>
           )}
 
