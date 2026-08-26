@@ -79,6 +79,15 @@ export interface SocialAction {
   cta: string;
   /** One line of art direction, e.g. `Warm photo of the red-light room, door open.` */
   imageDirection: string;
+  /**
+   * The finished artwork. `imageDirection` describes what a picture SHOULD be;
+   * this is the picture. An owner who is shown a sentence about a photo still
+   * has to go and make the photo, which is the work they did not want to do —
+   * so the demo prepares the creative, and the direction line stays as the
+   * explanation of why it looks like that. More than one slide posts as a
+   * carousel.
+   */
+  creative?: readonly { readonly url: string; readonly alt: string }[];
 }
 
 export interface StaffTaskAction {

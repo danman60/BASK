@@ -54,6 +54,89 @@ export interface CommunityPostSeed {
 
 export const DEMO_COMMUNITY_POSTS: readonly CommunityPostSeed[] = [
   {
+    /* A walk-and-talk, so the two selfie clips are not the same shot twice. */
+    id: 'post-video-tour',
+    townLabel: 'Sarnia ON',
+    occurredAtDay: 122,
+    body: 'Someone asked what a second room actually costs to run, so here is mine on a Tuesday. It is the smallest room in the building and it has paid for itself twice over. Ask me anything about the fit-out.',
+    media: {
+      kind: 'video',
+      url: '/community/owner-tour.mp4',
+      poster: '/community/owner-tour-poster.webp',
+      alt: 'A salon owner walking backwards through her salon filming herself and talking to camera',
+    },
+    reactions: { same: 3, helpful: 34, watching: 26 },
+    mine: null,
+    replies: [
+      {
+        id: 'post-video-tour-r1',
+        townLabel: 'Guelph ON',
+        occurredAtDay: 122,
+        body: 'How long before it broke even? I have the space but I keep talking myself out of it.',
+      },
+      {
+        id: 'post-video-tour-r2',
+        townLabel: 'Sarnia ON',
+        occurredAtDay: 122,
+        body: 'Fourteen months. Would have been quicker if I had not priced it as an add-on for the first half of that.',
+      },
+    ],
+  },
+  {
+    /* Flat lay + a question with no figure attached — not every post in a
+       healthy feed is evidence. Some are just people talking. */
+    id: 'post-flatlay',
+    townLabel: 'Oshawa ON',
+    occurredAtDay: 120,
+    body: 'Four bottles, four price points, and I genuinely cannot tell you why anyone picks one over another. What do you actually say when someone asks which is best?',
+    media: {
+      kind: 'carousel',
+      items: [
+        { url: '/community/flatlay.webp', alt: 'Four lotion bottles laid out on linen beside a folded towel' },
+        { url: '/community/window.webp', alt: 'A salon window display with bottles on a ledge, sun flaring through the glass' },
+      ],
+    },
+    reactions: { same: 18, helpful: 6, watching: 5 },
+    mine: null,
+    replies: [
+      {
+        id: 'post-flatlay-r1',
+        townLabel: 'London ON',
+        occurredAtDay: 120,
+        body: 'I stopped answering "which is best" and started asking "what did you use last time". Completely different conversation.',
+      },
+    ],
+  },
+  {
+    /* A staffing question with a photo of people rather than product, so the
+       feed is not only shelves. Faces are turned away — town-only still holds. */
+    id: 'post-staff',
+    townLabel: 'Kingston ON',
+    occurredAtDay: 117,
+    body: 'How many of you have your desk staff on any kind of product target? Mine are lovely and they sell nothing, and I do not know whether that is a training problem or a me problem.',
+    media: {
+      kind: 'image',
+      url: '/community/staff-desk.webp',
+      alt: 'Two salon staff behind a front desk mid-conversation, looking at a screen',
+    },
+    reactions: { same: 29, helpful: 11, watching: 14 },
+    mine: null,
+    replies: [
+      {
+        id: 'post-staff-r1',
+        townLabel: 'Barrie ON',
+        occurredAtDay: 117,
+        body: 'Target, no. One sentence they have to say at the end of every session, yes. That worked and a target never did.',
+      },
+      {
+        id: 'post-staff-r2',
+        townLabel: 'Windsor ON',
+        occurredAtDay: 116,
+        body: 'It is a me problem. It was for me anyway. They were never told it was part of the job.',
+      },
+    ],
+  },
+  {
     /* The room's one talking-head post. Owners answer a "how do you word it"
        question faster on camera than in writing, and a feed with no faces in it
        does not read as somewhere people post. Still town-only: no signage, no

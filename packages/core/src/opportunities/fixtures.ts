@@ -35,10 +35,14 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
       {
         kind: 'social',
         label: 'Approve & post to Facebook and Instagram',
-        facebook: 'Post about featured lotion',
-        instagram: 'Story promoting featured lotion',
+        facebook: 'Evenings are our quietest hours and our best staff are on. If you have been meaning to ask which lotion is actually right for your skin, tonight is the night to do it — no queue, no rush.',
+        instagram: 'The one your skin actually wants. Come in after 5 and ask us — we will be honest about which of the four is right for you, and it is usually not the most expensive one.',
         cta: 'Try it for yourself',
-        imageDirection: 'Lotion bottle on a table with soft lighting'
+        imageDirection: 'Lotion bottle on a table with soft lighting',
+        creative: [
+          { url: '/community/ig-retail-1.webp', alt: 'A cream and terracotta post reading "The one your skin actually wants"' },
+          { url: '/community/wall-eye.webp', alt: 'A tidy row of lotion bottles at eye level on the retail shelf' },
+        ],
       },
       {
         kind: 'coaching_request',
@@ -137,10 +141,14 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
       {
         kind: 'social',
         label: 'Approve & post to Facebook and Instagram',
-        facebook: 'Post about Tuesday afternoon special',
-        instagram: 'Story promoting Tuesday afternoon offer',
+        facebook: 'Tuesday afternoons are our quietest stretch, so we are making them worth your while: 20% off any session between 1 and 4pm this week. No booking needed, just come in.',
+        instagram: 'Tuesday afternoons are quiet. 20% off 1-4pm this week — walk in, no appointment. Bring someone who has been putting it off.',
         cta: 'Book now',
-        imageDirection: 'Group of customers smiling in a salon'
+        imageDirection: 'Group of customers smiling in a salon',
+        creative: [
+          { url: '/community/promo-1.webp', alt: 'A post reading "Tuesday afternoons are quiet, 20% off 1-4pm this week"' },
+          { url: '/community/room-quiet.webp', alt: 'The empty reception area on a quiet weekday afternoon' },
+        ],
       }
     ],
     handleIt: {

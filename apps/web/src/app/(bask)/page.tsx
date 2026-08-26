@@ -70,7 +70,11 @@ export default async function TodayPage({
             This is the product's primary interface (brainstorm §23/§29): the
             owner reads dollars and actions, not analytics. The insight queue
             below it stays as the finer-grained "what changed" detail. */}
-        <OpportunityFeed opportunities={DEMO_OPPORTUNITIES} outcomes={DEMO_OUTCOMES} />
+        <OpportunityFeed
+          opportunities={DEMO_OPPORTUNITIES}
+          outcomes={DEMO_OUTCOMES}
+          salonName={salon.name}
+        />
 
         {/* The social layer sits directly under the money, and above the
             analytics. Thesis: owners are moved by a salon like theirs having
