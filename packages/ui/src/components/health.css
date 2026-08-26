@@ -148,7 +148,15 @@
   height: auto;
   max-height: 620px;
   object-fit: contain;
-  background: var(--paper-2);
+  background: transparent;
+}
+/* A 9:16 phone clip in a 600px column is letterboxed either way. Against the
+   page's cream that reads as a mistake; against a dark fill it reads as a
+   video, which is what every feed does with vertical media. Stills keep the
+   paper wash — they are usually square here and barely letterbox at all. */
+.b-post-media:has(video) {
+  background: oklch(24% 0.012 60);
+  border-color: transparent;
 }
 /* ---- carousel -------------------------------------------------------------
    Scroll-snap does the work: no transform track, no width arithmetic, and a

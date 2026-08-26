@@ -54,6 +54,63 @@ export interface CommunityPostSeed {
 
 export const DEMO_COMMUNITY_POSTS: readonly CommunityPostSeed[] = [
   {
+    /* The room's one talking-head post. Owners answer a "how do you word it"
+       question faster on camera than in writing, and a feed with no faces in it
+       does not read as somewhere people post. Still town-only: no signage, no
+       business name in frame, and nobody says one out loud. */
+    id: 'post-video-shelf',
+    townLabel: 'Windsor ON',
+    occurredAtDay: 121,
+    body: 'Filmed this on the shop floor rather than typing it out. This is the exact line I use when someone picks up a bottle and puts it back down again. Steal it if it is useful — and tell me what you say, because I have been using the same sentence for two years.',
+    media: {
+      kind: 'video',
+      url: '/community/owner-shelf.mp4',
+      poster: '/community/owner-shelf-poster.webp',
+      alt: 'A salon owner filming herself in front of her retail shelf, talking to camera',
+    },
+    reactions: { same: 4, helpful: 27, watching: 9 },
+    mine: null,
+    replies: [
+      {
+        id: 'post-video-shelf-r1',
+        townLabel: 'Cambridge ON',
+        occurredAtDay: 121,
+        body: 'Mine is shorter — "that one is the closest to what you already use". Anything longer and they feel sold to.',
+      },
+    ],
+  },
+  {
+    /* Second clip, deliberately a different shape: leaning on the desk rather
+       than a selfie walk-and-talk, so two videos in one feed do not look like
+       the same template twice. */
+    id: 'post-video-desk',
+    townLabel: 'Peterborough ON',
+    occurredAtDay: 118,
+    body: 'Someone asked how I actually check the quiet hours instead of guessing at them. This is the whole thing — it takes about a minute on a Monday. I used to think Tuesdays were dead. Tuesdays are fine. It is Thursday mornings that are the problem.',
+    media: {
+      kind: 'video',
+      url: '/community/owner-desk.mp4',
+      poster: '/community/owner-desk-poster.webp',
+      alt: 'A salon owner leaning on the front desk beside a laptop showing a booking calendar, talking to camera',
+    },
+    reactions: { same: 15, helpful: 19, watching: 7 },
+    mine: null,
+    replies: [
+      {
+        id: 'post-video-desk-r1',
+        townLabel: 'Sudbury ON',
+        occurredAtDay: 118,
+        body: 'Thursday mornings here too. I had always blamed the weather.',
+      },
+      {
+        id: 'post-video-desk-r2',
+        townLabel: 'Oshawa ON',
+        occurredAtDay: 117,
+        body: 'This is the first time anyone has shown me the screen instead of describing it. Thank you.',
+      },
+    ],
+  },
+  {
     /* The before/after set. A shelf question is answered with pictures faster
        than with any paragraph, which is the whole argument for media in here. */
     id: 'post-wall',
