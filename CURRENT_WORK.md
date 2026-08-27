@@ -1,5 +1,134 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-26 (21:28–21:52) — bask MIGRATED TO NETCUP, BANKED AT VERIFIED STEP 2
+
+**Findings doc — read this before touching the migration: `docs/migration/2026-08-26-bask-netcup-findings.md`**
+Plan: `docs/plans/2026-08-26-bask-migration-to-netcup.md` (sysadmin-11). Owner approved 21:27.
+
+**Done:** NETCUP project `bask` on port 8104, 8 `sb-bask-*` containers. Parity **44 tables, 0
+mismatched** (493,216 vs 493,215; 1 row live drift on `session`). `verify-isolation.sh` 50/50.
+Baseline: `docs/migration/bask-source-manifest-2026-08-26.tsv`.
+**Nothing dropped from CC&SS. The app still points at CC&SS. Your demo is unaffected.**
+
+### THE THREE THINGS THAT MATTER TOMORROW
+
+1. **ETL DROPS LINE ITEMS — demo critical path.** `bask.sale_line` is **0 rows for
+   `salontouch-real`** while `~/salon-pull/canonical/transaction_items.csv` holds **59,787** (12,173
+   with a real `product_id`) and `products.csv` holds **673**. Loader is losing them; cause NOT yet
+   diagnosed — suspect `packages/db/scripts/salon-ingest/etl/map-transactions.ts` (a prior session
+   already fixed one bug of this exact shape there). **Four of six planned demo surfaces —
+   attachment, lotion cadence, dead-SKU shelf, traffic-vs-selling — read these tables and have no
+   data on the copy the demo renders from.** FIRST TASK.
+2. **RLS FAILS SILENTLY AT CUTOVER.** 33 of 44 tables carry `salon_isolation`
+   `USING (id = bask.current_salon_id())`. `bask_owner` has BYPASSRLS=false → reads **0 rows**;
+   CC&SS's `postgres.<ref>` bypasses RLS. Repoint the app as-is and it gets an **empty database with
+   no error**. **Row-count parity is structurally blind to this** — it runs as `supabase_admin`,
+   which bypasses RLS. sysadmin-11 will grant BYPASSRLS at cutover to match current behaviour; the
+   real fix (`scope.ts` provably wrapping every path) is an audit due before a paying customer.
+3. **The IO-burn framing was wrong, corrected by both sessions.** 4.17B seq rows is **cumulative
+   since stats reset, not a rate** — one dry-run sweep costs ~4,400 rows. Measured: NETCUP +4,373,
+   CC&SS +685,542 (which is the migration's own `pg_dump` + parity passes, one-time). The real win
+   is narrower and true: Supabase's Disk IO Budget is credit-based, so the episodic bursts
+   (621k-row ETL dry-runs, full-dataset analyses) now land on NETCUP.
+
+### Standing rules while half-migrated
+No non-dry-run sweep against NETCUP · no authoring on NETCUP until the demo is done · nothing
+dropped from CC&SS · never regenerate `/opt/netcup/stack/.env`.
+
+### Security — POSTGRES_PASSWORD exposed, sysadmin-11 rotating
+A URL-embedded password escaped a name-based mask and printed into transcripts. It is the NETCUP
+Postgres superuser password. Contained (all 35 `.env` passwords distinct, Postgres loopback-only,
+SSH tailnet+key-only). **Rule adopted: redact on value SHAPE (`://user:pass@`), never variable
+NAME.** Second time this has bitten.
+
+### Also open from earlier today
+`5f1c2c9` (ten-and-ten, 73 files) is **committed but NOT pushed** — master auto-deploys to prod.
+Health band cut-offs still need Daniel (Golden Hour now 0 healthy of 750; demo tenant unaffected).
+`page.tsx:74` passes hardcoded `DEMO_OPPORTUNITIES` — every salon renders identical figures.
+Fable insights report at `docs/pitch/2026-08-27-fable-ten-insights.html`.
+
+---
+
+## Session 2026-08-26 (15:25–) — TEN AND TEN, ALL 20 RUN · COMMITTED `5f1c2c9`, NOT PUSHED
+
+List: `docs/ten-and-ten-2026-08-26.md`. Plan + per-item gates: `docs/plans/2026-08-26-ten-and-ten-execution.md`.
+73 files, +4320/-712. tsc green in core/api/ui/db/web. `orphan-check.sh` exits 0.
+
+### NEEDS DANIEL — blocking nothing, but nobody else can answer
+1. **PUSH TO MASTER?** Not pushed. Master auto-deploys to prod and the demo is this week.
+2. **Health band cut-offs.** Never-visited customers no longer score healthy (structural fix only —
+   no constant was touched). Consequence: **Golden Hour is now 0 healthy of 750**; best real customer
+   scores 56 against a `BANDS.healthy` of 65. Sunset Ridge (the demo tenant) is unaffected, 69.8%
+   healthy. Tuning the cut-off is a business call.
+3. **Rotate three credentials** — still open from the previous session.
+
+### The finding that outranks the list
+**The de-identified advisor's real name was shipping in the JS bundle.** `INTERNAL_PROVENANCE` in
+`sources/experts.ts` was a runtime `const` re-exported through the `@bask/core` barrel, so "Mike
+Blore", "Evidence Behind Your Business" and "Room B ·" sat in ~1MB of JS served to every browser that
+opened Today. The `void` guard protected nothing. Pre-existing; not caused by this session's wiring.
+Now zero hits across a 7.7MB live payload. Audit trail moved to a comment pointing at `docs/SIGNAL_SWEEPS.md`.
+
+### Items that did NOT land as written — read before re-filing them
+- **Item 4 (insights on SalonTouch real data): 0 insights, and the clock is not why.**
+  `bask.sale_line` is **EMPTY for all four SalonTouch salons** — 53,839 sale headers with no line
+  items, verified two ways, against 73,471 `sale_line` rows elsewhere. Four of six detectors read
+  `saleLines`. Also 0 `room`, 0 `service`, 0 `product`, 0 `inventory_level`. Fixing the reference
+  date alone still yields zero. Sweep script written (`pnpm salontouch:sweep`, per-salon reference
+  date = day after that salon's last visit) and it persists nothing, honestly.
+  Upstream: `map-transactions.ts:32` never sets `serviceId`, so `anomaly_band` cannot fire on the
+  practice dataset either. `packages/core/src/insights/sweeps/` (6 files) is dead code.
+- **Item 2's "duplicate salon" premise was WRONG and I did not repoint anything.** Compass Maple Glow
+  is Burlington ON; practice `sal001` is London ON — different businesses sharing a name. Practice
+  salons have no `account` row, so Compass cannot reach them. Repointing would have stripped the
+  signal and rendered LESS. What was real: Sunset Ridge had no snapshot and was **absent from the
+  rep's call list entirely** (`buildCallCard` needs a headline, a *submitted* order, or open
+  coaching — its Beat 3 order is still `draft`). Now 12/12 accounts have snapshots; Sunset Ridge is
+  derived, three are labelled `provenance: 'seeded_fixture'`.
+- **Item 9 (push) has real limits, stated in the panel:** receiving page must be open and
+  foregrounded, on the HTTPS deploy (no Notification API on `http://192.168.x.x`). Not Web Push — no
+  locked-screen buzz. VAPID + a subscriptions table = DDL, which was off the table.
+- **Item 3's premise was wrong:** the Peers slider already existed (`lane4/GapSlider.tsx`, since
+  `49435f9`). But server and client halved the gap differently, so the figure jumped **$89** on first
+  touch, and the rest value was off the step grid. Both fixed.
+
+### Two false diagnoses corrected this session — do not re-inherit either
+- **`/compass/knowledge` is NOT broken.** The dev server on **3417 started Aug 21**; the Prisma client
+  was regenerated today 17:24, so that process holds a stale in-memory client. The same query on 3418
+  returns **1,007 claims, 3 verified**. Nothing to fix in the product.
+- **`membership_payments` / `inventory_snapshots` are CSV ETL INPUTS, not tables.** The handoff said
+  they were 0-row tables killing failed-payment recovery. Real state:
+  `bask.membership.payment_state <> 'current'` = 83 rows, so that feature HAS data. The real gap is
+  0 `product` / 0 `inventory_level` on the SalonTouch salons.
+- **3418 is a `next start` prod build from Aug 23** — it does not reflect today's code. Screenshot
+  against **3417** for anything visual.
+
+### Mobile — the user rejected the first pass, so this was redone by looking
+Root causes, not symptoms: `.floor-topbar` was a rigid flex row laying the surface out to **741px** at
+390px (all four tabs, not just Room Board); the Compass sub-nav hid **Knowledge** off-screen with no
+affordance; `page-container.css`'s `padding` **shorthand** silently beat `shell.css`'s tab-bar
+clearance longhand at **every** width (not just 601–999); `EvidenceTileRow` wrote
+`gridTemplateColumns` as an **inline style** no media query could beat; `.cp-chip` was declared twice,
+the Knowledge filter block silently repainting every status chip in Compass.
+Compass wide tables now stack to labelled cards below 900px with **no column dropped**.
+Verified at 320/360/390 by opening the images. 768/1280 confirmed not regressed.
+
+### Known-unfixed, deliberately flagged rather than risked on demo week
+- `.b-dtable` squeezes into ragged 3-line cells on mobile instead of scrolling. Six components share
+  it; the container already scrolls. Blast radius judged not worth it this week.
+- Floor room `.room-actions` are `opacity:0` hover controls — invisible but **tappable on touch**,
+  including "End session". A hazard on a handed-over phone. Behaviour change, needs a call.
+- `demo:reset` deletes the consent backfill (`demo-reset.ts:64`) and reseeds only the 12 fixtures.
+  Reads stay fail-closed, but the answer stops being stated.
+- `ConsentProfile.tier` still carries `@default(benchmarks)` (`schema.prisma:1009`) — same permissive
+  default one layer down. Flipping it needs a migration.
+- Today passes the hardcoded `DEMO_OPPORTUNITIES` constant (`page.tsx:74`), so every salon shows
+  identical figures. Same bug class as `e426f3d`; item 15's resolver fix cannot reach a constant.
+- `evidence` caption reads "Retail sales, 8 weeks" while the metric is retail *per visit*
+  (`derive.ts:421`, shared by three accounts).
+
+---
+
 ## Session 2026-08-26 (11:26–14:53) — /fresh HANDOFF · AUDIT CLOSED · FEED BUILT · SALONTOUCH LOADED
 
 **Reason for refresh:** long session (audit triage → 18 fixes → Community feed rebuild → media
