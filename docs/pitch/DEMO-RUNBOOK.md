@@ -75,7 +75,7 @@ clock day: `pnpm demo:advance --days 0` writes it without moving the clock.
 ### Physical — none of it verifiable from here
 - Phone with Bask Mobile, Daybreak cached (must survive dead venue wifi)
 - Presenter push tested on **venue wifi and hotspot fallback** — Beat 2's buzz is the moment
-- Deck S1–S8 rendered, PDF backup
+- Deck: built (`DECK.html`). Open it and press **P** once to produce the PDF backup.
 - One full run-through against a stopwatch, ≤ 13 min
 
 ---
@@ -121,9 +121,10 @@ stakeholder.
   opportunity figures. **Do not salon-switch mid-demo.**
 - **The SalonTouch salons produce 0 insights.** Not missing data — real attachment is 2–8% where the
   detectors were tuned near 30%. Recalibration is a business call. Stay on Sunset Ridge.
-- **Positioning is unresolved.** S1 and Slide 3 still say *"the operating system for the salon"*, and
-  with Floor and Inventory gone the demo shows an intelligence engine instead. Either the line changes
-  or the surfaces come back — flagged in PITCH.md, owner's call.
+- **Positioning is SETTLED: "salon intelligence."** Owner, 2026-08-27. Never "operating system",
+  "all-in-one" or "salon management" — Nick ruled that category out to your face on 2026-08-19
+  ("there's five other guys doing it"), which is the same reason Floor and Inventory are gone.
+  Corrected in the app metadata, PITCH.md, PRODUCT_SPEC, README and CLAUDE.md.
 - **`demo:reset` is NOT atomic.** Its `DELETE_ORDER` is a bare list of `deleteMany` calls; it timed out
   mid-wipe on 2026-08-27 and left `sale` and `sale_line` at zero across every org. If you must run it,
   clear `bask.visit` in 80k batches by `ctid` first, then reset — and reload SalonTouch afterwards

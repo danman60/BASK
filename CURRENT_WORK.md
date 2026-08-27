@@ -1,5 +1,51 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-27 (14:40–) — DEMO READY
+
+**`demo-verify` 10/10 on localhost AND production. Everything pushed and deployed.**
+Runbook: `docs/pitch/DEMO-RUNBOOK.md`. Deck: `docs/pitch/DECK.html`.
+
+Cold open, verified on production: **"Good morning, Dana. Yesterday finished 12% above your usual
+Wednesday."** Retail card beneath it: **8.3% → 5.9%, ~$4,260/mo**, derived from the rows.
+
+### Found by running the demo instead of reading it
+1. **Beat 2's payoff bookmark was parked a day before the payoff.** The Tuesday campaign SENDS on day
+   5, which is where `campaign-results` sat — so the pitch's high point would have shown *"21% below
+   your usual Monday"* and no result. The payoff is **day 6**: *"52% above your usual Tuesday."*
+   Bookmark moved; PITCH.md's "9 bookings, ~$310" corrected to the real settlement, **8 bookings /
+   $248**. Nobody had ever advanced the clock.
+2. **The failed-payments card quoted $412, a number in neither the data nor the constants.** Real:
+   seven failed worth $523/mo, **four recoverable at exactly $284**. Fixed — and that exposed a
+   second bug: the file documents "ranked by impactMonthly descending, pre-sorted here", nothing
+   sorts at render, and $284 sat above $425 and $600. Reordered.
+3. **Peers showed 5.7% against peers at 25%** — a 4× gap, priced, on a benchmark no salon reaches.
+   `peers.ts` mapped a healthy cohort with `8 + health * 0.22`, fine at the old 21% attachment,
+   absurd once anchored to reality. Now `4.5 + health * 0.05` → **5.7% vs 8.4%**, cohort topping out
+   at the measured 8.48% ceiling. **This was my own regression from the fixture rebuild.**
+4. **Floor and Inventory were back in the nav** because `nav.ts` reasoned "PITCH.md and the bookmarks
+   still open them, so they belong" — circular, and it reversed `8e32efc` to avoid editing a doc. All
+   four artifacts now move together (nav, bookmarks, demo-verify, PITCH.md), which is what keeps it
+   deleted. Act 1 is two beats, ~13 min.
+5. **Positioning: "salon intelligence."** Never "operating system" / "salon management" — the buyer
+   ruled that category out on 2026-08-19. Fixed in app metadata, PITCH.md, PRODUCT_SPEC, README,
+   CLAUDE.md, with the reason attached so it cannot drift back the way Floor did.
+
+### Evidence, not assertion
+Every beat walked at **1440 and 390**: every route 200, **zero** horizontal overflow, **zero** JS
+errors, every Today action button verified clickable on production. Beat 2 run end to end, then
+restored — rebuild is deterministic, checksum `94099f9d…` identical before and after, SalonTouch back
+at 194,672 visits / 59,787 sale lines. Screenshots: `docs/screenshots/demo-ready/`.
+
+### Left for Daniel — physical, cannot be done from here
+Phone unit with Daybreak cached · presenter push on venue wifi + hotspot · Peers slider on the demo
+hardware · one stopwatch run-through (≤13 min) · press **P** in `DECK.html` once for the PDF backup.
+
+### Open calls, not blockers
+**Inventory** — removed alongside Floor because `8e32efc` bundled them and `nav.ts` justified them as
+a pair; the owner named only Floor. Beat 3 was *"the software just wrote a UVALUX order"*, the supply
+bridge. Say the word and it comes back deliberately. · Retail is 41% of revenue (real: 9–12%); the
+rest is the $0-member-session model. · `uvalux-practice` gone, CSVs not on disk.
+
 ## Session 2026-08-27 (13:20–) — DEMO DATA ANCHORED TO THE FIELD DATA · `8009f58`
 
 **Owner directive: "bring the demo data closer to the salontouch."** Done, measured, verified on
