@@ -1,7 +1,7 @@
 # Bask / Compass — Pitch Script & Deck
 ## For the Nick meeting. Versions with the build; update in the same PR as any demo change.
 
-**Format:** ~15 minutes total. Deck is thin on purpose — 8 slides, mostly as connective tissue; **the product is the presentation.** Live demo carries 12 of the 15 minutes. Each demo beat maps to a Presenter Panel bookmark (`[BM:n]`) so any segment can be jumped to or recovered.
+**Format:** ~13 minutes total. Deck is thin on purpose — 8 slides, mostly as connective tissue; **the product is the presentation.** Live demo carries 10 of the 13 minutes. Each demo beat maps to a Presenter Panel bookmark (`[BM:n]`) so any segment can be jumped to or recovered.
 
 ---
 
@@ -13,7 +13,7 @@ Hand Nick a phone. Bask Mobile is open on Daybreak. `[BM:1 morning-brief]`
 
 > "Before I explain anything — this is what a salon owner sees when they wake up."
 
-Let him read it. Silence is fine. The brief says: yesterday beat the four-week Thursday average, retail attachment is slipping, seven failed payments, Tuesday afternoon is wide open.
+Let him read it. Silence is fine. The brief opens **"Yesterday finished 12% above your usual Wednesday"** (verified on the build 2026-08-27 — read it yourself before the meeting, the number moves with the data), then: retail attachment slipping 8.3% → 5.9%, seven failed payments, Tuesday afternoon wide open.
 
 > "Nobody ran a report. Nobody opened a spreadsheet. The software did the analysis overnight and wrote it in plain English. That's the product in one screen: it tells you what changed, why it matters, and what to do about it. Everything else I'm going to show you is just that idea, applied everywhere."
 
@@ -24,25 +24,41 @@ Let him read it. Silence is fine. The brief says: yesterday beat the four-week T
 **Slide 2 — the gap:**
 > "Today, UVALUX helps a new salon with everything — equipment, inventory, training, business planning. Then, for the one system the salon touches every single hour, your own guide says: 'several third-party options exist, compare and choose.' The operating software is the only part of a salon's success that lives outside the UVALUX relationship."
 
+> ⚠ **POSITIONING, UNRESOLVED — Daniel's call, deliberately not changed for him.**
+> Slide 3 and S1 both call Bask *"the operating system for the salon."* With Floor
+> and Inventory out, the demo no longer shows an operating system — it shows an
+> intelligence engine that finds money and acts on it. A stakeholder who hears
+> "operating system" and then sees four screens of analysis will notice the gap.
+> Either the line changes, or the surfaces come back. Both are defensible; picking
+> is not mine to do.
+
 **Slide 3 — the thesis:**
 > "So we built two products that are really one. **Bask** — the operating system for the salon. **Compass** — the intelligence layer for UVALUX over the network that runs on it. Salons run better; UVALUX sees, for the first time, the health of the market it serves — with consent, by design."
 
-## 3:00 — Act 1: the owner (6 min, big screen)
+## 3:00 — Act 1: the owner (4 min, big screen)
 
 ### Beat 1 — Insight to action `[BM:2 tuesday-campaign]`
 Open the Tuesday card → *Show me why* (capacity heatmap) → *Fix this* → Studio arrives pre-filled → generate → **edit one line of the SMS live** → preview in phone frame → schedule.
 > "Watch the part that matters: I never started from a blank page. The system found the slow Tuesday, proposed the offer, wrote the campaign — and I stayed in control the whole way. Every salon owner is a marketer now; none of them have time to be."
 
-### Beat 2 — The Floor
-Switch to the Floor. Rooms live, countdowns ticking, one room wearing the sunset ring.
-> "This is the front desk. Rooms and beds are live." Check in Sarah — membership badge, package count, waiver flag → **hand Nick the tablet: "sign here"** — his own signature lands on her file. One tap to a ready room. Ring up a lotion on POS. **Pick up the real lotion bottle on the table, scan it with the phone** — it lands in the cart. `[BM:3 floor-live]`
-> "Any barcode, any $40 scanner, or the camera in your pocket. Staff don't manage a catalogue — the catalogue builds itself."
+> **THE FLOOR AND INVENTORY BEATS ARE GONE (2026-08-27).** They demoed a salon
+> operating system — room board, check-in, waiver signature, POS, barcode scan,
+> stock forecast. Bask is a **sales-intelligence engine** (`8e32efc`), and those
+> surfaces are off-nav. The routes still render, so this is reversible, but the
+> product decision is the one that stands: nothing in the pitch opens them.
+>
+> They were also holding the old product in place by circular reference —
+> `nav.ts` had restored Floor and Inventory to the nav *because this script and
+> the presenter bookmarks still opened them.* Deleting them here is what lets
+> that stay deleted.
+>
+> **Act 1 is now two beats, not four**, and it is a tighter story for it: the
+> software finds the money, writes the campaign, and reports back. If the supply
+> beat ("the software just wrote a UVALUX order") is worth reviving for a
+> distributor audience, that is a product call — bring Inventory back on purpose,
+> then rewrite this section, in that order.
 
-### Beat 3 — Supply intelligence `[BM:4 inventory-low]`
-Inventory → Hempz Botanical Sunshine Revitalizing Bronzer, ~8 days left → *Add to UVALUX order* → draft order, every line with its reason → send to rep.
-> "The software just wrote a UVALUX order. Not an ad — a forecast. That's the bridge between running the salon and supplying it."
-
-### Beat 4 — Close the loop `[BM:5 campaign-results]`
+### Beat 2 — Close the loop `[BM:3 campaign-results]`
 Presenter advances the demo clock (framed honestly: "let me jump us forward a week").
 **The phone — still near Nick — buzzes** (presenter fired the push): *"Campaign results are in — 9 bookings, ~$310."* Then the big screen: Daybreak reads best Tuesday in six weeks.
 > "Marketing that reports back — and the phone told her before she asked. The owner learns what works. So does the system."
@@ -50,23 +66,23 @@ Presenter advances the demo clock (framed honestly: "let me jump us forward a we
 While in Insights: **grab the Peers gap slider** — drag retail attachment from 15% toward 23%, the $/month figure recomputes live under your finger.
 > "Benchmarks that answer 'so what' — every gap is priced."
 
-## 9:00 — Act 2: UVALUX (4 min)
+## 7:00 — Act 2: UVALUX (4 min)
 
-Switch roles. Theme flips dark. `[BM:6 compass-morning]`
+Switch roles. Theme flips dark. `[BM:4 compass-morning]`
 
-### Beat 5 — Network
+### Beat 3 — Network
 > "Same nervous system, opposite end. This is the network you already serve — visible for the first time." Map, health distribution, category trends.
 
-### Beat 6 — Call List
+### Beat 4 — Call List
 Open Maple Glow: retail down 17%, attachment below peers, traffic stable, hasn't ordered lotion in two cycles. Open the call brief.
 > "Your rep doesn't call asking 'need anything?' They call knowing exactly what's wrong and what to suggest. And here —" (Northern Sun, expansion signal) "— they call knowing who's ready to grow. This makes every rep your best rep."
 Show Sunset Ridge's draft order arriving on the account timeline — the Act 1 thread pays off.
 
-### Beat 7 — Trust `[BM:7 consent-flip]`
+### Beat 5 — Trust `[BM:5 consent-flip]`
 Open a salon's "What UVALUX sees" screen. Flip the tier. Compass visibly loses detail.
 > "This only works if salons trust it, so consent isn't a terms-of-service paragraph — it's a screen. The salon always knows exactly what you see, and it's business signals, never their customer list. Trust is the moat; we built it as a feature."
 
-## 13:00 — Close (slides 7–8, 2 min)
+## 11:00 — Close (slides 7–8, 2 min)
 
 **Slide 7 — three wins:**
 > "Three parties win at once. The salon runs smarter and markets itself. Your reps and trainers get told where they're needed. And UVALUX adds a recurring software business that makes the wholesale business stickier — every salon on this platform is a salon that orders through you more easily."
@@ -124,12 +140,10 @@ Footer: contact.
 
 # Pitch-asset build checklist (M1/M2 exit items)
 
-- [ ] All 7 bookmarks staged and `demo:verify` covers the full script path
+- [ ] All 5 bookmarks staged and `demo:verify` covers the full script path
 - [ ] Phone demo unit: Bask Mobile installed, Daybreak cached (survives dead wifi)
 - [ ] Presenter "fire push" works with venue wifi AND phone hotspot fallback
-- [ ] Tablet ready for the waiver-signature moment (Nick signs live)
 - [ ] Peers gap slider rehearsed — drag reads smoothly on the demo hardware
-- [ ] Physical prop: real lotion bottle whose UPC is seeded in fixtures
 - [ ] Deck rendered from S1–S8 in Sunset theme (HTML), exported PDF backup
 - [ ] Screenshots in S4/S6 regenerated from current build (never stale UI)
-- [ ] Full run-through rehearsed once against a stopwatch: ≤15 min with margin
+- [ ] Full run-through rehearsed once against a stopwatch: ≤13 min with margin

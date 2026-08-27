@@ -75,34 +75,15 @@ await check('beat-1', 'Studio is reachable and pre-fills from an insight', async
   return true;
 });
 
-// ── Beat 2: the Floor ────────────────────────────────────────────────────────
-await check('beat-2', 'Floor shows the room board', async () => {
-  const status = await routeStatus(page, '/floor');
-  if (status === 404) {
-    // The M0 /dev/floor harness runs on a throwaway TEST-LANE-C salon that
-    // `demo:reset` wipes, so an unseeded board there says nothing about the
-    // pitch. The real /floor (M1 lane 2) is what this beat is about — until it
-    // lands, this is unbuilt, not broken.
-    return 'skip';
-  }
-  if (status !== 200) return `HTTP ${status}`;
-  await page.waitForTimeout(2000);
-  const rooms = await page.locator('article').count();
-  return rooms >= 8 || `only ${rooms} rooms on the board`;
-});
+/* Beats 2 and 3 used to check /floor and /inventory. They are GONE, 2026-08-27.
+   Bask is a sales-intelligence engine (`8e32efc`), those surfaces are off-nav,
+   and the checks were actively harmful: they PASSED, so the gate reported a
+   green pitch path that included two beats the product no longer tells. A gate
+   that confirms a stale script is worse than no gate. Remaining beats are
+   renumbered to match PITCH.md. */
 
-// ── Beat 3: supply intelligence ──────────────────────────────────────────────
-await check('beat-3', 'Inventory surfaces a days-remaining forecast', async () => {
-  const status = await routeStatus(page, '/inventory');
-  if (status === 404) return 'skip';
-  if (status !== 200) return `HTTP ${status}`;
-  await page.waitForTimeout(1000);
-  const text = await page.locator('body').innerText();
-  return /day/i.test(text) || 'no forecast language on the page';
-});
-
-// ── Beat 4: the loop closes (demo clock) ─────────────────────────────────────
-await check('beat-4', 'Demo clock state is live', async () => {
+// ── Beat 2: the loop closes (demo clock) ─────────────────────────────────────
+await check('beat-2', 'Demo clock state is live', async () => {
   const res = await page.request.get(BASE + '/api/trpc/demo.state');
   if (!res.ok()) return `HTTP ${res.status()}`;
   const body = await res.json();
@@ -111,8 +92,8 @@ await check('beat-4', 'Demo clock state is live', async () => {
   return true;
 });
 
-// ── Beats 5–6: Compass ───────────────────────────────────────────────────────
-await check('beat-5', 'Compass network renders in its own theme', async () => {
+// ── Beats 3–4: Compass ───────────────────────────────────────────────────────
+await check('beat-3', 'Compass network renders in its own theme', async () => {
   const status = await routeStatus(page, '/compass/network');
   if (status === 404) return 'skip';
   if (status !== 200) return `HTTP ${status}`;
@@ -121,7 +102,7 @@ await check('beat-5', 'Compass network renders in its own theme', async () => {
   return theme === 'compass' || `theme was ${theme}, expected compass`;
 });
 
-await check('beat-6', 'Call List ranks salons with reasons', async () => {
+await check('beat-4', 'Call List ranks salons with reasons', async () => {
   // The Call List IS /compass — it's the rep's morning, so it earns the root of
   // the product rather than sitting one click in (lane 5 deviation, logged).
   const status = await routeStatus(page, '/compass');
@@ -132,8 +113,8 @@ await check('beat-6', 'Call List ranks salons with reasons', async () => {
   return /suggested conversation/i.test(text) || 'no suggested-conversation block';
 });
 
-// ── Beat 7: the trust beat ───────────────────────────────────────────────────
-await check('beat-7', 'What UVALUX sees screen exists', async () => {
+// ── Beat 5: the trust beat ───────────────────────────────────────────────────
+await check('beat-5', 'What UVALUX sees screen exists', async () => {
   const status = await routeStatus(page, '/settings/data-sharing');
   if (status === 404) return 'skip';
   if (status !== 200) return `HTTP ${status}`;

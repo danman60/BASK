@@ -28,9 +28,10 @@
  * Practical consequence for rehearsal: run the beats in ascending `clockDays`
  * order — which is the order PITCH.md tells them in.
  *
- * All seven of §0.1's set are wired now that M1's surfaces exist. Each one names
- * the PITCH.md beat it recovers, because that is what a presenter is reaching for
- * when they open this list mid-demo.
+ * Five bookmarks, not the seven §0.1 first specified: Floor and Low-stock went
+ * with the surfaces they opened when Bask narrowed to a sales-intelligence
+ * engine. Each one names the PITCH.md beat it recovers, because that is what a
+ * presenter is reaching for when they open this list mid-demo.
  */
 
 import type { DemoRole } from '@bask/api/roles';
@@ -69,26 +70,17 @@ export const SCENARIO_BOOKMARKS: readonly ScenarioBookmark[] = [
     clockDays: 0,
     role: 'owner',
   },
-  {
-    id: 'floor-live',
-    label: 'Floor live',
-    description: 'Beat 2 — the room board with the shift underway.',
-    path: '/floor',
-    clockDays: 2,
-    role: 'front_desk',
-  },
-  {
-    id: 'inventory-low',
-    label: 'Low stock moment',
-    description: 'Beat 3 — the Hempz bronzer running out, ready to order.',
-    path: '/inventory',
-    clockDays: 2,
-    role: 'owner',
-  },
+  /* The Floor and Low-stock bookmarks lived here and are GONE, 2026-08-27.
+     Bask is a sales-intelligence engine — `8e32efc` — and these two opened
+     surfaces that are no longer in the nav. Worse, they were the stated reason
+     `nav.ts` put Floor and Inventory BACK ("scenario-bookmarks.ts still opens
+     them, so they belong in the nav"), so leaving them here keeps a dead
+     product decision alive by circular reference. The routes still render if
+     something deep-links them; nothing in the pitch does any more. */
   {
     id: 'campaign-results',
     label: 'Campaign results in',
-    description: 'Beat 4 — a week on: the loop closes on Today.',
+    description: 'Beat 2 — a week on: the loop closes on Today.',
     path: '/',
     clockDays: 5,
     role: 'owner',
@@ -96,7 +88,7 @@ export const SCENARIO_BOOKMARKS: readonly ScenarioBookmark[] = [
   {
     id: 'compass-morning',
     label: 'Compass call-list morning',
-    description: 'Beats 5-6 — the rep\'s ranked calls, with reasons.',
+    description: 'Beats 3-4 — the rep\'s ranked calls, with reasons.',
     path: '/compass',
     clockDays: 5,
     role: 'uvalux_rep',
@@ -104,7 +96,7 @@ export const SCENARIO_BOOKMARKS: readonly ScenarioBookmark[] = [
   {
     id: 'consent-flip',
     label: 'Consent tier flip',
-    description: 'Beat 7 — the trust screen; flip a tier and Compass narrows.',
+    description: 'Beat 5 — the trust screen; flip a tier and Compass narrows.',
     path: '/settings/data-sharing',
     clockDays: 5,
     role: 'owner',

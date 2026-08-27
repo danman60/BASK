@@ -1,16 +1,23 @@
 import { SHELL_UI, type NavKey } from '@bask/ui';
 
 /**
- * The app's information architecture — eight destinations, PRODUCT_SPEC/§7 order.
+ * The app's information architecture — six destinations.
  *
- * Floor and Inventory are Beats 2 and 3 of the pitch (`docs/pitch/PITCH.md`) and
- * `scenario-bookmarks.ts` still opens them, so they belong in the nav even though
- * `8e32efc` briefly took them out. Eight 10px labels do not fit one 320px tab row —
- * the bar wraps to two rows of four below 600px; see `shell.css`.
+ * FLOOR AND INVENTORY ARE NOT PART OF THIS PRODUCT. `8e32efc` took them out when
+ * Bask narrowed to a sales-intelligence engine, and this file put them back with
+ * the reasoning "PITCH.md Beats 2 and 3 and scenario-bookmarks still open them,
+ * so they belong in the nav." That is circular: the script and the bookmarks were
+ * stale artifacts of the wider product, and restoring the surfaces to satisfy
+ * them reversed a product decision to avoid editing a document. Owner, 2026-08-27:
+ * "THERE IS NO FLOOR ANYMORE."
+ *
+ * The routes still exist and still render — they are off-nav, not deleted, so
+ * this stays reversible. If they come back, they come back as a product decision
+ * and PITCH.md changes with them, in that order.
  *
  * Routing lives here; the LABELS live in the guidance dictionary, so a copy pass
- * never has to open a routing file. Lanes 2–4 fill these routes; lane 1 owns this
- * list, so a new destination is a one-line change reviewed in one place.
+ * never has to open a routing file. Lane 1 owns this list, so a new destination
+ * is a one-line change reviewed in one place.
  */
 export interface NavDestination {
   key: NavKey;
@@ -32,10 +39,8 @@ const dest = (key: NavKey, href: string, icon: string): NavDestination => ({
 
 export const NAV: readonly NavDestination[] = [
   dest('today', '/', '☀'),
-  dest('floor', '/floor', '◉'),
   dest('customers', '/customers', '☺'),
   dest('marketing', '/marketing', '✉'),
-  dest('inventory', '/inventory', '▤'),
   dest('insights', '/insights', '◈'),
   dest('monitor', '/monitor', '◎'),
   dest('community', '/community', '◇'),
