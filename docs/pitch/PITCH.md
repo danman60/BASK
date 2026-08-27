@@ -54,7 +54,9 @@ Open the Tuesday card → *Show me why* (capacity heatmap) → *Fix this* → St
 
 ### Beat 2 — Close the loop `[BM:3 campaign-results]`
 Presenter advances the demo clock (framed honestly: "let me jump us forward a week").
-**The phone — still near Nick — buzzes** (presenter fired the push): *"Campaign results are in — 9 bookings, ~$310."* Then the big screen: Daybreak reads best Tuesday in six weeks.
+**The phone — still near Nick — buzzes** (presenter fired the push, which carries the REAL settled numbers): *"Campaign results are in — 8 bookings, $248."* Then the big screen: Daybreak reads **"Yesterday finished 52% above your usual Tuesday."**
+
+*Verified 2026-08-27 by advancing the clock. The bookmark is day **6**, not day 5 — the campaign SENDS on the Tuesday (day 5), so on day 5 the brief is still about Monday and reads a negative. The payoff is the next morning.*
 > "Marketing that reports back — and the phone told her before she asked. The owner learns what works. So does the system."
 
 While in Insights: **grab the Peers gap slider** — drag retail attachment from 5.7% toward the peer cohort's ~8.4%, the $/month figure recomputes live under your finger. (One point of attachment is ~$1,738/month at this salon's traffic — the page shows its own working.)
