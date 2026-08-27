@@ -1,5 +1,64 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-27 (13:20–) — DEMO DATA ANCHORED TO THE FIELD DATA · `8009f58`
+
+**Owner directive: "bring the demo data closer to the salontouch."** Done, measured, verified on
+screen. Plan + method: `docs/plans/2026-08-27-fixture-realism-pass.md`.
+
+### The cold open is now positive AND true
+> **"Good morning, Dana. Yesterday finished 12% above your usual Wednesday."**
+
+Retail card underneath now reads **8.3% → 5.9%, ~$4,260/mo** — re-derived from the rows. It used to
+claim "21% to 14%" against a dataset measuring 8.07%.
+
+### Why it was negative — not the clock, the revenue mix
+Retail was **59% of the fixture's revenue**, so the attachment slip the pitch *wants* dragged total
+revenue down 30% and reported a salon whose **traffic was up 8.7%** as collapsing. Measured against
+the real dataset first (194,672 visits, 4 salons): real attachment **5.2–9.4%**, average product line
+**$16**, retail **8.6–12.1%** of revenue. The fixture claimed 21%. Nick sells lotion for a living.
+
+### Three things learned the hard way — do not re-derive these
+1. **Scaling all traffic makes revenue FALL.** First attempt multiplied every visit: traffic +27%
+   (92 → 117 on a Wednesday), service revenue **$610 → $401**. Members carry visit weight 2.2–4.2 and
+   ring up **$0**, so uniform growth is free growth. Growth now arrives as extra *paying* visits.
+2. **The growth dial is not monotonic.** 26 → 52 extra/day made the headline *worse* (+1% → −18%):
+   more visits reshuffle the seeded RNG and clip against room capacity.
+3. **The opening line is whatever the seed deals.** Daily revenue ~$1,000 against a mean of four
+   same-weekdays, so ±20% is ordinary noise. Seeds swept and measured: v1 steady · v2 +3% · v3 −32% ·
+   **v5 +12% (chosen)** · v4 +65% and v6 +39% rejected as unbelievable. `DEFAULT_SEED` is now v5.
+
+### A real product bug found on the way
+The Daybreak prompt was handed `weekday` (**today's**) and no yesterday, so the model wrote *"1% above
+your usual **Thursday**"* on a Thursday whose yesterday was Wednesday — **the wrong day in the first
+sentence of the product**. It was copying the weekday out of its own prompt example. Now passes
+`yesterdayWeekday` explicitly and the example is de-specified. The deterministic path was always right.
+
+### ⚠ `demo:reset` IS NOT ATOMIC EITHER — it half-wiped, exactly like the ETL
+The first reset died on `statement_timeout` (57014) deleting 253,774 visits **through the pooler and
+through the direct URL both** — it is a server-side role timeout, not a pooler one. It had already
+committed `saleLine` and `sale` **to zero across every org** before it died. Same bug class as
+`run.ts`'s `INGEST_WIPE`, now confirmed **twice** in this codebase: a list of `deleteMany` calls with
+no transaction around it.
+**Recovery that worked:** delete `bask.visit` in 80k-row batches by `ctid` via SQL, then re-run the
+reset — with visits already gone it completes in ~30s.
+
+### Restored, verified against the pre-wipe baseline
+SalonTouch reloaded **exactly**: 4 salons · 194,672 visits · 53,839 sales · **59,787 sale lines** ·
+20,179 customers. A fresh load needs no `INGEST_WIPE`, so the non-atomic wipe never ran. Consent
+profiles reseeded at 12 by the reset itself — no backfill needed.
+
+### ✗ LOST AND NOT RECOVERABLE — `uvalux-practice`
+The reset deleted the synthetic practice org (**6 salons, 50,511 visits**) and **I could not find its
+source CSVs anywhere on disk** — only `~/salon-pull/canonical/` (the real SalonTouch extract) exists.
+It was the detector-grading dataset, not a demo surface, so the pitch path is unaffected. Any
+`demo:reset` would always have destroyed it; this one did. **If those CSVs exist somewhere, say so and
+I will reload it.**
+
+### Still true, unchanged
+Retail is now **41% of revenue** — better than 59%, still above the real 9–12%. The remainder is the
+$0-member-session model, which is a deeper change I did not make. · Book the meeting **after 12:00 ET**
+(Kelowna salon, Pacific). · `DEMO_OPPORTUNITIES` is still a hardcoded constant every salon renders.
+
 ## Session 2026-08-27 (02:12–) — ETL FIXED: 59,787 SALE LINES RECOVERED · `5426cc0`
 
 **`bask.sale_line` for `salontouch-real`: 0 → 59,787** (12,173 retail). Verified in the database,
@@ -1386,3 +1445,8 @@ and reports `HTTP 0` on every check if nothing is listening. Start `PORT=3417 pn
 the row (`delete from bask.daybreak_brief where for_date = '<date>'`) to force regeneration.
 
 Working app at `~/projects/uvalux-platform` — `pnpm dev` (PORT env overridable, default 3417). Harnesses: `/dev/api` (tRPC+roles), `/dev/floor` (room board), `/dev/design` (tokens+guidance), `/compass/dev/tokens` (forced theme). Presenter Panel: ⌘⇧D. DB commands: `pnpm demo:reset` / `demo:advance --days N`. Brief + specs in `docs/`. Spec Part IX = Opus handoff with P0/P1/P2 and hard constraints. Existing `~/projects/uvalux-proposals/` is unrelated (video-business event proposals).
+
+## 2026-08-27 — Fable insights + Glow Playbook (fable-insights window)
+- docs/pitch/2026-08-27-fable-ten-insights.{md,html}: Parts I+II — 12 findings + diagnosis (week-one door, comeback moment, day-15 renewal, expiry clock, visit-1-2 membership window, buddy economy/contagion, packette trap, cross-salon 25.5%, downshift save, Jan/Jul members, autumn first-timers, renewal-day register) + dead-hypotheses sections. All computed from ~/salon-pull/canonical/.
+- docs/pitch/campaign/: Glow Playbook — index.html (6 campaigns, scripts, shot lists, promos, KPIs), assets/ (22 rendered IG PNGs), video/ (3 H3 reels w/ stereo audio). All DM'd.
+- Gotcha: LTX gpu-queue worker on FIRMAMENT dead (workers:{}, heartbeat stale ~40h, restart endpoint fails "can't find window: _gpu-worker"); H3 (8189) works. FIRMAMENT power-cycled overnight ~01:10–07:40.
