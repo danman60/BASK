@@ -1,6 +1,8 @@
 # uvalux-platform — project rules
 
-**Bask** (salon operating system) + **Compass** (UVALUX dealer intelligence). Demo-first: this
+**Bask** (salon intelligence — never "operating system" or "salon management"; the buyer ruled that
+category out, see `docs/meetings/2026-08-19-nick-debrief.md`) + **Compass** (UVALUX dealer
+intelligence). Demo-first: this
 product's first job is winning a stakeholder meeting. Read `docs/IMPLEMENTATION_SPEC.md` §0 before
 deciding anything is "good enough for now".
 

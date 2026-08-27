@@ -49,7 +49,17 @@ import type { DemoSalonContext } from './salon';
  * matters, and the arithmetic that turns a gap into dollars runs on real traffic.
  */
 const PEER_MAPS = {
-  attachment: (health: number) => 8 + health * 0.22,
+  /* Rescaled 2026-08-27 with the fixture's attachment arc. This was
+     `8 + health * 0.22`, which put a healthy peer cohort at ~25% — fine when the
+     subject salon was seeded at 21%, absurd once it was anchored to the real
+     SalonTouch rates (house ~5.3%, best staffer 8.48%). Left alone it showed the
+     salon at 5.7% against peers at 25%: a 4x gap, priced, on a benchmark no real
+     salon reaches. A distributor would have read that as "your data is made up",
+     and he would have been right.
+     Now health 50 → 7.0%, health 78 → 8.4%, health 100 → 9.5% — a cohort topping
+     out at the measured ceiling, so the gap is reachable and the coaching is
+     honest. */
+  attachment: (health: number) => 4.5 + health * 0.05,
   utilisation: (health: number) => 26 + health * 0.42,
   membershipRate: (health: number) => 12 + health * 0.3,
   averageBasket: (health: number) => 24 + health * 0.42,
@@ -344,7 +354,7 @@ const GAP_META: Record<
   Exclude<PeerMetricKey, 'averageBasket'>,
   { label: string; metricKey: PeerGap['metricKey']; sliderMax: number }
 > = {
-  attachment: { label: 'Retail sold with sessions', metricKey: 'retailAttachment', sliderMax: 45 },
+  attachment: { label: 'Retail sold with sessions', metricKey: 'retailAttachment', sliderMax: 15 },
   utilisation: { label: 'How full your rooms are', metricKey: 'capacityUse', sliderMax: 90 },
   membershipRate: {
     label: 'Members as a share of your traffic',

@@ -24,16 +24,10 @@ Let him read it. Silence is fine. The brief opens **"Yesterday finished 12% abov
 **Slide 2 — the gap:**
 > "Today, UVALUX helps a new salon with everything — equipment, inventory, training, business planning. Then, for the one system the salon touches every single hour, your own guide says: 'several third-party options exist, compare and choose.' The operating software is the only part of a salon's success that lives outside the UVALUX relationship."
 
-> ⚠ **POSITIONING, UNRESOLVED — Daniel's call, deliberately not changed for him.**
-> Slide 3 and S1 both call Bask *"the operating system for the salon."* With Floor
-> and Inventory out, the demo no longer shows an operating system — it shows an
-> intelligence engine that finds money and acts on it. A stakeholder who hears
-> "operating system" and then sees four screens of analysis will notice the gap.
-> Either the line changes, or the surfaces come back. Both are defensible; picking
-> is not mine to do.
-
 **Slide 3 — the thesis:**
-> "So we built two products that are really one. **Bask** — the operating system for the salon. **Compass** — the intelligence layer for UVALUX over the network that runs on it. Salons run better; UVALUX sees, for the first time, the health of the market it serves — with consent, by design."
+> "So we built two products that are really one. **Bask** — salon intelligence. **Compass** — the intelligence layer for UVALUX over the network that runs on it. Salons run better; UVALUX sees, for the first time, the health of the market it serves — with consent, by design."
+
+*Never say "operating system", "all-in-one", or "salon management". Nick ruled that category out to your face on 2026-08-19 — "there's five other guys doing it" — and it is why Floor and Inventory are not in this demo. The word is **intelligence**.*
 
 ## 3:00 — Act 1: the owner (4 min, big screen)
 
@@ -43,7 +37,7 @@ Open the Tuesday card → *Show me why* (capacity heatmap) → *Fix this* → St
 
 > **THE FLOOR AND INVENTORY BEATS ARE GONE (2026-08-27).** They demoed a salon
 > operating system — room board, check-in, waiver signature, POS, barcode scan,
-> stock forecast. Bask is a **sales-intelligence engine** (`8e32efc`), and those
+> stock forecast. Bask is **salon intelligence** (`8e32efc`), and those
 > surfaces are off-nav. The routes still render, so this is reversible, but the
 > product decision is the one that stands: nothing in the pitch opens them.
 >
@@ -63,7 +57,7 @@ Presenter advances the demo clock (framed honestly: "let me jump us forward a we
 **The phone — still near Nick — buzzes** (presenter fired the push): *"Campaign results are in — 9 bookings, ~$310."* Then the big screen: Daybreak reads best Tuesday in six weeks.
 > "Marketing that reports back — and the phone told her before she asked. The owner learns what works. So does the system."
 
-While in Insights: **grab the Peers gap slider** — drag retail attachment from 15% toward 23%, the $/month figure recomputes live under your finger.
+While in Insights: **grab the Peers gap slider** — drag retail attachment from 5.7% toward the peer cohort's ~8.4%, the $/month figure recomputes live under your finger. (One point of attachment is ~$1,738/month at this salon's traffic — the page shows its own working.)
 > "Benchmarks that answer 'so what' — every gap is priced."
 
 ## 7:00 — Act 2: UVALUX (4 min)
@@ -108,7 +102,7 @@ Stop talking. Let him drive.
 Design: Sunset theme tokens — warm ivory, ink, sunset-gradient accents, Fraunces display. Slides are backdrops, ≤20 words each. Render to HTML/PDF from this content when needed.
 
 **S1 — Title.**
-"**Bask** — the operating system for modern tanning & wellness businesses. **Compass** — the intelligence layer for the UVALUX network."
+"**Bask** — salon intelligence for tanning & wellness businesses. **Compass** — the intelligence layer for the UVALUX network."
 Small: "powered by UVALUX" lockup option shown. *Notes: on screen while cold-open phone moment happens; don't read it aloud.*
 
 **S2 — The gap.**

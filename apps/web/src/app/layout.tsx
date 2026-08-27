@@ -34,9 +34,15 @@ import { ClientErrorCapture } from '@/components/ClientErrorCapture';
 import { PresenterPanel } from '@/components/presenter/PresenterPanel';
 import { Providers } from './providers';
 
+/* "Salon intelligence", never "operating system" or "salon management".
+   Not a style preference — the buyer ruled that category out to Daniel's face
+   (`docs/meetings/2026-08-19-nick-debrief.md`): "I don't want to develop software
+   for salon management — there's five other guys doing it." This string is the
+   page description a stakeholder's browser shows, so it is the first place the
+   wrong category would surface. Owner, 2026-08-27: "its SALON INTELLIGENCE". */
 export const metadata: Metadata = {
   title: 'Bask',
-  description: 'Bask — salon operating system. Compass — dealer intelligence.',
+  description: 'Bask — salon intelligence. Compass — dealer intelligence for UVALUX.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

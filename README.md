@@ -2,7 +2,7 @@
 
 One monorepo, one dataset, two products:
 
-- **Bask** — the salon operating system (owner surfaces, The Floor front desk).
+- **Bask** — salon intelligence (owner surfaces: Today, Customer Health, Marketing, Analytics).
 - **Compass** — UVALUX dealer intelligence, reading the same data through the consent filter.
 
 Specs live in `docs/` (`PRODUCT_SPEC.md`, `IMPLEMENTATION_SPEC.md`, `DESIGN_SPEC.md`), execution

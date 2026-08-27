@@ -11,7 +11,7 @@
 
 ## 1. Vision in one paragraph
 
-Bask is the operating system for tanning and wellness businesses, and Compass is the intelligence layer it gives UVALUX over the dealer network that runs on it. A salon owner opens Bask and is told — in plain language, with evidence — what changed, why it matters, and what to do about it, then does it in three clicks. A UVALUX rep opens Compass and is told which salon to call today and exactly why. The same data, consent-gated, powers both. Nobody else in the category can build this, because nobody else *is* UVALUX: the incumbents sell software to strangers; Bask ships inside an existing trust relationship, a product catalogue, a training organization, and a sales force.
+Bask is **salon intelligence** for tanning and wellness businesses, and Compass is the intelligence layer it gives UVALUX over the dealer network that runs on it. (This read "the operating system for tanning and wellness businesses" until 2026-08-27. The buyer ruled that category out to Daniel's face on 2026-08-19 — "I don't want to develop software for salon management, there's five other guys doing it" — and the product narrowed to match: Floor and Inventory are off-nav. Owner: "its SALON INTELLIGENCE".) A salon owner opens Bask and is told — in plain language, with evidence — what changed, why it matters, and what to do about it, then does it in three clicks. A UVALUX rep opens Compass and is told which salon to call today and exactly why. The same data, consent-gated, powers both. Nobody else in the category can build this, because nobody else *is* UVALUX: the incumbents sell software to strangers; Bask ships inside an existing trust relationship, a product catalogue, a training organization, and a sales force.
 
 ## 2. Naming architecture (proposal — not locked)
 
@@ -28,7 +28,7 @@ Alternatives considered: Daybreak-as-product-name (too narrow once the brief is 
 
 ## 3. Category and value proposition
 
-**Category:** Vertical operating system for tanning/wellness — not "salon POS," not "booking software." The POS is in it; the product is the intelligence around it.
+**Category:** Salon intelligence for tanning/wellness — not "salon POS," not "booking software," and explicitly **not** a salon operating system or salon management suite. The product IS the intelligence; the operational surfaces that used to carry it (Floor, Inventory) are off-nav as of `0a8f256`.
 
 **For the salon owner:** *Your business, already understood.* Bask watches revenue, memberships, retail, capacity, and inventory continuously, tells you what needs attention each morning, and turns every insight into a one-click action — a campaign, a message, an order, a staff challenge.
 
