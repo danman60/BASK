@@ -101,20 +101,53 @@ async function main() {
     await chunkedCreate('saleLines', saleLines, (b) => tx.saleLine.createMany({ data: b as never[], skipDuplicates: true }));
   };
 
-  // INGEST_WIPE=yes clears THIS org's tenant first (deterministic ids +
-  // skipDuplicates would otherwise skip corrected rows on a re-load).
+  /* INGEST_WIPE=yes clears THIS org's tenant first (deterministic ids +
+     skipDuplicates would otherwise skip corrected rows on a re-load).
+
+     ⚠ THIS BLOCK IS NOT ATOMIC, AND THAT HAS ALREADY COST A TABLE. Each
+     deleteMany runs on `db`, not on a transaction, so each one commits by
+     itself. A wipe that dies partway — and this one DOES die partway, because
+     deleting 194k visits times out through the pgbouncer pooler — leaves every
+     table above the failure point permanently emptied and every table below it
+     untouched. On 2026-08-26 that emptied `sale_line` for salontouch-real
+     (first in the list, 59,787 rows) while sales, visits and customers all
+     survived; the run was recorded as "rolled back cleanly, all rows intact"
+     because a wipe has no transaction to roll back. Recovered 2026-08-27 by
+     `backfill-sale-lines.ts`.
+
+     So: announce each step, and on failure name exactly what is already gone
+     rather than letting the stack trace imply nothing happened. Wrapping the
+     whole wipe in one transaction is the obvious fix and is WRONG here — it
+     makes the pooler timeout that started this both more likely and total.
+     Run a wipe against DIRECT_DATABASE_URL (:5432), not the pooler. */
   if (CONFIRM && process.env.INGEST_WIPE === 'yes') {
     const salonIds = salons.map((s) => s.id);
     console.log(`\nwiping tenant (${salonIds.length} salons) before reload…`);
-    await db.saleLine.deleteMany({ where: { salonId: { in: salonIds } } });
-    await db.sale.deleteMany({ where: { salonId: { in: salonIds } } });
-    await db.visit.deleteMany({ where: { salonId: { in: salonIds } } });
-    await db.membership.deleteMany({ where: { salonId: { in: salonIds } } });
-    await db.inventoryLevel.deleteMany({ where: { salonId: { in: salonIds } } });
-    await db.customer.deleteMany({ where: { salonId: { in: salonIds } } });
-    await db.staff.deleteMany({ where: { salonId: { in: salonIds } } });
-    await db.salon.deleteMany({ where: { id: { in: salonIds } } });
-    await db.org.deleteMany({ where: { id: orgId } });
+    const steps: [string, () => Promise<{ count: number }>][] = [
+      ['saleLine', () => db.saleLine.deleteMany({ where: { salonId: { in: salonIds } } })],
+      ['sale', () => db.sale.deleteMany({ where: { salonId: { in: salonIds } } })],
+      ['visit', () => db.visit.deleteMany({ where: { salonId: { in: salonIds } } })],
+      ['membership', () => db.membership.deleteMany({ where: { salonId: { in: salonIds } } })],
+      ['inventoryLevel', () => db.inventoryLevel.deleteMany({ where: { salonId: { in: salonIds } } })],
+      ['customer', () => db.customer.deleteMany({ where: { salonId: { in: salonIds } } })],
+      ['staff', () => db.staff.deleteMany({ where: { salonId: { in: salonIds } } })],
+      ['salon', () => db.salon.deleteMany({ where: { id: { in: salonIds } } })],
+      ['org', () => db.org.deleteMany({ where: { id: orgId } })],
+    ];
+    const done: string[] = [];
+    for (const [label, run] of steps) {
+      try {
+        const { count } = await run();
+        done.push(`${label} -${count}`);
+        console.log(`  ${label}: deleted ${count}`);
+      } catch (e) {
+        console.error(`\nWIPE FAILED AT ${label}. THE WIPE IS NOT ATOMIC — these deletes ALREADY COMMITTED:`);
+        console.error(`  ${done.join(' · ') || '(none)'}`);
+        console.error(`Those rows are gone and the load below has not run. Re-run the wipe against`);
+        console.error(`DIRECT_DATABASE_URL (:5432) rather than the pooler, or backfill the emptied tables.`);
+        throw e;
+      }
+    }
     console.log('  wiped.');
   }
 

@@ -79,7 +79,13 @@ The product compresses a 207-day return into ~3 weeks. Zero assumptions in that 
   `qwen3-coder:30b`, 3060 holds `gemma4:12b`. Last session's "pipeline broken" was the old
   runner, not the broker — verified.
 - Never `demo:reset` while the real tenant is loaded — it truncates the whole bask schema.
-  Real tenant uses `INGEST_NS=salontouch-2026`, `INGEST_ORG_SLUG=salontouch-real`.
+  Real tenant uses `INGEST_ORG_SLUG=salontouch-real` and the **DEFAULT** `INGEST_NS`
+  (`uvalux-practice-2026`). This line used to claim `INGEST_NS=salontouch-2026`; it is wrong and
+  was never what ran. Verified 2026-08-27 by recomputing the id: the live org row is
+  `50094662-ee05-58e8-8843-a8a9bd858043`, which is `sha1('uvalux-practice-2026:org:salontouch-real')`
+  — `salontouch-2026` yields `0a856758-…`, which exists nowhere in the database. Setting that NS on
+  a re-run would not correct anything; it would build a whole second parallel tenant with new ids
+  beside the real one.
 - Public repo. No client name, no creds, no exact financials in tracked files. Research lives
   under the gitignored `docs/research/salontouch-*`.
 
