@@ -49,6 +49,14 @@ export function OpportunityFeedSection({ opportunities, outcomes, onAction, clas
       {outcomes && outcomes.length > 0 && (
         <div>
           <h2 className="b-oppfeed-head">What your last actions made</h2>
+          {/* The owner's own results, and the same credit the peer cards carry.
+              Said once over the group rather than stamped on every card: this is
+              their own history, and a product signing each line of it would read
+              as taking credit for their work rather than showing it back. */}
+          <p className="b-oppfeed-sub">
+            Each one started as something Bask found in your numbers. You approved it; here is what
+            it did.
+          </p>
           <div className="b-oppfeed-list">
             {outcomes.map((outcome) => (
               <OutcomeCard key={outcome.id} outcome={outcome} />

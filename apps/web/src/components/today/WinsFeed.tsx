@@ -84,6 +84,12 @@ export function WinsFeed() {
       timeLabel: daysAgoLabel(win.occurredAtDay, DEMO_WIN_TODAY),
       daysLabel: `in ${win.daysToResult} days`,
       note: DEMO_WIN_NOTES[win.id] ?? null,
+      /* Credit where the win started, in the product's own voice rather than
+         inside the owner's quote. Phrased so Bask takes the smaller half: it
+         spotted the thing, they did the work. A feed whose whole mechanism is
+         "a salon like yours pulled this off" stops working the moment the
+         software sounds like the hero. */
+      viaLabel: 'Bask spotted this. They took it from there.',
       likeLabel: String(shown),
       commentLabel: engagement?.commentLabel ?? '0',
       liked: isLiked,

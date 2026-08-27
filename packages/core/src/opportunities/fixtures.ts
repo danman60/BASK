@@ -136,7 +136,11 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
     impactLabel: 'Protect ~$600/mo',
     impactMonthly: 600,
     confidence: 'high',
-    confidenceNote: 'This is protection, not growth. Note this in the confidenceNote.',
+    /* Second instruction-to-self found in shipped copy, same sweep, same cause:
+       "This is protection, not growth. Note this in the confidenceNote." The
+       point it makes is a good one and worth saying to the owner — this card
+       defends revenue rather than adding any — so it is now said to them. */
+    confidenceNote: 'This protects money you already make, rather than adding new.',
     urgency: 'now',
     actions: [
       {
@@ -239,7 +243,12 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
     impactLabel: 'Worth testing',
     impactMonthly: 0,
     confidence: 'worth_testing',
-    confidenceNote: 'Not enough history to size it — say so honestly in the confidenceNote.',
+    /* This shipped as "Not enough history to size it — say so honestly in the
+       confidenceNote." The second half is an instruction to whoever was writing
+       the card, and it was rendering on Today, in the demo. Found by looking at
+       a screenshot, not by any check: nothing validates copy for being about
+       itself. The instruction was right, so it is now simply followed. */
+    confidenceNote: 'Not enough history yet to put a number on this one.',
     urgency: 'this_month',
     actions: [
       {

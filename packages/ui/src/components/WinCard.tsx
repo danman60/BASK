@@ -37,6 +37,18 @@ export interface WinCardProps {
   readonly daysLabel: string;
   /** The owner's own words on why it worked. The part data cannot supply. */
   readonly note?: string | null;
+  /**
+   * Credit line — that Bask found this and the owner acted on it.
+   *
+   * It sits OUTSIDE `note` on purpose. `note` is the owner's own words, and
+   * putting the product's name inside somebody's quote would be putting words
+   * in their mouth — the one thing this feed cannot do and stay believable.
+   * So the claim gets its own line, in the product's voice, next to theirs.
+   *
+   * Optional, and rendered only when supplied: a win imported from somewhere
+   * Bask did not surface must not claim otherwise.
+   */
+  readonly viaLabel?: string | null;
   /** ALREADY FORMATTED counts. */
   readonly likeLabel: string;
   readonly commentLabel: string;
@@ -67,6 +79,7 @@ export function WinCard({
   timeLabel,
   daysLabel,
   note,
+  viaLabel,
   likeLabel,
   commentLabel,
   liked = false,
@@ -106,6 +119,12 @@ export function WinCard({
       </div>
 
       {note ? <p className="b-win-note">{note}</p> : null}
+
+      {viaLabel ? (
+        <p className="b-win-via">
+          <span aria-hidden="true">✦</span> {viaLabel}
+        </p>
+      ) : null}
 
       <div className="b-win-foot">
         <div className="b-win-social">
