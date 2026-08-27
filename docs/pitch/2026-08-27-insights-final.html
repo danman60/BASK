@@ -1,0 +1,969 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bask — What four years of your own registers say</title>
+<style>
+/* Hallmark · doc: insights report (final, adversarially verified) · theme: Sunset (locked)
+ * Fully offline: no external fonts, no CDN, no script. Tokens copied from packages/tokens/src/tokens.css */
+:root {
+  --paper: oklch(98.2% 0.004 84);
+  --paper-2: oklch(96.2% 0.004 84);
+  --card: #ffffff;
+  --ink: oklch(21% 0.012 320);
+  --ink-soft: oklch(42% 0.014 320);
+  --ink-faint: oklch(55% 0.014 320);
+  --line: oklch(90% 0.006 84);
+  --line-soft: oklch(93.5% 0.005 84);
+  --primary: oklch(58% 0.14 42);
+  --primary-deep: oklch(52% 0.14 40);
+  --primary-wash: oklch(96% 0.02 50);
+  --gold: oklch(72% 0.084 85);
+  --success: oklch(60% 0.12 155);
+  --success-wash: oklch(96% 0.03 155);
+  --warn: oklch(70% 0.13 70);
+  --risk: oklch(56% 0.16 25);
+  --grad-sunset: linear-gradient(45deg,#feda75 0%,#fa7e1e 25%,#d62976 50%,#962fbf 75%,#4f5bd5 100%);
+  --shadow-card: 0 1px 2px oklch(21% 0.012 320 / 0.04), 0 8px 24px oklch(21% 0.012 320 / 0.05);
+  --shadow-pop: 0 2px 4px oklch(21% 0.012 320 / 0.06), 0 16px 40px oklch(21% 0.012 320 / 0.10);
+  --radius: 1rem; --radius-sm: 0.6rem; --radius-lg: 1.4rem;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --text-xs: 11px; --text-sm: 13px; --text-base: 15px; --text-md: 16.5px;
+  --text-lg: 19px; --text-xl: 25px; --text-2xl: 32px;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { overflow-x: clip; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--text-base); line-height: 1.58;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+.num, .fig-num, .tile-num { font-variant-numeric: tabular-nums; }
+
+/* ---------- chrome ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  padding: 13px 40px;
+  border-bottom: 1px solid var(--line-soft);
+  background: oklch(98.2% 0.004 84 / 0.9); backdrop-filter: blur(12px);
+}
+.topbar::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px;
+  background: var(--grad-sunset);
+}
+.wordmark { font: italic 600 23px/1 var(--font-display); letter-spacing: -0.015em; }
+.doc-chip { font: 500 var(--text-sm)/1 var(--font-body); color: var(--ink-faint); }
+.shell { max-width: 900px; margin: 0 auto; padding: 48px 40px 80px; }
+@media (max-width: 720px) {
+  .shell { padding: 28px 20px 60px; }
+  .topbar { padding: 12px 20px; }
+}
+.eyebrow {
+  font: 600 var(--text-xs)/1 var(--font-body);
+  letter-spacing: 0.09em; text-transform: uppercase; color: var(--gold);
+  display: block; margin-bottom: 14px;
+}
+
+/* ---------- hero ---------- */
+.lede h1 {
+  font: 500 clamp(30px, 6.2vw, 46px)/1.13 var(--font-display);
+  letter-spacing: -0.02em; max-width: 17ch; margin-bottom: 18px;
+}
+.lede h1 em { font-style: italic; color: var(--primary-deep); }
+.lede p.deck { font-size: clamp(16px, 2.4vw, 19px); color: var(--ink-soft); max-width: 56ch; }
+.scale {
+  display: flex; flex-wrap: wrap; gap: 8px 26px;
+  margin-top: 26px; padding: 16px 20px;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+.scale div { display: flex; flex-direction: column; }
+.scale b { font: 600 var(--text-lg)/1.2 var(--font-body); letter-spacing: -0.01em; }
+.scale span { font-size: var(--text-xs); color: var(--ink-faint); letter-spacing: 0.04em; text-transform: uppercase; }
+.lede .honest {
+  font-size: var(--text-sm); color: var(--ink-faint); max-width: 62ch;
+  border-left: 3px solid var(--line); padding-left: 14px; margin-top: 22px;
+}
+
+/* ---------- short version ---------- */
+.short { margin-top: 52px; }
+.short h2, .checked h2 {
+  font: 500 var(--text-2xl)/1.18 var(--font-display); letter-spacing: -0.015em; margin-bottom: 8px;
+}
+.short > p.sub, .checked > p { color: var(--ink-soft); max-width: 62ch; margin-bottom: 20px; }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 660px) { .tiles { grid-template-columns: 1fr; } }
+.tile {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow-card); padding: 20px 22px;
+}
+.tile-num {
+  font: 500 clamp(26px, 5vw, 34px)/1.05 var(--font-display);
+  color: var(--primary-deep); letter-spacing: -0.02em; display: block; margin-bottom: 8px;
+}
+.tile p { font-size: var(--text-sm); color: var(--ink-soft); }
+.tile p b { color: var(--ink); font-weight: 600; }
+.playbook {
+  margin-top: 16px; background: var(--primary-wash); border-radius: var(--radius);
+  padding: 20px 24px; font-size: var(--text-md);
+}
+.playbook b { color: var(--primary-deep); }
+
+/* ---------- findings ---------- */
+.q-label {
+  font: 600 var(--text-sm)/1.4 var(--font-body); color: var(--ink-faint);
+  margin: 56px 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--line);
+  letter-spacing: 0.02em;
+}
+.insight {
+  display: grid; grid-template-columns: 5px minmax(0,1fr);
+  overflow: hidden; margin-bottom: 22px;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
+}
+.rail.hot  { background: var(--primary); }
+.rail.warn { background: var(--warn); }
+.rail.good { background: var(--success); }
+.body { padding: 26px 30px 24px; min-width: 0; }
+@media (max-width: 720px) { .body { padding: 20px 18px; } }
+.kicker {
+  font: 600 var(--text-xs)/1 var(--font-body); letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px;
+}
+.kicker .n { color: var(--primary); }
+.insight h3 {
+  font: 500 clamp(21px, 3.6vw, 28px)/1.2 var(--font-display);
+  letter-spacing: -0.018em; margin-bottom: 16px; max-width: 26ch;
+}
+.figure {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 14px;
+  margin: 2px 0 16px; padding-bottom: 16px; border-bottom: 1px solid var(--line-soft);
+}
+.fig-num {
+  font: 500 clamp(34px, 8.5vw, 54px)/1 var(--font-display);
+  letter-spacing: -0.03em; color: var(--primary-deep);
+}
+.fig-num .arrow { color: var(--ink-faint); font-size: 0.62em; padding: 0 2px; }
+.fig-num .sm { font-size: 0.55em; letter-spacing: -0.01em; }
+.fig-cap {
+  font-size: var(--text-sm); color: var(--ink-faint); max-width: 30ch;
+  line-height: 1.4; padding-bottom: 4px;
+}
+.insight .evidence { font-size: var(--text-md); color: var(--ink-soft); max-width: 58ch; margin-bottom: 10px; }
+.insight .evidence + .evidence { margin-top: -2px; }
+.insight .evidence strong { color: var(--ink); font-weight: 600; }
+.insight .evidence em { color: var(--primary-deep); font-style: italic; }
+.chips { margin-top: 4px; }
+.chip {
+  font: 600 var(--text-xs)/1.4 var(--font-body); color: var(--primary-deep);
+  background: var(--primary-wash); border-radius: 999px; padding: 6px 12px;
+  display: inline-block; margin: 6px 6px 0 0;
+}
+.chip.up { color: var(--success); background: var(--success-wash); }
+.chip.honest { color: var(--ink-faint); background: var(--paper-2); }
+.monday {
+  margin-top: 18px; padding: 16px 18px;
+  background: var(--paper-2); border-radius: var(--radius-sm);
+  font-size: var(--text-sm); color: var(--ink); max-width: 62ch;
+  border-left: 3px solid var(--primary);
+}
+.monday b { color: var(--primary-deep); font-weight: 700; }
+
+/* ---------- provenance ---------- */
+details { margin-top: 16px; border-top: 1px dashed var(--line); padding-top: 12px; }
+details summary {
+  cursor: pointer; font: 600 var(--text-sm)/1 var(--font-body);
+  color: var(--ink-faint); list-style: none; display: inline-flex; align-items: center; gap: 8px;
+  padding: 2px 0;
+}
+details summary::-webkit-details-marker { display: none; }
+details summary::before { content: "▸"; transition: transform 150ms ease; display: inline-block; }
+details[open] summary::before { transform: rotate(90deg); }
+details summary:hover { color: var(--ink); }
+details summary:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+details .nums {
+  margin-top: 12px; font-size: var(--text-sm); color: var(--ink-soft);
+  background: var(--paper-2); border-radius: var(--radius-sm); padding: 15px 17px;
+  line-height: 1.66; max-width: 64ch; overflow-x: auto;
+}
+details .nums p { margin-bottom: 9px; }
+details .nums p:last-child { margin-bottom: 0; }
+details .nums b { color: var(--ink); }
+
+/* ---------- checked ---------- */
+.checked { margin-top: 64px; }
+.dead {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 17px 20px; margin-bottom: 12px; box-shadow: var(--shadow-card);
+}
+.dead h4 {
+  font: 600 var(--text-md)/1.35 var(--font-body); margin-bottom: 5px;
+  display: flex; gap: 9px; align-items: baseline;
+}
+.dead h4::before { content: "✕"; color: var(--risk); font-size: 13px; flex: none; }
+.dead.ours h4::before { content: "✕"; color: var(--primary); }
+.dead p { font-size: var(--text-sm); color: var(--ink-soft); max-width: 66ch; }
+.dead.ours { border-color: oklch(58% 0.14 42 / 0.35); background: oklch(99% 0.004 60); }
+.dead .tagline {
+  display: inline-block; margin-top: 8px; font: 600 var(--text-xs)/1 var(--font-body);
+  letter-spacing: 0.05em; text-transform: uppercase; color: var(--primary);
+}
+.foot {
+  margin-top: 52px; padding-top: 20px; border-top: 1px solid var(--line-soft);
+  font-size: var(--text-xs); color: var(--ink-faint); max-width: 68ch; line-height: 1.7;
+}
+@media print {
+  .topbar { position: static; }
+  details { display: none; }
+  .insight, .tile, .dead { break-inside: avoid; box-shadow: none; }
+}
+</style></head>
+<body>
+
+<header class="topbar">
+  <span class="wordmark">Bask</span>
+  <span class="doc-chip">What your registers have been trying to tell you · August 2026</span>
+</header>
+
+<main class="shell">
+
+  <!-- ============ HERO ============ -->
+  <section class="lede">
+    <span class="eyebrow">Four salons · four years · every visit, every sale</span>
+    <h1>Your registers already knew. <em>Here is what they said.</em></h1>
+    <p class="deck">Thirteen findings from your own till log. Each one is a sentence you can say out
+      loud, a number you can check, and something to do about it on Monday.</p>
+
+    <div class="scale">
+      <div><b>4</b><span>salons</span></div>
+      <div><b>194,672</b><span>visits</span></div>
+      <div><b>11,411</b><span>customers</span></div>
+      <div><b>$2.09M</b><span>through the register</span></div>
+      <div><b>2016–2020</b><span>every day of it</span></div>
+    </div>
+
+    <p class="honest">Everything here came out of those files and nowhere else. Nothing is estimated,
+      benchmarked or imported. Every figure opens — tap <b>“Show me the numbers”</b> under any
+      finding and you get the counts, the cohort and the caveat. And at the end is the list of
+      good-sounding ideas we tested and killed, including two of our own.</p>
+  </section>
+
+  <!-- ============ SHORT VERSION ============ -->
+  <section class="short">
+    <span class="eyebrow">If you read nothing else</span>
+    <h2>The whole business in four numbers</h2>
+    <p class="sub">Every finding below hangs off these.</p>
+
+    <div class="tiles">
+      <div class="tile">
+        <span class="tile-num">28% → 87%</span>
+        <p><b>The first renewal is the only hard one.</b> Fewer than three in ten members renew
+           their first month. By the tenth, nearly nine in ten do — and it keeps climbing. All of
+           your membership loss is on the bottom step.</p>
+      </div>
+      <div class="tile">
+        <span class="tile-num">$69 a year</span>
+        <p><b>What a member out-earns a casual customer.</b> $154 against $85, in the one full clean
+           year. Members are a third of your customers and more than half of your money.</p>
+      </div>
+      <div class="tile">
+        <span class="tile-num">Zero</span>
+        <p><b>What price has to do with renewal.</b> Your $30 plans and your $140 plans renew at the
+           same rate. Discounting is not a lever here. Usage is — and it is a steep one.</p>
+      </div>
+      <div class="tile">
+        <span class="tile-num">4 lists</span>
+        <p><b>The entire playbook.</b> Day 5 for first-timers. Day 15 for quiet members. Expiry
+           plus 7 for lapsed ones. Ninety-days-quiet for comebacks. Your own till can print all four.</p>
+      </div>
+    </div>
+
+    <div class="playbook">
+      <b>Four calendars and no discounts.</b> Not one finding in this report asks you to cut a
+      price. Every one of them asks you to talk to a specific, nameable list of people on a
+      specific day — because that is what your data says actually moves.
+    </div>
+  </section>
+
+  <div class="q-label">Thirteen findings — strongest first</div>
+
+  <!-- ============ 1 ============ -->
+  <article class="insight">
+    <div class="rail hot"></div>
+    <div class="body">
+      <div class="kicker"><span class="n">№ 1</span> · Memberships</div>
+      <h3>Nobody renews a membership they didn’t use</h3>
+      <div class="figure">
+        <span class="fig-num">15% <span class="arrow">→</span> 54%</span>
+        <span class="fig-cap">first-month renewal, sorted only by how often they came in</span>
+      </div>
+      <p class="evidence">Members who barely used their first month renew <strong>one time in
+        seven</strong>. Members who used it hard renew <strong>better than one in two</strong>.
+        That is not a small tilt — it is more than a three-fold swing, and it holds in
+        <strong>all four of your salons</strong>.</p>
+      <p class="evidence">And it has <em>nothing to do with the price.</em> Cheap plans, mid plans,
+        expensive plans — they renew within a few points of each other, with no pattern at all.
+        The member you don’t see is the member you lose, and no discount buys them back.</p>
+      <p class="evidence">You can see it coming by mid-month. <strong>By the 15th you can pull the
+        one member in four you’ve barely seen — three-quarters of them won’t renew, against
+        two-thirds of everyone else.</strong></p>
+      <div class="chips">
+        <span class="chip">3.5× swing across usage</span>
+        <span class="chip honest">price bands: 32.1 · 32.8 · 27.7 · 35.2% — no gradient</span>
+      </div>
+      <div class="monday"><b>Monday:</b> pull every member past day 15 of their month with fewer
+        than four visits. Invite them <b>in</b> — a session reminder, a “your month is half gone”
+        nudge. Not money off. Bask builds that list on the 15th of every month, by itself.</div>
+      <details><summary>Show me the numbers</summary><div class="nums">
+        <p>First-cycle members whose package ended ≥90 days before the data ends. Renewal =
+           next membership starting ≤90 days after cancel. Renewal by visits <b>during the whole
+           first package</b>: 1–2 → <b>15.5%</b>; 3–5 → 20.2%; 6–9 → 33.2%; 10–14 → 41.3%;
+           15+ → <b>54.2%</b>. Point-biserial r=0.215. Direction holds in all four salons.</p>
+        <p>Price is genuinely null: ≤$35 → 32.1%; $36–65 → 32.8%; $66–90 → 27.7%; &gt;$90 → 35.2%.
+           No monotone trend in either direction.</p>
+        <p>Overall first-cycle renewal is <b>27.8%</b> once left-censoring is removed (people already
+           long-standing before the extract opened were inflating the raw 32.0%).</p>
+        <p><b>Four separate attempts to break this failed.</b> (1) Duration proxy — 92% of packages
+           run 28–32 days and the median is exactly 30.0 in <i>every</i> price band, so expensive
+           plans are not simply longer. (2) Cheap-plans-are-different — no. (3) Price masked by
+           usage — no. (4) Left-censoring — de-censoring makes the gradient <i>steeper</i>
+           (8.1% → 52.1%, r=0.233 vs 0.215), not weaker.</p>
+        <p>Honest limit on the mid-month flag: it catches about 31% of eventual non-renewers at
+           1.12× lift over the base rate. It is a good place to spend a free text message, not a
+           precision instrument. And low usage partly <i>reveals</i> lost interest rather than
+           causing it — a nudge will not recover the whole gap.</p>
+      </div></details>
+    </div>
+  </article>
+
+  <!-- ============ 2 ============ -->
+  <article class="insight">
+    <div class="rail hot"></div>
+    <div class="body">
+      <div class="kicker"><span class="n">№ 2</span> · Lotion</div>
+      <h3>The $9 sachet is not a sample. It’s a dead end.</h3>
+      <div class="figure">
+        <span class="fig-num">14% <span class="sm">vs</span> 55%</span>
+        <span class="fig-cap">odds the next lotion is a bottle — sachet-first buyer vs bottle-first buyer</span>
+      </div>
+      <p class="evidence"><strong>Seven in ten</strong> of your lotion customers buy a sachet first.
+        Take the ones who come back and buy lotion a second time — the bottle-first customer moves
+        to another bottle <strong>54.6%</strong> of the time. The sachet-first customer moves up
+        <strong>14.1%</strong> of the time. Same shelf, same staff, same second purchase. Four times
+        the difference.</p>
+      <p class="evidence">They are not sampling their way up. They are settling in — and paying
+        <strong>$19.00 an ounce</strong> to do it, when the bottle on the same shelf is
+        <strong>$4.53 an ounce</strong>. Your most frequent lotion buyers are your worst-served
+        lotion buyers.</p>
+      <p class="evidence"><em>Nobody graduates without being asked.</em></p>
+      <div class="chips">
+        <span class="chip">sachet $19.00/oz · bottle $4.53/oz</span>
+        <span class="chip">69.6% of lotion customers start on a sachet</span>
+        <span class="chip up">only 15% ever buy a bottle</span>
+      </div>
+      <div class="monday"><b>Monday:</b> the moment someone reaches for a <b>second</b> sachet, say
+        the sentence — “two of these cost more than half the bottle.” That moment walks up to your
+        register on its own, roughly every other sachet customer. <b>For UVALUX:</b> this is what a
+        sampling programme should be measured on — sachet-to-bottle conversion, per account, per
+        quarter. Right now the sample is the product.</div>
+      <details><summary>Show me the numbers</summary><div class="nums">
+        <p>First lotion purchase per customer, size parsed from the SKU on 475 of 598 lotion SKUs.
+           <b>69.6%</b> start at ≤1 oz. Packette median $9.50 = <b>$19.00/oz</b>; bottle (&gt;2 oz)
+           median $38.50 = <b>$4.53/oz</b>. <b>15.0%</b> of packette-first buyers ever buy a bottle.</p>
+        <p>The sharper cut, conditional on buying lotion a second time at all: packette-first move to
+           a bottle <b>14.1%</b> of the time, bottle-first <b>54.6%</b>. This removes the “they just
+           don’t come back” explanation — both groups came back.</p>
+        <p>Attacks that failed: the unparsed SKUs are only 2.4% of lotion lines and cannot move the
+           result; only <b>two</b> SKUs fall in the 1–2 oz gap, so the sachet/bottle split hides no
+           middle category; three independent ways of computing $/oz agree (4.19× / 4.19× / 3.92×).</p>
+        <p>Over a year, packette-first buyers spend mean $29.10 on lotion against bottle-first
+           $57.70. That gap carries selection — bottle-first buyers were more committed to begin
+           with — so the mechanism (nobody is asked to trade up) is the claim, not the full gap.</p>
+        <p>No margin claim is made anywhere in this finding: unit cost is empty in 100% of these
+           records, so we do not know what any of it costs you.</p>
+      </div></details>
+    </div>
+  </article>
+
+  <!-- ============ 3 ============ -->
+  <article class="insight">
+    <div class="rail hot"></div>
+    <div class="body">
+      <div class="kicker"><span class="n">№ 3</span> · Memberships</div>
+      <h3>When a month runs out you have fourteen days. Then a cliff.</h3>
+      <div class="figure">
+        <span class="fig-num">14 <span class="sm">days</span></span>
+        <span class="fig-cap">flat for two weeks — then renew-again odds fall off</span>
+      </div>
+      <p class="evidence">A member who buys their next month <strong>inside two weeks</strong> stays
+        on the member path: better than half of them renew again after that. It makes no difference
+        whether they buy on the day it expired or on day thirteen — <strong>the odds are flat across
+        the whole fortnight</strong>.</p>
+      <p class="evidence">Past day fourteen it drops. Fifteen to thirty days out, renew-again falls
+        to <strong>40%</strong>. Past a month, <strong>33%</strong>. That is not a gentle decay —
+        it is a plateau and then a step. <em>You have a deadline, and it is fourteen days long.</em></p>
+      <div class="chips">
+        <span class="chip">inside 14 days: ~53% renew again</span>
+        <span class="chip">after 30 days: 33%</span>
+      </div>
+      <div class="monday"><b>Monday:</b> put every expired member on a fourteen-day clock, and make
+        the touch land at <b>expiry + 7</b> — “your month ran out last week, want to keep going?”
+        Month-end is too late; that is the wrong side of the cliff. Bask runs the expiry calendar
+        and counts the days down for you.</div>
+      <details><summary>Show me the numbers</summary><div class="nums">
+        <p>Second packages, bucketed by how late they started after the first expired. Outcome =
+           a third package within 90 days. Bought early or on time → 51.0%; 1–3 days late → 54.4%;
+           4–7 → 55.9%; 8–14 → 52.6%; <b>15–30 → 40.3%</b>; <b>31–90 → 33.2%</b>.</p>
+        <p>The plateau is genuinely flat — the four buckets inside 14 days are statistically
+           indistinguishable from one another (χ² p=0.737). The cliff is genuinely real —
+           ≤14 days 53.4% vs 15–90 days 36.3%, <b>p=6.4×10⁻⁹</b>. It survives the de-censoring
+           correction that changed other figures in this report.</p>
+        <p>Bucket sizes run 147–286. Prompt rebuyers are keener members to begin with, so treat this
+           as a window you should be inside, not a save rate you are promised.</p>
+      </div></details>
+    </div>
+  </article>
+
+  <!-- ============ 4 ============ -->
+  <article class="insight">
+    <div class="rail hot"></div>
+    <div class="body">
+      <div class="kicker"><span class="n">№ 4</span> · Memberships</div>
+      <h3>If they don’t join on the first two visits, they never join</h3>
+      <div class="figure">
+        <span class="fig-num">76.8%</span>
+        <span class="fig-cap">of everyone who ever became a member joined on visit one</span>
+      </div>
+      <p class="evidence"><strong>87% joined by visit two.</strong> Everything after that is a
+        rounding error spread across four years.</p>
+      <p class="evidence">Here is the part nobody would guess. A regular on their
+        <strong>twelfth</strong> un-membered visit is <strong>no more likely to join than someone on
+        their second</strong>. Not slightly less likely — <em>the same</em>, at every single step
+        from one to twelve. Loyalty does not ripen into membership here. The moment is at the
+        beginning or it never happens.</p>
+      <div class="chips">
+        <span class="chip">visit 1: 76.8% · by visit 2: 87.2% · by visit 5: 92.3%</span>
+        <span class="chip honest">visit 12 converts no better than visit 2</span>
+      </div>
+      <div class="monday"><b>Monday:</b> move the membership conversation onto <b>visits one and
+        two</b>, and put your best closer there. Then stop re-pitching your long-time regulars —
+        they have already answered. Sell them a different thing: a punch card, a loyalty rate,
+        a bundle. The monthly close is not going to land on the twelfth ask either.</div>
+      <details><summary>Show me the numbers</summary><div class="nums">
+        <p>New joiners: <b>76.8%</b> join at visit 1, <b>87.2%</b> by visit 2, 92.3% by visit 5.</p>
+        <p>This one is cohort-insensitive — tightening the definition of “new” to exclude anyone who
+           was already a customer before our records open barely moves it (75.0 / 88.1 / 92.7). It
+           does not inherit the cohort correction applied elsewhere in this report.</p>
+        <p>The flat conditional is the real finding: among customers with at least k visits and no
+           membership yet, the probability of ever joining sits at <b>8.7–10.1% for every k from 1
+           to 12</b>. It survives the censoring attack; forcing a full extra year of observation
+           shifts the level but not the flatness.</p>
+        <p>Pairs with the banked staffing result — day-one conversion ranges 3.5% to 44.3% depending
+           who is working. That staffer effect operates inside exactly this two-visit window.</p>
+      </div></details>
+    </div>
+  </article>
+
+  <!-- ============ 5 ============ -->
+  <article class="insight">
+    <div class="rail hot"></div>
+    <div class="body">
+      <div class="kicker"><span class="n">№ 5</span> · New customers</div>
+      <h3>A first-timer decides in a week, not a month</h3>
+      <div class="figure">
+        <span class="fig-num">61% <span class="arrow">→</span> 27%</span>
+        <span class="fig-cap">odds a first-timer ever comes back — overall, then after seven silent days</span>
+      </div>
+      <p class="evidence">Six in ten first-timers come back within six months. But if a week goes by
+        with no second visit, that collapses to <strong>fewer than three in ten</strong> — and it
+        keeps falling fast: <strong>two in ten</strong> after fourteen days, <strong>one in
+        seven</strong> after a month, <strong>one in twenty</strong> after ninety days.</p>
+      <p class="evidence">Which means the month-end follow-up everyone runs is a conversation with
+        people who already decided no. <em>The decision is made in week one. Be there in week one.</em></p>
+      <div class="chips">
+        <span class="chip">~320 undecided first-timers per salon each year</span>
+        <span class="chip up">a rescued late returner spends $94.08 in year one</span>
+      </div>
+      <div class="monday"><b>Monday:</b> one message on <b>day 5</b> to every first-timer who hasn’t
+        come back — “we’d love to see you again.” Bask prints that list daily; it is never more than
+        a handful of names. Each percentage point of that pool you convert is worth about
+        <b>$293 a year per salon</b> — sized from what those customers actually went on to spend, not
+        a promise that the text works.</div>
+      <details><summary>Show me the numbers</summary><div class="nums">
+        <p>Genuinely new customers with at least 180 days of observation, excluding anyone whose
+           account predates the extract (n=<b>6,214</b>): <b>60.6%</b> return within 180 days.</p>
+        <p>Conditional survival — not back by day 7 → <b>27.3%</b> ever return; day 14 → 19.5%;
+           day 28 → 13.5%; day 90 → 4.9%. Monotone, steep, and consistent with the banked
+           activation cliff — this is that cliff’s clock.</p>
+        <p>Value: a late returner — second visit between day 8 and day 180 — is worth
+           <b>$94.08</b> in their first 365 days. That figure keeps the zero-spend customers in the
+           denominator, which is why it is $94 and not the $113 you get by quietly dropping them.</p>
+        <p>Sizing: the undecided-at-day-7 pool is ~322 customers per salon-year; one percentage point
+           of extra conversion is ~3.2 customers ≈ <b>$293 per salon-year</b>. Modest money, and the
+           lever costs a text message. The window is proven; the lift from outreach is not tested in
+           this data and is not claimed.</p>
+      </div></details>
+    </div>
+  </article>
+
+  <!-- ============ 6 ============ -->
+  <article class="insight">
+    <div class="rail warn"></div>
+    <div class="body">
+      <div class="kicker"><span class="n">№ 6</span> · Winning people back</div>
+      <h3>You cannot feel them leaving. You can only count the days.</h3>
+      <div class="figure">
+        <span class="fig-num">$93 <span class="sm">vs</span> $63</span>
+        <span class="fig-cap">a name on your win-back list vs an unknown walk-in, next twelve months</span>
+      </div>
+      <p class="evidence">Everyone believes customers slow down before they quit. Yours don’t. We
+        took every regular who disappeared and looked at their last three visits: they came in on
+        <strong>the same rhythm as the people who stayed</strong>. There is no wobble, no warning,
+        no tell. An alert watching for “they’re slowing down” is wrong nine times out of ten.</p>
+      <p class="evidence">So the only trigger that works is the calendar — and the calendar is
+        <em>good</em>. You can’t know which walk-in will come back. You <em>can</em> know that a name
+        on your ninety-days-quiet list is worth about <strong>$93 over the next year</strong>, where
+        an unknown new face averages <strong>$63</strong>. Same effort, known target, better odds.</p>
+      <p class="evidence">One thing to be honest about: this is a cycle. About
+        <strong>62%</strong> of the people you win back go quiet again. That is not a failure — it
+        is a reason to run the list every month instead of once.</p>
+      <div class="chips">
+        <span class="chip honest">“they’re slowing down” alerts: 8.7% right</span>
+        <span class="chip">a known name beats an unknown one by ~50%</span>
+      </div>
+      <div class="monday"><b>Monday:</b> run the <b>ninety-days-quiet list</b>, every month, forever.
+        And split it by how long they’d been coming — the ones you lost were mostly <b>burst
+        tanners</b> on a run (they were coming in every three days, not every five), so the message
+        that reaches a two-year regular is not the message that reaches them.</div>
+      <details><summary>Show me the numbers</summary><div class="nums">
+        <p>Lapsed regulars (8+ visits, then 120+ days of silence, n=3,458): final-three-visit gap
+           ratio <b>1.21</b> against their own baseline — statistically indistinguishable from still-
+           active regulars’ 1.17 (Mann-Whitney <b>p=0.183</b>). An interval-stretch alert tops out at
+           <b>8.7% precision, 1.53× lift</b>. Useless as a trigger.</p>
+        <p>The tenure detail: the regulars who lapsed had a <i>shorter</i> baseline gap than the ones
+           who stayed — 3.0 days vs 5.0 days, p=1.5×10⁻²³. They were burst tanners on a run, not
+           habituated regulars decaying. Same conclusion, better explanation, and it is why the list
+           should be segmented by tenure.</p>
+        <p>Targeting value: first reactivation events with a full year of follow-on observation
+           (n=3,929) earn <b>$93.44</b> mean over the next 365 days. New customers average $63. The
+           claim here is <b>targeting</b>, not superiority — see “Things we checked”, where we kill
+           the stronger version of this ourselves.</p>
+        <p>Re-lapse rate is <b>62.1%</b>.</p>
+      </div></details>
+    </div>
+  </article>
+
+  <!-- ============ 7 ============ -->
+  <article class="insight">
+    <div class="rail hot"></div>
+    <div class="body">
+      <div class="kicker"><span class="n">№ 7</span> · Winning people back</div>
+      <h3>The comeback visit closes memberships better than any other visit</h3>
+      <div class="figure">
+        <span class="fig-num">28.7%</span>
+        <span class="fig-cap">of comeback visits end with a membership sold that same day</span>
+      </div>
+      <p class="evidence">Nearly three in ten. That is <strong>two and a half times</strong> the rate
+        of a comparable ordinary visit — comparing like with like, against customers who could
+        actually have started a membership that day.</p>
+      <p class="evidence">The person walking back through your door after months away is not a
+        retention problem. <em>They are the warmest buyer in the building</em> — someone who already
+        decided, on their own, that they wanted to tan again. Treat that visit like a first visit and
+        it converts like one.</p>
+      <div class="chips">
+        <span class="chip up">2.5× the membership close of a comparable visit</span>
+      </div>
+      <div class="monday"><b>Monday:</b> script the comeback. Greet them by name, walk them round
+        what’s changed, offer the join — the same routine your best closer runs on a first visit.
+        Which means the win-back list from № 6 is not a retention cost. It is the highest-converting
+        sales audience you have, and you can print it.</div>
+      <details><summary>Show me the numbers</summary><div class="nums">
+        <p>Reactivation visits (a return after a gap of 90 days or more, n=9,741): a membership is
+           purchased that same day <b>28.7%</b> of the time.</p>
+        <p>The honest comparison: 54% of all other visits happen <i>inside an active package</i>,
+           where starting a new membership is nearly impossible — comparing against that base
+           flatters the result. Restricted to like-for-like visits where a membership start was
+           actually available, the multiple is <b>2.5×</b>, not the 4.4× the raw comparison suggests.</p>
+        <p>The 90-day cut is a convention, not a threshold in the data — the effect strengthens
+           gradually with the length of the gap rather than switching on. A longer-gone customer is
+           a warmer one.</p>
+        <p>Not claimed: a matching retail effect. Lotion attaches on comeback visits at 13.8% —
+           <i>lower</i> than the 18.6% on first visits. The comeback is a membership moment, not a
+           retail moment, and we are not going to tell you otherwise because it would sound better.</p>
+      </div></details>
+    </div>
+  </article>
+
+  <!-- ============ 8 ============ -->
+  <article class="insight">
+    <div class="rail good"></div>
+    <div class="body">
+      <div class="kicker"><span class="n">№ 8</span> · The four salons together</div>
+      <h3>A quarter of your money shops at more than one of your stores</h3>
+      <div class="figure">
+        <span class="fig-num">$533,585</span>
+        <span class="fig-cap">25.5% of all revenue, from customers who use more than one location</span>
+      </div>
+      <p class="evidence">One customer in nine has been to more than one of your four salons. That
+        group is <strong>a quarter of all your revenue</strong> and <strong>30% of all your
+        visits</strong>. Tighten it right down — count only people with three or more visits at a
+        second store, no accidental drop-ins — and it is <em>still</em> <strong>17% of everything you
+        take</strong>.</p>
+      <p class="evidence">Your best customers do not experience four businesses. They experience one,
+        and they move around inside it. Anything that makes the four look different to them — a
+        membership that doesn’t travel, a lotion that’s only on one shelf, a price that changes
+        across town — is friction you are charging your heaviest spenders.</p>
+      <div class="chips">
+        <span class="chip up">11.5% of customers → 25.5% of revenue</span>
+        <span class="chip honest">and 11.5% is a floor, not a ceiling</span>
+      </div>
+      <div class="monday"><b>Monday:</b> make the four stores behave like one for the people who
+        already treat them that way — memberships honoured everywhere, the same lotion on every
+        shelf, the same price on the wall. <b>For UVALUX:</b> stock and sell this group as
+        <b>one market, not four accounts</b>. A gap on one location’s shelf leaks the whole
+        group’s best baskets, and per-store numbers will never show you why.</div>
+      <details><summary>Show me the numbers</summary><div class="nums">
+        <p>Customers visiting 2+ salons: 1,314 of 11,411 ever-visited (<b>11.5%</b>), carrying
+           <b>30.1%</b> of visits and <b>$533,585 = 25.5%</b> of revenue. At the strict threshold of
+           3+ visits at the second salon: 5.7% of customers, <b>16.9%</b> of revenue. 11.2% of all
+           visits happen away from the customer’s home salon.</p>
+        <p>The obvious attack — “you’ve just merged two different people’s ID numbers” — fails.
+           The customer ID <b>embeds the salon ID</b>, so a collision between salons is impossible;
+           a shared ID is a genuine upstream link. And the cross-salon share is stable year over year
+           (9.3% → 13.5%), so it is not an artefact of customers migrating between locations.</p>
+        <p>11.5% is a <b>floor</b>. Anyone holding two separate accounts at two salons is invisible
+           to this count, so the true figure is higher.</p>
+        <p>What we do <i>not</i> claim: that these customers <i>use</i> two salons heavily.
+           Half of them have two or fewer lifetime visits at the second store. The revenue
+           concentration is the finding; the usage headline is not. Heavy customers roam because they
+           visit a lot — read this as market structure, not cause and effect.</p>
+        <p>Data note: the salon ID must be read as text. Parsing it as a number silently drops a
+           leading zero and inflates this figure to a nonsense 77%.</p>
+      </div></details>
+    </div>
+  </article>
+
+  <!-- ============ 9 ============ -->
+  <article class="insight">
+    <div class="rail good"></div>
+    <div class="body">
+      <div class="kicker"><span class="n">№ 9</span> · The membership annuity</div>
+      <h3>The first renewal is the only hard one</h3>
+      <div class="figure">
+        <span class="fig-num">28% <span class="arrow">→</span> 87%</span>
+        <span class="fig-cap">renewal odds, first cycle to fifteenth</span>
+      </div>
+      <p class="evidence">Fewer than three members in ten renew their first month. Then it climbs,
+        almost every single cycle: <strong>39%, 47%, 54%, 59%</strong> … and by the tenth month
+        <strong>nearly eight in ten</strong>, on up to <strong>87%</strong>.</p>
+      <p class="evidence">Every renewal you win compounds — <strong>the next one is 20 to 45% more
+        likely</strong> than the one before. A member on their tenth month is a different animal from
+        a member on their first, and they got there one save at a time.</p>
+      <p class="evidence">Which tells you exactly where to spend: <em>all of the mortality is on the
+        bottom step.</em> Findings № 1, 3 and 4 all operate on that step, and nothing else in this
+        document matters as much.</p>
+      <div class="chips">
+        <span class="chip up">members: 33.7% of customers, 56.0% of revenue</span>
+        <span class="chip up">members out-earn casuals by $69/yr</span>
+      </div>
+      <div class="monday"><b>Monday:</b> stop spreading your attention evenly across members. Every
+        save you make in <b>month one</b> is worth several months of a mature member’s attention,
+        because the escalator does the rest of the work for free. Bask can show you the cycle number
+        next to every member’s name — that one column reorders your whole day.</div>
+      <details><summary>Show me the numbers</summary><div class="nums">
+        <p>Renewal by cycle: 32.0% (1→2), 39.2%, 47.5%, 53.8%, 58.7%, 60.7%, 64.4%, 70.4%,
+           <b>67.7%</b>, 77.4% (10→11) … 86.6% (15→16). n falls from 3,741 to 119 along the curve.</p>
+        <p>Two honesty notes. First, that <b>67.7%</b> is a genuine exception — the climb dips once,
+           from cycle 8 to cycle 9. “Every cycle without exception” would be a lie, and the exception
+           is right there in your own numbers. Second, the cycle-1 figure of 32.0% is itself
+           left-censored; de-censored it is <b>27.8%</b>, which makes the climb <i>steeper</i>, not
+           shallower.</p>
+        <p>Compounding: the multiple on expected remaining packages per renewal won is
+           1.45× / 1.40× / 1.28× / 1.22× / 1.18× / 1.20× — a real 20–45% per step, and nowhere near
+           the “doubles every time” that a quick read of the curve suggests. Expected remaining
+           packages: ~0.6 at cycle 1, ~1.2 at cycle 3, ~1.9 at cycle 5, ~4.2 at cycle 10.</p>
+        <p>Member-year vs casual-year, 2018 (the one calendar year fully covered): 4,734 active
+           customers; the 1,627 with any membership coverage average <b>$154</b> (median 12 visits),
+           the 3,107 casuals average <b>$85</b> (median 3 visits). That $69 is a difference between
+           two groups, not a promise of what happens when you convert someone — casuals who convert
+           were never average casuals.</p>
+      </div></details>
+    </div>
+  </article>
+
+  <!-- ============ 10 ============ -->
+  <article class="insight">
+    <div class="rail warn"></div>
+    <div class="body">
+      <div class="kicker"><span class="n">№ 10</span> · New customers, in season</div>
+      <h3>Autumn first-timers are your best ones — and you lose most of them at the door</h3>
+      <div class="figure">
+        <span class="fig-num">+21%</span>
+        <span class="fig-cap">what an autumn first-timer is worth against a spring one — if you keep them</span>
+      </div>
+      <p class="evidence">A first-timer who walks in during <strong>September to November</strong>
+        comes back <strong>57%</strong> of the time. One who walks in during spring,
+        <strong>69%</strong>. You lose the autumn recruit far more often.</p>
+      <p class="evidence">But the ones you keep are <em>better</em>. An autumn first-timer who sticks
+        is worth <strong>$108.69</strong> in their first year against a spring one’s
+        <strong>$89.80</strong> — about a fifth more. Fewest recruits, hardest to hold, worth the
+        most: that is the definition of where the follow-up should go first.</p>
+      <div class="chips">
+        <span class="chip">autumn 57% return vs spring 69%</span>
+        <span class="chip up">$108.69 vs $89.80 when kept</span>
+      </div>
+      <div class="monday"><b>Monday:</b> point the day-5 message (№ 5) and your best first-visit
+        person at the <b>September–November</b> walk-ins before anyone else. They arrive in exactly
+        the months when new faces are scarcest, and they are the ones worth chasing hardest.</div>
+      <details><summary>Show me the numbers</summary><div class="nums">
+        <p>New customers with a full year of observation (n=7,813): 180-day return rate by month of
+           first visit — March–May <b>69.2%</b> (n=3,183) vs September–November <b>56.9%</b>
+           (n=1,044), z=7.09.</p>
+        <p>Value, conditional on returning at all — which is what “worth keeping” means: autumn
+           returners earn <b>$108.69</b> in their first 365 days vs spring returners’ <b>$89.80</b>
+           (p=0.008). Comparing everyone including the people who never came back makes the two look
+           equal, but only because autumn has a bigger pile of $0 no-shows dragging its average down.
+           That is an averaging artefact, not a fact about customers.</p>
+        <p>Whether this is the season itself or simply who walks in during the off-season cannot be
+           separated in this data. The targeting implication is the same either way.</p>
+      </div></details>
+    </div>
+  </article>
+
+  <!-- ============ 11 ============ -->
+  <article class="insight">
+    <div class="rail good"></div>
+    <div class="body">
+      <div class="kicker"><span class="n">№ 11</span> · When members join</div>
+      <h3>January members stay. July members are borrowing a tan.</h3>
+      <div class="figure">
+        <span class="fig-num">1.75×</span>
+        <span class="fig-cap">a January joiner’s renewal odds against a July joiner’s, year for year</span>
+      </div>
+      <p class="evidence">A member who signs up in <strong>January renews at 38.7%</strong> — against
+        27% for every other month of the year. A member who signs up in <strong>July</strong> renews
+        at barely half the January rate. They came for a fortnight in the sun and they meant it.</p>
+      <p class="evidence">And this is <em>specifically January</em>, not “winter”. December and
+        February members look like everybody else. Resolution season is a real thing and it shows up
+        in your renewal book.</p>
+      <div class="chips">
+        <span class="chip up">January 38.7% vs 27% all other months</span>
+        <span class="chip honest">“winter is better” is false — it’s January only</span>
+      </div>
+      <div class="monday"><b>Monday (well, in December):</b> put your recruitment push where the good
+        members are — the first three weeks of January. And for the July joiner, stop banking on a
+        renewal that four times in five will not come: sell them the <b>bigger upfront package</b>
+        instead. <b>For UVALUX:</b> January sell-in support belongs next to the March inventory ramp.</div>
+      <details><summary>Show me the numbers</summary><div class="nums">
+        <p>First-package renewal by start month, on the de-censored cohort (n=2,331):
+           <b>January 38.7%</b> (n=168) vs 27.0% for all other months (n=2,163), χ² p=0.0015;
+           July 20.4% (n=216).</p>
+        <p>Those raw cells divide out to 1.9×, but the January cell and the July cell do not cover
+           the same years — matching year for year, the honest multiple is <b>1.75×</b>. That is the
+           number we print.</p>
+        <p>The broad seasonal story is dead: December-January-February 31.1% vs March-April-May 28.2%,
+           p=0.30. Only January survives.</p>
+        <p>A correction that must travel with this figure: the naive all-data January number is
+           <b>51.3%</b>, and it is wrong — 58% of that sample starts in January 2016, which is not
+           new joiners but pre-2016 members renewing invisibly. 38.7% is the honest one.</p>
+        <p>Moderate confidence: n=168 in the clean January cell. Direction repeats in 2017, 2018 and
+           2019 taken separately (31.8% / 40.9% / 44.0% vs ~28%), but each single year is thin.</p>
+      </div></details>
+    </div>
+  </article>
+
+  <!-- ============ 12 ============ -->
+  <article class="insight">
+    <div class="rail good"></div>
+    <div class="body">
+      <div class="kicker"><span class="n">№ 12</span> · The buddy economy</div>
+      <h3>313 pairs of your customers always arrive together</h3>
+      <div class="figure">
+        <span class="fig-num">50×</span>
+        <span class="fig-cap">how far above chance these pairings are — 313 pairs, 554 named customers</span>
+      </div>
+      <p class="evidence">Not “sometimes overlap”. <strong>554 customers</strong> who show up in the
+        same minute as the same other person, over and over, for years. We tried hard to make this
+        go away — reshuffling everyone’s visits at random, thousands of times, keeping each person’s
+        exact visit count. Chance produces <strong>five</strong> such pairs. Your salons have
+        <strong>313</strong>.</p>
+      <p class="evidence">These are real relationships, and they are sitting in your till log with
+        names attached. <em>You can build a product for them tomorrow.</em></p>
+      <div class="chips">
+        <span class="chip">313 stable pairs · 554 customers</span>
+        <span class="chip honest">what we are NOT claiming: that pairs quit together — see below</span>
+      </div>
+      <div class="monday"><b>Monday:</b> sell the <b>duo</b>. A two-person membership, a
+        bring-your-person week, a referral that names the actual person they already come with.
+        Bask can list every stable pair in your book from the check-in log alone — no survey, no
+        app, no asking anyone anything.</div>
+      <details><summary>Show me the numbers</summary><div class="nums">
+        <p>Co-arrival = two different customers checking in at the same salon within 180 seconds.
+           <b>313 pairs</b> co-arrived 5+ times, containing <b>554 customers</b>.</p>
+        <p>The kill attempt that failed: permutation nulls that preserve every customer’s exact visit
+           count produce <b>4.5–6.7</b> such pairs — roughly <b>50× below</b> the observed 313,
+           p&lt;0.001. Repeat co-arrival is a genuine signal, not a scheduling coincidence.</p>
+        <p>Sensitivity, disclosed: at a stricter 60-second window the count falls to <b>212</b>
+           pairs (−32%). The pairs are real at either threshold; the exact count depends on where you
+           draw the line.</p>
+        <p>Two claims we removed rather than show you: that these customers are worth more (they have
+           more visits <i>by construction</i> — controlling for visit volume they are worth
+           <i>less</i> per visit), and that a fifth of your visits arrive as pairs (the co-arrival
+           rate is below what chance alone produces). See “Things we checked”.</p>
+      </div></details>
+    </div>
+  </article>
+
+  <!-- ============ 13 ============ -->
+  <article class="insight">
+    <div class="rail warn"></div>
+    <div class="body">
+      <div class="kicker"><span class="n">№ 13</span> · The register</div>
+      <h3>Renewal day is the quietest register in the shop</h3>
+      <div class="figure">
+        <span class="fig-num">560</span>
+        <span class="fig-cap">renewal moments per salon per year — every one of them on your calendar in advance</span>
+      </div>
+      <p class="evidence">The day a member hands you money for another month is the day you are
+        <strong>least likely to sell them anything else</strong>. Renewal transactions attach a
+        retail item <strong>7.7%</strong> of the time against <strong>11.7%</strong> on other
+        service transactions — a 26% shortfall that survives controlling for veteran customers, who
+        buy less anyway.</p>
+      <p class="evidence">Compare that to a <em>signup</em> day, where nearly one transaction in five
+        goes out with lotion. Same commitment, same counter — the difference is that a signup gets a
+        conversation and a renewal gets a receipt.</p>
+      <p class="evidence">The dollars here are small and we will say so. What is not small is that
+        these are <strong>560 moments a year you know about in advance</strong>. There is no cheaper
+        prompt in the building.</p>
+      <div class="chips">
+        <span class="chip">renewal day 7.7% · other days 11.7% · signup day 19.2%</span>
+        <span class="chip honest">worth a few hundred dollars a salon-year — not a windfall</span>
+      </div>
+      <div class="monday"><b>Monday:</b> one line at the register on every renewal — “want the bottle
+        on the package?” Bask can fire the prompt automatically, because the renewal date was already
+        sitting in the system. Do not budget for this one; just stop leaving it on the floor.</div>
+      <details><summary>Show me the numbers</summary><div class="nums">
+        <p>Attach measured <b>per transaction</b> here (stated because everywhere else in this report
+           attach is per visit). Membership signup-day transactions attach retail <b>19.2%</b>
+           (n=4,044). Renewal-day <b>7.7%</b> (n=9,395) vs <b>11.7%</b> on other service-carrying
+           transactions (n=31,885), χ² p=1.48×10⁻²⁸.</p>
+        <p>Veteran control — restricted to customers with 10+ lifetime visits, removing the
+           long-customers-buy-less confound: renewal-day 7.6% (n=9,273) vs the same customers’ other
+           service transactions 10.3% (n=23,442), χ² p=6.1×10⁻¹⁴. A 26% relative gap that survives
+           the control.</p>
+        <p>Volume: 9,395 renewal-day transactions across four salons over the window = about
+           <b>560 per salon per year</b>. Closing the attach gap at the median attached line (~$9.75)
+           is worth a few hundred dollars per salon per year. This is a systems insight, not a
+           revenue projection, and it should never be presented as one.</p>
+      </div></details>
+    </div>
+  </article>
+
+  <!-- ============ CHECKED ============ -->
+  <section class="checked">
+    <span class="eyebrow">The other half of the work</span>
+    <h2>Things we checked so you don’t have to</h2>
+    <p>Every idea below sounds true. Several of them were <em>ours</em> — findings from our own first
+      pass that we then set out to destroy, and did. Knowing what doesn’t hold is how you avoid
+      spending Monday on it, and it is the only reason to trust the thirteen that did.</p>
+
+    <div class="dead ours"><h4><span>“A won-back customer is worth more than a new one.”</span></h4>
+      <p>We wrote that. Then we checked it, and it fell apart. A reactivated customer earns about
+        $93 over the next year — but a new customer who came back even <em>once</em> earns $92, and
+        one with eight visits earns $158. The “premium” was arithmetic: winning someone back requires
+        two visits by definition, while the new-customer average is dragged down by everyone who
+        never returned. Worse, the same reactivated customers earned <b>$108 in the year before they
+        lapsed</b> — more than the $93 after. Winning someone back is partial recovery of a customer
+        you already had. It is not an upgrade on a new one.</p>
+      <span class="tagline">What survives is the targeting argument — finding № 6</span></div>
+
+    <div class="dead ours"><h4><span>“Lose one, lose two — when half a pair quits, the other follows.”</span></h4>
+      <p>Also ours, also dead. Survivors did drop 47% after their partner stopped coming — which
+        looked damning until we asked what a comparable customer does over the same stretch of
+        calendar with no partner leaving at all. They drop <b>49.5%</b>. The survivors declined
+        <em>less</em> than chance. There is no contagion here; there is a population of customers
+        that fades, and pairs fade with it. The pairs themselves are real (№ 12). The domino effect
+        is not, and we are not going to sell you a flag built on it.</p>
+      <span class="tagline">Sell the pairs. Don’t sell the contagion.</span></div>
+
+    <div class="dead"><h4><span>“Customers slow down before they quit.”</span></h4>
+      <p>No. Departing regulars’ final visits are indistinguishable from their normal ones. An alert
+        watching for stretching intervals is right 8.7% of the time. That is precisely why № 6 runs
+        on a calendar instead of on instinct.</p></div>
+
+    <div class="dead"><h4><span>“Harvest new customers fast — the value is up front.”</span></h4>
+      <p>No. A customer pays like an annuity: only 12.5% of a two-year customer’s revenue arrives in
+        the first 30 days, 26% by day 90, 62.6% by day 365. Every finding here is a retention
+        calendar, and that is not a style choice — it is what the money does.</p></div>
+
+    <div class="dead"><h4><span>“Cheaper packages renew better.”</span></h4>
+      <p>No. From your $30 plans to your $140 plans, renewal moves within a few points and in no
+        particular direction. Four separate attempts to find a hidden price effect all failed. This
+        is why not one recommendation in this document is a discount.</p></div>
+
+    <div class="dead"><h4><span>“A fifth of your visits walk in as pairs.”</span></h4>
+      <p>Our own number, and it doesn’t stand. Once you account for how busy your salons are, the
+        rate of two people arriving within three minutes of each other is <em>below</em> what random
+        chance produces. Busy shops make coincidental neighbours. The finding lives in the
+        <em>repeat</em> pairings (№ 12), not the headline count.</p></div>
+
+    <div class="dead"><h4><span>“Your beds run nearly empty, so every extra visit is pure profit.”</span></h4>
+      <p>We could not check this and we will not repeat it. Your register files carry no bed, no
+        room, no capacity and no cost data — there is nothing in them that could produce a
+        utilisation number. If someone shows you one, ask which column it came from.</p></div>
+
+    <div class="dead"><h4><span>“A friend’s introduction makes a sticky customer.”</span></h4>
+      <p>No. First-timers brought in by an existing customer return at 66.3%; solo walk-ins at 63.9%.
+        That difference is noise. The social effect that matters is between established regulars,
+        not at the introduction. And two first-timers arriving <em>together</em> actually stick
+        around less than one arriving alone — those are event tans.</p></div>
+
+    <div class="dead"><h4><span>“The faster a first-timer comes back, the better the customer.”</span></h4>
+      <p>No. Once someone returns at all, how quickly they did it tells you nothing about what they
+        will spend. Week one decides <em>whether</em> (№ 5) — not how much.</p></div>
+
+    <div class="dead"><h4><span>“Seeing the same staff member builds loyalty.”</span></h4>
+      <p>No measurable effect at all. Customers who always saw the same person came back no more
+        often than customers who saw somebody different every time. Which staffer is on the floor for
+        the <em>first</em> visit matters enormously (№ 4). Continuity after that doesn’t.</p></div>
+
+    <div class="dead"><h4><span>“Members sneak free tans between packages.”</span></h4>
+      <p>The opposite. Only 5.8% of a multi-cycle member’s visits fall in an uncovered gap, and 41%
+        of those carry a paid transaction averaging $35. Gap visits are some of the best-paying
+        sessions you sell. Nothing to plug.</p></div>
+
+    <div class="dead"><h4><span>“Gift certificates bring in new customers.”</span></h4>
+      <p>Thirteen gift-certificate payments in four years. Twenty-five coupon redemptions. There is
+        no channel here — which is worth knowing <em>before</em> someone proposes building one.</p></div>
+
+    <div class="dead"><h4><span>“First-timers turn up on the weak morning shift.”</span></h4>
+      <p>No. Only 3.3% of first visits happen before 11am. There is no schedule to fix.</p></div>
+
+    <div class="dead"><h4><span>“A crowded floor kills the lotion sale.”</span></h4>
+      <p>Slightly true, honestly tiny. Attach does slide from 6.5% when someone’s alone to 5.2% in
+        your busiest hours — and fixing all of it is worth under $1,000 a year <em>across all four
+        salons</em>. Keep it as a management observation. Never monetise it.</p></div>
+
+    <div class="dead"><h4><span>“Customers with a fixed routine hour are the loyal ones.”</span></h4>
+      <p>If anything the reverse — the rigid-schedule customers proved slightly more fragile.
+        Flexibility, not routine, marks the ones who stay.</p></div>
+
+    <div class="dead"><h4><span>“Letting members downshift to a cheaper plan keeps them longer.”</span></h4>
+      <p>Probably, but not provably — so it is not a finding. Downgraders did buy more total months
+        than plan-stayers, but the result sits just the wrong side of significance and about a
+        quarter of the “downgrades” are really a $0 package or the same plan renamed. We would rather
+        leave a plausible idea out than put a soft one in front of you.</p></div>
+  </section>
+
+  <p class="foot">Prepared from the four salons’ own point-of-sale records: 194,672 visits,
+    53,839 register transactions, 11,411 customers who ever visited, 13,225 memberships,
+    January 2016 – March 2020, $2,088,612 through the register. Salons de-identified as A–D.
+    Every figure was recomputed independently by a second pass instructed to <em>disprove</em> the
+    first; where the two disagreed, the disproof won, and where a claim could not survive that, it
+    is not in this document — several of them are named above. Cohorts, denominators and observation
+    windows are stated inside every “Show me the numbers” block. Nothing here was estimated,
+    benchmarked or imported: if it isn’t in your registers, it isn’t on this page.</p>
+
+</main>
+</body></html>

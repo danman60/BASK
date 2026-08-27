@@ -1,5 +1,32 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-26 (23:30–00:05) — FABLE REPORT VERIFIED + REWRITTEN AS THE PITCH
+
+**Deliverable: `docs/pitch/2026-08-27-insights-final.html`.** Accuracy review:
+`docs/pitch/2026-08-27-fable-review.md`. A Fable session (tmux `fable-insights`) produced 14 insights
+off the canonical CSVs; three adversarial passes recomputed **every** figure.
+
+**Arithmetic was clean; the prose oversold.** Daniel: *"we want oversold in the prose it's a pitch"* —
+so the final doc keeps maximum swagger and only defensible numbers.
+
+- **Systemic error:** Fable dropped the signup filter from the true-new cohort, re-admitting 2,518
+  left-censored customers (median **1,462 days** between signup and first observed visit; contamination
+  decays 59%→13% by quarter). Contaminated four insights.
+- **CUT — each dies to one question in the room:** the winback premium (denominator artifact;
+  reactivators earned **more before** lapsing, $108 vs $93); "lose one, lose two" (survivors declined
+  47%, matched controls **49.5%** — less than chance, no contagion); "2,700 chances a year" (real:
+  **560**); "beds run 93% empty" (**no capacity column exists** in this dataset).
+- **TURNED UP — the draft under-sold these:** two-week expiry cliff (**p=6.4e-09**, self-rated
+  "moderate"); autumn first-timers worth **21% MORE** when kept ($108.69 vs $89.80); packette trap
+  (**14.1% vs 54.6%** graduate to a bottle); renewal-is-usage-not-price — survived four attacks and got
+  **steeper** under de-censoring. It now leads the document.
+- **Stakeholder-safe as written:** #2, #3, #4, #6, plus #7 and #5b with tightened sentences.
+
+Verified myself: 0 external refs, no refuted number in body copy (the three that appear sit *inside*
+provenance blocks explaining why they were rejected), no overflow at 1280 or 390.
+
+---
+
 ## Session 2026-08-26 (21:28–21:52) — bask MIGRATED TO NETCUP, BANKED AT VERIFIED STEP 2
 
 **Findings doc — read this before touching the migration: `docs/migration/2026-08-26-bask-netcup-findings.md`**
