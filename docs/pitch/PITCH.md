@@ -136,10 +136,10 @@ Footer: contact.
 
 # Pitch-asset build checklist (M1/M2 exit items)
 
-- [ ] All 5 bookmarks staged and `demo:verify` covers the full script path
+- [x] All 5 bookmarks staged; `demo:verify` 10/10 on localhost AND production 2026-08-27
 - [ ] Phone demo unit: Bask Mobile installed, Daybreak cached (survives dead wifi)
 - [ ] Presenter "fire push" works with venue wifi AND phone hotspot fallback
-- [ ] Peers gap slider rehearsed — drag reads smoothly on the demo hardware
-- [ ] Deck rendered from S1–S8 in Sunset theme (HTML), exported PDF backup
-- [ ] Screenshots in S4/S6 regenerated from current build (never stale UI)
+- [ ] Peers gap slider rehearsed — drag reads smoothly on the demo hardware (figures now 5.7% → 8.4%)
+- [x] Deck rendered from S1–S8 in Sunset theme — `docs/pitch/DECK.html` (arrow keys; press **P** for the one-slide-per-page print/PDF layout). Self-contained, opens from file://, no network.
+- [x] Deck figures taken from the live build 2026-08-27 (8.3%→5.9%, $4,260, "52% above your usual Tuesday") — regenerate if the fixtures change again
 - [ ] Full run-through rehearsed once against a stopwatch: ≤13 min with margin

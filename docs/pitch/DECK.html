@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bask &amp; Compass — the deck</title>
+<!--
+  Eight slides, rendered from PITCH.md Part 2 (S1–S8). Sunset theme tokens copied
+  from packages/tokens/src/tokens.css so the deck and the product are the same
+  object to look at.
+
+  Deliberately a backdrop, not a document: ≤20 words a slide, because the demo is
+  the presentation and slides 4–6 are parking screens you will often skip.
+
+  Drive it: → / ← / space, or click. Press P for a print/PDF layout (one slide a
+  page, landscape). No build step, no network, no fonts to fail — it opens from
+  a file:// URL on any laptop in the room.
+-->
+<style>
+  :root{
+    --paper:oklch(98.2% 0.004 84); --card:#fff;
+    --ink:oklch(21% 0.012 320); --ink-soft:oklch(42% 0.014 320); --ink-faint:oklch(55% 0.014 320);
+    --line:oklch(90% 0.006 84);
+    --primary:oklch(58% 0.14 42); --primary-deep:oklch(52% 0.14 40); --primary-wash:oklch(96% 0.02 50);
+    --grad:linear-gradient(45deg,#feda75 0%,#fa7e1e 25%,#d62976 50%,#962fbf 75%,#4f5bd5 100%);
+    --display:"Fraunces",Georgia,serif;
+    --body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);overflow:hidden}
+
+  .slide{
+    position:fixed;inset:0;display:none;
+    flex-direction:column;justify-content:center;
+    padding:clamp(2.5rem,7vw,8rem);
+  }
+  .slide.on{display:flex}
+  .eyebrow{
+    font-size:clamp(.7rem,1vw,.82rem);letter-spacing:.16em;text-transform:uppercase;
+    color:var(--primary-deep);font-weight:600;margin-bottom:1.6rem;
+  }
+  h1{font-family:var(--display);font-weight:600;line-height:1.04;letter-spacing:-.02em;
+     font-size:clamp(2.4rem,6.4vw,5.6rem)}
+  h2{font-family:var(--display);font-weight:600;line-height:1.1;letter-spacing:-.015em;
+     font-size:clamp(1.9rem,4.4vw,3.6rem)}
+  .lede{font-size:clamp(1.05rem,1.9vw,1.6rem);color:var(--ink-soft);margin-top:1.6rem;
+        max-width:34ch;line-height:1.45}
+  .rule{height:5px;width:120px;background:var(--grad);border-radius:99px;margin:2rem 0 0}
+  .small{font-size:.9rem;color:var(--ink-faint);margin-top:2.4rem}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,4rem);margin-top:2.6rem;align-items:start}
+  ul{list-style:none;display:flex;flex-direction:column;gap:.85rem}
+  li{font-size:clamp(.95rem,1.5vw,1.25rem);color:var(--ink-soft);padding-left:1.3rem;position:relative;line-height:1.4}
+  li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:99px;background:var(--primary)}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:1.2rem;padding:clamp(1.2rem,2.4vw,2rem)}
+  .panel.hot{background:var(--primary-wash);border-color:oklch(85% 0.05 50)}
+  .panel h3{font-family:var(--display);font-size:clamp(1.05rem,1.8vw,1.5rem);font-weight:600;margin-bottom:.9rem}
+
+  .flow{display:flex;align-items:center;gap:clamp(.5rem,1.6vw,1.4rem);margin-top:3rem;flex-wrap:wrap}
+  .node{background:var(--card);border:1px solid var(--line);border-radius:.9rem;
+        padding:.85rem 1.3rem;font-weight:600;font-size:clamp(.85rem,1.4vw,1.15rem);white-space:nowrap}
+  .node.gate{background:var(--primary);color:#fff;border-color:transparent}
+  .arrow{color:var(--ink-faint);font-size:1.3rem}
+
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,2.4vw,2rem);margin-top:2.8rem}
+  ol.ask{counter-reset:a;display:flex;flex-direction:column;gap:1.1rem;margin-top:2.4rem;list-style:none}
+  ol.ask li{counter-increment:a;padding-left:3rem;font-size:clamp(1rem,1.7vw,1.45rem);color:var(--ink)}
+  ol.ask li::before{content:counter(a);background:var(--primary);color:#fff;width:2rem;height:2rem;
+    border-radius:99px;display:grid;place-items:center;font-size:.9rem;font-weight:700;top:0}
+
+  .nums{position:fixed;right:1.4rem;bottom:1.1rem;font-size:.78rem;color:var(--ink-faint);letter-spacing:.04em}
+  .hint{position:fixed;left:1.4rem;bottom:1.1rem;font-size:.72rem;color:var(--ink-faint)}
+  .bar{position:fixed;left:0;top:0;height:3px;background:var(--grad);transition:width .3s ease;z-index:5}
+
+  /* Print / PDF backup: one slide per landscape page, every slide shown. */
+  @media print{
+    @page{size:landscape;margin:0}
+    body{overflow:visible}
+    .slide{display:flex!important;position:relative;inset:auto;height:100vh;page-break-after:always;padding:6vh 7vw}
+    .nums,.hint,.bar{display:none}
+  }
+  body.printing{overflow:auto}
+  body.printing .slide{display:flex;position:relative;inset:auto;height:100vh;border-bottom:1px solid var(--line)}
+  body.printing .nums,body.printing .hint{display:none}
+</style>
+</head>
+<body>
+
+<div class="bar" id="bar"></div>
+
+<!-- S1 — Title -->
+<section class="slide on">
+  <div class="eyebrow">For UVALUX</div>
+  <h1>Bask.<br>Salon intelligence.</h1>
+  <div class="rule"></div>
+  <p class="lede"><strong>Compass</strong> — the intelligence layer for the UVALUX network.</p>
+  <p class="small">powered by UVALUX</p>
+</section>
+
+<!-- S2 — The gap -->
+<section class="slide">
+  <div class="eyebrow">The gap</div>
+  <h2>UVALUX guides a new salon<br>through everything but one thing.</h2>
+  <div class="two">
+    <div class="panel">
+      <h3>You guide today</h3>
+      <ul>
+        <li>Equipment</li><li>Inventory</li><li>Training</li>
+        <li>Business planning</li><li>Pricing</li><li>Marketing</li>
+      </ul>
+    </div>
+    <div class="panel hot">
+      <h3>Salon software</h3>
+      <ul><li>“Several third-party options exist — compare and choose.”</li></ul>
+      <p class="small" style="margin-top:1.2rem">The one system they touch every hour is the only part
+      of their success that lives outside the UVALUX relationship.</p>
+    </div>
+  </div>
+</section>
+
+<!-- S3 — The thesis -->
+<section class="slide">
+  <div class="eyebrow">The thesis</div>
+  <h2>Two products that are really one.</h2>
+  <div class="flow">
+    <span class="node">Salon</span><span class="arrow">⇄</span>
+    <span class="node">Bask</span><span class="arrow">⇄</span>
+    <span class="node gate">consent</span><span class="arrow">⇄</span>
+    <span class="node">Compass</span><span class="arrow">⇄</span>
+    <span class="node">UVALUX</span>
+  </div>
+  <p class="lede">Salons run better. UVALUX sees the market it serves — with consent, by design.</p>
+</section>
+
+<!-- S4 — Act 1 backdrop -->
+<section class="slide">
+  <div class="eyebrow">Act 1 · the owner</div>
+  <h1>“Tell me what<br>needs my attention.”</h1>
+  <div class="rule"></div>
+  <p class="lede">The software did the analysis overnight and wrote it in plain English.</p>
+</section>
+
+<!-- S5 — Act 1 backdrop -->
+<section class="slide">
+  <div class="eyebrow">Act 1 · the loop</div>
+  <h2>From insight to action<br>in three clicks.</h2>
+  <div class="three">
+    <div class="panel"><h3>1 · It finds it</h3><p class="small" style="margin:0">Retail attachment fell
+      8.3% → 5.9%. About $4,260 a month.</p></div>
+    <div class="panel"><h3>2 · It acts</h3><p class="small" style="margin:0">The campaign is written
+      before you open a blank page. You stay in control.</p></div>
+    <div class="panel hot"><h3>3 · It reports back</h3><p class="small" style="margin:0">“Yesterday
+      finished 52% above your usual Tuesday.”</p></div>
+  </div>
+</section>
+
+<!-- S6 — Act 2 backdrop -->
+<section class="slide">
+  <div class="eyebrow">Act 2 · UVALUX</div>
+  <h1>Every rep,<br>your best rep.</h1>
+  <div class="rule"></div>
+  <p class="lede">They don’t call asking “need anything?” They call knowing what’s wrong
+    and what to suggest.</p>
+</section>
+
+<!-- S7 — Three wins -->
+<section class="slide">
+  <div class="eyebrow">Why it works</div>
+  <h2>Three parties win at once.</h2>
+  <div class="three">
+    <div class="panel"><h3>The salon</h3><ul><li>Runs smarter</li><li>Markets itself</li><li>Orders easier</li></ul></div>
+    <div class="panel"><h3>Your reps</h3><ul><li>Know who to call</li><li>Know why</li><li>Know what to suggest</li></ul></div>
+    <div class="panel hot"><h3>UVALUX</h3><ul><li>Recurring revenue</li><li>Retention</li><li>Network intelligence</li></ul></div>
+  </div>
+  <p class="lede" style="max-width:60ch">A competitor can redesign a dashboard.
+    They can’t reproduce UVALUX.</p>
+</section>
+
+<!-- S8 — The ask -->
+<section class="slide">
+  <div class="eyebrow">The ask</div>
+  <h2>What I want from today.</h2>
+  <ol class="ask">
+    <li>Your read on the concept.</li>
+    <li>The branding call — UVALUX, co-brand, or powered-by.</li>
+    <li>Three to five salon owners you trust, for thirty minutes each.</li>
+    <li>Then: structure.</li>
+  </ol>
+</section>
+
+<div class="nums" id="nums"></div>
+<div class="hint">→ ← space · P for print</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  const nums=document.getElementById('nums'), bar=document.getElementById('bar');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+    nums.textContent=`${i+1} / ${slides.length}`;
+    bar.style.width=`${((i+1)/slides.length)*100}%`;
+  }
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(i+1)}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(i-1)}
+    if(e.key==='Home')show(0); if(e.key==='End')show(slides.length-1);
+    if(e.key.toLowerCase()==='p'){document.body.classList.toggle('printing')}
+  });
+  addEventListener('click',e=>{ if(!document.body.classList.contains('printing')) show(i+1) });
+  show(0);
+</script>
+</body>
+</html>

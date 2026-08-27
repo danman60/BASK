@@ -12,6 +12,13 @@ was checked by opening the thing, not by reading the code.
 - **Production is current.** `bask-psi.vercel.app`, all work pushed and deployed.
 - **The demo clock is at day zero** (`2026-08-06`, Thursday) and the brief is written.
 - **Five bookmarks**, matching the five beats. Floor and Inventory are gone from the nav (`0a8f256`).
+- **Deck is built** — `docs/pitch/DECK.html`. Arrow keys; **P** gives the print/PDF layout. Self
+  contained, opens from `file://`, nothing to fail in the room.
+- **Every beat walked at 1440 and 390**, every route 200, zero horizontal overflow, zero JS errors,
+  every Today action button verified clickable on production.
+- **Beat 2's payoff was run end to end** — clock advanced, campaign settled at 8 bookings/$248,
+  Daybreak read "52% above your usual Tuesday", then restored to day zero. The rebuild is
+  deterministic: checksum `94099f9d…` identical before and after.
 
 **The cold open now reads, verified on production:**
 
@@ -83,6 +90,8 @@ to break mid-meeting**, which makes them the safest things in the room.
 | `docs/pitch/2026-08-27-insights-final.html` | The insight report off the **real** 2016–2020 client data. Every figure recomputed across three adversarial passes; four claims cut for dying to one question. | **The credibility close.** The thing you leave behind. |
 | `docs/pitch/campaign/index.html` + `assets/` + `video/` | "The Glow Playbook" — six campaigns built from those numbers, flight calendar, production inventory, **23 stills and 3 videos**. | **Extends Beat 1.** |
 
+- **The deck** (`DECK.html`) is a backdrop, not a document — slides 4–6 are parking screens you will
+  often skip entirely. Open it before the meeting; do not present *from* it.
 - **Beat 1**, after scheduling the Tuesday SMS — *"That's one campaign. Here's the year."* Open the
   Glow Playbook, then get back to the product.
 - **Close, on the ask** — hand over the insight report. *"Every number in here came out of a real
@@ -99,6 +108,8 @@ stakeholder.
 - Any beat fumbles → **⌘⇧D** → its bookmark. Numbered in PITCH.md.
 - **Run the beats in ascending order.** Bookmark jumps are forward-only: an out-of-order jump lands
   you on the right screen at the wrong day, silently. The only true rewind is `pnpm demo:reset`.
+- **Beat 2 is bookmark day 6, not day 5.** The Tuesday campaign SENDS on day 5, so day 5 shows a
+  negative headline and no result. Press the bookmark — do not hand-advance five days.
 - Nick grabs the phone and explores → **let him**. Surviving unscripted exploration is the demo.
 - Everything falls over → the two HTML deliverables in §4 need no server at all.
 
