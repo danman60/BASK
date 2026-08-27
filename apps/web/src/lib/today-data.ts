@@ -77,8 +77,13 @@ export interface TodayData {
  * `insightId`, a key nothing reads — so its buttons landed on the Studio hub
  * instead of a pre-filled campaign. Every surface now calls `actionHref`.
  *
- * `/inventory` is right for the stock actions: the route exists and is back in
- * the nav (Beat 3 of `docs/pitch/PITCH.md`).
+ * `/inventory` is still right for the stock actions even though Inventory is no
+ * longer a nav destination (`0a8f256` — Bask is salon intelligence, not an
+ * operating system). The route renders, and reaching it by opening the low-stock
+ * insight is exactly the product thesis: "every one opens into the thing that
+ * does it." What was wrong was Inventory sitting in the nav as a place you browse
+ * to; arriving there from a forecast is the opposite of that. Verified on
+ * production 2026-08-27: "Add to UVALUX order" lands on /inventory/order.
  *
  * A value may carry a `#fragment`; the query goes before it, as a URL requires.
  */

@@ -128,32 +128,28 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
     ]
   },
   {
-    id: 'opp-recover-payments',
-    methodSource: method('revenue_hygiene'),
-
-    category: 'membership',
-    title: 'Recover seven failed payments',
-    whatChanged: 'Seven membership payments failed this month; the members still visit.',
-    whyItMatters: 'These failed payments represent $412 in lost revenue that could be recovered.',
-    impactLabel: '+$412/mo',
-    impactMonthly: 412,
+    id: 'opp-reorder-bronzer',
+    category: 'retail',
+    title: 'Reorder before the shelf goes empty',
+    whatChanged: 'Hempz Botanical Sunshine Revitalizing Bronzer sells out in about 8 days at current pace.',
+    whyItMatters: 'Running out of this popular bronzer could cost the salon about $600 per month in lost sales.',
+    impactLabel: 'Protect ~$600/mo',
+    impactMonthly: 600,
     confidence: 'high',
-    confidenceNote: 'Four weeks of persistent signal, also below similar salons.',
+    confidenceNote: 'This is protection, not growth. Note this in the confidenceNote.',
     urgency: 'now',
     actions: [
       {
-        kind: 'sms',
-        label: 'Approve & text 7 customers',
-        recipientCount: 7,
-        message: 'Hi there! We had trouble processing your payment. Could you please update your card details?',
-        costNote: '7 messages · about $0.50'
-      },
-      {
-        kind: 'staff_task',
-        label: 'Assign task',
-        goal: 'Mention membership payments gently at check-in',
-        target: 'Target: 4 conversations.',
-        customers: ['Customer1', 'Customer2', 'Customer3', 'Customer4', 'Customer5', 'Customer6', 'Customer7']
+        kind: 'uvalux_order',
+        label: 'Add to UVALUX order',
+        items: [
+          {
+            sku: 'BSK-10007',
+            name: 'Hempz Botanical Sunshine Revitalizing Bronzer',
+            qty: 12
+          }
+        ],
+        note: 'Adds to existing UVALUX draft order'
       }
     ]
   },
@@ -198,28 +194,39 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
     }
   },
   {
-    id: 'opp-reorder-bronzer',
-    category: 'retail',
-    title: 'Reorder before the shelf goes empty',
-    whatChanged: 'Hempz Botanical Sunshine Revitalizing Bronzer sells out in about 8 days at current pace.',
-    whyItMatters: 'Running out of this popular bronzer could cost the salon about $600 per month in lost sales.',
-    impactLabel: 'Protect ~$600/mo',
-    impactMonthly: 600,
+    id: 'opp-recover-payments',
+    methodSource: method('revenue_hygiene'),
+
+    category: 'membership',
+    title: 'Recover seven failed payments',
+    /* $412 matched nothing. Measured 2026-08-27: seven memberships sit at
+       payment_state='failed' worth $523/mo in total, of which FOUR are
+       recoverable at exactly $284/mo — one gold, one silver, two bronze, which
+       `ARCS.failedPayments.recoverableTiers` in the fixture constants spells out
+       and calls "the number the mockup quotes". The card was quoting neither the
+       total nor the recoverable figure. $284 is the honest one: it is what the
+       action on this card can actually win back. */
+    whatChanged: 'Seven membership payments failed this month; the members still visit.',
+    whyItMatters: 'Four of the seven look recoverable — about $284 a month, from members who never left.',
+    impactLabel: '+$284/mo',
+    impactMonthly: 284,
     confidence: 'high',
-    confidenceNote: 'This is protection, not growth. Note this in the confidenceNote.',
+    confidenceNote: 'Four weeks of persistent signal, also below similar salons.',
     urgency: 'now',
     actions: [
       {
-        kind: 'uvalux_order',
-        label: 'Add to UVALUX order',
-        items: [
-          {
-            sku: 'BSK-10007',
-            name: 'Hempz Botanical Sunshine Revitalizing Bronzer',
-            qty: 12
-          }
-        ],
-        note: 'Adds to existing UVALUX draft order'
+        kind: 'sms',
+        label: 'Approve & text 7 customers',
+        recipientCount: 7,
+        message: 'Hi there! We had trouble processing your payment. Could you please update your card details?',
+        costNote: '7 messages · about $0.50'
+      },
+      {
+        kind: 'staff_task',
+        label: 'Assign task',
+        goal: 'Mention membership payments gently at check-in',
+        target: 'Target: 4 conversations.',
+        customers: ['Customer1', 'Customer2', 'Customer3', 'Customer4', 'Customer5', 'Customer6', 'Customer7']
       }
     ]
   },
