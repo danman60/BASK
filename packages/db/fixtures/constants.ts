@@ -17,8 +17,25 @@ export const DAY_ZERO: DateOnly = '2026-08-06';
 /** History depth. 90 days of visits/sales/campaign history per §20. */
 export const HISTORY_DAYS = 90;
 
-/** Default fixture seed. Also the value stored in `demo_state.seed`. */
-export const DEFAULT_SEED = 'sunset-ridge-v1';
+/**
+ * Default fixture seed. Also the value stored in `demo_state.seed`.
+ *
+ * v1 → v5 on 2026-08-27, chosen by measurement rather than taste. Daily revenue
+ * is ~$1,000 and the Daybreak headline compares yesterday against a mean of
+ * only four same-weekdays, so ±20% day-to-day swing is ordinary noise — the
+ * opening line of the pitch is decided by which day the seed happens to deal.
+ * Tuning the growth arc could not control it (raising the dial reshuffles the
+ * whole RNG stream and clips against room capacity, so 26 → 52 made the number
+ * WORSE, not better).
+ *
+ * So the seed was swept and measured. Day-zero headlines:
+ *   v1 "steady"  ·  v2 +3%  ·  v3 −32%  ·  v4 +65%  ·  v5 +12%  ·  v6 +39%
+ *
+ * v5 is the pick: positive, and believable for a salon adding paying customers.
+ * v4 and v6 are stronger numbers and were rejected — a salon does not finish a
+ * Wednesday 65% up, and a stakeholder who sells to salons would know it.
+ */
+export const DEFAULT_SEED = 'sunset-ridge-v5';
 
 export const HERO_SALON = {
   slug: 'sunset-ridge',
@@ -90,23 +107,68 @@ export const ARCS = {
    */
   attachment: {
     /**
-     * Slightly above 21% because sampling pulls the realised rate down a few
-     * tenths; the measured baseline lands on 21%, which is what the card quotes.
+     * ANCHORED TO THE FIELD DATA (2026-08-27). This was 0.225 → a 15% floor,
+     * which made retail **59% of the salon's revenue**. The real SalonTouch
+     * dataset — 194,672 visits across four salons, 2016–2020 — runs retail at
+     * **8.6–12.1% of revenue** on an attachment rate of **5.2–9.4%**, house
+     * average ≈ 5.8%. A 21% attachment rate is not a tanning salon.
+     *
+     * It also broke the demo. Because retail dominated revenue, the attachment
+     * decline the pitch WANTS dragged total revenue down ~30%, and Daybreak
+     * compares total revenue against the previous four same weekdays — so a
+     * salon whose traffic was UP 8.7% opened the pitch reading "24% below your
+     * usual Friday". Fixing the share fixes the headline; no metric was changed
+     * to flatter the demo.
+     *
+     * 8.5% → 5.5% is not a guess either: `salontouch-coefficients.md` records
+     * the attachment ceiling as 8.48% for the best staffer against a 5.28%
+     * house rate. The laggard/rest split below reproduces exactly that finding.
      */
-    baselineRate: 0.225,
+    baselineRate: 0.085,
     /** Days the decline ramps over, ending `flatDays` ago. */
     rampDays: 14,
     /** Days the rate has been sitting at the floor. The measurement window. */
     flatDays: 14,
     /** The two staffers the decline sits on. */
     laggardStaffKeys: ['tamsin', 'reece'] as const,
-    /** Where the laggards land. */
-    laggardFloorRate: 0.05,
+    /** Where the laggards land — at the floor, they have stopped asking. */
+    laggardFloorRate: 0.02,
     /**
      * Where everyone else lands. The laggards cover ~17% of visits, so the
-     * blended floor is 0.16·0.05 + 0.84·0.166 ≈ 15% — the number in the mockup.
+     * blended floor is 0.16·0.02 + 0.84·0.065 ≈ 5.8% — the SalonTouch house
+     * rate, which is the number the card now quotes.
      */
-    othersFloorRate: 0.166,
+    othersFloorRate: 0.065,
+  },
+
+  /**
+   * Recent traffic growth — a 28-day ramp ending at day zero.
+   *
+   * The fixture used to generate flat traffic plus 8% noise, so the salon had
+   * no trend of its own and every story had to come from something breaking.
+   * Real salons move. This one is winning visits while losing retail
+   * attachment, which is the entire UVALUX thesis in one dataset: they kept the
+   * customers and stopped selling to them. It is also what lets the cold open
+   * be positive truthfully — traffic really is up, retail really is slipping,
+   * and Daybreak says both.
+   *
+   * Tuned against the headline: total revenue must finish the last week ABOVE
+   * the mean of the previous four same weekdays, having absorbed the retail
+   * decline. Raise `peakMultiplier` if the opening line still reads negative.
+   */
+  growth: {
+    /** Days the ramp runs, ending at DAY_ZERO. */
+    rampDays: 28,
+    /**
+     * Extra PAYING visits per day at the top of the ramp, before weekday
+     * shaping. Expressed as added visits rather than a multiplier on all
+     * traffic, because multiplying every visit mostly adds $0 member sessions
+     * and made revenue fall — see `extraPayingVisits`.
+     *
+     * This is the dial to turn if the cold open still does not read positive:
+     * each extra visit is worth roughly one paid service (~$26 average).
+     */
+    peakExtraPerDay: 26,
   },
 
   /** Tuesday 1–5 pm chronically soft. */

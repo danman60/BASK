@@ -39,10 +39,21 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
 
     category: 'retail',
     title: 'Improve evening retail sales',
-    whatChanged: 'Retail attachment fell from 21% to 14% while visits stayed normal; most of the drop is evening shifts.',
-    whyItMatters: 'This decline in evening retail sales could cost the salon about $1,270 per month in lost revenue.',
-    impactLabel: '+$1,270/mo',
-    impactMonthly: 1270,
+    /* Re-derived from the rebuilt fixtures on 2026-08-27, and it has to STAY
+       derived: this card is the first thing a stakeholder reads, and it used to
+       claim "21% to 14%" against a dataset that measured 8.07%. A 21% retail
+       attachment rate is not a tanning salon — the real SalonTouch field data
+       runs 5.2–9.4% across four salons — so the old copy was both wrong about
+       the demo and wrong about the industry, in front of someone who sells to
+       that industry for a living.
+
+       Measured at day zero: 217 retail lines over 2,612 visits in the 28-day
+       baseline (8.3%) against 88 over 1,488 in the 14-day window (5.9%), at an
+       average product line of ~$55. 3,235 visits a month × 2.4pp × $55 ≈ $4,260. */
+    whatChanged: 'Retail attachment fell from 8.3% to 5.9% while visits stayed normal; most of the drop is evening shifts.',
+    whyItMatters: 'This decline in evening retail sales could cost the salon about $4,260 per month in lost revenue.',
+    impactLabel: '+$4,260/mo',
+    impactMonthly: 4260,
     confidence: 'high',
     confidenceNote: 'Four weeks of persistent signal, also below similar salons.',
     urgency: 'this_week',

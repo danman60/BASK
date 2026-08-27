@@ -239,6 +239,33 @@ export function hourWeights(date: DateOnly): Array<[number, number]> {
   return out;
 }
 
+/**
+ * Extra *paying* visits on `date` from the recent-growth ramp (ARCS.growth).
+ *
+ * MEASURED, NOT ASSUMED. The first version of this scaled `visitsForDay` by a
+ * multiplier, which grew traffic 27% (92 → 117 visits on a Wednesday) and made
+ * revenue FALL — service revenue went $610 → $401 over the same span. The cause
+ * is real and worth keeping in mind: members carry a visit weight of 2.2–4.2
+ * against 0.5–1.4 for everyone else, and a member's session rings up at $0
+ * (`servicePrice`, below). So scaling every visit hands almost all the growth to
+ * people who pay nothing, and dilutes revenue per visit.
+ *
+ * That is also true of real salons — a member visiting twice as often earns the
+ * salon the same monthly fee. Salons grow revenue by adding PAYING customers.
+ * So growth is modelled the way `extraSprayVisits` models its trend: as extra
+ * visits, drawn from customers who are not on a membership or a package. New
+ * faces have not joined yet, which is exactly who a growing salon is seeing.
+ */
+export function extraPayingVisits(date: DateOnly, rng: Rng): number {
+  const { rampDays, peakExtraPerDay } = ARCS.growth;
+  const daysBefore = diffDays(date, DAY_ZERO);
+  if (daysBefore >= rampDays) return 0;
+  const progress = (rampDays - Math.max(0, daysBefore)) / rampDays;
+  const weekday = dayOfWeek(date);
+  const shaped = peakExtraPerDay * progress * (WEEKDAY_TRAFFIC[weekday] ?? 1);
+  return Math.max(0, Math.round(rng.normal(shaped, shaped * 0.25)));
+}
+
 /** Visits to generate for a calendar day. */
 export function visitsForDay(date: DateOnly, rng: Rng): number {
   const weekday = dayOfWeek(date);
@@ -549,9 +576,26 @@ export function generateDayActivity(
   const roomHourLoad = new Map<string, number>();
   const capacityPerRoomHour = Math.round(SLOTS_PER_ROOM_HOUR);
 
-  // The regular day, plus the spray bookings the upward trend is adding.
-  const plan: Array<{ key: string; forcedServiceKey: ServiceKey | null }> = [];
+  /* Customers who actually pay at the till: no membership, no package. The
+     growth ramp draws from these only — see `extraPayingVisits`. Falls back to
+     the full list if a seed ever produces none, so a fixture change can never
+     silently drop the growth arc on the floor. */
+  const payingWeights = ctx.customers
+    .filter((c) => !ctx.memberCustomerIds.has(c.row.id) && !ctx.packageCustomerIds.has(c.row.id))
+    .map((c) => [c, c.visitWeight] as const);
+  const growthWeights = payingWeights.length > 0 ? payingWeights : customerWeights;
+
+  // The regular day, plus the spray bookings the upward trend is adding, plus
+  // the paying visits the growth ramp is adding.
+  const plan: Array<{
+    key: string;
+    forcedServiceKey: ServiceKey | null;
+    payingOnly?: boolean;
+  }> = [];
   for (let n = 0; n < target; n += 1) plan.push({ key: `${date}:${n}`, forcedServiceKey: null });
+  for (let n = 0; n < extraPayingVisits(date, rng); n += 1) {
+    plan.push({ key: `${date}:growth:${n}`, forcedServiceKey: null, payingOnly: true });
+  }
   for (let n = 0; n < extraSprayVisits(date); n += 1) {
     plan.push({ key: `${date}:spray:${n}`, forcedServiceKey: 'spray-full' });
   }
@@ -582,7 +626,7 @@ export function generateDayActivity(
     const staffSeed: StaffSeed | null = onShift.length > 0 ? rng.pick(onShift) : null;
     const staffRow = staffSeed ? ctx.staffByKey.get(staffSeed.key) ?? null : null;
 
-    const customer = rng.weighted(customerWeights);
+    const customer = rng.weighted(item.payingOnly ? growthWeights : customerWeights);
     const minute = rng.int(0, 59);
     const checkedInAt = zonedToUtc(date, hour, minute, TZ);
     const serviceRow = ctx.services.find((s) => s.name === service.name)!;

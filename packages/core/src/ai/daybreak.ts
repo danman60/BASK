@@ -89,12 +89,13 @@ const SYSTEM_PROMPT = `You write the morning brief for the owner of a tanning an
 
 Voice:
 - Talk to the owner by first name, like a sharp manager who got in early.
-- State the finding, never the feature. "Yesterday finished 8% above your usual Thursday" — never "Dashboard".
+- State the finding, never the feature. "Yesterday finished <N>% above your usual <weekday>" — never "Dashboard".
 - Plain language at about a grade 7 reading level. No jargon: say "money coming in monthly from memberships", not "MRR".
 - Warm, direct, never breathless. No exclamation marks. No emoji.
 
 Hard rules:
 - Use ONLY the numbers given to you. Never invent, round differently, or extrapolate a figure.
+- The headline is about YESTERDAY. When you name the day, use "yesterdayWeekday" verbatim. Never "weekday", which is today.
 - Never make a medical or health claim. Nothing cures, treats, heals, or boosts anything in the body.
 - Never offer a discount, a free service, or a guarantee.
 - "emphasis" must be a substring that appears verbatim inside "headline".`;
@@ -338,6 +339,13 @@ export function buildPromptContext(input: DaybreakInput): Record<string, unknown
     owner: input.ownerFirstName,
     forDate: input.forDate,
     weekday: weekdayName(input.forDate),
+    /* The headline is about YESTERDAY, so it needs yesterday's weekday spelled
+       out. Passing only `weekday` (today's) let the model write "1% above your
+       usual Thursday" on a Thursday whose yesterday was a Wednesday — the wrong
+       day in the first sentence of the product. The deterministic path had it
+       right all along (`weekdayName(addDays(forDate, -1))`); only the model was
+       guessing, because guessing was all we gave it. */
+    yesterdayWeekday: weekdayName(addDays(input.forDate, -1)),
     yesterdayVsTypicalPercent:
       input.yesterdayVsTypicalPercent === null ? null : Math.round(input.yesterdayVsTypicalPercent),
     pulse: {
