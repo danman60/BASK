@@ -85,11 +85,44 @@ table last time. **Do not attempt it the morning of the meeting.**
 backfill and the SalonTouch load, then re-run `demo-verify` and re-read the cold open with your own
 eyes before calling it good.
 
-> ⚠ One caveat I could not settle without resetting, and will not guess at: `CLAUDE.md` records that
-> **even at day zero** the brief has read a negative ("31% below your usual Monday" where PITCH.md
-> wants "8% above"), because fixture volume runs ~10× the mockups. If that note still holds, Option A
-> buys the correct *day* but not automatically a positive *opening line*, and the fixture arc needs
-> tuning as a separate job. Verify the actual sentence after any reset before trusting the plan.
+### ⚠ SETTLED 2026-08-27 — a reset does NOT buy the opening line, and the fork above is misleading
+
+I worked out what the headline actually measures and computed it for every day, so this no longer
+needs guessing. `pipeline/index.ts:192`: the number is **revenue**, yesterday against the mean of the
+**previous four same weekdays**. Verified — Friday Aug 7 computes **−23.0%** and the screen reads
+"24% below your usual Friday".
+
+Running that over the fixture data:
+
+| virtual_today | yesterday | headline it produces |
+|---|---|---|
+| Aug 5 (day −1, unreachable) | Tue Aug 4, **+12.0%** | "12% above your usual Tuesday" |
+| **Aug 6 (day 0 — what a reset gives you)** | Wed Aug 5, **−1.3%** | **"came in steady against your usual Wednesday"** |
+| Aug 7 (day 1) | Thu Aug 6, −31.4% | worst day in the set |
+| **Aug 8 (day 2 — where we are)** | Fri Aug 7, −23.0% | "24% below your usual Friday" |
+
+**So the negative open is the fixture arc, not the clock.** Sunset Ridge is seeded as a salon in
+decline: weekly mean vs typical runs **+14% in early June → −15% for each of the last three weeks**,
+with only **one positive day per week** by August. PITCH.md's "yesterday beat the four-week Thursday
+average" is **not reachable from this data at any day the clock can legally sit on** — the only
+positive days are behind day zero, where even a reset cannot go.
+
+**What a reset actually buys: "steady" instead of "24% below".** Neutral, not triumphant — in
+exchange for the SalonTouch tenant and the consent backfill. That is a much worse trade than the
+table above implies, so weigh it knowing this:
+
+| | gets you | costs |
+|---|---|---|
+| **Leave it** | "24% below your usual Friday" | nothing |
+| **Reset** | "came in steady…" | SalonTouch reload + consent backfill |
+| **Retune the fixture arc, then reset** | the scripted positive line | fixture work + reset + reload |
+| **Reframe the cold open** | the decline becomes the hook | a script edit, no data risk |
+
+The last one deserves a real hearing rather than being the consolation prize. The script's own thesis
+is *"it tells you what changed, why it matters, and what to do about it."* A brief that opens by
+catching a genuine slide, with six ranked fixes underneath it, demonstrates that thesis harder than a
+victory lap does — and the six opportunity cards on Today are already priced and actionable.
+**Daniel's call**, because it trades a rehearsed line for a different kind of strength.
 
 ---
 
