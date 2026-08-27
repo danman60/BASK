@@ -1,5 +1,66 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-27 (02:12–) — ETL FIXED: 59,787 SALE LINES RECOVERED · `5426cc0`
+
+**`bask.sale_line` for `salontouch-real`: 0 → 59,787** (12,173 retail). Verified in the database,
+not from the script's own verdict. The FIRST TASK from the last handoff is closed.
+
+### Root cause — the loader was never losing them. A wipe deleted them.
+`run.ts`'s `INGEST_WIPE` block runs its `deleteMany` calls on `db`, **not** on a transaction, so
+each one commits by itself. `saleLine` is **first** in that list. The wipe that timed out through
+the pgbouncer pooler on 194k visits had already permanently emptied `sale_line`; sales, visits and
+customers, further down, survived untouched. It was recorded at the time as *"the transaction rolls
+back cleanly — all rows intact"*. **A wipe has no transaction to roll back.**
+
+Everything that was suspected turned out to be innocent, each disproved by running it:
+- **Mappers are correct.** `mapSaleLines` on the canonical CSVs → 59,787 rows, 59,787 distinct ids,
+  4 salons, **0 dangling FKs** against the live database.
+- **CSVs are correct.** `transaction_items.csv` = 59,787 rows, every expected column present.
+- **`run.ts`'s load step is correct**, and was byte-identical at load time (`git show e750201`).
+- **`map-transactions.ts` was NOT the bug.** The handoff named it as prime suspect; it is clean.
+
+### Two inherited facts that were wrong — do not re-inherit either
+1. **`docs/DIRECTIVE.md` claimed the tenant loaded on `INGEST_NS=salontouch-2026`. It did not** — it
+   loaded on the **default** `uvalux-practice-2026`. Live org id
+   `50094662-ee05-58e8-8843-a8a9bd858043` = `sha1('uvalux-practice-2026:org:salontouch-real')`;
+   `salontouch-2026` yields `0a856758-…`, which exists nowhere in the database. Setting that NS on a
+   re-run would have built a **second parallel tenant**, not fixed anything. DIRECTIVE.md corrected.
+2. **"salontouch-real has 0 products" was a join artifact.** `bask.product` is **global — no
+   `salon_id` column**. 731 products exist, including all 673 SalonTouch ones (`AUSTRALIAN GOLD`
+   leads at $123,915 over 7,098 lines — which is the UVALUX pitch, in the real data).
+
+### Shipped — `5426cc0`
+`packages/db/scripts/salon-ingest/backfill-sale-lines.ts` — inserts only the missing table.
+Dry-run by default, checks every FK against the live database *before* writing a row, chunked at
+5,000 outside any interactive transaction (one transaction over 12 batches is what times out on the
+pooler), `skipDuplicates` + deterministic ids so it is **safe to re-run** — a second run inserts 0.
+Plus: `run.ts`'s wipe now names exactly which deletes already committed when it dies mid-wipe, and
+says to run wipes against `DIRECT_DATABASE_URL` (:5432), never the pooler. `tsc` exit 0.
+
+### THE SWEEP STILL PRODUCES 0 DRAFTS — and the reason has changed
+This is now **threshold calibration, not missing data**, which is DIRECTIVE.md priority 1 confirmed
+against real numbers for the first time. `retail_attachment_slip` can finally *compute*:
+
+| salon | attachment (recent) | baseline | visits |
+|---|---|---|---|
+| Salon A | 3.51% | 4.54% | 627 |
+| Salon B | 2.22% | 4.17% | 541 |
+| Salon C | 7.76% | 7.77% | 322 |
+| Salon D | 2.15% | 3.53% | 186 |
+
+Real attachment is 2–8%. The detector's thresholds were built for synthetic fixtures around 30%, so
+a genuine **halving** at Salon B reads as below-threshold and fires nothing. **Recalibrating the
+constants is a business call — not started, waiting on Daniel.**
+
+Three detectors remain **structurally** dead on this dataset, unchanged and not a bug: `soft_capacity`
+(0 rooms), `low_stock`/`overstock` (0 `inventory_level`), `failed_payments` (0 failed memberships),
+`anomaly_band` (no `service_id` on any line — `map-transactions.ts` never sets it and the source CSV
+has no such column).
+
+### Still open, unchanged from the last handoff
+Push `5f1c2c9` (73 files, committed not pushed, master auto-deploys) · health band cut-offs ·
+rotate 4 credentials · demo date.
+
 ## Session 2026-08-26 (23:30–00:05) — FABLE REPORT VERIFIED + REWRITTEN AS THE PITCH
 
 **Deliverable: `docs/pitch/2026-08-27-insights-final.html`.** Accuracy review:
