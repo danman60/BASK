@@ -137,7 +137,16 @@ await check('beat-7', 'What UVALUX sees screen exists', async () => {
   const status = await routeStatus(page, '/settings/data-sharing');
   if (status === 404) return 'skip';
   if (status !== 200) return `HTTP ${status}`;
-  await page.waitForTimeout(800);
+  /* Wait for the words, not for a stopwatch. A flat 800ms passed against a warm
+     dev server and FAILED against production's cold serverless start — the page
+     was byte-identical, just later. A gate that cries wolf the morning of a
+     demo is worse than no gate, because the honest response to it is to stop
+     believing it. */
+  await page
+    .getByText(/uvalux sees/i)
+    .first()
+    .waitFor({ timeout: 15_000 })
+    .catch(() => {});
   const text = await page.locator('body').innerText();
   return /uvalux sees/i.test(text) || 'screen does not name what UVALUX sees';
 });
