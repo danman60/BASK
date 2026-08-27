@@ -137,6 +137,17 @@ Recorded because the *pattern* matters more than the individual fixes.
    grants and every role read `none` — including `USAGE ON SCHEMA` itself, without which
    table-level grants are unreachable. Fixed in `1b1d2f6`.
 
+**Why grants are needed after a restore at all** (the part that is easy to miss): restored objects
+are owned by `supabase_admin`, so `<project>_owner` can see nothing until it is granted. **A dump
+carries data, not the project's permissions.** Scripted in `b45f03c` — `migrate-from-hosted.sh` now
+grants schema `USAGE` to `<project>_owner` and `<project>_authenticator`, and table/sequence
+privileges to the owner only, skipping absent roles with a printed note so prefix-mode tenants are
+untouched.
+
+**`<project>_authenticator` holding `USAGE` and NO table grants is CORRECT, not an omission.** It is
+a login role that `SET ROLE`s into `anon`/`authenticated` and must not hold table privileges of its
+own. Do not "fix" it.
+
 **The lesson, three times in one night:** believe the artefact, not the summary line. Every one of
 these was found by checking the thing itself — query the target, read `ufw status` not the unit
 state, read as the *app* role not the admin role.
