@@ -24,6 +24,26 @@ import type { AskResult } from '@bask/core';
  *    it is that you can see what the sentence rests on.
  */
 
+/* The bundle's keys are camelCase because they are code. The owner should never
+   see them — printing `thingsNeedingAttention` under an answer is the same leak
+   as a card quoting its own field name. Anything unmapped falls back to spacing
+   out the camelCase rather than showing it raw. */
+const FACT_LABELS: Record<string, string> = {
+  salonName: 'your salon',
+  totalVisitsOnRecord: 'every visit on record',
+  activeCustomers: 'your active customers',
+  activeMemberships: 'your memberships',
+  monthlyMembershipMoney: 'monthly membership money',
+  membershipsWithFailedPayment: 'memberships with a failed payment',
+  moneyStuckInFailedPayments: 'money stuck in failed payments',
+  thingsNeedingAttention: 'what needs your attention',
+  bestSellingProductsRecently: 'what has been selling',
+};
+
+function factLabel(key: string): string {
+  return FACT_LABELS[key] ?? key.replace(/([A-Z])/g, ' $1').toLowerCase().trim();
+}
+
 const SUGGESTIONS = [
   'How many memberships am I about to lose?',
   'What is my biggest opportunity this week?',
@@ -103,7 +123,7 @@ export function AskSurface({
                 <p className="ask-a">{result.answer}</p>
                 {result.usedFacts.length > 0 && (
                   <p className="ask-used">
-                    From: {result.usedFacts.join(' · ')}
+                    Looked at: {result.usedFacts.map(factLabel).join(' · ')}
                   </p>
                 )}
                 {result.offline && (
