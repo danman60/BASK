@@ -270,3 +270,31 @@
   font-size: var(--text-sm);
   z-index: 50;
 }
+
+/* ---- what the flip just cost --------------------------------------------- */
+/* Beat 5 of the pitch: "Compass visibly loses detail." Two lists re-rendering
+   shows the destination and hides the journey, so the change gets its own line
+   on the rep's panel, and it moves — the movement is what makes a consent
+   setting feel like it has teeth rather than like a checkbox. */
+.ds-delta {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  font: 400 var(--text-sm) / 1.5 var(--font-body);
+  animation: ds-delta-in var(--dur-base, 220ms) ease-out both;
+}
+.ds-delta strong { font-variant-numeric: tabular-nums; }
+.ds-delta-fields { color: inherit; opacity: 0.85; }
+.ds-delta--lost { background: var(--risk-wash); color: var(--risk); }
+.ds-delta--lost .ds-delta-fields { text-decoration: line-through; }
+.ds-delta--gained { background: var(--success-wash); color: var(--success); }
+
+@keyframes ds-delta-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+/* Movement is the message here, but never at the cost of someone who asked for
+   less of it. */
+@media (prefers-reduced-motion: reduce) {
+  .ds-delta { animation: none; }
+}
