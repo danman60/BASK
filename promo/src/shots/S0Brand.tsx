@@ -87,7 +87,7 @@ export const S0Brand: React.FC<{ duration: number }> = ({ duration }) => {
             transform: `translateY(${(1 - line) * 10}px)`,
           }}
         >
-          All-in-one <span style={{ fontStyle: 'italic', color: T.primary }}>salon management</span>.
+          Salon <span style={{ fontStyle: 'italic', color: T.primary }}>intelligence</span>.
         </div>
 
         <div
@@ -96,7 +96,7 @@ export const S0Brand: React.FC<{ duration: number }> = ({ duration }) => {
             marginTop: 18, opacity: sub,
           }}
         >
-          Front desk · inventory · marketing · the whole floor
+          Reads your data · finds the moves · ready to run
         </div>
       </div>
     </AbsoluteFill>
