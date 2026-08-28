@@ -1,7 +1,7 @@
 import { SHELL_UI, type NavKey } from '@bask/ui';
 
 /**
- * The app's information architecture — six destinations.
+ * The app's information architecture — seven destinations.
  *
  * FLOOR AND INVENTORY ARE NOT PART OF THIS PRODUCT. `8e32efc` took them out when
  * Bask narrowed to a sales-intelligence engine, and this file put them back with
@@ -42,6 +42,7 @@ export const NAV: readonly NavDestination[] = [
   dest('customers', '/customers', '☺'),
   dest('marketing', '/marketing', '✉'),
   dest('insights', '/insights', '◈'),
+  dest('ask', '/ask', '✦'),
   dest('monitor', '/monitor', '◎'),
   dest('community', '/community', '◇'),
 ];

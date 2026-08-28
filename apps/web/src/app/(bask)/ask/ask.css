@@ -1,0 +1,60 @@
+/* Ask — the question box.
+ *
+ * One column, wide type, plenty of air: this screen is a conversation, and a
+ * conversation laid out like a dashboard reads as a form to fill in. */
+
+.ask-page { display: grid; gap: var(--space-6); max-width: 46rem; }
+.ask-head { display: grid; gap: var(--space-3); }
+.ask-eyebrow { margin: 0; font: 600 var(--text-xs) / 1 var(--font-body);
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary-deep); }
+.ask-h1 { margin: 0; font: 600 clamp(1.6rem, 3.5vw, 2.4rem) / 1.15 var(--font-display); }
+.ask-lede { margin: 0; max-width: 56ch; font: 400 var(--text-sm) / 1.6 var(--font-body);
+  color: var(--ink-soft); }
+
+.ask-wrap { display: grid; gap: var(--space-4); }
+.ask-form { display: flex; gap: var(--space-3); min-width: 0; }
+.ask-input {
+  flex: 1; min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  padding: 13px var(--space-4);
+  font: 400 var(--text-md) / 1.4 var(--font-body);
+  color: var(--ink);
+}
+.ask-input:focus-visible { outline: 2px solid var(--primary); outline-offset: 1px; border-color: transparent; }
+.ask-input::placeholder { color: var(--ink-faint); }
+.ask-go { flex: none; }
+
+.ask-suggest { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.ask-chip {
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font: 400 var(--text-xs) / 1.2 var(--font-body);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.ask-chip:hover:not(:disabled) { border-color: var(--primary); color: var(--primary-deep); }
+.ask-chip:disabled { opacity: 0.5; cursor: default; }
+
+/* The answer. `data-state="no"` is a real answer in a calmer colour, never an
+   error — see the note in AskSurface. */
+.ask-answer {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.ask-answer[data-state='no'] { border-left-color: var(--ink-faint); }
+.ask-answer[data-state='busy'] { border-left-color: var(--line); }
+.ask-q { margin: 0; font: 600 var(--text-sm) / 1.4 var(--font-body); color: var(--ink-faint); }
+.ask-a { margin: 0; font: 400 var(--text-md) / 1.6 var(--font-body); color: var(--ink);
+  overflow-wrap: anywhere; }
+.ask-a--busy { color: var(--ink-faint); }
+.ask-used { margin: 0; font: 400 var(--text-xs) / 1.5 var(--font-body); color: var(--ink-faint); }

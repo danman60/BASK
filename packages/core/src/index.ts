@@ -143,6 +143,7 @@ export {
   type AiGenerationLog,
   type AiUsage,
 } from './ai/client';
+export { askAboutSalon, AskAnswerSchema, type AskAnswer, type AskInput, type AskResult } from './ai/ask';
 export {
   DEFAULT_GUARDRAILS,
   checkPayload,

@@ -132,6 +132,26 @@ await check('beat-5', 'What UVALUX sees screen exists', async () => {
   return /uvalux sees/i.test(text) || 'screen does not name what UVALUX sees';
 });
 
+// ── Wow surfaces: provenance, field evidence, ask ────────────────────────────
+await check('wow', 'Field evidence page reports live counts', async () => {
+  const status = await routeStatus(page, '/evidence');
+  if (status === 404) return 'skip';
+  if (status !== 200) return `HTTP ${status}`;
+  await page.waitForTimeout(1500);
+  const text = await page.locator('body').innerText();
+  if (/field dataset is not loaded/i.test(text)) return 'field dataset missing from the database';
+  return /visits/i.test(text) || 'no counts on the page';
+});
+
+await check('wow', 'Ask surface offers questions', async () => {
+  const status = await routeStatus(page, '/ask');
+  if (status === 404) return 'skip';
+  if (status !== 200) return `HTTP ${status}`;
+  await page.locator('.ask-chip').first().waitFor({ timeout: 15_000 }).catch(() => {});
+  const chips = await page.locator('.ask-chip').count();
+  return chips > 0 || 'no suggested questions rendered';
+});
+
 // ── Customer side (represented-future surface, but real) ─────────────────────
 await check('customer', 'Public booking page offers real slots', async () => {
   const status = await routeStatus(page, '/book');
