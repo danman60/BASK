@@ -11,6 +11,8 @@
  * computes. If a number isn't in Evidence, it doesn't appear here.
  */
 
+import type { ReactNode } from 'react';
+
 import type { Evidence } from '@bask/core';
 
 import { INSIGHT_UI } from '../guidance/guidance';
@@ -21,12 +23,21 @@ export interface EvidenceDrilldownProps {
   /** Ties the expanded region back to the card's toggle button for screen readers. */
   id?: string;
   labelledBy?: string;
+  /**
+   * Rendered last, below the contributing factors: the records layer.
+   *
+   * The rule at the top of this file — it reads Evidence, it never computes —
+   * still holds for everything this component draws itself. The slot is how the
+   * chain continues past what Evidence can say, into the rows themselves,
+   * without this component learning how to fetch anything.
+   */
+  children?: ReactNode;
 }
 
 const CHART_W = 560;
 const CHART_H = 130;
 
-export function EvidenceDrilldown({ evidence, id, labelledBy }: EvidenceDrilldownProps) {
+export function EvidenceDrilldown({ evidence, id, labelledBy, children }: EvidenceDrilldownProps) {
   const { series, comparison, contributingFactors, impact, metric, window } = evidence;
   const values = series?.points.map((p) => p.value) ?? [];
 
@@ -102,6 +113,10 @@ export function EvidenceDrilldown({ evidence, id, labelledBy }: EvidenceDrilldow
         <p className="b-drill-h">{INSIGHT_UI.basisHeading}</p>
         <p className="b-drill-basis">{impact.basis}</p>
       </div>
+
+      {/* Full width, under both columns: the records are the conclusion of the
+          drill-down, not a third column of it. */}
+      {children}
     </div>
   );
 }

@@ -16,6 +16,8 @@ import { revalidatePath } from 'next/cache';
 
 import { db } from '@bask/db';
 
+import { attachmentRecords, type RecordsView } from '@/server/records';
+
 export type DismissReason = 'not_relevant' | 'already_handled' | 'snooze';
 
 const REASONS: readonly DismissReason[] = ['not_relevant', 'already_handled', 'snooze'];
@@ -78,4 +80,47 @@ async function nextWeek(): Promise<string> {
   const target = new Date(base);
   target.setUTCDate(target.getUTCDate() + 7);
   return target.toISOString().slice(0, 10);
+}
+
+/**
+ * The records behind a number — the bottom of the drill-down.
+ *
+ * Fetched on demand rather than shipped with the page: it is dozens of rows per
+ * insight, almost nobody opens it, and the ones who do are worth a round trip.
+ * That it costs a request is the point — the rows are read out of the database
+ * when asked for, not baked into the card at build time.
+ *
+ * Returns null when the insight's metric has no exact visit-level reconciliation
+ * (see `server/records.ts`), so the UI can simply not offer the link rather than
+ * showing rows that only approximately explain the figure.
+ */
+export async function insightRecords(insightId: string): Promise<RecordsView | null> {
+  try {
+    const insight = await db.insight.findUnique({
+      where: { id: insightId },
+      select: { salonId: true, evidence: true, impactCurrency: true },
+    });
+    if (!insight) return null;
+
+    const evidence = insight.evidence as {
+      metric?: { key?: string };
+      comparison?: { currentWindow?: { start?: string; end?: string; label?: string } };
+      window?: { start?: string; end?: string; label?: string };
+    } | null;
+
+    if (evidence?.metric?.key !== 'retail_attachment_rate') return null;
+
+    const win = evidence.comparison?.currentWindow ?? evidence.window;
+    if (!win?.start || !win?.end) return null;
+
+    return await attachmentRecords(
+      insight.salonId,
+      win.start,
+      win.end,
+      win.label ?? 'this window',
+      insight.impactCurrency ?? 'CAD',
+    );
+  } catch {
+    return null;
+  }
 }

@@ -98,6 +98,11 @@ export {
 // DESIGN_SPEC §4 component vocabulary (M1 lane 1)
 export { InsightCard, renderBoldFacts, type InsightCardProps } from './components/InsightCard';
 export {
+  RecordsPanel,
+  type RecordsPanelProps,
+  type RecordRowView,
+} from './components/RecordsPanel';
+export {
   EvidenceDrilldown,
   type EvidenceDrilldownProps,
 } from './components/EvidenceDrilldown';

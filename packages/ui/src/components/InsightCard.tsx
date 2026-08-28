@@ -48,6 +48,16 @@ export interface InsightCardProps {
   onDismiss?: (reason: DismissReasonKey) => void;
   /** Fired the first time the drill-down is opened, so the caller can mark it seen. */
   onExplain?: () => void;
+  /**
+   * The records layer, rendered at the BOTTOM of the evidence drill-down.
+   *
+   * Passed in rather than fetched here because this component is presentational
+   * and the rows are a database round trip. The card owns the disclosure; the
+   * caller owns the data. Omit it and the drill-down simply ends at the evidence,
+   * which is the correct behaviour for any metric whose figure cannot be
+   * reconciled to a visit-level list.
+   */
+  recordsSlot?: ReactNode;
   /** Compact two-button layout used at mobile widths is handled in CSS, not here. */
   children?: ReactNode;
 }
@@ -71,6 +81,7 @@ export function InsightCard({
   rail,
   sparkline,
   evidence,
+  recordsSlot,
   primaryAction,
   dismissing = false,
   onDismiss,
@@ -172,7 +183,9 @@ export function InsightCard({
       )}
 
       {expanded && evidence && (
-        <EvidenceDrilldown evidence={evidence} id={drillId} labelledBy={titleId} />
+        <EvidenceDrilldown evidence={evidence} id={drillId} labelledBy={titleId}>
+          {recordsSlot}
+        </EvidenceDrilldown>
       )}
     </article>
   );

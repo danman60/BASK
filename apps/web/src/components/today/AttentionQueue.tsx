@@ -17,9 +17,33 @@
 import { useRouter } from 'next/navigation';
 import { useCallback, useState, useTransition } from 'react';
 
-import { InsightCard, TeachingEmptyState, UndoToast, INSIGHT_UI, type DismissReasonKey } from '@bask/ui';
+import {
+  InsightCard,
+  RecordsPanel,
+  TeachingEmptyState,
+  UndoToast,
+  INSIGHT_UI,
+  type DismissReasonKey,
+} from '@bask/ui';
 
 import type { AttentionCard } from '@/lib/today-data';
+
+/** Shape returned by `insightRecords`; kept local so this file imports no server code. */
+interface RecordsData {
+  rows: {
+    visitId: string;
+    day: string;
+    customerName: string;
+    attached: boolean;
+    productName: string | null;
+    amountLabel: string | null;
+  }[];
+  totalVisits: number;
+  attachedVisits: number;
+  ratePercent: number;
+  windowLabel: string;
+  hiddenCount: number;
+}
 
 interface PendingUndo {
   insightId: string;
@@ -31,17 +55,24 @@ export function AttentionQueue({
   onDismissAction,
   onRestoreAction,
   onSeenAction,
+  onRecordsAction,
 }: {
   cards: AttentionCard[];
   onDismissAction: (insightId: string, reason: DismissReasonKey) => Promise<{ ok: boolean }>;
   onRestoreAction: (insightId: string) => Promise<{ ok: boolean }>;
   onSeenAction: (insightId: string) => Promise<{ ok: boolean }>;
+  /** Fetches the rows behind a card. Returns null when the metric has no exact list. */
+  onRecordsAction: (insightId: string) => Promise<RecordsData | null>;
 }) {
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [collapsing, setCollapsing] = useState<Set<string>>(new Set());
   const [hidden, setHidden] = useState<Set<string>>(new Set());
   const [undo, setUndo] = useState<PendingUndo | null>(null);
+  /* Records are fetched the first time a card is expanded and then kept: an owner
+     checking the maths tends to open, read, collapse and re-open, and paying for
+     the round trip again each time would make the honest thing feel slow. */
+  const [records, setRecords] = useState<Record<string, RecordsData | null>>({});
   const [error, setError] = useState<string | null>(null);
 
   const dismiss = useCallback(
@@ -123,7 +154,25 @@ export function AttentionQueue({
             primaryAction={card.primaryAction}
             dismissing={collapsing.has(card.insightId)}
             onDismiss={(reason) => dismiss(card, reason)}
-            onExplain={() => void onSeenAction(card.insightId)}
+            onExplain={() => {
+              void onSeenAction(card.insightId);
+              /* Only ask the server once per card. `undefined` means "never
+                 asked"; an explicit null means "asked, and this metric has no
+                 exact row-level list" — which must not trigger a re-fetch. */
+              if (records[card.insightId] === undefined) {
+                void onRecordsAction(card.insightId).then((data) =>
+                  setRecords((prev) => ({ ...prev, [card.insightId]: data })),
+                );
+              }
+            }}
+            recordsSlot={
+              records[card.insightId] ? (
+                <RecordsPanel
+                  {...records[card.insightId]!}
+                  quotedPercent={card.evidence?.metric?.value ?? null}
+                />
+              ) : null
+            }
           />
         </div>
       ))}

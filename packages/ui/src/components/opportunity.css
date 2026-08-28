@@ -516,3 +516,26 @@
   .b-win-foot { align-items: stretch; }
   .b-win-try { width: 100%; }
 }
+
+/* ---- records panel (the bottom of the drill-down) -------------------------- */
+/* Sits inside the evidence drilldown, one level further in, so it is inset and
+   quieter than its parent — the visual grammar says "deeper", not "another
+   section". Attached rows carry a faint tint so a glance finds the sales without
+   the owner reading a single row. */
+.b-records { margin-top: var(--space-4); padding-top: var(--space-4);
+  border-top: 1px dashed var(--line); display: grid; gap: var(--space-3); }
+.b-records-head { margin: 0; font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink-soft); }
+.b-records-head .num { color: var(--ink); }
+.b-records-ok { color: var(--ink-faint); }
+.b-records-flag { color: var(--risk); font-weight: 600; }
+.b-records-scroll { overflow-x: auto; max-height: 340px; overflow-y: auto;
+  border: 1px solid var(--line-soft); border-radius: var(--radius-sm); background: var(--card); }
+.b-records-scroll .b-dtable td { padding: 8px var(--space-3); font-size: var(--text-xs); }
+.b-records-scroll .b-dtable th { padding: 8px var(--space-3); font-size: var(--text-xs);
+  position: sticky; top: 0; background: var(--card); z-index: 1; }
+.b-records-scroll tr[data-attached='true'] td { background: var(--primary-wash); }
+.b-records-none { color: var(--ink-faint); }
+.b-records-more { margin: 0; font: 400 var(--text-xs) / 1.5 var(--font-body); color: var(--ink-faint); }
+/* The records panel spans both drilldown columns — it concludes the drill-down
+   rather than sitting beside it. */
+.b-drill > .b-records { grid-column: 1 / -1; }
