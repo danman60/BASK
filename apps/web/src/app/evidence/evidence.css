@@ -1,0 +1,118 @@
+/* Field evidence page.
+ *
+ * Reads as a document, not a dashboard: one column, generous measure, display
+ * face for the claims and the body face for the proof. The page has one job —
+ * to be believed — and a page that looks like an interface invites the reader to
+ * treat the numbers as an interface's numbers.
+ *
+ * Tokens only. It sits outside the operator shell, so it brings its own frame
+ * but never its own palette. */
+
+.ev-page {
+  min-height: 100dvh;
+  background: var(--paper);
+  color: var(--ink);
+  padding: clamp(2rem, 6vw, 5rem) var(--page-gutter, 1.25rem);
+}
+.ev-shell { max-width: 62rem; margin: 0 auto; display: grid; gap: var(--space-6); }
+
+.ev-eyebrow {
+  margin: 0;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary-deep);
+}
+.ev-h1 {
+  margin: 0;
+  font: 600 clamp(1.9rem, 4.4vw, 3.2rem) / 1.08 var(--font-display);
+  letter-spacing: -0.02em;
+}
+.ev-h2 { margin: 0 0 var(--space-3); font: 600 var(--text-xl) / 1.2 var(--font-display); }
+.ev-lede {
+  margin: 0;
+  max-width: 62ch;
+  font: 400 var(--text-md) / 1.6 var(--font-body);
+  color: var(--ink-soft);
+}
+.ev-body { margin: 0 0 var(--space-4); max-width: 62ch;
+  font: 400 var(--text-sm) / 1.6 var(--font-body); color: var(--ink-soft); }
+.ev-note { margin: var(--space-4) 0 0; max-width: 62ch;
+  font: 400 var(--text-xs) / 1.6 var(--font-body); color: var(--ink-faint); }
+
+/* ---- the headline counts -------------------------------------------------- */
+.ev-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
+  gap: var(--space-4);
+}
+.ev-stat {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.ev-stat-v { font: 700 clamp(1.4rem, 3vw, 2.1rem) / 1 var(--font-display); font-variant-numeric: tabular-nums; }
+.ev-stat-k { font: 400 var(--text-xs) / 1 var(--font-body); color: var(--ink-faint);
+  text-transform: uppercase; letter-spacing: 0.08em; }
+
+.ev-block {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  min-width: 0;
+}
+
+/* ---- the decline, year by year -------------------------------------------- */
+/* Two bars a year, same scale within each measure. Visits barely move while
+   retail falls away — the whole argument is that shape, so the bars are drawn
+   rather than described. */
+.ev-years { display: grid; gap: var(--space-4); }
+.ev-year {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr) auto;
+  gap: var(--space-3);
+  align-items: center;
+}
+.ev-year-label { font: 600 var(--text-sm) / 1 var(--font-body); color: var(--ink-soft); }
+.ev-bars { display: grid; gap: 5px; min-width: 0; }
+/* The bar lives in its own track so a 100%-width bar cannot push its label into
+   the attachment column — which is exactly what the longest year did. */
+.ev-bar-row { display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center; gap: var(--space-3); min-width: 0; }
+.ev-bar-track { display: block; min-width: 0; }
+.ev-bar { display: block; height: 12px; border-radius: 999px; min-width: 2px; }
+.ev-bar--visits { background: var(--ink-faint); }
+.ev-bar--retail { background: var(--primary); }
+.ev-bar-v { font: 400 var(--text-xs) / 1 var(--font-body); color: var(--ink-faint); white-space: nowrap; }
+.ev-year-attach { font: 600 var(--text-xs) / 1 var(--font-body); color: var(--ink-soft); white-space: nowrap; }
+
+/* ---- brand mix ------------------------------------------------------------ */
+.ev-brands { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.ev-brand {
+  display: grid;
+  grid-template-columns: minmax(0, 12rem) minmax(0, 1fr) 3.5rem 5.5rem;
+  gap: var(--space-3);
+  align-items: center;
+}
+.ev-brand-name { font: 500 var(--text-sm) / 1.3 var(--font-body); overflow-wrap: anywhere; }
+.ev-brand-bar { height: 10px; border-radius: 999px; background: var(--paper-2); overflow: hidden; }
+.ev-brand-bar > span { display: block; height: 100%; background: var(--grad-sunset-soft); }
+.ev-brand-v,
+.ev-brand-rev { font: 600 var(--text-xs) / 1 var(--font-body); text-align: right;
+  font-variant-numeric: tabular-nums; }
+.ev-brand-rev { color: var(--ink-faint); }
+
+/* On a phone the four-column brand row cannot hold; it becomes name over bar,
+   with the two figures on one line beneath. Nothing is dropped. */
+@media (max-width: 640px) {
+  .ev-year { grid-template-columns: 3.2rem minmax(0, 1fr); }
+  .ev-year-attach { grid-column: 2; justify-self: start; }
+  .ev-brand { grid-template-columns: minmax(0, 1fr) auto; row-gap: 6px; }
+  .ev-brand-bar { grid-column: 1 / -1; }
+  .ev-brand-rev { text-align: right; }
+}
