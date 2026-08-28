@@ -1,5 +1,50 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-28 (early) — FOUR WOW SURFACES + A FRESH FILM · all live on production
+
+**`demo-verify` 12/12 on localhost AND production.** Two new gate checks added, because a wow
+surface nobody gates is one that silently rots.
+
+### The film was stale in a way that mattered
+Last render was 2026-08-24 and the film composites REAL screenshots, so every product frame showed
+the old nav, 21%→14% attachment and $1,270. Worse: **the brand fix was never committed** — in git,
+frame one still read "All-in-one salon management", the exact category Nick ruled out. Re-captured
+all 132 textures from production, re-rendered → `promo/out/promo-v4-vo.mp4` (83.8s, 1080p).
+Two things had to be fixed to render at all: `today-full` had grown to 39MP (Today got taller with
+six cards) and blew Chrome's decode limit; and the font `delayRender` timed out under load.
+
+### The four surfaces
+1. **Records drill-down.** "Show me why" now ends in the actual visits — *"84 of 1,441 visits over
+   last 14 days included a product — 5.8%"* — with the rate **recomputed from the rows** and printed
+   beside the card's. Inside half a point it says "counted from the visits below"; wider, it says
+   they disagree and to trust the list.
+2. **`/evidence`.** The real dataset as a live page, queried on load: 194,672 visits. *"They kept the
+   customers. They stopped selling to them"* — visits −13.5%, retail −37.7%, 2017→2019. Australian
+   Gold is 63.3% of their retail. Not a Compass surface, deliberately: no dealer relationship exists,
+   so routing it through the consent filter would imply a story that isn't there.
+3. **Consent delta.** Flipping a tier now says what it cost: *"16 things just disappeared from your
+   rep's screen"*, struck through, on the rep's own panel. Beat 5's promise, finally visible.
+4. **`/ask`.** Answers from a bounded facts bundle — the model never touches the database, writes no
+   SQL, and cannot reach anything not handed to it. Verified live: *"$5,354"* matches the stored
+   insight, *"$523"* matches the database, and out-of-scope questions are refused, not guessed.
+
+### Three copy leaks found by reading the screen, not by any check
+`"— say so honestly in the confidenceNote."` and `"Note this in the confidenceNote."` were authoring
+instructions **shipped as the card**, live on Today. The ask box said *"not in the facts provided"*
+and printed raw keys (`thingsNeedingAttention`). Nothing validates copy for being about itself.
+
+### Also fixed
+The failed-payments card quoted **$412**, a number in neither the data nor the constants (real:
+$523 total, **$284** recoverable). That exposed a second bug — the file documents "ranked by
+impactMonthly descending" and nothing sorts at render, so $284 sat above $425 and $600. Reordered.
+
+### Two sessions running
+- **`uvalux-platform-8`** (Fable) — industry-agnostic version of the pipeline. Was at 82% of its
+  Fable limit, resets 8am UTC.
+- **`uvalux-platform-9`** (Opus) — the H3 + shotcraft narrative film off
+  `docs/pitch/2026-08-27-insights-final.html`. FIRMAMENT is back: 4090 at 890 MiB used of 24,564,
+  so ~23.7 GB free against an H3 peak of 22.7–23.9 GB. It fits, but only just — one clip at a time.
+
 ## Session 2026-08-27 (14:40–) — DEMO READY
 
 **`demo-verify` 10/10 on localhost AND production. Everything pushed and deployed.**
