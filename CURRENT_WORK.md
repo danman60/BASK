@@ -36,10 +36,18 @@ block FAILS and names the three causes, it does not SKIP).
 - **Citations attach on the AI path ONLY.** The deterministic fallback writes from templates and
   never saw a claim; labelling that copy "what this drew on" would be a lie.
 
+### DEPLOYED AND VERIFIED ON PRODUCTION — 2026-08-29 14:35 EDT
+Commit `7a0385f`, pushed to master, Vercel production build Ready in 35s.
+**https://bask-psi.vercel.app** — `demo:verify` run against that URL: **13 passed, 0 failed**,
+including "Insight drill-down cites the coaching, and it opens". Screenshot of the live page
+(3 citations, one opened to its quote) DM'd. Retrieval works on the deploy, so `OPENAI_API_KEY` is
+present there.
+
+Committed selectively, 25 files — the consent-delta strip, the promo tree, `INBOX.md`,
+`DESIGN_SPEC.md` and `seasonal-pause.ts` are all still uncommitted in the working tree, untouched.
+
 ### Open, needs Daniel
-1. **Deploy.** Nothing is committed and nothing is deployed. Prod verification is DATABASE-side —
-   prod schema, prod corpus, prod retrieval, full UI against prod data from a local build.
-2. **Still unanswered from before:** (a) whether to run a campaign generate against production so
+1. **Still unanswered from before:** (a) whether to run a campaign generate against production so
    the generated copy can be filmed — this also blocks photographing Studio's citation block, since
    rendering it means persisting a draft row; (b) whether to restore the consent-delta UI.
 
