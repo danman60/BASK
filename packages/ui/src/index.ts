@@ -73,6 +73,7 @@ export { default as CitationCard, type CitationCardProps } from './components/Ci
 export {
   EMPTY_STATES,
   GUIDED_UI,
+  COACHING_UI,
   INSIGHT_UI,
   METRICS,
   SHELL_UI,
@@ -106,6 +107,12 @@ export {
   EvidenceDrilldown,
   type EvidenceDrilldownProps,
 } from './components/EvidenceDrilldown';
+// The visible end of claim retrieval — sits under advice and under generated
+// copy, and opens to the words somebody said on stage.
+export {
+  CoachingCitations,
+  type CoachingCitationsProps,
+} from './components/CoachingCitations';
 export { ImpactChip, type ImpactChipProps } from './components/ImpactChip';
 export { Sparkline, sparklinePoints, type SparklineProps } from './components/Sparkline';
 export { StatRow, type StatRowProps } from './components/StatRow';

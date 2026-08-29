@@ -101,6 +101,49 @@ export function isAiConfigured(env: NodeJS.ProcessEnv = process.env): boolean {
 }
 
 /**
+ * The embedding model, named once.
+ *
+ * It MUST match whatever embedded the corpus, or every similarity score is
+ * noise — a query vector from one model and a stored vector from another are
+ * two different spaces, and the database will happily return the wrong rows
+ * without erroring. Changing this means re-embedding
+ * `bask.knowledge_claim` (`pnpm --filter @bask/db knowledge:embed-claims`,
+ * after nulling the column) and `bask.knowledge_chunk` with it.
+ */
+export const EMBEDDING_MODEL = 'text-embedding-3-small';
+
+/**
+ * Embed one short piece of text for vector search.
+ *
+ * Same lazy SDK import as `generateJson`, for the same reason: `packages/core`
+ * must stay importable from a browser bundle. Throws `AiUnavailableError` when
+ * there is no key — callers that must not fail (retrieval is an enhancement,
+ * never a dependency) catch it and carry on with no citations.
+ */
+export async function embedText(
+  text: string,
+  env: NodeJS.ProcessEnv = process.env,
+): Promise<number[]> {
+  if (!isAiConfigured(env)) {
+    throw new AiUnavailableError('OPENAI_API_KEY is not set');
+  }
+
+  const { default: OpenAI } = await import('openai');
+  const client = new OpenAI({ apiKey: env.OPENAI_API_KEY });
+
+  const response = await client.embeddings.create({
+    model: EMBEDDING_MODEL,
+    input: text,
+  });
+
+  const vector = response.data?.[0]?.embedding;
+  if (!vector || vector.length === 0) {
+    throw new AiUnavailableError('Embedding response carried no vector');
+  }
+  return vector;
+}
+
+/**
  * Ask the model for a JSON object matching `jsonSchema`, then validate it.
  *
  * Structured outputs do the shape enforcement server-side; `validate` is the

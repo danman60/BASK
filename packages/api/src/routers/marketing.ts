@@ -40,6 +40,7 @@ import {
   type CampaignGenerationInput,
   type CampaignTone,
 } from '../ai/campaign';
+import { INSIGHT_CLAIM_CATEGORIES, coachingFor } from '../ai/coaching';
 import { ensureDemoState } from '../demo/clock';
 import {
   COMPOSITE_LAPSED_MIDWEEK,
@@ -901,6 +902,33 @@ async function buildGenerationInput(
 
   const sendAt = args.sendAt ?? defaultSendAt(addDays(today, 3));
 
+  // The coaching behind this campaign. Retrieved HERE rather than in each
+  // procedure so generate, regeneratePiece and changeTone all draw on the same
+  // claims — a regenerate that silently lost its citations would read as the
+  // product forgetting where the copy came from. `coachingFor` never throws; no
+  // key or no corpus simply means no citations and an unchanged campaign.
+  const coaching = await coachingFor(
+    db,
+    [
+      args.goal,
+      args.offer.headline,
+      audienceDescription(args.audienceKey),
+      insight?.title ?? '',
+      // `**bold**` markers are a rendering instruction, not words. Left in, they
+      // are just noise in the embedding.
+      (evidence?.sentence ?? '').replace(/\*\*/g, ''),
+    ]
+      .filter(Boolean)
+      .join('. '),
+    {
+      limit: 3,
+      // Marketing coaching first — this is copy being written. When the campaign
+      // exists to fix an insight, that insight's own domain is preferred too, so
+      // a membership campaign can still reach membership coaching.
+      prefer: ['marketing', ...(INSIGHT_CLAIM_CATEGORIES[insight?.type ?? ''] ?? [])],
+    },
+  );
+
   return {
     input: {
       salonName: salon.name,
@@ -919,6 +947,7 @@ async function buildGenerationInput(
         : null,
       sendLabel: formatSendLabel(sendAt),
       variant: args.variant ?? 0,
+      coaching,
     },
     audience: {
       key: args.audienceKey,

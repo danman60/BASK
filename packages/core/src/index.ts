@@ -136,7 +136,9 @@ export {
 } from './ai/model';
 export {
   AiUnavailableError,
+  EMBEDDING_MODEL,
   canonicalJson,
+  embedText,
   generateJson,
   hashContext,
   isAiConfigured,
@@ -415,6 +417,32 @@ export {
 // API router and the Compass page can share one implementation of "what does
 // this corpus look like" rather than each growing its own.
 export { buildCurationGraph } from './knowledge/curation/graph';
+
+// Retrieval over that same corpus. Both halves are exported: `retrieve` searches
+// raw transcript chunks (`bask.match_knowledge`), `retrieveClaims` searches the
+// distilled claims (`bask.match_claims`) and is what the product cites — see
+// docs/plans/2026-08-29-rag-wiring.md §0 for why the claim, not the chunk.
+// `retrieve` was written months before anything imported it; it was dead code
+// only because this line was missing.
+export {
+  DEFAULT_MATCH_COUNT,
+  DEFAULT_THRESHOLD,
+  formatOffset,
+  retrieve,
+  toCitation,
+  type Citation,
+  type KnowledgeMatch,
+  type QueryFn,
+} from './knowledge/retrieve';
+export {
+  CLAIM_SOURCE_LABEL,
+  dedupeClaims,
+  retrieveClaims,
+  toClaimCitation,
+  type ClaimCitation,
+  type ClaimMatch,
+  type ClaimQueryFn,
+} from './knowledge/retrieve-claims';
 // Aliased: the module exports `generateCurationAlerts`; the rest of the codebase calls it
 // `claimAlerts`. Renaming the export would be churn for no gain.
 export { generateCurationAlerts as claimAlerts } from './knowledge/curation/alerts';

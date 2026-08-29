@@ -1,5 +1,273 @@
 # CURRENT_WORK — uvalux-platform
 
+## Session 2026-08-29 — THE RAG IS WIRED AND CLICKABLE (demo 2026-09-03)
+
+Daniel: *"well finish it; would love to click through that in a real demo next thurs."* It clicks
+through. Today → any insight → **Show me why** → evidence → the rows → **"What this drew on"**:
+three pieces of UVALUX coaching, each opening to the verbatim quote and a timecode into the
+recording it was said in. Plan + full reasoning: `docs/plans/2026-08-29-rag-wiring.md`.
+
+**The design decision (was open, now made): retrieval runs over the 1,007 DISTILLED CLAIMS, not the
+transcript chunks.** A claim is one readable sentence with the quote it came from; a chunk is 400
+words an owner has to mine. It also makes `review_state` gate something real — `bask.match_claims`
+excludes `rejected`. `retrieve.ts` / `embed.ts` / `match_knowledge` are untouched and still correct.
+
+**Live on the production database:**
+- migration `20260829000000_knowledge_claim_embedding` — `embedding vector(1536)` on
+  `bask.knowledge_claim` + `bask.match_claims(vector, int, float8, text, text)`
+- **1,007 / 1,007 claims embedded**, 0 failed (`pnpm --filter @bask/db knowledge:embed-claims`,
+  gated `EMBED_CONFIRM=yes`, idempotent — only touches rows with a null embedding)
+- retrieval measured against prod: 0.42–0.51 similarity, ~600–1500ms per query
+
+**Wired:** `retrieve` AND `retrieveClaims` are now exported from `@bask/core` (`retrieve` was dead
+code only because that line was missing) · `coachingFor` (`packages/api/src/ai/coaching.ts`) is the
+one caller, and **returns `[]` on every failure — retrieval is an enhancement, never a dependency**
+· campaign generation retrieves in `buildGenerationInput`, so generate / regeneratePiece /
+changeTone all draw on the same claims · insight advice retrieves in `insightCoaching`, on the same
+click that already fetches records.
+
+**`pnpm demo:verify` — 13 passed, 0 failed**, including the new beat "Insight drill-down cites the
+coaching, and it opens" (asserts BOTH that citations render and that one opens to a quote; an empty
+block FAILS and names the three causes, it does not SKIP).
+
+### Two things a later session must not undo
+- **Names never render.** `ClaimCitation` has no speaker field and no `source_file` field — the
+  claims' `source_file` is `J:\Uva25\…`, a drive letter on an edit bay. Not "not rendered": absent.
+- **Citations attach on the AI path ONLY.** The deterministic fallback writes from templates and
+  never saw a claim; labelling that copy "what this drew on" would be a lie.
+
+### Open, needs Daniel
+1. **Deploy.** Nothing is committed and nothing is deployed. Prod verification is DATABASE-side —
+   prod schema, prod corpus, prod retrieval, full UI against prod data from a local build.
+2. **Still unanswered from before:** (a) whether to run a campaign generate against production so
+   the generated copy can be filmed — this also blocks photographing Studio's citation block, since
+   rendering it means persisting a draft row; (b) whether to restore the consent-delta UI.
+
+### Also fixed (pre-existing, and it blocked the above)
+~1 in 3 campaign generations returned a two-line `graphicHeadline` (50 chars vs a 40-char cap),
+which threw the whole content set onto the deterministic path — and citations only attach on the AI
+path. Verified pre-existing with retrieval switched off. Prompt-only fix; 4 of 4 runs since took the
+AI path on `gpt-4.1`.
+
+---
+
+## SUPERSEDED — the job as it stood on 2026-08-28 (now done, kept for the verified facts)
+
+Daniel, on the app's spine: *"analyzing data to identify opportunities having the rag brain of the
+best coaches for that sector…"* — then, told retrieval is not wired: **"well finish it; would love
+to click through that in a real demo next thurs"** (Thu **2026-09-03**).
+
+**Verified on production, do not re-derive:**
+- `bask.match_knowledge(vector, int, float8, text)` **exists**
+- `bask.knowledge_chunk` **0 rows**, `bask.knowledge_doc` **0 rows** — nothing to retrieve
+- `bask.knowledge_claim` **1,007 rows**, rich + `review_state`, **no embedding column**
+- `packages/core/src/knowledge/retrieve.ts` — real, **zero runtime callers**, not exported from core
+- `packages/db/scripts/knowledge/embed.ts` — gated `EMBED_CONFIRM=yes`, needs `OPENAI_API_KEY`, raw
+  SQL (those tables are deliberately not in `schema.prisma`); corpus is 22 docs / 91,046 words
+- `marketing.generate` IS model-backed and returns `provenance {source, model, calledApi, fallbackReason}`
+
+**Shape of the work:** populate the corpus → export and wire `retrieve` into campaign generation and
+insight advice → surface the citation in the UI (it has to be *clickable*, that is the requirement)
+→ verify on prod and add a `demo:verify` check. **Open design decision, not yet made:** retrieve over
+transcript chunks, or add an embedding column and retrieve over the 1,007 distilled claims (better
+citations, and it makes the review queue mean something).
+
+Full handoff: `.claude-crash-transcript.md`.
+
+---
+
+## Session 2026-08-28 (evening) — PROMO v5 DONE · 61.7s, three masters + VO script
+
+`BaskPromoV5` — one running app under its own pinned chrome, following his loop: opportunity → the
+method it came from → Studio drafting the campaign → owner-fired → measured → community → UVALUX at
+altitude + the 741-claim library. Opens and closes on **"opens when the salon is quiet — to make it
+less quiet."**
+
+Delivered (all DM'd): `promo/out/promo-v5.mp4` (captions), `promo-v5-vo-ready.mp4` (captions off,
+for the recorded read), `promo-v5-nobgm.mp4` (SFX only),
+`docs/pitch/2026-08-29-v5-vo-elevenlabs.txt` (**the clean paste — spoken copy lives here only**),
+`docs/pitch/2026-08-29-v5-vo-script.md` (timings + booth notes).
+
+## Session 2026-08-28 (evening) — v5 REBUILT AS THE APP · 55s, three masters + a VO script
+
+**Latest: the training corpus is now IN the film.** Daniel: *"i dont see training corpus in the vo"* —
+he was right, the read said "benchmarked across hundreds of salons", which is the benchmark, not the
+corpus. What the corpus actually is, verified: `/compass/knowledge` holds **741 claims mined from
+UVALUX's own training recordings** (topic-tagged marketing/coaching/operations, timestamped to the
+session, provenance panel with Verify/Reject, 3 decided). Separately
+`packages/core/src/sources/experts.ts` is what prints the METHOD line on every opportunity card,
+tracing each technique to the UVALUX advisory, **de-identified**. A 90f shot of the claim queue was
+added and the VO beat rewritten.
+
+**Deliberately NOT claimed in the read:** that review gates what reaches a salon. Only 3 of 741 are
+decided; the line says "reviewed one at a time" and stops there.
+
+**A name was rendering in the film.** The Compass shell prints the signed-in rep ("Fintan H. / All
+territories") at page (74, 930) on `/compass/knowledge`. `experts.ts` is explicit that individuals
+are never shown app-facing (owner directive 2026-08-22), so the block plus its avatar is masked in
+page space in `A12bKnowledge`. **If that shot is ever reframed, re-check the mask.**
+
+Daniel's notes drove a second rebuild the same evening: *"Current draft of video shows elements too
+isolated, just show the app"*, *"Not phone"*, *"feature community section"*, *"Simpler description
+for someone who's never heard of it"*, and the spine —
+**"data opportunity paired with niche specific coaching wrapped in community support."**
+
+### Deliverables
+- `promo/out/promo-v5.mp4` — captions on, 1650f, **55.0s**
+- `promo/out/promo-v5-vo-ready.mp4` — captions OFF, for his recorded read (`props-vo.json`)
+- `promo/out/promo-v5-nobgm.mp4` — SFX only (`props-nobgm-v5.json`)
+- `docs/pitch/2026-08-29-v5-vo-script.md` — 205-word read, per-shot timings + booth notes
+- `docs/pitch/2026-08-29-v5-vo-elevenlabs.txt` — **the clean paste**: no markdown, no notes. The
+  spoken copy lives here and only here so the two files cannot drift.
+
+### What the cut is now
+Thirteen shots of ONE RUNNING APP, scrolling under its own pinned topbar — no isolated cards on
+cream. Opens with a plain line for someone who has never heard of it: *"An app a salon owner opens
+when the place is quiet."* Then the loop: what changed overnight → six openings ranked → the METHOD
+line (coaching specific to this trade, benchmarked across 300+ salons) → the one-button action →
+**the community feed** → outcomes → the wins feed → `/evidence`. Ends with UVALUX **at altitude
+only** — the network page and one call brief, no drilling.
+
+### How the app is captured now (the important change)
+`promo/scripts/capture-v5-app.mjs` shoots each surface as **contiguous page strips, 1600px wide at
+dsf 2**, plus the sticky topbar on its own → `promo/public/textures/v5app/` + `src/layout-v5app.json`.
+`shots/v5/AppScroll.tsx` stacks the strips back into one page, scrolls a camera down it, and pins the
+chrome. Strips, not one tall image, because a page above ~16k px fails Chrome's decode.
+
+### Two traps, both paid for
+1. **Page-space coordinates must be MEASURED, not guessed.** The Today content column is at
+   **x=250** at 1600px width, not 430 — every highlight landed 180px right of its target until a
+   throwaway Playwright script printed the real boxes.
+2. An element screenshot of a node inside a scroll container captures whatever is painted in the
+   clipped region. Unclipping `.b-records-scroll` fixed the table, and then silently made the
+   insight-card cutout 2,007px tall instead of 956 — any shot deriving a sub-region height by
+   subtraction misplaced its rows by ~1,000px.
+
+### Superseded
+The earlier 43.9s element-framed cut (`shots/v5/{Plate,Act1,Act2,Act3}.tsx`) is **deleted** —
+`Plate.tsx` survives for `Figure`/`Vignette`. `promo/public/textures/v5/` (45 element cutouts at 3x)
+is still on disk and still current; the app cut just does not frame them in isolation.
+`timelineV3.ts` / `MainV3.tsx` remain untouched throughout.
+
+---
+
+## Session 2026-08-28 (late afternoon) — SHOTCRAFT v5 REDONE · 43.9s, shipped as two masters
+
+**`promo/out/promo-v5.mp4`** (with BGM) and **`promo/out/promo-v5-nobgm.mp4`** (SFX only, same
+timeline via `props-nobgm-v5.json`). Composition `BaskPromoV5`, 1920×1080, 1316f.
+Spec + storyboard: `docs/pitch/2026-08-28-shotcraft-v5-spec.md`.
+
+### Measured, both cuts through the same ffmpeg pipeline
+| | v4 (`BaskPromoV3VO`) | v5 |
+|---|---|---|
+| runtime | 83.7s | **43.8s** |
+| motionless frames (<0.35 YAVG) | 46% | **24%** |
+| median frame-to-frame motion | 0.44 | **1.10** |
+| hard cuts (>28 YAVG) | 6 (0.07/s) | 7 (**0.16/s**) |
+| shots | 12 | 14 |
+
+**The inherited "73% motionless / 4 hard cuts" figures did not reproduce** under any threshold —
+different method. Both cuts were re-measured here rather than quoting numbers that can't be redone.
+
+### What is new about it
+Three acts. Act 1 is `/evidence` — the real 194,672-visit dataset, so the problem is stated before
+the software appears. Act 2 is the read: brief → ranked feed → priced insight → "Show me why"
+opening inline → the actual visit rows → `/ask` answering **$5,354/mo**. Act 3 is the theme flip
+into Compass, the network map, a call brief, and a subtractive outro.
+**`/evidence`, the records drill-down and `/ask` were in no previous cut.** The consent-delta UI is
+excluded, per Daniel's instruction.
+
+### Why it is legible now
+v4 framed whole pages (2,880px-wide textures of 5,188px-tall pages), so body copy landed at 8–14px.
+v5 frames ELEMENTS: `promo/scripts/capture-v5.mjs` pulls **45 per-element cutouts at
+deviceScaleFactor 3** from production, read-only, into `promo/public/textures/v5/` +
+`src/layout-v5.json`. A 740px card is a 2,220px texture.
+
+### Two capture traps worth keeping
+1. **An element screenshot of a node inside a scroll container captures whatever is painted in the
+   clipped region** — `.b-dtable` returned sibling insight cards, not visit rows. Unclip
+   `.b-records-scroll` first.
+2. That unclip then made `insight-open` 2,007px tall instead of 956. Any shot deriving a height by
+   subtraction from it silently misplaces everything; S8 is now built from `insight-retail` + `drill`.
+
+### Files (all new; `timelineV3.ts` / `MainV3.tsx` untouched)
+`promo/src/timelineV5.ts` · `MainV5.tsx` · `shots/v5/{Plate,Act1,Act2,Act3}.tsx` · `shots/v5/sfx.ts` ·
+`scripts/capture-v5.mjs`, `recon-v5.mjs` · `src/layout-v5.json` · `public/textures/v5/` ·
+`props-nobgm-v5.json` · `docs/pitch/2026-08-28-shotcraft-v5-spec.md`.
+Modified: `promo/src/Root.tsx` (+`BaskPromoV5` composition only).
+
+### Known, not mine, not blocking
+`tsc` in `promo/` reports 5 pre-existing errors in `shots/S3Checkin.tsx` and `S4Pos.tsx` — they index
+`layout.json` keys that the 03:30 re-capture dropped. Zero errors in any v5 file.
+
+### Still open for Daniel — unchanged
+The **consent delta UI is stripped in the working tree** on his instruction; the demo-build session
+flagged it is PITCH Beat 5 and live in production. Nothing staged. Restore with
+`git checkout -- "apps/web/src/app/(bask)/settings/data-sharing/"`. **Never `git add -A` here.**
+
+---
+
+## Session 2026-08-28 (afternoon) — H3 NARRATIVE FILM built, then PARKED · refreshing to redo the shotcraft promo
+
+**Why this session ends:** the H3 film was the wrong deliverable. Daniel's verdict on the finished
+cut: *"It's just overly long. There's no narrative. I can't tell what's going on."* Next session
+redoes the **salon-intelligence shotcraft promo** against the app's CURRENT state instead.
+
+### What exists now (parked, not deleted)
+`/mnt/firmament/h3-films/quietest-register/` — a complete H3 film workspace that passed every gate:
+screenplay v005, three Bibles, **film IR v004 (0 schema errors)**, storyboard v003, 13 compiled
+Ref2VA prompts, and **13 draft clips** at 608x352. Two cuts rendered:
+- `promo/out/quietest-register-draft.mp4` — 4:56, the version Daniel rejected
+- `promo/out/quietest-register-cut2.mp4` — 2:15, narration moved ON SCREEN, three acts
+The 12 pending 864x480 finals were **cancelled** (~8 GPU-hours saved) once the direction changed.
+
+### Honest state of that footage, from a real review
+The room is excellent and consistent across every shot — counter, product wall, calendar, corkboard.
+The people are not: **Ref2VA identity drifts**, the staffer is a different woman in most shots.
+SHOT-001 rendered a transaction instead of an empty opening, SHOT-010 rendered the counter instead
+of the back office, and EXIT signs appear against the Look Bible's no-readable-text rule. Root cause
+of the action drift is likely that the prompt compiler serialises every IR field, so the action
+sentence competes with ~2,000 characters of continuity/event metadata.
+
+### Two infrastructure faults found and fixed
+1. **`h3-gen.py` Ref2VA was broken for every reference render** — it sent indexed `ref_image_0/1/2`
+   keys, but `MiniMaxH3ReferenceToVideo` takes ONE grouped `ref_images` autogrow input. Symptom:
+   `execute() got an unexpected keyword argument 'ref_image_0'`; only the two character-free shots
+   rendered. Fixed in `~/projects/sysadmin/h3-gen.py`, verified by a real 401s render.
+2. **SD 3.5 is gone from FIRMAMENT** — `C:\AI-models` does not exist (checked two ways), so the
+   `image-gen` skill cannot run there. Identity packs came from H3 itself instead: a 5s turn clip
+   per character, four canonical frames cut out with ffmpeg.
+
+### The next job — measured, not guessed
+Current film `promo/out/promo-v4-vo.mp4` (`BaskPromoV3VO`, 83.8s, 2512f):
+- **73% of frames are motionless** (1,744 of 2,399) · only **4 hard cuts in 84s**
+- **83.8s against the project's own 35-45s brief**
+- Body copy lands at 8-14px because pages are framed whole; at 1:1 the same type is perfectly legible
+Owned by the session that committed `55ada6b` at 04:01 today (`timelineV3.ts`, `MainV3.tsx`) —
+coordinate before editing those two files.
+
+### Left open for Daniel
+The **consent delta UI is stripped in the working tree** on his instruction ("remove the consent
+feature, don't feature it in the video"), scope confirmed as UI-only — `packages/core/src/consent`
+untouched, `tsc` green, page verified by screenshot. The session that owns the demo build then
+flagged it is **PITCH Beat 5 and live in production**. Nothing is staged; restoring is one
+`git checkout -- "apps/web/src/app/(bask)/settings/data-sharing/"`. **His call.**
+
+### New in the repo this session
+`docs/pitch/2026-08-28-film-vo-script.md` (611-word read, every figure sourced, never recorded —
+Daniel said script only, no TTS) · `docs/pitch/2026-08-28-film-shot-plan.md` ·
+`promo/src/MainFilm.tsx`, `timelineFilm.ts`, `shots/FilmUI.tsx`, `filmClips.json` ·
+`promo/scripts/capture-film.mjs`, `film-clips.mjs` · `promo/public/textures/film/`, `promo/public/h3/`
+Modified: `promo/src/Root.tsx` (+QuietestRegister composition), `promo/src/fonts.ts` (font
+delayRender 120s -> 600s; the old ceiling killed renders at frame 2844).
+
+### Verified numbers, recomputed from `~/salon-pull/canonical/` — reusable
+visits 2017->2019 **-13.45%** · product revenue **-37.71%** · Australian Gold **63.28%**
+($123,916 of $195,826) · house attach per visit **5.74%** (salon spread 4.82-8.47%).
+**"Best staffer 8.48%" did NOT reproduce** — top staffer is 9.94% and rank is confounded by salon.
+
+---
+
 ## Session 2026-08-28 (early) — FOUR WOW SURFACES + A FRESH FILM · all live on production
 
 **`demo-verify` 12/12 on localhost AND production.** Two new gate checks added, because a wow

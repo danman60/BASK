@@ -26,9 +26,12 @@ import {
   isAiConfigured,
   runGuardrails,
   type AiGenerationLog,
+  type ClaimCitation,
   type GuardrailOptions,
 } from '@bask/core';
 import { z } from 'zod';
+
+import { coachingPromptBlock } from './coaching';
 
 export const CAMPAIGN_CONTENT_VERSION = 1 as const;
 
@@ -86,6 +89,26 @@ export const campaignContentSchema = z.object({
   facebook: z.object({ body: z.string().min(1) }),
   sms: z.object({ body: z.string().min(1) }),
   email: z.object({ subject: z.string().min(1), body: z.string().min(1) }),
+  /**
+   * The coaching this copy drew on, stored with the draft so the Review screen
+   * can show it and a campaign written last week can still say where it came
+   * from. `.default([])` rather than a version bump: every campaign row written
+   * before 2026-08-29 parses unchanged and simply has no citations.
+   */
+  coaching: z
+    .array(
+      z.object({
+        claimId: z.string(),
+        claim: z.string(),
+        quote: z.string(),
+        label: z.string(),
+        category: z.string(),
+        moment: z.string(),
+        confidence: z.enum(['verified', 'unreviewed']),
+        similarity: z.number(),
+      }),
+    )
+    .default([]),
   provenance: z.object({
     source: z.enum(['ai', 'fallback']),
     model: z.string().nullable().default(null),
@@ -112,7 +135,7 @@ const GENERATED_CAMPAIGN_JSON_SCHEMA = {
     graphicHeadline: {
       type: 'string',
       description:
-        'The headline printed on the square graphic. At most 34 characters and at most 4 words on a line — it is set large in a serif face. No emoji.',
+        'The headline printed on the square graphic. ONE LINE ONLY — no line breaks, no second line. Hard limit 34 characters including spaces; count them. Set large in a serif face. No emoji.',
     },
     instagramCaption: {
       type: 'string',
@@ -169,6 +192,14 @@ export interface CampaignGenerationInput {
   /** Human-readable send time, e.g. "Sunday 6:00 pm". */
   sendLabel: string;
   /**
+   * Coaching retrieved for this campaign, already de-identified.
+   *
+   * Retrieved by the ROUTER (`coachingFor`) and handed in, not fetched here —
+   * this file has no database and does not grow one. Empty is a normal state and
+   * changes nothing about how generation behaves.
+   */
+  coaching?: readonly ClaimCitation[];
+  /**
    * Bumped on every regenerate. It goes into the prompt hash so the model is
    * asked afresh, and it selects an alternate deterministic template so
    * "↻ Regenerate" visibly changes the words on the offline path too.
@@ -213,7 +244,13 @@ export async function generateCampaignContent(
   deps: CampaignGenerationDeps = {},
 ): Promise<CampaignGenerationResult> {
   const context = buildPromptContext(input);
-  const promptHash = hashContext(context);
+  // The coaching is hashed alongside the facts even though it is not one of them:
+  // two runs that drew on different claims are genuinely different generations,
+  // and a hash that cannot tell them apart makes the generation log a liar.
+  const promptHash = hashContext({
+    context,
+    coaching: (input.coaching ?? []).map((citation) => citation.claimId),
+  });
   const generatedAt = new Date().toISOString();
 
   let generated: GeneratedCampaign | null = null;
@@ -275,9 +312,12 @@ export async function generateCampaignContent(
   const resolved = generated ?? buildFallbackCampaign(input);
   const source = generated ? 'ai' : 'fallback';
 
-  // The one line that answers "was that real?" from a terminal.
+  // The one line that answers "was that real?" from a terminal. The coaching
+  // count is on it for the same reason the model name is: "did the RAG run?" is a
+  // question the pitch has to be able to answer honestly.
   console.info(
-    `[studio] campaign generated · path=${source} · model=${model ?? 'none'} · tone=${input.tone} · promptHash=${promptHash}` +
+    `[studio] campaign generated · path=${source} · model=${model ?? 'none'} · tone=${input.tone} · ` +
+      `coaching=${input.coaching?.length ?? 0} · promptHash=${promptHash}` +
       (fallbackReason ? ` · reason=${fallbackReason}` : ''),
   );
 
@@ -291,6 +331,11 @@ export async function generateCampaignContent(
     facebook: { body: resolved.facebookPost },
     sms: { body: resolved.smsBody },
     email: { subject: resolved.emailSubject, body: resolved.emailBody },
+    // ONLY on the AI path. The fallback copy comes from templates and never saw a
+    // claim, so attaching citations to it would put "the coaching this drew on"
+    // above words the coaching had no part in writing. An empty array here is the
+    // honest answer, and it is why the deterministic path shows no citations.
+    coaching: source === 'ai' ? [...(input.coaching ?? [])] : [],
     provenance: {
       source,
       model,
@@ -415,6 +460,12 @@ function buildPromptContext(input: CampaignGenerationInput): Record<string, unkn
     sendLabel: input.sendLabel,
     variant: input.variant ?? 0,
   };
+  // NOTE: coaching is deliberately NOT in here. This object is pasted into the
+  // prompt under "These are the only facts you may use", and a retrieved claim is
+  // not a fact about this salon — it is advice about salons in general. Listing
+  // it as a fact is how "memberships reduce counter time" becomes a sentence in a
+  // customer's text message. It goes in as a separate, clearly-labelled block of
+  // guidance instead; see `coachingPromptBlock`.
 }
 
 function buildPrompt(input: CampaignGenerationInput, context: Record<string, unknown>): string {
@@ -430,10 +481,17 @@ function buildPrompt(input: CampaignGenerationInput, context: Record<string, unk
     '',
     'These are the only facts you may use:',
     JSON.stringify(context, null, 2),
+    coachingPromptBlock(input.coaching ?? []),
     '',
     `The offer is exactly "${input.offer.headline}", good for ${input.offer.validity}. Say it that way in every piece. Do not round it, sweeten it, or add a second offer.`,
     '',
     'Write six fields: graphicHeadline, instagramCaption, facebookPost, smsBody, emailSubject, emailBody.',
+    // Measured 2026-08-29: roughly one generation in three came back with a
+    // two-line headline like "20% Off Every Tan Session\\nThis Tuesday &
+    // Wednesday" (50 characters), which fails the 40-character cap and throws the
+    // whole otherwise-good content set onto the deterministic path. The schema
+    // description alone was not enough; saying it twice is cheap.
+    'graphicHeadline must be a single line of at most 34 characters. No line break in it.',
     'The text message must stay under 160 characters including "Reply STOP to opt out." at the end.',
     'Do not mention how many people are receiving this.',
   ].join('\n');

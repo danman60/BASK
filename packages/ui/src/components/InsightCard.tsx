@@ -58,6 +58,15 @@ export interface InsightCardProps {
    * reconciled to a visit-level list.
    */
   recordsSlot?: ReactNode;
+  /**
+   * The coaching layer, rendered in the drill-down beneath the records.
+   *
+   * Same contract as `recordsSlot` and for the same reason: retrieval is a
+   * network round trip and an embedding call, so the caller owns the data and
+   * this component owns only the disclosure. Omit it and the drill-down simply
+   * ends where it did before.
+   */
+  coachingSlot?: ReactNode;
   /** Compact two-button layout used at mobile widths is handled in CSS, not here. */
   children?: ReactNode;
 }
@@ -82,6 +91,7 @@ export function InsightCard({
   sparkline,
   evidence,
   recordsSlot,
+  coachingSlot,
   primaryAction,
   dismissing = false,
   onDismiss,
@@ -185,6 +195,10 @@ export function InsightCard({
       {expanded && evidence && (
         <EvidenceDrilldown evidence={evidence} id={drillId} labelledBy={titleId}>
           {recordsSlot}
+          {/* Records first, then coaching: the owner reads "here is the proof"
+              before "here is what to do about it". Reversing them puts advice in
+              front of evidence, which is the order this product refuses. */}
+          {coachingSlot}
         </EvidenceDrilldown>
       )}
     </article>

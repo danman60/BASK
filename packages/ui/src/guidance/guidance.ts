@@ -447,4 +447,28 @@ export const INSIGHT_UI = {
   noSeries: 'There is no day-by-day trend for this one — it is a single count.',
 } as const;
 
+/**
+ * The coaching citation block.
+ *
+ * Two words are load-bearing and were chosen carefully:
+ *
+ * `heading` says "drew on", not "is based on". The copy came from a model that
+ * was shown this coaching; saying the coaching wrote it would be a bigger claim
+ * than the product can make.
+ *
+ * `unreviewed` says a person has not checked THIS line yet — plainly. Three of
+ * 1,007 claims have been decided, and a badge implying otherwise would be the
+ * kind of small lie a buyer catches.
+ */
+export const COACHING_UI = {
+  heading: 'What this drew on',
+  intro: 'Advice from UVALUX training that matched this. Open one to see it said out loud.',
+  expandHint: 'Show the words',
+  collapseHint: 'Hide the words',
+  quoteLabel: 'Said in the session:',
+  verified: 'Checked by UVALUX',
+  unreviewed: 'Not checked yet',
+  empty: 'Nothing in the training library matched this one closely enough to show.',
+} as const;
+
 export type DismissReasonKey = (typeof INSIGHT_UI.dismissReasons)[number]['key'];

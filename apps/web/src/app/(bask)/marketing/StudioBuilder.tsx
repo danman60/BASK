@@ -16,7 +16,7 @@
  *    screen for the whole flow, and the footer says which path wrote the words.
  */
 
-import { WHISPERS, WhisperNote } from '@bask/ui';
+import { CoachingCitations, WHISPERS, WhisperNote } from '@bask/ui';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -664,6 +664,11 @@ export function StudioBuilder({
                       <ProvenanceNote source={generation.source} model={generation.model} />
                     </p>
                   )}
+                  {/* Directly under the provenance note, because they answer the
+                      same question in two halves: which path wrote this, and what
+                      it was working from. Empty on the deterministic path — that
+                      copy came from templates and never saw a claim. */}
+                  <CoachingCitations citations={content.coaching ?? []} />
                 </aside>
               </div>
             )}

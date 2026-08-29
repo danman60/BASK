@@ -1401,6 +1401,13 @@ model KnowledgeClaim {
   metadata       Json?
   createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
 
+  /// pgvector embedding of `claim` + `quote` — what `bask.match_claims` searches.
+  /// `Unsupported` because pgvector has no native Prisma type: the column is
+  /// declared here so the model does not drift from the database, but it is never
+  /// selectable through the client. Every read and write of it is raw SQL
+  /// (`scripts/knowledge/embed-claims.ts`, `bask.match_claims`).
+  embedding      Unsupported("vector(1536)")?
+
   events KnowledgeClaimEvent[]
 
   @@unique([corpus, sourceStream, tStart, quote], map: "knowledge_claim_anchor_key")

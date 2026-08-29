@@ -143,6 +143,41 @@ await check('wow', 'Field evidence page reports live counts', async () => {
   return /visits/i.test(text) || 'no counts on the page';
 });
 
+/* The coaching RAG. Two assertions, because either one alone can pass while the
+   feature is broken: citations that render but cannot open are a static list, and
+   a quote with no citations above it is nothing at all.
+
+   An empty block is a FAIL, never a SKIP. The surface IS built, so "no citations"
+   means one of: the corpus lost its embeddings, OPENAI_API_KEY is unset on this
+   deploy, or `bask.match_claims` is gone. All three are things the presenter must
+   know about before Thursday, and all three look identical to a green run if this
+   is lenient. The detail line names them so the failure is actionable. */
+await check('wow', 'Insight drill-down cites the coaching, and it opens', async () => {
+  const status = await routeStatus(page, '/');
+  if (status === 404) return 'skip';
+  if (status !== 200) return `HTTP ${status}`;
+
+  const why = page
+    .locator('[data-testid="insight-card"] button', { hasText: /Show me why|^Why$/ })
+    .first();
+  await why.waitFor({ timeout: 15_000 }).catch(() => {});
+  if ((await why.count()) === 0) return 'no insight card to drill into';
+  await why.click();
+
+  // Retrieval is an embedding call plus a vector search — seconds, not
+  // milliseconds, and slower against a cold serverless function.
+  const citations = page.locator('[data-testid="coaching-citations"]').first();
+  await citations.waitFor({ timeout: 25_000 }).catch(() => {});
+  if ((await citations.count()) === 0) {
+    return 'no coaching citations — check knowledge_claim.embedding, OPENAI_API_KEY, bask.match_claims';
+  }
+
+  await page.locator('[data-testid="coaching-claim"]').first().click();
+  await page.locator('[data-testid="coaching-quote"]').first().waitFor({ timeout: 5_000 }).catch(() => {});
+  const quotes = await page.locator('[data-testid="coaching-quote"]').count();
+  return quotes > 0 || 'citation does not open to the words that were said';
+});
+
 await check('wow', 'Ask surface offers questions', async () => {
   const status = await routeStatus(page, '/ask');
   if (status === 404) return 'skip';

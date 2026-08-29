@@ -18,6 +18,7 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useState, useTransition } from 'react';
 
 import {
+  CoachingCitations,
   InsightCard,
   RecordsPanel,
   TeachingEmptyState,
@@ -25,6 +26,7 @@ import {
   INSIGHT_UI,
   type DismissReasonKey,
 } from '@bask/ui';
+import type { ClaimCitation } from '@bask/core';
 
 import type { AttentionCard } from '@/lib/today-data';
 
@@ -56,6 +58,7 @@ export function AttentionQueue({
   onRestoreAction,
   onSeenAction,
   onRecordsAction,
+  onCoachingAction,
 }: {
   cards: AttentionCard[];
   onDismissAction: (insightId: string, reason: DismissReasonKey) => Promise<{ ok: boolean }>;
@@ -63,6 +66,8 @@ export function AttentionQueue({
   onSeenAction: (insightId: string) => Promise<{ ok: boolean }>;
   /** Fetches the rows behind a card. Returns null when the metric has no exact list. */
   onRecordsAction: (insightId: string) => Promise<RecordsData | null>;
+  /** Fetches the coaching behind a card. `[]` when nothing matched or retrieval is off. */
+  onCoachingAction: (insightId: string) => Promise<ClaimCitation[]>;
 }) {
   const router = useRouter();
   const [, startTransition] = useTransition();
@@ -73,6 +78,10 @@ export function AttentionQueue({
      checking the maths tends to open, read, collapse and re-open, and paying for
      the round trip again each time would make the honest thing feel slow. */
   const [records, setRecords] = useState<Record<string, RecordsData | null>>({});
+  /* Same keep-once policy as records, for the sharper reason: every miss costs an
+     embedding call and ~1.5s. `undefined` means "never asked"; an empty array
+     means "asked, nothing matched" and must not re-fetch. */
+  const [coaching, setCoaching] = useState<Record<string, ClaimCitation[]>>({});
   const [error, setError] = useState<string | null>(null);
 
   const dismiss = useCallback(
@@ -164,6 +173,11 @@ export function AttentionQueue({
                   setRecords((prev) => ({ ...prev, [card.insightId]: data })),
                 );
               }
+              if (coaching[card.insightId] === undefined) {
+                void onCoachingAction(card.insightId).then((data) =>
+                  setCoaching((prev) => ({ ...prev, [card.insightId]: data })),
+                );
+              }
             }}
             recordsSlot={
               records[card.insightId] ? (
@@ -171,6 +185,11 @@ export function AttentionQueue({
                   {...records[card.insightId]!}
                   quotedPercent={card.evidence?.metric?.value ?? null}
                 />
+              ) : null
+            }
+            coachingSlot={
+              coaching[card.insightId]?.length ? (
+                <CoachingCitations citations={coaching[card.insightId]!} />
               ) : null
             }
           />

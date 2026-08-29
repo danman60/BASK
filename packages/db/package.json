@@ -25,7 +25,8 @@
     "demo:checksum": "tsx scripts/demo-checksum.ts",
     "demo:dump": "tsx scripts/demo-dump.ts",
     "health:distribution": "tsx scripts/health-distribution.ts",
-    "knowledge:extract": "tsx scripts/knowledge/extract-expo.ts"
+    "knowledge:extract": "tsx scripts/knowledge/extract-expo.ts",
+    "knowledge:embed-claims": "tsx scripts/knowledge/embed-claims.ts"
   },
   "devDependencies": {
     "prisma": "7.9.1",

@@ -539,3 +539,47 @@
 /* The records panel spans both drilldown columns — it concludes the drill-down
    rather than sitting beside it. */
 .b-drill > .b-records { grid-column: 1 / -1; }
+
+/* ---- coaching citations (the visible end of retrieval) --------------------- */
+/* Deliberately built from the SAME grammar as the records panel above: a dashed
+   rule, an inset block, quieter type than its parent. The two are siblings in
+   meaning — records answer "is that number real", citations answer "where does
+   this advice come from" — so they must not look like two different products.
+   The claim is a button because it opens; nothing else here is clickable. */
+.b-coaching { margin-top: var(--space-4); padding-top: var(--space-4);
+  border-top: 1px dashed var(--line); display: grid; gap: var(--space-2); }
+.b-coaching-head { margin: 0; font: 600 var(--text-sm) / 1.4 var(--font-body); color: var(--ink); }
+.b-coaching-intro { margin: 0; font: 400 var(--text-xs) / 1.5 var(--font-body); color: var(--ink-faint); }
+.b-coaching-list { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: grid; gap: var(--space-2); }
+.b-coaching-item { border: 1px solid var(--line-soft); border-radius: var(--radius-sm);
+  background: var(--card); padding: var(--space-2) var(--space-3); }
+.b-coaching-item[data-open] { border-color: var(--line); background: var(--primary-wash); }
+
+/* Reset rather than inherit: this is a button doing the job of a paragraph, and
+   the default button type ruins the line length of a two-line claim. */
+.b-coaching-claim { display: flex; gap: var(--space-2); align-items: flex-start;
+  width: 100%; margin: 0; padding: 0; border: 0; background: none; cursor: pointer;
+  text-align: left; font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink); }
+.b-coaching-claim:hover .b-coaching-text { text-decoration: underline;
+  text-underline-offset: 3px; text-decoration-color: var(--line); }
+.b-coaching-claim:focus-visible { outline: 2px solid var(--focus, var(--primary)); outline-offset: 3px; }
+.b-coaching-marker { color: var(--ink-faint); font-size: var(--text-xs); line-height: 1.7; }
+.b-coaching-text { flex: 1; min-width: 0; }
+
+.b-coaching-meta { margin: 4px 0 0 18px; display: flex; flex-wrap: wrap; gap: 6px;
+  align-items: baseline; font: 400 var(--text-xs) / 1.5 var(--font-body); color: var(--ink-faint); }
+.b-coaching-dot { color: var(--line); }
+.b-coaching-cat { text-transform: capitalize; }
+/* The review state is a word, not a colour-coded badge. "Not checked yet" is the
+   truthful state of 1,004 of 1,007 claims, and dressing it as a warning would
+   make the honest thing look like a defect. */
+.b-coaching-state { margin-left: auto; }
+.b-coaching-state[data-state='verified'] { color: var(--good, var(--ink-soft)); font-weight: 600; }
+
+.b-coaching-quote { margin: var(--space-2) 0 0 18px; padding-left: var(--space-3);
+  border-left: 2px solid var(--line); display: grid; gap: 4px; }
+.b-coaching-quote-label { margin: 0; font: 400 var(--text-xs) / 1.4 var(--font-body); color: var(--ink-faint); }
+.b-coaching-quote-text { margin: 0; font: 400 var(--text-sm) / 1.6 var(--font-body); color: var(--ink-soft); }
+
+/* Spans both drilldown columns, for the same reason the records panel does. */
+.b-drill > .b-coaching { grid-column: 1 / -1; }

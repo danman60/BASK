@@ -17,7 +17,13 @@ import { OpportunityFeed } from '@/components/today/OpportunityFeed';
 import { resolveSalonScope, readVirtualToday, SALON_PARAM } from '@/lib/salon-scope';
 import { loadToday } from '@/lib/today-data';
 
-import { dismissInsight, insightRecords, markInsightSeen, restoreInsight } from './actions';
+import {
+  dismissInsight,
+  insightCoaching,
+  insightRecords,
+  markInsightSeen,
+  restoreInsight,
+} from './actions';
 
 /**
  * Today — the surface the pitch opens on (DESIGN_SPEC §3.1, mockup 01).
@@ -90,6 +96,7 @@ export default async function TodayPage({
         <div className="b-queue">
           <AttentionQueue
             cards={cards}
+            onCoachingAction={insightCoaching}
             onDismissAction={dismissInsight}
             onRecordsAction={insightRecords}
             onRestoreAction={restoreInsight}

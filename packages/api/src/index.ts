@@ -52,3 +52,13 @@ export {
 } from './trpc';
 
 export { DEMO_STATE_ID, ensureDemoState, fixtureDayZero } from './demo/clock';
+
+// Claim retrieval — "what does the coaching say about this?". Server-only, like
+// everything else on this entry point: it holds a Prisma client and an embedding
+// call. The web app's server actions reach it through here.
+export {
+  DEFAULT_COACHING_LIMIT,
+  INSIGHT_CLAIM_CATEGORIES,
+  coachingFor,
+  type CoachingOptions,
+} from './ai/coaching';

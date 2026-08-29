@@ -14,6 +14,8 @@
 
 import { revalidatePath } from 'next/cache';
 
+import { INSIGHT_CLAIM_CATEGORIES, coachingFor } from '@bask/api';
+import type { ClaimCitation } from '@bask/core';
 import { db } from '@bask/db';
 
 import { attachmentRecords, type RecordsView } from '@/server/records';
@@ -122,5 +124,44 @@ export async function insightRecords(insightId: string): Promise<RecordsView | n
     );
   } catch {
     return null;
+  }
+}
+
+/**
+ * The coaching behind an insight — the other half of the drill-down.
+ *
+ * `insightRecords` answers "where does this number come from"; this answers
+ * "and what do we know about fixing it". Both are fetched when the owner opens
+ * "Show me why", on the same interaction, so neither costs anything on a page
+ * load nobody drilled into.
+ *
+ * Retrieval runs over the title and the evidence sentence together: the title
+ * alone ("Retail attachment is slipping") is too short to embed well, and the
+ * evidence sentence carries the words an owner would actually recognise.
+ *
+ * Returns `[]` on every failure path. An insight that renders without citations
+ * is a normal insight; an insight that fails to render is a broken product.
+ */
+export async function insightCoaching(insightId: string): Promise<ClaimCitation[]> {
+  try {
+    const insight = await db.insight.findUnique({
+      where: { id: insightId },
+      select: { title: true, type: true, evidence: true },
+    });
+    if (!insight) return [];
+
+    const evidence = insight.evidence as { sentence?: string } | null;
+    // `**bold**` markers are a rendering instruction, not words.
+    const sentence = (evidence?.sentence ?? '').replace(/\*\*/g, '');
+
+    return await coachingFor(db, `${insight.title}. ${sentence}`, {
+      limit: 3,
+      // Prefer coaching from the insight's own domain. See the table's comment:
+      // similarity alone cannot separate a retail claim from an unrelated
+      // operations one at the spacing this corpus produces.
+      prefer: INSIGHT_CLAIM_CATEGORIES[insight.type] ?? [],
+    });
+  } catch {
+    return [];
   }
 }
