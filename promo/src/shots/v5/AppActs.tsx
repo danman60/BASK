@@ -38,6 +38,9 @@ export const A1Open: React.FC<ShotProps> = ({ duration, captions = true }) => {
   const f = useCurrentFrame();
   const titleIn = interpolate(f, [8, 26], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: E.easeOut });
   const titleOut = interpolate(f, [duration - 24, duration - 8], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  // The lockup arrives after the line, so the open reads Bask → what it is →
+  // whose network it runs on. Same order as the sign-off.
+  const logoIn = interpolate(f, [30, 50], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: E.easeOut });
   return (
     <AbsoluteFill>
       <AppScroll page="today" from={0} to={120} duration={duration} zoom={1.2} zoomTo={1.26} ease={ease.push} />
@@ -50,6 +53,19 @@ export const A1Open: React.FC<ShotProps> = ({ duration, captions = true }) => {
           </div>
           <div style={{ fontFamily: BODY, fontSize: 44, color: T.inkSoft, marginTop: 26, maxWidth: 1180 }}>
             An app a salon owner opens when the salon is quiet — to make it less quiet.
+          </div>
+
+          {/* NO invert filter here, unlike the outro. This title card sits on
+              T.paper — a near-white background — and the source art is pure
+              black on transparency (sampled: mean opaque RGB 2,2,2). Inverting
+              it would paint the mark white on white and it would vanish. The
+              two lockups are treated differently ON PURPOSE; if either shot is
+              ever re-lit, re-check its background before copying the other. */}
+          <div style={{ marginTop: 46, display: 'flex', justifyContent: 'center', opacity: logoIn * 0.6 }}>
+            <Img
+              src={staticFile('brand/uvalux-logo-4x.png')}
+              style={{ width: 250, height: 'auto', transform: `translateY(${(1 - logoIn) * 8}px)` }}
+            />
           </div>
         </div>
       </AbsoluteFill>
