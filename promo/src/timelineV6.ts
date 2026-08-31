@@ -56,17 +56,24 @@ const seq = (spec: [ShotV6, number][]) => {
 
 // Durations follow the VO beat map. The read is ~215 words at an unhurried
 // pace; these are the picture lengths it sits over, not guesses.
+// RE-TIMED TO THE RECORDED READ, 2026-08-31. Daniel's ElevenLabs take runs
+// 80.67s against the 73.0s picture it was written for, so every shot is scaled
+// by 1.104 rather than the audio being sped up: `atempo` at 9% is audible on a
+// slow, low read, and it would have flattened the two deliberate pauses the
+// script asks for. Uniform scaling keeps the internal rhythm that was already
+// checked frame by frame, and the rounding drift is parked on the sign-off —
+// the one shot with nothing after it to push out of sync.
 const cut = seq([
-  ['open', 210], // the plain line, held — not scrolled
-  ['read', 240], // the morning letter, framed as a figure
-  ['chart', 360], // THE CHART BEAT — the figure v5 never had, inside 20s
-  ['method', 330], // where the advice came from: the citation, opened
-  ['action', 300], // one button, the campaign already written
-  ['community', 180], // other owners, slower move
-  ['measured', 240], // what it was worth, beside the coaching that said it
-  ['opens', 180], // every figure goes back to the visits behind it
-  ['signoff', 150], // wordmark + the UVALUX lockup
+  ['open', 232], // the plain line, held — not scrolled
+  ['read', 265], // the morning letter, framed as a figure
+  ['chart', 398], // THE CHART BEAT — the figure v5 never had, inside 20s
+  ['method', 365], // where the advice came from: the citation, opened
+  ['action', 332], // one button, the campaign already written
+  ['community', 199], // other owners, slower move
+  ['measured', 265], // what it was worth, beside the coaching that said it
+  ['opens', 199], // every figure goes back to the visits behind it
+  ['signoff', 165], // wordmark + the UVALUX lockup
 ]);
 
 export const SHOTS_V6 = cut.shots;
-export const TOTAL_V6 = cut.total; // 2190f = 73.0s
+export const TOTAL_V6 = cut.total; // 2420f = 80.67s — the length of the read
