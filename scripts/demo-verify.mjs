@@ -113,24 +113,17 @@ await check('beat-4', 'Call List ranks salons with reasons', async () => {
   return /suggested conversation/i.test(text) || 'no suggested-conversation block';
 });
 
-// ── Beat 5: the trust beat ───────────────────────────────────────────────────
-await check('beat-5', 'What UVALUX sees screen exists', async () => {
-  const status = await routeStatus(page, '/settings/data-sharing');
-  if (status === 404) return 'skip';
-  if (status !== 200) return `HTTP ${status}`;
-  /* Wait for the words, not for a stopwatch. A flat 800ms passed against a warm
-     dev server and FAILED against production's cold serverless start — the page
-     was byte-identical, just later. A gate that cries wolf the morning of a
-     demo is worse than no gate, because the honest response to it is to stop
-     believing it. */
-  await page
-    .getByText(/uvalux sees/i)
-    .first()
-    .waitFor({ timeout: 15_000 })
-    .catch(() => {});
-  const text = await page.locator('body').innerText();
-  return /uvalux sees/i.test(text) || 'screen does not name what UVALUX sees';
-});
+/* Beat 5 — the consent/trust beat — is GONE from the walkthrough, 2026-08-30, on
+   the owner's call: consent was over-emphasised for this audience and the demo
+   wants a clean product, not a governance tour. The same reasoning that removed
+   the /floor and /inventory checks applies exactly: a gate that passes a beat the
+   script no longer tells reports a green pitch path that includes a beat nobody
+   will show.
+
+   WHAT IS NOT GONE, and must not be: `/settings/data-sharing` still exists and is
+   still reachable, and `packages/core/consent` still filters every Compass read.
+   The enforcement is untouched — only its billing as a demo beat was dropped. If
+   asked about data ownership, the screen is there to open. */
 
 // ── Wow surfaces: provenance, field evidence, ask ────────────────────────────
 await check('wow', 'Field evidence page reports live counts', async () => {

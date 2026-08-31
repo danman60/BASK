@@ -1,6 +1,16 @@
 /**
  * Retrieval over the expo knowledge base.
  *
+ * DORMANT AS OF 2026-08-29, AND CORRECT — do not delete it, and do not spend an
+ * hour working out why the tables are empty. `bask.knowledge_chunk` holds 0 rows
+ * because the product cites the DISTILLED CLAIMS instead (`retrieve-claims.ts`,
+ * `bask.match_claims`, 1,007 rows embedded): a claim is one readable sentence
+ * with the quote it came from, a chunk is 400 words of transcript an owner has to
+ * mine. Reasoning in `docs/plans/2026-08-29-rag-wiring.md` §0. This file, its
+ * chunker and `packages/db/scripts/knowledge/embed.ts` are the path back to
+ * raw-passage retrieval if it is ever wanted; ingesting
+ * `fixtures/knowledge/uvalux26-expo.jsonl` is all it would take.
+ *
  * Thresholds here are LOW on purpose. Short passages score around 0.44
  * similarity even when they are exactly the right answer, so raising the
  * threshold is how this breaks, not how it improves. Check the direction of any

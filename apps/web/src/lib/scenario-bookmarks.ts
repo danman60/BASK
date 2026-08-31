@@ -99,14 +99,6 @@ export const SCENARIO_BOOKMARKS: readonly ScenarioBookmark[] = [
     clockDays: 6,
     role: 'uvalux_rep',
   },
-  {
-    id: 'consent-flip',
-    label: 'Consent tier flip',
-    description: 'Beat 5 — the trust screen; flip a tier and Compass narrows.',
-    path: '/settings/data-sharing',
-    clockDays: 6,
-    role: 'owner',
-  },
 ];
 
 export function findBookmark(id: string): ScenarioBookmark | undefined {

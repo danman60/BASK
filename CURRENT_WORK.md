@@ -1,5 +1,25 @@
 # CURRENT_WORK — uvalux-platform
 
+## THURSDAY 2026-09-03 — WHO IS IN THE ROOM (changes what matters)
+
+**Elaine — product training specialist.** Green-light stakeholder; would help coordinate the
+training pieces. **Her surface is the claim corpus**: `/compass/knowledge`, the Verify/Reject queue,
+and the citations now rendering under every insight. Sharpest current weakness in front of her —
+**1,004 of 1,007 citations read "Not checked yet"**, because only 3 claims have been decided. The
+thing she would own is visibly unowned.
+
+**Wilfred — data specialist, maybe attending.** Green-light stakeholder for the data.
+**His surface is provenance**: `/evidence`, the records drill-down that reconciles a quoted
+percentage to real visit rows, the SalonTouch ETL under `packages/db/scripts/salon-ingest/`, and the
+consent filter. Sharpest risk in front of him — **Today's headline "ways to grow" block is
+`DEMO_OPPORTUNITIES` module constants** (`page.tsx:80`) while the attention queue beside it is live
+database rows. He is exactly the person who asks "is this my data?" and advances the clock.
+
+Overnight queue and ownership live in the session task list; the ten candidates and their
+`file:line` grounding are in `docs/five-and-five-2026-08-30.md`.
+Local fleet is building two of them (broker batch `demo-hardening`):
+`packages/core/src/opportunities/derive.ts` and `.../attribution.ts`.
+
 ## Session 2026-08-29 — THE RAG IS WIRED AND CLICKABLE (demo 2026-09-03)
 
 Daniel: *"well finish it; would love to click through that in a real demo next thurs."* It clicks

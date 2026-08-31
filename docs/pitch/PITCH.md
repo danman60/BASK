@@ -25,7 +25,7 @@ Let him read it. Silence is fine. The brief opens **"Yesterday finished 12% abov
 > "Today, UVALUX helps a new salon with everything — equipment, inventory, training, business planning. Then, for the one system the salon touches every single hour, your own guide says: 'several third-party options exist, compare and choose.' The operating software is the only part of a salon's success that lives outside the UVALUX relationship."
 
 **Slide 3 — the thesis:**
-> "So we built two products that are really one. **Bask** — salon intelligence. **Compass** — the intelligence layer for UVALUX over the network that runs on it. Salons run better; UVALUX sees, for the first time, the health of the market it serves — with consent, by design."
+> "So we built two products that are really one. **Bask** — salon intelligence. **Compass** — the intelligence layer for UVALUX over the network that runs on it. Salons run better; UVALUX sees, for the first time, the health of the market it serves."
 
 *Never say "operating system", "all-in-one", or "salon management". Nick ruled that category out to your face on 2026-08-19 — "there's five other guys doing it" — and it is why Floor and Inventory are not in this demo. The word is **intelligence**.*
 
@@ -74,10 +74,6 @@ Open Maple Glow: retail down 17%, attachment below peers, traffic stable, hasn't
 > "Your rep doesn't call asking 'need anything?' They call knowing exactly what's wrong and what to suggest. And here —" (Northern Sun, expansion signal) "— they call knowing who's ready to grow. This makes every rep your best rep."
 Show Sunset Ridge's draft order arriving on the account timeline — the Act 1 thread pays off.
 
-### Beat 5 — Trust `[BM:5 consent-flip]`
-Open a salon's "What UVALUX sees" screen. Flip the tier. Compass visibly loses detail.
-> "This only works if salons trust it, so consent isn't a terms-of-service paragraph — it's a screen. The salon always knows exactly what you see, and it's business signals, never their customer list. Trust is the moat; we built it as a feature."
-
 ## 11:00 — Close (slides 7–8, 2 min)
 
 **Slide 7 — three wins:**
@@ -95,7 +91,7 @@ Stop talking. Let him drive.
 - Any beat fumbles → Presenter Panel (⌘⇧D) → jump to its bookmark. Bookmarks are numbered in this script.
 - AI generation for Beat 1 is pre-warmed; the live edit is the authenticity moment — never skip it.
 - If Nick grabs the phone and starts exploring: let him. The product surviving unscripted exploration IS the demo. Guidance layer catches him.
-- Hard questions cheat-sheet: pricing → "category runs US$100–200/mo; we price above it on intelligence + marketing; real answer comes from the pilot." Hardware → "T-Max integration is designed-in, bench-verified before we promise it to anyone." Migration → "new salons first — no migration; concierge import for switchers later." Data ownership → point back at the consent screen.
+- Hard questions cheat-sheet: pricing → "category runs US$100–200/mo; we price above it on intelligence + marketing; real answer comes from the pilot." Hardware → "T-Max integration is designed-in, bench-verified before we promise it to anyone." Migration → "new salons first — no migration; concierge import for switchers later." Data ownership → "the salon owns its data; UVALUX sees business signals, never a customer list, and the salon sets the level. There is a screen for it in settings — it is not part of this walkthrough."
 
 ---
 

@@ -55,12 +55,6 @@ export default function DataSharingPage() {
 
   const [selected, setSelected] = useState<ConsentTier | null>(null);
   const [toast, setToast] = useState<string | null>(null);
-  /* The tier the preview was showing before this click, so the screen can say
-     what the change COST rather than only what the new state is. Beat 5 of the
-     pitch promises "Compass visibly loses detail"; two lists that silently
-     re-render show the destination and hide the loss, which is the part that
-     makes consent feel real to the person granting it. */
-  const [previousTier, setPreviousTier] = useState<ConsentTier | null>(null);
 
   // Preview follows the saved tier until the salon picks a different one.
   useEffect(() => {
@@ -90,28 +84,6 @@ export default function DataSharingPage() {
   const { tier: savedTier, tiers, audit, salonName, salonSlug } = current.data;
   const preview = tiers.find((entry) => entry.tier === selected)!;
   const disclosure = preview.disclosure;
-
-  /* What the last flip took away from, or gave back to, the rep's screen.
-     Computed from the same `disclosure` both panels render, so it can never
-     drift from the lists underneath it. */
-  const previousSees =
-    previousTier === null
-      ? null
-      : (tiers.find((entry) => entry.tier === previousTier)?.disclosure.uvaluxSees ?? null);
-  const nowSees = new Set(disclosure.uvaluxSees);
-  const lostFields = previousSees ? previousSees.filter((f) => !nowSees.has(f)) : [];
-  /* Sixteen struck-through fields is a wall, and a wall is read as decoration.
-     Name a handful and count the rest — the number is the point, the examples
-     just make it concrete. */
-  const DELTA_SHOWN = 6;
-  const fieldSummary = (fields: string[]): string => {
-    const named = fields.slice(0, DELTA_SHOWN).map((f) => labelForConsentField(f)).join(', ');
-    const rest = fields.length - DELTA_SHOWN;
-    return rest > 0 ? `${named} — and ${rest} more` : named;
-  };
-  const gainedFields = previousSees
-    ? disclosure.uvaluxSees.filter((f) => !previousSees.includes(f))
-    : [];
   const dirty = selected !== savedTier;
 
   async function save() {
@@ -148,10 +120,7 @@ export default function DataSharingPage() {
                 key={tier}
                 className="ds-tier"
                 aria-pressed={selected === tier}
-                onClick={() => {
-                  setPreviousTier(selected);
-                  setSelected(tier);
-                }}
+                onClick={() => setSelected(tier)}
               >
                 <span className="ds-tier-name">
                   {TIER_NAME[tier]}
@@ -199,27 +168,6 @@ export default function DataSharingPage() {
           <div className="ds-preview ds-preview--them">
             <h2>What UVALUX sees</h2>
             <p className="ds-sub">On your rep’s screen, on {TIER_NAME[selected]}.</p>
-
-            {/* The consequence of the flip, stated on the side of the screen it
-                happened to. Keyed on the tier so React remounts it and the
-                animation replays on every change — without the key it would
-                update its text silently and the movement, which IS the point,
-                would only ever happen once. */}
-            {lostFields.length > 0 && (
-              <p className="ds-delta ds-delta--lost" key={`lost-${selected}`} role="status">
-                <strong>{lostFields.length}</strong>{' '}
-                {lostFields.length === 1 ? 'thing' : 'things'} just disappeared from your rep’s
-                screen:{' '}
-                <span className="ds-delta-fields">{fieldSummary(lostFields)}</span>
-              </p>
-            )}
-            {gainedFields.length > 0 && (
-              <p className="ds-delta ds-delta--gained" key={`gained-${selected}`} role="status">
-                <strong>{gainedFields.length}</strong>{' '}
-                {gainedFields.length === 1 ? 'thing' : 'things'} just became visible to your rep:{' '}
-                <span className="ds-delta-fields">{fieldSummary(gainedFields)}</span>
-              </p>
-            )}
 
             <div className="ds-group-label">They can see</div>
             <ul className="ds-list">
