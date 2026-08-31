@@ -68,13 +68,29 @@ export const FigurePlate: React.FC<FigurePlateProps> = ({ src, caption, move = '
         transform: `translate(-50%, -50%) translateX(${translateX}px) scale(${scale})`,
         transformOrigin: 'center',
       }}>
+        {/* `src` takes EITHER a bare v5 texture name ("daybreak-letter") or a
+            full path under public ("textures/v6/citation.png"). The generated
+            version hardcoded the v5 folder, which locked the component out of
+            every capture taken since — including the coaching citation, which
+            is the one shot in this film showing a feature that did not exist
+            when the v5 textures were shot. */}
         <Img
-          src={staticFile(`textures/v5/${src}.png`)}
+          src={staticFile(src.includes('/') ? src : `textures/v5/${src}.png`)}
           style={{
             display: 'block',
             borderRadius: 14,
             opacity: imageOpacity,
             boxShadow: T.shadowPop,
+            /* The cutouts are 3x captures — `records-table` is 2052x4170 and
+               `net-map` is 2700 wide. Rendered at natural size they hang off a
+               1920x1080 frame in every direction and the shot reads as a crop
+               of nothing. Fit inside the frame with margin, and let the camera
+               move do the rest. */
+            maxWidth: 1420,
+            maxHeight: 742,
+            width: 'auto',
+            height: 'auto',
+            objectFit: 'contain',
           }}
         />
         {caption && (
