@@ -15,7 +15,14 @@
 // works is how you lose one.
 import { AbsoluteFill, Audio, Sequence, staticFile } from 'remotion';
 
-import { A13Outro, A1Open } from './shots/v5/AppActs';
+import {
+  A10Flip,
+  A11Network,
+  A12Calls,
+  A12bKnowledge,
+  A13Outro,
+  A1Open,
+} from './shots/v5/AppActs';
 import { SFX_V6 } from './shots/v6/sfx6';
 import {
   B2Read,
@@ -60,6 +67,11 @@ export const MainV6: React.FC<{ bgm?: boolean; captions?: boolean }> = ({
       {shot('community', B6Community)}
       {shot('measured', B7Measured)}
       {shot('opens', B8Opens)}
+      {/* the UVALUX side, at altitude — reused from v5 unchanged */}
+      {shot('flip', A10Flip)}
+      {shot('network', A11Network)}
+      {shot('calls', A12Calls)}
+      {shot('knowledge', A12bKnowledge)}
       {shot('signoff', A13Outro)}
     </AbsoluteFill>
   );

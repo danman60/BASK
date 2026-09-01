@@ -49,6 +49,14 @@ export const SFX_V6: Sfx[] = [
   /* Everything opens — the drill down to the rows. */
   { from: S.opens.from, src: a('sweep-short.mp3'), volume: 0.24, durationInFrames: 34 },
 
+  /* The turn into the UVALUX side, and the three shots above the salon. The
+     flip gets the film's only sweep — it is the one moment the point of view
+     changes, and the ear should know it before the eye works it out. */
+  { from: S.flip.from, src: a('sweep-short.mp3'), volume: 0.32, durationInFrames: 40 },
+  { from: S.network.from, src: a('swoosh-slow.mp3'), volume: 0.24, durationInFrames: 46 },
+  { from: S.calls.from, src: a('transition-soft.mp3'), volume: 0.24, durationInFrames: 34 },
+  { from: S.knowledge.from, src: a('paper-move-quick.mp3'), volume: 0.22, durationInFrames: 30 },
+
   /* Sign-off. One soft sparkle, and that is all. */
   { from: S.signoff.from + 28, src: a('sparkle.mp3'), volume: 0.2, durationInFrames: 20 },
 ];

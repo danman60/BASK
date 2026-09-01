@@ -30,12 +30,17 @@ export type ShotV6 =
   | 'community'
   | 'measured'
   | 'opens'
+  | 'flip'
+  | 'network'
+  | 'calls'
+  | 'knowledge'
   | 'signoff';
 
 export type ShotsV6 = Record<ShotV6, { from: number; duration: number }>;
 
 const ORDER: ShotV6[] = [
-  'open', 'read', 'chart', 'method', 'action', 'community', 'measured', 'opens', 'signoff',
+  'open', 'read', 'chart', 'method', 'action', 'community', 'measured', 'opens',
+  'flip', 'network', 'calls', 'knowledge', 'signoff',
 ];
 
 const seq = (spec: [ShotV6, number][]) => {
@@ -72,8 +77,18 @@ const cut = seq([
   ['community', 199], // other owners, slower move
   ['measured', 265], // what it was worth, beside the coaching that said it
   ['opens', 199], // every figure goes back to the visits behind it
+  // THE UVALUX SIDE. Dropped entirely when v6 was first cut — nine salon-side
+  // beats and nothing above them — which threw away the half of the story the
+  // people in the room on Thursday actually own. Restored by REUSING v5's four
+  // shots rather than rebuilding them: A12bKnowledge in particular carries the
+  // page-space mask that keeps the signed-in rep's name off screen, and
+  // re-authoring it is how that mask gets lost.
+  ['flip', 45], // the turn: same nervous system, opposite end
+  ['network', 150], // the market UVALUX serves, visible
+  ['calls', 100], // the rep's ranked calls, with reasons
+  ['knowledge', 95], // the training corpus UVALUX reviews
   ['signoff', 165], // wordmark + the UVALUX lockup
 ]);
 
 export const SHOTS_V6 = cut.shots;
-export const TOTAL_V6 = cut.total; // 2420f = 80.67s — the length of the read
+export const TOTAL_V6 = cut.total; // 2810f = 93.7s (2420f of read + 390f UVALUX side)
