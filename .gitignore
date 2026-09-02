@@ -25,3 +25,10 @@ packages/db/generated/
 docs/research/salontouch-*
 # Commercial pricing for a named client — repo is public.
 docs/pitch/PROPOSAL-PHASE1-UVALUX.md
+
+# Raw salon training audio — 1.7 GB of FLAC across 18 files, the largest 457 MB.
+# GitHub rejects any single file over 100 MB, and this repo is public: these are
+# UVALUX's own recorded training sessions. Kept on disk, never tracked.
+# The TRANSCRIPTS and the mined claims under data/salon-transcripts/ ARE tracked
+# and are the artefacts anything downstream actually reads.
+data/salon-transcripts/audio/
