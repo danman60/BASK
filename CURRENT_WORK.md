@@ -43,7 +43,7 @@ their own mount frame.
 ### Masters on disk
 | file | what |
 |---|---|
-| `promo-v7-vo.mp4` | **130.0s, the new read, bed ducked — the deliverable** |
+| `promo-v7-vo.mp4` | **130.0s, the new read, Open Road bed ducked under it — the deliverable** |
 | `promo-v7-vo-720.mp4` | 11.5MB 720p, for Telegram |
 | `promo-v7b-picture.mp4` | same cut, no read, captions off |
 | `promo-v6-vo.mp4` + `promo-v6b-picture.mp4` | previous read, 93.7s, untouched |
@@ -77,12 +77,10 @@ taste call — it is a measurable regression with two causes:
 The VO master's bed is mixed in `promo/scripts/mix-vo.sh`, where it can be sidechained and measured.
 Music now surfaces ~9 dB louder in the speech gaps and rings out under the sign-off.
 
-**OPEN — which track.** Two masters are built and DM'd:
-| file | track |
-|---|---|
-| `promo-v7-vo-openroad.mp4` | **bgm-open-road**, his own track, from 0:43. gain 0.50 |
-| `promo-v7-vo-techhouse.mp4` | **bgm-tech-house**, what the first 44s film used. gain 0.33 |
-Whichever he picks becomes `promo-v7-vo.mp4`: `bash promo/scripts/mix-vo.sh <track> <seek> <gain>`.
+**DECIDED 2026-09-02: OPEN ROAD.** Daniel picked it over tech-house. `promo-v7-vo.mp4` is now that
+mix, audio byte-identical to the `promo-v7-vo-openroad.mp4` cut he approved. Rebuild it any time
+with `bash promo/scripts/mix-vo.sh bgm-open-road.mp3 43 0.50 out/promo-v7-vo.mp4`.
+`promo-v7-vo-techhouse.mp4` is the rejected option, left on disk — delete needs his go.
 
 ### ONE THING TO DECIDE BEFORE THURSDAY
 The `method` travel makes `citation.png` legible for the first time, and that page shows
