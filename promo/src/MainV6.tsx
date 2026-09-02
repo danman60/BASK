@@ -13,7 +13,7 @@
 // The open and the sign-off are REUSED from the v5 act file rather than
 // rewritten: both already carry the lockup, and re-authoring a title card that
 // works is how you lose one.
-import { AbsoluteFill, Audio, Sequence, staticFile } from 'remotion';
+import { AbsoluteFill, Audio, interpolate, Sequence, staticFile } from 'remotion';
 
 import {
   A10Flip,
@@ -33,7 +33,7 @@ import {
   B7Measured,
   B8Opens,
 } from './shots/v6/Acts6';
-import { SHOTS_V6 } from './timelineV6';
+import { SHOTS_V6, TOTAL_V6 } from './timelineV6';
 import { T } from './tokens';
 
 export const MainV6: React.FC<{ bgm?: boolean; captions?: boolean }> = ({
@@ -52,7 +52,33 @@ export const MainV6: React.FC<{ bgm?: boolean; captions?: boolean }> = ({
 
   return (
     <AbsoluteFill style={{ backgroundColor: T.paper }}>
-      {bgm && <Audio src={staticFile('audio/bgm-open-road.mp3')} volume={0.2} />}
+      {/* THE MUSIC BED. Restored 2026-09-02 to the treatment the original VO cut
+          used (Soundtrack.tsx, `BGM = { startSec: 43, bed: 0.26 }`) and that v5
+          silently dropped: from v5 onward this was a bare
+          `<Audio volume={0.2} />`, which plays the track from 0:00 at a flat
+          level with no fades.
+
+          Two things were wrong with that. The track's opening bars are its
+          quietest (-21.2 dB measured, against -12.6 dB at 1:20), so the film was
+          scored with the dullest 130 seconds of the piece. And a flat bed has no
+          arc to match the film's. Starting at 0:43 opens on the quiet bar that
+          then climbs for the next fifty seconds, which is why that number was
+          chosen in the first place.
+
+          `bgm-tech-house.mp3` is the other track on disk — it scored the first
+          44s film. Swap the filename to use it; it needs no start offset. */}
+      {bgm && (
+        <Audio
+          src={staticFile('audio/bgm-open-road.mp3')}
+          startFrom={43 * 30}
+          volume={(f) =>
+            interpolate(f, [0, 60, TOTAL_V6 - 45, TOTAL_V6], [0, 0.26, 0.26, 0], {
+              extrapolateLeft: 'clamp',
+              extrapolateRight: 'clamp',
+            })
+          }
+        />
+      )}
       {SFX_V6.map((s, i) => (
         <Sequence key={i} from={s.from} durationInFrames={s.durationInFrames ?? 90}>
           <Audio src={staticFile(s.src)} volume={s.volume} />

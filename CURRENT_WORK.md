@@ -59,6 +59,31 @@ on their own line.
 byte-identical, and they remain the fallback; a rebuilt v5 would simply also have the name covered,
 which is the correct behaviour.
 
+### THE MUSIC — REGRESSED AT v5, RESTORED 2026-09-02, TRACK CHOICE OPEN
+Daniel: *"we used to have better music though can it go back in"*. He was right, and it is not a
+taste call — it is a measurable regression with two causes:
+
+1. **v5 dropped the treatment.** The original VO cut scored the film with
+   `BGM = { src: 'bgm-open-road.mp3', startSec: 43, bed: 0.26, bedUnderVo: 0.13 }` and a fade in and
+   out (`Soundtrack.tsx`, still there). From v5 onward `MainV6`/`MainV5` carried a bare
+   `<Audio volume={0.2} />` — the track from **0:00, flat, no fades**. Measured, the opening bars are
+   the quietest in the piece (**-21.2 dB** at 0:00 against **-12.6 dB** at 1:20), so the film was
+   being scored with the dullest 130 seconds of the track and with no arc.
+2. **The continuous read then buried it.** v6 had a 13s music hole; v7 does not, so with the
+   ducking the bed never surfaced. Picture-master audio measured **-26.6 to -31.6 dB** against a
+   voice at -16 — inaudible.
+
+**Both are fixed.** `MainV6` carries the restored treatment again (startFrom 0:43, envelope, fades).
+The VO master's bed is mixed in `promo/scripts/mix-vo.sh`, where it can be sidechained and measured.
+Music now surfaces ~9 dB louder in the speech gaps and rings out under the sign-off.
+
+**OPEN — which track.** Two masters are built and DM'd:
+| file | track |
+|---|---|
+| `promo-v7-vo-openroad.mp4` | **bgm-open-road**, his own track, from 0:43. gain 0.50 |
+| `promo-v7-vo-techhouse.mp4` | **bgm-tech-house**, what the first 44s film used. gain 0.33 |
+Whichever he picks becomes `promo-v7-vo.mp4`: `bash promo/scripts/mix-vo.sh <track> <seek> <gain>`.
+
 ### ONE THING TO DECIDE BEFORE THURSDAY
 The `method` travel makes `citation.png` legible for the first time, and that page shows
 **"Not checked yet" three times**. It is true — 3 of 1,007 claims are decided — and it is
