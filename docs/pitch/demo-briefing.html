@@ -1,0 +1,364 @@
+<title>Bask Demo Run Sheet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  /* Tokens lifted from the product's own system (DESIGN_SPEC 2.1, promo/src/tokens.ts)
+     so the briefing looks like the thing it briefs. Light palette defined here in full. */
+  :root {
+    --paper:  oklch(98.2% 0.004 84);
+    --paper2: oklch(96.2% 0.004 84);
+    --card:   #ffffff;
+    --ink:    oklch(21% 0.012 320);
+    --soft:   oklch(42% 0.014 320);
+    --faint:  oklch(55% 0.014 320);
+    --line:   oklch(90% 0.006 84);
+    --accent: oklch(58% 0.14 42);
+    --accentDeep: oklch(52% 0.14 40);
+    --wash:   oklch(96% 0.02 50);
+    --ok:     oklch(48% 0.11 155);
+    --okWash: oklch(95% 0.035 155);
+    --warn:   oklch(52% 0.11 70);
+    --warnWash: oklch(95.5% 0.04 80);
+    --shadow: 0 1px 2px oklch(21% 0.012 320 / .04), 0 8px 24px oklch(21% 0.012 320 / .05);
+    /* Compass sub-theme — the real one the app flips to on screen. */
+    --cPaper: oklch(19.5% 0.012 50);
+    --cCard:  oklch(24.5% 0.014 50);
+    --cInk:   oklch(94% 0.008 84);
+    --cFaint: oklch(70% 0.014 60);
+    --cLine:  oklch(31% 0.014 55);
+    --cAmber: oklch(79% 0.125 78);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:  oklch(17% 0.011 320);
+      --paper2: oklch(20% 0.011 320);
+      --card:   oklch(22.5% 0.012 320);
+      --ink:    oklch(94% 0.006 84);
+      --soft:   oklch(76% 0.010 84);
+      --faint:  oklch(62% 0.012 84);
+      --line:   oklch(30% 0.012 320);
+      --accent: oklch(74% 0.13 45);
+      --accentDeep: oklch(80% 0.12 48);
+      --wash:   oklch(26% 0.035 40);
+      --ok:     oklch(76% 0.13 155);
+      --okWash: oklch(26% 0.04 155);
+      --warn:   oklch(80% 0.12 78);
+      --warnWash: oklch(27% 0.04 75);
+      --shadow: 0 1px 2px #0006, 0 10px 28px #0007;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:  oklch(17% 0.011 320);
+    --paper2: oklch(20% 0.011 320);
+    --card:   oklch(22.5% 0.012 320);
+    --ink:    oklch(94% 0.006 84);
+    --soft:   oklch(76% 0.010 84);
+    --faint:  oklch(62% 0.012 84);
+    --line:   oklch(30% 0.012 320);
+    --accent: oklch(74% 0.13 45);
+    --accentDeep: oklch(80% 0.12 48);
+    --wash:   oklch(26% 0.035 40);
+    --ok:     oklch(76% 0.13 155);
+    --okWash: oklch(26% 0.04 155);
+    --warn:   oklch(80% 0.12 78);
+    --warnWash: oklch(27% 0.04 75);
+    --shadow: 0 1px 2px #0006, 0 10px 28px #0007;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 44rem; margin: 0 auto; padding: 2rem 1.15rem 5rem; }
+
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); font-weight: 600; letter-spacing: -.015em; line-height: 1.12; }
+  h2 { font-size: 1.35rem; font-weight: 600; letter-spacing: -.01em; }
+  h3 { font-size: 1.02rem; font-weight: 600; }
+  p { margin: 0; }
+
+  .eyebrow {
+    font-family: Inter, sans-serif; font-size: .72rem; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--faint);
+  }
+
+  /* ---- header + verification stamp ---- */
+  header { display: flex; flex-direction: column; gap: .55rem; }
+  .sub { color: var(--soft); font-size: 1.02rem; max-width: 34rem; }
+  .stamp {
+    margin-top: 1.25rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem .9rem;
+    background: var(--okWash); border: 1px solid color-mix(in oklab, var(--ok) 30%, transparent);
+    border-radius: 12px; padding: .7rem .9rem;
+  }
+  .stamp .big { font-family: Fraunces, Georgia, serif; font-size: 1.15rem; font-weight: 600; color: var(--ok); }
+  .stamp .meta { font-size: .82rem; color: var(--soft); font-variant-numeric: tabular-nums; }
+
+  section { margin-top: 2.9rem; display: flex; flex-direction: column; gap: 1rem; }
+  .shead { display: flex; flex-direction: column; gap: .3rem; }
+
+  /* ---- provenance list: the real/illustrative split ---- */
+  .prov { display: flex; flex-direction: column; gap: .5rem; }
+  .row {
+    display: grid; grid-template-columns: 1fr auto; align-items: start; gap: .5rem .9rem;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: .8rem .95rem; box-shadow: var(--shadow);
+  }
+  .row .what { font-weight: 500; }
+  .row .src { font-size: .84rem; color: var(--soft); grid-column: 1 / -1; margin-top: -.15rem; }
+  .row code { font-size: .82em; }
+  .chip {
+    font-size: .68rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
+    padding: .22rem .5rem; border-radius: 999px; white-space: nowrap;
+  }
+  .chip.ok { background: var(--okWash); color: var(--ok); }
+  .chip.il { background: var(--warnWash); color: var(--warn); }
+
+  .say {
+    border-left: 3px solid var(--accent); background: var(--wash);
+    padding: .85rem 1rem; border-radius: 0 10px 10px 0;
+  }
+  .say .lbl { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accentDeep); }
+  .say p { font-family: Fraunces, Georgia, serif; font-size: 1.06rem; font-style: italic; margin-top: .3rem; }
+
+  /* ---- the spine: a real ordered sequence, so it earns numbers ---- */
+  ol.spine { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .1rem; }
+  ol.spine li { display: grid; grid-template-columns: 2rem 1fr; gap: .1rem .85rem; padding: .9rem 0; border-top: 1px solid var(--line); }
+  ol.spine li:first-child { border-top: 0; }
+  .num {
+    grid-row: 1 / span 3; font-family: Fraunces, Georgia, serif; font-size: 1.25rem;
+    font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.3;
+  }
+  .step { font-weight: 600; }
+  .note { font-size: .93rem; color: var(--soft); }
+  .line { font-family: Fraunces, Georgia, serif; font-style: italic; font-size: 1rem; color: var(--ink); margin-top: .35rem; }
+  .flag { display: inline-block; margin-top: .4rem; font-size: .78rem; font-weight: 600; color: var(--accentDeep); background: var(--wash); padding: .15rem .5rem; border-radius: 6px; }
+
+  /* ---- Q&A ---- */
+  .qa { display: flex; flex-direction: column; gap: 1.15rem; }
+  .qa .q { font-family: Fraunces, Georgia, serif; font-size: 1.08rem; font-weight: 600; }
+  .qa .a { color: var(--soft); margin-top: .2rem; }
+  .qa .a strong { color: var(--ink); }
+
+  /* Compass block wears the app's own dark sub-theme — same flip the demo makes. */
+  .compass { background: var(--cPaper); border: 1px solid var(--cLine); border-radius: 14px; padding: 1.15rem 1.15rem 1.25rem; }
+  .compass h2, .compass .q { color: var(--cInk); }
+  .compass .a { color: var(--cFaint); }
+  .compass .a strong { color: var(--cInk); }
+  .compass .eyebrow { color: var(--cAmber); }
+  .compass .qa { margin-top: .9rem; }
+
+  /* ---- numbers ---- */
+  .tbl { width: 100%; overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: .93rem; }
+  td { padding: .55rem .3rem; border-top: 1px solid var(--line); vertical-align: top; }
+  tr:first-child td { border-top: 0; }
+  td.k { color: var(--soft); }
+  td.v { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  ul.plain { margin: 0; padding-left: 1.05rem; display: flex; flex-direction: column; gap: .6rem; color: var(--soft); }
+  ul.plain strong { color: var(--ink); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--paper2); padding: .1em .35em; border-radius: 5px; color: var(--ink); }
+  kbd {
+    font-family: Inter, sans-serif; font-size: .82em; font-weight: 600; background: var(--card);
+    border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 6px; padding: .1em .4em; color: var(--ink);
+  }
+  a { color: var(--accentDeep); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Thursday 3 September &middot; Elaine, possibly Wilfred</div>
+    <h1>Bask demo run sheet</h1>
+    <p class="sub">Not the Nick meeting. Elaine owns the coaching corpus. Wilfred owns whether the numbers are real. The spine of the pitch still works; the questions are different.</p>
+    <div class="stamp">
+      <span class="big">12 of 12 green</span>
+      <span class="meta">demo:verify against bask-psi.vercel.app &middot; 2026-09-02, 10:15 EDT &middot; 0 failed, 0 unbuilt</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="shead">
+      <div class="eyebrow">Before you start</div>
+      <h2>What is computed, and what is illustrative</h2>
+      <p class="sub">Four things sit on the first screen. Two are derived from the salon's visit data and two are content. Know which, out loud, before Wilfred asks.</p>
+    </div>
+
+    <div class="prov">
+      <div class="row">
+        <span class="what">Daybreak letter &mdash; &ldquo;12% above your usual Wednesday&rdquo;</span>
+        <span class="chip ok">Computed</span>
+        <span class="src">Derived by <code>loadToday()</code> from real visit rows</span>
+      </div>
+      <div class="row">
+        <span class="what">&ldquo;6 ways to grow your business today&rdquo;</span>
+        <span class="chip il">Illustrative</span>
+        <span class="src">Fixtures &mdash; <code>DEMO_OPPORTUNITIES</code></span>
+      </div>
+      <div class="row">
+        <span class="what">Wins feed &mdash; what other owners tried</span>
+        <span class="chip il">Illustrative</span>
+        <span class="src">Fixtures &mdash; <code>DEMO_WINS</code></span>
+      </div>
+      <div class="row">
+        <span class="what">&ldquo;What needs your attention&rdquo; queue</span>
+        <span class="chip ok">Computed</span>
+        <span class="src">Real derived insights. Each one opens to the rows behind it</span>
+      </div>
+    </div>
+
+    <div class="say">
+      <div class="lbl">Say it first, unprompted</div>
+      <p>&ldquo;Two things on this page are illustrative and I&rsquo;ll tell you which as we go &mdash; the growth tiles and the community feed are content, not measurement. Everything below them, and everything with a <em>Show me why</em>, is computed off the till.&rdquo;</p>
+    </div>
+    <p class="note">Saying it first costs nothing. Being caught on it costs the meeting.</p>
+  </section>
+
+  <section>
+    <div class="shead">
+      <div class="eyebrow">Six clicks &middot; about six minutes</div>
+      <h2>The spine</h2>
+      <p class="sub">You do not have to show everything. This is the whole story in order.</p>
+    </div>
+
+    <ol class="spine">
+      <li>
+        <span class="num">1</span>
+        <span class="step">Today. Let them read the Daybreak letter.</span>
+        <span class="note">Say nothing while they read. Silence is fine.</span>
+        <span class="line">&ldquo;Nobody ran a report. The software did the analysis overnight and wrote it in plain English.&rdquo;</span>
+      </li>
+      <li>
+        <span class="num">2</span>
+        <span class="step">The retail card in the attention queue.</span>
+        <span class="note">Attachment fell 8.3% &rarr; 5.9%, most of it evening shifts, about $4,260 a month.</span>
+        <span class="line">&ldquo;It found this in her own numbers. It also priced it.&rdquo;</span>
+      </li>
+      <li>
+        <span class="num">3</span>
+        <span class="step">Show me why.</span>
+        <span class="note">The chart, then the actual visits behind it.</span>
+        <span class="line">&ldquo;Every figure opens. This is the list of visits the percentage was counted from.&rdquo;</span>
+      </li>
+      <li>
+        <span class="num">4</span>
+        <span class="step">What this drew on.</span>
+        <span class="note">The coaching citations. Open one to the quote and its timecode.</span>
+        <span class="line">&ldquo;The advice isn&rsquo;t invented. It&rsquo;s your training, retrieved, with the words somebody actually said on a stage and where in the session they said it.&rdquo;</span>
+        <span class="flag">Elaine&rsquo;s beat &mdash; slow down here</span>
+      </li>
+      <li>
+        <span class="num">5</span>
+        <span class="step">Fix this &rarr; Studio.</span>
+        <span class="note">The campaign arrives pre-filled. Edit one line live.</span>
+        <span class="line">&ldquo;I never started from a blank page, and nothing sends until she says so.&rdquo;</span>
+      </li>
+      <li>
+        <span class="num">6</span>
+        <span class="step">Switch to Compass. The theme flips dark.</span>
+        <span class="note">Network, then the Call List.</span>
+        <span class="line">&ldquo;Same nervous system, opposite end. The rep doesn&rsquo;t call asking if you need anything. They call knowing what&rsquo;s wrong and what to suggest.&rdquo;</span>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="shead">
+      <div class="eyebrow">Product training</div>
+      <h2>Elaine will ask</h2>
+    </div>
+    <div class="qa">
+      <div>
+        <p class="q">How much of our training is in there?</p>
+        <p class="a"><strong>1,007 claims, all embedded and searchable.</strong> The review queue header reads <strong>741</strong> because it shows two lenses &mdash; advice (469) and recall (272). The third lens, marketing, is the remaining 266. Every claim carries the quote it came from and a timecode into the session.</p>
+      </div>
+      <div>
+        <p class="q">Who checked these? How many are approved?</p>
+        <p class="a">Say the real number: <strong>3 of 741 decided.</strong> Do not soften it. &ldquo;Almost none, and that&rsquo;s deliberate &mdash; it&rsquo;s your queue, not mine. The mining is done and the retrieval works. What&rsquo;s missing is exactly the judgment you&rsquo;d own.&rdquo; The unowned queue is the invitation, and it is the strongest thing you can say to her.</p>
+      </div>
+      <div>
+        <p class="q">What if a claim is wrong?</p>
+        <p class="a">Reject it and it stops reaching salons immediately. The retrieval function excludes rejected claims <strong>at the database level</strong>, so it is a real gate, not a label.</p>
+      </div>
+      <div>
+        <p class="q">Do the trainers&rsquo; names show anywhere?</p>
+        <p class="a"><strong>No.</strong> Never rendered, and not in the type &mdash; the citation shape has no speaker field at all.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="compass">
+      <div class="eyebrow">Data</div>
+      <h2>Wilfred will ask</h2>
+      <div class="qa">
+        <div>
+          <p class="q">Is this our data?</p>
+          <p class="a">The visits are real &mdash; <strong>194,672</strong>, ingested from SalonTouch. Salon and customer names are synthetic. Percentages and dollar figures are computed from those rows, and every one opens to the rows it was counted from.</p>
+        </div>
+        <div>
+          <p class="q">Show me a number reconciling.</p>
+          <p class="a">Do it rather than answer it. Retail card &rarr; Show me why &rarr; the records table. The page prints its own working: <strong>84 of 1,441 visits over the last 14 days included a product &mdash; 5.8%</strong>, then lists them.</p>
+        </div>
+        <div>
+          <p class="q">What does UVALUX see about a specific salon?</p>
+          <p class="a">Counts and health bands, <strong>never a customer list</strong>. One consent filter sits in front of every Compass read and no query routes around it. There is a settings screen for it; it is not in this walkthrough.</p>
+        </div>
+        <div>
+          <p class="q">Can I move the clock?</p>
+          <p class="a"><strong>Yes, and let him.</strong> Presenter Panel is <kbd>&#8984;</kbd> <kbd>&#8679;</kbd> <kbd>D</kbd>. The pipeline recomputes &mdash; campaign settles, rollups, insight sweep, brief regenerates. For a data person this is the most convincing thing in the demo, because the numbers move together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <div class="eyebrow">If a number is challenged</div>
+      <h2>Cheat sheet</h2>
+    </div>
+    <div class="tbl">
+      <table>
+        <tr><td class="k">Daybreak headline, live right now</td><td class="v">12% above usual Wednesday</td></tr>
+        <tr><td class="k">Retail attachment</td><td class="v">8.3% &rarr; 5.9%</td></tr>
+        <tr><td class="k">Priced at</td><td class="v">~$4,260 / mo</td></tr>
+        <tr><td class="k">Real visits ingested</td><td class="v">194,672</td></tr>
+        <tr><td class="k">Claims total, all embedded</td><td class="v">1,007</td></tr>
+        <tr><td class="k">Review queue header</td><td class="v">741</td></tr>
+        <tr><td class="k">&nbsp;&nbsp;advice / recall / marketing</td><td class="v">469 / 272 / 266</td></tr>
+        <tr><td class="k">Claims decided</td><td class="v">3</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <div class="eyebrow">Guardrails</div>
+      <h2>Do not open</h2>
+    </div>
+    <ul class="plain">
+      <li><strong>Floor and Inventory.</strong> Off-nav on purpose &mdash; they demo a salon operating system, which Nick ruled out. The word is <strong>intelligence</strong>. Never &ldquo;operating system&rdquo;, &ldquo;all-in-one&rdquo; or &ldquo;salon management&rdquo;.</li>
+      <li><strong>A campaign generate against production</strong>, unless you have decided to. It persists a draft row in the database you are presenting from.</li>
+      <li><strong>The rep name in the Compass sidebar.</strong> It prints <strong>Fintan H.</strong> bottom left. Harmless &mdash; if asked, it is demo data.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="shead">
+      <div class="eyebrow">Recovery</div>
+      <h2>If something breaks</h2>
+    </div>
+    <ul class="plain">
+      <li><strong>Any beat fumbles</strong> &rarr; <kbd>&#8984;</kbd> <kbd>&#8679;</kbd> <kbd>D</kbd> jumps to one of seven bookmarks, so you never navigate under pressure.</li>
+      <li><strong>A surface is slow</strong> &rarr; talk over it. The Daybreak letter and the citations are the two moments worth waiting for. Narrate past everything else.</li>
+      <li><strong>Citations missing after a generate</strong> &rarr; the model call failed and the system fell back to templates, which carry no citations by design because they never saw a claim. Say that. It is true, and it is the honest behaviour rather than a bug.</li>
+    </ul>
+  </section>
+
+</div>
