@@ -59,36 +59,49 @@ const seq = (spec: [ShotV6, number][]) => {
   return { shots: out, total: at };
 };
 
-// Durations follow the VO beat map. The read is ~215 words at an unhurried
-// pace; these are the picture lengths it sits over, not guesses.
-// RE-TIMED TO THE RECORDED READ, 2026-08-31. Daniel's ElevenLabs take runs
-// 80.67s against the 73.0s picture it was written for, so every shot is scaled
-// by 1.104 rather than the audio being sped up: `atempo` at 9% is audible on a
-// slow, low read, and it would have flattened the two deliberate pauses the
-// script asks for. Uniform scaling keeps the internal rhythm that was already
-// checked frame by frame, and the rounding drift is parked on the sign-off —
-// the one shot with nothing after it to push out of sync.
+// Durations are PINNED TO THE READ, not scaled from a picture guess.
+//
+// RE-TIMED AGAIN 2026-09-02 to Daniel's second record, `audio/vo/uvaint-v7.mp3`
+// (128.679s). The v6 read was 80.67s and contained NO UVALUX copy, so v6 carried
+// a deliberate 13.0s hole at 75.19s where the altitude block played under music.
+// The new read speaks that block. **The hole is gone. Do not reintroduce it.**
+//
+// These are not v6's numbers times a constant. Every boundary below is the
+// MIDPOINT of a measured silence in the read (`silencedetect=n=-38dB:d=0.45`),
+// so the picture cuts in the breath instead of under a word. That is also why
+// the salon-side shots move by different factors and the UVALUX side roughly
+// doubles: those four shots were previously sized to a music hole and now have
+// three spoken paragraphs to carry.
+//
+// Beat map with the per-shot cut times: docs/pitch/2026-09-02-v7-beatmap.md.
+// Spoken copy, as recorded: docs/pitch/2026-09-02-v7-vo-elevenlabs.txt.
 const cut = seq([
-  ['open', 232], // the plain line, held — not scrolled
-  ['read', 265], // the morning letter, framed as a figure
-  ['chart', 398], // THE CHART BEAT — the figure v5 never had, inside 20s
-  ['method', 365], // where the advice came from: the citation, opened
-  ['action', 332], // one button, the campaign already written
-  ['community', 199], // other owners, slower move
-  ['measured', 265], // what it was worth, beside the coaching that said it
-  ['opens', 199], // every figure goes back to the visits behind it
+  ['open', 198], // "Bask is an app ... to make it less quiet."      cut @ 6.59s
+  ['read', 336], // "It reads last night's numbers ..."              cut @ 17.79s
+  ['chart', 452], // THE CHART BEAT — "Lotion per visit slipped ..." cut @ 32.85s
+  ['method', 619], // "Then the part nobody else does ..."           cut @ 53.51s
+  // ^ the longest beat in the film at 20.6s, and the reason FigurePlate grew a
+  //   `travel` move: a plate that finishes pushing at 90f would sit frozen for
+  //   17.6s here. It now pans down the citation page instead.
+  ['action', 457], // "One button ... nothing leaves without you."   cut @ 68.74s
+  ['community', 199], // "And you're not doing it alone ..."         cut @ 75.35s
+  ['measured', 281], // "Then it comes back ... what it was worth."  cut @ 84.74s
+  ['opens', 189], // "Everything on this screen can be opened ..."   cut @ 91.02s
   // THE UVALUX SIDE. Dropped entirely when v6 was first cut — nine salon-side
   // beats and nothing above them — which threw away the half of the story the
   // people in the room on Thursday actually own. Restored by REUSING v5's four
   // shots rather than rebuilding them: A12bKnowledge in particular carries the
   // page-space mask that keeps the signed-in rep's name off screen, and
   // re-authoring it is how that mask gets lost.
-  ['flip', 45], // the turn: same nervous system, opposite end
-  ['network', 150], // the market UVALUX serves, visible
-  ['calls', 100], // the rep's ranked calls, with reasons
-  ['knowledge', 95], // the training corpus UVALUX reviews
-  ['signoff', 165], // wordmark + the UVALUX lockup
+  //
+  // These four roughly DOUBLE against v6 because v6 sized them to 13s of music.
+  // They now carry three spoken paragraphs.
+  ['flip', 93], // "Same nervous system, opposite end."              cut @ 94.12s
+  ['network', 252], // "Every salon running this is a signal ..."    cut @ 102.53s
+  ['calls', 264], // "Your rep stops calling to ask ..."             cut @ 111.35s
+  ['knowledge', 325], // "And the coaching underneath all of it ..." cut @ 122.16s
+  ['signoff', 235], // "That's Bask." — holds 1.5s in silence after the last word
 ]);
 
 export const SHOTS_V6 = cut.shots;
-export const TOTAL_V6 = cut.total; // 2810f = 93.7s (2420f of read + 390f UVALUX side)
+export const TOTAL_V6 = cut.total; // 3900f = 130.0s against a 128.679s read

@@ -267,11 +267,29 @@ export const A11Network: React.FC<ShotProps> = ({ duration, captions = true }) =
 );
 
 /* ------------------------------------------------------------------ S12 */
-/** One glance at what a rep does with it, then out. */
+/**
+ * One glance at what a rep does with it, then out.
+ *
+ * Scrolls 0 -> 340, widened from 170 on 2026-09-02. In v5 and v6 this shot ran
+ * 100 frames, where 170 page-px was a 1.7px/frame drift. The 2026-09-02 read
+ * gives it 264 frames ("Your rep stops calling to ask if anyone needs anything.
+ * They call already knowing what's wrong, and what to suggest."), and the old
+ * range would have crawled at 0.64px/frame — a frozen screenshot for 8.8
+ * seconds. 340 stays inside the page (calls pageH 1588, viewport 871 page-px at
+ * zoom 1.24) and keeps the Spot in frame to the last frame.
+ */
 export const A12Calls: React.FC<ShotProps> = ({ duration, captions = true }) => (
   <AbsoluteFill>
-    <AppScroll page="calls" from={0} to={170} duration={duration} zoom={1.24} dark bar={false} ease={ease.drift}>
+    <AppScroll page="calls" from={0} to={340} duration={duration} zoom={1.24} dark bar={false} ease={ease.drift}>
       <Spot x={256} y={185} w={900} h={335} from={16} dark />
+      {/* The Compass sidebar prints the signed-in rep's name and territory in
+          its footer, exactly as it does on the knowledge page — and this shot
+          never masked it. It is visible in the shipped v6 master too (clipped
+          at the bottom edge at 83s), so this is a pre-existing leak, not one
+          the 2026-09-02 re-cut introduced; the wider scroll just brought it
+          fully into frame. Names are never shown app-facing (sources/experts.ts,
+          owner directive 2026-08-22). Covered in page space, same as A12bKnowledge. */}
+      <div style={{ position: 'absolute', left: 14, top: 900, width: 232, height: 88, background: 'oklch(19.5% 0.012 50)' }} />
     </AppScroll>
     {captions && (
       <BaskCaption lead="So the rep calls knowing " accent="what to talk about" tail="." duration={duration} from={12} dark />

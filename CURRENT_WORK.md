@@ -1,51 +1,69 @@
 # CURRENT_WORK — uvalux-platform
 
-## SESSION 2026-09-01 (evening) — PROMO v6 SHIPPED WITH THE READ · demo is THURSDAY 2026-09-03
+## SESSION 2026-09-02 (early hours) — v7 CUT TO THE NEW FULL READ · demo is THURSDAY 2026-09-03
 
-**Active state: `promo/out/promo-v6-vo.mp4` — 93.7s, Daniel's ElevenLabs read over the cut, the
-UVALUX/Compass side restored.** HEAD `40e22be`. Nothing outstanding on the film unless he sends the
-pickup lines.
+**Active state: `promo/out/promo-v7-vo.mp4` — 130.0s, Daniel's second ElevenLabs read over a
+re-cut picture.** v5 and v6 masters are untouched on disk and remain the fallback.
 
-### What v6 is
-Composition `BaskPromoV6` (`promo/src/MainV6.tsx`, `timelineV6.ts`), 13 shots, 2810f.
-Nine salon-side beats — open · read · **chart** · method · action · community · measured · opens —
-then the UVALUX side at altitude (flip · network · calls · knowledge) and the sign-off.
+### What changed from v6
+Daniel rewrote and re-recorded the whole script. The new read
+(`promo/public/audio/vo/uvaint-v7.mp3`, **128.679s**, Frankie – Friendly Instructor,
+pvc_sp100_s50_sb75_v3) is **continuous and includes the UVALUX side**, which the v6 read did not.
 
-- **Inner shots FRAME cutouts again** (`FigurePlate` push/drift/settle, `ChartPlate`) over the
-  dimmed page they came from. That satisfies BOTH of his notes at once: v5's element-framed pass got
-  "elements too isolated", the app-scroll rebuild got "just scrolling a site".
-- **A chart beat inside the first 20s** — attachment drawing 8.8% → 5.7%. v5 had no such shot.
-- **The coaching citation from a real production capture** (`public/textures/v6/citation.png`) — the
-  only shot built on a frame taken after the v5 shoot, because the feature did not exist then.
-- **No impact sting at the end** (removed on his note), **UVALUX lockup on BOTH ends** — inverted to
-  white on the dark outro, natural black on the light title card. Do not copy one treatment to the
-  other without re-checking the background.
+- **The 13-second music hole is GONE.** v6 carried a deliberate silence at 75.19s because the read
+  had no UVALUX copy. Paragraphs 9-11 are now spoken. Do not reintroduce it.
+- **Every cut is pinned to a measured silence in the read**, not scaled by a constant, so the
+  picture cuts in the breath rather than under a word. Per-shot table:
+  `docs/pitch/2026-09-02-v7-beatmap.md`. Copy as recorded:
+  `docs/pitch/2026-09-02-v7-vo-elevenlabs.txt`.
+- Total **3900f = 130.0s**. The last word lands at 128.48s; the sign-off holds 1.5s in silence.
 
-### Masters on disk (v5's three are UNTOUCHED and remain the fallback)
+### Three real defects found by pulling frames out of the SHIPPED v6 master
+None of these were visible in the code. All three are fixed.
+
+1. **The backdrop never rendered.** `FigurePlate` painted an opaque `T.paper` fill over the whole
+   frame, so the dimmed page `Backdrop` draws behind every plate was covered completely. Every
+   plate shot in v6 played as an element floating on blank cream — which is exactly the "elements
+   too isolated" note the v6 rebuild existed to answer. Fill is now transparent, and the backdrop
+   is **blurred** (10px) so a plate never reads as a duplicate of the card behind it.
+2. **Tall page captures were illegible.** `maxHeight: 742` is right for a wide cutout and wrong for
+   a whole page: `citation.png` (740x1350) landed 407px wide, `records-table` (2052x4170) 365px.
+   Both now use a new `move="travel"` — scaled past the frame and panned down it. The `method`
+   beat now ends exactly on the open coaching quote as the line says "the words somebody actually
+   said on a stage".
+3. **The signed-in rep's name leaked on the calls page.** "Fintan H. / All territories" prints in
+   the Compass sidebar footer. `A12bKnowledge` masks it; `A12Calls` never did, and it is visible in
+   the shipped v6 master at 83s, clipped at the bottom edge. Masked in page space now. Names are
+   never shown app-facing (owner directive 2026-08-22).
+
+Also fixed: the second plate in `chart` and `action` mounted at the mid-shot cut with `delay={0}`,
+so its move window had already expired — it arrived fully pushed with no fade. Both now delay to
+their own mount frame.
+
+### Masters on disk
 | file | what |
 |---|---|
-| `promo-v6-vo.mp4` | **93.7s, with his read, bed ducked under the voice — the deliverable** |
-| `promo-v6b-picture.mp4` | same cut, no read, captions off |
-| `promo-v6.mp4` / `promo-v6-vo-ready.mp4` | superseded 73.0s / 80.67s cuts, pre-UVALUX-side |
-| `promo-v5*.mp4` (×3) | delivered masters, byte-identical, never overwritten |
+| `promo-v7-vo.mp4` | **130.0s, the new read, bed ducked — the deliverable** |
+| `promo-v7-vo-720.mp4` | 11.5MB 720p, for Telegram |
+| `promo-v7b-picture.mp4` | same cut, no read, captions off |
+| `promo-v6-vo.mp4` + `promo-v6b-picture.mp4` | previous read, 93.7s, untouched |
+| `promo-v5*.mp4` (x3) | delivered masters, byte-identical, never overwritten |
 
-### Audio, and the one thing waiting on Daniel
-His take (`public/audio/vo/uvaint-v6.mp3`, 80.67s) has **no UVALUX copy at all**. The film was
-re-timed to the read (all shots scaled ×1.104, never `atempo` — 9% is audible on a read that slow),
-and the VO track was rebuilt with a **13-second hole** where the altitude block plays under music
-and the sweep (`uvaint-v6-gapped.mp3`). Levels verified by measurement, not by exit code:
-−16.1 dB over the read · −26.5 dB through the hole · −15.8 dB on the closing line.
-**Pickup lines sent for a short second record: `docs/pitch/2026-09-01-v6-vo-pickup-uvalux.txt`.**
-Drop them into the hole and no re-timing is needed.
+Levels verified by MEASUREMENT, not exit code. Whole file mean **-16.1 dB**, peak 0.0 dB — matches
+the approved v6 master (-16.4 / -0.0). Per beat: -15.8 to -17.1 dB, no hole anywhere.
+Sync spot-checked on the final mux at 33.5s / 91.6s / 122.9s — method, flip and sign-off each land
+on their own line.
 
-### The mistake that produced this session, worth not repeating
-v6 was first cut with **nine salon-side beats and nothing above them** — the entire UVALUX/Compass
-side was dropped, and the VO script written alongside it omitted that story too, so the miss was
-baked in at the script stage. His words: *"The entire uvalux compass visibility side is gone."*
-Restored by REUSING v5's four shots unchanged — `A12bKnowledge` carries the page-space mask that
-keeps the signed-in rep's name off screen, and re-authoring it is how that mask gets lost.
+**`A12Calls` is shared with `MainV5`.** The scroll widening and the name mask therefore change what
+`BaskPromoV5` would render if it were ever rebuilt. The three v5 masters on disk are untouched and
+byte-identical, and they remain the fallback; a rebuilt v5 would simply also have the name covered,
+which is the correct behaviour.
 
----
+### ONE THING TO DECIDE BEFORE THURSDAY
+The `method` travel makes `citation.png` legible for the first time, and that page shows
+**"Not checked yet" three times**. It is true — 3 of 1,007 claims are decided — and it is
+**Elaine's surface**. Options: verify the ~20 demo-path claims and re-capture that one texture, or
+leave it and let it read as an honest queue. Product task, not a film task.
 
 ## THURSDAY 2026-09-03 — WHO IS IN THE ROOM (changes what matters)
 

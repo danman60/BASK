@@ -29,7 +29,21 @@ const ease = {
   drift: (t: number) => t,
 };
 
-/** The page, held behind a framed figure. Dimmed so the figure reads first. */
+/**
+ * The page, held behind a framed figure. Dimmed AND BLURRED so the figure reads
+ * first.
+ *
+ * The blur was added 2026-09-02, at the same time FigurePlate stopped painting
+ * an opaque fill over this. Until then none of this was visible at all, so the
+ * problem it solves had never appeared: a plate is a cutout OF the page behind
+ * it, so at full sharpness the same card renders twice in one frame — the
+ * daybreak letter showed its own headline ghosted directly above the plate
+ * framing it, which reads as a rendering fault rather than as context.
+ *
+ * Blur fixes it for every shot at once and is the honest treatment anyway: the
+ * backdrop is depth, not content. Do not remove it without re-checking every
+ * plate against the region of the page it was cut from.
+ */
 const Backdrop: React.FC<{ page: string; from: number; to: number; duration: number; dim?: number }> = ({
   page,
   from,
@@ -38,7 +52,9 @@ const Backdrop: React.FC<{ page: string; from: number; to: number; duration: num
   dim = 0.72,
 }) => (
   <>
-    <AppScroll page={page} from={from} to={to} duration={duration} zoom={1.05} ease={ease.drift} />
+    <AbsoluteFill style={{ filter: 'blur(10px)', transform: 'scale(1.03)' }}>
+      <AppScroll page={page} from={from} to={to} duration={duration} zoom={1.05} ease={ease.drift} />
+    </AbsoluteFill>
     <AbsoluteFill style={{ backgroundColor: T.paper, opacity: dim }} />
   </>
 );
@@ -47,8 +63,11 @@ const Backdrop: React.FC<{ page: string; from: number; to: number; duration: num
 /** The morning letter, framed. The first thing the film says it does. */
 export const B2Read: React.FC<ShotProps> = ({ duration, captions = true }) => (
   <AbsoluteFill>
-    <Backdrop page="today" from={0} to={90} duration={duration} />
-    <FigurePlate src="daybreak-letter" move="settle" />
+    {/* 260 -> 380, not 0 -> 90. The plate IS the letter at the top of this
+        page, so the original range put the shot's own headline in the backdrop
+        directly behind it. This sits it over the opportunity feed underneath. */}
+    <Backdrop page="today" from={260} to={380} duration={duration} />
+    <FigurePlate src="daybreak-letter" move="settle" moveFrames={duration} />
     {captions && (
       <BaskCaption
         lead="It reads last night's numbers "
@@ -74,7 +93,9 @@ export const B2Read: React.FC<ShotProps> = ({ duration, captions = true }) => (
  */
 export const B3Chart: React.FC<ShotProps> = ({ duration, captions = true }) => {
   const f = useCurrentFrame();
-  const CUT = 200;
+  // Pinned to the silence at 24.3s in the read ("Traffic never moved"), not
+  // scaled from v6's 200. See docs/pitch/2026-09-02-v7-beatmap.md.
+  const CUT = 196;
   return (
     <AbsoluteFill>
       {f < CUT ? (
@@ -93,7 +114,11 @@ export const B3Chart: React.FC<ShotProps> = ({ duration, captions = true }) => {
       ) : (
         <>
           <Backdrop page="today" from={220} to={300} duration={duration} dim={0.78} />
-          <FigurePlate src="insight-retail" move="push" delay={0} />
+          {/* delay MUST be CUT, not 0. This plate mounts at frame CUT while
+              `useCurrentFrame` still reports the shot's frame, so delay={0}
+              meant its 90-frame push window had already expired before it
+              appeared: it arrived fully pushed, with no fade-in at all. */}
+          <FigurePlate src="insight-retail" move="push" delay={CUT} moveFrames={duration - CUT} />
         </>
       )}
       {captions && (
@@ -121,7 +146,21 @@ export const B3Chart: React.FC<ShotProps> = ({ duration, captions = true }) => {
 export const B4Method: React.FC<ShotProps> = ({ duration, captions = true }) => (
   <AbsoluteFill>
     <Backdrop page="today" from={300} to={420} duration={duration} dim={0.8} />
-    <FigurePlate src="textures/v6/citation.png" move="push" />
+    {/* TRAVEL, not push. This is the longest beat in the film (20.6s) and
+        citation.png is a whole 740x1350 drill-down page: fitted inside the
+        frame it rendered 407px wide and its body text was unreadable, and a
+        push would have finished in 3s and left it frozen for the other 17.6.
+        Scaled to 1180 wide (h 2153) and panned down, the shot reads the page
+        the way the line describes it — the insight, the chart, the visits
+        behind it, then the coaching it drew on, opened to the quote. */}
+    <FigurePlate
+      src="textures/v6/citation.png"
+      move="travel"
+      moveFrames={duration}
+      travelWidth={1180}
+      travelFrom={30}
+      travelTo={-1105}
+    />
     {captions && (
       <BaskCaption
         lead="It shows you "
@@ -138,18 +177,21 @@ export const B4Method: React.FC<ShotProps> = ({ duration, captions = true }) => 
 /** One button, and the campaign is already written. */
 export const B5Action: React.FC<ShotProps> = ({ duration, captions = true }) => {
   const f = useCurrentFrame();
-  const CUT = 150;
+  // Pinned to the silence at 62.5s ("You read it, you change what you want"),
+  // which is the frame the campaigns page belongs under.
+  const CUT = 270;
   return (
     <AbsoluteFill>
       {f < CUT ? (
         <>
           <Backdrop page="today" from={140} to={220} duration={duration} dim={0.74} />
-          <FigurePlate src="opp1" move="settle" />
+          <FigurePlate src="opp1" move="settle" moveFrames={CUT} />
         </>
       ) : (
         <>
           <Backdrop page="campaigns" from={80} to={200} duration={duration} dim={0.76} />
-          <FigurePlate src="l4-campaigns-money" move="drift" />
+          {/* delay={CUT} for the same reason as the chart's second plate. */}
+          <FigurePlate src="l4-campaigns-money" move="drift" delay={CUT} moveFrames={duration - CUT} />
         </>
       )}
       {captions && (
@@ -170,7 +212,7 @@ export const B5Action: React.FC<ShotProps> = ({ duration, captions = true }) => 
 export const B6Community: React.FC<ShotProps> = ({ duration, captions = true }) => (
   <AbsoluteFill>
     <Backdrop page="community" from={120} to={260} duration={duration} dim={0.6} />
-    <FigurePlate src="win1" move="drift" />
+    <FigurePlate src="win1" move="drift" moveFrames={duration} />
     {captions && (
       <BaskCaption lead="And you are " accent="not doing it alone" tail="." duration={duration} from={24} />
     )}
@@ -189,7 +231,7 @@ export const B7Measured: React.FC<ShotProps> = ({ duration, captions = true }) =
   return (
     <AbsoluteFill>
       <Backdrop page="today" from={520} to={620} duration={duration} dim={0.76} />
-      <FigurePlate src="outcome1" move="push" />
+      <FigurePlate src="outcome1" move="push" moveFrames={duration} />
       <Figure value="+$1,840" label="brought back, measured" x={230} y={742} from={22} />
       <Focus opacity={0.18 * lift} />
       {captions && (
@@ -210,7 +252,17 @@ export const B7Measured: React.FC<ShotProps> = ({ duration, captions = true }) =
 export const B8Opens: React.FC<ShotProps> = ({ duration, captions = true }) => (
   <AbsoluteFill>
     <Backdrop page="today" from={700} to={860} duration={duration} dim={0.82} />
-    <FigurePlate src="records-table" move="push" />
+    {/* Same problem as the citation, same fix: records-table is 2052x4170 and
+        fitted inside the frame it landed 365px wide — a table nobody can read,
+        under a line that is literally about being able to read it. Panned. */}
+    <FigurePlate
+      src="records-table"
+      move="travel"
+      moveFrames={duration}
+      travelWidth={1150}
+      travelFrom={30}
+      travelTo={-1286}
+    />
     {captions && (
       <BaskCaption
         lead="Every figure opens to "
