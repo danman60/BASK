@@ -159,6 +159,24 @@
   td.k { color: var(--soft); }
   td.v { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
+
+  /* ---- the through-line: a causal chain, so it earns connectors not numbers ---- */
+  .line-wrap { display: flex; flex-direction: column; gap: 0; }
+  .link { display: grid; grid-template-columns: auto 1fr; gap: 0 1rem; }
+  .rail { display: flex; flex-direction: column; align-items: center; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--accent); margin-top: .45rem; flex: none; }
+  .stem { width: 2px; flex: 1; background: var(--line); margin: .25rem 0; min-height: .6rem; }
+  .link:last-child .stem { display: none; }
+  .link .body { padding-bottom: 1.15rem; }
+  .link .hdr { font-family: Fraunces, Georgia, serif; font-size: 1.06rem; font-weight: 600; }
+  .link .ev { font-size: .93rem; color: var(--soft); margin-top: .2rem; }
+  .link .ev strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .thesis {
+    background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+    border-radius: 0 12px 12px 0; padding: 1rem 1.1rem; box-shadow: var(--shadow);
+  }
+  .thesis p { font-family: Fraunces, Georgia, serif; font-size: 1.18rem; line-height: 1.4; text-wrap: balance; }
+
   ul.plain { margin: 0; padding-left: 1.05rem; display: flex; flex-direction: column; gap: .6rem; color: var(--soft); }
   ul.plain strong { color: var(--ink); }
   code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--paper2); padding: .1em .35em; border-radius: 5px; color: var(--ink); }
@@ -182,6 +200,60 @@
       <span class="meta">demo:verify against bask-psi.vercel.app &middot; 2026-09-02, 10:15 EDT &middot; 0 failed, 0 unbuilt</span>
     </div>
   </header>
+
+
+  <section>
+    <div class="shead">
+      <div class="eyebrow">The through-line &middot; say this in some form at every stage</div>
+      <h2>UVALUX already owns everything needed. None of it is connected.</h2>
+    </div>
+
+    <div class="thesis">
+      <p>&ldquo;You own the data, you own the coaching, and you own the relationships. They have never been joined up. That is the whole product.&rdquo;</p>
+    </div>
+
+    <div class="line-wrap">
+      <div class="link"><div class="rail"><span class="dot"></span><span class="stem"></span></div><div class="body">
+        <div class="hdr">1. You told me this yourself</div>
+        <div class="ev">Nick, in the August meeting: <em>&ldquo;there&rsquo;s insights in there that we&rsquo;re not tapping into, nor do we have rights yet.&rdquo;</em> Start from his sentence, not yours.</div>
+      </div></div>
+
+      <div class="link"><div class="rail"><span class="dot"></span><span class="stem"></span></div><div class="body">
+        <div class="hdr">2. Here is what not tapping into it costs</div>
+        <div class="ev">One group, twelve years, four locations. <strong>$433,333</strong> of product, <strong>77.7%</strong> of it UVALUX brands. Worth <strong>$33,123</strong> a year to UVALUX at its peak. Worth <strong>$0</strong> now, because they closed.</div>
+      </div></div>
+
+      <div class="link"><div class="rail"><span class="dot"></span><span class="stem"></span></div><div class="body">
+        <div class="hdr">3. And it was not a traffic problem</div>
+        <div class="ev">2017 to 2019: visits <strong>&minus;13%</strong>, customers <strong>&minus;17%</strong>, UVALUX product <strong>&minus;37%</strong>. They kept their customers and stopped selling to them. That is a selling problem, and a selling problem is fixable with coaching.</div>
+      </div></div>
+
+      <div class="link"><div class="rail"><span class="dot"></span><span class="stem"></span></div><div class="body">
+        <div class="hdr">4. Nobody was looking at the number that would have caught it</div>
+        <div class="ev">Product per visit drifted <strong>7.1% to 5.3%</strong> over seven years. No report showed it. A purchase order tells you orders dropped. It can never tell you why.</div>
+      </div></div>
+
+      <div class="link"><div class="rail"><span class="dot"></span><span class="stem"></span></div><div class="body">
+        <div class="hdr">5. The product looks at it every day, and prices it</div>
+        <div class="ev">This is the live demo. Attachment <strong>8.3% to 5.9%</strong>, about <strong>$4,260 a month</strong>, and every figure opens to the visits behind it.</div>
+      </div></div>
+
+      <div class="link"><div class="rail"><span class="dot"></span><span class="stem"></span></div><div class="body">
+        <div class="hdr">6. And the advice it gives is yours</div>
+        <div class="ev"><strong>1,007</strong> claims mined from UVALUX&rsquo;s own training, each with the words somebody said and the minute they said it. Elaine&rsquo;s worksheet metrics are what it computes. <strong>This is the part a competitor cannot copy.</strong></div>
+      </div></div>
+
+      <div class="link"><div class="rail"><span class="dot"></span><span class="stem"></span></div><div class="body">
+        <div class="hdr">7. One salon is a story. The network is the business</div>
+        <div class="ev">Compass is the same intelligence one level up, in counts and never names. Every salon running it is a signal about the market UVALUX serves.</div>
+      </div></div>
+
+      <div class="link"><div class="rail"><span class="dot"></span></div><div class="body">
+        <div class="hdr">8. So the ask is small on purpose</div>
+        <div class="ev">Prove it on your own data. It costs less than one account is worth to you in a year. <strong>Do not say the number in this room</strong> &mdash; Elaine and Wilfred cannot approve it, and the document goes to Nick.</div>
+      </div></div>
+    </div>
+  </section>
 
   <section>
     <div class="shead">
