@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 8,
+  "tool_calls": 8,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/ui/src/components/ListenerStatusCard.tsx']",
+  "elapsed": "92s",
+  "updated": "13:25:44",
+  "provider_history": [],
+  "provider_switched": false
+}

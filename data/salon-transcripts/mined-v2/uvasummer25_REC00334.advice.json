@@ -1,0 +1,13 @@
+{
+ "source_stream": "uvasummer25_REC00334",
+ "media_duration_s": 1860.499,
+ "windows_total": 5,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 0,
+ "items_kept": 0,
+ "model": "gemma4:12b",
+ "lens": "advice",
+ "mined_at": "2026-08-22T19:15:11",
+ "advice": []
+}

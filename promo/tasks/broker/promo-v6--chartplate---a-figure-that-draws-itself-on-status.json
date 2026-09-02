@@ -1,0 +1,13 @@
+{
+  "state": "running",
+  "turns": 4,
+  "tool_calls": 3,
+  "errors": 0,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/promo/src/shots/v6/ChartPlate.tsx"
+  ],
+  "elapsed": "102s",
+  "updated": "06:20:33",
+  "provider_history": [],
+  "provider_switched": false
+}

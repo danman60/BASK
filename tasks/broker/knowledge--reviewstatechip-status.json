@@ -1,0 +1,13 @@
+{
+  "state": "done",
+  "turns": 51,
+  "tool_calls": 51,
+  "errors": 0,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/apps/web/src/components/compass/knowledge/ReviewStateChip.tsx"
+  ],
+  "elapsed": "454s",
+  "updated": "16:01:43",
+  "provider_history": [],
+  "provider_switched": false
+}

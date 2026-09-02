@@ -1,0 +1,840 @@
+{
+ "source_stream": "uvalux26_P1060688",
+ "media_duration_s": 4737.733,
+ "windows_total": 10,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 11,
+ "items_kept": 44,
+ "model": "gemma4:31b",
+ "lens": "recall",
+ "mined_at": "2026-08-22T15:17:57",
+ "advice": [
+  {
+   "claim": "Some US-based franchisors are aggressively shifting their business model to allocate approximately 40% of their rooms to touchless wellness services.",
+   "quote": "They're moving very aggressively to about 40% of their rooms are wellness, touchless services.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    13
+   ],
+   "t_start": 701.1,
+   "t_end": 707.55,
+   "window": 1
+  },
+  {
+   "claim": "Touchless services are advantageous because they allow for revenue growth without a corresponding increase in labor costs per service dollar.",
+   "quote": "I think the primary thing that I love about touchless, just like we've loved about our business for so long is that we don't have increased labor associated with every dollar of service",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    16,
+    17,
+    18
+   ],
+   "t_start": 714.65,
+   "t_end": 727.41,
+   "window": 1
+  },
+  {
+   "claim": "Wellness services can act as a re-acquisition tool for former tanners who may be open to UV again if it is framed within a wellness context.",
+   "quote": "What the most exciting thing for us has been seeing clients that I maybe haven't seen in 10 or 15 years because they decided they were no longer a tanner, right? So they came back to the wellness center side with absolutely no intentions of ever touching a tanning bed again. But of course our packages all have the tanning in them.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    75,
+    76
+   ],
+   "t_start": 1036.24,
+   "t_end": 1064.48,
+   "window": 2
+  },
+  {
+   "claim": "The industry is shifting from 'wellness' toward 'longevity centers', requiring owners to update operations and equipment to capture the next wave of customers.",
+   "quote": "they're actually a new word they're starting to get into now is longevity longevity centers when we offer longevity so you can almost see the next wave coming so you just make sure that you change your operations to match what you're trying to sell to catch the next batch of customers",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    92,
+    93,
+    94
+   ],
+   "t_start": 1152.34,
+   "t_end": 1169.75,
+   "window": 2
+  },
+  {
+   "claim": "Investing in high-end equipment like the Vitality bed can be financially daunting but generates sufficient revenue to cover its own payments quickly.",
+   "quote": "The payments were very expensive. And he said, I guarantee you we'll make the payments. In about eight months, we had that bid approved. And that was quite a surprise. But it crushes.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    102,
+    103,
+    104,
+    106
+   ],
+   "t_start": 1206.3,
+   "t_end": 1217.88,
+   "window": 2
+  },
+  {
+   "claim": "To maintain a consistent social media presence without burnout, outsource content creation to professional agencies with a fixed schedule and specific deliverables.",
+   "quote": "So what I did was I hired a company that takes video. We actually hired a modeling agency and Negotiated a rate with them and we just had it booked every two weeks that we were doing photo photo and video shoots We said we want three reels We want a bunch of story content and we want 20 photos",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    118,
+    119,
+    120,
+    121
+   ],
+   "t_start": 1302.84,
+   "t_end": 1323.8,
+   "window": 2
+  },
+  {
+   "claim": "Professional content creation can be structured via a monthly retainer including specific deliverables like reels, B-roll, and photos to build brand authority.",
+   "quote": "I put them on a retainer, $2,000 a month. we agreed to two shoots a month which took us about an hour and a half to two hours I then called the modeling agency I wanted and I said I want to spend 350 on a model for two hours of work",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    165,
+    166,
+    167
+   ],
+   "t_start": 1487.12,
+   "t_end": 1499.76,
+   "window": 3
+  },
+  {
+   "claim": "To bypass agency restrictions on spray tans for models, contact the models directly via Instagram to arrange the tan privately before the shoot.",
+   "quote": "I would DM them before they come and be like, can you come get a spray tan tomorrow night? But don't tell your booking agent you're coming to get a spray tan.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    175,
+    176,
+    177
+   ],
+   "t_start": 1525.58,
+   "t_end": 1532.58,
+   "window": 3
+  },
+  {
+   "claim": "High-quality professional imagery serves as a brand asset for onboarding new staff and establishing prestige, even if it doesn't always drive immediate high engagement views.",
+   "quote": "And for $2,800, we use it in our onboardings to show our staff. Like, here's our staff having fun. And it kind of reflected the whole brand and made everybody else feel good about it",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    185,
+    186,
+    187
+   ],
+   "t_start": 1573.82,
+   "t_end": 1585.3,
+   "window": 3
+  },
+  {
+   "claim": "Live Instagram stories typically generate significantly higher viewership than reposted professional content.",
+   "quote": "if you were to take a story in Instagram it like live you would get 1,200 watchers if I posted something that I had already done I think it 300 400",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    191,
+    192,
+    193
+   ],
+   "t_start": 1597.9,
+   "t_end": 1613.58,
+   "window": 3
+  },
+  {
+   "claim": "Staff incentives should be based on the lifetime value (LTV) of a customer and specific KPIs to ensure high-margin returns.",
+   "quote": "it's absolutely imperative that you know what a customer is worth to you over a lifetime and even over the next 12 months and then to structure your incentives accordingly",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    214,
+    215,
+    216
+   ],
+   "t_start": 1709.54,
+   "t_end": 1720.32,
+   "window": 3
+  },
+  {
+   "claim": "High upfront incentives for memberships are justifiable when the projected retention is high (e.g., 16.8 months) and the service has low labor costs.",
+   "quote": "if you know that you're going to get 16.8 months of that membership at $69 then you could afford to give a whole bunch upfront",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    221,
+    222
+   ],
+   "t_start": 1739.38,
+   "t_end": 1748.58,
+   "window": 3
+  },
+  {
+   "claim": "The average lifetime value of a $69 membership is approximately 16.8 months.",
+   "quote": "because if you know that you're going to get 16.8 months of that membership at\n$69",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    221
+   ],
+   "t_start": 1739.38,
+   "t_end": 1744.04,
+   "window": 4
+  },
+  {
+   "claim": "Staff may not realize their actual total earnings if commissions and tips are not explicitly connected to their base hourly rate in communications.",
+   "quote": "but they're not\nconnected they still think they make 18 15 hour they're not connecting what they\nmade 30",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "mistake",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    244,
+    245
+   ],
+   "t_start": 1858.97,
+   "t_end": 1867.17,
+   "window": 4
+  },
+  {
+   "claim": "Tying manager incentives to staff retention over a six-month or one-year period can reduce turnover.",
+   "quote": "one of\nthe four things that I gave her was an incentive based on six months and the\nyear of her team staying we have only lost one since the last five girls that\nwe hired since we put that in",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    252,
+    253
+   ],
+   "t_start": 1899.91,
+   "t_end": 1910.67,
+   "window": 4
+  },
+  {
+   "claim": "Having the entire team welcome a new hire via a group platform creates an immediate sense of belonging.",
+   "quote": "right now we have 42 girls that work for us each one of them will go on\nour platform and welcome them with their name so you know hi Bailey my name is\nWendy I'm so excited to work with you so they they get 41 messages back\nwelcoming them",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    269,
+    270,
+    271
+   ],
+   "t_start": 1959.25,
+   "t_end": 1979.55,
+   "window": 4
+  },
+  {
+   "claim": "Reward points can be used to incentivize basic operational reliability, such as not calling in sick or changing shifts.",
+   "quote": "so really what I did is took everything that my staff are doing that was driving\nme crazy and put it into a positive so if you have a perfect month which means\nyou did not call in sick you did not change a shift",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    290,
+    291,
+    292
+   ],
+   "t_start": 2062.74,
+   "t_end": 2080.46,
+   "window": 4
+  },
+  {
+   "claim": "Sales contests are more effective when staff compete against their own targets rather than against each other.",
+   "quote": "and we really found that doing it against themselves instead of each other so that changed\nprobably about 10 years ago",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    302
+   ],
+   "t_start": 2145.35,
+   "t_end": 2152.41,
+   "window": 4
+  },
+  {
+   "claim": "A point-based membership contest can be structured with 3 points for an all-access sign up and 2 points for an upgrade.",
+   "quote": "again they get uh you know three points for an all-access sign up\nand then they get two points for an upgrade",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    303,
+    304
+   ],
+   "t_start": 2152.41,
+   "t_end": 2163.05,
+   "window": 4
+  },
+  {
+   "claim": "Relying on bonuses alone can lead to retention issues if the base hourly wage is too close to minimum wage.",
+   "quote": "but their hourly wage felt too close to the minimum wage was so when our minimum wage up went to close to 18 and they were say making 26 and they were making that so close to what their you know daughter made that was only a 10 difference i really had to change that",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "mistake",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    314,
+    315,
+    316,
+    317
+   ],
+   "t_start": 2223.73,
+   "t_end": 2252.79,
+   "window": 5
+  },
+  {
+   "claim": "Experienced staff in high-performing salons may earn hourly wages between $32 and $34.",
+   "quote": "So now my big girls make $32 to $34 an hour because I listened and then I had to adjust to that.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    319
+   ],
+   "t_start": 2257.37,
+   "t_end": 2269.19,
+   "window": 5
+  },
+  {
+   "claim": "When dealing with reliable but unmotivated long-term staff, owners should investigate personal life stressors rather than assuming a lack of desire to work.",
+   "quote": "And I think when they go into the lull, it's not because they don't want to be there. It's because something is going on in their lives",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "floor_question",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    358,
+    359
+   ],
+   "t_start": 2497.23,
+   "t_end": 2506.81,
+   "window": 5
+  },
+  {
+   "claim": "When an employee is no longer a fit, owners can offer a 90 to 120-day transition plan to help them move on rather than immediate termination.",
+   "quote": "if you want to devise a 90 to 100 day 120 day plan for us to help you move on we're not letting you go today we love you we care for you so if you need references or a reference letter we'll help you",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    422,
+    423
+   ],
+   "t_start": 2766.97,
+   "t_end": 2776.37,
+   "window": 6
+  },
+  {
+   "claim": "Uniform costs can be recovered via payroll deductions or internal reward points (back spots).",
+   "quote": "And they come off their paycheck, or they can use their back spots.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    484,
+    485
+   ],
+   "t_start": 3024.82,
+   "t_end": 3027.56,
+   "window": 6
+  },
+  {
+   "claim": "Staff uniforms should be flexible enough to accommodate different body types and sizes to ensure all employees feel comfortable.",
+   "quote": "I have all ages and all sizes that have not felt comfortable in this particular skirt that I bought we did have a couple girls that did not fit the shirt with the Swift tech that they found that was just a little bit more fitting so absolutely I have an alternative to that.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "mistake",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    567,
+    568,
+    569,
+    570,
+    571
+   ],
+   "t_start": 3287.59,
+   "t_end": 3316.23,
+   "window": 7
+  },
+  {
+   "claim": "Retail products that complement wellness services can be marked up by 100%.",
+   "quote": "I buy products that complement my wellness that I get to mark up a hundred percent",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    629
+   ],
+   "t_start": 3591.44,
+   "t_end": 3596.06,
+   "window": 8
+  },
+  {
+   "claim": "Hiring a fractional CFO can provide high-level financial oversight and profitability analysis for salon owners.",
+   "quote": "I have a fractional CFO, which, if anyone doesn't do that, please do that, basically, he's a CFO for six companies, and he's my CFO",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    634
+   ],
+   "t_start": 3612.48,
+   "t_end": 3641.4,
+   "window": 8
+  },
+  {
+   "claim": "Use POS data and KPI dashboards to identify exactly which areas of the business require staff training.",
+   "quote": "The advantage of having a point-of-sale system that could deliver that kind of data for you to decide what needed to be trained, it was so awesome when we got to the place where the data told us where we had to focus.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    670
+   ],
+   "t_start": 3756.45,
+   "t_end": 3774.33,
+   "window": 8
+  },
+  {
+   "claim": "If staff cannot afford required uniform standards, the owner should provide the means to acquire them to maintain brand image.",
+   "quote": "Like with a couple of my staff, they couldn't afford it. And that was a conversation. So now I obviously went out and I got them Lululemon gift cards.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    711,
+    712,
+    713
+   ],
+   "t_start": 3933.78,
+   "t_end": 3941.16,
+   "window": 8
+  },
+  {
+   "claim": "Gen Z consumers are showing a renewed interest in tanning beds despite previous negative health narratives.",
+   "quote": "is everyone seeing how much Gen Zers are talking about tanning? Like, tanning's popping off. I think that consumers are consumered out a bit right now, and now they're coming into the salon and being like, what's this tanning bed all about?",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    609,
+    610,
+    611,
+    612
+   ],
+   "t_start": 3506.82,
+   "t_end": 3519.46,
+   "window": 8
+  },
+  {
+   "claim": "Some staff may struggle to afford required uniform standards, requiring owners to provide financial assistance or gift cards to maintain brand image.",
+   "quote": "Like with a couple of my staff, they couldn't afford it.\nAnd that was a conversation.\nSo now I obviously went out and I got them Lululemon gift cards.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    711,
+    712,
+    713
+   ],
+   "t_start": 3933.78,
+   "t_end": 3941.16,
+   "window": 9
+  },
+  {
+   "claim": "To test staff product knowledge and sales ability, ask them to name specific clients who would buy a product rather than explaining the product's ingredients.",
+   "quote": "I want you to ask your staff,\nout of all of these cubes,\nI want you to give me at least one or two clients\nthat would buy that product.\nInstead of telling me what's in that product,\nI want to know one or two clients\nthat would buy those products.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    723,
+    724,
+    725,
+    726,
+    727,
+    728,
+    729
+   ],
+   "t_start": 3973.78,
+   "t_end": 3987.86,
+   "window": 9
+  },
+  {
+   "claim": "The most difficult management move is often identifying and letting go of 'C-team' employees who are no longer a fit for the business.",
+   "quote": "I think the most uncomfortable would be is encouraging your C group,\nyou know, you've got your A team, your B team, your C team,\nthat maybe their life is done.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    740,
+    741,
+    742
+   ],
+   "t_start": 4032.0,
+   "t_end": 4047.62,
+   "window": 9
+  },
+  {
+   "claim": "AI tools can be used to perform competitive gap analysis by analyzing local competitors' offerings in a specific location.",
+   "quote": "I went online and I put in, please tell me what panels\nwant to use in this location, what would be your location, and do a full analysis on my\ncompetitors and tell me where their gaps are and where I can pick up on that.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    747,
+    748,
+    749
+   ],
+   "t_start": 4079.58,
+   "t_end": 4096.38,
+   "window": 9
+  },
+  {
+   "claim": "To reduce staff burnout and phone congestion, implement online booking and AI chatbots to handle appointment requests via text.",
+   "quote": "And my staff was, the phones don't stop ringing.\nThey don't stop ringing, okay?\nOkay, so we got online booking.\nWhat else?\nThey still ring for certain people.\nOkay, so now we're putting in an AI chatbot\nthat when they call into our salon,\nit's gonna send them a text message to book an appointment.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "floor_question",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    752,
+    753,
+    754,
+    755,
+    756,
+    757,
+    758,
+    759,
+    760
+   ],
+   "t_start": 4102.11,
+   "t_end": 4118.69,
+   "window": 9
+  },
+  {
+   "claim": "Salons should have written SOP checklists for emergency scenarios like robberies or power outages to avoid owner panic and ensure staff action.",
+   "quote": "We have a robbery kit that's in the drawer that if they ever got robbed they pull it out and they follow the checklist.\nHold on a second. Yeah, hold on. I need to follow the checklist. Or there's a power outage. There needs to be, this is what you do in a power outage.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    769,
+    770
+   ],
+   "t_start": 4137.16,
+   "t_end": 4155.44,
+   "window": 9
+  },
+  {
+   "claim": "Some salons achieve monthly EFT (Electronic Funds Transfer) values of $300 to $400 per person.",
+   "quote": "we have EFTs at\n400 bucks in our place\nwe have some EFTs that are\n$300, $400 a month",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    788,
+    789,
+    790,
+    791
+   ],
+   "t_start": 4241.22,
+   "t_end": 4249.34,
+   "window": 9
+  },
+  {
+   "claim": "Owners should prohibit the use of outside lotions in their beds to protect expensive equipment and ensure product safety.",
+   "quote": "do not let any other lotion other than what you sell be used in your\nstores I do it it is a non-negotiable it was the easiest thing I did never\nlooking back",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    800,
+    801,
+    802
+   ],
+   "t_start": 4271.1,
+   "t_end": 4285.84,
+   "window": 9
+  },
+  {
+   "claim": "When customers object to a 'no outside lotions' policy, the rebuttal should focus on equipment protection and skin safety.",
+   "quote": "And, you know, once you get people on your side with the why,\nwhich is it protects my equipment, I don't know what's in that bottle.\nOnce you get them on your side, then it makes sense.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "objection",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    808,
+    809,
+    810
+   ],
+   "t_start": 4307.96,
+   "t_end": 4320.82,
+   "window": 9
+  },
+  {
+   "claim": "To prevent customers from using outside lotions and encourage retail sales, require them to leave their personal bottles at the front desk and provide a sample for their session.",
+   "quote": "Just give them one of those, and let them use your lay down, and make them leave their bottle at the front desk, they'll love you forever.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "objection",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    831
+   ],
+   "t_start": 4419.27,
+   "t_end": 4425.29,
+   "window": 10
+  },
+  {
+   "claim": "Avoid relying on job boards like Indeed or Facebook for high-quality staff; instead, build a 'bench' of potential candidates through community networking and personal interactions.",
+   "quote": "the job market has changed you're not going to list a job and recruit the best person on indeed or whatever platform facebook jobs right your job in your community is to get out there and get to know people when you're going out for dinner and introduce yourself. Your job as salon owners to recruit new staff is to build your bench.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    848,
+    849,
+    851
+   ],
+   "t_start": 4485.41,
+   "t_end": 4511.18,
+   "window": 10
+  },
+  {
+   "claim": "Recruit high-performing staff by complimenting employees in other service industries (like restaurants) and inviting them to contact you if they ever want a change.",
+   "quote": "If you guys are in a restaurant, you have a really positive experience with somebody, my favorite line is, Hey, you obviously love your job, and you're really, really good at it. If you ever want to take me, call me.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    866,
+    867
+   ],
+   "t_start": 4566.06,
+   "t_end": 4575.8,
+   "window": 10
+  },
+  {
+   "claim": "Use social media not just for customers, but to advertise a fun company culture that attracts potential employees.",
+   "quote": "The other thing that's important too is advertise your culture. When you look at your socials and things like that, You want people in your community to want to work there, right?",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    856,
+    857,
+    858
+   ],
+   "t_start": 4523.46,
+   "t_end": 4534.4,
+   "window": 10
+  },
+  {
+   "claim": "Include a direct link to join the team/apply for jobs in the salon's Instagram bio alongside the website link.",
+   "quote": "if you open up california sun's instagram for the link for his business it is either the link for his business website or to join his team",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    906,
+    907
+   ],
+   "t_start": 4635.72,
+   "t_end": 4647.34,
+   "window": 10
+  }
+ ]
+}

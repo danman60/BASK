@@ -1,0 +1,713 @@
+{
+ "source_stream": "uvalux26_P1060686",
+ "media_duration_s": 4296.292,
+ "windows_total": 10,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 13,
+ "items_kept": 37,
+ "model": "gemma4:31b",
+ "lens": "recall",
+ "mined_at": "2026-08-22T14:59:37",
+ "advice": [
+  {
+   "claim": "The wellness industry is shifting rapidly, and salons that will be successful in 2026 must begin making data-backed decisions now.",
+   "quote": "The wellness space is shifting fast. We're going to talk a little bit about that in just a second. And so long as the studios that will thrive in 2026 are the ones making smarter, data-backed decisions right now.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    72,
+    73,
+    74,
+    75
+   ],
+   "t_start": 270.83,
+   "t_end": 278.63,
+   "window": 1
+  },
+  {
+   "claim": "The cost of starting a tanning salon has increased significantly over the last few decades; in 1993, a 1200 sq ft store could be furnished for $250k, whereas today a single piece of equipment can cost $100k.",
+   "quote": "when i first got into the industry back in 1993 we built out a 1200 square foot store i think we furnished it with uh equipment and i think we were all in at 250 000\nNow you can spend $100,000 for one piece of equipment, yeah?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    144,
+    145,
+    146
+   ],
+   "t_start": 572.34,
+   "t_end": 591.46,
+   "window": 2
+  },
+  {
+   "claim": "Salon owners often delay implementing membership models due to fear of customer backlash, only to realize too late that the change was necessary for survival.",
+   "quote": "oh my man i heard about the membership thing i'm going to do that when i leave today we're going to\ndo that and then the next year i'll see them and you know what they say oh gosh i gotta do it i\ngotta do it i just my customers will kill me if i do something like that and then the next year\nthey're like things are tough i gotta make change and the next year i don't see them anymore you\nknow why they're not in business",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    174,
+    175,
+    176,
+    177,
+    178
+   ],
+   "t_start": 672.04,
+   "t_end": 697.4,
+   "window": 2
+  },
+  {
+   "claim": "Relying solely on session counts to measure business health is outdated because the rise of sunless tanning has changed customer visit frequency.",
+   "quote": "we gauged everything by sessions, did we not?\nSessions were going up, sessions going down.\nBut then along came sunless and people who tanned\nthree or four times a week now only came once every ten days\nand screwed up our sessions.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    213,
+    214,
+    215,
+    216,
+    217
+   ],
+   "t_start": 796.23,
+   "t_end": 809.17,
+   "window": 2
+  },
+  {
+   "claim": "The average annual revenue for a salon in the US is approximately $225,000, while the average in Canada is about $350,000.",
+   "quote": "The average salon in the U.S. generates about\n225,000, and looking at the analytics for Canada, about 350.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    224,
+    225
+   ],
+   "t_start": 831.01,
+   "t_end": 843.5,
+   "window": 2
+  },
+  {
+   "claim": "A typical salon maintains a customer base of between 1,000 and 1,500 customers.",
+   "quote": "The average number of customers within this store, 1,000 to 1,500.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    242
+   ],
+   "t_start": 912.73,
+   "t_end": 918.11,
+   "window": 2
+  },
+  {
+   "claim": "In any given community, approximately 10% of the population are potential tanning customers.",
+   "quote": "If you take any community, roughly 10% of that community is your customer. Those are people that would be a tanning customer.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    259,
+    260
+   ],
+   "t_start": 977.83,
+   "t_end": 986.91,
+   "window": 3
+  },
+  {
+   "claim": "Between 2.5% and 4% of a community's potential tanning customers will typically become subscription members.",
+   "quote": "Of the 3,000 people, roughly 2.5% to 4% will be subscription customers. Those would be people signing up on memberships, 2.5% to 4%.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    263,
+    264
+   ],
+   "t_start": 995.4,
+   "t_end": 1007.8,
+   "window": 3
+  },
+  {
+   "claim": "The average annual spend per customer in a salon is between $150 and $175.",
+   "quote": "The annual customer spend is $150 to $175.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    272
+   ],
+   "t_start": 1030.68,
+   "t_end": 1035.62,
+   "window": 3
+  },
+  {
+   "claim": "On average, a tanning customer visits the spa 16 times per year.",
+   "quote": "Average 16 times a year.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    314
+   ],
+   "t_start": 1152.82,
+   "t_end": 1154.4,
+   "window": 3
+  },
+  {
+   "claim": "It is rare for any salon owner to see an average of more than 22 sessions per customer per year.",
+   "quote": "I have yet, never yet in 30 years, seen somebody over 22 sessions a year.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    319
+   ],
+   "t_start": 1165.8,
+   "t_end": 1170.98,
+   "window": 3
+  },
+  {
+   "claim": "Business platforms and pricing should not be designed around the behavior of the top 3% of power users.",
+   "quote": "Never build a platform of business around what 3% do.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "mistake",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    321
+   ],
+   "t_start": 1175.18,
+   "t_end": 1192.08,
+   "window": 3
+  },
+  {
+   "claim": "Roughly 3% of consumers abuse a policy; owners should avoid restricting memberships for the majority based on the behavior of this small minority.",
+   "quote": "In any given market, roughly 3% of consumers abuse a policy. Why would we punish 97% of our customers for what 3% do?",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    362,
+    363
+   ],
+   "t_start": 1339.44,
+   "t_end": 1352.48,
+   "window": 4
+  },
+  {
+   "claim": "Avoid creating overly complex membership or sales rules because complexity hinders the staff's ability to execute them effectively.",
+   "quote": "complexity is the enemy of execution. Have you ever thought of something for your brand and you're like, oh man, okay, here's how we'll do we'll sell this but if they do this they get this and then if they buy so many of these they get this and then if they want on a one-time offer we'll do it this way you ever done that I see something that's right and then you watch your team and four and a half hours later the girls I'm explaining it to the customer it's too complex it's never gonna work",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "mistake",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    418,
+    419,
+    420,
+    421,
+    422,
+    423,
+    424
+   ],
+   "t_start": 1595.94,
+   "t_end": 1633.02,
+   "window": 4
+  },
+  {
+   "claim": "Pivoting to wellness services expands the customer demographic beyond a narrow niche (e.g., Caucasian females) to include all ages and ethnicities.",
+   "quote": "80 of our customers are using wellness we've had more memberships in the past two weeks than any store we've ever opened why i'm not that smart because he's attracting 100 hundred percent of the community no longer are we going after this white Caucasian female that fits in a certain demographic we have Gen Z's that are growing up without even knowing who we are",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    408,
+    409,
+    410,
+    411
+   ],
+   "t_start": 1533.48,
+   "t_end": 1560.89,
+   "window": 4
+  },
+  {
+   "claim": "Limiting a salon's offerings strictly to tanning creates artificial seasonality and restricts growth opportunities.",
+   "quote": "in essence we are the creators in this room of our own seasonality we limited ourselves to a very specific tight vertical market and we've given no room for growth",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    434,
+    435
+   ],
+   "t_start": 1678.9,
+   "t_end": 1693.0,
+   "window": 4
+  },
+  {
+   "claim": "Increasing the average customer retention by just one month for a base of 1,000 customers paying $100/month generates an additional $100,000 in revenue without increasing labor or equipment costs.",
+   "quote": "let's say on average that you charged a hundred dollars let's say a customer is worth a hundred dollars a month and you added just one month to To those 1,000 people, this is easy math, $100 times 1,000 people is $100,000.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    448,
+    449,
+    450
+   ],
+   "t_start": 1773.03,
+   "t_end": 1790.39,
+   "window": 5
+  },
+  {
+   "claim": "The tanning industry has plateaued with a growth rate of only 2% to 4% per year.",
+   "quote": "I'm not in any way shape or form suggesting tanning is doing bad it's just right it's plateaued we're climbing at about two to four percent a year that's the tanning industry",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    475,
+    476
+   ],
+   "t_start": 1919.36,
+   "t_end": 1930.74,
+   "window": 5
+  },
+  {
+   "claim": "The wellness industry is seeing explosive growth, projected to reach nearly $10 billion by 2023 from $5.9 billion in 2024.",
+   "quote": "but the wellness is exploding and here's some interesting interesting numbers the wellness industry in 2024 5.9 billion and 20 by 2023 we're going to see it reach almost 10 billion dollars in growth",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    478,
+    479
+   ],
+   "t_start": 1935.2,
+   "t_end": 1949.95,
+   "window": 5
+  },
+  {
+   "claim": "Salon owners who resisted adding spray tanning (Mystic Tan) in the 90s saw their customer bases decline before eventually being forced to adopt the technology to retain customers.",
+   "quote": "Think about that. How many of us heard about this thing called mystic tan? Back in the 90s, right? Everybody hear about some of this tan? And then some people said, well, I'm never going to do fake tan. I'm not going to expose my customers to that. So they didn't get on board. And two, three, four years go by and they watch their customer base start declining. And then eventually what did they buy? They bought a mystic pen, right?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    483,
+    484,
+    485,
+    486,
+    487
+   ],
+   "t_start": 1971.7,
+   "t_end": 1999.85,
+   "window": 5
+  },
+  {
+   "claim": "Business owners who fail to plan, invest in equipment, and monitor numbers during stable times are vulnerable to total failure during economic downturns.",
+   "quote": "If we're not investing in new equipment, if we're not thinking about new strategies, if we're not looking at our numbers when it's calm, we're gonna get destroyed when there's a storm.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    528,
+    529,
+    530,
+    531
+   ],
+   "t_start": 2172.62,
+   "t_end": 2182.29,
+   "window": 5
+  },
+  {
+   "claim": "Many business owners were wiped out during the 2008 recession because they overcapitalized and spent profits on luxury items rather than building a financial buffer.",
+   "quote": "I remember back in 2008, I watched quite a few of my friends get annihilated through the recession. Why? They were overcapitalized. They didn't have enough leverage to withstand it. They weren't doing any planning. You know what they were doing during the calm times, during the good times? taking vacations, they were living at large, buying new cars, and they were relying on next month's income to pay for all of this.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "mistake",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    532,
+    533,
+    534,
+    535,
+    536,
+    537,
+    538,
+    539,
+    540,
+    541
+   ],
+   "t_start": 2183.24,
+   "t_end": 2213.78,
+   "window": 5
+  },
+  {
+   "claim": "Overcapitalization and lack of financial planning during prosperous times can lead to business failure during economic downturns.",
+   "quote": "I remember back in 2008, I watched quite a few of my friends get annihilated through the recession. Why? They were overcapitalized. They didn't have enough leverage to withstand it. They weren't doing any planning.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    532,
+    533,
+    534,
+    535,
+    536,
+    537
+   ],
+   "t_start": 2183.24,
+   "t_end": 2197.54,
+   "window": 6
+  },
+  {
+   "claim": "The speaker's business generates significant revenue from apparel sales in the lobby.",
+   "quote": "we move about 1.8 million a year just in apparel in our lobbies",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    544
+   ],
+   "t_start": 2229.48,
+   "t_end": 2235.32,
+   "window": 6
+  },
+  {
+   "claim": "The majority of retail theft in salons is committed by employees.",
+   "quote": "80% of all theft in your store will take place by an employee. That's a fact.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    599
+   ],
+   "t_start": 2557.9,
+   "t_end": 2562.24,
+   "window": 6
+  },
+  {
+   "claim": "A common facility fee benchmark is $30, though some owners start at $10 or $20 before scaling up.",
+   "quote": "some people have started out with $10 they thought $30 was too aggressive some people started out with $20 some people started every single one of them every single one and I'll give you references but because of every single one is now 30 a month",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    644,
+    645,
+    646
+   ],
+   "t_start": 2747.56,
+   "t_end": 2763.46,
+   "window": 7
+  },
+  {
+   "claim": "A high-performing 2800 sq ft store with 11-12 modalities can generate over $1.16 million annually.",
+   "quote": "this store in 2024 did 1.16 this is a 2800 square foot store we have i think 11 12 different modalities in this store",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    647,
+    648
+   ],
+   "t_start": 2763.46,
+   "t_end": 2781.3,
+   "window": 7
+  },
+  {
+   "claim": "Increasing the average annual spend per distinct customer is more effective for growth than increasing total customer count.",
+   "quote": "We had 4,400 distinct customers five years ago. We're sitting at 3,185 doing $600,000 more. Why? Because if we can get those customers that we already have to buy an extra month or an extra two months, think about what that means.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    658
+   ],
+   "t_start": 2841.12,
+   "t_end": 2865.28,
+   "window": 7
+  },
+  {
+   "claim": "The probability of closing a sale is highest (80%) within the first four minutes of the interaction.",
+   "quote": "If you can't close a sale, here's an interesting statistic for you, that up to four minutes, you have an 80% chance of closing the sale.",
+   "category": "coaching",
+   "moment": "close",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    685,
+    686
+   ],
+   "t_start": 2967.55,
+   "t_end": 2982.68,
+   "window": 7
+  },
+  {
+   "claim": "Customers form a first impression of a salon within 18 seconds of entering.",
+   "quote": "from the moment they walk over the threshold, what's the time frame they count? They're going to make an impression of your store within how long? 18 seconds.",
+   "category": "customer",
+   "moment": "greeting",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    687,
+    688,
+    689
+   ],
+   "t_start": 2984.04,
+   "t_end": 3008.47,
+   "window": 7
+  },
+  {
+   "claim": "Positioning the business as a 'wellness spa' rather than a 'tanning salon' improves employee pride and reduces familial stigma associated with the job.",
+   "quote": "She goes home. How job search go today? I got a job at the wellness spa. Mom, I get my scrubs next week. I'm so excited.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    721,
+    722,
+    723
+   ],
+   "t_start": 3145.85,
+   "t_end": 3151.87,
+   "window": 8
+  },
+  {
+   "claim": "The visual appearance of staff and the facility creates an immediate subconscious judgment from customers that overrides verbal sales pitches.",
+   "quote": "In the first 18 seconds, we decided that what we see is going to be what we get. When you walk into your store, is what you see what you get?",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    763,
+    764
+   ],
+   "t_start": 3291.5,
+   "t_end": 3305.12,
+   "window": 8
+  },
+  {
+   "claim": "If a customer visits a store in person but leaves without buying after hearing the price, the failure is usually due to a visual or environmental disconnect rather than the price itself.",
+   "quote": "If they walk out of your store, they did it because we did something wrong.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "mistake",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    803
+   ],
+   "t_start": 3421.08,
+   "t_end": 3424.62,
+   "window": 8
+  },
+  {
+   "claim": "Minimum wage increases in unrelated sectors (like fast food) can trigger a wage spiral that makes salon labor unaffordable.",
+   "quote": "Now, if your employee can work at Taco Bell\ntaking ownership of the drive-thru for 20, and you want to pay them 18, yes, well, you're\ngoing to be looking for new employees. And now it didn't begin a fight at 20, it began\na fight for employees at 22 to 23.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    833,
+    834,
+    835
+   ],
+   "t_start": 3539.62,
+   "t_end": 3553.14,
+   "window": 9
+  },
+  {
+   "claim": "Adding wellness services to a tanning salon can attract new customer segments and encourage existing members to upgrade their memberships.",
+   "quote": "We've had so many people that have come in for other services that became light\nlight therapy customers just because of the wellness services they make.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    889,
+    890
+   ],
+   "t_start": 3730.05,
+   "t_end": 3739.88,
+   "window": 9
+  },
+  {
+   "claim": "The appearance and grooming of the sales staff should mirror the high-end wellness experience the salon aims to project to increase sales.",
+   "quote": "If that's the case, why don't we take that philosophy and apply it\nto our stores if we know that the person behind the counter sells the person in front of the\ncounter why don't we capitalize on that you see the value of having the sales staff trained to\nlook and feel the party that becomes critical",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    913,
+    914,
+    915
+   ],
+   "t_start": 3816.53,
+   "t_end": 3836.51,
+   "window": 9
+  },
+  {
+   "claim": "Staff retention issues are often caused by a refusal to modernize products and modalities.",
+   "quote": "plus it's hard to keep staff. Why is it hard to keep staff? Because we refuse to change. They want new things. They want new products, new modalities.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    991,
+    992,
+    993,
+    994,
+    995
+   ],
+   "t_start": 4197.92,
+   "t_end": 4208.22,
+   "window": 10
+  }
+ ]
+}

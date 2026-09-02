@@ -1,0 +1,141 @@
+{
+ "source_stream": "uvasummer25_REC00243",
+ "media_duration_s": 1860.508,
+ "windows_total": 5,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 0,
+ "items_kept": 7,
+ "model": "gemma4:31b",
+ "lens": "recall",
+ "mined_at": "2026-08-22T15:39:57",
+ "advice": [
+  {
+   "claim": "Targeting a 16+ demographic for sunless products is effective because they are often employed and can afford the products themselves, whereas younger teens rely on parents who may only buy from major retailers like Sephora.",
+   "quote": "So we did 16 and up, and the reason being is, obviously, young adolescent now, with the pressure of social media, everyone wants to look good, feel good. The reason that we didn't go younger is because 16 and up is your demographic, that they are employed. You know, most of these people's parents, they don't want to pay for their kids' added extra stuff outside of Sephora, right? So it's also a reasonable price for them to justify it at their age, right?",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00243",
+   "segment_ids": [
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "t_start": 41.74,
+   "t_end": 65.72,
+   "window": 1
+  },
+  {
+   "claim": "Launching new tanning products in May or June aligns with the seasonal increase in customers wanting to look and feel good for summer outings.",
+   "quote": "We're thinking May to June, the reason being you're coming into the time of year. People want to feel good, look good. Everyone's going out.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00243",
+   "segment_ids": [
+    16,
+    17,
+    18
+   ],
+   "t_start": 77.84,
+   "t_end": 83.84,
+   "window": 1
+  },
+  {
+   "claim": "Bundling multiple products into a simplified system (like a dual-chamber bottle) is an effective way to introduce clients to a multi-step routine without overwhelming them with too many individual bottles.",
+   "quote": "We are always telling our clients how important it is to have multiple products in their routine. This is a great way to introduce that to them in a simplified way without throwing a thousand bottles at them.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00243",
+   "segment_ids": [
+    91,
+    92
+   ],
+   "t_start": 402.0,
+   "t_end": 411.98,
+   "window": 1
+  },
+  {
+   "claim": "Putting a product directly into a customer's hand during the sales process creates a sense of ownership.",
+   "quote": "Because when we're at the salon, we always like to put the product in their hand because that's ownership, right?",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00243",
+   "segment_ids": [
+    114
+   ],
+   "t_start": 473.5,
+   "t_end": 478.28,
+   "window": 1
+  },
+  {
+   "claim": "Putting a product directly into a customer's hand creates a sense of ownership that aids in the sale.",
+   "quote": "Because when we're at the salon, we always like to put the product in their hand because that's ownership, right?",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00243",
+   "segment_ids": [
+    114
+   ],
+   "t_start": 473.5,
+   "t_end": 478.28,
+   "window": 2
+  },
+  {
+   "claim": "Male clients are often resistant to complex skincare routines and prefer simplified product offerings.",
+   "quote": "typically are male clients who, I don't use lotion, I don't use product, I don't like to put this on my skin, why are you handing me five bottles I now need to put on?",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00243",
+   "segment_ids": [
+    144
+   ],
+   "t_start": 600.42,
+   "t_end": 609.06,
+   "window": 2
+  },
+  {
+   "claim": "Sales are more successful when the process is simplified for the customer into easy steps.",
+   "quote": "I always, when I do sales trainings, I always make things easier for people, because that's how you sell. That's why it says step one, tan, step two, extend.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00243",
+   "segment_ids": [
+    176,
+    177
+   ],
+   "t_start": 727.06,
+   "t_end": 738.01,
+   "window": 2
+  }
+ ]
+}

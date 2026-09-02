@@ -1,0 +1,95 @@
+# Result
+
+I've created the ChartPlate component as requested. The component:
+- Exports the exact ChartPlateProps interface with fields: series, label, fromLabel, toLabel, fromValue, toValue, and optional accent
+- Is a functional component that animates according to specifications:
+  - Plate fades and scales from 0.96 to 1 over frames 0-14
+  - SVG polyline draws left to right between frames 8-46 by animating strokeDashoffset
+  - fromValue and toValue labels fade in at frames 30 and 40
+  - Nothing moves after frame 60
+- Uses the accent prop to select T.cAmber for line color when true, otherwise T.ink
+- Uses proper imports from '../../tokens' (T, DISPLAY, BODY, E)
+- Follows the exemplar structure and conventions exactly
+- Has correct header comment about v5 cut scrolling past numbers
+- Uses useCurrentFrame and interpolate from remotion for all animations
+- Does not use CSS animation or setInterval
+- All motion is driven by Remotion's animation system
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- p
+- r
+- o
+- m
+- o
+- /
+- s
+- r
+- c
+- /
+- s
+- h
+- o
+- t
+- s
+- /
+- v
+- 6
+- /
+- C
+- h
+- a
+- r
+- t
+- P
+- l
+- a
+- t
+- e
+- .
+- t
+- s
+- x
+- '
+- ]

@@ -1,0 +1,106 @@
+{
+ "source_stream": "uvasummer25_REC00336",
+ "media_duration_s": 1860.504,
+ "windows_total": 5,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 1,
+ "items_kept": 5,
+ "model": "gemma4:12b",
+ "lens": "advice",
+ "mined_at": "2026-08-22T19:16:08",
+ "advice": [
+  {
+   "claim": "Use a sales fact sheet to help customers understand the story and unique benefits of a product beyond its basic function.",
+   "quote": "the sales fact sheet was an awesome touch helps us understand the story because obviously at first impression it could just seem like a body wash",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer25_REC00336",
+   "segment_ids": [
+    7,
+    8,
+    9
+   ],
+   "t_start": 31.1,
+   "t_end": 49.48,
+   "window": 1
+  },
+  {
+   "claim": "Bundle products together to help justify a higher price point.",
+   "quote": "what would you bundle this with specifically is there another product that you currently carry that you could see bundled together",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer25_REC00336",
+   "segment_ids": [
+    17,
+    18
+   ],
+   "t_start": 81.74,
+   "t_end": 96.17,
+   "window": 1
+  },
+  {
+   "claim": "Use simplified product combinations to introduce multiple products to clients without overwhelming them.",
+   "quote": "We are always telling our clients how important it is to have multiple products in their routine. This is a great way to introduce that to them in a simplified way without throwing a thousand bottles at them.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer25_REC00336",
+   "segment_ids": [
+    96,
+    97,
+    98
+   ],
+   "t_start": 500.32,
+   "t_end": 513.58,
+   "window": 2
+  },
+  {
+   "claim": "Put the product in the customer's hand to create a sense of ownership.",
+   "quote": "when we're at the salon we always like to put the product in their hand because that's ownership",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer25_REC00336",
+   "segment_ids": [
+    114,
+    115
+   ],
+   "t_start": 571.0,
+   "t_end": 579.42,
+   "window": 2
+  },
+  {
+   "claim": "Make the sales process easier for the customer to increase conversion.",
+   "quote": "i always when i do sales trainings always like make things easier people because that's how you sell",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer25_REC00336",
+   "segment_ids": [
+    183,
+    184
+   ],
+   "t_start": 827.14,
+   "t_end": 834.6,
+   "window": 2
+  }
+ ]
+}

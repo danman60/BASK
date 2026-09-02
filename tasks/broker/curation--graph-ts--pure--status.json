@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 17,
+  "tool_calls": 17,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/core/src/knowledge/curation/graph.ts']",
+  "elapsed": "97s",
+  "updated": "22:03:25",
+  "provider_history": [],
+  "provider_switched": false
+}

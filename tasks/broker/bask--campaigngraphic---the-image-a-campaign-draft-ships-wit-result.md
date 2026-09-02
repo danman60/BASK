@@ -1,0 +1,104 @@
+# Result
+
+I have created the CampaignGraphic component as specified. The component:
+- Takes the exact props interface CampaignGraphicProps with headline, badge, backgroundSrc, salonName, and optional className
+- Renders a square graphic with background image, scrim, headline, badge, and salon name
+- Uses only the specified class names (b-cgraphic, b-cgraphic-bg, b-cgraphic-scrim, b-cgraphic-body, b-cgraphic-headline, b-cgraphic-badge, b-cgraphic-salon)
+- Has the required file header comment explaining the design decisions
+- Follows the same structure and conventions as the exemplar component RecordsPanel.tsx
+- Contains no inline styles or styling-related code
+- Is properly typed with TypeScript
+
+The component is complete and functional according to all specified requirements.
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- p
+- a
+- c
+- k
+- a
+- g
+- e
+- s
+- /
+- u
+- i
+- /
+- s
+- r
+- c
+- /
+- c
+- o
+- m
+- p
+- o
+- n
+- e
+- n
+- t
+- s
+- /
+- C
+- a
+- m
+- p
+- a
+- i
+- g
+- n
+- G
+- r
+- a
+- p
+- h
+- i
+- c
+- .
+- t
+- s
+- x
+- '
+- ]

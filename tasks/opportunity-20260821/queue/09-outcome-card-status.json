@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 6,
+  "tool_calls": 6,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/ui/src/components/OutcomeCard.tsx']",
+  "elapsed": "162s",
+  "updated": "13:21:43",
+  "provider_history": [],
+  "provider_switched": false
+}

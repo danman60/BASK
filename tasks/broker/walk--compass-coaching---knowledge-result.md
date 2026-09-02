@@ -1,0 +1,114 @@
+# Result
+
+I have successfully created the QA checklist for Compass Coaching and Knowledge screens as requested. The file `/home/danman60/projects/uvalux-platform/tests/agent/walkthrough/06-compass-coaching-knowledge.md` contains two complete QA checklists following the exemplar structure exactly:
+
+1. A checklist for `/compass/coaching?role=uvalux_rep` with verification that the page renders and cited answers show their sources
+2. A checklist for `/compass/knowledge?role=uvalux_rep` with all required verifications including:
+   - Claims table renders with readable text
+   - Filter chips grouped under State Topic and Lens labels  
+   - Header shows number of claims still to review
+   - Row selection fills inspector with full verbatim quote
+   - Speaker not shown when unknown
+   - Map view renders 3D graph with legend
+
+The file includes all required sections matching the exemplar's structure, uses proper markdown formatting, and passes validation. Both URLs correctly include the `role=uvalux_rep` query parameter as specified.
+
+## Files Changed
+- -
+-  
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- t
+- e
+- s
+- t
+- s
+- /
+- a
+- g
+- e
+- n
+- t
+- /
+- w
+- a
+- l
+- k
+- t
+- h
+- r
+- o
+- u
+- g
+- h
+- /
+- 0
+- 6
+- -
+- c
+- o
+- m
+- p
+- a
+- s
+- s
+- -
+- c
+- o
+- a
+- c
+- h
+- i
+- n
+- g
+- -
+- k
+- n
+- o
+- w
+- l
+- e
+- d
+- g
+- e
+- .
+- m
+- d

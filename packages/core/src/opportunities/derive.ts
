@@ -1,0 +1,112 @@
+import {
+  OPPORTUNITY_CATEGORY_LABEL,
+  OPPORTUNITY_CONFIDENCE_LABEL,
+  OPPORTUNITY_URGENCY_LABEL,
+  type Opportunity,
+} from './types';
+
+export interface OpportunitySignals {
+  attachmentRatePercent: number;
+  attachmentBaselinePercent: number;
+  visitsLast14: number;
+  averageSaleValue: number;
+  currency: string;
+  quietWeekdayHours: Array<{ weekday: number; hour: number; utilizationPercent: number }>;
+  membershipEligibleCount: number;
+  membershipConversionPercent: number;
+  lapsed30Count: number;
+  lowStock: Array<{ productName: string; daysOfCover: number }>;
+}
+
+export function deriveOpportunities(signals: OpportunitySignals): Opportunity[] {
+  const opportunities: Opportunity[] = [];
+
+  if (signals.attachmentRatePercent < signals.attachmentBaselinePercent) {
+    const impact = (signals.attachmentBaselinePercent - signals.attachmentRatePercent) * (signals.averageSaleValue / 100);
+    opportunities.push({
+      id: 'opp-retail-growth',
+      category: OPPORTUNITY_CATEGORY_LABEL.retail,
+      title: 'Increase retail sales',
+      whatChanged: `Retail attachment is ${signals.attachmentRatePercent}%, which is below the ${signals.attachmentBaselinePercent}% baseline.`,
+      whyItMatters: `Better retail sales can increase monthly revenue.`,
+      impactMonthly: Math.round(impact),
+      impactLabel: `+${Math.round(impact).toString()}/${signals.currency}`,
+      confidence: OPPORTUNITY_CONFIDENCE_LABEL.high,
+      confidenceNote: 'The gap between current and baseline rates is consistent.',
+      urgency: OPPORTUNITY_URGENCY_LABEL.this_week,
+      actions: [],
+    });
+  }
+
+  const lowUtilization = signals.quietWeekdayHours.find((h) => h.utilizationPercent < 50);
+  if (lowUtilization) {
+    const impact = (100 - lowUtilization.utilizationPercent) * (signals.averageSaleValue / 100);
+    opportunities.push({
+      id: `opp-quiet-hour-${lowUtilization.hour}`,
+      category: OPPORTUNITY_CATEGORY_LABEL.marketing,
+      title: `Fill hour ${lowUtilization.hour}`,
+      whatChanged: `Hour ${lowUtilization.hour} has only ${lowUtilization.utilizationPercent}% utilization.`,
+      whyItMatters: `Filling these hours can increase monthly revenue.`,
+      impactMonthly: Math.round(impact),
+      impactLabel: `+${Math.round(impact).toString()}/${signals.currency}`,
+      confidence: OPPORTUNITY_CONFIDENCE_LABEL.worth_testing,
+      confidenceNote: 'This is based on one week of signal.',
+      urgency: OPPORTUNITY_URGENCY_LABEL.this_week,
+      actions: [],
+    });
+  }
+
+  if (signals.membershipEligibleCount >= 5) {
+    const impact = (signals.membershipEligibleCount * 50);
+    opportunities.push({
+      id: 'opp-membership-growth',
+      category: OPPORTUNITY_CATEGORY_LABEL.membership,
+      title: `Convert ${signals.membershipEligibleCount} customers`,
+      whatChanged: `There are ${signals.membershipEligibleCount} customers eligible for membership.`,
+      whyItMatters: `New memberships will increase monthly recurring revenue.`,
+      impactMonthly: Math.round(impact),
+      impactLabel: `+${Math.round(impact).toString()}/${signals.currency}`,
+      confidence: OPPORTUNITY_CONFIDENCE_LABEL.high,
+      confidenceNote: 'High number of eligible customers was found.',
+      urgency: OPPORTUNITY_URGENCY_LABEL.this_week,
+      actions: [],
+    });
+  }
+
+  if (signals.lapsed30Count >= 10) {
+    const impact = (signals.lapsed30Count * 40);
+    opportunities.push({
+      id: 'opp-win-back-lapsed',
+      category: OPPORTUNITY_CATEGORY_LABEL.customer,
+      title: `Win back ${signals.lapsed30Count} customers`,
+      whatChanged: `There are ${signals.lapsed30Count} customers who have not visited in 30 days.`,
+      whyItMatters: `Winning back these customers will increase revenue.`,
+      impactMonthly: Math.round(impact),
+      impactLabel: `+${Math.round(impact).toString()}/${signals.currency}`,
+      confidence: OPPORTUNITY_CONFIDENCE_LABEL.worth_testing,
+      confidenceNote: 'Based on a large group of lapsed customers.',
+      urgency: OPPORTUNITY_URGENCY_LABEL.this_month,
+      actions: [],
+    });
+  }
+
+  const lowStockItem = signals.lowStock.find((s) => s.daysOfCover < 14);
+  if (lowStockItem) {
+    const impact = 500;
+    opportunities.push({
+      id: `opp-reorder-${lowStockItem.productName.replace(/\s+/g, '-').toLowerCase()}`,
+      category: OPPORTUNITY_CATEGORY_LABEL.retail,
+      title: `Reorder ${lowStockItem.productName}`,
+      whatChanged: `The item ${lowStockItem.productName} has only ${lowStockItem.daysOfCover} days of stock left.`,
+      whyItMatters: `Restocking this item protects your current revenue.`,
+      impactMonthly: Math.round(impact),
+      impactLabel: `+${Math.round(impact).toString()}/${signals.currency}`,
+      confidence: OPPORTUNITY_CONFIDENCE_LABEL.high,
+      confidenceNote: 'This is a protective action for existing sales.',
+      urgency: OPPORTUNITY_URGENCY_LABEL.now,
+      actions: [],
+    });
+  }
+
+  return opportunities.sort((a, b) => b.impactMonthly - a.impactMonthly);
+}

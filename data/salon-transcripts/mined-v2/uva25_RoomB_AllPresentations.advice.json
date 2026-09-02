@@ -1,0 +1,1735 @@
+{
+ "source_stream": "uva25_RoomB_AllPresentations",
+ "media_duration_s": 14178.7,
+ "windows_total": 33,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 33,
+ "items_kept": 92,
+ "model": "gemma4:12b",
+ "lens": "advice",
+ "mined_at": "2026-08-22T19:01:06",
+ "advice": [
+  {
+   "claim": "Implementing memberships reduces the amount of time staff spend at the counter trying to resell one-time packages.",
+   "quote": "Let's reduce the time that our staff spend at the counter reselling packages.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    169
+   ],
+   "t_start": 899.24,
+   "t_end": 904.86,
+   "window": 2
+  },
+  {
+   "claim": "Add value to high-end products by bundling or negotiating special volume deals with reps instead of offering discounts.",
+   "quote": "So maybe you can contact your rep and say, you know what, is there a product that you have available that I could maybe buy as a special deal if it's a volume buy? And maybe you can bundle something. thing. So that's a great way to add value versus discounting.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    248,
+    249,
+    250,
+    251
+   ],
+   "t_start": 1316.05,
+   "t_end": 1341.09,
+   "window": 4
+  },
+  {
+   "claim": "Use grandfathered pricing for long-term loyal clients when transitioning to a new membership model.",
+   "quote": "So what you might do, and one of the things that works well with memberships is grandfathering. Grandfathering pricing, grandfathering special things, and I always consider it like Fight Club.",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    252,
+    253,
+    254
+   ],
+   "t_start": 1341.09,
+   "t_end": 1357.51,
+   "window": 4
+  },
+  {
+   "claim": "Offer rewards or gift cards to clients at specific milestones, such as six months or one year of membership.",
+   "quote": "so maybe you reward somebody at the sixth month after their membership maybe it's something small maybe it's a you know a bottle of a tan extender but at a year let's work out how much that client spent with you because maybe throwing them a hundred dollar gift card wouldn't be a bad idea",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    281,
+    282,
+    283,
+    284
+   ],
+   "t_start": 1495.85,
+   "t_end": 1520.57,
+   "window": 4
+  },
+  {
+   "claim": "Include membership offers in social media and email blasts, using a 'members-only' section to create FOMO.",
+   "quote": "if you don't have an e-blast or social posts currently, I want you to include memberships in those posts. If you have an e-blast, let's have a members-only section. Let's have people have FOMO, right? You want them to feel like they're missing out on something. Members only.",
+   "category": "marketing",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    290,
+    291,
+    292,
+    293,
+    294,
+    295
+   ],
+   "t_start": 1537.04,
+   "t_end": 1552.98,
+   "window": 4
+  },
+  {
+   "claim": "Use QR codes to encourage clients to leave online reviews.",
+   "quote": "Throw up a QR code on your desk. See these right here? We're going to leverage you guys today. We want you to use this QR code and tell us how we're doing. and you should do the same with your clients",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    303,
+    304,
+    305,
+    306,
+    307
+   ],
+   "t_start": 1567.84,
+   "t_end": 1581.24,
+   "window": 4
+  },
+  {
+   "claim": "Participate in community events and cross-promote with local businesses to increase visibility.",
+   "quote": "Partner with local businesses, cross promote, community events. If you are not out in your community being seen, you're missing out.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    313,
+    314,
+    315
+   ],
+   "t_start": 1595.96,
+   "t_end": 1602.46,
+   "window": 4
+  },
+  {
+   "claim": "Create exclusive, members-only events to make members feel special.",
+   "quote": "Include value added services add exclusive perks like members events who here does anything just for members how about a sun-kissed soiree or a glow and gather like how fun would it be to invite only your members into the salon on a friday night",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    337,
+    338,
+    339
+   ],
+   "t_start": 1679.71,
+   "t_end": 1704.63,
+   "window": 4
+  },
+  {
+   "claim": "Offer membership upgrades during slow or off-peak seasons to increase revenue.",
+   "quote": "offer upgrades during slow and off-peak seasons.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    352
+   ],
+   "t_start": 1787.15,
+   "t_end": 1788.55,
+   "window": 5
+  },
+  {
+   "claim": "Provide perks like VIP status, gifts, or priority booking to recognize and reward top clients.",
+   "quote": "Recognize top clients with VIP perks, gifts, priority booking.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    359
+   ],
+   "t_start": 1826.11,
+   "t_end": 1832.57,
+   "window": 5
+  },
+  {
+   "claim": "Use psychological pricing by keeping prices just under a round number (e.g., $99 instead of $100).",
+   "quote": "If you keep your pricing at $99 instead of $100, people will spend $99, but they don't want to spend $100.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    396
+   ],
+   "t_start": 2087.6,
+   "t_end": 2096.46,
+   "window": 5
+  },
+  {
+   "claim": "Avoid long-term membership commitments and instead offer shorter terms like three months to make clients feel less confined.",
+   "quote": "we recommend that you do no longer than a three-month commitment",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    412
+   ],
+   "t_start": 2181.05,
+   "t_end": 2187.61,
+   "window": 5
+  },
+  {
+   "claim": "Offer a short commitment period for memberships to make clients feel less restricted.",
+   "quote": "we recommend that you do no longer than a three-month commitment",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    412
+   ],
+   "t_start": 2181.05,
+   "t_end": 2187.61,
+   "window": 6
+  },
+  {
+   "claim": "Focus on memberships because the volume of sales outweighs the loss from a few difficult clients.",
+   "quote": "you'll make way more on memberships then it's worth even talking about those couple of people who are jerks",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    418
+   ],
+   "t_start": 2213.31,
+   "t_end": 2218.27,
+   "window": 6
+  },
+  {
+   "claim": "Increase your prices if you haven't updated them recently to keep up with inflation and value.",
+   "quote": "I want you guys to look at your pricing. If you can do anything this year, look at your pricing and increase it.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    461,
+    462
+   ],
+   "t_start": 2556.14,
+   "t_end": 2568.72,
+   "window": 6
+  },
+  {
+   "claim": "Prioritize implementing a membership program before investing in high-end equipment like cocoons.",
+   "quote": "you only bring in a cocoon if you have memberships. If you don't have memberships, that's not your priority today. Your priority is to get memberships and then bring in a cocoon",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    475,
+    476,
+    477
+   ],
+   "t_start": 2635.18,
+   "t_end": 2648.6,
+   "window": 6
+  },
+  {
+   "claim": "Prioritize establishing a membership program before investing in high-end add-on equipment like cocoons.",
+   "quote": "you only bring in a cocoon if you have memberships. If you don't have memberships, that's not your priority today. Your priority is to get memberships and then bring in a cocoon",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    475,
+    476,
+    477
+   ],
+   "t_start": 2635.18,
+   "t_end": 2648.6,
+   "window": 7
+  },
+  {
+   "claim": "Use premium equipment as a value-add to naturally upsell clients into higher-tier membership levels.",
+   "quote": "you utilize to upsell members, to upsell memberships, right? So now you have an all-access pass and you add the cocoon to it or a VIP or a platinum membership.",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    478,
+    479,
+    480
+   ],
+   "t_start": 2648.6,
+   "t_end": 2665.64,
+   "window": 7
+  },
+  {
+   "claim": "Use equipment that you are passionate about to help sell more memberships.",
+   "quote": "this is a tool that you guys should use or find something that you love and you've got passion for that helps you sell more memberships, okay?",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    562,
+    563
+   ],
+   "t_start": 3143.14,
+   "t_end": 3161.06,
+   "window": 8
+  },
+  {
+   "claim": "Use your knowledge and the way you explain services to motivate customers to book.",
+   "quote": "it's the way you explain it and your knowledge to your customers that is really going to motivate them to do this",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    616
+   ],
+   "t_start": 3492.48,
+   "t_end": 3499.12,
+   "window": 8
+  },
+  {
+   "claim": "Use your knowledge of products and the specific benefits they provide to motivate customers to book services.",
+   "quote": "it's the way you explain it and your knowledge to your customers that is really going to motivate them to do this",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    616
+   ],
+   "t_start": 3492.48,
+   "t_end": 3499.12,
+   "window": 9
+  },
+  {
+   "claim": "Explain the specific benefits of a product, such as how it helps with skin issues like dryness or sensitivity, to drive sales.",
+   "quote": "relaying that information to your clients of why they would use this product what it does for your body how they can combine it with other services",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    621,
+    622
+   ],
+   "t_start": 3538.22,
+   "t_end": 3547.26,
+   "window": 9
+  },
+  {
+   "claim": "Identify specific customer needs, such as dry skin or skin conditions, to recommend targeted products.",
+   "quote": "if i was your customer i've already told you i've got sensitive skin you already know this about me this would be something you recommend hey this can help with this this can be something you can add with a spray tan service",
+   "category": "retail",
+   "moment": "product",
+   "is_script": true,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    640,
+    641,
+    642
+   ],
+   "t_start": 3650.28,
+   "t_end": 3665.82,
+   "window": 9
+  },
+  {
+   "claim": "Use specific selling points, such as the speed of a service, to overcome customer hesitation.",
+   "quote": "so just think with the services these are selling points because everybody wants a service now why is it not already done and you just told them about it",
+   "category": "marketing",
+   "moment": "close",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    677,
+    678
+   ],
+   "t_start": 3820.41,
+   "t_end": 3831.97,
+   "window": 9
+  },
+  {
+   "claim": "Tailor your sales pitch based on the specific demographic or profile of the customer.",
+   "quote": "But when I was talking to the clients, I would switch it up by who that person was.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    663
+   ],
+   "t_start": 3783.54,
+   "t_end": 3788.34,
+   "window": 9
+  },
+  {
+   "claim": "Do not be afraid to hire younger staff as they can be hardworking and are easy to train on work ethic.",
+   "quote": "Do not be afraid to hire young. They're so multiple and easy to, you know, kind of get on your team and really work hard.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    781,
+    782
+   ],
+   "t_start": 4508.16,
+   "t_end": 4523.28,
+   "window": 11
+  },
+  {
+   "claim": "Create a rewards program for staff based on behaviors that improve management operations, such as reliability and teamwork.",
+   "quote": "what we decided to do was implement a rewards problem program and really in a nutshell it was everything that didn't piss me off so they got rewarded for keeping me happy",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    788,
+    789
+   ],
+   "t_start": 4560.84,
+   "t_end": 4578.38,
+   "window": 11
+  },
+  {
+   "claim": "Ensure that non-sales staff, such as bed cleaners, are also eligible for rewards to keep them engaged.",
+   "quote": "So you want to make sure that you're keeping it a little bit for everybody so that the bed cleaners can also get some rewards.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    794,
+    795,
+    796
+   ],
+   "t_start": 4597.34,
+   "t_end": 4610.22,
+   "window": 11
+  },
+  {
+   "claim": "Reward staff for reliability and for performing tasks that make the manager's job easier, such as maintaining a consistent schedule.",
+   "quote": "but if you didn't change your shift you would be rewarded um instead of getting mad because it was the same people that were picking up all the shifts i would reward the people that were picking up the shifts",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    819,
+    820,
+    821
+   ],
+   "t_start": 4718.46,
+   "t_end": 4736.48,
+   "window": 11
+  },
+  {
+   "claim": "Distinguish between commission-based pay for sales performance and wage increases based on reliability and ease of management.",
+   "quote": "So there's two different things. You make my life easier, right? You become not a problem. You're great to my clients. I don't have, you know, I don't have corrections or things to to fix with my clients and things like that. You teach my new staff well. That all makes my life",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    831,
+    832,
+    833,
+    834
+   ],
+   "t_start": 4807.5,
+   "t_end": 4833.76,
+   "window": 11
+  },
+  {
+   "claim": "Base wages should be tied to how much a staff member simplifies the owner's job and manages clients effectively, while commissions should be based on sales performance.",
+   "quote": "So their wage is reflected on how much they make my life easier and their commissions are completely up to them.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    835,
+    836
+   ],
+   "t_start": 4833.76,
+   "t_end": 4846.46,
+   "window": 12
+  },
+  {
+   "claim": "Offer non-monetary rewards and bonuses to staff, as this generation of workers often values these incentives more than just a higher paycheck.",
+   "quote": "But beyond any money that you give your staff, this new generation, more than money, they, believe it or not, their rewards and their bonuses and things like that mean more to them than money does.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    889,
+    891
+   ],
+   "t_start": 5176.15,
+   "t_end": 5198.53,
+   "window": 12
+  },
+  {
+   "claim": "Build a sense of community among your staff to improve retention and culture.",
+   "quote": "But what I have also found with this new generation, which has been really awesome, is, and I love it, is putting them together as a community.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    896,
+    898
+   ],
+   "t_start": 5223.37,
+   "t_end": 5245.45,
+   "window": 12
+  },
+  {
+   "claim": "Having staff stay overnight during a team-building retreat ensures they remain focused on the company and avoids distractions from their personal social lives.",
+   "quote": "But truly it is the best way to get them completely all yours. If you don't stay the night, night you will lose the girls to, um, whatever their social is.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    922,
+    923
+   ],
+   "t_start": 5383.65,
+   "t_end": 5399.73,
+   "window": 13
+  },
+  {
+   "claim": "Providing words of affirmation is often more valuable to the current generation of workers than monetary compensation.",
+   "quote": "because the check in and words of affirmation, if I'm gonna, that's what I started with, words of affirmation for this generation actually means more to them than money every single time.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    940,
+    941,
+    942,
+    943,
+    944
+   ],
+   "t_start": 5498.69,
+   "t_end": 5513.39,
+   "window": 13
+  },
+  {
+   "claim": "Use an automated scheduling app to send shift reminders to employees and manage time-off requests and shift trades.",
+   "quote": "with the employee schedule it takes me for five to eight employees it takes me about five minutes to write an entire month of schedules. So what's great about this thing is with home base and with the way that this app works, it'll actually send a reminder to your employee an hour before their shift.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    976,
+    977,
+    978,
+    979
+   ],
+   "t_start": 5777.86,
+   "t_end": 5802.15,
+   "window": 14
+  },
+  {
+   "claim": "Use a digital checklist system to track salon cleaning tasks.",
+   "quote": "So you can have your checklists in the same app and have them check off who did what. We currently use Trello for that. It is a free app.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1024,
+    1025,
+    1026
+   ],
+   "t_start": 6077.62,
+   "t_end": 6095.38,
+   "window": 14
+  },
+  {
+   "claim": "Restrict clock-in windows to prevent employees from clocking in early before their shifts.",
+   "quote": "you can restrict when they can clock in it can be five minutes before their shift or two minutes before their shift so that you can actually stop the time stealing as they call it from the employees that are clocking in early before their shift and you haven't noticed it",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1030,
+    1031,
+    1032,
+    1033,
+    1034
+   ],
+   "t_start": 6112.6,
+   "t_end": 6141.17,
+   "window": 14
+  },
+  {
+   "claim": "Use a payroll integration app to automate the process of importing timesheets and paying employees to eliminate manual double-checking.",
+   "quote": "The timesheets automatically load into my payroll. I approve the timesheets, it loads into the payroll, I hit pay and it pays them. I don't have to double check it.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1027,
+    1028,
+    1029
+   ],
+   "t_start": 6095.38,
+   "t_end": 6112.6,
+   "window": 15
+  },
+  {
+   "claim": "Use software features to restrict when employees can clock in to prevent time theft.",
+   "quote": "you can restrict, because i know some salon owners are like well they're going to clock in early they're going to clock in this you can restrict when they can clock in it can be five minutes before their shift or two minutes before their shift so that you can actually stop the time stealing as they call it from the employees that are clocking in early before their shift and you haven't noticed it",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1030,
+    1031,
+    1032,
+    1033,
+    1034
+   ],
+   "t_start": 6112.6,
+   "t_end": 6141.17,
+   "window": 15
+  },
+  {
+   "claim": "Use a paid software version to restrict employee clock-ins to a specific geographic radius of the salon.",
+   "quote": "you can restrict where they can clock in they have to be within a certain kilometer range to your location as well",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1041
+   ],
+   "t_start": 6183.39,
+   "t_end": 6189.83,
+   "window": 15
+  },
+  {
+   "claim": "Use remote desktop software to check sales stats and manage salon systems from a remote location.",
+   "quote": "it's a free app and it allows you to remote in I can remote into either location either computer and check sales stats",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1059,
+    1060
+   ],
+   "t_start": 6285.87,
+   "t_end": 6299.47,
+   "window": 15
+  },
+  {
+   "claim": "Utilize social media platforms like Instagram and TikTok to reach customers and drive sales.",
+   "quote": "if we're not using social media, we're missing out on a huge part of the industry that obviously needs to be fulfilled because that is what everybody is on.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1104,
+    1105,
+    1106
+   ],
+   "t_start": 6548.01,
+   "t_end": 6567.25,
+   "window": 15
+  },
+  {
+   "claim": "Use social media to reach customers and build your brand's image.",
+   "quote": "if we're not using social media, we're missing out on a huge part of the industry that obviously needs to be fulfilled because that is what everybody is on.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1104,
+    1105
+   ],
+   "t_start": 6548.01,
+   "t_end": 6560.09,
+   "window": 16
+  },
+  {
+   "claim": "Implement monthly sales and promotions to create a sense of urgency and keep the offering fresh.",
+   "quote": "creating monthly sales, monthly specials, monthly promotions. So these are huge and you can can kind of do whatever you want with this. So I think having something different every single month to kind of implement into your salon is super fun. And it's important because it's creating some sense of urgency, right?",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1121,
+    1122,
+    1123,
+    1124
+   ],
+   "t_start": 6639.7,
+   "t_end": 6660.08,
+   "window": 16
+  },
+  {
+   "claim": "Use specific, time-limited offers to drive traffic during slow months.",
+   "quote": "in those slower months you guys see make that your best sales right make that your best deal something that people are going to want to do in those off months when they're maybe not coming in but you want them to come in in those slower months so let's do a really awesome sale on product um you know in the summer months for example we're about to come out with product launch in september so you know kind of run a sale on product get through your inventory a little bit so you can bring in all of the wonderful new Devoted Creations products that come out for product launch.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1138,
+    1139,
+    1140,
+    1141,
+    1142,
+    1143
+   ],
+   "t_start": 6727.28,
+   "t_end": 6760.5,
+   "window": 16
+  },
+  {
+   "claim": "Use social media engagement tactics like 'tag a friend' to increase reach and visibility.",
+   "quote": "make it a post where they have to share it, repost it, tag a friend.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1190
+   ],
+   "t_start": 6980.27,
+   "t_end": 6986.67,
+   "window": 16
+  },
+  {
+   "claim": "Create social media posts that encourage users to share, repost, and tag friends to increase your reach.",
+   "quote": "make it a post where they have to share it, repost it, tag a friend.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1190
+   ],
+   "t_start": 6980.27,
+   "t_end": 6986.67,
+   "window": 17
+  },
+  {
+   "claim": "Respond to Google reviews to improve your ranking in search algorithms.",
+   "quote": "if you guys get google reviews and you respond to them your algorithm on google is going to go up",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1198
+   ],
+   "t_start": 7020.37,
+   "t_end": 7028.25,
+   "window": 17
+  },
+  {
+   "claim": "Maintain a clean and welcoming salon environment to build customer loyalty and facilitate sales.",
+   "quote": "Having a clean space for you and your customers to make better sales.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1208
+   ],
+   "t_start": 7071.41,
+   "t_end": 7076.79,
+   "window": 17
+  },
+  {
+   "claim": "Place product displays in front of the counter rather than on back shelves to make them more accessible and easier to sell.",
+   "quote": "It's in front of you on a counter. So while maybe you're helping another customer, they're looking at all of the wonderful displays that you have that aren't behind you that are in front of you",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1231,
+    1233
+   ],
+   "t_start": 7178.71,
+   "t_end": 7191.93,
+   "window": 17
+  },
+  {
+   "claim": "Respond to negative social media posts to turn a potential negative into a positive relationship with the customer.",
+   "quote": "I would always even if there is like a negative social media post I would always try and respond to it always try to make things right because even if you're if you're not responding it could still negatively hurt you but if you are responding there's still that chance for that little bit of positivity",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1285,
+    1286,
+    1287,
+    1288
+   ],
+   "t_start": 7411.81,
+   "t_end": 7429.41,
+   "window": 17
+  },
+  {
+   "claim": "Always respond to negative social media posts to mitigate damage and build a stronger relationship with the customer.",
+   "quote": "I would always even if there is like a negative social media post I would always try and respond to it always try to make things right because even if you're if you're not responding it could still negatively hurt you but if you are responding there's still that chance for that little bit of positivity and then again Again, if you make it right with somebody, you've now made like a different type of bond with them, a different type of relationship with them that in the long run could help with a sale too.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1285,
+    1286,
+    1287,
+    1288,
+    1289,
+    1290,
+    1291
+   ],
+   "t_start": 7411.81,
+   "t_end": 7436.67,
+   "window": 18
+  },
+  {
+   "claim": "Ensure your brand is recognizable and cohesive across all platforms by using consistent logos, fonts, colors, and verbiage.",
+   "quote": "But branding is very important. It needs to be recognizable. It needs to be professional, but it also needs to be cohesive. You have to tell that brand story story of who you are.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1312,
+    1313
+   ],
+   "t_start": 7529.77,
+   "t_end": 7540.47,
+   "window": 18
+  },
+  {
+   "claim": "Create a brand identity so strong that customers can recognize your business without seeing your logo or name.",
+   "quote": "You want to be recognizable without having to have your logo shown.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1323
+   ],
+   "t_start": 7592.51,
+   "t_end": 7597.03,
+   "window": 18
+  },
+  {
+   "claim": "Use Canva to manage your brand assets and create marketing materials like flyers and social media posts.",
+   "quote": "Canva is great. Now I will say this. It is not a replacement for a graphic designer. However, it's very easy to use. And I You can get pro for like 120 for the entire year and that enables you to do full scale editing.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1340,
+    1341,
+    1342
+   ],
+   "t_start": 7692.7,
+   "t_end": 7717.2,
+   "window": 18
+  },
+  {
+   "claim": "Use scheduling platforms to plan and automate your social media posts for the week or month.",
+   "quote": "My recommendation is pick a day, plan out your entire week or even plan out your entire month and just sit down and do your entire social media strategy for either that week or that month and schedule it.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1380,
+    1381,
+    1382
+   ],
+   "t_start": 7938.61,
+   "t_end": 7958.15,
+   "window": 19
+  },
+  {
+   "claim": "Use Instagram highlights to organize specific promotions or product categories for easy customer reference.",
+   "quote": "if you are running a promotion in the spring or if you know that there are certain lotions that you want people to focus on put them in your highlights right at the top so people can go directly to them and it's a quick reference guide",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1395,
+    1396,
+    1397
+   ],
+   "t_start": 8030.97,
+   "t_end": 8045.39,
+   "window": 19
+  },
+  {
+   "claim": "Pin important posts, such as current promotions, to the top of your social media profile to ensure they are seen first.",
+   "quote": "So pin post, if you were running a promotion for that week, if it's free tan week, you don't want it to get lost. So you can pin it right at the top and you're going to get more views.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1400,
+    1401,
+    1402
+   ],
+   "t_start": 8059.67,
+   "t_end": 8072.75,
+   "window": 19
+  },
+  {
+   "claim": "Use social media analytics to track the performance of specific campaigns and inform future marketing decisions.",
+   "quote": "This is probably your most important tool that you will will ever use in any marketing campaign is your analytics. You need to have data to back up why you do things or why you're changing course.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1404,
+    1405
+   ],
+   "t_start": 8079.43,
+   "t_end": 8092.51,
+   "window": 19
+  },
+  {
+   "claim": "Diversify your social media content by mixing static posts, reels, and different graphics to keep the audience engaged.",
+   "quote": "You also have to diversify your grid. Don't just put up static posts because that's going to get boring for your followers. Make sure you've got reels. You want to make sure that you have different graphics.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1418,
+    1419,
+    1420
+   ],
+   "t_start": 8163.95,
+   "t_end": 8182.78,
+   "window": 19
+  },
+  {
+   "claim": "Use cross-platform promotion to drive engagement and followers across multiple social media channels.",
+   "quote": "So we will run a giveaway on TikTok, but we'll also promote it on our Instagram and Facebook. We'll have to say, hey, we're having a TikTok giveaway, but in order to win, you need to follow us on TikTok, like us, share us, repost, but make sure you have to follow us.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": true,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1422,
+    1423,
+    1424,
+    1425
+   ],
+   "t_start": 8191.75,
+   "t_end": 8213.23,
+   "window": 19
+  },
+  {
+   "claim": "Include a call to action in your social media captions to build community and increase engagement.",
+   "quote": "The other item is that you have to build a community through call to action. In your caption, it doesn't have to be this long three-sentence caption. option ask questions ask you know where are you guys going on spring break it doesn't have to be anything to do with your business it could be like hey who are you rooting for for the super bowl today that increases engagement that gets people talking",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": true,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1430,
+    1431,
+    1432,
+    1433,
+    1434
+   ],
+   "t_start": 8231.83,
+   "t_end": 8261.02,
+   "window": 19
+  },
+  {
+   "claim": "A salon's exterior appearance, including the parking lot and windows, significantly impacts whether a customer will enter the business.",
+   "quote": "95% of customers say that a store's external appearance makes their decision on whether they want to go in and shop.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1503
+   ],
+   "t_start": 8628.64,
+   "t_end": 8636.18,
+   "window": 20
+  },
+  {
+   "claim": "Implement a daily checklist to ensure staff maintain cleanliness and operational standards.",
+   "quote": "I like to make sure to tell salons that they need to have a checklist. With this checklist, this is what needs to be done every single day. This is what you expect of your employees.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1520,
+    1521
+   ],
+   "t_start": 8733.97,
+   "t_end": 8744.55,
+   "window": 20
+  },
+  {
+   "claim": "Use a daily checklist to ensure staff follow cleanliness standards and understand the consequences of not doing so.",
+   "quote": "I like to make sure to tell salons that they need to have a checklist. With this checklist, this is what needs to be done every single day. This is what you expect of your employees.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1520,
+    1521
+   ],
+   "t_start": 8733.97,
+   "t_end": 8744.55,
+   "window": 21
+  },
+  {
+   "claim": "Leave some gaps in product displays to encourage customers to interact with the items.",
+   "quote": "if there's one like taken or just a couple taken and there's an open spot, people are more apt to come over and be like, oh, somebody just bought this. Why did they buy that? And smell it.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1536,
+    1537
+   ],
+   "t_start": 8828.14,
+   "t_end": 8838.3,
+   "window": 21
+  },
+  {
+   "claim": "Avoid cluttered tables in front of displays to ensure customers can see and access products.",
+   "quote": "if you've got a table sitting right in front of your actual display, people are more apt to walk around and not even look at it because it's too cluttered. It makes them feel uncomfortable.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1549,
+    1550,
+    1551
+   ],
+   "t_start": 8907.51,
+   "t_end": 8921.95,
+   "window": 21
+  },
+  {
+   "claim": "Intentionally use 'incorrect' signage, like turning it upside down, to force a customer to stop and look.",
+   "quote": "make sure that you have a clean display and honestly with that um bogo say maybe it's buy one get one for a dollar or buy one get one free turn it upside down and post it like that because your customers are going to notice it they're going to be like, what the heck are they doing like did they not notice that it's upside down but it's going to to draw their attention",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1573,
+    1574,
+    1575,
+    1576,
+    1577
+   ],
+   "t_start": 9023.46,
+   "t_end": 9050.52,
+   "window": 21
+  },
+  {
+   "claim": "Use the merchandising strategies of large retailers to draw customer attention to products in your salon.",
+   "quote": "So all of these huge retailers across the board spend millions and millions and millions of dollars on merchandising and figuring out exactly what's going to draw your attention. So utilize them and all the money they spent figuring it out and do it in your salon.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1596,
+    1597
+   ],
+   "t_start": 9148.5,
+   "t_end": 9159.48,
+   "window": 22
+  },
+  {
+   "claim": "Create eye-catching window displays to attract passersby and showcase your products.",
+   "quote": "So with those window displays, obviously you want a clean atmosphere, but you can do fun, crazy things. Like maybe it's a stuffed teddy bear, wear in a tutu or like even do a summer theme and have like products built up by it.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1601,
+    1602
+   ],
+   "t_start": 9180.8,
+   "t_end": 9195.01,
+   "window": 22
+  },
+  {
+   "claim": "Position your salon as a one-stop shop for various beauty and body care products beyond just tanning.",
+   "quote": "Become the one-stop shop for any and every customer to walk in. Become that bath and body works place.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1607,
+    1608
+   ],
+   "t_start": 9207.43,
+   "t_end": 9215.95,
+   "window": 22
+  },
+  {
+   "claim": "Create themed 'pop-up' shops within your salon to highlight different product categories like swimwear or eyelash products.",
+   "quote": "create that same concept within your salon. And with merchandising, of course, I'm going to put the, you know, focus on products, tanning products, body care products, but there are also other things that you can do. You know, maybe you have a little pop-up shop of swimming suits when it comes summer. Maybe it's a little pop-up shop of eyelash stuff.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1613,
+    1614,
+    1615,
+    1616,
+    1617,
+    1618
+   ],
+   "t_start": 9227.49,
+   "t_end": 9257.97,
+   "window": 22
+  },
+  {
+   "claim": "Maintain a clean and organized retail environment by ensuring you have multiple units of each product on display.",
+   "quote": "Obviously you want to have more than three of each product. Because if I walk into a salon and I just see one of each product and it's all kind of, it's a beautiful display, that doesn't show me a retail buying atmosphere.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1624,
+    1625,
+    1626
+   ],
+   "t_start": 9288.03,
+   "t_end": 9303.85,
+   "window": 22
+  },
+  {
+   "claim": "Keep full-sized products out of reach of customers to prevent them from using the entire container before their service.",
+   "quote": "so then i would hold it back and keep it so they can't reach over and grab it and then you just go to everyone oh my goodness when you're done tanning when you come out can let me get let me give you some pumps and moisturizer",
+   "category": "operations",
+   "moment": "product",
+   "is_script": true,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1640,
+    1641
+   ],
+   "t_start": 9451.54,
+   "t_end": 9461.58,
+   "window": 22
+  },
+  {
+   "claim": "Be careful about what claims you make on your official salon social media pages to ensure you are only sharing information you can back up with science.",
+   "quote": "you got to watch your salon page because all you really want to do is share the information and just share it through don't add information about your bed or whatever unless you've got scientific research to prove this",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1823,
+    1824,
+    1825,
+    1826
+   ],
+   "t_start": 10546.58,
+   "t_end": 10569.31,
+   "window": 25
+  },
+  {
+   "claim": "Hiring a dedicated staff member to manage social media can be life-changing for owners as it allows them to step away from the daily management of those platforms.",
+   "quote": "having a dedicated staff member just on socials is life-changing. I can go on vacation now and not even turn on my socials.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1867,
+    1868,
+    1869
+   ],
+   "t_start": 10805.06,
+   "t_end": 10833.49,
+   "window": 25
+  },
+  {
+   "claim": "Use a digital asset management tool to organize marketing materials like social media graphics, signage, and sales fact sheets.",
+   "quote": "It organizes all of our marketing files. As you know, at Uvallux, we carry a lot of amazing products. And we just want to make it easy for business owners to have just one login where you can access exactly what you need and when you need it.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1877,
+    1878,
+    1879
+   ],
+   "t_start": 10882.69,
+   "t_end": 10903.97,
+   "window": 26
+  },
+  {
+   "claim": "Utilize a shared digital platform as a training tool to provide staff with easy access to product information and sales sheets.",
+   "quote": "It's really like a training tool, keeping all the sales fact sheets and product information.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1913,
+    1914,
+    1915
+   ],
+   "t_start": 11150.19,
+   "t_end": 11176.08,
+   "window": 26
+  },
+  {
+   "claim": "Utilize Google My Business listings as a free and effective way to rank higher in local search results.",
+   "quote": "Google My Business is something I'm a huge nerd about. Google Ads is one of the primary things I do, but Google My Business is free. And you can do it yourself.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2000,
+    2001,
+    2002
+   ],
+   "t_start": 11847.49,
+   "t_end": 11861.13,
+   "window": 28
+  },
+  {
+   "claim": "The quality of your reviews is just as important as the quantity when it comes to ranking on Google.",
+   "quote": "the factors the one of the major factors is reviews and the quality of the reviews is just as important as the quantity of them.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2014,
+    2015
+   ],
+   "t_start": 11924.76,
+   "t_end": 11948.4,
+   "window": 28
+  },
+  {
+   "claim": "Fill your business listing with detailed information about products and services to help Google index your business for specific search queries.",
+   "quote": "But there's a whole lot of space in there that you can give Google information about your business and be indexed. And that's the stuff that most people don't do.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2017,
+    2018,
+    2019,
+    2020
+   ],
+   "t_start": 11951.14,
+   "t_end": 11961.36,
+   "window": 28
+  },
+  {
+   "claim": "Write detailed, information-rich responses to customer reviews to feed more data to Google's search index.",
+   "quote": "you have a hundred percent control over what you write in the replies to the reviews so as opposed to saying thanks so much come again if you wrote a paragraph about what they got and your business well you're feeding it a lot of information to be featured next time.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2035,
+    2036,
+    2037,
+    2038
+   ],
+   "t_start": 12032.49,
+   "t_end": 12053.55,
+   "window": 28
+  },
+  {
+   "claim": "Use the Q&A section of your business listing by having friends ask keyword-heavy questions that you then answer with detailed paragraphs.",
+   "quote": "i'd recommend sending the link to your business listing to your friends with some scripted questions and maybe spread it out over a week or two keyword heavy and then you can go in and answer with a paragraph",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2056,
+    2057,
+    2058
+   ],
+   "t_start": 12187.78,
+   "t_end": 12203.02,
+   "window": 28
+  },
+  {
+   "claim": "To improve your Google business listing ranking, have friends submit questions to your listing and answer them with keyword-heavy paragraphs.",
+   "quote": "i'd recommend sending the link to your business listing to your friends with some scripted questions and maybe spread it out over a week or two keyword heavy and then you can go in and answer with a paragraph",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2057,
+    2058,
+    2059
+   ],
+   "t_start": 12192.92,
+   "t_end": 12208.18,
+   "window": 29
+  },
+  {
+   "claim": "When responding to a negative review, remember that you are writing for the public audience who will read it later, not just for the unhappy customer.",
+   "quote": "But in the reply to them, you're not actually replying to the person who wrote that review. You're replying to everybody else who's reading it.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2068,
+    2069,
+    2070
+   ],
+   "t_start": 12243.03,
+   "t_end": 12250.17,
+   "window": 29
+  },
+  {
+   "claim": "Ensure you utilize your Google business listing to post updates, photos, and videos, as it is a key area for competing in search results.",
+   "quote": "if you're putting a special on your facebook page or a blog on your website should go on your business listing too it's not that hard it's a place to put it ever in the business listing",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2077,
+    2078
+   ],
+   "t_start": 12270.01,
+   "t_end": 12282.25,
+   "window": 29
+  },
+  {
+   "claim": "Encourage customers to upload photos with their reviews to build social proof.",
+   "quote": "The easiest thing to do is to just get customers to upload photos with their reviews.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2083
+   ],
+   "t_start": 12302.18,
+   "t_end": 12307.21,
+   "window": 29
+  },
+  {
+   "claim": "Utilize manufacturer cashback programs to increase your bottom line.",
+   "quote": "Manufacturer cashback programs are an excellent way to maximize your bottom line, right?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2220,
+    2221
+   ],
+   "t_start": 12852.1,
+   "t_end": 12863.02,
+   "window": 30
+  },
+  {
+   "claim": "Select a loyalty program that aligns with your business goals to generate extra revenue.",
+   "quote": "I always say and suggest to salon owners, planners pick a program that works best for you and build your bottom line this is free money",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2223,
+    2224
+   ],
+   "t_start": 12868.94,
+   "t_end": 12882.24,
+   "window": 30
+  },
+  {
+   "claim": "Use a recording of training sessions to ensure all staff, especially new hires, receive consistent training.",
+   "quote": "webinar is a recording because you guys sometimes have the issue with employees and they can kind of filter in and out quite a bit. This way you always have that training specifically for whoever's new coming in or even a refresher for the staff that you currently have.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2250,
+    2251,
+    2252
+   ],
+   "t_start": 13041.96,
+   "t_end": 13060.14,
+   "window": 31
+  },
+  {
+   "claim": "Partner with brands that offer cash back incentives or rebates for carrying their products and using their logos in marketing.",
+   "quote": "Our program is going to have two different program back incentives. So you can get 10% cash back and that's going to be, we just asked that you carry 75 of our products",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2272,
+    2273,
+    2274
+   ],
+   "t_start": 13143.87,
+   "t_end": 13164.85,
+   "window": 31
+  }
+ ]
+}

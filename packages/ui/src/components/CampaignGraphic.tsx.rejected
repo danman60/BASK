@@ -1,0 +1,35 @@
+/**
+ * CampaignGraphic — the image a campaign draft ships with
+ *
+ * The square is fixed because the same asset is posted to Instagram and Facebook,
+ * and the scrim exists because a headline over an unknown photograph is unreadable
+ * without one.
+ */
+
+export interface CampaignGraphicProps {
+  headline: string;
+  badge: string;
+  backgroundSrc: string;
+  salonName: string;
+  className?: string;
+}
+
+export function CampaignGraphic({
+  headline,
+  badge,
+  backgroundSrc,
+  salonName,
+  className,
+}: CampaignGraphicProps) {
+  return (
+    <div className={`b-cgraphic${className ? ` ${className}` : ''}`}>
+      <img className="b-cgraphic-bg" src={backgroundSrc} alt="" />
+      <div className="b-cgraphic-scrim"></div>
+      <div className="b-cgraphic-body">
+        <h3 className="b-cgraphic-headline">{headline}</h3>
+        <span className="b-cgraphic-badge">{badge}</span>
+        <p className="b-cgraphic-salon">{salonName}</p>
+      </div>
+    </div>
+  );
+}

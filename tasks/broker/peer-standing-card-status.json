@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 11,
+  "tool_calls": 11,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/ui/src/components/PeerStandingCard.tsx']",
+  "elapsed": "38s",
+  "updated": "03:32:38",
+  "provider_history": [],
+  "provider_switched": false
+}

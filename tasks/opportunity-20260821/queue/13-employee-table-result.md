@@ -1,0 +1,110 @@
+# Result
+
+I have successfully created the EmployeeSalesTable.tsx component as requested. The file contains:
+
+- The exact doc comment as specified
+- Correct import statement for EmployeeSalesStats from '@bask/core'
+- Proper props interface definition
+- Component function with correct structure including:
+  - Table with proper className and data-testid attributes
+  - Header row with all required column names
+  - Body with one row per employee containing all requested data points
+  - Proper formatting for trend indicators and coaching flags
+  - Correct use of JSX syntax
+
+The file has been placed at the exact path requested: /home/danman60/projects/uvalux-platform/packages/ui/src/components/EmployeeSalesTable.tsx
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- p
+- a
+- c
+- k
+- a
+- g
+- e
+- s
+- /
+- u
+- i
+- /
+- s
+- r
+- c
+- /
+- c
+- o
+- m
+- p
+- o
+- n
+- e
+- n
+- t
+- s
+- /
+- E
+- m
+- p
+- l
+- o
+- y
+- e
+- e
+- S
+- a
+- l
+- e
+- s
+- T
+- a
+- b
+- l
+- e
+- .
+- t
+- s
+- x
+- '
+- ]

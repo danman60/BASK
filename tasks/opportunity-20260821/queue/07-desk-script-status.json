@@ -1,0 +1,13 @@
+{
+  "state": "running",
+  "turns": 11,
+  "tool_calls": 10,
+  "errors": 0,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/ui/src/components/FrontDeskScriptCard.tsx"
+  ],
+  "elapsed": "189s",
+  "updated": "13:16:40",
+  "provider_history": [],
+  "provider_switched": false
+}

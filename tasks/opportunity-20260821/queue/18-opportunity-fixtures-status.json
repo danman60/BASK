@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 12,
+  "tool_calls": 12,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/core/src/opportunities/fixtures.ts']",
+  "elapsed": "24s",
+  "updated": "13:37:54",
+  "provider_history": [],
+  "provider_switched": false
+}

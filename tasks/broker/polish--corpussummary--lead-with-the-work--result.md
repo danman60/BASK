@@ -1,0 +1,120 @@
+# Result
+
+I have implemented the CorpusSummary component as specified. The component:
+
+- Displays a header strip with corpus review information
+- Shows remaining work (total - decided) in large text with strong element
+- Includes supporting counts in a note paragraph 
+- Renders a ReviewProgressBar component with decided and total props
+- Shows a "Next unreviewed" button when onJumpToNext callback is provided
+- Handles the empty corpus case (when total is zero) with appropriate message
+- Wraps everything in a div with className cp-corpus-summary
+- Imports ReviewProgressBar from ./ReviewProgressBar
+- Uses proper class names from the design spec
+
+The implementation follows the exemplar component structure and styling conventions from the project.
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- a
+- p
+- p
+- s
+- /
+- w
+- e
+- b
+- /
+- s
+- r
+- c
+- /
+- c
+- o
+- m
+- p
+- o
+- n
+- e
+- n
+- t
+- s
+- /
+- c
+- o
+- m
+- p
+- a
+- s
+- s
+- /
+- k
+- n
+- o
+- w
+- l
+- e
+- d
+- g
+- e
+- /
+- C
+- o
+- r
+- p
+- u
+- s
+- S
+- u
+- m
+- m
+- a
+- r
+- y
+- .
+- t
+- s
+- x
+- '
+- ]

@@ -1,0 +1,98 @@
+# Result
+
+Created the GrowthRail component according to specifications. The component:
+- Defines required interfaces GrowthAction and GrowthRailProps
+- Exports a functional component that renders a ranked list of growth actions
+- Uses proper class naming following the project's conventions (no invalid btn/quiet classes)
+- Handles empty actions case with positive messaging
+- Renders each action as a button with type="button" calling onStart
+- Shows worthLabel and signalLabel for each action
+- Includes proper data-testid and aria-label attributes
+- Follows the exemplar's structure, comment style, and grade-7 voice
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- p
+- a
+- c
+- k
+- a
+- g
+- e
+- s
+- /
+- u
+- i
+- /
+- s
+- r
+- c
+- /
+- c
+- o
+- m
+- p
+- o
+- n
+- e
+- n
+- t
+- s
+- /
+- G
+- r
+- o
+- w
+- t
+- h
+- R
+- a
+- i
+- l
+- .
+- t
+- s
+- x
+- '
+- ]

@@ -1,0 +1,636 @@
+{
+ "source_stream": "uvalux26_P1060688",
+ "media_duration_s": 4737.733,
+ "windows_total": 10,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 12,
+ "items_kept": 34,
+ "model": "gemma4:12b",
+ "lens": "advice",
+ "mined_at": "2026-08-22T19:09:11",
+ "advice": [
+  {
+   "claim": "Touchless services are beneficial because they do not increase labor costs per dollar of service.",
+   "quote": "I think the primary thing that I love about touchless, just like we've loved about our business for so long is that we don't have increased labor associated with every dollar of service which is very traditional in old-school wellness so",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    16,
+    17,
+    18
+   ],
+   "t_start": 714.65,
+   "t_end": 727.41,
+   "window": 1
+  },
+  {
+   "claim": "When expanding your offerings, ensure the core business remains intact and the new additions do not detract from the original service.",
+   "quote": "So it's super important that when you're looking at adding wellness or expanding your wellness, that your main core is structured in a way that when you add to it, it doesn't take away from it.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    47,
+    48
+   ],
+   "t_start": 872.78,
+   "t_end": 884.42,
+   "window": 1
+  },
+  {
+   "claim": "Train staff to use specific terminology that focuses on the experience rather than just the service.",
+   "quote": "we're going to train our staff to say it this way it's not going to be unlimited it's not going to be tanning it's about a sun experience a sun session versus tanning",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": true,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    40,
+    41
+   ],
+   "t_start": 836.7,
+   "t_end": 847.82,
+   "window": 1
+  },
+  {
+   "claim": "Ensure your core business foundation is solid before expanding into new services like wellness.",
+   "quote": "Get your house in order before you add to it.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    69
+   ],
+   "t_start": 1004.51,
+   "t_end": 1007.67,
+   "window": 2
+  },
+  {
+   "claim": "Ensure your core equipment is modern and high-quality to support your brand's image.",
+   "quote": "You can't bring in a new flashy bit of wellness, but you have a bed from 20 years ago.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    73
+   ],
+   "t_start": 1024.32,
+   "t_end": 1030.7,
+   "window": 2
+  },
+  {
+   "claim": "Update your entire business presence, including decor, staff training, and marketing, to match your new branding.",
+   "quote": "don't change anything don't do anything and don't invest in your business change your marketing change the way you present yourself from the front desk staff to the way your salon is decorated to your marketing to your social media",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    87,
+    88,
+    89
+   ],
+   "t_start": 1128.88,
+   "t_end": 1140.74,
+   "window": 2
+  },
+  {
+   "claim": "Outsource social media content creation to a professional agency to maintain a consistent and high-quality presence.",
+   "quote": "I hired a company that takes video. We actually hired a modeling agency and negotiated a rate with them and we just had it booked every two weeks that we were doing photo photo and video shoots",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    118,
+    119
+   ],
+   "t_start": 1302.84,
+   "t_end": 1316.0,
+   "window": 2
+  },
+  {
+   "claim": "Hiring a professional media company for high-quality content production is worth the investment for brand image and staff engagement.",
+   "quote": "A thousand percent worth it.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    162
+   ],
+   "t_start": 1477.4,
+   "t_end": 1480.7,
+   "window": 3
+  },
+  {
+   "claim": "Use high-quality, polished content to ensure your brand reflects well to potential customers who land on your social media page.",
+   "quote": "if I land on Instagram does my brand reflect something I'm really proud of",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    199
+   ],
+   "t_start": 1636.32,
+   "t_end": 1639.92,
+   "window": 3
+  },
+  {
+   "claim": "Staff should be highly incentivized based on specific business goals and the lifetime value of the customer.",
+   "quote": "I think you have to have staff that are highly incentivized. and the driving factor is what is the focus for that time period what do you want focused on understanding the lifetime value of your customer",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    211,
+    212,
+    213
+   ],
+   "t_start": 1696.7,
+   "t_end": 1709.54,
+   "window": 3
+  },
+  {
+   "claim": "Offer high incentives to staff for signing up members because the long-term value of a membership justifies the upfront cost.",
+   "quote": "if you have a membership for instance a high incentive to sign up that member upfront is worthwhile because if you know that you're going to get 16.8 months of that membership at $69 then you could afford to give a whole bunch upfront",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    219,
+    220,
+    221,
+    222
+   ],
+   "t_start": 1729.84,
+   "t_end": 1748.58,
+   "window": 3
+  },
+  {
+   "claim": "Manage the business using KPIs and provide appropriate incentives to staff.",
+   "quote": "So I think managing the business with KPIs and then incentivizing those properly and highly is important, very important.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    225
+   ],
+   "t_start": 1756.74,
+   "t_end": 1761.24,
+   "window": 4
+  },
+  {
+   "claim": "Use personalized gestures like handwritten cards and gift bags to improve staff retention.",
+   "quote": "me and Kelsey handwrite a card for every girl on their birthday and their anniversary with us.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    235
+   ],
+   "t_start": 1804.02,
+   "t_end": 1810.14,
+   "window": 4
+  },
+  {
+   "claim": "Create a welcoming environment for new hires by having the entire team send welcome messages.",
+   "quote": "they get 41 messages back welcoming them so I didn't realize the impact that that was making until they_They know how great that was and how much they shared with their parents.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    271,
+    272,
+    273
+   ],
+   "t_start": 1973.39,
+   "t_end": 1989.43,
+   "window": 4
+  },
+  {
+   "claim": "Reward staff for reliability and 'soft' contributions like showing up on time and helping the community.",
+   "quote": "you get reward points for coming in, staying late, bringing product from one store to another, doing something good in the community on your anniversary.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    295,
+    296
+   ],
+   "t_start": 2088.52,
+   "t_end": 2097.28,
+   "window": 4
+  },
+  {
+   "claim": "Use a point-based system to reward staff for specific actions like membership sign-ups and upgrades.",
+   "quote": "they get uh you know three points for an all-access sign up and then they get two points for an upgrade and then they get to buy things from that",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    303
+   ],
+   "t_start": 2152.41,
+   "t_end": 2158.75,
+   "window": 4
+  },
+  {
+   "claim": "Adjust staff pay structures to ensure they are significantly higher than minimum wage to ensure retention.",
+   "quote": "So my last two years have focused on the hourly wage. So now my big girls make $32 to $34 an hour because I listened and then I had to adjust to that.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    318,
+    319
+   ],
+   "t_start": 2252.79,
+   "t_end": 2269.19,
+   "window": 5
+  },
+  {
+   "claim": "Update your management practices even if you have always done them a certain way.",
+   "quote": "All these challenge fields, just because you've always done it that way doesn't mean that it's the right way for today. If you have to adjust the way that you're paying your staff, do it.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    339,
+    340
+   ],
+   "t_start": 2399.09,
+   "t_end": 2408.09,
+   "window": 5
+  },
+  {
+   "claim": "Lead your team by showing interest in their personal lives to build a supportive environment.",
+   "quote": "you need to lead them not tell them so I'm always about showing up and like Lisa said how are you doing today what's going on what's happening in your life because they may have something that's going on in their life",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": true,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    347,
+    348,
+    349,
+    350
+   ],
+   "t_start": 2448.61,
+   "t_end": 2469.09,
+   "window": 5
+  },
+  {
+   "claim": "Provide staff with incentives based on tenure to account for their personal costs like commuting.",
+   "quote": "The longer she stayed with us, the more her wage would go up because we understood that she had gas, she had to pay.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    356,
+    357
+   ],
+   "t_start": 2489.61,
+   "t_end": 2497.23,
+   "window": 5
+  },
+  {
+   "claim": "Frame staff training as a lifelong skill acquisition rather than just a task for the salon.",
+   "quote": "But when I'm teaching them something, make sure they know that this isn't just for here. Like, you know, I'm going to tell you something real, you learn this together. But you are going to use this for the rest of your life.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": true,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    382,
+    383,
+    384
+   ],
+   "t_start": 2602.81,
+   "t_end": 2615.81,
+   "window": 5
+  },
+  {
+   "claim": "Establish a consistent feedback culture to address and correct employee behavior before it becomes ingrained.",
+   "quote": "I think creating a feedback culture where feedback is consistent all the time is imperative. If you leave behavior unaddressed for weeks at a time, or months at a time, you can expect the behavior to get worse and harder to change.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    402,
+    403
+   ],
+   "t_start": 2676.55,
+   "t_end": 2689.87,
+   "window": 6
+  },
+  {
+   "claim": "Be direct and proactive when an employee's performance is declining or they no longer fit the company culture.",
+   "quote": "when an employee is struggling or they are there maybe they're past their best before date maybe it is time for them to move on you have an obligation to the employee to have that conversation",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    413,
+    414,
+    415
+   ],
+   "t_start": 2730.89,
+   "t_end": 2743.45,
+   "window": 6
+  },
+  {
+   "claim": "Enforce a strict dress code to ensure staff look professional and feel confident enough to sell.",
+   "quote": "you have to look like you care because you can't sell and be confident if you don't feel that way, which our job is sales.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    448,
+    449
+   ],
+   "t_start": 2860.42,
+   "t_end": 2869.9,
+   "window": 6
+  },
+  {
+   "claim": "Provide staff with a variety of uniform options to encourage buy-in and personal preference.",
+   "quote": "we do custom orders every two months where there's like different colors of long-sleeve shirts racer bags t-shirts and they can choose their colors within it",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    476,
+    477,
+    478
+   ],
+   "t_start": 2996.17,
+   "t_end": 3009.81,
+   "window": 6
+  },
+  {
+   "claim": "Offer alternative uniform options to ensure staff of all sizes and preferences feel comfortable and included.",
+   "quote": "I have an alternative to that. That's important right? Very, very important",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    570,
+    571
+   ],
+   "t_start": 3303.41,
+   "t_end": 3316.23,
+   "window": 7
+  },
+  {
+   "claim": "Establish standard operating procedures (SOPs) for all salon operations to ensure consistency and clarity for staff.",
+   "quote": "make sure you have your standard operating procedures. These are the non-negotiables.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    705,
+    706
+   ],
+   "t_start": 3917.4,
+   "t_end": 3924.2,
+   "window": 9
+  },
+  {
+   "claim": "Instead of asking staff to describe product features, ask them to identify specific clients who would buy the product.",
+   "quote": "I want you to give me at least one or two clients that would buy that product. Instead of telling me what's in that product, I want to know one or two clients that would buy those products.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    725,
+    726,
+    727,
+    728,
+    729
+   ],
+   "t_start": 3977.9,
+   "t_end": 3987.86,
+   "window": 9
+  },
+  {
+   "claim": "Implement memberships to ensure consistent revenue and offer additional services like wellness as part of the package.",
+   "quote": "if you don't have memberships, that's the first thing you need to do. Memberships are absolutely the way you have to go, and you can always bring in wellness for that membership.",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    735,
+    736
+   ],
+   "t_start": 4010.36,
+   "t_end": 4023.66,
+   "window": 9
+  },
+  {
+   "claim": "Prohibit the use of outside products in the salon to protect equipment and ensure safety.",
+   "quote": "do not let any other lotion other than what you sell be used in your stores I do it it is a non-negotiable",
+   "category": "operations",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    800,
+    801,
+    802
+   ],
+   "t_start": 4271.1,
+   "t_end": 4285.84,
+   "window": 9
+  },
+  {
+   "claim": "Require clients to leave their own products at the front desk and provide them with a sample instead to ensure they use your approved products.",
+   "quote": "Just give them one of those, and let them use your lay down, and make them leave their bottle at the front desk, they'll love you forever.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    831
+   ],
+   "t_start": 4419.27,
+   "t_end": 4425.29,
+   "window": 10
+  },
+  {
+   "claim": "Conduct regular evaluations of all staff members to ensure they are committed to the business and meet your standards.",
+   "quote": "do a serious evaluation of every one of your team members and really make sure that they're all team members that want to be on the bus and if they're not have those tough conversations to either improve their performance to the standards that you want them to be or help them move on to the next career",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    837,
+    838,
+    839,
+    840,
+    841
+   ],
+   "t_start": 4442.71,
+   "t_end": 4460.67,
+   "window": 10
+  },
+  {
+   "claim": "Actively network and build a pipeline of potential candidates in your community to ensure you have a 'bench' of talent ready to hire.",
+   "quote": "Your job as salon owners to recruit new staff is to build your bench.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    851
+   ],
+   "t_start": 4504.96,
+   "t_end": 4511.18,
+   "window": 10
+  },
+  {
+   "claim": "Use social media to showcase your salon's culture to attract potential employees.",
+   "quote": "advertise your culture. When you look at your socials and things like that, You want people in your community to want to work there, right?",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    856,
+    857,
+    858
+   ],
+   "t_start": 4523.46,
+   "t_end": 4534.4,
+   "window": 10
+  }
+ ]
+}

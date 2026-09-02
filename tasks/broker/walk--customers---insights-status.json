@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 11,
+  "tool_calls": 11,
+  "errors": 1,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/tests/agent/walkthrough/02-customers-insights.md']",
+  "elapsed": "14s",
+  "updated": "04:06:47",
+  "provider_history": [],
+  "provider_switched": false
+}

@@ -1,0 +1,13 @@
+{
+  "state": "done",
+  "turns": 13,
+  "tool_calls": 13,
+  "errors": 0,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/ui/src/components/CommunityComposer.tsx"
+  ],
+  "elapsed": "182s",
+  "updated": "20:21:50",
+  "provider_history": [],
+  "provider_switched": false
+}

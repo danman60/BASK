@@ -1,0 +1,116 @@
+# Result
+
+I have created the ClaimInspector component as specified. The component:
+- Imports Claim from @bask/core
+- Takes props: claim (Claim or null), onVerify, onReject, and optional onPlay
+- Shows empty state when claim is null
+- When claim is not null, renders ReviewStateChip, quote blockquote, claim sentence paragraph, provenance cards, and verify/reject buttons
+- Uses proper class names following the exemplar pattern (cp- prefix)
+- Properly passes props to ProvenanceCard components
+- Compiles successfully with TypeScript
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- a
+- p
+- p
+- s
+- /
+- w
+- e
+- b
+- /
+- s
+- r
+- c
+- /
+- c
+- o
+- m
+- p
+- o
+- n
+- e
+- n
+- t
+- s
+- /
+- c
+- o
+- m
+- p
+- a
+- s
+- s
+- /
+- k
+- n
+- o
+- w
+- l
+- e
+- d
+- g
+- e
+- /
+- C
+- l
+- a
+- i
+- m
+- I
+- n
+- s
+- p
+- e
+- c
+- t
+- o
+- r
+- .
+- t
+- s
+- x
+- '
+- ]

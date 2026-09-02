@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 14,
+  "tool_calls": 14,
+  "errors": 1,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/promo/src/shots/v6/FigurePlate.tsx']",
+  "elapsed": "651s",
+  "updated": "06:37:23",
+  "provider_history": [],
+  "provider_switched": false
+}

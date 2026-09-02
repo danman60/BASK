@@ -1,0 +1,277 @@
+{
+ "source_stream": "uvasummer24_FullAudio",
+ "media_duration_s": 2781.412,
+ "windows_total": 7,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 0,
+ "items_kept": 15,
+ "model": "gemma4:12b",
+ "lens": "advice",
+ "mined_at": "2026-08-22T19:13:46",
+ "advice": [
+  {
+   "claim": "Focus on competence, credibility, and compassion when training staff on new skills or products.",
+   "quote": "So focusing on competence, credibility, and so with every skill or like new set that you're teaching or training, focusing on those three things.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    40,
+    41
+   ],
+   "t_start": 201.14,
+   "t_end": 218.72,
+   "window": 1
+  },
+  {
+   "claim": "Focus on what you are good at and do that one thing exceptionally well to grow your business.",
+   "quote": "focus what you're good at so if you're good with sprays run with sprays go mobile like expansion that way that's the the steam whistle idea right do one thing do it really really well right",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    68,
+    69,
+    70,
+    71
+   ],
+   "t_start": 355.34,
+   "t_end": 375.96,
+   "window": 1
+  },
+  {
+   "claim": "To break a tanning plateau, advise clients to change their tanning lotion.",
+   "quote": "Change your lotion. Number one answer.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    282,
+    283
+   ],
+   "t_start": 1214.41,
+   "t_end": 1215.83,
+   "window": 3
+  },
+  {
+   "claim": "To break a tanning plateau, suggest using a tingle, trying different equipment, using melanin enhancing products, or adding tan extenders to the home care system.",
+   "quote": "Trying different equipment, using a tingle, try products that have melanin enhancing products or adding tan extenders to your home care system.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    286,
+    287
+   ],
+   "t_start": 1220.78,
+   "t_end": 1229.44,
+   "window": 3
+  },
+  {
+   "claim": "Explain to customers that tanning lotions provide a darker, faster, and longer-lasting tan.",
+   "quote": "I got get darker, faster, longer-lasting tan.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": true,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    305
+   ],
+   "t_start": 1268.48,
+   "t_end": 1270.96,
+   "window": 3
+  },
+  {
+   "claim": "Use the cost per session as a primary method to sell lotion.",
+   "quote": "The cost per session is the number one answer right here.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    330
+   ],
+   "t_start": 1362.94,
+   "t_end": 1365.6,
+   "window": 4
+  },
+  {
+   "claim": "Provide a complimentary tile to demonstrate the benefits of the lotion.",
+   "quote": "provide a complimentary tile to show them the lotion benefits.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    338
+   ],
+   "t_start": 1379.36,
+   "t_end": 1383.78,
+   "window": 4
+  },
+  {
+   "claim": "Use open-ended questions to determine why a client has never purchased lotion before.",
+   "quote": "Ask open-ended questions and ask the Tanner why they've never bought a bottle of lotion before.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": true,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    339
+   ],
+   "t_start": 1384.54,
+   "t_end": 1389.54,
+   "window": 4
+  },
+  {
+   "claim": "Explain that facial products are necessary because facial skin is more sensitive than the rest of the body.",
+   "quote": "The skin in your face is sensitive than the rest of your body.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    393
+   ],
+   "t_start": 1540.73,
+   "t_end": 1543.13,
+   "window": 4
+  },
+  {
+   "claim": "Use webinars and other online training platforms to improve staff product knowledge.",
+   "quote": "But our webinars, also found on Uvlux and Train with AG and other sites, are super great ways to learn.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    646
+   ],
+   "t_start": 2517.0,
+   "t_end": 2522.2,
+   "window": 6
+  },
+  {
+   "claim": "Keep a log of which lotions staff have personally tried to build product knowledge.",
+   "quote": "Keep notes of which lotions you've tried.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    644
+   ],
+   "t_start": 2510.22,
+   "t_end": 2512.48,
+   "window": 6
+  },
+  {
+   "claim": "Try all products and learn about specific product collections to better understand the inventory.",
+   "quote": "Try all the products and learn about collections or similar group of products.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    645
+   ],
+   "t_start": 2512.58,
+   "t_end": 2516.88,
+   "window": 6
+  },
+  {
+   "claim": "EFTs and memberships are the most effective way to generate steady income during the summer months.",
+   "quote": "Number one answer is EFTs and memberships, actually. EFTs and memberships bring on a steady income and flow.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    672,
+    673
+   ],
+   "t_start": 2602.54,
+   "t_end": 2610.08,
+   "window": 6
+  },
+  {
+   "claim": "Offer diverse services and retail products to generate income during the summer months.",
+   "quote": "Offering additional services, diversity in service and retail is the number two answer.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    669
+   ],
+   "t_start": 2592.38,
+   "t_end": 2596.66,
+   "window": 6
+  },
+  {
+   "claim": "Cleanliness is a primary reason why clients return to a salon.",
+   "quote": "All right, cleanliness. Number two answer.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    687,
+    688
+   ],
+   "t_start": 2641.58,
+   "t_end": 2649.18,
+   "window": 6
+  }
+ ]
+}

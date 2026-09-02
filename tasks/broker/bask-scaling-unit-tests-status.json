@@ -1,0 +1,13 @@
+{
+  "state": "running",
+  "turns": 6,
+  "tool_calls": 6,
+  "errors": 0,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/core/test/scaling.test.ts"
+  ],
+  "elapsed": "403s",
+  "updated": "12:41:37",
+  "provider_history": [],
+  "provider_switched": false
+}

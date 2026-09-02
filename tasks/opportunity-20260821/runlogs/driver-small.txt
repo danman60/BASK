@@ -1,0 +1,10 @@
+[13:06:22] lane=small host=http://localhost:11434 model=gemma4:12b smoke=0
+[13:06:22] 01-action-row-log: not in manifest, skipping
+[13:06:22] 01-action-row-result: not in manifest, skipping
+[13:06:22] 02-opportunity-card-log: not in manifest, skipping
+[13:06:22] 04-email-preview-log: not in manifest, skipping
+[13:06:22] 04-email-preview-result: not in manifest, skipping
+[13:06:22] === 06-staff-task attempt 1/2 ===
+[13:06:22] 06-staff-task -> packages/ui/src/components/StaffTaskCard.tsx [tsx] log=06-staff-task-20260821-130622.txt
+[13:06:54] 06-staff-task: PASS, committed
+[13:06:54] lane small drained

@@ -104,3 +104,25 @@ All of these consume the ONE typed `Evidence` schema from `packages/core` wherev
 Empty states, loading skeletons, error states — designed per IMPLEMENTATION_SPEC Guidance Layer rules (teaching empty states, human errors), same tokens, before M1 exit. Dusk/Linen themes — token swaps validated by the automated contrast check, mocked only if a demo needs them. POS, Insights/Peers, Network map — follow the vocabulary here (Peers gap card = `InsightCard` with a percentile band; POS = compact density + `ServicePill` grid + cart list of `StatRow`s).
 
 *Slop-test note (Hallmark): 5/5 screens pass — no invented marketing metrics (all figures are the seeded demo fixtures from PRODUCT_SPEC §20), no fake browser/phone chrome, no purple-AI wash (sunset gradient is brand-sourced from Carly), one accent per product, tags stacked vertical, buttons single-line at 320–1440px.*
+
+## The two-audience rule (owner directive, 2026-08-26) — READ BEFORE DESIGNING ANY SURFACE
+
+Bask and Compass serve different people and must not look or read the same.
+
+**Bask — the salon owner. Non-technical, always.**
+- Every insight reads as a sentence a salon owner would say out loud. Never a statistician's sentence.
+  "Most first-timers never come back" — not "second-visit conversion is 60.0% (n=6,184, de-censored)".
+- **No p-values, no sample sizes, no confidence intervals, no method names on screen.** Ever.
+- Every number is **actionable** — it comes with the thing to do about it, not just the fact.
+- **Click-through provenance is mandatory.** Any figure can be opened to see what it came from —
+  which visits, which customers, which sales. The owner never has to trust us; they can look.
+  Provenance is a drill-down into their own records, NOT a methodology note.
+- The statistics still have to be right. They just never surface. Rigour underneath, plain speech on top.
+
+**Compass — the UVALUX rep. More technical is allowed; the subject is still the relationship.**
+- A rep may see precision an owner should not. But Compass is about **customer relationships,
+  marketing and sales** — not about data.
+- Every screen answers "what do I say to this account, and why now?" — never "here is the analysis".
+- Do not put the weeds in front of a rep. A signal is a reason to call someone.
+
+When a surface could serve either, ask which person is holding the screen and design for that one.

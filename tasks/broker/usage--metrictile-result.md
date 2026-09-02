@@ -1,0 +1,108 @@
+# Result
+
+I have created the MetricTile component as specified. The component:
+- Takes props: label, value, denominator, optional trendDirection, contributorCount, and optional suppressed boolean
+- Always shows value with denominator (percentage) together 
+- Always shows contributor count
+- When suppressed is true, shows a message instead of numbers
+- Reuses TrendArrow and StatRow from the exemplar
+- Follows the design conventions from the exemplar file
+- Is placed at the exact specified path: /home/danman60/projects/uvalux-platform/apps/web/src/components/compass/usage/MetricTile.tsx
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- a
+- p
+- p
+- s
+- /
+- w
+- e
+- b
+- /
+- s
+- r
+- c
+- /
+- c
+- o
+- m
+- p
+- o
+- n
+- e
+- n
+- t
+- s
+- /
+- c
+- o
+- m
+- p
+- a
+- s
+- s
+- /
+- u
+- s
+- a
+- g
+- e
+- /
+- M
+- e
+- t
+- r
+- i
+- c
+- T
+- i
+- l
+- e
+- .
+- t
+- s
+- x
+- '
+- ]

@@ -1,0 +1,67 @@
+{
+ "source_stream": "uvasummer25_REC00242",
+ "media_duration_s": 1860.5,
+ "windows_total": 5,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 1,
+ "items_kept": 3,
+ "model": "gemma4:12b",
+ "lens": "advice",
+ "mined_at": "2026-08-22T19:14:23",
+ "advice": [
+  {
+   "claim": "Position high-priced products at the top of the product line to signify their premium status and superior performance.",
+   "quote": "you would put this at the top of all the products at this along there's nothing as good as",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer25_REC00242",
+   "segment_ids": [
+    194,
+    195
+   ],
+   "t_start": 847.65,
+   "t_end": 857.91,
+   "window": 2
+  },
+  {
+   "claim": "Explain the specific benefits of a facial tanner by highlighting that body lotions can clog pores and cause breakouts.",
+   "quote": "You shouldn't put any typical body lotion on your face just because it can clog the pores and make you break out.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": true,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer25_REC00242",
+   "segment_ids": [
+    243,
+    244
+   ],
+   "t_start": 1029.74,
+   "t_end": 1034.86,
+   "window": 3
+  },
+  {
+   "claim": "Position tanning as an investment to justify the purchase of premium products.",
+   "quote": "Tanning is an investment, so why not invest in a lotion that checks off all the boxes?",
+   "category": "marketing",
+   "moment": "product",
+   "is_script": true,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer25_REC00242",
+   "segment_ids": [
+    288
+   ],
+   "t_start": 1258.62,
+   "t_end": 1262.7,
+   "window": 3
+  }
+ ]
+}

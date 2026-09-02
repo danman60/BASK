@@ -1,0 +1,97 @@
+# Result
+
+I have successfully created the FigurePlate.tsx component as requested. The component:
+
+- Exports the correct FigurePlateProps interface with src: string; caption?: string; move?: 'push' | 'drift' | 'settle'; delay?: number;
+- Implements a FigurePlate function component that renders an image cutout from promo/public/textures/v5
+- Uses proper Remotion imports and follows the exemplar's structure and conventions
+- Implements all three motion types correctly:
+  - push: scales 1.0 to 1.06 over 90 frames with E.push easing
+  - drift: translates 22px horizontally over 90 frames with E.camera easing
+  - settle: scales 1.04 to 1.0 over 30 frames with E.easeOut easing
+- Has proper fade-in effects (image over 12 frames, caption 10 frames after image)
+- Uses contract tokens correctly (T, DISPLAY, BODY, E) 
+- Includes the required header comment about v5 cutouts
+- Follows all visual conventions from the exemplar
+
+The component was validated with the broker.vocab tool and passes all requirements.
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- p
+- r
+- o
+- m
+- o
+- /
+- s
+- r
+- c
+- /
+- s
+- h
+- o
+- t
+- s
+- /
+- v
+- 6
+- /
+- F
+- i
+- g
+- u
+- r
+- e
+- P
+- l
+- a
+- t
+- e
+- .
+- t
+- s
+- x
+- '
+- ]

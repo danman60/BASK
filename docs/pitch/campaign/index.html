@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bask — The Glow Playbook: a full social campaign built from the numbers</title>
+<style>
+/* Hallmark · doc: campaign book · theme: Sunset (locked) · offline */
+:root {
+  --paper: oklch(98.2% 0.004 84); --paper-2: oklch(96.2% 0.004 84); --card: #fff;
+  --ink: oklch(21% 0.012 320); --ink-soft: oklch(42% 0.014 320); --ink-faint: oklch(55% 0.014 320);
+  --line: oklch(90% 0.006 84); --line-soft: oklch(93.5% 0.005 84);
+  --primary: oklch(58% 0.14 42); --primary-deep: oklch(52% 0.14 40); --primary-wash: oklch(96% 0.02 50);
+  --gold: oklch(72% 0.084 85); --success: oklch(60% 0.12 155); --success-wash: oklch(96% 0.03 155);
+  --warn: oklch(70% 0.13 70);
+  --shadow-card: 0 1px 2px oklch(21% 0.012 320 / 0.04), 0 8px 24px oklch(21% 0.012 320 / 0.05);
+  --radius: 1rem; --radius-sm: 0.6rem; --radius-lg: 1.4rem;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --text-xs: 11px; --text-sm: 13px; --text-base: 14.5px; --text-md: 16px;
+  --text-lg: 19px; --text-xl: 24px; --text-2xl: 31px; --text-display: 40px;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { overflow-x: clip; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--text-base); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.topbar { position: sticky; top: 0; z-index: 5; display: flex; align-items: baseline; gap: 14px; padding: 14px 40px; border-bottom: 1px solid var(--line-soft); background: oklch(98.2% 0.004 84 / 0.88); backdrop-filter: blur(12px); }
+.wordmark { font: italic 600 22px/1 var(--font-display); }
+.doc-chip { font: 500 var(--text-sm)/1 var(--font-body); color: var(--ink-faint); }
+.shell { max-width: 940px; margin: 0 auto; padding: 40px 40px 72px; }
+@media (max-width: 720px) { .shell { padding: 24px 18px 56px; } .topbar { padding: 12px 18px; } }
+.eyebrow { font: 600 var(--text-xs)/1 var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 12px; }
+h1 { font: 500 var(--text-display)/1.18 var(--font-display); letter-spacing: -0.015em; max-width: 24ch; margin-bottom: 16px; }
+@media (max-width: 720px) { h1 { font-size: var(--text-2xl); } }
+h1 em { font-style: italic; color: var(--primary-deep); }
+.lede p { font-size: var(--text-md); color: var(--ink-soft); max-width: 62ch; margin-bottom: 12px; }
+.principles { margin: 26px 0 0; background: var(--primary-wash); border-radius: var(--radius); padding: 18px 22px; max-width: 100%; font-size: var(--text-sm); }
+.principles b { color: var(--primary-deep); }
+.calendar { margin-top: 44px; }
+h2.sec { font: 500 var(--text-2xl)/1.2 var(--font-display); letter-spacing: -0.01em; margin-bottom: 8px; }
+.sub { color: var(--ink-soft); max-width: 62ch; margin-bottom: 18px; }
+table.flight { width: 100%; border-collapse: collapse; font-size: var(--text-sm); background: var(--card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); }
+table.flight th, table.flight td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+table.flight th { font-weight: 600; color: var(--ink-faint); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.06em; background: var(--paper-2); }
+table.flight td b { color: var(--primary-deep); }
+.wrap-x { overflow-x: auto; border-radius: var(--radius); }
+.camp { margin-top: 48px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; }
+.camp-head { padding: 24px 28px 18px; border-bottom: 1px solid var(--line-soft); }
+.camp-head .kicker { font: 600 var(--text-xs)/1 var(--font-body); letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; display:block; }
+.camp-head h3 { font: 500 var(--text-xl)/1.25 var(--font-display); margin-bottom: 8px; }
+.camp-head .why { font-size: var(--text-sm); color: var(--ink-soft); max-width: 66ch; }
+.camp-head .why b { color: var(--ink); }
+.tags { margin-top: 10px; }
+.tag { display: inline-block; font: 600 var(--text-xs)/1.4 var(--font-body); border-radius: 999px; padding: 4px 10px; margin: 4px 6px 0 0; background: var(--paper-2); color: var(--ink-soft); }
+.tag.hot { background: var(--primary-wash); color: var(--primary-deep); }
+.tag.up { background: var(--success-wash); color: var(--success); }
+.camp-body { padding: 20px 28px 26px; }
+.block { margin-top: 18px; }
+.block h4 { font: 600 var(--text-sm)/1 var(--font-body); color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+.block p, .block li { font-size: var(--text-sm); color: var(--ink-soft); max-width: 68ch; }
+.block ul { padding-left: 18px; display: grid; gap: 6px; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 10px; margin-top: 8px; }
+.gallery img { width: 100%; border-radius: 10px; border: 1px solid var(--line); display: block; }
+.gallery figure { margin: 0; }
+.gallery figcaption { font-size: var(--text-xs); color: var(--ink-faint); margin-top: 4px; }
+.script { background: var(--paper-2); border-radius: var(--radius-sm); padding: 14px 16px; font-size: var(--text-sm); color: var(--ink); max-width: 68ch; margin-top: 8px; }
+.script i { color: var(--ink-faint); }
+table.shots { width: 100%; border-collapse: collapse; font-size: var(--text-sm); margin-top: 8px; }
+table.shots th, table.shots td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+table.shots th { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); }
+.vidnote { display:flex; gap:12px; align-items:center; background: var(--success-wash); border-radius: var(--radius-sm); padding: 10px 14px; font-size: var(--text-sm); margin-top: 10px; max-width: 68ch;}
+.measure { background: var(--primary-wash); border-radius: var(--radius-sm); padding: 12px 16px; font-size: var(--text-sm); margin-top: 18px; max-width: 68ch; }
+.measure b { color: var(--primary-deep); }
+.foot { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line-soft); font-size: var(--text-xs); color: var(--ink-faint); max-width: 66ch; }
+video { width: 100%; max-width: 320px; border-radius: 12px; border: 1px solid var(--line); display:block; margin-top: 8px; }
+</style></head>
+<body>
+<header class="topbar"><span class="wordmark">Bask</span><span class="doc-chip">The Glow Playbook · full social campaign suite · August 2026</span></header>
+<main class="shell">
+
+<section class="lede">
+  <span class="eyebrow">Built from your own registers — every campaign aims at a number we measured</span>
+  <h1>The Glow Playbook: <em>six campaigns, five calendars, zero discounts.</em></h1>
+  <p>Every campaign below exists because a specific finding in the data says the money is there.
+     Each one names its target audience, its promotion, its creative (carousel, static, story,
+     reel — assets rendered and included), the exact scripts, and the single number in Bask that
+     tells you whether it worked. Mock salon: <b>Sunset Ridge Tanning</b> (@sunsetridgetan).</p>
+  <div class="principles">
+    <b>Three rules carried from the data into every promo:</b> ① Never discount the thing being
+    saved — price doesn't drive renewal; presence does. Give upgrades and bundles (beds are 90%+
+    idle, so an upgrade costs ~nothing). ② Every campaign fires from a <b>list the till can
+    print</b> — day-5 first-timers, day-15 quiet members, expiry+7, 90-days-quiet, broken pairs.
+    ③ Consumer copy never sounds like a spreadsheet — the numbers live here, not in captions.
+  </div>
+</section>
+
+<section class="calendar">
+  <span class="eyebrow">The year at a glance</span>
+  <h2 class="sec">Flight calendar</h2>
+  <p class="sub">Always-on automations run all year; flights layer on top where the data says the season swings.</p>
+  <div class="wrap-x"><table class="flight">
+    <tr><th>Campaign</th><th>Type</th><th>When</th><th>Insight it fires from</th><th>Success number (in Bask)</th></tr>
+    <tr><td><b>#1 Glow-Back</b></td><td>Always-on automation</td><td>Daily list, day-5</td><td>First-timers decide in 7 days (¾ of returners back by day 7)</td><td>Second-visit rate 64% → 68%</td></tr>
+    <tr><td><b>#2 The Comeback</b></td><td>Monthly flight</td><td>1st week each month; heavy Sep–Nov</td><td>Comeback visits close membership 4× and buy lotion 2.4×</td><td>Reactivations/mo; comeback-day joins</td></tr>
+    <tr><td><b>#3 Use Your Month</b></td><td>Always-on automation</td><td>Day-15 + expiry+7</td><td>Renewal is usage (16→52%); 14-day expiry window</td><td>First-cycle renewal 32% → 36%</td></tr>
+    <tr><td><b>#4 Tan Together</b></td><td>Flagship flight</td><td>2 weeks, spring + fall</td><td>1 in 5 visits arrive as pairs; pairs quit together</td><td>Duo signups; broken-pair saves</td></tr>
+    <tr><td><b>#5 Graduate to the Bottle</b></td><td>Retail flight (UVALUX co-op)</td><td>March (pre-peak) + monthly counter push</td><td>70% start on sachets, 15% ever graduate ($19/oz vs $4.50/oz)</td><td>Sachet→bottle conversion 15% → 25%</td></tr>
+    <tr><td><b>#6 Season Flights</b></td><td>Seasonal</td><td>January + event season</td><td>January joiners renew ~39% vs July ~20%; new-pair first visits are event tans</td><td>January joins; group-package bookings</td></tr>
+  </table></div>
+</section>
+
+<!-- CAMPAIGN 1 -->
+<article class="camp">
+  <div class="camp-head">
+    <span class="kicker">Campaign 1 · always-on automation</span>
+    <h3>Glow-Back — the day-5 message</h3>
+    <p class="why"><b>Why:</b> three of four returning first-timers are back within 7 days; after a week,
+      odds fall to 3-in-10. ~320 undecided first-timers per salon-year; a rescued one spends ≈ $113 in year one.
+      The follow-up must land on <b>day 5</b>, not month-end.</p>
+    <div class="tags"><span class="tag hot">Audience: first-timers, no 2nd visit by day 5</span><span class="tag">Channels: SMS/DM + IG story + static retarget</span><span class="tag up">Promo: free bed upgrade on session 2 (zero marginal cost)</span></div>
+  </div>
+  <div class="camp-body">
+    <div class="block"><h4>Creative — rendered</h4>
+      <div class="gallery">
+        <figure><img src="assets/c1-static.png" alt=""><figcaption>Static 1080×1080 — feed/retarget</figcaption></figure>
+        <figure><img src="assets/c1-story.png" alt=""><figcaption>Story 1080×1920 — link sticker to booking</figcaption></figure>
+      </div>
+    </div>
+    <div class="block"><h4>SMS / DM script (day 5, from the salon's own number)</h4>
+      <p class="script">"Hey [name] — it's [staffer] from Sunset Ridge ☀️ That first glow suited you.
+      Come back any day this week and I'll bump you to the good bed, no charge. Want me to hold
+      tomorrow at [their first-visit hour]?" <i>— send at the hour of their first visit; it's the hour they already chose once.</i></p>
+    </div>
+    <div class="block"><h4>Targeting</h4>
+      <ul>
+        <li>Primary: till-printed day-5 list (name + number). This is the campaign.</li>
+        <li>Support: IG/FB custom audience "new clients last 14 days" — story + static as air cover, $2–3/day.</li>
+        <li>Sep–Nov: double the support budget — autumn first-timers vanish 12 points more and are worth the same.</li>
+      </ul>
+    </div>
+    <div class="block"><h4>Caption (static)</h4>
+      <p class="script">That first glow looked good on you. Round two gets the good bed — on us, this week. ☀️ Tap to book. #glowback #sunsetridge #tanningsalon</p></div>
+    <div class="measure"><b>Measure:</b> second-visit-within-14-days rate on the Bask new-customer card. Baseline 64.2% within 180d; the automation aims at the day-7 pool. Even +1pt ≈ $360/salon-yr at zero media cost.</div>
+  </div>
+</article>
+
+<!-- CAMPAIGN 2 -->
+<article class="camp">
+  <div class="camp-head">
+    <span class="kicker">Campaign 2 · monthly winback flight</span>
+    <h3>The Comeback — "We saved your spot"</h3>
+    <p class="why"><b>Why:</b> the comeback visit is the best sales moment in the shop — membership closes
+      4.4× and lotion attaches 2.4× the normal rate. A returned lapser typically out-earns a new walk-in.
+      And leavers give no warning, so the <b>90-days-quiet list</b> is the only way to find them.</p>
+    <div class="tags"><span class="tag hot">Audience: 90-days-quiet customers (list upload, monthly)</span><span class="tag">Channels: DM/SMS + carousel + reel</span><span class="tag up">Promo: Comeback Day = VIP day — free upgrade; rejoin today → bottle rides along</span></div>
+  </div>
+  <div class="camp-body">
+    <div class="block"><h4>Carousel — rendered (5 slides)</h4>
+      <div class="gallery">
+        <figure><img src="assets/c2-1.png" alt=""><figcaption>1 · hook</figcaption></figure>
+        <figure><img src="assets/c2-2.png" alt=""><figcaption>2 · permission ("no guilt")</figcaption></figure>
+        <figure><img src="assets/c2-3.png" alt=""><figcaption>3 · the VIP offer</figcaption></figure>
+        <figure><img src="assets/c2-4.png" alt=""><figcaption>4 · friction removal</figcaption></figure>
+        <figure><img src="assets/c2-5.png" alt=""><figcaption>5 · CTA "DM BACK"</figcaption></figure>
+      </div>
+    </div>
+    <div class="block"><h4>Reel — "The Comeback" (15s, 9:16)</h4>
+      <div class="vidnote">☀ AI hero clip generated: <b>bask-comeback-final.mp4</b> (LTX, 1080×1920) — dusk storefront, door push, receptionist recognition. Use as the cinematic A-roll; phone B-roll list below.</div>
+      <table class="shots">
+        <tr><th>#</th><th>0:00–</th><th>Shot</th><th>Overlay text</th></tr>
+        <tr><td>1</td><td>0:00</td><td>AI clip: she pauses outside the glowing door (slow-mo)</td><td>"It's been a while…"</td></tr>
+        <tr><td>2</td><td>0:04</td><td>AI clip: door push, warm light wash</td><td>"…the bed's still warm."</td></tr>
+        <tr><td>3</td><td>0:07</td><td>Phone B-roll: staffer waves from desk, big grin</td><td>"We saved your spot ☀️"</td></tr>
+        <tr><td>4</td><td>0:10</td><td>Phone B-roll: hand places bottle + towel on the bed</td><td>"Comeback day = VIP day"</td></tr>
+        <tr><td>5</td><td>0:13</td><td>End card (brand terracotta)</td><td>"DM us 'BACK' — that's the whole form."</td></tr>
+      </table>
+      <p class="script"><i>Audio: warm lo-fi with a soft riser at 0:07. No VO needed — overlays carry it. Post the reel the same week the DM/SMS wave goes out, so the feed echoes the message in their pocket.</i></p>
+    </div>
+    <div class="block"><h4>DM / SMS script</h4>
+      <p class="script">"[name]! It's been a minute — zero guilt, life happens ☀️ If you come back
+      this month, your first day back is a VIP day: best bed, on us. And if you restart your
+      membership that day, your first bottle of lotion comes with it. Your spot's still yours — want Thursday?"</p></div>
+    <div class="block"><h4>Counter play (the part social can't do)</h4>
+      <ul><li>Front desk flags comeback visits (Bask shows "first visit in 90+ days"). Staff treat it as a first visit: greet by name, re-tour, <b>make the membership ask</b> — this is the 4.4× moment.</li>
+      <li>Bottle on the counter before they leave — 2.4× attach moment, no pitch needed beyond "want your bottle with that?"</li></ul></div>
+    <div class="measure"><b>Measure:</b> monthly reactivations, comeback-day membership closes (baseline 28.7% — staff scripting aims at 35%+), comeback-day attach (baseline 13.7%).</div>
+  </div>
+</article>
+
+<!-- CAMPAIGN 3 -->
+<article class="camp">
+  <div class="camp-head">
+    <span class="kicker">Campaign 3 · always-on member automation</span>
+    <h3>Use Your Month — the day-15 nudge and the 14-day streak</h3>
+    <p class="why"><b>Why:</b> members you don't see don't renew (16% vs 52% by usage) — visible by day 15.
+      Price does nothing; presence does everything. After expiry there's a flat 14-day window (renew-again
+      ~53%) before the slide to occasional (33%). Two messages, both visit nudges, <b>no discounts ever</b>.</p>
+    <div class="tags"><span class="tag hot">Audience A: members &lt;4 visits by day 15</span><span class="tag hot">Audience B: expired members, day 7</span><span class="tag">Channels: SMS + story templates</span><span class="tag up">Promo: none / perk-carryover — never a price cut</span></div>
+  </div>
+  <div class="camp-body">
+    <div class="block"><h4>Story templates — rendered</h4>
+      <div class="gallery">
+        <figure><img src="assets/c3-story-midmonth.png" alt=""><figcaption>Mid-month "15 days left" (evergreen repost)</figcaption></figure>
+        <figure><img src="assets/c3-story-streak.png" alt=""><figcaption>Expiry+7 "Don't lose your streak"</figcaption></figure>
+      </div>
+    </div>
+    <div class="block"><h4>SMS scripts</h4>
+      <p class="script"><b>Day 15, quiet member:</b> "Hey [name] — halfway through your month and the
+      bed's been asking about you ☀️ Tonight's wide open. Want 7:30?" <i>— booking link, no offer. The
+      product being sold is the visit.</i></p>
+      <p class="script"><b>Expiry + 7:</b> "Your month wrapped last week, [name]. Restart in the next
+      7 days and everything carries straight over — same bed, same rate, streak intact. One tap: [link]"</p></div>
+    <div class="block"><h4>Counter play</h4>
+      <ul><li>Renewal moment = the quietest register (attach 7.7% vs 19.2% at signup). One scripted line on every renewal: <b>"want the bottle on the package?"</b></li>
+      <li>If a member hesitates at renewal: offer the <b>cheaper tier</b>, never a discount — downshifters outlast non-changers (6.1 vs 5.2 packages).</li></ul></div>
+    <div class="measure"><b>Measure:</b> first-cycle renewal (baseline 32.0%), share of renewals landing ≤14 days after expiry, renewal-day attach.</div>
+  </div>
+</article>
+
+<!-- CAMPAIGN 4 -->
+<article class="camp">
+  <div class="camp-head">
+    <span class="kicker">Campaign 4 · flagship flight (spring + fall)</span>
+    <h3>Tan Together — the Duo Month</h3>
+    <p class="why"><b>Why:</b> 20.6% of visits arrive as pairs; stable pairs are 5% of customers holding 12%
+      of revenue; when one partner quits, the survivor's visits drop 45% within 90 days. The pair is the
+      unit of loyalty — so sell to it, and defend it.</p>
+    <div class="tags"><span class="tag hot">Audience: members + their plus-ones; broken pairs (partner quiet 60d+)</span><span class="tag">Channels: reel + carousel + UGC + DM</span><span class="tag up">Promo: Duo Month (add your person for half) · Bring-your-person week (friend's first session free)</span></div>
+  </div>
+  <div class="camp-body">
+    <div class="block"><h4>Carousel — rendered (6 slides)</h4>
+      <div class="gallery">
+        <figure><img src="assets/c4-1.png" alt=""><figcaption>1 · hook</figcaption></figure>
+        <figure><img src="assets/c4-2.png" alt=""><figcaption>2 · "1 in 5" proof</figcaption></figure>
+        <figure><img src="assets/c4-3.png" alt=""><figcaption>3 · Duo Month</figcaption></figure>
+        <figure><img src="assets/c4-4.png" alt=""><figcaption>4 · bring-your-person week</figcaption></figure>
+        <figure><img src="assets/c4-5.png" alt=""><figcaption>5 · tag-a-friend engagement</figcaption></figure>
+        <figure><img src="assets/c4-6.png" alt=""><figcaption>6 · CTA "DM DUO"</figcaption></figure>
+      </div>
+    </div>
+    <div class="block"><h4>Hero reel — "Tan Together" (20s, 9:16)</h4>
+      <div class="vidnote">☀ AI hero clip generated: <b>bask-tan-together-final.mp4</b> (LTX, 1080×1920) — two friends, arm in arm, pushing into the golden salon. Cinematic A-roll for shots 1–2.</div>
+      <table class="shots">
+        <tr><th>#</th><th>0:00–</th><th>Shot</th><th>Overlay text</th></tr>
+        <tr><td>1</td><td>0:00</td><td>AI clip: the two of them at the door, laughing (slow-mo)</td><td>"Everything's better with your person"</td></tr>
+        <tr><td>2</td><td>0:04</td><td>AI clip: through the door into the warm interior</td><td>"including this ☀️"</td></tr>
+        <tr><td>3</td><td>0:08</td><td>Phone B-roll: two robes on hooks, side by side</td><td>"1 in 5 of you already come in twos"</td></tr>
+        <tr><td>4</td><td>0:11</td><td>Phone B-roll: fist-bump across the hallway between rooms</td><td>"Duo Month: add your person for half"</td></tr>
+        <tr><td>5</td><td>0:15</td><td>Phone B-roll: both at the desk, sunglasses on, deadpan</td><td>"Two glows &gt; one"</td></tr>
+        <tr><td>6</td><td>0:18</td><td>End card</td><td>"DM 'DUO' ☀☀"</td></tr>
+      </table>
+      <p class="script"><i>Audio: upbeat friendship-trend track. Engagement engine is slide 5 of the
+      carousel ("tag the one who'd be horizontal in bed 6 right now") — tag-a-friend is the organic
+      distribution for this flight; every tag is a warm lead with a named referrer.</i></p></div>
+    <div class="block"><h4>The defensive half — broken pairs (quiet, DM only, never public)</h4>
+      <p class="script">"Hey [name] — we haven't seen [partner name] in a while and honestly the place
+      isn't the same ☀️ This week only: bring her back and her comeback session's free, best beds for
+      both of you. Sunday afternoon?" <i>— fires from the Bask pair-flag (co-arrival graph). This is a
+      retention message wearing a friendship costume: the survivor is the at-risk one.</i></p></div>
+    <div class="measure"><b>Measure:</b> Duo Month signups; broken-pair saves (survivor's 90-day visits after partner lapse — baseline −45%); tags per carousel post.</div>
+  </div>
+</article>
+
+<!-- CAMPAIGN 5 -->
+<article class="camp">
+  <div class="camp-head">
+    <span class="kicker">Campaign 5 · retail flight — UVALUX co-op</span>
+    <h3>Graduate to the Bottle — sachet trade-up month</h3>
+    <p class="why"><b>Why:</b> 7 in 10 lotion buyers start on the sachet at ~$19/oz; only 15% ever reach the
+      bottle ($4.50/oz) — yet half of sachet buyers repurchase. The trade-up moment walks to the register on
+      its own; nobody graduates without being asked. Run in <b>March</b> — the reorder ramp inflects then,
+      and UVALUX's co-op dollars fund the flight.</p>
+    <div class="tags"><span class="tag hot">Audience: in-store buyers + IG followers (education)</span><span class="tag">Channels: carousel + counter card + register script</span><span class="tag up">Promo: this month's sachets count toward your bottle (30-day window)</span></div>
+  </div>
+  <div class="camp-body">
+    <div class="block"><h4>Carousel — rendered (5 slides)</h4>
+      <div class="gallery">
+        <figure><img src="assets/c5-1.png" alt=""><figcaption>1 · hook</figcaption></figure>
+        <figure><img src="assets/c5-2.png" alt=""><figcaption>2 · the per-oz math</figcaption></figure>
+        <figure><img src="assets/c5-3.png" alt=""><figcaption>3 · trade-up offer</figcaption></figure>
+        <figure><img src="assets/c5-4.png" alt=""><figcaption>4 · why-the-bottle benefits</figcaption></figure>
+        <figure><img src="assets/c5-5.png" alt=""><figcaption>5 · CTA counter</figcaption></figure>
+      </div>
+    </div>
+    <div class="block"><h4>Register script (the whole campaign in one sentence)</h4>
+      <p class="script">On every <b>second</b> sachet purchase: "Fun fact — two of these costs more than
+      half the bottle. Want me to put today's toward one?" <i>Bask flags the second-sachet moment at the till.</i></p></div>
+    <div class="block"><h4>UVALUX co-op angle (Compass)</h4>
+      <ul><li>Sachet→bottle conversion becomes the per-account metric a rep sells against (baseline 15%).</li>
+      <li>UVALUX funds the counter cards + the trade-up credit; the salon supplies the ask. Bottle velocity is the shared win.</li>
+      <li>Timing: March flight = 3 weeks ahead of the 12.6% demand step at week 9–10.</li></ul></div>
+    <div class="measure"><b>Measure:</b> sachet→bottle conversion (15% → 25% target), bottle units, attach on second-sachet transactions.</div>
+  </div>
+</article>
+
+<!-- CAMPAIGN 6 -->
+<article class="camp">
+  <div class="camp-head">
+    <span class="kicker">Campaign 6 · season flights</span>
+    <h3>Season Flights — January believers, summer crews</h3>
+    <p class="why"><b>Why:</b> January joiners renew at ~39% vs ~20% for July — the New-Year member is nearly
+      twice the member. And pairs of brand-new faces are event tanners (they return <i>less</i>), so summer
+      sells the <b>occasion</b>, not the membership — then the day-5 machine chases each crew member individually.</p>
+    <div class="tags"><span class="tag hot">January: membership push</span><span class="tag hot">May–July: group/event packages</span><span class="tag">Channels: static + reel + local targeting</span><span class="tag up">Promos: January join week · Crew packages (built around a date)</span></div>
+  </div>
+  <div class="camp-body">
+    <div class="block"><h4>Statics — rendered</h4>
+      <div class="gallery">
+        <figure><img src="assets/c6-newyear.png" alt=""><figcaption>January — "This one glows"</figcaption></figure>
+        <figure><img src="assets/c6-event.png" alt=""><figcaption>Summer — "Big day coming?"</figcaption></figure>
+      </div>
+    </div>
+    <div class="block"><h4>January reel — "The Warm Resolution" (12s, 9:16)</h4>
+      <div class="vidnote">☀ AI hero clip generated: <b>bask-newyear-glow-final.mp4</b> (LTX, 1080×1920) — snowy street, glowing storefront, the warmth wash. Runs nearly uncut.</div>
+      <table class="shots">
+        <tr><th>#</th><th>0:00–</th><th>Shot</th><th>Overlay text</th></tr>
+        <tr><td>1</td><td>0:00</td><td>AI clip: cold street, visible breath, string lights</td><td>"New year. Cold everything."</td></tr>
+        <tr><td>2</td><td>0:05</td><td>AI clip: door opens, warm light floods her face</td><td>"Pick the resolution that glows."</td></tr>
+        <tr><td>3</td><td>0:09</td><td>End card</td><td>"January memberships open — Sunset Ridge ☀️"</td></tr>
+      </table></div>
+    <div class="block"><h4>Summer crew play</h4>
+      <p class="script">Occasion packages ("Wedding Crew", "Vacay Crew") sold per-date, not per-month — the
+      data says summer joiners were never going to renew, so package the event honestly and win the goodbye.
+      Every crew member lands on the day-5 list afterward; the few with habit potential surface themselves.</p></div>
+    <div class="measure"><b>Measure:</b> January joins (each worth ~1.4× an average member, ~1.9× a July one); crew bookings; day-5 conversion of crew members post-event.</div>
+  </div>
+</article>
+
+<section style="margin-top:48px;">
+  <span class="eyebrow">Assets in this package</span>
+  <h2 class="sec">Production inventory</h2>
+  <div class="wrap-x"><table class="flight">
+    <tr><th>Asset</th><th>Format</th><th>Status</th></tr>
+    <tr><td>Comeback carousel (5), Tan Together carousel (6), Bottle carousel (5)</td><td>1080×1350 PNG</td><td>Rendered — assets/</td></tr>
+    <tr><td>Glow-Back static + story, Season statics (2), member stories (2)</td><td>1080×1080 / 1080×1920 PNG</td><td>Rendered — assets/</td></tr>
+    <tr><td>bask-comeback, bask-tan-together, bask-newyear-glow</td><td>1080×1920 MP4 (LTX 2.3)</td><td>Generated on FIRMAMENT — video/</td></tr>
+    <tr><td>Reel edits (overlays + audio), phone B-roll</td><td>per shot lists above</td><td>Salon/editor to assemble — all timing specified</td></tr>
+  </table></div>
+</section>
+
+<p class="foot">Every campaign in this book traces to a measured finding in the four-salon POS dataset
+(194,672 visits, 2016–2020); the statistical companions are
+2026-08-27-fable-ten-insights.md/.html. Mock brand "Sunset Ridge Tanning" — swap handle, staffer
+names and booking links per salon. Promotions follow the no-discount rule everywhere a renewal is
+being saved; free upgrades ride on the measured 91–93% idle bed capacity.</p>
+</main>
+</body></html>

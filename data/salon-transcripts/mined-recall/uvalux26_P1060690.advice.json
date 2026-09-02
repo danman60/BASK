@@ -1,0 +1,511 @@
+{
+ "source_stream": "uvalux26_P1060690",
+ "media_duration_s": 4048.044,
+ "windows_total": 10,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 11,
+ "items_kept": 26,
+ "model": "gemma4:31b",
+ "lens": "recall",
+ "mined_at": "2026-08-22T15:32:27",
+ "advice": [
+  {
+   "claim": "Avoid making impulsive operational changes without a deliberate plan, as this often leads to reverting back to old ways after a few weeks.",
+   "quote": "We're gonna change things. We're gonna do it this way now and then three weeks later That was a bad decision. Let's change back",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "mistake",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    58,
+    59
+   ],
+   "t_start": 860.23,
+   "t_end": 869.35,
+   "window": 2
+  },
+  {
+   "claim": "Employee surveys consistently show that recognition is a more powerful motivator for staff than money, commissions, or gifts.",
+   "quote": "what your employees for our our influence want more than anything is\nrecognition we put in over 18 but what's your biggest motive is it money's\ncommissions, gifts, recognition comes back, time and time making is number one.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    64,
+    65,
+    66,
+    67
+   ],
+   "t_start": 945.12,
+   "t_end": 967.07,
+   "window": 3
+  },
+  {
+   "claim": "When tracking revenue across multiple locations, use a color-coding system (e.g., green for beating the previous month, blue for missing the prior year, red for missing both) to identify systemic patterns rather than isolated incidents.",
+   "quote": "And what this does is green tells us it lost the month before, blue tells us it didn't beat the year in front of it, and red tells us that it lost the month before and the year before. So we're looking for patterns, right?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    134,
+    135,
+    136
+   ],
+   "t_start": 1275.1,
+   "t_end": 1288.02,
+   "window": 3
+  },
+  {
+   "claim": "Tracking revenue per session (RPS) allows owners to see the actual financial impact of pivoting services, such as moving toward wellness.",
+   "quote": "So we've gone in the same store from $11.98 every single time we service somebody to now making almost $17 every time somebody walks in the door.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    172
+   ],
+   "t_start": 1434.3,
+   "t_end": 1460.75,
+   "window": 4
+  },
+  {
+   "claim": "Revenue per square foot is a critical metric for determining if smaller stores are more efficient than larger ones before expanding.",
+   "quote": "This is particularly important if you have multiple locations where you're looking to grow. How do you know that the smaller store is a better store?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    174,
+    175,
+    176
+   ],
+   "t_start": 1469.32,
+   "t_end": 1480.46,
+   "window": 4
+  },
+  {
+   "claim": "To find the average number of visits per customer, divide total sessions by distinct (unique) customers.",
+   "quote": "So if you want to know how many times your average customer goes in, just take 3374 divided into the 60,000 and you get 16.10.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    222,
+    223,
+    224
+   ],
+   "t_start": 1713.39,
+   "t_end": 1722.71,
+   "window": 4
+  },
+  {
+   "claim": "Adding wellness modalities can increase revenue per customer even if the total number of distinct customers decreases.",
+   "quote": "The more wellness we added, the more people spent. Now, here's the interesting thing. Look at my distinct customers. What are they doing? They're going down. My spending is going up.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    343,
+    344,
+    345,
+    346,
+    347,
+    348
+   ],
+   "t_start": 2176.4,
+   "t_end": 2203.08,
+   "window": 5
+  },
+  {
+   "claim": "A significant portion of a modern salon's business can shift toward wellness; in this case, roughly 60-64%.",
+   "quote": "roughly 64% of our business is in the wellness sector.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    250
+   ],
+   "t_start": 1789.4,
+   "t_end": 1795.28,
+   "window": 5
+  },
+  {
+   "claim": "Modern salon equipment strategy has shifted from having many entry-level beds to focusing on high-end beds and eliminating mid-level options.",
+   "quote": "Now it's all big beds and maybe one entry-level bed. So I think, personally, we're starting to eliminate that mid-level section.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    276,
+    277,
+    278
+   ],
+   "t_start": 1901.16,
+   "t_end": 1916.44,
+   "window": 5
+  },
+  {
+   "claim": "A decline in Distinct Customer Revenue (DCR) is a direct indicator that customers dislike a recent business decision.",
+   "quote": "If your revenue per session or your distinct customer revenue, that DCR, if that starts going down, what does that tell you? Your customers don't like the decision you could make. Otherwise, they would spend more.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    339,
+    340,
+    341,
+    342
+   ],
+   "t_start": 2162.18,
+   "t_end": 2176.4,
+   "window": 5
+  },
+  {
+   "claim": "High-volume salons can see between five and six hundred people per day.",
+   "quote": "We have some stores that are seeing five and six hundred people a day.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    290
+   ],
+   "t_start": 1976.03,
+   "t_end": 1977.71,
+   "window": 5
+  },
+  {
+   "claim": "The loss of a high-performing sales employee can have a measurable negative impact on Revenue Per Session across an entire store.",
+   "quote": "We had a girl who had been with me for a lot of years, and when she left, boy, we felt it everywhere. Just look at those numbers. We were not able to compete the prior year.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    416,
+    417,
+    419
+   ],
+   "t_start": 2467.78,
+   "t_end": 2477.04,
+   "window": 6
+  },
+  {
+   "claim": "Sales pitches exceeding four minutes result in a drastic drop in closure rates from 80% to 15%.",
+   "quote": "studies show that if we keep our presentation our pitch under four minutes we have an 80 closure issue you want to hear the other side of that once it crosses four minutes it goes to 15",
+   "category": "unclassified",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    463,
+    464
+   ],
+   "t_start": 2753.95,
+   "t_end": 2768.91,
+   "window": 7
+  },
+  {
+   "claim": "Using a laminated equipment sheet at the counter is more efficient than salon tours in busy stores because it saves time and avoids showing empty rooms.",
+   "quote": "And so we have a really nice laminated sheet that shows every piece of equipment, what it does, how it works, and we keep them right at the counter showing them, rather than saying And behind this door is a piece of equipment I'll show you when we get back to the counter.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    476,
+    477,
+    478
+   ],
+   "t_start": 2828.73,
+   "t_end": 2839.95,
+   "window": 7
+  },
+  {
+   "claim": "Relying on non-membership sales makes revenue volatile because it depends on the staff's daily mood and requires constant reselling.",
+   "quote": "If you're not selling memberships every single time something runs out, you have to resell a customer. Or what's worse is you're relying on your staff who may or may not be in the mood for sales that day to make the sale.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    527,
+    528,
+    529
+   ],
+   "t_start": 3045.62,
+   "t_end": 3065.53,
+   "window": 7
+  },
+  {
+   "claim": "Selling minutes or discounted bundles instead of memberships gives customers a reason not to commit to a membership.",
+   "quote": "I do sell minutes. What else? Weeks, months, days, kind of multi-months. I give discounts on minutes. So you're giving your customer every reason possible not to buy a membership from you.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "mistake",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    538,
+    539,
+    540,
+    541,
+    542
+   ],
+   "t_start": 3090.6,
+   "t_end": 3108.98,
+   "window": 8
+  },
+  {
+   "claim": "A low-cost entry point (e.g., 99 cents) is more effective at getting customers through the door than advertising monthly membership prices.",
+   "quote": "Price is going to get them over the threshold. That's one of the reasons we always say we have services starting at just 99 cents. Now when they're calling everybody else, who are they comparing it to? How much is your tanning? We have tanning for $59 a month. Click.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    556,
+    557,
+    558,
+    559,
+    560
+   ],
+   "t_start": 3162.59,
+   "t_end": 3175.96,
+   "window": 8
+  },
+  {
+   "claim": "In some salons, a significant portion of active memberships are not being utilized by the customers.",
+   "quote": "What you're going to see here is roughly 40% of people with memberships in TANI don't even want to know. 40%.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    551,
+    552
+   ],
+   "t_start": 3139.21,
+   "t_end": 3149.36,
+   "window": 8
+  },
+  {
+   "claim": "A specific store example showed a gap between active memberships (1,296) and distinct customers visiting in a month (770).",
+   "quote": "So in December, we had 770 distinct customers. See that number right there? We have 1,296 memberships that are active that same month. So we have 1,296 memberships active, and only 770 people came in to use them.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    575,
+    576,
+    577,
+    578
+   ],
+   "t_start": 3216.33,
+   "t_end": 3237.81,
+   "window": 8
+  },
+  {
+   "claim": "The speaker initially set a strict spending limit on equipment but learned that the return on investment is more important than the absolute cost.",
+   "quote": "when i first got into the industry i remember i i bought my biggest bet i think it was like 25 000 and i said god the day i spend more than 30 i'm out that's it i will never spend 30 000. then i went to 40 then 50 then 60 then 70 right but what i learned along the way it doesn't matter how much it costs it truly doesn't",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    585,
+    586,
+    587
+   ],
+   "t_start": 3272.12,
+   "t_end": 3291.2,
+   "window": 8
+  },
+  {
+   "claim": "The industry average for membership duration is four months, whereas high-performing salons can achieve significantly higher averages (e.g., 11 months).",
+   "quote": "The average in the industry is four months. Our current average is 11.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    644
+   ],
+   "t_start": 3578.6,
+   "t_end": 3587.38,
+   "window": 9
+  },
+  {
+   "claim": "A low-cost membership entry point combined with a flat facility fee can be used to anchor pricing.",
+   "quote": "So that price is $29 a woman, $29.95 a month, and every membership has a $30 facility fee.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    646
+   ],
+   "t_start": 3599.42,
+   "t_end": 3607.98,
+   "window": 9
+  },
+  {
+   "claim": "Setting a price ceiling on all-access memberships can remove psychological barriers and drive customers toward higher-tier options.",
+   "quote": "Now, what we do on our all-access is there's no one more than $90 a month. So we remove that barrier, right?",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    647,
+    648
+   ],
+   "t_start": 3608.18,
+   "t_end": 3616.51,
+   "window": 9
+  },
+  {
+   "claim": "High-tier memberships can achieve a conversion rate as high as 84%.",
+   "quote": "we have an 84 close ratio on the ambassador 84 of the times people buy the investors",
+   "category": "membership",
+   "moment": "close",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    650,
+    651
+   ],
+   "t_start": 3620.89,
+   "t_end": 3631.98,
+   "window": 9
+  },
+  {
+   "claim": "Positioning a business as a 'wellness' center rather than a 'tanning salon' significantly increases the likelihood of customer referrals due to the stigma associated with tanning.",
+   "quote": "when they asked a group of people what the likelihood is that they would refer friends, family, or others to the place in which they TN, 70% said no way. When they asked the same group of people what's the chance that you would refer people to the place where you go to get wellness that you might also get a TN, 80% of them said yes they would.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    677,
+    678,
+    679,
+    680,
+    681,
+    682,
+    683,
+    684,
+    685
+   ],
+   "t_start": 3754.23,
+   "t_end": 3783.08,
+   "window": 9
+  },
+  {
+   "claim": "Business owners who do not track their operational numbers are essentially guessing and risking their business success.",
+   "quote": "but if you're a business owner and you aren't tracking your numbers we we should fire ourselves. Because it's the only smart way to do business. Otherwise, you're guessing.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "mistake",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    724,
+    725,
+    726,
+    727,
+    728
+   ],
+   "t_start": 3962.15,
+   "t_end": 3979.35,
+   "window": 10
+  }
+ ]
+}

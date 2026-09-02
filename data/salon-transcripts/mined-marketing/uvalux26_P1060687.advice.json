@@ -1,0 +1,427 @@
+{
+ "source_stream": "uvalux26_P1060687",
+ "media_duration_s": 3252.249,
+ "windows_total": 8,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 2,
+ "items_kept": 23,
+ "model": "gemma4:31b",
+ "lens": "marketing",
+ "mined_at": "2026-08-23T00:43:46",
+ "advice": [
+  {
+   "claim": "Investing in expensive equipment without a plan to drive traffic results in financial loss.",
+   "quote": "you can spend 50 60 thousand Canadian in the room next door but if you don't know how to implement that equipment you're losing money you're burning your money you're throwing it out the window",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    23,
+    24,
+    25
+   ],
+   "t_start": 98.24,
+   "t_end": 113.84,
+   "window": 1
+  },
+  {
+   "claim": "Many salon owners invest in new technology but fail to attract customers to use it.",
+   "quote": "I've talked to so many of you already that have made the investment but still don't have the people coming in the door",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    26,
+    27,
+    28
+   ],
+   "t_start": 113.84,
+   "t_end": 120.3,
+   "window": 1
+  },
+  {
+   "claim": "The industry is shifting toward a 'wellness' and 'spa' identity rather than just tanning.",
+   "quote": "if we're shifting to wellness, We're shifting to more of a spa look and feel.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    42,
+    43
+   ],
+   "t_start": 142.44,
+   "t_end": 147.46,
+   "window": 1
+  },
+  {
+   "claim": "Touchless modalities are preferable because they eliminate the risk of revenue loss due to staff absences.",
+   "quote": "two rooms down, they don't call in sick. They're going to be there.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    106
+   ],
+   "t_start": 357.75,
+   "t_end": 363.66,
+   "window": 1
+  },
+  {
+   "claim": "Customers will not ask for services that the salon does not already offer.",
+   "quote": "If you don't have something, people are not going to ask for it.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    124
+   ],
+   "t_start": 465.98,
+   "t_end": 471.64,
+   "window": 1
+  },
+  {
+   "claim": "Salon owners often struggle with the friction of customers having to change clothes multiple times between different treatments.",
+   "quote": "One of the biggest pain in the back end when I come to a tanning salon it's getting undressed right and if I'm using more than one room I'm getting undressed getting redressed getting undressed getting redressed",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    157,
+    158,
+    159
+   ],
+   "t_start": 621.01,
+   "t_end": 634.99,
+   "window": 2
+  },
+  {
+   "claim": "There is a significant market opportunity in wellness products for people who have never used traditional tanning beds.",
+   "quote": "80%, 80% of the folks that are using our well-fit machine, 80% of them have never tanned in a tanning bed before.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    145
+   ],
+   "t_start": 565.2,
+   "t_end": 576.17,
+   "window": 2
+  },
+  {
+   "claim": "The industry is shifting toward 'wellness' and holistic experiences rather than just UV tanning.",
+   "quote": "Becoming wellness day. After work, I want to relax.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    164,
+    165,
+    166
+   ],
+   "t_start": 661.08,
+   "t_end": 670.09,
+   "window": 2
+  },
+  {
+   "claim": "Staff behavior and engagement are the primary factors that differentiate a high-end salon from a mediocre one.",
+   "quote": "When you're stepping into a place, is your staff on the phone or are they engaging? Are they TikToking or are they engaging the customers when they come in?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    130,
+    131
+   ],
+   "t_start": 506.72,
+   "t_end": 516.61,
+   "window": 2
+  },
+  {
+   "claim": "Customers will not ask for services or products that the salon does not already offer.",
+   "quote": "I'm not going to go to a sushi place and order a hamburger, right? If you don't have something, people are not going to ask for it.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    123,
+    124
+   ],
+   "t_start": 460.7,
+   "t_end": 471.64,
+   "window": 2
+  },
+  {
+   "claim": "Updating expensive equipment is hard to justify if the current customer volume for that specific service is low.",
+   "quote": "if you're only seeing one to two people spray tanning a day, it's very difficult dropping 50 grand to update and to increase from one to three, right? It doesn't pay for itself.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    239
+   ],
+   "t_start": 1031.42,
+   "t_end": 1048.25,
+   "window": 3
+  },
+  {
+   "claim": "Customers often say they like a treatment in the moment but fail to book follow-up appointments.",
+   "quote": "You know how people, when you talk to them, did you like, yeah, it was great, and they never come back.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    249,
+    250
+   ],
+   "t_start": 1105.82,
+   "t_end": 1110.66,
+   "window": 3
+  },
+  {
+   "claim": "New technology can attract a completely new demographic of customers who have never visited the salon before.",
+   "quote": "from the analytics, 80% of the people that are using this modality never came to your salon before.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    253,
+    254
+   ],
+   "t_start": 1115.24,
+   "t_end": 1122.26,
+   "window": 3
+  },
+  {
+   "claim": "Many salons have updated their hardware but haven't pivoted their service menu to include high-margin skincare.",
+   "quote": "there's many of you that have bought new machines, but you have not translated them into the skin care aspect.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    275
+   ],
+   "t_start": 1211.27,
+   "t_end": 1218.43,
+   "window": 3
+  },
+  {
+   "claim": "The overall sensory experience and 'aura' of a salon are critical to changing how the community perceives the business.",
+   "quote": "changing the fabric of what everyone in your town thinks you are. Because that's what's most important. And you can only do that with visual change and that aura, the feel of what people feel when they come in.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    280,
+    281,
+    282
+   ],
+   "t_start": 1246.19,
+   "t_end": 1259.67,
+   "window": 3
+  },
+  {
+   "claim": "A wellness-focused business can be successfully built around a single high-tech modality without offering traditional UV tanning.",
+   "quote": "She built her business starting just off of the WellFit machine. And this is somebody that has no UV tanning. It's just a wellness center.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    303,
+    304,
+    305
+   ],
+   "t_start": 1312.28,
+   "t_end": 1321.7,
+   "window": 3
+  },
+  {
+   "claim": "Salon owners struggle to source high-end skincare brands because many premium lines refuse to sell to tanning salons.",
+   "quote": "If you are looking for a high-end skincare product to sell at your salon, you won't find because they don't sell detaining salons. Dermalogica, a lot of these high-end skin care products.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    326,
+    327
+   ],
+   "t_start": 1454.14,
+   "t_end": 1468.64,
+   "window": 4
+  },
+  {
+   "claim": "Staff hesitation or lack of knowledge regarding equipment and products prevents them from selling to customers.",
+   "quote": "education is the key because if your staff is scared of the products scared of the modalities and the equipment they're not going to tell others how to use it",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    345,
+    346
+   ],
+   "t_start": 1570.08,
+   "t_end": 1581.5,
+   "window": 4
+  },
+  {
+   "claim": "Non-traditional health businesses like dentists are adding wellness equipment to create recurring revenue streams.",
+   "quote": "even my dentist office is bringing in wellness equipment because they're seeing you for a cleaning hopefully once a year right and oh you've got something bad where you need some work done they want to make reoccurring revenue just the same",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    310,
+    311,
+    312
+   ],
+   "t_start": 1346.74,
+   "t_end": 1368.26,
+   "window": 4
+  },
+  {
+   "claim": "Owners struggle to identify which specific services or product lines are actually profitable versus those that cost them money.",
+   "quote": "A bunch of people would come in and do business for them and realize that they were running services that were not making them any money. They were actually costing them.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    442,
+    443
+   ],
+   "t_start": 2340.6,
+   "t_end": 2355.75,
+   "window": 6
+  },
+  {
+   "claim": "Unpaid government credits act as a significant hurdle for salon owners seeking business financing.",
+   "quote": "Pay your bills and especially those government credits. That's a barrier to being able to finance your business.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    462
+   ],
+   "t_start": 2457.35,
+   "t_end": 2464.62,
+   "window": 6
+  },
+  {
+   "claim": "Salon owners may face financial instability due to the loss of a key staff member or poor marketing.",
+   "quote": "if you're having a slow time or something happens in your business where you lose a key employee and you're having a hard time marketing",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    465
+   ],
+   "t_start": 2503.05,
+   "t_end": 2529.46,
+   "window": 6
+  },
+  {
+   "claim": "Salon owners often rely on leasing for new equipment, but it is costly.",
+   "quote": "When we introduce new equipment into salons, I would say 90% of the time we're leasing it. Leasing is expensive.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    561
+   ],
+   "t_start": 3188.62,
+   "t_end": 3214.2,
+   "window": 8
+  }
+ ]
+}

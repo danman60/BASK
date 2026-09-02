@@ -1,0 +1,50 @@
+{
+ "source_stream": "uvasummer25_REC00335",
+ "media_duration_s": 1860.502,
+ "windows_total": 5,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 0,
+ "items_kept": 2,
+ "model": "gemma4:12b",
+ "lens": "advice",
+ "mined_at": "2026-08-22T19:15:36",
+ "advice": [
+  {
+   "claim": "Position a product as a multi-functional solution to justify a higher price point by highlighting how many individual products it replaces.",
+   "quote": "the price point is 280 dollars and here's why this is the bottle that replaces five separate products a primer bronzer moisturizer light enhancer and aftercare",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer25_REC00335",
+   "segment_ids": [
+    200,
+    201
+   ],
+   "t_start": 773.16,
+   "t_end": 784.48,
+   "window": 2
+  },
+  {
+   "claim": "Explain the specific risks of using body products on the face to transition the customer to a facial-specific product.",
+   "quote": "you shouldn't put any typical body lotion on your face just because it can clog the pores and make you break break out so that's when I would state that",
+   "category": "retail",
+   "moment": "product",
+   "is_script": true,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvasummer25_REC00335",
+   "segment_ids": [
+    304,
+    305
+   ],
+   "t_start": 1127.56,
+   "t_end": 1136.2,
+   "window": 3
+  }
+ ]
+}

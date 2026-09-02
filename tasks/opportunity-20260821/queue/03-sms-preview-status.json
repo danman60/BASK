@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 7,
+  "tool_calls": 7,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/ui/src/components/SmsPreviewCard.tsx']",
+  "elapsed": "113s",
+  "updated": "13:11:38",
+  "provider_history": [],
+  "provider_switched": false
+}

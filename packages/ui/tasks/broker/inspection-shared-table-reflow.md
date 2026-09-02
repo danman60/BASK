@@ -1,0 +1,273 @@
+# inspection-shared-table-reflow
+
+## What to build
+
+Write a complete replacement candidate for health.css, preserving every current rule and design token. Replace the confirmed mobile sideways-table slab for the two real b-dtable surfaces with a deliberate reflow below 700 pixels: hide only the table header visually, present each tbody row as a contained readable stacked record inside the parent card, show the semantic data label supplied by each td, retain full values without mid-word clipping, keep actions usable, and preserve ordinary table layout unchanged at 700 pixels and above. The two surfaces are distinguished by their existing section data-testid values. Remove the mobile need for horizontal card scrolling and keep card radius clipping intact. Do not alter unrelated health, metric, community, or guidance styles.
+
+## Target file — write EXACTLY this path, and nothing else
+
+`/home/danman60/projects/uvalux-platform/packages/ui/src/components/health.visual.css`
+
+## The API surface you may use
+
+Everything below is REAL and already exists. Import from `./health.css`.
+Do NOT invent names, keys or props that are not in this list — inventing a key
+on the shared style object is the single most common way this task fails.
+
+```ts
+CONTRACT API SURFACE — `@/lib/contract` exports EXACTLY these. Nothing else exists.
+Do NOT reference any symbol or object key that is not on this list.
+```
+## Follow this exemplar exactly
+
+This file is the approved reference for how this kind of component is written
+and styled in this project. Match its structure, its class vocabulary and its
+conventions. Deviating from its visual vocabulary is a failure even if the code
+compiles.
+
+```tsx
+/* Health, scoreboard and knowledge-citation vocabulary.
+ *
+ * SUPERVISOR-OWNED. Written as task zero of the 2026-08-19 overnight build so
+ * that seven single-file component tasks could not each invent their own status
+ * pill, and could not collide editing one shared stylesheet. Component tasks
+ * write TSX only and use these class names verbatim.
+ *
+ * Imported alongside components.css:
+ *   import '@bask/ui/components.css';
+ *   import '@bask/ui/health.css';
+ */
+
+/* ---- band chip: ONE pill for every status vocabulary in the product ------- */
+.b-band {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  white-space: nowrap;
+  min-width: 0;
+  max-width: 100%;
+}
+/* Band chips ran 30px past their card at 320px: `white-space:nowrap` stops a
+   flex item shrinking below its label, so a non-wrapping row overruns. Same
+   family as .cp-chip, .cu-tier and the insight Dismiss button. Below the
+   narrowest tablet width the label is allowed to wrap so the chip can shrink. */
+@media (max-width: 420px) {
+  .b-band { white-space: normal; line-height: 1.3; }
+}
+/* customer health */
+.b-band[data-band='healthy']  { color: var(--success); background: var(--success-wash); }
+.b-band[data-band='slipping'] { color: var(--warn);    background: var(--warn-wash); }
+.b-band[data-band='lapsed']   { color: var(--risk);    background: var(--risk-wash); }
+/* benchmark position */
+.b-band[data-band='top']      { color: var(--ink);     background: oklch(72% 0.084 85 / 0.22); }
+.b-band[data-band='above']    { color: var(--success); background: var(--success-wash); }
+.b-band[data-band='below']    { color: var(--warn);    background: var(--warn-wash); }
+.b-band[data-band='bottom']   { color: var(--risk);    background: var(--risk-wash); }
+/* citation confidence */
+.b-band[data-band='confirmed']   { color: var(--success); background: var(--success-wash); }
+.b-band[data-band='approximate'] { color: var(--warn);    background: var(--warn-wash); }
+
+/* ---- band tiles ---------------------------------------------------------- */
+.b-bandtiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+@media (max-width: 760px) { .b-bandtiles { grid-template-columns: 1fr; } }
+.b-bandtile { display: grid; grid-template-columns: 4px minmax(0, 1fr); overflow: hidden; }
+.b-bandtile-rail { border-radius: 4px 0 0 4px; }
+.b-bandtile[data-band='healthy']  .b-bandtile-rail { background: var(--success); }
+.b-bandtile[data-band='slipping'] .b-bandtile-rail { background: var(--warn); }
+.b-bandtile[data-band='lapsed']   .b-bandtile-rail { background: var(--risk); }
+.b-bandtile-body { padding: var(--space-5) var(--space-6); }
+.b-bandtile-count { font: 600 var(--text-2xl) / 1 var(--font-body); font-variant-numeric: tabular-nums; }
+.b-bandtile-label { font: 600 var(--text-sm) / 1 var(--font-body); margin: 6px 0 8px; }
+.b-bandtile-note { font-size: var(--text-sm); color: var(--ink-soft); }
+
+/* ---- health grid --------------------------------------------------------- */
+.b-healthgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(14px, 1fr)); gap: 4px; }
+.b-healthgrid-cell { aspect-ratio: 1; border-radius: 3px; }
+.b-healthgrid-cell[data-band='healthy']  { background: var(--success-wash); }
+.b-healthgrid-cell[data-band='slipping'] { background: var(--warn-wash); }
+.b-healthgrid-cell[data-band='lapsed']   { background: var(--risk-wash); }
+.b-healthgrid-legend { display: flex; gap: var(--space-3); margin-top: var(--space-5); }
+.b-healthgrid-caption { font-size: var(--text-xs); color: var(--ink-faint); margin-bottom: var(--space-4); }
+
+/* ---- shared table shape (slipping list, cohort table) -------------------- */
+/* `width: 100%` cannot shrink a table below its min-content, so at a 390px
+   viewport this table is 494px and its card clipped 145px of customer rows —
+   html/body are overflow-x:clip, so those columns were unreachable, not just
+   off-screen. The card scrolls the table inside its own box instead; the page
+   itself never scrolls sideways. Same remedy as .b-etable-scroll, applied at
+   the container because six components share .b-dtable. */
+.card:has(> .b-dtable) { overflow-x: auto; }
+.b-dtable { width: 100%; border-collapse: collapse; }
+.b-dtable th {
+  font: 600 var(--text-xs) / 1 var(--font-body);
+  color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em;
+  text-align: left; padding: 0 var(--space-4) var(--space-3);
+}
+.b-dtable td { padding: var(--space-4); border-top: 1px solid var(--line-soft); font-size: var(--text-sm); }
+.b-dtable td.num, .b-dtable th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.b-dtable-who { font-weight: 600; }
+.b-dtable-why { color: var(--ink-soft); }
+.b-dtable-empty { padding: var(--space-8); text-align: center; color: var(--ink-faint); font-size: var(--text-sm); }
+
+/* ---- metric tile --------------------------------------------------------- */
+.b-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); }
+@media (max-width: 900px) { .b-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.b-metric { padding: var(--space-5) var(--space-6); }
+.b-metric-label {
+  font: 600 var(--text-xs) / 1 var(--font-body); color: var(--ink-faint);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.b-metric-value {
+  font: 600 var(--text-2xl) / 1 var(--font-body);
+  font-variant-numeric: tabular-nums; margin: var(--space-3) 0 var(--space-4);
+}
+.b-metric-sub { font-size: var(--text-xs); color: var(--ink-faint); margin-top: 8px; }
+
+/* ---- composed sections ---------------------------------------------------
+ * Written ahead of the section components so those tasks stay TSX-only and
+ * cannot collide on a stylesheet. */
+.b-section-head { margin-bottom: var(--space-8); }
+.b-health-section h2,
+.b-scoreboard-section h2,
+.b-coach h2 { font: 600 var(--text-lg)/1.2 var(--font-body); margin: var(--space-10) 0 var(--space-4); }
+.b-coach-question { font: 500 var(--text-lg)/1.4 var(--font-display); margin-top: var(--space-3); }
+.b-coach-para { font-size: var(--text-md); line-height: 1.55; max-width: 62ch; margin-top: var(--space-3); }
+.b-coach .b-cite + .b-cite { margin-top: var(--space-4); }
+
+/* ---- community feed ------------------------------------------------------
+ * The client named this his biggest asset ("the community's the biggest one")
+ * and it was in no plan. Owners-only, deliberately not a customer-facing feed. */
+.b-feed { display: grid; gap: var(--space-4); }
+.b-post { padding: var(--space-5) var(--space-6); }
+.b-post-head { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
+.b-post-avatar {
+  width: 34px; height: 34px; border-radius: 50%; flex: none;
+  background: var(--primary-wash); color: var(--primary-deep);
+  display: grid; place-items: center; font: 700 12px/1 var(--font-body);
+}
+.b-post-who { font: 600 var(--text-sm)/1.2 var(--font-body); }
+.b-post-where { font-size: var(--text-xs); color: var(--ink-faint); }
+.b-post-when { margin-left: auto; font-size: var(--text-xs); color: var(--ink-faint); }
+.b-post-body { font-size: var(--text-sm); color: var(--ink-soft); line-height: 1.55; }
+/* A post that carries a real number from the author's own salon. The whole point
+ * of an owners-only room: they will post numbers they would never post publicly. */
+.b-post-figure {
+  margin-top: var(--space-4); padding: var(--space-4);
+  background: var(--paper-2); border-radius: var(--radius-sm);
+  font: 600 var(--text-md)/1 var(--font-body); font-variant-numeric: tabular-nums;
+}
+.b-post-figure small { display: block; margin-top: 6px; font: 500 var(--text-xs)/1 var(--font-body); color: var(--ink-faint); }
+.b-post-foot { display: flex; gap: var(--space-4); margin-top: var(--space-4); font-size: var(--text-xs); color: var(--ink-faint); }
+
+/* ---- community reactions + replies ---------------------------------------
+   Shape ported from Stageable's ReactionBar and CommentSection: pill chips
+   carrying glyph + label + count with one active reaction per post, and the
+   conversation rendered inline rather than hidden behind a count. Styling is
+   this product's tokens, not Stageable's. */
+.b-react { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin-top: var(--space-4); }
+.b-react-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 11px;
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-faint);
+  font: 500 var(--text-xs) / 1.2 var(--font-body);
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease, background 120ms ease;
+}
+.b-react-chip:hover { border-color: var(--line); color: var(--ink-soft); }
+.b-react-chip:active { transform: scale(0.97); }
+.b-react-chip:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.b-react-chip[data-active='true'] {
+  border-color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 10%, transparent);
+  color: var(--primary-deep, var(--primary));
+  font-weight: 600;
+}
+.b-react-glyph { font-size: 12px; line-height: 1; }
+.b-react-count { font-variant-numeric: tabular-nums; }
+.b-react-reply { margin-left: auto; }
+
+.b-replies { display: grid; gap: var(--space-2); margin-top: var(--space-4); padding-left: var(--space-4); border-left: 2px solid var(--line-soft); }
+.b-reply { display: grid; gap: 4px; padding: var(--space-3); border-radius: 10px; background: var(--surface-sunk, oklch(97% 0.004 84)); }
+.b-reply-head { display: flex; align-items: center; gap: var(--space-2); }
+.b-reply-mark {
+  width: 22px; height: 22px; border-radius: 7px; display: grid; place-items: center;
+  background: color-mix(in oklab, var(--primary) 12%, transparent);
+  color: var(--primary-deep, var(--primary));
+  font: 600 9px / 1 var(--font-body); letter-spacing: 0.02em;
+}
+.b-reply-who { font: 600 var(--text-xs) / 1.3 var(--font-body); color: var(--ink); }
+.b-reply-when { margin-left: auto; font: 400 var(--text-xs) / 1 var(--font-body); color: var(--ink-faint); }
+.b-reply-body { font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink-soft); }
+
+/* min-width:0 on the children so a long post body cannot widen the column —
+   the same grid default that clipped 242px off the Monitor page. */
+.b-community { display: grid; gap: var(--space-5); min-width: 0; }
+.b-community > * { min-width: 0; }
+
+/* ---- community composer --------------------------------------------------
+   The component shipped with no classNames at all, so every label, input and
+   the Post button rendered as bare text on a card. Styling matches the post
+   cards it sits above rather than introducing a second form language. */
+.b-composer { display: grid; gap: var(--space-4); padding: var(--space-5) var(--space-6); }
+.b-composer-field { display: grid; gap: var(--space-2); min-width: 0; }
+.b-composer-label { font: 600 var(--text-sm) / 1.3 var(--font-body); color: var(--ink); }
+.b-composer-sub { font: 500 var(--text-xs) / 1.3 var(--font-body); color: var(--ink-faint); }
+.b-composer-body,
+.b-composer-input {
+  width: 100%;
+  font: 400 var(--text-sm) / 1.5 var(--font-body);
+  color: var(--ink);
+  background: var(--surface, #fff);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  padding: var(--space-3);
+}
+.b-composer-body { resize: vertical; min-height: 76px; }
+.b-composer-body::placeholder,
+.b-composer-input::placeholder { color: var(--ink-faint); }
+.b-composer-body:focus-visible,
+.b-composer-input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+/* min(220px,100%) so the two fields stack instead of overflowing at 390px */
+.b-composer-figure { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: var(--space-3); }
+.b-composer-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
+.b-composer-fence { font: 500 var(--text-xs) / 1.4 var(--font-body); color: var(--ink-faint); }
+.b-composer-post:disabled { opacity: 0.5; cursor: not-allowed; }
+.b-composer-disabled { font: 400 var(--text-sm) / 1.5 var(--font-body); color: var(--ink-faint); }
+
+/* ---- citation card ------------------------------------------------------- */
+.b-cite { padding: var(--space-5) var(--space-6); }
+.b-cite-title { font: 600 var(--text-md) / 1.3 var(--font-body); }
+.b-cite-meta { font-size: var(--text-xs); color: var(--ink-faint); margin: 4px 0 var(--space-3); }
+.b-cite-quote {
+  font-style: italic; color: var(--ink-soft); font-size: var(--text-sm);
+  border-left: 2px solid var(--line); padding-left: var(--space-4); margin-top: var(--space-3);
+}
+/* The caution line. It exists because clock-derived session attribution drifts,
+ * and a confident wrong speaker name is worse than no name at all. */
+.b-cite-caution { font-size: var(--text-xs); color: var(--warn); margin-top: var(--space-3); }
+
+```
+
+## Rules
+
+- Write the target file. Do not create other files.
+- Do not modify anything outside the target path.
+- Do not leave TODOs, stubs, or placeholder values.
+- Do not fix unrelated bugs you notice. Build only what is described above.
+
+## Acceptance gate — you are DONE only when all of these are true
+
+1. `/home/danman60/projects/uvalux-platform/packages/ui/src/components/health.visual.css` exists and is complete.
+2. `test -s /home/danman60/projects/uvalux-platform/packages/ui/src/components/health.visual.css && PYTHONPATH=/home/danman60/projects/sysadmin python3 -m broker.vocab /home/danman60/projects/uvalux-platform/packages/ui/src/components/health.css /home/danman60/projects/uvalux-platform/packages/ui/src/components/health.visual.css --contract /home/danman60/projects/uvalux-platform/packages/ui/src/components/health.css` passes with exit code 0.
+3. It contains no stub markers, no TODOs, and no placeholder text.
+
+Do not call `done` until the gate command above passes. A green claim with a red
+gate is a failure, not a completion.

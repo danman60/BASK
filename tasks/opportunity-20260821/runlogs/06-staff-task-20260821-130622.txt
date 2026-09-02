@@ -1,0 +1,39 @@
+
+==================================================
+  ollama-runner — LLM Task Executor
+==================================================
+  Provider: ollama
+  Model: gemma4:12b
+  Host:  http://localhost:11434
+  Task:  /home/danman60/projects/uvalux-platform/tasks/opportunity-20260821/queue/06-staff-task.md
+==================================================
+
+[13:06:22] Provider: ollama
+[13:06:22] Model: gemma4:12b
+[13:06:22] Host: http://localhost:11434
+[13:06:22] Task: /home/danman60/projects/uvalux-platform/tasks/opportunity-20260821/queue/06-staff-task.md
+[13:06:26] TOOL: bash({"command": "ls -l /home/danman60/projects/uvalux-platform/tasks/opportunity-20260821/CONTRACT.md"})
+[13:06:26]   → -rw-r--r-- 1 danman60 danman60 4844 Aug 21 12:54 /home/danman60/projects/uvalux-platform/tasks/opportunity-20260821/CONTRACT.md
+
+[13:06:28] TOOL: read_file({"path": "/home/danman60/projects/uvalux-platform/tasks/opportunity-20260821/CONTRACT.md"})
+[13:06:28]   → 1	# CONTRACT — Opportunity Engine + Front Desk Monitor build (2026-08-21)
+2	
+3	**Supervisor-written. Task zero. NOT dispatched to a model.**
+4	Every t
+[13:06:40] LLM: 121.033284744311424<|"|>}<tool_call|>
+[13:06:40] TOOL: write_file({"content": "/**\n * A frontline task \u2014 what the team should do today, in one glance.\n *\n * Customers render as c)
+[13:06:40]   → OK: wrote 867 bytes to /home/danman60/projects/uvalux-platform/packages/ui/src/components/StaffTaskCard.tsx
+[13:06:40] TOOL: bash({"command": "cd packages/ui && npx tsc --noEmit"})
+[13:06:40]   → /bin/sh: 1: cd: can't cd to packages/ui
+
+[13:06:42] LLM: thought
+<channel|>
+[13:06:42] TOOL: bash({"command": "ls -d /home/danman60/projects/uvalux-platform/packages/ui"})
+[13:06:42]   → /home/danman60/projects/uvalux-platform/packages/ui
+
+[13:06:44] TOOL: bash({"command": "cd /home/danman60/projects/uvalux-platform/packages/ui && npx tsc --noEmit"})
+[13:06:46]   → (no output)
+[13:06:48] TOOL: bash({"command": "ls -l /home/danman60/projects/uvalux-platform/packages/ui/src/components/StaffTaskCard.tsx"})
+[13:06:48]   → -rw-r--r-- 1 danman60 danman60 871 Aug 21 13:06 /home/danman60/projects/uvalux-platform/packages/ui/src/components/StaffTaskCard.tsx
+
+[13:06:51] DONE: Created StaffTaskCard component following the specified requirements and house style.

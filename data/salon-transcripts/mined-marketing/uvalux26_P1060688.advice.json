@@ -1,0 +1,996 @@
+{
+ "source_stream": "uvalux26_P1060688",
+ "media_duration_s": 4737.733,
+ "windows_total": 10,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 4,
+ "items_kept": 54,
+ "model": "gemma4:31b",
+ "lens": "marketing",
+ "mined_at": "2026-08-23T00:46:40",
+ "advice": [
+  {
+   "claim": "The industry is shifting toward 'touchless' services to avoid increasing labor costs as revenue grows.",
+   "quote": "I think the primary thing that I love about touchless, just like we've loved about our business for so long is that we don't have increased labor associated with every dollar of service",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    16,
+    17,
+    18
+   ],
+   "t_start": 714.65,
+   "t_end": 727.41,
+   "window": 1
+  },
+  {
+   "claim": "The industry is aggressively pivoting from traditional tanning to wellness and touchless services.",
+   "quote": "They're moving very aggressively to about 40% of their rooms are wellness, touchless services.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    13
+   ],
+   "t_start": 701.1,
+   "t_end": 707.55,
+   "window": 1
+  },
+  {
+   "claim": "Changing the internal and external language from 'tanning' to 'wellness' is a difficult operational hurdle.",
+   "quote": "The hardest thing for us was transitioning the verbiage for our staff members, as well as all of our marketing",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    37,
+    38
+   ],
+   "t_start": 821.26,
+   "t_end": 831.88,
+   "window": 1
+  },
+  {
+   "claim": "Staff training is required to shift customer perception from 'unlimited tanning' to a 'sun experience'.",
+   "quote": "we're going to train our staff to say it this way it's not going to be unlimited it's not going to be tanning it's about a sun experience a sun session versus tanning",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    40,
+    41
+   ],
+   "t_start": 836.7,
+   "t_end": 847.82,
+   "window": 1
+  },
+  {
+   "claim": "Updating equipment is a significant financial burden for owners.",
+   "quote": "they're expensive and it's very painful very painful",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    98,
+    99
+   ],
+   "t_start": 1183.43,
+   "t_end": 1198.96,
+   "window": 2
+  },
+  {
+   "claim": "The industry is shifting from 'wellness' toward a focus on 'longevity'.",
+   "quote": "they're actually a new word they're starting to get into now is longevity longevity centers when we offer longevity so you can almost see the next wave coming",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    92,
+    93
+   ],
+   "t_start": 1152.34,
+   "t_end": 1162.78,
+   "window": 2
+  },
+  {
+   "claim": "Some owners simply rename their business to 'wellness' without actually updating the customer experience or facility.",
+   "quote": "just because you changed your name doesn't mean that makes you that wellness center",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    64,
+    65
+   ],
+   "t_start": 970.53,
+   "t_end": 981.99,
+   "window": 2
+  },
+  {
+   "claim": "Modernizing the tanning experience attracts customers who had previously quit tanning.",
+   "quote": "People are coming back to UV as long as they don't associate with that 80s style of tanning. You just need to switch it up and stay modern.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    108,
+    109,
+    110
+   ],
+   "t_start": 1219.06,
+   "t_end": 1227.56,
+   "window": 2
+  },
+  {
+   "claim": "Salon owners feel guilt and pressure to maintain a high-end social media presence.",
+   "quote": "I used to be really hard on myself about social media and you know kind of have have some guilt that I wasn't posting the glossy cool stuff.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    126,
+    127
+   ],
+   "t_start": 1345.0,
+   "t_end": 1353.88,
+   "window": 3
+  },
+  {
+   "claim": "Rebuilding a physical studio location can be an overwhelming and stressful process.",
+   "quote": "I'm in the middle of rebuilding a studio. I have blood and it has been a nightmare",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    137,
+    138
+   ],
+   "t_start": 1375.49,
+   "t_end": 1379.33,
+   "window": 3
+  },
+  {
+   "claim": "Many salon owners are hesitant to spend money on professional content creation because it's not a standard operational expense.",
+   "quote": "it's very tough to spend money on something that I will say is not a normal employee. It's not something we would normally have.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    153,
+    154,
+    155
+   ],
+   "t_start": 1439.91,
+   "t_end": 1453.23,
+   "window": 3
+  },
+  {
+   "claim": "Professional high-end content is valuable for brand perception and staff onboarding even if it doesn't always drive immediate views.",
+   "quote": "if somebody lands on your page at 4 o'clock in the morning and they're doom scrolling and they see all that glossiness they just get your brand your staff it reflects them and they feel like it's it's good",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    194,
+    195,
+    196
+   ],
+   "t_start": 1613.58,
+   "t_end": 1628.36,
+   "window": 3
+  },
+  {
+   "claim": "Modern social media users prefer content that is bingeable and sequential.",
+   "quote": "Instagram now is you want you want bingeable content",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    201
+   ],
+   "t_start": 1643.5,
+   "t_end": 1647.94,
+   "window": 3
+  },
+  {
+   "claim": "It is critical for owners to understand the lifetime value of a customer to set proper staff incentives.",
+   "quote": "it's absolutely imperative that you know what a customer is worth to you over a lifetime and even over the next 12 months and then to structure your incentives accordingly",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    214,
+    215,
+    216
+   ],
+   "t_start": 1709.54,
+   "t_end": 1720.32,
+   "window": 3
+  },
+  {
+   "claim": "Staff often don't realize their actual total earnings because commissions and tips are disconnected from their base hourly rate.",
+   "quote": "they still think they make 18 15 hour they're not connecting what they made 30",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    244,
+    245
+   ],
+   "t_start": 1858.97,
+   "t_end": 1867.17,
+   "window": 4
+  },
+  {
+   "claim": "The speaker believes that managing a salon requires tracking KPIs and linking them to staff incentives.",
+   "quote": "managing the business with KPIs and then incentivizing those properly and highly is important, very important.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    225,
+    226
+   ],
+   "t_start": 1756.74,
+   "t_end": 1762.7,
+   "window": 4
+  },
+  {
+   "claim": "The owner used a retention-based incentive for a manager to solve high staff turnover.",
+   "quote": "I gave her was an incentive based on six months and the year of her team staying we have only lost one since the last five girls that we hired since we put that in",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    252,
+    253
+   ],
+   "t_start": 1899.91,
+   "t_end": 1910.67,
+   "window": 4
+  },
+  {
+   "claim": "Some employees are primarily motivated by money rather than emotional recognition.",
+   "quote": "I have staff that are very money motivated. They are by far the easiest to take care of.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    287
+   ],
+   "t_start": 2032.96,
+   "t_end": 2038.7,
+   "window": 4
+  },
+  {
+   "claim": "The owner incentivizes basic reliability (attendance and punctuality) through a reward points system.",
+   "quote": "took everything that my staff are doing that was driving me crazy and put it into a positive so if you have a perfect month which means you did not call in sick you did not change a shift",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    290,
+    291,
+    292
+   ],
+   "t_start": 2062.74,
+   "t_end": 2080.46,
+   "window": 4
+  },
+  {
+   "claim": "The salon shifted from competitive contests to individual goal-tracking to improve morale.",
+   "quote": "we really found that doing it against themselves instead of each other so that changed probably about 10 years ago",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    302
+   ],
+   "t_start": 2145.35,
+   "t_end": 2152.41,
+   "window": 4
+  },
+  {
+   "claim": "Rising minimum wages can make long-term employees feel undervalued if their pay gap compared to entry-level roles shrinks.",
+   "quote": "their hourly wage felt too close to the minimum wage was so when our minimum wage up went to close to 18 and they were say making 26 and they were making that so close to what their you know daughter made that was only a 10 difference i really had to change that",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    315,
+    316,
+    317
+   ],
+   "t_start": 2231.63,
+   "t_end": 2252.79,
+   "window": 5
+  },
+  {
+   "claim": "Owners often experience burnout from the administrative burdens of running a salon.",
+   "quote": "as owners, we get burned out. We get, like, tired of being in there. We get tired of doing the schedule and doing the payroll and sitting in the meetings and doing all that stuff.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    345
+   ],
+   "t_start": 2426.16,
+   "t_end": 2443.57,
+   "window": 5
+  },
+  {
+   "claim": "Providing incentives for commute costs can be a critical retention tool for staff traveling long distances.",
+   "quote": "The longer she stayed with us, the more her wage would go up because we understood that she had gas, she had to pay.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    356
+   ],
+   "t_start": 2489.61,
+   "t_end": 2495.03,
+   "window": 5
+  },
+  {
+   "claim": "Small salon owners cannot offer corporate ladders and must instead focus on developing a staff member's general life skills.",
+   "quote": "I'm not a big chain. I don't have eight stores. I don't have managers. I don't have vice presidents. It's me. So I don't have the capability to promote them within, so I want to promote them without.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    367,
+    368,
+    369,
+    370,
+    371,
+    372,
+    373
+   ],
+   "t_start": 2554.51,
+   "t_end": 2571.01,
+   "window": 5
+  },
+  {
+   "claim": "Ignoring poor employee behavior makes it significantly harder to correct over time.",
+   "quote": "If you leave behavior unaddressed for weeks at a time, or months at a time, you can expect the behavior to get worse and harder to change.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    403
+   ],
+   "t_start": 2684.05,
+   "t_end": 2689.87,
+   "window": 6
+  },
+  {
+   "claim": "Staff members may become resistant to change if feedback isn't regular, as it becomes a matter of ego.",
+   "quote": "if you leave that behavior to go for a long time and the roots are deeper and you're trying to change the behavior then egos come into play you kind of have that you're trying to change me kind of thing",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    409,
+    410,
+    411
+   ],
+   "t_start": 2716.29,
+   "t_end": 2727.13,
+   "window": 6
+  },
+  {
+   "claim": "Having a strict uniform policy reduces the mental burden on employees when preparing for work.",
+   "quote": "It takes the guesswork out of that uniform. Getting dressed in the morning. It makes it easier for them to come to work",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    471,
+    472,
+    473
+   ],
+   "t_start": 2965.27,
+   "t_end": 2975.15,
+   "window": 6
+  },
+  {
+   "claim": "Staff confidence and ability to sell are directly tied to how they feel about their appearance.",
+   "quote": "you have to look like you care because you can't sell and be confident if you don't feel that way, which our job is sales.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    448,
+    449
+   ],
+   "t_start": 2860.42,
+   "t_end": 2869.9,
+   "window": 6
+  },
+  {
+   "claim": "The tanning industry is facing stagnant growth and a shrinking traditional customer base.",
+   "quote": "everybody in this room knows that the panic has been stagnant and diminished over the last few years, to say the least.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    581
+   ],
+   "t_start": 3378.71,
+   "t_end": 3387.77,
+   "window": 7
+  },
+  {
+   "claim": "Salon owners are shifting toward wellness services to attract customers who wouldn't normally visit a tanning salon.",
+   "quote": "we need to feed the body through through wellness, through the red light, the cocoon, the vitality bed, all of those beds, we need to add to the services",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    587,
+    588,
+    589,
+    590
+   ],
+   "t_start": 3409.3,
+   "t_end": 3422.2,
+   "window": 7
+  },
+  {
+   "claim": "Adding wellness services has created a new, significant revenue stream.",
+   "quote": "we've increased revenue that we've never seen by having those services",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    600
+   ],
+   "t_start": 3440.14,
+   "t_end": 3444.12,
+   "window": 7
+  },
+  {
+   "claim": "Managing staff uniforms and dress codes is a source of frustration regarding cleanliness and professionalism.",
+   "quote": "My bottoms are my issues. I supply the shirts, I pay for them, I pay for them.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    500
+   ],
+   "t_start": 3078.28,
+   "t_end": 3082.58,
+   "window": 7
+  },
+  {
+   "claim": "Staff dress codes are a concern because of hygiene and appearance issues like pet hair.",
+   "quote": "mine was about cat hair and dog hair. Like I just can't, yeah.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    577
+   ],
+   "t_start": 3346.18,
+   "t_end": 3350.98,
+   "window": 7
+  },
+  {
+   "claim": "There is a perceived resurgence of interest in tanning among Gen Z customers.",
+   "quote": "is everyone seeing how much Gen Zers are talking about tanning? Like, tanning's popping off.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    609,
+    610
+   ],
+   "t_start": 3506.82,
+   "t_end": 3511.76,
+   "window": 7
+  },
+  {
+   "claim": "Gen Z is showing a renewed interest in tanning, viewing it as 'cool' or 'badass'.",
+   "quote": "is everyone seeing how much Gen Zers are talking about tanning? Like, tanning's popping off.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    609,
+    610
+   ],
+   "t_start": 3506.82,
+   "t_end": 3511.76,
+   "window": 8
+  },
+  {
+   "claim": "Tanning salons can achieve extremely high profit margins through complementary product markups.",
+   "quote": "when you do your profit margins on products that get get sold with tanning I'm sorry no other industry has that like I buy products that complement my wellness that I get to mark up a hundred percent",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    627,
+    628,
+    629
+   ],
+   "t_start": 3579.02,
+   "t_end": 3596.06,
+   "window": 8
+  },
+  {
+   "claim": "Using a POS system to track KPIs allows owners to identify exactly where staff training is needed.",
+   "quote": "The advantage of having a point-of-sale system that could deliver that kind of data for you to decide what needed to be trained, it was so awesome when we got to the place where the data told us where we had to focus.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    670
+   ],
+   "t_start": 3756.45,
+   "t_end": 3774.33,
+   "window": 8
+  },
+  {
+   "claim": "Business owners should view their KPIs as 'spinning plates' where a wobble indicates a need for training.",
+   "quote": "I use this analogy with spinning plates like the circus performers let's say you've got five key KPIs in your business one plate will always be wobbling if not two and so when those plates are wobbling that's where you go and train",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    672,
+    673,
+    674,
+    675
+   ],
+   "t_start": 3777.97,
+   "t_end": 3794.49,
+   "window": 8
+  },
+  {
+   "claim": "Staff should be trained as brand influencers rather than traditional salespeople to better connect with modern clients.",
+   "quote": "I think we need to start training our individuals that are operating the counter as influencers. They are an influencer for your brand. They are not a salesperson.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "desire",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    689,
+    690,
+    691
+   ],
+   "t_start": 3833.53,
+   "t_end": 3844.61,
+   "window": 8
+  },
+  {
+   "claim": "The industry relies too heavily on rigid, unnatural sales scripts that don't resonate with customers.",
+   "quote": "What I think we do too much in this industry is we verbiage everything. We verbiage the heck out of it.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    698
+   ],
+   "t_start": 3882.99,
+   "t_end": 3889.77,
+   "window": 8
+  },
+  {
+   "claim": "Staff may struggle to afford required uniforms, requiring owners to step in financially.",
+   "quote": "Like with a couple of my staff, they couldn't afford it. And that was a conversation. So now I obviously went out and I got them Lululemon gift cards.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    711,
+    712,
+    713
+   ],
+   "t_start": 3933.78,
+   "t_end": 3941.16,
+   "window": 9
+  },
+  {
+   "claim": "Owners are using AI to generate staff scripts and analyze competitor gaps.",
+   "quote": "it's changing it's evolving it's using AI and all those things to come up with scripts and different things for them",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    717,
+    718
+   ],
+   "t_start": 3951.78,
+   "t_end": 3961.22,
+   "window": 9
+  },
+  {
+   "claim": "Memberships are considered the essential foundation for salon profitability.",
+   "quote": "if you don't have memberships, that's the first thing you need to do. Memberships are absolutely the way you have to go",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    735,
+    736
+   ],
+   "t_start": 4010.36,
+   "t_end": 4023.66,
+   "window": 9
+  },
+  {
+   "claim": "The most difficult part of management is letting go of underperforming staff.",
+   "quote": "the most uncomfortable would be is encouraging your C group, you know, you've got your A team, your B team, your C team, that maybe their life is done.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    740,
+    741,
+    742
+   ],
+   "t_start": 4032.0,
+   "t_end": 4047.62,
+   "window": 9
+  },
+  {
+   "claim": "Constant phone interruptions are a major pain point for salon staff.",
+   "quote": "Ask your staff, what's the hardest part of your job today? And my staff was, the phones don't stop ringing. They don't stop ringing, okay?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    752,
+    753,
+    754
+   ],
+   "t_start": 4102.11,
+   "t_end": 4109.21,
+   "window": 9
+  },
+  {
+   "claim": "Implementing an AI chatbot can reduce the burden of phone calls on staff.",
+   "quote": "so now we're putting in an AI chatbot that when they call into our salon, it's gonna send them a text message to book an appointment.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    758,
+    759,
+    760
+   ],
+   "t_start": 4112.73,
+   "t_end": 4118.69,
+   "window": 9
+  },
+  {
+   "claim": "Owners face extreme burnout from dealing with both staff and customer issues.",
+   "quote": "the hardest thing as entrepreneurs is we get burnt out, and we get exhausted, and we're tired of the shit with the staff and the shit with the customers.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    776,
+    777
+   ],
+   "t_start": 4179.96,
+   "t_end": 4188.72,
+   "window": 9
+  },
+  {
+   "claim": "The tanning industry offers exceptionally high profit margins compared to other businesses.",
+   "quote": "there's no business with margins like what we have. So you're not going to find another business where you can make this kind of money.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    778
+   ],
+   "t_start": 4188.72,
+   "t_end": 4209.26,
+   "window": 9
+  },
+  {
+   "claim": "Banning outside lotions protects expensive equipment and ensures product quality.",
+   "quote": "do not let any other lotion other than what you sell be used in your stores I do it it is a non-negotiable it was the easiest thing I did never looking back",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    800,
+    801,
+    802
+   ],
+   "t_start": 4271.1,
+   "t_end": 4285.84,
+   "window": 9
+  },
+  {
+   "claim": "Customers often bring in outside products because other salons allowed it.",
+   "quote": "the people come in with these random ass bottles of product and be like my other salon let me do it",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    824,
+    825
+   ],
+   "t_start": 4377.9,
+   "t_end": 4387.91,
+   "window": 9
+  },
+  {
+   "claim": "Salon owners are frustrated by customers bringing outside products into the salon.",
+   "quote": "it breaks my heart because what's happening is the people come in with these random ass bottles of product and be like my other salon let me do it",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    824,
+    825
+   ],
+   "t_start": 4377.9,
+   "t_end": 4387.91,
+   "window": 10
+  },
+  {
+   "claim": "The traditional way of recruiting staff via job boards is no longer effective.",
+   "quote": "the job market has changed you're not going to list a job and recruit the best person on indeed or whatever platform facebook jobs right",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    848,
+    849
+   ],
+   "t_start": 4485.41,
+   "t_end": 4500.76,
+   "window": 10
+  },
+  {
+   "claim": "Successful owners maintain a pipeline of potential employees to avoid desperation hires.",
+   "quote": "Your job as salon owners to recruit new staff is to build your bench.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    851
+   ],
+   "t_start": 4504.96,
+   "t_end": 4511.18,
+   "window": 10
+  },
+  {
+   "claim": "Owners should use social media to showcase a fun culture to attract talent.",
+   "quote": "When you look at our socials, I've got friends and community members that are like, Oh my God, your job is so fun.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060688",
+   "segment_ids": [
+    859,
+    860
+   ],
+   "t_start": 4534.46,
+   "t_end": 4540.62,
+   "window": 10
+  }
+ ]
+}

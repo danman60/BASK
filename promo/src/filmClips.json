@@ -1,0 +1,33 @@
+{
+  "present": [
+    "SHOT-001.mp4",
+    "SHOT-002.mp4",
+    "SHOT-003.mp4",
+    "SHOT-004.mp4",
+    "SHOT-005.mp4",
+    "SHOT-006.mp4",
+    "SHOT-007.mp4",
+    "SHOT-008.mp4",
+    "SHOT-009.mp4",
+    "SHOT-010.mp4",
+    "SHOT-011.mp4",
+    "SHOT-012.mp4",
+    "SHOT-013.mp4"
+  ],
+  "seconds": {
+    "SHOT-001.mp4": 5.167,
+    "SHOT-002.mp4": 5.167,
+    "SHOT-003.mp4": 5.167,
+    "SHOT-004.mp4": 5.167,
+    "SHOT-005.mp4": 5.167,
+    "SHOT-006.mp4": 5.167,
+    "SHOT-007.mp4": 5.167,
+    "SHOT-008.mp4": 5.167,
+    "SHOT-009.mp4": 5.167,
+    "SHOT-010.mp4": 5.167,
+    "SHOT-011.mp4": 5.167,
+    "SHOT-012.mp4": 5.167,
+    "SHOT-013.mp4": 5.167
+  },
+  "rejected": []
+}

@@ -1,0 +1,13 @@
+{
+  "state": "running",
+  "turns": 76,
+  "tool_calls": 75,
+  "errors": 1,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/core/src/insights/sweeps/seasonal-pause.ts"
+  ],
+  "elapsed": "305s",
+  "updated": "19:03:01",
+  "provider_history": [],
+  "provider_switched": false
+}

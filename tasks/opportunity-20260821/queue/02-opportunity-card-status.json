@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 8,
+  "tool_calls": 8,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/ui/src/components/OpportunityCard.tsx']",
+  "elapsed": "199s",
+  "updated": "13:09:42",
+  "provider_history": [],
+  "provider_switched": false
+}

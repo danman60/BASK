@@ -1,0 +1,439 @@
+{
+ "source_stream": "uvalux26_P1060686",
+ "media_duration_s": 4296.292,
+ "windows_total": 10,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 7,
+ "items_kept": 26,
+ "model": "gemma4:12b",
+ "mined_at": "2026-08-22T06:09:17",
+ "advice": [
+  {
+   "claim": "Business owners must use facts and data to guide their decisions and understand their business performance.",
+   "quote": "You cannot move forward. You're like a ship. We are like a ship without a compass. How do we go in that direction if we don't know where we've been?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    206,
+    207,
+    208,
+    209
+   ],
+   "t_start": 779.05,
+   "t_end": 788.47,
+   "window": 2
+  },
+  {
+   "claim": "Owners should proactively adapt to industry changes and new trends, such as membership models, rather than waiting until they are in financial trouble.",
+   "quote": "you know what they say oh gosh i gotta do it i gotta do it i just my customers will kill me if i do something like that and then the next year they're like things are tough i gotta make change and the next year i don't see them anymore you know why they're not in business you have an opportunity here today they've presented you with to learn, to discuss, to have dialogues about purchasing new equipment and the direction that you're going to go.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    177,
+    178,
+    179,
+    180,
+    181,
+    182
+   ],
+   "t_start": 687.34,
+   "t_end": 714.78,
+   "window": 2
+  },
+  {
+   "claim": "Do not base your business model on the behavior of a small minority of customers who abuse your policies.",
+   "quote": "Never build a platform of business around what 3% do.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    321
+   ],
+   "t_start": 1175.18,
+   "t_end": 1192.08,
+   "window": 3
+  },
+  {
+   "claim": "Focus on whether a customer will pay to use a service again as the primary metric for success.",
+   "quote": "Will you pay me to use it again?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    335,
+    337
+   ],
+   "t_start": 1245.49,
+   "t_end": 1252.69,
+   "window": 3
+  },
+  {
+   "claim": "Do not punish the majority of your customers because of the actions of a small percentage who abuse your policies.",
+   "quote": "Why would we punish 97% of our customers for what 3% do?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    363
+   ],
+   "t_start": 1346.88,
+   "t_end": 1352.48,
+   "window": 3
+  },
+  {
+   "claim": "Do not create overly complex membership structures or rules based on the fear of a small percentage of customers abusing the system.",
+   "quote": "Sometimes we build memberships and packages around 3%. We're so afraid that they're going to abuse the process that we start saying unlimited tanning. you can tan up to eight sessions a month. Unlimited sunless, up to four times a month. We start attaching all of these streams.",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    365,
+    366,
+    367,
+    368,
+    369,
+    370
+   ],
+   "t_start": 1355.88,
+   "t_end": 1377.27,
+   "window": 4
+  },
+  {
+   "claim": "Build business processes based on the behavior of the majority of your customers rather than the minority.",
+   "quote": "So when we're building processes, build them around what the amount of people, the larger amount of people will use, without accurate knowledge about our brand's performance, and we're really, really gonna, we're just gonna beat this thing to death this afternoon.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    381,
+    382,
+    383,
+    384,
+    385
+   ],
+   "t_start": 1405.0,
+   "t_end": 1420.22,
+   "window": 4
+  },
+  {
+   "claim": "Adding a single month to a customer's contract length can significantly increase revenue without increasing overhead costs.",
+   "quote": "You made $100,000 for free by adding one extra month to the length of how long they stayed with you.",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    456
+   ],
+   "t_start": 1801.14,
+   "t_end": 1811.67,
+   "window": 5
+  },
+  {
+   "claim": "Offering alternative services like wellness can help retain customers who might otherwise leave the business.",
+   "quote": "And then eventually what did they buy? They bought a mystic pen, right? Because it was an alternative that represented a new modality that kept your customer.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    483,
+    484,
+    485,
+    486,
+    487
+   ],
+   "t_start": 1971.7,
+   "t_end": 1999.85,
+   "window": 5
+  },
+  {
+   "claim": "Proactive planning and investment during stable times are necessary to survive economic downturns.",
+   "quote": "If we're not investing in new equipment, if we're not thinking about new strategies, if we're not looking at our numbers when it's calm, we're gonna get destroyed when there's a storm.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    528,
+    529,
+    530,
+    531
+   ],
+   "t_start": 2172.62,
+   "t_end": 2182.29,
+   "window": 5
+  },
+  {
+   "claim": "Analyze your business data and metrics during slow periods to prepare for and survive difficult economic times.",
+   "quote": "if we're not looking at our numbers when it's calm, we're gonna get destroyed when there's a storm.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    530,
+    531
+   ],
+   "t_start": 2176.94,
+   "t_end": 2182.29,
+   "window": 6
+  },
+  {
+   "claim": "Ensure your team identifies specific, actionable takeaways from industry events to improve the business.",
+   "quote": "they are required to have five takeaways, five articulable takeaways from every convention we go to.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    542,
+    543
+   ],
+   "t_start": 2214.78,
+   "t_end": 2229.48,
+   "window": 6
+  },
+  {
+   "claim": "Use trade shows as an opportunity to have honest conversations with vendors about equipment needs and business goals.",
+   "quote": "this is the first time i've ever been to a people like show but i'm telling you the amount of energy and time and passion in talking to nick and elaine and their team my goodness like it's nuts and this is for you and I'll be honest I didn't come here for free so they invested in you take the time to invest in yourself pay them back that favor",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    578,
+    579,
+    580
+   ],
+   "t_start": 2415.14,
+   "t_end": 2438.4,
+   "window": 6
+  },
+  {
+   "claim": "Account for theft by deducting the full retail value of stolen items from manager performance metrics.",
+   "quote": "So if you had shrinkage in the store, we deduct that from your number at full retail.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    598
+   ],
+   "t_start": 2550.44,
+   "t_end": 2556.24,
+   "window": 6
+  },
+  {
+   "claim": "Charge a recurring facility fee for memberships to generate consistent revenue from the customer base.",
+   "quote": "every membership is charged an annual 30 facility fee and it's on their first draft following their first month",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    605,
+    606
+   ],
+   "t_start": 2584.9,
+   "t_end": 2600.86,
+   "window": 6
+  },
+  {
+   "claim": "Adding a facility fee is an easy way to increase revenue without significant customer complaints.",
+   "quote": "The easiest thing you can do is add a facility fee.",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    631
+   ],
+   "t_start": 2694.59,
+   "t_end": 2698.11,
+   "window": 7
+  },
+  {
+   "claim": "Explain the value of the facility fee by linking it to specific equipment or services provided.",
+   "quote": "When they see it at work, they're glad to do it.",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    639
+   ],
+   "t_start": 2720.3,
+   "t_end": 2723.42,
+   "window": 7
+  },
+  {
+   "claim": "Increase revenue by encouraging existing customers to purchase additional months of service.",
+   "quote": "Because if we can get those customers that we already have to buy an extra month or an extra two months, think about what that means.",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    658
+   ],
+   "t_start": 2841.12,
+   "t_end": 2865.28,
+   "window": 7
+  },
+  {
+   "claim": "When a customer says they don't want to tan anymore, offer them alternative services or modalities to keep them engaged.",
+   "quote": "Maybe they just want a break. And now, instead, we say, well, were you aware that especially going into fall, we have modalities that will keep you healthy.",
+   "category": "customer",
+   "moment": "close",
+   "is_script": true,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    673,
+    674
+   ],
+   "t_start": 2923.54,
+   "t_end": 2930.18,
+   "window": 7
+  },
+  {
+   "claim": "Keep the sales process simple to ensure you can close the sale effectively.",
+   "quote": "Did we make packages? Did we make the presentations too difficult? And then we go back and we adjust to make it simpler.",
+   "category": "operations",
+   "moment": "close",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    684,
+    685
+   ],
+   "t_start": 2961.17,
+   "t_end": 2974.46,
+   "window": 7
+  },
+  {
+   "claim": "Position your business as a wellness spa rather than just a tanning salon to improve employee morale and perceived value.",
+   "quote": "She goes home. How job search go today? I got a job at the wellness spa.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    721,
+    722
+   ],
+   "t_start": 3145.85,
+   "t_end": 3150.11,
+   "window": 8
+  },
+  {
+   "claim": "Ensure your salon's physical appearance and environment immediately communicate quality to customers because they make decisions based on visual cues almost instantly.",
+   "quote": "When you walk into your store, is what you see what you get?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    764
+   ],
+   "t_start": 3298.22,
+   "t_end": 3305.12,
+   "window": 8
+  },
+  {
+   "claim": "Do not rely on verbal claims of having the best equipment; differentiate your business through the visual experience of the customer.",
+   "quote": "We have to do it with what they see.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    773
+   ],
+   "t_start": 3327.82,
+   "t_end": 3329.64,
+   "window": 8
+  },
+  {
+   "claim": "If a customer walks out without purchasing, it is a failure of the salon's environment or process, not just a result of the customer being price-sensitive.",
+   "quote": "If they walk out of your store, they did it because we did something wrong.",
+   "category": "operations",
+   "moment": "close",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    803
+   ],
+   "t_start": 3421.08,
+   "t_end": 3424.62,
+   "window": 8
+  },
+  {
+   "claim": "Incorporate service modalities that do not require staff labor to manage high labor costs.",
+   "quote": "The smallest modalities should include services exempt from labor.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    826
+   ],
+   "t_start": 3512.97,
+   "t_end": 3518.21,
+   "window": 9
+  },
+  {
+   "claim": "Train staff to look and feel like they work in a high-end wellness spa to build trust and sales.",
+   "quote": "the person behind the counter sells the person in front of the counter why don't we capitalize on that you see the value of having the sales staff trained to look and feel the party that becomes critical",
+   "category": "coaching",
+   "moment": "greeting",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    913,
+    914,
+    915,
+    916
+   ],
+   "t_start": 3816.53,
+   "t_end": 3843.57,
+   "window": 9
+  }
+ ]
+}

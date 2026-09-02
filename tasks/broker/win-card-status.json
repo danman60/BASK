@@ -1,0 +1,13 @@
+{
+  "state": "done",
+  "turns": 80,
+  "tool_calls": 81,
+  "errors": 13,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/ui/src/components/WinCard.tsx"
+  ],
+  "elapsed": "956s",
+  "updated": "03:46:11",
+  "provider_history": [],
+  "provider_switched": false
+}

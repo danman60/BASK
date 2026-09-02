@@ -1,0 +1,192 @@
+/**
+ * The scale-invariant threshold helpers are the arithmetic the whole insight engine
+ * is about to depend on. These tests cover isMaterialDrop, isMaterialGap and
+ * relativeShortfall with their edge cases and the anchor cases that demonstrate
+ * why the either-arm design exists.
+ */
+
+import { describe, expect, it } from 'vitest';
+
+import {
+  isMaterialDrop,
+  isMaterialGap,
+  relativeShortfall,
+  type MaterialityRule,
+} from '../src/insights/scaling';
+
+describe('isMaterialDrop', () => {
+  const rule: MaterialityRule = {
+    absolutePoints: 3,
+    relativeShare: 0.40,
+  };
+
+  it('a rise is never a drop', () => {
+    expect(isMaterialDrop(5.28, 6.0, rule)).toBe(false);
+    expect(isMaterialDrop(21.0, 22.0, rule)).toBe(false);
+  });
+
+  it('a fall that clears only the absolute arm is material', () => {
+    // On a 5.28 baseline, a fall to 2.9 is 2.38 points, which clears the 3-point
+    // absolute test (2.38 < 3) - so this should be false
+    expect(isMaterialDrop(5.28, 2.9, rule)).toBe(false);
+    
+    // On a 5.28 baseline, a fall to 2.0 is 3.28 points, which clears the 3-point
+    // absolute test (3.28 >= 3) - so this should be true
+    expect(isMaterialDrop(5.28, 2.0, rule)).toBe(true);
+    
+    // On a 21 baseline, a fall to 18 is 3 points, which clears the 3-point
+    // absolute test (3 >= 3) - so this should be true
+    expect(isMaterialDrop(21.0, 18.0, rule)).toBe(true);
+  });
+
+  it('a fall that clears only the relative arm is material', () => {
+    // On a 5.28 baseline, a fall to 2.9 is 2.38 points (2.38 < 3), but it's
+    // a 45% drop ((5.28 - 2.9) / 5.28 = 0.45 >= 0.40) - so this should be true
+    expect(isMaterialDrop(5.28, 2.9, rule)).toBe(true);
+  });
+
+  it('a fall that clears neither is not', () => {
+    // On a 5.28 baseline, a fall to 4.5 is 0.78 points (0.78 < 3), and it's
+    // a 14.8% drop ((5.28 - 4.5) / 5.28 = 0.148 < 0.40) - so this should be false
+    expect(isMaterialDrop(5.28, 4.5, rule)).toBe(false);
+  });
+
+  it('baseline of zero and negative baseline falls back to absolute test only', () => {
+    // Zero baseline - should only check absolute test
+    expect(isMaterialDrop(0, -1.0, rule)).toBe(false); // -1 < 3, so false
+    expect(isMaterialDrop(0, -5.0, rule)).toBe(false); // -5 < 3, so false
+    
+    // Negative baseline - should only check absolute test  
+    expect(isMaterialDrop(-1.0, -5.0, rule)).toBe(false); // -5 < 3, so false
+    expect(isMaterialDrop(-2.0, -6.0, rule)).toBe(false); // -6 < 3, so false
+    
+    // Test that positive baseline works as expected for negative values
+    expect(isMaterialDrop(5.28, 1.28, rule)).toBe(true); // 4 points drop >= 3, so true
+  });
+
+  it('anchor cases at both real bases', () => {
+    // On a 21 percent baseline a fall to 18 is a 3-point move that clears 
+    // a 3-point absolute rule - should be material
+    expect(isMaterialDrop(21.0, 18.0, rule)).toBe(true);
+    
+    // On a 5.28 percent baseline a fall to 2.9 lost about 45 percent of the baseline
+    // so it clears a 0.40 relative rule but moved only 2.38 points so it fails 
+    // the 3-point absolute rule - should be material
+    expect(isMaterialDrop(5.28, 2.9, rule)).toBe(true);
+  });
+});
+
+describe('isMaterialGap', () => {
+  const rule: MaterialityRule = {
+    absolutePoints: 3,
+    relativeShare: 0.40,
+  };
+
+  it('a rise is never a gap', () => {
+    expect(isMaterialGap(5.28, 6.0, rule)).toBe(false);
+    expect(isMaterialGap(21.0, 22.0, rule)).toBe(false);
+  });
+
+  it('a fall that clears only the absolute arm is material', () => {
+    // On a 5.28 reference, a gap of 3.37 to 2.9 is 0.47 points, which clears 
+    // the 3-point absolute test (0.47 < 3) - so this should be false
+    expect(isMaterialGap(5.28, 2.9, rule)).toBe(false);
+    
+    // On a 5.28 reference, a gap of 8.48 to 5.28 is 3.2 points, which clears 
+    // the 3-point absolute test (3.2 >= 3) - so this should be true
+    expect(isMaterialGap(8.48, 5.28, rule)).toBe(true);
+    
+    // On a 21 reference, a gap of 8.48 to 5.28 is 3 points, which clears 
+    // the 3-point absolute test (3 >= 3) - so this should be true
+    expect(isMaterialGap(21.0, 18.0, rule)).toBe(true);
+  });
+
+  it('a fall that clears only the relative arm is material', () => {
+    // On a 5.28 reference, a gap of 3.37 to 2.9 is 0.47 points (0.47 < 3), but it's
+    // a 14.8% drop ((5.28 - 2.9) / 5.28 = 0.45 >= 0.40) - so this should be true
+    expect(isMaterialGap(5.28, 2.9, rule)).toBe(true);
+    
+    // On a 5.28 reference, a gap of 3.37 to 1.9 is 1.47 points (1.47 < 3), but it's
+    // a 63% drop ((5.28 - 1.9) / 5.28 = 0.63 >= 0.40) - so this should be true
+    expect(isMaterialGap(5.28, 1.9, rule)).toBe(true);
+  });
+
+  it('a fall that clears neither is not', () => {
+    // On a 5.28 reference, a gap of 5.28 to 4.5 is 0.78 points (0.78 < 3), and it's
+    // a 14.8% drop ((5.28 - 4.5) / 5.28 = 0.148 < 0.40) - so this should be false
+    expect(isMaterialGap(5.28, 4.5, rule)).toBe(false);
+  });
+
+  it('baseline of zero and negative baseline falls back to absolute test only', () => {
+    // Zero reference - should only check absolute test
+    expect(isMaterialGap(0, -1.0, rule)).toBe(false); // -1 < 3, so false
+    expect(isMaterialGap(0, -5.0, rule)).toBe(false); // -5 < 3, so false
+    
+    // Negative reference - should only check absolute test  
+    expect(isMaterialGap(-1.0, -5.0, rule)).toBe(false); // -5 < 3, so false
+    expect(isMaterialGap(-2.0, -6.0, rule)).toBe(false); // -6 < 3, so false
+    
+    // Test that positive reference works as expected for negative values
+    expect(isMaterialGap(5.28, 1.28, rule)).toBe(true); // 4 points gap >= 3, so true
+  });
+
+  it('anchor cases including a 3.37 percent performer against a 5.28 percent reference', () => {
+    // A 3.37 percent performer against a 5.28 percent reference is a shortfall of 
+    // about 0.362, so it is named by a 0.30 relative rule and can never be named 
+    // by a 6-point absolute rule
+    const gapRule: MaterialityRule = {
+      absolutePoints: 6,
+      relativeShare: 0.30,
+    };
+    
+    expect(isMaterialGap(5.28, 3.37, gapRule)).toBe(true); // Should be true because of relative test
+    
+    // The same case with an absolute rule that's too high
+    const highAbsoluteRule: MaterialityRule = {
+      absolutePoints: 10,
+      relativeShare: 0.30,
+    };
+    
+    expect(isMaterialGap(5.28, 3.37, highAbsoluteRule)).toBe(false); // Should be false because no absolute test
+  });
+});
+
+describe('relativeShortfall', () => {
+  it('returns 0 when the baseline is zero or negative', () => {
+    expect(relativeShortfall(0, 1.0)).toBe(0);
+    expect(relativeShortfall(-1.0, 1.0)).toBe(0);
+  });
+
+  it('returns 0 when the value rose', () => {
+    expect(relativeShortfall(5.28, 6.0)).toBe(0);
+    expect(relativeShortfall(21.0, 22.0)).toBe(0);
+  });
+
+  it('is clamped between 0 and 1', () => {
+    // Test values that would result in > 1
+    expect(relativeShortfall(5.28, 0.0)).toBe(1); // 5.28/5.28 = 1
+    
+    // Test values that would result in < 0 (should be clamped to 0)
+    expect(relativeShortfall(5.28, 10.0)).toBe(0); // Negative shortfall clamped to 0
+  });
+
+  it('returns a finite number for all valid inputs', () => {
+    // Normal cases
+    expect(relativeShortfall(5.28, 2.9)).toBeCloseTo(0.454, 3); // (5.28 - 2.9) / 5.28 = 0.454
+    expect(relativeShortfall(21.0, 18.0)).toBeCloseTo(0.143, 3); // (21 - 18) / 21 = 0.143
+    
+    // Edge cases
+    expect(relativeShortfall(10.0, 10.0)).toBe(0); // No change
+    expect(relativeShortfall(10.0, 5.0)).toBe(0.5); // (10 - 5) / 10 = 0.5
+  });
+
+  it('handles fractional arithmetic correctly', () => {
+    // Test with values that produce fractional results
+    const result = relativeShortfall(5.28, 2.9);
+    expect(result).toBeGreaterThan(0);
+    expect(result).toBeLessThan(1);
+    
+    // Verify we get the expected value within tolerance
+    expect(result).toBeCloseTo(0.454, 3);
+  });
+});

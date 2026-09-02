@@ -1,0 +1,66 @@
+
+==================================================
+  ollama-runner — LLM Task Executor
+==================================================
+  Provider: ollama
+  Model: qwen3-coder:30b
+  Host:  http://100.75.112.14:11434
+  Task:  /home/danman60/projects/uvalux-platform/tasks/opportunity-20260821/queue/17-monitor-surface.md
+==================================================
+
+[13:35:45] Provider: ollama
+[13:35:45] Model: qwen3-coder:30b
+[13:35:45] Host: http://100.75.112.14:11434
+[13:35:45] Task: /home/danman60/projects/uvalux-platform/tasks/opportunity-20260821/queue/17-monitor-surface.md
+[13:37:17] LLM: I'll create the MonitorSurface.tsx component according to the specifications.
+[13:37:17] TOOL: write_file({"path": "/home/danman60/projects/uvalux-platform/packages/ui/src/components/MonitorSurface.tsx", "content": "/**\n * Th)
+[13:37:17]   → OK: wrote 2091 bytes to /home/danman60/projects/uvalux-platform/packages/ui/src/components/MonitorSurface.tsx
+[13:37:18] LLM: Let me verify that the file was created correctly and check if it passes the TypeScript compilation.
+[13:37:18] TOOL: read_file({"path": "/home/danman60/projects/uvalux-platform/packages/ui/src/components/MonitorSurface.tsx"})
+[13:37:18]   → 1	/**
+2	 * The Front Desk Monitor, composed.
+3	 *
+4	 * Reading order is the argument: what the monitor found (patterns), then the
+5	 * evidence (conve
+[13:37:19] TOOL: bash({"command": "cd /home/danman60/projects/uvalux-platform/packages/ui && npx tsc --noEmit MonitorSurface.tsx"})
+[13:37:19]   → error TS6053: File 'MonitorSurface.tsx' not found.
+  The file is in the program because:
+    Root file specified for compilation
+
+[13:37:20] LLM: Let me check the directory structure and try compiling properly.
+[13:37:20] TOOL: bash({"command": "cd /home/danman60/projects/uvalux-platform/packages/ui && find . -name \"tsconfig.json\" -o -name \"package)
+[13:37:20]   → ./tsconfig.json
+./package.json
+
+[13:37:21] TOOL: bash({"command": "cd /home/danman60/projects/uvalux-platform/packages/ui && npx tsc --noEmit --project tsconfig.json src/comp)
+[13:37:21]   → error TS5042: Option 'project' cannot be mixed with source files on a command line.
+
+[13:37:21] LLM: Let me check the tsconfig file to understand how to properly compile this:
+[13:37:21] TOOL: read_file({"path": "/home/danman60/projects/uvalux-platform/packages/ui/tsconfig.json"})
+[13:37:21]   → 1	{
+2	  "extends": "../../tsconfig.base.json",
+3	  "compilerOptions": {
+4	    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+5	    "jsx": "react-jsx"
+6	  }
+[13:37:22] TOOL: bash({"command": "cd /home/danman60/projects/uvalux-platform/packages/ui && npx tsc --noEmit"})
+[13:37:23]   → (no output)
+[13:37:24] LLM: Great! The TypeScript compilation completed without errors, which means our file is correctly formatted and type-checked. Let me also verify that the file exists and has content:
+[13:37:24] TOOL: bash({"command": "ls -la /home/danman60/projects/uvalux-platform/packages/ui/src/components/MonitorSurface.tsx"})
+[13:37:24]   → -rw-r--r-- 1 danman60 danman60 2091 Aug 21 13:37 /home/danman60/projects/uvalux-platform/packages/ui/src/components/MonitorSurface.tsx
+
+[13:37:26] LLM: Perfect! The file has been created successfully with the correct content and passes TypeScript compilation.
+[13:37:26] DONE: I have successfully created the MonitorSurface.tsx component as requested. The file includes:
+
+1. The required doc comment describing the Front Desk Monitor structure
+2. All five required imports in the exact order specified
+3. The MonitorSurfaceProps interface with the correct properties
+4. The MonitorSurface component function with proper TypeScript typing
+5. The exact HTML structure with:
+   - Two-column grid layout (main and rail sections)
+   - Pattern cards under "What the listener is hearing"
+   - Conversation cards under "Today's conversations"
+   - Listener status card and consent pledge card in the rail
+   - Team table under the grid with employee sales data
+
+The component follows all specified rules including proper class names, data-testid attribute, and correct rendering order. TypeScript compilation passes without errors.

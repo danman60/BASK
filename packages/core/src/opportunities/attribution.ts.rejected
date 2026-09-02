@@ -1,0 +1,108 @@
+/**
+ * Logic for attributing measured campaign outcomes to the specific coaching 
+ * content that informed the action.
+ *
+ * This module provides the core logic for determining if a campaign's 
+ * results are significant and mapping them to relevant claim citations.
+ */
+
+import type { ClaimCitation } from '../knowledge/retrieve-claims';
+
+/**
+ * The raw data from a campaign, including its result metrics and the 
+ * coaching material it was derived from.
+ */
+export interface SettledCampaign {
+  readonly campaignId: string;
+  readonly name: string;
+  readonly goal: string;
+  readonly sentAt: string;
+  readonly audienceReached: number;
+  readonly metricLabel: string;
+  readonly metricBefore: number;
+  readonly metricAfter: number;
+  readonly unit: 'percent' | 'currency' | 'count';
+  readonly currency: string;
+  readonly coaching: readonly ClaimCitation[];
+}
+
+/**
+ * A structured attribution of a campaign's outcome.
+ */
+export interface OutcomeAttribution {
+  readonly campaignId: string;
+  readonly headline: string;
+  readonly deltaLabel: string;
+  readonly direction: 'up' | 'down' | 'flat';
+  readonly movedBy: number;
+  readonly sentenceOne: string;
+  readonly coaching: readonly ClaimCitation[];
+}
+
+/**
+ * Attributes a measured outcome to the coaching behind it.
+ * 
+ * Returns null if the campaign had no audience or no change in metrics.
+ *
+ * @param campaign The raw campaign data
+ * @returns The attribution data, or null if the outcome is not reportable.
+ */
+export function attributeOutcome(campaign: SettledCampaign): OutcomeAttribution | null {
+  const {
+    campaignId,
+    metricBefore,
+    metricAfter,
+    audienceReached,
+    unit,
+    currency,
+    coaching,
+  } = campaign;
+
+  const movedBy = metricAfter - metricBefore;
+
+  if (audienceReached === 0 || movedBy === 0) {
+    return null;
+  }
+
+  let deltaLabel: string;
+  let direction: 'up' | 'down' | 'flat';
+
+  if (movedBy > 0) {
+    direction = 'up';
+    if (unit === 'percent') {
+      deltaLabel = `+${movedBy.toFixed(1)} points`;
+    } else if (unit === 'currency') {
+      deltaLabel = `+$${Math.round(movedBy).toString()}`;
+    } else {
+      deltaLabel = `+${movedBy}`;
+    }
+  } else if (movedBy < 0) {
+    direction = 'down';
+    if (unit === 'percent') {
+      deltaLabel = `${movedBy.toFixed(1)} points`;
+    } else if (unit === 'currency') {
+      // Use the absolute value in the label because the sign is implicit in the "-"
+      deltaLabel = `-$${Math.round(Math.abs(movedBy)).toString()}`;
+    } else {
+      deltaLabel = `${movedBy}`;
+    }
+  } else {
+    direction = 'flat';
+    deltaLabel = '0';
+  }
+
+  // Note: Using a template that describes the movement without implying causality.
+  // "went out to X people, and [metric] moved from A to B"
+  // We use the raw labels for clarity but keep the sentence simple.
+  const sentenceOne = `went out to ${audienceReached} people, and ${campaign.metricLabel} moved from ${metricBefore} to ${metricAfter}`;
+
+  return {
+    campaignId,
+    headline: campaign.name,
+    deltaLabel,
+    direction,
+    movedBy,
+    sentenceOne,
+    coaching,
+  };
+}

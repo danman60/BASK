@@ -1,0 +1,13 @@
+{
+  "state": "running",
+  "turns": 17,
+  "tool_calls": 16,
+  "errors": 0,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/promo/SHOT-PLAN-V3.md"
+  ],
+  "elapsed": "20s",
+  "updated": "13:39:16",
+  "provider_history": [],
+  "provider_switched": false
+}

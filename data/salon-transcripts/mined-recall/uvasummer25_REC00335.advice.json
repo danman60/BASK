@@ -1,0 +1,141 @@
+{
+ "source_stream": "uvasummer25_REC00335",
+ "media_duration_s": 1860.502,
+ "windows_total": 5,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 0,
+ "items_kept": 7,
+ "model": "gemma4:31b",
+ "lens": "recall",
+ "mined_at": "2026-08-22T15:42:25",
+ "advice": [
+  {
+   "claim": "The target demographic for trend-aware, social-media active tanning products is ages 18 to 35.",
+   "quote": "Who do you feel is your target demographic and price point with this product? 18 to 35. We're looking for people, young, style conscious, experienced tanner, trend aware, active on social media, Sephora shoppers, TikTokers.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00335",
+   "segment_ids": [
+    20,
+    21,
+    22
+   ],
+   "t_start": 63.74,
+   "t_end": 81.52,
+   "window": 1
+  },
+  {
+   "claim": "A high-performing salesperson can move a significant volume of product in a single day if they have genuine passion for the item.",
+   "quote": "i have a personal best in the salon of selling that product i think i sold about 50 bottles in\none day because i loved it so much",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00335",
+   "segment_ids": [
+    141,
+    142
+   ],
+   "t_start": 481.4,
+   "t_end": 492.7,
+   "window": 2
+  },
+  {
+   "claim": "High-ticket products should be positioned at the top of the product hierarchy in the salon to signal their premium status.",
+   "quote": "So you would put this at the top of all the products at the salon? Absolutely.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "floor_question",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00335",
+   "segment_ids": [
+    254,
+    255
+   ],
+   "t_start": 954.33,
+   "t_end": 958.49,
+   "window": 3
+  },
+  {
+   "claim": "When selling an all-in-one product, staff should still pitch specialized facial tanners by explaining that standard body lotions can clog pores and cause breakouts.",
+   "quote": "i would talk to them about a facial tanner the importance of it you shouldn't put any typical body lotion on your face just because it can clog the pores and make you break break out",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "floor_question",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00335",
+   "segment_ids": [
+    304,
+    305
+   ],
+   "t_start": 1127.56,
+   "t_end": 1136.2,
+   "window": 3
+  },
+  {
+   "claim": "A mid-range DHA level of approximately 45 grams is appropriate for a product designed for use on the face.",
+   "quote": "it's mid-range because it's on the facial\nyes so about 45 grams",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00335",
+   "segment_ids": [
+    377,
+    378
+   ],
+   "t_start": 1492.89,
+   "t_end": 1510.98,
+   "window": 4
+  },
+  {
+   "claim": "Body washes are generally difficult products to sell in a salon environment.",
+   "quote": "I'm going to say gutsy move with a wash, right? I mean, we all know how hard they are to sell",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00335",
+   "segment_ids": [
+    441,
+    442
+   ],
+   "t_start": 1837.56,
+   "t_end": 1844.58,
+   "window": 5
+  },
+  {
+   "claim": "Floral fragrances in retail products can be risky as they may be perceived as outdated or 'old-fashioned'.",
+   "quote": "I think the fragrance, because we got another sample, you know, when you hit floral sometimes, it can be your mom or your grandma's fragrance, right? Florals can be tough.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00335",
+   "segment_ids": [
+    443,
+    444
+   ],
+   "t_start": 1844.58,
+   "t_end": 1856.24,
+   "window": 5
+  }
+ ]
+}

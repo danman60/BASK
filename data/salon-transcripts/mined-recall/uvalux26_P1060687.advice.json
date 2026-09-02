@@ -1,0 +1,490 @@
+{
+ "source_stream": "uvalux26_P1060687",
+ "media_duration_s": 3252.249,
+ "windows_total": 8,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 3,
+ "items_kept": 26,
+ "model": "gemma4:31b",
+ "lens": "recall",
+ "mined_at": "2026-08-22T15:05:58",
+ "advice": [
+  {
+   "claim": "Investing in high-end equipment without a proper implementation strategy leads to financial loss.",
+   "quote": "you can spend 50 60 thousand Canadian in the room next door but if you don't know how to implement that equipment you're losing money you're burning your money you're throwing it out the window",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "mistake",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    23,
+    24,
+    25
+   ],
+   "t_start": 98.24,
+   "t_end": 113.84,
+   "window": 1
+  },
+  {
+   "claim": "Spray tanning has a very low household penetration rate in North America (4% US / 2% Canada), meaning owners cannot rely on it as a primary traffic driver.",
+   "quote": "4% of U.S. households spray tan, and in Canada, it's 2% of U.S. households spray tan.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    83
+   ],
+   "t_start": 226.78,
+   "t_end": 235.68,
+   "window": 1
+  },
+  {
+   "claim": "Touchless modalities are more reliable than service-based treatments because they eliminate revenue loss caused by staff absenteeism.",
+   "quote": "we went to just the other day to a, it's one of the massage places in the US. They do facials as well. We decided to do massage and facial, but couldn't do the facial. Do you know why? The person who did the facials wasn't there. And two people, that was about $240 that that place lost because that person wasn't there and didn't show up. Some of the great things about the modalities, two rooms down, they don't call in sick.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106
+   ],
+   "t_start": 330.16,
+   "t_end": 363.66,
+   "window": 1
+  },
+  {
+   "claim": "Customers rarely ask for new services they aren't aware of; owners must introduce and educate them on benefits to create demand.",
+   "quote": "Is everyone asking for red light therapy? No, not until you bring bring it in, and you teach and you show them the benefits of red light",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    120,
+    121
+   ],
+   "t_start": 445.65,
+   "t_end": 457.02,
+   "window": 2
+  },
+  {
+   "claim": "Wellness-focused equipment can attract a completely new customer demographic that has never used traditional tanning beds.",
+   "quote": "But 80%, 80% of the folks that are using our well-fit machine, 80% of them have never tanned in a tanning bed before.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    145
+   ],
+   "t_start": 565.2,
+   "t_end": 576.17,
+   "window": 2
+  },
+  {
+   "claim": "To improve the customer experience during multi-room visits, provide totes or robes so clients don't have to repeatedly dress and undress.",
+   "quote": "One of the biggest pain in the back end when I come to a tanning salon it's getting undressed right and if I'm using more than one room I'm getting undressed getting redressed getting undressed getting redressed how can I change that how can I make it an experience you said it over here roads roads how about a tote to put my clothes and all my junk in so I put on a robe and I'm going to the next room",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    157,
+    158,
+    159,
+    160,
+    161,
+    162
+   ],
+   "t_start": 621.01,
+   "t_end": 651.61,
+   "window": 2
+  },
+  {
+   "claim": "The 'Balance' skin care product can be used to treat acne, psoriasis, and eczema.",
+   "quote": "Balance helps with acne, psoriasis, eczema, you name it.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    225
+   ],
+   "t_start": 951.86,
+   "t_end": 974.44,
+   "window": 3
+  },
+  {
+   "claim": "Investing 50k in new spray tan equipment is not financially viable if the salon only averages one to two spray tans per day.",
+   "quote": "But again, if you're only seeing one to two people spray tanning a day, it's very difficult dropping 50 grand to update and to increase from one to three, right? It doesn't pay for itself.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    239
+   ],
+   "t_start": 1031.42,
+   "t_end": 1048.25,
+   "window": 3
+  },
+  {
+   "claim": "Testing shows that 98% of customers wanted to continue treatments after a six-session trial.",
+   "quote": "98% wanted to continue. And this was after six treatments.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    248
+   ],
+   "t_start": 1100.38,
+   "t_end": 1105.82,
+   "window": 3
+  },
+  {
+   "claim": "Approximately 80% of customers using the WellFit modality are new clients who have never visited the salon before.",
+   "quote": "And remember from the analytics, 80% of the people that are using this modality never came to your salon before.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    253,
+    254
+   ],
+   "t_start": 1115.24,
+   "t_end": 1122.26,
+   "window": 3
+  },
+  {
+   "claim": "Existing Versapro equipment can be retrofitted for the WellFit system without purchasing a brand new booth.",
+   "quote": "And if you've already bought a Versapro, and I know some of you have recently, you can put the well fit in there. You do not have to buy a brand new booth to do that.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    276
+   ],
+   "t_start": 1218.43,
+   "t_end": 1233.84,
+   "window": 3
+  },
+  {
+   "claim": "A wellness business can be successfully launched using only the WellFit machine as the primary modality, even without UV tanning services.",
+   "quote": "She built her business starting just off of the WellFit machine. And this is somebody that has no UV tanning. It's just a wellness center.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    303,
+    304,
+    305
+   ],
+   "t_start": 1312.28,
+   "t_end": 1321.7,
+   "window": 3
+  },
+  {
+   "claim": "High-end skincare brands like Dermalogica typically do not sell their products to tanning salons, creating a market gap for specialized high-end lines.",
+   "quote": "If you are looking for a high-end skincare product to sell at your salon, you won't find because they don't sell detaining salons. Dermalogica, a lot of these high-end skin care products.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    326,
+    327
+   ],
+   "t_start": 1454.14,
+   "t_end": 1468.64,
+   "window": 4
+  },
+  {
+   "claim": "Unpaid government credits act as a significant barrier when trying to secure business financing.",
+   "quote": "Pay your bills and especially those government credits. That's a barrier to being able to finance your business.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "mistake",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    462
+   ],
+   "t_start": 2457.35,
+   "t_end": 2464.62,
+   "window": 6
+  },
+  {
+   "claim": "Some salon owners discover they are running services that cost them more than they earn, necessitating the cutting of those product lines.",
+   "quote": "A bunch of people would come in and do business for them and realize that they were running services that were not making them any money. They were actually costing them. And so they were able to look at their business and decide, you know, what, you know, and decide who cut those product lines.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    442,
+    443,
+    444
+   ],
+   "t_start": 2340.6,
+   "t_end": 2368.45,
+   "window": 6
+  },
+  {
+   "claim": "Lenders typically require two years of financial statements for existing businesses seeking funding.",
+   "quote": "So for an existing business, ongoing business, so nothing for a financial statement for two years. And that's for an existing business.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    476,
+    477
+   ],
+   "t_start": 2618.29,
+   "t_end": 2629.58,
+   "window": 6
+  },
+  {
+   "claim": "When applying for business funding, lenders require two years of financial statements for existing businesses.",
+   "quote": "So for an existing business, ongoing business, so nothing for a financial statement for two years.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    476
+   ],
+   "t_start": 2618.29,
+   "t_end": 2626.5,
+   "window": 7
+  },
+  {
+   "claim": "Lenders require personal financial statements detailing all assets (home, vehicles, investments) and liabilities to assess the owner's situation.",
+   "quote": "So a personal financial statement is your assets and your liabilities, your personal\nassets.\nSo, in your assets you're going to list your home if you own one, your vehicle, any investments,\nmutual funds, any other assets if you own a boat, if you own a cottage, if you own a\ncamper.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    482,
+    483,
+    484,
+    485,
+    486
+   ],
+   "t_start": 2655.87,
+   "t_end": 2679.62,
+   "window": 7
+  },
+  {
+   "claim": "Business owners should maintain an online Canada Revenue Agency account to monitor their business status and access necessary notices of assessment for funding.",
+   "quote": "If you do not, or do not have the credentials to sign up for your Canada Revenue Agency account online,\nI suggest that you put that in place so that you can see what's happening with your business.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    501,
+    502
+   ],
+   "t_start": 2740.04,
+   "t_end": 2752.66,
+   "window": 7
+  },
+  {
+   "claim": "A funding application requires a 12-month monthly spreadsheet projecting cash flow for the new expansion or financing.",
+   "quote": "So that would be a 12-month spreadsheet, a monthly projection of the cash flow and the cash flow.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    513
+   ],
+   "t_start": 2826.92,
+   "t_end": 2835.34,
+   "window": 7
+  },
+  {
+   "claim": "In one tanning salon acquisition example, the lender provided 85% of the $100,000 purchase price, with the buyer contributing a 15% personal investment.",
+   "quote": "So the tanning salon purchased, we advanced $100,000, sorry, the purchase for the $100,000, we advanced $85,000 to the person who was selling, and then she included a $15,000 in personal investment.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    525
+   ],
+   "t_start": 2893.56,
+   "t_end": 2914.06,
+   "window": 7
+  },
+  {
+   "claim": "Current financing rates for these loans are prime plus 2%, with an additional risk rating potentially bringing the total to 8.5%.",
+   "quote": "Now our interest rates are prime plus 2%.\nSo the security on the other hand...\nCan you say that again? Prime plus what?\n2%. So right now prime is 4.45, so that would be 6.45. We do add a risk rating to that, so 8.5%.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    526,
+    527,
+    528,
+    529
+   ],
+   "t_start": 2914.16,
+   "t_end": 2942.27,
+   "window": 7
+  },
+  {
+   "claim": "Choosing an open loan allows for more flexibility as it can be paid off at any time without penalty.",
+   "quote": "but if you leave it open to pay off when you want,\nthen life is more flexible.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    535,
+    536
+   ],
+   "t_start": 2963.8,
+   "t_end": 2970.18,
+   "window": 7
+  },
+  {
+   "claim": "Government-funded lenders cannot provide financing if the business has outstanding debt with the Canada Revenue Agency unless that debt is paid out as part of the loan.",
+   "quote": "because for us we're government funded so we do not if you have debt with canada\nrevenue agency we either have to pay it out as part of the room or we can't do the financing",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    548,
+    549
+   ],
+   "t_start": 3072.54,
+   "t_end": 3085.9,
+   "window": 7
+  },
+  {
+   "claim": "A specific example of a business expansion loan included $185,000 total: $100k for equipment/improvements and the remainder for working capital, with a 10-year term at 7.5% interest and monthly payments of $2,340.",
+   "quote": "so with this one it was a hundred eighty five thousand dollar loan you required no down payment because they were an existing business and had successful operations um the uh the hundred thousand was for the expansion so that was quickly sold improvement adding additional equipment and a little bit of working capital for the staff to get the new lines going. 10 year repayment, 7.5% interest for this one, and monthly payments of $2,340",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    551,
+    552,
+    553,
+    554,
+    555
+   ],
+   "t_start": 3094.09,
+   "t_end": 3135.52,
+   "window": 8
+  },
+  {
+   "claim": "The majority of salons typically lease new equipment, but this is often an expensive way to fund growth.",
+   "quote": "When we introduce new equipment into salons, I would say 90% of the time we're leasing it. Leasing is expensive.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    561
+   ],
+   "t_start": 3188.62,
+   "t_end": 3214.2,
+   "window": 8
+  }
+ ]
+}

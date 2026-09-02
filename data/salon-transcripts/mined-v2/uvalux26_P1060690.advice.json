@@ -1,0 +1,468 @@
+{
+ "source_stream": "uvalux26_P1060690",
+ "media_duration_s": 4048.044,
+ "windows_total": 10,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 2,
+ "items_kept": 25,
+ "model": "gemma4:12b",
+ "lens": "advice",
+ "mined_at": "2026-08-22T19:12:41",
+ "advice": [
+  {
+   "claim": "Recognizing and valuing employees through personalized gestures like handwritten notes is a powerful way to improve staff retention and morale.",
+   "quote": "what your employees for our our influence want more than anything is recognition",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    65
+   ],
+   "t_start": 950.44,
+   "t_end": 955.28,
+   "window": 3
+  },
+  {
+   "claim": "A handwritten note has significantly more impact than a digital message for employee appreciation.",
+   "quote": "And psychologists will tell you, a handwritten note has something like 100 times the power of a text message or an email.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    73
+   ],
+   "t_start": 998.97,
+   "t_end": 1004.19,
+   "window": 3
+  },
+  {
+   "claim": "Track specific metrics like session count and unique customers to diagnose why a location's revenue might be declining compared to previous periods.",
+   "quote": "when we get down to session count, where was our session count? Where was our unique customer?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    145,
+    146,
+    147
+   ],
+   "t_start": 1311.48,
+   "t_end": 1316.79,
+   "window": 3
+  },
+  {
+   "claim": "Track revenue per session to evaluate the profitability of your services and decision-making.",
+   "quote": "So when you look at the revenue per session, it was $11.98, $12.65, $12.35. Look at where it's at now. $18.01, $16.84.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    171,
+    172
+   ],
+   "t_start": 1433.06,
+   "t_end": 1460.75,
+   "window": 4
+  },
+  {
+   "claim": "Use revenue per square foot and revenue per equipment to determine the viability of different locations and equipment investments.",
+   "quote": "If you look at your revenue per session, your revenue per square foot, your revenue per equipment, you might come for different conclusions.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    179,
+    180
+   ],
+   "t_start": 1488.84,
+   "t_end": 1496.2,
+   "window": 4
+  },
+  {
+   "claim": "Evaluate equipment investments based on the time it takes to pay off the cost rather than the initial price tag.",
+   "quote": "I don't care, because I know I can pay for that equipment in three years.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    199,
+    200
+   ],
+   "t_start": 1590.84,
+   "t_end": 1599.96,
+   "window": 4
+  },
+  {
+   "claim": "Track the number of distinct customers and the average number of visits per customer to understand retention.",
+   "quote": "So if you want to know how many times your average customer goes in, just take 3374 divided into the 60,000 and you get 16.10.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    222,
+    223,
+    224
+   ],
+   "t_start": 1713.39,
+   "t_end": 1722.71,
+   "window": 4
+  },
+  {
+   "claim": "Focus on selling the overall experience rather than just the specific service (tanning or wellness) to build brand loyalty.",
+   "quote": "We do not sell tanning. We don't sell wellness. We sell experience.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    285,
+    286
+   ],
+   "t_start": 1947.29,
+   "t_end": 1958.25,
+   "window": 5
+  },
+  {
+   "claim": "Escort every customer to their room every time to ensure a perfect experience, regardless of how busy the salon is.",
+   "quote": "Now, at California Sun, we walk every customer to their room every single time. I do not care how busy we are.",
+   "category": "customer",
+   "moment": "greeting",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    287,
+    288
+   ],
+   "t_start": 1958.31,
+   "t_end": 1970.71,
+   "window": 5
+  },
+  {
+   "claim": "Use Distinct Customer Revenue (DCR) as a metric to determine if customers are responding positively to business decisions or new equipment.",
+   "quote": "If your revenue per session or your distinct customer revenue, that DCR, if that starts going down, what does that tell you? Your customers don't like the decision you could make. Otherwise, they would spend more.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    339,
+    340,
+    341,
+    342
+   ],
+   "t_start": 2162.18,
+   "t_end": 2176.4,
+   "window": 5
+  },
+  {
+   "claim": "Adding wellness equipment can increase the amount customers spend.",
+   "quote": "The more wellness we added, the more people spent.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    343
+   ],
+   "t_start": 2176.4,
+   "t_end": 2193.74,
+   "window": 6
+  },
+  {
+   "claim": "Use 'Revenue Per Session' as a performance metric for staff because it is more attainable and less discouraging than large total revenue goals.",
+   "quote": "If we give a rate per session and you generate this amount of money per session, she's only looking. If people don't come in, is she responsible for them? No.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    396,
+    397
+   ],
+   "t_start": 2405.83,
+   "t_end": 2415.83,
+   "window": 6
+  },
+  {
+   "claim": "Use company averages and historical data to adjust and tailor goals for specific locations.",
+   "quote": "If they're trending lower or they're static, it helps me adjust that goal a little bit.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    434
+   ],
+   "t_start": 2556.82,
+   "t_end": 2587.41,
+   "window": 6
+  },
+  {
+   "claim": "Keep sales pitches under four minutes to maintain a high closing rate.",
+   "quote": "studies show that if we keep our presentation our pitch under four minutes we have an 80 closure issue",
+   "category": "marketing",
+   "moment": "close",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    463,
+    464
+   ],
+   "t_start": 2753.95,
+   "t_end": 2768.91,
+   "window": 7
+  },
+  {
+   "claim": "Use visual aids like laminated sheets to show equipment features instead of taking customers on tours during busy periods.",
+   "quote": "And so we have a really nice laminated sheet that shows every piece of equipment, what it does, how it works, and we keep them right at the counter showing them, rather than saying And behind this door is a piece of equipment",
+   "category": "operations",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    476,
+    477,
+    478
+   ],
+   "t_start": 2828.73,
+   "t_end": 2839.95,
+   "window": 7
+  },
+  {
+   "claim": "Focus on two key metrics—overall revenue and customer value—to evaluate business decisions.",
+   "quote": "we focus on two specific areas your overall revenue perception because that's the immediate place we're going to see if we make a bad decision it's going to show up there i guarantee if you make a bad decision in your stores it will show up on your revenue perception and the other places are distinct customer value what are they spending with us per month",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    504,
+    505,
+    506,
+    507
+   ],
+   "t_start": 2940.42,
+   "t_end": 2964.65,
+   "window": 7
+  },
+  {
+   "claim": "Sell memberships every time a product runs out to ensure consistent revenue and reduce the reliance on staff to make sales.",
+   "quote": "If you're not selling memberships every single time something runs out, you have to resell a customer. Or what's worse is you're relying on your staff who may or may not be in the mood for sales that day to make the sale. Memberships just take all of that out of you.",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    527,
+    528,
+    529,
+    530
+   ],
+   "t_start": 3045.62,
+   "t_end": 3072.16,
+   "window": 7
+  },
+  {
+   "claim": "Selling memberships is a more stable business model than selling individual sessions or discounted units because it reduces the need for constant re-selling and relies less on staff's daily sales motivation.",
+   "quote": "If you're not selling memberships every single time something runs out, you have to resell a customer. Or what's worse is you're relying on your staff who may or may not be in the mood for sales that day to make the sale. Memberships just take all of that out of you.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    527,
+    528,
+    529,
+    530
+   ],
+   "t_start": 3045.62,
+   "t_end": 3072.16,
+   "window": 8
+  },
+  {
+   "claim": "Offer low-cost entry points to get customers over the initial price threshold so you can demonstrate the value of your services.",
+   "quote": "You will never get them to appreciate the value if they don't cross your threshold. Price is going to get them over the threshold. That's one of the reasons we always say we have services starting at just 99 cents.",
+   "category": "marketing",
+   "moment": "greeting",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    555,
+    556,
+    557
+   ],
+   "t_start": 3157.28,
+   "t_end": 3169.07,
+   "window": 8
+  },
+  {
+   "claim": "Focus on providing high value to your customers so that the perceived value outweighs the price, which leads to higher retention and lower cancellation rates.",
+   "quote": "When the value outweighs the price, people will not cancel.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    580
+   ],
+   "t_start": 3241.34,
+   "t_end": 3246.36,
+   "window": 8
+  },
+  {
+   "claim": "Use data and analytics to remove emotion from business decisions and identify whether the business is making smart choices.",
+   "quote": "Numbers remove all the emotion from it. But they do tell you stories.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    611
+   ],
+   "t_start": 3375.4,
+   "t_end": 3381.97,
+   "window": 8
+  },
+  {
+   "claim": "Ensure the perceived value of your services exceeds the price point to encourage customer acceptance of higher costs.",
+   "quote": "Because if what they get is worth more than what they spend, it's a good tradeoff.",
+   "category": "membership",
+   "moment": "membership",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    623
+   ],
+   "t_start": 3488.23,
+   "t_end": 3493.73,
+   "window": 9
+  },
+  {
+   "claim": "Use accurate data and metrics to drive business decisions rather than guessing.",
+   "quote": "Assuming you can make progress without accurate data is like dreaming about a delicious meal and expecting to wake up full. It isn't going to happen. If you don't have accurate data about what you're doing and how you're doing it, you will never ever get it.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    654
+   ],
+   "t_start": 3654.33,
+   "t_end": 3671.91,
+   "window": 9
+  },
+  {
+   "claim": "Avoid using your customers as guinea pigs for unproven business models.",
+   "quote": "And who is the guinea pig when we use her? Our customer. And as customers yourself, do you like being guinea pigs for somebody's business model? Not really.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    664,
+    665,
+    666
+   ],
+   "t_start": 3707.94,
+   "t_end": 3716.42,
+   "window": 9
+  },
+  {
+   "claim": "Position your brand around wellness to overcome the stigma associated with tanning.",
+   "quote": "But clearly, wellness is a hot topic right now. And wellness and light live beautifully together. Beautifully.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    694
+   ],
+   "t_start": 3815.42,
+   "t_end": 3831.35,
+   "window": 9
+  }
+ ]
+}

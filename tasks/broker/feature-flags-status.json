@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 13,
+  "tool_calls": 13,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/core/src/flags.ts']",
+  "elapsed": "42s",
+  "updated": "03:31:51",
+  "provider_history": [],
+  "provider_switched": false
+}

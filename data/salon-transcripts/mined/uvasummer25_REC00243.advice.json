@@ -1,0 +1,89 @@
+{
+ "source_stream": "uvasummer25_REC00243",
+ "media_duration_s": 1860.508,
+ "windows_total": 5,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 1,
+ "items_kept": 5,
+ "model": "gemma4:12b",
+ "mined_at": "2026-08-22T06:20:35",
+ "advice": [
+  {
+   "claim": "Targeting a 16+ age range for certain products helps broaden the demographic because those customers are more likely to be employed and have the means to pay for extra products.",
+   "quote": "The reason that we didn't go younger is because 16 and up is your demographic, that they are employed.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvasummer25_REC00243",
+   "segment_ids": [
+    10
+   ],
+   "t_start": 51.84,
+   "t_end": 55.58,
+   "window": 1
+  },
+  {
+   "claim": "Use simplified multi-functional products to introduce multiple products into a client's routine without overwhelming them.",
+   "quote": "This is a great way to introduce that to them in a simplified way without throwing a thousand bottles at them.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvasummer25_REC00243",
+   "segment_ids": [
+    92
+   ],
+   "t_start": 406.76,
+   "t_end": 411.98,
+   "window": 1
+  },
+  {
+   "claim": "Put the product in the client's hand to create a sense of ownership.",
+   "quote": "Because when we're at the salon, we always like to put the product in their hand because that's ownership, right?",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvasummer25_REC00243",
+   "segment_ids": [
+    114
+   ],
+   "t_start": 473.5,
+   "t_end": 478.28,
+   "window": 1
+  },
+  {
+   "claim": "Put the product in the customer's hands to create a sense of ownership.",
+   "quote": "Because, of course, it's got a channel cavity in the middle to separate. So just talk to me, my ownership when I'm holding it. Because when we're at the salon, we always like to put the product in their hand because that's ownership, right?",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvasummer25_REC00243",
+   "segment_ids": [
+    113,
+    114
+   ],
+   "t_start": 471.04,
+   "t_end": 478.28,
+   "window": 2
+  },
+  {
+   "claim": "Make the purchasing process easier for the customer to increase sales.",
+   "quote": "I really like the idea of two, because people like easy, and I always, when I do sales trainings, I always make things easier for people, because that's how you sell.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvasummer25_REC00243",
+   "segment_ids": [
+    176
+   ],
+   "t_start": 727.06,
+   "t_end": 734.16,
+   "window": 2
+  }
+ ]
+}

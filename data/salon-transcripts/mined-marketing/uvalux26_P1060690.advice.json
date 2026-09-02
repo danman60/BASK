@@ -1,0 +1,690 @@
+{
+ "source_stream": "uvalux26_P1060690",
+ "media_duration_s": 4048.044,
+ "windows_total": 10,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 4,
+ "items_kept": 38,
+ "model": "gemma4:31b",
+ "lens": "marketing",
+ "mined_at": "2026-08-23T00:49:50",
+ "advice": [
+  {
+   "claim": "Salon owners often make impulsive operational changes and then regret them shortly after.",
+   "quote": "We're gonna change things. We're gonna do it this way now and then three weeks later That was a bad decision. Let's change back",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    58,
+    59
+   ],
+   "t_start": 860.23,
+   "t_end": 869.35,
+   "window": 2
+  },
+  {
+   "claim": "Employees in the salon industry value recognition and feeling appreciated more than financial incentives.",
+   "quote": "what your employees for our our influence want more than anything is recognition we put in over 18 but what's your biggest motive is it money's commissions, gifts, recognition comes back, time and time making is number one.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    65,
+    66,
+    67
+   ],
+   "t_start": 950.44,
+   "t_end": 967.07,
+   "window": 3
+  },
+  {
+   "claim": "High pay cannot compensate for a toxic or unhappy work environment.",
+   "quote": "you can pay them all the money in the world but if they hate their job it's not enough",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    111,
+    112
+   ],
+   "t_start": 1144.12,
+   "t_end": 1154.67,
+   "window": 3
+  },
+  {
+   "claim": "Without detailed tracking and analytics across multiple locations, it is impossible to identify why revenue is dropping.",
+   "quote": "if you don't have have these numbers it's really hard how do you know what you're making farmers",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    153,
+    154
+   ],
+   "t_start": 1340.63,
+   "t_end": 1350.6,
+   "window": 3
+  },
+  {
+   "claim": "Pivoting a salon toward wellness services can significantly increase revenue even with fewer total customers.",
+   "quote": "in 2015 that same story that i'm going to show you with a thousand fewer customers is now doing one one million dollars",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    160,
+    161
+   ],
+   "t_start": 1380.33,
+   "t_end": 1396.94,
+   "window": 4
+  },
+  {
+   "claim": "Salon owners are often hesitant to buy expensive equipment because they don't know the payback period.",
+   "quote": "And so where your reluctance comes from is not knowing how long it's going to take you to make the money.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    204
+   ],
+   "t_start": 1609.99,
+   "t_end": 1616.07,
+   "window": 4
+  },
+  {
+   "claim": "Business owners care more about the return on investment than technical specifications of equipment.",
+   "quote": "And they don't care about the dials in there or the UV or the nanometers that it takes. people business people care about how do I get my money back",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    213,
+    214
+   ],
+   "t_start": 1650.97,
+   "t_end": 1663.15,
+   "window": 4
+  },
+  {
+   "claim": "The industry is shifting away from mid-level tanning beds toward high-end equipment and wellness services.",
+   "quote": "when we first got started in 93, you would basically do all entry-level beds and then one big bed. Right? Remember those days Doug? And so now it's kind of pivoted. Now it's all big beds and maybe one entry-level bed. So I think, personally, we're starting to eliminate that mid-level section.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    274,
+    275,
+    276,
+    277,
+    278
+   ],
+   "t_start": 1891.74,
+   "t_end": 1916.44,
+   "window": 5
+  },
+  {
+   "claim": "Adding wellness modalities increases the average spend per customer even if total customer count drops.",
+   "quote": "as we added wellness equipment, look what happened. 181, 191, 181 again, 193, 195, 226, 248. The more wellness we added, the more people spent.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    343
+   ],
+   "t_start": 2176.4,
+   "t_end": 2193.74,
+   "window": 5
+  },
+  {
+   "claim": "The core value proposition of a high-end salon is the overall experience rather than just the tanning result.",
+   "quote": "We do not sell tanning. We don't sell wellness. We sell experience.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    285,
+    286
+   ],
+   "t_start": 1947.29,
+   "t_end": 1958.25,
+   "window": 5
+  },
+  {
+   "claim": "Customer spending habits are the most accurate indicator of whether a business decision was correct.",
+   "quote": "the one basic principle I try to teach people is consumers talk to you with their wallet.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    334
+   ],
+   "t_start": 2142.76,
+   "t_end": 2149.38,
+   "window": 5
+  },
+  {
+   "claim": "Customers often ignore other services because they are focused solely on a quick tan.",
+   "quote": "they walk in, they're like, don't talk to me, I want a 10-minute tan.",
+   "category": "customer",
+   "moment": "needs",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    359
+   ],
+   "t_start": 2248.21,
+   "t_end": 2252.49,
+   "window": 6
+  },
+  {
+   "claim": "Setting high daily revenue goals for young staff can be overwhelming and demoralizing.",
+   "quote": "They're 19 years old and you want them to generate $5,000 today? Can't do it. It takes up their mind.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    384,
+    385,
+    386
+   ],
+   "t_start": 2335.9,
+   "t_end": 2342.66,
+   "window": 6
+  },
+  {
+   "claim": "Adding wellness equipment increases the average spend per customer.",
+   "quote": "The more wellness we added, the more people spent.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    343
+   ],
+   "t_start": 2176.4,
+   "t_end": 2193.74,
+   "window": 6
+  },
+  {
+   "claim": "Small differences in revenue per session significantly impact total income at high volumes.",
+   "quote": "$0.10 or $0.15 a session starts adding up when you're seeing 300 to 400 sessions a day.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    422
+   ],
+   "t_start": 2489.87,
+   "t_end": 2498.33,
+   "window": 6
+  },
+  {
+   "claim": "Staff are more likely to accept and achieve goals when they are framed as small amounts per customer rather than large daily totals.",
+   "quote": "Now, we know a lot of lotion sells for $50. Can you give me $15.50? Rachel's like, I can do that.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    389,
+    390
+   ],
+   "t_start": 2354.59,
+   "t_end": 2368.84,
+   "window": 6
+  },
+  {
+   "claim": "Customers are impatient and will stop listening if a sales pitch is too long.",
+   "quote": "people are busy today they want to be in they want to be out you've got maybe four minutes",
+   "category": "unclassified",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    461,
+    462
+   ],
+   "t_start": 2742.17,
+   "t_end": 2753.95,
+   "window": 7
+  },
+  {
+   "claim": "Long sales presentations lead to a massive drop in closing rates.",
+   "quote": "if we keep our presentation our pitch under four minutes we have an 80 closure issue you want to hear the other side of that once it crosses four minutes it goes to 15",
+   "category": "unclassified",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    463,
+    464,
+    465
+   ],
+   "t_start": 2753.95,
+   "t_end": 2777.5,
+   "window": 7
+  },
+  {
+   "claim": "Salon owners struggle with staff who are not naturally good at math or data analysis.",
+   "quote": "most people are just not mathematical people. They're not numbers people.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    496,
+    497,
+    498
+   ],
+   "t_start": 2909.61,
+   "t_end": 2920.83,
+   "window": 7
+  },
+  {
+   "claim": "Too much data can overwhelm and confuse salon managers.",
+   "quote": "too much data is too much data",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    503
+   ],
+   "t_start": 2933.7,
+   "t_end": 2940.42,
+   "window": 7
+  },
+  {
+   "claim": "Relying on non-membership sales makes revenue dependent on the staff's mood.",
+   "quote": "you're relying on your staff who may or may not be in the mood for sales that day to make the sale.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    528,
+    529
+   ],
+   "t_start": 3052.64,
+   "t_end": 3065.53,
+   "window": 7
+  },
+  {
+   "claim": "Relying on staff for sales is risky because their motivation varies daily.",
+   "quote": "you're relying on your staff who may or may not be in the mood for sales that day to make the sale.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    528,
+    529
+   ],
+   "t_start": 3052.64,
+   "t_end": 3065.53,
+   "window": 8
+  },
+  {
+   "claim": "Many salon owners mistakenly believe memberships don't work because they aren't selling them correctly.",
+   "quote": "They say, well, I tried selling memberships, but it didn't work.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    534,
+    535,
+    536
+   ],
+   "t_start": 3079.61,
+   "t_end": 3086.24,
+   "window": 8
+  },
+  {
+   "claim": "Offering too many fragmented options like minutes or weeks discourages customers from committing to memberships.",
+   "quote": "So you're giving your customer every reason possible not to buy a membership from you.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    542
+   ],
+   "t_start": 3101.78,
+   "t_end": 3108.98,
+   "window": 8
+  },
+  {
+   "claim": "Low entry pricing is an effective strategy to get customers through the door so value can be demonstrated.",
+   "quote": "Price is going to get them over the threshold.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    556
+   ],
+   "t_start": 3162.59,
+   "t_end": 3164.47,
+   "window": 8
+  },
+  {
+   "claim": "A significant portion of membership revenue comes from people who do not actually visit the salon.",
+   "quote": "roughly 40% of people with memberships in TANI don't even want to know. 40%.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    551,
+    552
+   ],
+   "t_start": 3139.21,
+   "t_end": 3149.36,
+   "window": 8
+  },
+  {
+   "claim": "Data is essential for business owners to remove emotion and excuses from performance analysis.",
+   "quote": "Numbers remove all the emotion from it. But they do tell you stories.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    611
+   ],
+   "t_start": 3375.4,
+   "t_end": 3381.97,
+   "window": 8
+  },
+  {
+   "claim": "The speaker reports a concrete increase in average customer spend despite raising prices.",
+   "quote": "in December of 20, it was 41, then 51, then 59, then 60, 67, 69. What does that tell us as a brand? That even though we're raising the membership costs, our customers are embracing it.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    619,
+    620,
+    621
+   ],
+   "t_start": 3467.94,
+   "t_end": 3486.93,
+   "window": 8
+  },
+  {
+   "claim": "The speaker believes the industry average for membership duration is significantly lower than their own result.",
+   "quote": "The average in the industry is four months. Our current average is 11.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    644
+   ],
+   "t_start": 3578.6,
+   "t_end": 3587.38,
+   "window": 9
+  },
+  {
+   "claim": "Operating without precise data prevents a business owner from actually achieving their goals.",
+   "quote": "Assuming you can make progress without accurate data is like dreaming about a delicious meal and expecting to wake up full.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    654
+   ],
+   "t_start": 3654.33,
+   "t_end": 3671.91,
+   "window": 9
+  },
+  {
+   "claim": "The speaker argues that the tanning industry is highly profitable if managed correctly.",
+   "quote": "This is the easiest industry to make good, profitable money.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    659
+   ],
+   "t_start": 3692.49,
+   "t_end": 3696.56,
+   "window": 9
+  },
+  {
+   "claim": "Business owners often use their customers as test subjects for unproven strategies.",
+   "quote": "And who is the guinea pig when we use her? Our customer.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    664,
+    665
+   ],
+   "t_start": 3707.94,
+   "t_end": 3711.46,
+   "window": 9
+  },
+  {
+   "claim": "There is a negative perception associated with 'tanning' compared to 'wellness'.",
+   "quote": "with the word tanning comes a stigma.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    693
+   ],
+   "t_start": 3808.84,
+   "t_end": 3815.42,
+   "window": 9
+  },
+  {
+   "claim": "The industry damages its own brand by keeping old equipment in service.",
+   "quote": "We do that by equipment that is aged out, should have been retired long ago.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    697
+   ],
+   "t_start": 3845.29,
+   "t_end": 3849.61,
+   "window": 9
+  },
+  {
+   "claim": "Some salon owners struggle with data analysis and prefer to outsource it.",
+   "quote": "some people are just not numbers people",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    722
+   ],
+   "t_start": 3951.64,
+   "t_end": 3955.98,
+   "window": 9
+  },
+  {
+   "claim": "Some salon owners find data and spreadsheets intimidating or overwhelming.",
+   "quote": "it is a little bit overwhelming at first",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    717
+   ],
+   "t_start": 3928.66,
+   "t_end": 3932.22,
+   "window": 10
+  },
+  {
+   "claim": "Many owners struggle with data analysis and just want to know if they are improving.",
+   "quote": "I still don't understand but I just want to see am I making progress am I making right decisions",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "desire",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    720,
+    721
+   ],
+   "t_start": 3944.74,
+   "t_end": 3951.64,
+   "window": 10
+  },
+  {
+   "claim": "Running a business without tracking metrics is equivalent to guessing.",
+   "quote": "Otherwise, you're guessing. And guessing doesn't pay off in the long run.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060690",
+   "segment_ids": [
+    728,
+    729
+   ],
+   "t_start": 3977.99,
+   "t_end": 3982.31,
+   "window": 10
+  }
+ ]
+}

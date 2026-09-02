@@ -1,0 +1,31 @@
+{
+ "source_stream": "uvasummer24_FullAudio",
+ "media_duration_s": 2781.412,
+ "windows_total": 7,
+ "windows_too_thin": 0,
+ "windows_bad_json": 2,
+ "items_rejected_no_verbatim_match": 2,
+ "items_kept": 1,
+ "model": "gemma4:31b",
+ "lens": "marketing",
+ "mined_at": "2026-08-23T00:50:07",
+ "advice": [
+  {
+   "claim": "Salon owners value in-person training seminars over other formats.",
+   "quote": "in person seminars in person seminars it's been a while",
+   "category": "coaching",
+   "moment": "needs",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "desire",
+   "lens": "marketing",
+   "source_stream": "uvasummer24_FullAudio",
+   "segment_ids": [
+    32
+   ],
+   "t_start": 158.63,
+   "t_end": 165.91,
+   "window": 1
+  }
+ ]
+}

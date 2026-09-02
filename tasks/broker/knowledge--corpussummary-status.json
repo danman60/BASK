@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 20,
+  "tool_calls": 20,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/apps/web/src/components/compass/knowledge/CorpusSummary.tsx']",
+  "elapsed": "45s",
+  "updated": "03:58:41",
+  "provider_history": [],
+  "provider_switched": false
+}

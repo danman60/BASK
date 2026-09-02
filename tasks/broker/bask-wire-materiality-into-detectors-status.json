@@ -1,0 +1,13 @@
+{
+  "state": "running",
+  "turns": 83,
+  "tool_calls": 83,
+  "errors": 12,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/core/src/insights/detectors.ts"
+  ],
+  "elapsed": "419s",
+  "updated": "18:08:23",
+  "provider_history": [],
+  "provider_switched": false
+}

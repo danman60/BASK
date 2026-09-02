@@ -1,0 +1,6 @@
+# Result
+
+Created StaffTaskCard component following the specified requirements and house style.
+
+## Files Changed
+- /home/danman60/projects/uvalux-platform/packages/ui/src/components/StaffTaskCard.tsx

@@ -1,0 +1,426 @@
+{
+ "source_stream": "uvalux26_P1060687",
+ "media_duration_s": 3252.249,
+ "windows_total": 8,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 4,
+ "items_kept": 23,
+ "model": "gemma4:12b",
+ "lens": "advice",
+ "mined_at": "2026-08-22T19:05:36",
+ "advice": [
+  {
+   "claim": "You must use the correct terminology when shifting your business focus toward wellness and spa-like experiences.",
+   "quote": "We have to get our vernacular down.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    44
+   ],
+   "t_start": 147.64,
+   "t_end": 149.38,
+   "window": 1
+  },
+  {
+   "claim": "Train your staff on the specific language and terminology required to sell your services effectively.",
+   "quote": "We have to teach our team who's next door the right things to say, like Mike was saying.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    45
+   ],
+   "t_start": 149.48,
+   "t_end": 154.4,
+   "window": 1
+  },
+  {
+   "claim": "Pair different modalities together to create a cohesive experience for the client.",
+   "quote": "So what we need to do is when I'm coming in for the wave or for the red light, what am I doing to pair my modalities for an experience?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    93,
+    94
+   ],
+   "t_start": 284.64,
+   "t_end": 294.08,
+   "window": 1
+  },
+  {
+   "claim": "Focus on touchless technologies to reduce the need for constant staffing in certain areas.",
+   "quote": "Because when you're talking about touchless, like Mike said, you don't have a lot of employees in there.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    98,
+    99
+   ],
+   "t_start": 313.04,
+   "t_end": 324.36,
+   "window": 1
+  },
+  {
+   "claim": "Instead of following existing trends, owners should aim to create new trends in skincare and wellness.",
+   "quote": "need to do is look at the trends in our area and fuck the trends. Yeah, you heard me. What we want to do is we want to create trends.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    117,
+    118
+   ],
+   "t_start": 422.73,
+   "t_end": 441.13,
+   "window": 2
+  },
+  {
+   "claim": "Staff must be engaged with customers rather than on their phones or social media to create a positive atmosphere.",
+   "quote": "When you're stepping into a place, is your staff on the phone or are they engaging? Are they TikToking or are they engaging the customers when they come in?",
+   "category": "coaching",
+   "moment": "greeting",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    130,
+    131
+   ],
+   "t_start": 506.72,
+   "t_end": 516.61,
+   "window": 2
+  },
+  {
+   "claim": "You have a very short window of time to make a positive first impression on a customer.",
+   "quote": "How long do we have to make that impression, to make that sale? Remember the seconds? Fifteen.",
+   "category": "customer",
+   "moment": "greeting",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    133,
+    134,
+    135
+   ],
+   "t_start": 519.26,
+   "t_end": 529.15,
+   "window": 2
+  },
+  {
+   "claim": "Provide a tote bag for clients to carry their belongings between rooms to improve the customer experience.",
+   "quote": "how about a tote to put my clothes and all my junk in so I put on a robe and I'm going to the next room listen me away to my next room",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    161,
+    162
+   ],
+   "t_start": 639.03,
+   "t_end": 651.61,
+   "window": 2
+  },
+  {
+   "claim": "Offer a menu of products to enhance the client experience and justify the service.",
+   "quote": "you have a menu of items that you can offer that are going to accentuate the entire experience.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    228
+   ],
+   "t_start": 981.08,
+   "t_end": 985.94,
+   "window": 3
+  },
+  {
+   "claim": "Change the atmosphere of your salon through sensory elements like fragrance and music to create a specific mood.",
+   "quote": "And you can only do that with visual change and that aura, the feel of what people feel when they come in. Even to something like fragrance. What is the fragrance that you have permeating at your wellness studio right now? What music do you have playing?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    282,
+    283,
+    284,
+    285
+   ],
+   "t_start": 1253.31,
+   "t_end": 1269.84,
+   "window": 3
+  },
+  {
+   "claim": "Sell skincare products as part of a necessary regimen rather than as one-off items.",
+   "quote": "when it comes to skincare products, you want your customer buying in, not just buying the products, but buying them that this needs to be part of the regimen.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    334,
+    335
+   ],
+   "t_start": 1513.8,
+   "t_end": 1523.52,
+   "window": 4
+  },
+  {
+   "claim": "Staff education is essential to ensure employees feel confident enough to recommend products and modalities to customers.",
+   "quote": "education is the key because if your staff is scared of the products scared of the modalities and the equipment they're not going to tell others how to use it",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    345,
+    346
+   ],
+   "t_start": 1570.08,
+   "t_end": 1581.5,
+   "window": 4
+  },
+  {
+   "claim": "Business owners must maintain accurate financial records and understand their daily numbers to be prepared for growth or financing.",
+   "quote": "Keep good financial records.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    412,
+    413
+   ],
+   "t_start": 2178.89,
+   "t_end": 2186.98,
+   "window": 5
+  },
+  {
+   "claim": "Owners must stay informed about their business's daily operations and financial status rather than delegating full oversight to others.",
+   "quote": "You're the owner. It's up to you to know what those numbers are and what's happening in your business.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    421,
+    422
+   ],
+   "t_start": 2213.62,
+   "t_end": 2219.18,
+   "window": 5
+  },
+  {
+   "claim": "Establish a solid credit process and maintain accurate financial records to secure business financing.",
+   "quote": "So you need to view. So right now you need to have established, start establishing good credit process as well as your business process that we're talking about.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    411
+   ],
+   "t_start": 2147.34,
+   "t_end": 2178.89,
+   "window": 6
+  },
+  {
+   "claim": "Owners must actively monitor their own business's financial data and performance metrics.",
+   "quote": "You're the owner. It's up to you to know what those numbers are and what's happening in your business.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    421,
+    422
+   ],
+   "t_start": 2213.62,
+   "t_end": 2219.18,
+   "window": 6
+  },
+  {
+   "claim": "Evaluate and potentially cut underperforming services or products that are costing the business money.",
+   "quote": "A bunch of people would come in and do business for them and realize that they were running services that were not making them any money. They were actually costing them. And so they were able to look at their business and decide, you know, what, you know, and decide who cut those product lines.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    442,
+    443,
+    444
+   ],
+   "t_start": 2340.6,
+   "t_end": 2368.45,
+   "window": 6
+  },
+  {
+   "claim": "Prepare a complete package of financial documents before approaching a lender to improve your chances of getting funded.",
+   "quote": "You want to make your best marketing effort when you go to that financer. You don't want to go to them and have them ask you for the documents. You want to bring your package to them.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    471,
+    472,
+    473
+   ],
+   "t_start": 2585.77,
+   "t_end": 2604.19,
+   "window": 6
+  },
+  {
+   "claim": "A business plan is essential for securing financing as it outlines the owner's identity, business operations, and management strategy.",
+   "quote": "A business plan is a written document that tells me who you are as the owner, what your business does, and how you intend to run your business.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    507,
+    508
+   ],
+   "t_start": 2780.02,
+   "t_end": 2791.17,
+   "window": 7
+  },
+  {
+   "claim": "Cash flow projections should be a 12-month spreadsheet showing expected income and expenses to evaluate the impact of expansions or new financing.",
+   "quote": "Cash flow projections are an estimate of how you're going to, what cash is coming into your business, which cash is going out of your business, how your cash flow is going to look with the new expansion you're doing or the new financing. So that would be a 12-month spreadsheet, a monthly projection of the cash flow and the cash flow.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    511,
+    513
+   ],
+   "t_start": 2808.25,
+   "t_end": 2835.34,
+   "window": 7
+  },
+  {
+   "claim": "Consolidating existing debts, such as credit cards and equipment loans, can improve cash flow and make it easier to manage new financing for marketing or additional equipment.",
+   "quote": "So if you have a piece of equipment that you're paying on, and you want to borrow or you need to do extra marketing, or you want to do both, buy a new piece of equipment and marketing, we can finance it all together. We can give you a lower rate stretch than time-out.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    545
+   ],
+   "t_start": 3035.9,
+   "t_end": 3058.45,
+   "window": 7
+  },
+  {
+   "claim": "Consider financing equipment and marketing together to potentially secure a lower interest rate.",
+   "quote": "So if you have a piece of equipment that you're paying on, and you want to borrow or you need to do extra marketing, or you want to do both, buy a new piece of equipment and marketing, we can finance it all together. We can give you a lower rate stretch than time-out.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    545
+   ],
+   "t_start": 3035.9,
+   "t_end": 3058.45,
+   "window": 8
+  },
+  {
+   "claim": "Be aware that leasing equipment can be expensive compared to other financing methods.",
+   "quote": "When we introduce new equipment into salons, I would say 90% of the time we're leasing it. Leasing is expensive.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": null,
+   "lens": "advice",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    561
+   ],
+   "t_start": 3188.62,
+   "t_end": 3214.2,
+   "window": 8
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 11,
+  "tool_calls": 11,
+  "errors": 0,
+  "files_changed": "- /home/danman60/projects/uvalux-platform/tests/agent/walkthrough/06-compass-coaching-knowledge.md",
+  "elapsed": "22s",
+  "updated": "04:10:26",
+  "provider_history": [],
+  "provider_switched": false
+}

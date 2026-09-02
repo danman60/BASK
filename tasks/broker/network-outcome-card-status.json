@@ -1,0 +1,13 @@
+{
+  "state": "done",
+  "turns": 26,
+  "tool_calls": 26,
+  "errors": 3,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/ui/src/components/NetworkOutcomeCard.tsx"
+  ],
+  "elapsed": "299s",
+  "updated": "20:18:32",
+  "provider_history": [],
+  "provider_switched": false
+}

@@ -1,0 +1,9 @@
+[13:02:26] lane=big host=http://100.75.112.14:11434 model=qwen3-coder:30b smoke=1
+[13:02:26] === 01-action-row attempt 1/2 ===
+[13:02:26] 01-action-row -> packages/ui/src/components/ActionRow.tsx [tsx] log=01-action-row-20260821-130226.log
+[13:04:49] 01-action-row: STRAY changes outside target, reverting those only:
+ M apps/web/src/components/shell/nav.ts
+ M packages/ui/src/guidance/guidance.ts
+[13:04:49] 01-action-row: PASS, committed
+[13:04:49] smoke run complete, stopping
+[13:04:49] lane big drained

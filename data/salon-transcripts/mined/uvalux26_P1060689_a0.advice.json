@@ -1,0 +1,168 @@
+{
+ "source_stream": "uvalux26_P1060689_a0",
+ "media_duration_s": 3238.735,
+ "windows_total": 8,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 3,
+ "items_kept": 10,
+ "model": "gemma4:12b",
+ "mined_at": "2026-08-22T06:16:00",
+ "advice": [
+  {
+   "claim": "Reward your customers with a loyalty program to encourage repeat business.",
+   "quote": "If they're loyalty, you want to make sure that you're rewarding them.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    201,
+    202
+   ],
+   "t_start": 1055.51,
+   "t_end": 1057.95,
+   "window": 3
+  },
+  {
+   "claim": "Allowing customers to choose from multiple brands can help ensure you don't lose clients who specifically want a different product.",
+   "quote": "The biggest reason is that we never ever want you guys to lose customers or have your sales waver one way or another because you're not able to carry another manufacturer's products.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    288
+   ],
+   "t_start": 1394.67,
+   "t_end": 1404.03,
+   "window": 4
+  },
+  {
+   "claim": "Use pre-made marketing materials and social media templates to save time while maintaining a consistent brand presence.",
+   "quote": "We also have so many marketing outlets that we create and make our social media teammates for you guys to use, where you can screenshot, screen share, literally repost on your social channels, so that you guys don't have to do anything.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    345
+   ],
+   "t_start": 1644.56,
+   "t_end": 1657.68,
+   "window": 4
+  },
+  {
+   "claim": "Offer specialized training for your staff to improve their skills and service quality.",
+   "quote": "You guys can also earn, you know, opportunities to have trainings.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    368
+   ],
+   "t_start": 1761.73,
+   "t_end": 1765.63,
+   "window": 4
+  },
+  {
+   "claim": "Invest in reliable equipment to ensure business continuity and avoid the risk of downtime.",
+   "quote": "This is absolutely essential because if the bed goes down or if the bed breaks after five years and you have to purchase another one, your business is at risk and you can't afford that.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    430,
+    431,
+    432
+   ],
+   "t_start": 2118.89,
+   "t_end": 2127.39,
+   "window": 5
+  },
+  {
+   "claim": "Investing in newer LED technology can reduce long-term operational costs related to electricity and maintenance.",
+   "quote": "But the part that I like about it being all LED technology is one the electricity is much cheaper.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    524
+   ],
+   "t_start": 2596.22,
+   "t_end": 2601.46,
+   "window": 6
+  },
+  {
+   "claim": "Replacing older equipment can eliminate high costs associated with frequent and expensive part replacements.",
+   "quote": "On the flip side of the open sun 1050, it's the most electric consumption of all my units, and it also has the most frequent, most expensive lamp changes.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    527
+   ],
+   "t_start": 2617.04,
+   "t_end": 2625.5,
+   "window": 6
+  },
+  {
+   "claim": "Choosing equipment with lower maintenance and energy costs can significantly improve profit margins and simplify operations for owners with limited staff.",
+   "quote": "So just the electricity and the lamp savings I'm estimating is going to save me around $1,000 to $1,500 a month.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    533
+   ],
+   "t_start": 2662.2,
+   "t_end": 2669.26,
+   "window": 7
+  },
+  {
+   "claim": "Staff must be educated to move away from the misconception that the hottest bed provides the best tanning experience.",
+   "quote": "So the salon staff needs to understand and educate and change people's mind to as hot as possible is the best way to tend and give more education to the occupant petition.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    592,
+    593
+   ],
+   "t_start": 2990.92,
+   "t_end": 3003.18,
+   "window": 7
+  },
+  {
+   "claim": "Focusing on a high-quality, comfortable tanning experience is key to attracting wellness-oriented customers and maximizing retail opportunities.",
+   "quote": "If you spend all this money and all this time taking wellness customers to your salon to create new customers, you won't damage the tent. Because this is where you're going to sell lotion, and this is where you're going to maximize your revenue per square footage.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    587,
+    588
+   ],
+   "t_start": 2951.0,
+   "t_end": 2963.72,
+   "window": 7
+  }
+ ]
+}

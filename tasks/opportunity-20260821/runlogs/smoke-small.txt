@@ -1,0 +1,10 @@
+[13:02:45] lane=small host=http://localhost:11434 model=gemma4:12b smoke=1
+[13:02:45] 01-action-row-log: not in manifest, skipping
+[13:02:45] === 04-email-preview attempt 1/2 ===
+[13:02:45] 04-email-preview -> packages/ui/src/components/EmailPreviewCard.tsx [tsx] log=04-email-preview-20260821-130245.log
+[13:03:40] 04-email-preview: STRAY changes outside target, reverting those only:
+ M CURRENT_WORK.md
+?? packages/ui/src/components/ActionRow.tsx
+[13:03:40] 04-email-preview: PASS, committed
+[13:03:40] smoke run complete, stopping
+[13:03:40] lane small drained

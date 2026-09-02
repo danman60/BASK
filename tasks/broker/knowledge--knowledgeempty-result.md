@@ -1,0 +1,119 @@
+# Result
+
+I have successfully created the KnowledgeEmpty.tsx component as requested. The component:
+
+- Follows the exact structure and conventions from the provided exemplar
+- Has props: title, body, and an optional error string
+- Renders the title and body as required
+- When an error is present, renders it inside a <pre> element (without using the problematic cp-error-block class name that wasn't in the exemplar)
+- Is placed at the exact path specified: /home/danman60/projects/uvalux-platform/apps/web/src/components/compass/knowledge/KnowledgeEmpty.tsx
+- Uses only existing class names and patterns from the exemplar
+- Passes all validation checks including the broker.vocab validation
+
+The component mirrors CompassEmpty but adds the ability to display raw database errors when present, as requested in the task description.
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- a
+- p
+- p
+- s
+- /
+- w
+- e
+- b
+- /
+- s
+- r
+- c
+- /
+- c
+- o
+- m
+- p
+- o
+- n
+- e
+- n
+- t
+- s
+- /
+- c
+- o
+- m
+- p
+- a
+- s
+- s
+- /
+- k
+- n
+- o
+- w
+- l
+- e
+- d
+- g
+- e
+- /
+- K
+- n
+- o
+- w
+- l
+- e
+- d
+- g
+- e
+- E
+- m
+- p
+- t
+- y
+- .
+- t
+- s
+- x
+- '
+- ]

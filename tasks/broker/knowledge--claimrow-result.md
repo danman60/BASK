@@ -1,0 +1,111 @@
+# Result
+
+I have successfully created the ClaimRow component as specified. The component:
+- Imports Claim type and REVIEW_STATE_LABEL and formatTimecode from @bask/core
+- Accepts claim, focused, onSelect, onVerify, and onReject props
+- Renders a table row with className cp-claim-row and adds cp-claim-row--focused when focused
+- Calls onSelect on click
+- Displays cells in order: review state label, claim text (with cp-claim-text class), category, moment, distinctEvents, and formatted timecode of first provenance entry
+- Guards against empty provenance array
+- Does not render the quote
+- Contains no colors as requested
+
+## Files Changed
+- [
+- '
+- /
+- h
+- o
+- m
+- e
+- /
+- d
+- a
+- n
+- m
+- a
+- n
+- 6
+- 0
+- /
+- p
+- r
+- o
+- j
+- e
+- c
+- t
+- s
+- /
+- u
+- v
+- a
+- l
+- u
+- x
+- -
+- p
+- l
+- a
+- t
+- f
+- o
+- r
+- m
+- /
+- a
+- p
+- p
+- s
+- /
+- w
+- e
+- b
+- /
+- s
+- r
+- c
+- /
+- c
+- o
+- m
+- p
+- o
+- n
+- e
+- n
+- t
+- s
+- /
+- c
+- o
+- m
+- p
+- a
+- s
+- s
+- /
+- k
+- n
+- o
+- w
+- l
+- e
+- d
+- g
+- e
+- /
+- C
+- l
+- a
+- i
+- m
+- R
+- o
+- w
+- .
+- t
+- s
+- x
+- '
+- ]

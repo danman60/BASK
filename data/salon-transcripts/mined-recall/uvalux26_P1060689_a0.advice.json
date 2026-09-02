@@ -1,0 +1,262 @@
+{
+ "source_stream": "uvalux26_P1060689_a0",
+ "media_duration_s": 3238.735,
+ "windows_total": 8,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 5,
+ "items_kept": 14,
+ "model": "gemma4:31b",
+ "lens": "recall",
+ "mined_at": "2026-08-22T15:22:41",
+ "advice": [
+  {
+   "claim": "Having comprehensive insurance is critical because cheap coverage may not protect a business during catastrophic events like floods.",
+   "quote": "the proper coverage is not always going to be the cheapest coverage, but it's going to be the coverage that you need if something terrible happens. And that's really, really important. And as you heard Rachel say up here earlier, she's just had a flood in her salon, and fortunately for her, she's got the insurance.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "war_story",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    16,
+    17
+   ],
+   "t_start": 87.71,
+   "t_end": 104.02,
+   "window": 1
+  },
+  {
+   "claim": "A vendor loyalty program can provide cash back rebates if the salon maintains a specific product mix threshold.",
+   "quote": "with our Platinum program, what it is, is you carry 75% of our products, and you get a 10% cash back.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    181,
+    182
+   ],
+   "t_start": 977.44,
+   "t_end": 988.44,
+   "window": 3
+  },
+  {
+   "claim": "To qualify for the 10% cashback program, a salon must ensure at least 75% of their product inventory consists of Devoted Creations brands.",
+   "quote": "that 10% cash back option, like we said, we only require that 75% of your products are devoted creations.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    299
+   ],
+   "t_start": 1464.34,
+   "t_end": 1472.52,
+   "window": 4
+  },
+  {
+   "claim": "The minimum spend requirement to qualify for the basic cashback program is $100 per qualified period.",
+   "quote": "The only qualification aside from that 75% eligibility is going to be that you spend a minimum of $100 per qualified.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    306
+   ],
+   "t_start": 1510.07,
+   "t_end": 1518.49,
+   "window": 4
+  },
+  {
+   "claim": "Modern customers prefer checking social media over calling a business to verify operational status during weather events.",
+   "quote": "I am in that age group where I don't call a place to see if they're open when it's snowing outside. I check their Instagram, their Facebook.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    342,
+    343
+   ],
+   "t_start": 1627.5,
+   "t_end": 1635.06,
+   "window": 4
+  },
+  {
+   "claim": "Lamp and labor costs for older high-end tanning beds can reach approximately $2,000 per change.",
+   "quote": "My lamp changes probably cost me U.S. dollars, I would say between lamps and labor, close to $2,000.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    528
+   ],
+   "t_start": 2625.5,
+   "t_end": 2631.8,
+   "window": 6
+  },
+  {
+   "claim": "Electricity costs in certain regions (like New Jersey) can be as high as 35 cents per kilowatt hour.",
+   "quote": "In New Jersey, we're lucky enough to have super expensive electricity, so I pay 35 cents per kilowatt hour.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    529
+   ],
+   "t_start": 2632.64,
+   "t_end": 2639.5,
+   "window": 6
+  },
+  {
+   "claim": "LED tanning technology is designed to maintain consistent output for up to 20,000 hours with only a 10% devaluation.",
+   "quote": "We just added a valuation of 10% after 20,000 hours, and that's why we say we'll stay consistent for that time.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    510
+   ],
+   "t_start": 2495.68,
+   "t_end": 2501.7,
+   "window": 6
+  },
+  {
+   "claim": "Replacing high-maintenance traditional beds with LED technology can reduce monthly overhead by $1,000 to $1,500 through lower electricity and lamp costs.",
+   "quote": "So just the electricity and the lamp savings I'm estimating is going to save me around $1,000 to $1,500 a month.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    533
+   ],
+   "t_start": 2662.2,
+   "t_end": 2669.26,
+   "window": 7
+  },
+  {
+   "claim": "Traditional high-end beds can cost nearly $2,000 per lamp change when accounting for both materials and labor.",
+   "quote": "My lamp changes probably cost me U.S. dollars, I would say between lamps and labor, close to $2,000.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    528
+   ],
+   "t_start": 2625.5,
+   "t_end": 2631.8,
+   "window": 7
+  },
+  {
+   "claim": "In New Jersey, electricity costs for salons can reach as high as 35 cents per kilowatt hour.",
+   "quote": "In New Jersey, we're lucky enough to have super expensive electricity, so I pay 35 cents per kilowatt hour.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    529
+   ],
+   "t_start": 2632.64,
+   "t_end": 2639.5,
+   "window": 7
+  },
+  {
+   "claim": "Customers often mistakenly believe the hottest bed is the most effective, requiring staff to educate them that extreme heat does not equal a better tan.",
+   "quote": "their staff gets a customer walking in the door and says I want the hottest bed you've got because they believe it's the best way. So the salon staff needs to understand and educate and change people's mind",
+   "category": "customer",
+   "moment": "needs",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "objection",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    591,
+    592
+   ],
+   "t_start": 2985.98,
+   "t_end": 2995.96,
+   "window": 7
+  },
+  {
+   "claim": "Customers often mistake the immediate heat sensation of a tanning bed for actual pigmentation, which actually takes several hours to develop.",
+   "quote": "Heat is not doesn't mean tanning, and a lot of the time, when you get out of a very hot bed and you dye the gray colors, it is not pigmentation, it is heat, because the tanning and the delineation, delineation of the surface, it doesn't happen in 10 minutes, it happens in multiple hours.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    602,
+    603,
+    604,
+    605
+   ],
+   "t_start": 3049.73,
+   "t_end": 3074.31,
+   "window": 8
+  },
+  {
+   "claim": "Switching to LED facials can cause customer pushback because users associate high heat with tanning effectiveness.",
+   "quote": "So, all the airline decided four years ago that every tanning unit that we have that has facial will be LED facial. And we've faced a lot of kickbacks in the industry. I want to get hot, I want to get a tan, I want to sit in a car",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "objection",
+   "lens": "recall",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    616,
+    617,
+    618,
+    619
+   ],
+   "t_start": 3126.34,
+   "t_end": 3164.47,
+   "window": 8
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+  "state": "done",
+  "turns": 7,
+  "tool_calls": 8,
+  "errors": 0,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/ui/src/components/StaffTaskCard.tsx"
+  ],
+  "elapsed": "28s",
+  "updated": "13:06:51",
+  "provider_history": [],
+  "provider_switched": false
+}

@@ -1,0 +1,1654 @@
+{
+ "source_stream": "uva25_RoomB_AllPresentations",
+ "media_duration_s": 14178.7,
+ "windows_total": 33,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 3,
+ "items_kept": 91,
+ "model": "gemma4:31b",
+ "lens": "marketing",
+ "mined_at": "2026-08-23T00:39:55",
+ "advice": [
+  {
+   "claim": "Selling minute sessions or credits creates a financial liability because the owner owes services for money already collected.",
+   "quote": "if you had no more revenue across your counter, how much would you owe in services to the clients that have already paid you? What is your liability to clients today in terms of minutes, sessions, points, etc.?",
+   "category": "membership",
+   "moment": "needs",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    138,
+    139
+   ],
+   "t_start": 736.12,
+   "t_end": 770.13,
+   "window": 2
+  },
+  {
+   "claim": "Membership revenue provides the peace of mind that comes with predictable cash flow.",
+   "quote": "It's July and I'm sleeping like a baby. Because he had revenue. He knew that when he put the key in the door, he had that money coming into his salon.",
+   "category": "membership",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    165,
+    166
+   ],
+   "t_start": 876.98,
+   "t_end": 888.2,
+   "window": 2
+  },
+  {
+   "claim": "Owners are often reluctant to implement new systems because they feel they lack the time during startup or transition.",
+   "quote": "I don't have time to make changes like this. I just, I need to get this place up and going.",
+   "category": "operations",
+   "moment": "needs",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    160
+   ],
+   "t_start": 855.72,
+   "t_end": 858.86,
+   "window": 2
+  },
+  {
+   "claim": "Staff spend too much time on repetitive, awkward reselling conversations at the front counter.",
+   "quote": "Let's reduce the time that our staff spend at the counter reselling packages. Oh, oh, you're using your last hand today. Oh, okay, I get paid on Friday, I'll be back",
+   "category": "operations",
+   "moment": "needs",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    169,
+    170,
+    171
+   ],
+   "t_start": 899.24,
+   "t_end": 908.98,
+   "window": 2
+  },
+  {
+   "claim": "Salon owners find it frustrating when staff spend too much time trying to resell packages at the counter.",
+   "quote": "Let's reduce the time that our staff spend at the counter reselling packages.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    169
+   ],
+   "t_start": 899.24,
+   "t_end": 904.86,
+   "window": 3
+  },
+  {
+   "claim": "Owners want a predictable revenue stream that removes the stress of daily financial uncertainty.",
+   "quote": "It's July and I'm sleeping like a baby. Because he had revenue. He knew that when he put the key in the door, he had that money coming into his salon.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    165,
+    166
+   ],
+   "t_start": 876.98,
+   "t_end": 888.2,
+   "window": 3
+  },
+  {
+   "claim": "Tanning is often viewed as a luxury expense rather than a fixed budget item.",
+   "quote": "when it comes to tanning most people are using disposable income you have to make them change that to budgeted income",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    189,
+    190
+   ],
+   "t_start": 963.4,
+   "t_end": 975.38,
+   "window": 3
+  },
+  {
+   "claim": "Memberships create a sense of belonging that makes customers ignore competitor ads.",
+   "quote": "if somebody feels like they are a belonging to you a member of yours they're much less likely to see your competitors advertising",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    199,
+    200
+   ],
+   "t_start": 1019.19,
+   "t_end": 1032.63,
+   "window": 3
+  },
+  {
+   "claim": "Membership programs are not static and require constant evolution to remain effective.",
+   "quote": "it's not a one and done. It's never a one and done. You always have to be moving forward.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    216
+   ],
+   "t_start": 1069.36,
+   "t_end": 1074.1,
+   "window": 3
+  },
+  {
+   "claim": "Salon owners fear upsetting long-term clients when changing pricing or membership structures.",
+   "quote": "There's a client that's been coming in for 20 years and they always buy the same package and they always do the thing. Don't upset the apple cart.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    257,
+    258,
+    259
+   ],
+   "t_start": 1364.57,
+   "t_end": 1371.47,
+   "window": 4
+  },
+  {
+   "claim": "Memberships have a relatively short natural lifespan before the owner needs to resell or upgrade them.",
+   "quote": "the average membership is going to last four to five months",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    273
+   ],
+   "t_start": 1444.04,
+   "t_end": 1449.86,
+   "window": 4
+  },
+  {
+   "claim": "Owners use free services as a hook for memberships, even if the clients never actually use the perk.",
+   "quote": "offer a free spray tan yeah their membership wave um normally there is a fee to sign up yeah wonderful and then we ended up getting a few people signing up and nobody ever used the spray tan",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    269,
+    270,
+    271
+   ],
+   "t_start": 1418.94,
+   "t_end": 1438.9,
+   "window": 4
+  },
+  {
+   "claim": "Lack of online reviews is a significant barrier to acquiring new customers.",
+   "quote": "when I shop, I rely on reviews. If somebody doesn't have reviews, I am much less likely to use their services.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    310,
+    311,
+    312
+   ],
+   "t_start": 1585.16,
+   "t_end": 1594.44,
+   "window": 4
+  },
+  {
+   "claim": "Having only low-end equipment prevents a salon from being able to sell premium memberships.",
+   "quote": "if you're loaded on the bottom end if you have all 20 minute beds you're not going to sell the higher end",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    332,
+    333
+   ],
+   "t_start": 1650.61,
+   "t_end": 1662.95,
+   "window": 4
+  },
+  {
+   "claim": "The goal of a membership is to create high perceived value to lock in customers.",
+   "quote": "the goal with members is always to add the most possible value to the highest possible level and that's how you hook people",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    335,
+    336,
+    337
+   ],
+   "t_start": 1667.73,
+   "t_end": 1689.14,
+   "window": 4
+  },
+  {
+   "claim": "Salon owners struggle with members feeling trapped by long-term contracts, which creates a barrier to signing up.",
+   "quote": "nobody likes to feel confined",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    413
+   ],
+   "t_start": 2187.61,
+   "t_end": 2192.79,
+   "window": 5
+  },
+  {
+   "claim": "Customers are hesitant to commit to year-long memberships because of negative past experiences with gym contracts.",
+   "quote": "everybody's had a shitty experience with a gym that they've been locked into and they don't go and they end up feeling negative about it",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    405,
+    406
+   ],
+   "t_start": 2142.56,
+   "t_end": 2151.62,
+   "window": 5
+  },
+  {
+   "claim": "Short-term membership commitments are more effective for conversion than long-term ones.",
+   "quote": "You will sell way more memberships if it gets declined then their membership gets gets put on pause",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    414,
+    415
+   ],
+   "t_start": 2192.79,
+   "t_end": 2204.69,
+   "window": 5
+  },
+  {
+   "claim": "Small psychological pricing differences significantly impact a customer's willingness to spend.",
+   "quote": "If you keep your pricing at $99 instead of $100, people will spend $99, but they don't want to spend $100.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    396
+   ],
+   "t_start": 2087.6,
+   "t_end": 2096.46,
+   "window": 5
+  },
+  {
+   "claim": "Low-cost competitors like gyms can actually act as a lead generator for high-end salons.",
+   "quote": "a salon or a fitness center or somebody who's maybe isn't that upper echelon creates a new client because it was inexpensive to start, then they come over to you.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    381,
+    382
+   ],
+   "t_start": 1996.34,
+   "t_end": 2010.23,
+   "window": 5
+  },
+  {
+   "claim": "Customers are resistant to long-term membership contracts.",
+   "quote": "nobody likes to feel confined",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    414
+   ],
+   "t_start": 2192.79,
+   "t_end": 2198.75,
+   "window": 6
+  },
+  {
+   "claim": "Many salon owners fail to update their pricing for long periods.",
+   "quote": "So many times I'll walk into salons and I'll look at the price and they haven't changed it in a decade.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    458
+   ],
+   "t_start": 2535.9,
+   "t_end": 2543.29,
+   "window": 6
+  },
+  {
+   "claim": "Implementing memberships can lead to record-breaking revenue even during traditionally slower months.",
+   "quote": "this December I made the most money I've ever made in this industry because he brought in memberships.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    471,
+    472
+   ],
+   "t_start": 2611.54,
+   "t_end": 2622.56,
+   "window": 6
+  },
+  {
+   "claim": "Some owners fear that changing their business model will disrupt the high volume of their busy season.",
+   "quote": "he was so worried. He's like, Elaine, he's like, I make so much money in busy season. And he's seen like 300 people a day. He's like, I just can't do it.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    468,
+    469
+   ],
+   "t_start": 2595.26,
+   "t_end": 2606.68,
+   "window": 6
+  },
+  {
+   "claim": "Implementing memberships can lead to record-breaking revenue for long-term salon owners.",
+   "quote": "this December I made the most money I've ever made in this industry because he brought in memberships.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    472
+   ],
+   "t_start": 2616.38,
+   "t_end": 2622.56,
+   "window": 7
+  },
+  {
+   "claim": "High-ticket equipment should only be prioritized after a membership model is established to facilitate upselling.",
+   "quote": "you only bring in a cocoon if you have memberships. If you don't have memberships, that's not your priority today.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    475,
+    476
+   ],
+   "t_start": 2635.18,
+   "t_end": 2644.46,
+   "window": 7
+  },
+  {
+   "claim": "Salon owners are overwhelmed by the constant stream of digital communication from customers.",
+   "quote": "We're go, go, go. We're always on our phones. We have people coming at you in every single direction. You got Snapchat. You got Instagram messages. You got got Facebook messages, you got emails, you got text messages, you got phone",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    509,
+    510,
+    511
+   ],
+   "t_start": 2818.83,
+   "t_end": 2835.27,
+   "window": 7
+  },
+  {
+   "claim": "Red light therapy is currently a high-demand trend that can be used to attract lapsed customers.",
+   "quote": "it's huge right now. It's trending. We need to get ahead of that. Bring it in, bring in people that, you know, maybe, maybe they haven't come to see you in a long time.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    540,
+    541
+   ],
+   "t_start": 3009.16,
+   "t_end": 3019.0,
+   "window": 7
+  },
+  {
+   "claim": "Adding wellness equipment can reactivate former clients who stopped tanning due to age or changing self-perception.",
+   "quote": "it was so exciting for me to see some of those clients that I hadn't seen in 20 years come back",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    569,
+    570
+   ],
+   "t_start": 3209.44,
+   "t_end": 3220.46,
+   "window": 8
+  },
+  {
+   "claim": "Older clients may avoid tanning because they still associate it with outdated, aggressive practices from previous decades.",
+   "quote": "you don't need to do 20 minutes and walk around like an 80s or 90s tanner, which was such a thing then",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    574,
+    575
+   ],
+   "t_start": 3240.9,
+   "t_end": 3255.72,
+   "window": 8
+  },
+  {
+   "claim": "Rebranding tanning as 'UV light therapy' helps overcome the stigma of being a 'tanner'.",
+   "quote": "There's a difference between UV light therapy and being a tanner, but it's the exactly the same equipment.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    576,
+    577
+   ],
+   "t_start": 3255.72,
+   "t_end": 3268.32,
+   "window": 8
+  },
+  {
+   "claim": "Red light therapy is a primary hook for bringing lapsed customers back into the salon.",
+   "quote": "but they came back for the red light every single time they come back for the red light every single time.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    581
+   ],
+   "t_start": 3286.98,
+   "t_end": 3291.72,
+   "window": 8
+  },
+  {
+   "claim": "The speaker believes that a fast service is a major selling point for customers.",
+   "quote": "it takes you longer to untie your shoes and get undressed and get in the booth and get out",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    675,
+    676
+   ],
+   "t_start": 3811.55,
+   "t_end": 3820.41,
+   "window": 9
+  },
+  {
+   "claim": "The speaker dislikes sticky products in the spray tan industry.",
+   "quote": "I work in a spray tan industry and I don't like sticky and that's a huge problem, right?",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    656
+   ],
+   "t_start": 3746.48,
+   "t_end": 3750.84,
+   "window": 9
+  },
+  {
+   "claim": "The speaker describes a high-value customer experience where clients bundle multiple skincare and tanning services into one visit.",
+   "quote": "They do the full service. You just literally, they're coming in for a spa session at your place. That's what it is. They're getting skincare. They're getting color.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    701,
+    702
+   ],
+   "t_start": 3981.31,
+   "t_end": 3992.63,
+   "window": 10
+  },
+  {
+   "claim": "The speaker notes a gap in the market for services that provide immediate, tangible results in a very short timeframe.",
+   "quote": "There's not a whole lot of things in our services that we can do that's really that fast that they can feel a difference in.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    718
+   ],
+   "t_start": 4087.45,
+   "t_end": 4094.01,
+   "window": 10
+  },
+  {
+   "claim": "A salon owner reports a specific success metric regarding product upsells for new services.",
+   "quote": "three months you've had it three months and you're already on your second order of products third order",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    696,
+    697
+   ],
+   "t_start": 3941.06,
+   "t_end": 3953.77,
+   "window": 10
+  },
+  {
+   "claim": "The owner felt frustrated by the constant need to correct younger staff members.",
+   "quote": "I was getting a little bit frustrated as the team was starting to grow on just those things of having younger staff. And so instead of being frustrated and being mad and correcting or always feeling like I was correcting",
+   "category": "coaching",
+   "moment": "needs",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    785,
+    786,
+    787
+   ],
+   "t_start": 4540.14,
+   "t_end": 4560.84,
+   "window": 11
+  },
+  {
+   "claim": "The owner is frustrated when staff frequently change the schedule after she has carefully balanced team strengths.",
+   "quote": "where it started as getting frustrated when I would spend so much time putting a schedule together that had this person working with this person and, and, you know, I've got different strengths working together to find that my schedule is being changed all the time.",
+   "category": "operations",
+   "moment": "needs",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    812,
+    813,
+    814,
+    815
+   ],
+   "t_start": 4693.2,
+   "t_end": 4708.22,
+   "window": 11
+  },
+  {
+   "claim": "The owner uses a reward system to incentivize behaviors that reduce her own stress and management burden.",
+   "quote": "everything that didn't piss me off so they got rewarded for keeping me happy",
+   "category": "coaching",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    789
+   ],
+   "t_start": 4569.24,
+   "t_end": 4578.38,
+   "window": 11
+  },
+  {
+   "claim": "The owner believes that wage increases should be tied to how much a staff member reduces the owner's workload and stress.",
+   "quote": "their wage is how easy they are on me. How much easier do they make my life? That's how they're, they get their wage increase.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    830,
+    831
+   ],
+   "t_start": 4798.84,
+   "t_end": 4813.92,
+   "window": 11
+  },
+  {
+   "claim": "The owner is currently tracking employee reward points manually using paper and pen.",
+   "quote": "as of right now, we're doing pen and paper.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    868,
+    869
+   ],
+   "t_start": 5044.02,
+   "t_end": 5058.18,
+   "window": 12
+  },
+  {
+   "claim": "The owner believes younger employees value rewards and bonuses more than a standard paycheck.",
+   "quote": "this new generation, more than money, they, believe it or not, their rewards and their bonuses and things like that mean more to them than money does.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    889,
+    890
+   ],
+   "t_start": 5176.15,
+   "t_end": 5191.67,
+   "window": 12
+  },
+  {
+   "claim": "The owner finds it difficult to come up with new staff incentive ideas every year.",
+   "quote": "trying to come up with a new thing every year is always hard.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    911,
+    912
+   ],
+   "t_start": 5318.97,
+   "t_end": 5330.63,
+   "window": 13
+  },
+  {
+   "claim": "If staff aren't kept on-site during retreats, they prioritize their social lives over the business.",
+   "quote": "If you don't stay the night, night you will lose the girls to, um, whatever their social is.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    922,
+    923
+   ],
+   "t_start": 5383.65,
+   "t_end": 5399.73,
+   "window": 13
+  },
+  {
+   "claim": "For the newer generation of employees, emotional validation is more motivating than financial incentive.",
+   "quote": "words of affirmation for this generation actually means more to them than money every single time.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    943,
+    944
+   ],
+   "t_start": 5507.11,
+   "t_end": 5513.39,
+   "window": 13
+  },
+  {
+   "claim": "Employees often claim ignorance of their schedule to excuse missing a shift.",
+   "quote": "has anyone here ever had a employee not show up for a shift because they didn't know they were scheduled yeah or they forgot that they were scheduled that's my favorite i didn't know it was scheduled",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    974,
+    975,
+    976
+   ],
+   "t_start": 5767.28,
+   "t_end": 5783.45,
+   "window": 14
+  },
+  {
+   "claim": "Finding new employees is a struggle that requires posting to multiple platforms.",
+   "quote": "who here is having problems finding employees sometimes, right? You go on Indeed, you go on Facebook Marketplace, you put apps everywhere.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1003,
+    1004
+   ],
+   "t_start": 5940.61,
+   "t_end": 5952.77,
+   "window": 14
+  },
+  {
+   "claim": "Physical communication logs in salons create an overwhelming amount of reading for the owner.",
+   "quote": "We used to have a communication book in every single salon. I don't know if anyone remembers that, where staff would write things that have happened. And then I'd be like, I'd go in and it'd be like pages and pages and pages and pages I'd have to read of stuff that needed to be done.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1013,
+    1014,
+    1015
+   ],
+   "t_start": 6011.31,
+   "t_end": 6025.39,
+   "window": 14
+  },
+  {
+   "claim": "Salon owners worry about employees inflating their hours by clocking in too early.",
+   "quote": "i know some salon owners are like well they're going to clock in early they're going to clock in this you can restrict when they can clock in it can be five minutes before their shift or two minutes before their shift so that you can actually stop the time stealing as they call it",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1030,
+    1031,
+    1032,
+    1033
+   ],
+   "t_start": 6112.6,
+   "t_end": 6131.68,
+   "window": 14
+  },
+  {
+   "claim": "Salon owners are concerned about employees clocking in too early to inflate their hours.",
+   "quote": "stop the time stealing as they call it from the employees that are clocking in early before their shift",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1033
+   ],
+   "t_start": 6125.16,
+   "t_end": 6131.68,
+   "window": 15
+  },
+  {
+   "claim": "Some owners find remote desktop apps faster for checking stats than using their dedicated salon software.",
+   "quote": "I can remote into either location either computer and check sales stats I find it quicker than using the like salon touch app or the software",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1059,
+    1060,
+    1061
+   ],
+   "t_start": 6285.87,
+   "t_end": 6306.99,
+   "window": 15
+  },
+  {
+   "claim": "Social media has replaced traditional search engines for customers researching tanning equipment and products.",
+   "quote": "social media is a new form of Google search right",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1100
+   ],
+   "t_start": 6525.49,
+   "t_end": 6533.47,
+   "window": 16
+  },
+  {
+   "claim": "The industry is shifting from traditional sales roles to an influencer-style approach based on experience.",
+   "quote": "I feel like this industry is kind of taking a turn, kind of going with the social media part, we're more influencing people to buy things behind the counter than we are selling them.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1111,
+    1112
+   ],
+   "t_start": 6590.23,
+   "t_end": 6600.51,
+   "window": 16
+  },
+  {
+   "claim": "Running monthly specials is essential for creating a sense of urgency to drive traffic.",
+   "quote": "I think having something different every single month to kind of implement into your salon is super fun. And it's important because it's creating some sense of urgency",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "desire",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1123,
+    1124
+   ],
+   "t_start": 6650.36,
+   "t_end": 6660.08,
+   "window": 16
+  },
+  {
+   "claim": "Salon owners should use deep discounts during slow months to maintain revenue.",
+   "quote": "in those slower months you guys see make that your best sales right make that your best deal something that people are going to want to do in those off months when they're maybe not coming in",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1138,
+    1139
+   ],
+   "t_start": 6727.28,
+   "t_end": 6739.18,
+   "window": 16
+  },
+  {
+   "claim": "Limited-time membership offers can force customers to commit during slow periods.",
+   "quote": "June might be a really slow month, but if I'm getting a yearly membership and I can only buy it in June, I'm buying it for sure.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1145,
+    1146
+   ],
+   "t_start": 6766.14,
+   "t_end": 6780.67,
+   "window": 16
+  },
+  {
+   "claim": "Starting sales conversations with customers can feel frustratingly difficult.",
+   "quote": "eliminating that first talking segment with them, which is sometimes like pulling teeth with customers, right?",
+   "category": "unclassified",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1241,
+    1242
+   ],
+   "t_start": 7222.64,
+   "t_end": 7231.78,
+   "window": 17
+  },
+  {
+   "claim": "Consistent branding allows a business to be recognized by customers even without seeing a logo.",
+   "quote": "you don't have to see a company's logo or their name to recognize who it is.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1318,
+    1319
+   ],
+   "t_start": 7566.39,
+   "t_end": 7577.77,
+   "window": 18
+  },
+  {
+   "claim": "Business owners struggle to maintain a consistent social media presence because daily operations interfere with their planning.",
+   "quote": "because we get busy as business owners or even in everyday life, you're like, oh, I can do this tomorrow. Well, something always comes up and then you've missed posting for the day.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1382,
+    1383,
+    1384
+   ],
+   "t_start": 7951.49,
+   "t_end": 7967.77,
+   "window": 19
+  },
+  {
+   "claim": "Social media algorithms make it difficult for business owners to maintain consistent engagement.",
+   "quote": "the algorithm is kind of wonky right now so um if you yeah it's always changing so it's not easy guys social media is",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1444,
+    1445
+   ],
+   "t_start": 8338.43,
+   "t_end": 8349.57,
+   "window": 20
+  },
+  {
+   "claim": "Poor exterior maintenance can actively drive potential customers away from a salon.",
+   "quote": "by the look of your outside are you pushing away potential customers just because you do have a dirty parking lot because your your windows aren't clean",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1499,
+    1500
+   ],
+   "t_start": 8602.29,
+   "t_end": 8615.63,
+   "window": 20
+  },
+  {
+   "claim": "Customers are highly unlikely to return to a salon if it is dirty.",
+   "quote": "32% say they will never go back if it's dirty.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1510
+   ],
+   "t_start": 8673.56,
+   "t_end": 8681.12,
+   "window": 20
+  },
+  {
+   "claim": "The nature of tanning makes cleanliness a critical factor in customer comfort.",
+   "quote": "When I go into tan, what am I doing? I'm undressing and I'm going in that tanning bed. Do you think that people really want to undress in a dirty atmosphere?",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1513,
+    1514
+   ],
+   "t_start": 8693.04,
+   "t_end": 8706.2,
+   "window": 20
+  },
+  {
+   "claim": "A clean salon is a non-negotiable baseline for business operations.",
+   "quote": "You may have 99 problems, but a clean salon better not be one.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1519
+   ],
+   "t_start": 8727.5,
+   "t_end": 8733.83,
+   "window": 20
+  },
+  {
+   "claim": "Salon owners struggle to ensure staff maintain a high standard of cleanliness throughout the facility.",
+   "quote": "Your staff needs that as well. Because again, you need to have a clean atmosphere.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1524
+   ],
+   "t_start": 8757.55,
+   "t_end": 8763.95,
+   "window": 21
+  },
+  {
+   "claim": "Customers are hesitant to use tanning services if the environment feels dirty or unhygienic.",
+   "quote": "Do you think that people really want to undress in a dirty atmosphere?",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1514
+   ],
+   "t_start": 8700.4,
+   "t_end": 8706.2,
+   "window": 21
+  },
+  {
+   "claim": "A clean salon is a non-negotiable baseline for business operations.",
+   "quote": "You may have 99 problems, but a clean salon better not be one.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1519
+   ],
+   "t_start": 8727.5,
+   "t_end": 8733.83,
+   "window": 21
+  },
+  {
+   "claim": "Strategic gaps in retail shelving can actually trigger customer curiosity and sales.",
+   "quote": "if there's one like taken or just a couple taken and there's an open spot, people are more apt to come over and be like, oh, somebody just bought this. Why did they buy that?",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1536,
+    1537
+   ],
+   "t_start": 8828.14,
+   "t_end": 8838.3,
+   "window": 21
+  },
+  {
+   "claim": "Cluttered layouts prevent customers from noticing retail displays.",
+   "quote": "if you've got a table sitting right in front of your actual display, people are more apt to walk around and not even look at it because it's too cluttered.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1549,
+    1550
+   ],
+   "t_start": 8907.51,
+   "t_end": 8917.39,
+   "window": 21
+  },
+  {
+   "claim": "Customers are driven by 'wants' rather than a conscious understanding of their 'needs' when buying products.",
+   "quote": "people don't know that they need a product, but they know they want a product.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1555
+   ],
+   "t_start": 8939.49,
+   "t_end": 8945.19,
+   "window": 21
+  },
+  {
+   "claim": "Unprofessional signage can make a salon look like a low-budget operation.",
+   "quote": "please don't don't use a black magic marker and write on a piece of paper that's great for a lemonade stand but not for your display",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1572,
+    1573
+   ],
+   "t_start": 9017.98,
+   "t_end": 9030.76,
+   "window": 21
+  },
+  {
+   "claim": "Salon owners struggle with customers using too much product from testers before their session.",
+   "quote": "god bless our clients but they use the entire lotion prior to going into the bed yeah and this happens I don't know if it's just us or me or they come and they'll use the entire like a lot of pumping of the moisturizer",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1637,
+    1638,
+    1639
+   ],
+   "t_start": 9427.08,
+   "t_end": 9450.58,
+   "window": 22
+  },
+  {
+   "claim": "The speaker believes Google is the most effective marketing tool for driving customers directly to a physical salon location.",
+   "quote": "we have found that Google is probably the best marketing tool you can use, and the reason why is you can drive them straight to your salon.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1710,
+    1711
+   ],
+   "t_start": 9874.52,
+   "t_end": 9882.54,
+   "window": 23
+  },
+  {
+   "claim": "The speaker warns that inadequate insurance can lead to poor payouts in the event of a total salon loss.",
+   "quote": "when you get a complete burnout of your salon, you really want a good policy because the payout is much better than it will ever be without that.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1698,
+    1699
+   ],
+   "t_start": 9805.95,
+   "t_end": 9821.65,
+   "window": 23
+  },
+  {
+   "claim": "The industry is shifting away from static images toward video content for marketing.",
+   "quote": "You know, we don't use a lot of static anymore. We use video. I mean, that's the way of the world.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1730,
+    1731,
+    1732
+   ],
+   "t_start": 9997.58,
+   "t_end": 10003.34,
+   "window": 23
+  },
+  {
+   "claim": "Salon owners are hesitant to reach out for professional help because they don't want to be a nuisance.",
+   "quote": "I don't want to, I didn't want to phone you. I didn't want to bug you, Steve.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1754,
+    1755,
+    1756
+   ],
+   "t_start": 10115.72,
+   "t_end": 10122.16,
+   "window": 24
+  },
+  {
+   "claim": "Owners are unsure about the legal and regulatory boundaries of their marketing claims.",
+   "quote": "can I get away with that, Steve? And it's just like, I'll tell you whether or not you can actually get to be able to promote that.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1762,
+    1763
+   ],
+   "t_start": 10134.58,
+   "t_end": 10142.22,
+   "window": 24
+  },
+  {
+   "claim": "Untrained operators in gyms are damaging customers' skin, which destroys the reputation of the tanning industry and prevents those people from ever becoming salon clients.",
+   "quote": "we hear so many like gyms just putting people in for maximum time for their first time tanning and now yeah and then these people are damaged and then and then they're never going to become clients of ours because they're never going to want to tan ever again",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1784,
+    1785,
+    1786,
+    1787
+   ],
+   "t_start": 10278.38,
+   "t_end": 10302.29,
+   "window": 24
+  },
+  {
+   "claim": "Gyms have shifted from viewing tanning as a membership perk to treating it as a primary profit center.",
+   "quote": "I always found that the gyms that was a sideline to them but it's no longer a sideline anymore this is a profit center they only saw it as a way to sell another part of a monthly membership now they look at as a driving force as making as a profit center",
+   "category": "unclassified",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1805,
+    1806,
+    1807,
+    1808
+   ],
+   "t_start": 10412.69,
+   "t_end": 10445.46,
+   "window": 24
+  },
+  {
+   "claim": "Industry professionals face skepticism when promoting benefits because they are seen as purely profit-driven.",
+   "quote": "if i say something positive and i'm up from the tanning industry i am there's like really you're trying to make money from me",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1810,
+    1811,
+    1812
+   ],
+   "t_start": 10452.06,
+   "t_end": 10476.93,
+   "window": 24
+  },
+  {
+   "claim": "Salon owners feel that managing their own social media is a draining and difficult task.",
+   "quote": "how many salon owners manage their own social media right now? Okay. And how do you find it? Exhausting? Awful?",
+   "category": "marketing",
+   "moment": "needs",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1865,
+    1866
+   ],
+   "t_start": 10785.67,
+   "t_end": 10802.64,
+   "window": 25
+  },
+  {
+   "claim": "Hiring a dedicated staff member for social media significantly reduces stress and allows the owner to disconnect.",
+   "quote": "having a dedicated staff member just on socials is life-changing. I can go on vacation now and not even turn on my socials.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1868,
+    1869
+   ],
+   "t_start": 10815.53,
+   "t_end": 10833.49,
+   "window": 25
+  },
+  {
+   "claim": "There is a massive untapped market of people who tan outdoors that could be converted to indoor salon customers.",
+   "quote": "seven out of ten people still tan, but they tan outdoors. What if we just brought them indoors? Seven out of ten? I only want 10% of that 7 out of 10. It would double my business.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1830,
+    1831,
+    1832,
+    1833
+   ],
+   "t_start": 10587.83,
+   "t_end": 10608.29,
+   "window": 25
+  },
+  {
+   "claim": "Salon owners often rely on basic phone albums to store their marketing images rather than professional systems.",
+   "quote": "do you have like an album on your phone where you keep all your images?",
+   "category": "marketing",
+   "moment": "needs",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    1905
+   ],
+   "t_start": 11073.2,
+   "t_end": 11081.08,
+   "window": 26
+  },
+  {
+   "claim": "Salon owners are often overcharged for SEO services.",
+   "quote": "the way you rank on that is what people try to charge you too much money for and call seo um don't do it uh well maybe do it sometimes but don't pay what they want",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2009,
+    2010
+   ],
+   "t_start": 11892.65,
+   "t_end": 11907.21,
+   "window": 28
+  },
+  {
+   "claim": "Salon owners feel burned by marketing agencies that charge high fees without delivering results.",
+   "quote": "has anybody run google ads before and had them be a terrible flop and some agency took too much of your money",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2101,
+    2102
+   ],
+   "t_start": 12359.25,
+   "t_end": 12373.83,
+   "window": 29
+  },
+  {
+   "claim": "Creating high-quality ad assets in multiple required formats is a tedious process for owners.",
+   "quote": "you have to upload photos of portrait, landscape, and square aspect ratios, as well as videos in those exact same aspect ratios, which is a huge pain in the butt to get good quality assets in three aspect ratios.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2114,
+    2115
+   ],
+   "t_start": 12441.07,
+   "t_end": 12452.65,
+   "window": 29
+  },
+  {
+   "claim": "When responding to negative reviews, the goal is to influence future customers rather than the complainant.",
+   "quote": "you're not actually replying to the person who wrote that review. You're replying to everybody else who's reading it.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2069,
+    2070
+   ],
+   "t_start": 12244.87,
+   "t_end": 12250.17,
+   "window": 29
+  },
+  {
+   "claim": "Salon owners struggle with high employee turnover, making recorded training more practical than live sessions.",
+   "quote": "you guys sometimes have the issue with employees and they can kind of filter in and out quite a bit. This way you always have that training specifically for whoever's new coming in",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2250,
+    2251
+   ],
+   "t_start": 13041.96,
+   "t_end": 13055.34,
+   "window": 30
+  },
+  {
+   "claim": "Salon owners struggle with high employee turnover and inconsistent staff training.",
+   "quote": "you guys sometimes have the issue with employees and they can kind of filter in and out quite a bit.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uva25_RoomB_AllPresentations",
+   "segment_ids": [
+    2250
+   ],
+   "t_start": 13041.96,
+   "t_end": 13050.18,
+   "window": 31
+  }
+ ]
+}

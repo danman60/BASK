@@ -1,0 +1,369 @@
+{
+ "source_stream": "uvalux26_P1060689_a0",
+ "media_duration_s": 3238.735,
+ "windows_total": 8,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 1,
+ "items_kept": 20,
+ "model": "gemma4:31b",
+ "lens": "marketing",
+ "mined_at": "2026-08-23T00:47:51",
+ "advice": [
+  {
+   "claim": "Salon owners fear being perceived as unprofessional or unregulated by government bodies.",
+   "quote": "when the government looks at us, they can say, those guys are not the Wild Wild West.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    9
+   ],
+   "t_start": 42.29,
+   "t_end": 46.01,
+   "window": 1
+  },
+  {
+   "claim": "Owners recognize that the cheapest insurance is often insufficient for actual disasters.",
+   "quote": "the proper coverage is not always going to be the cheapest coverage, but it's going to be the coverage that you need if something terrible happens.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    16
+   ],
+   "t_start": 87.71,
+   "t_end": 95.53,
+   "window": 1
+  },
+  {
+   "claim": "Salon owners are overwhelmed and don't want marketing to feel like an additional burden.",
+   "quote": "We don't want this to be like another kind of job on top of your already super busy jobs and lives.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    346
+   ],
+   "t_start": 1658.08,
+   "t_end": 1663.48,
+   "window": 4
+  },
+  {
+   "claim": "Modern customers rely on social media for real-time business updates rather than phone calls.",
+   "quote": "I am in that age group where I don't call a place to see if they're open when it's snowing outside. I check their Instagram, their Facebook.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    342,
+    343
+   ],
+   "t_start": 1627.5,
+   "t_end": 1635.06,
+   "window": 4
+  },
+  {
+   "claim": "Equipment downtime creates a significant financial risk for the business.",
+   "quote": "if the bed goes down or if the bed breaks after five years and you have to purchase another one, your business is at risk and you can't afford that.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    430,
+    431,
+    432
+   ],
+   "t_start": 2118.89,
+   "t_end": 2127.39,
+   "window": 5
+  },
+  {
+   "claim": "The industry is shifting toward a fusion of tanning and wellness.",
+   "quote": "This is not just new, fancy, it's a real change in the industry. It gives us as a manufacturer a charity to present a completely different way to tan and to present the tanning industry as a charity to bridge tanning and wellness.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    420,
+    421,
+    422
+   ],
+   "t_start": 2074.44,
+   "t_end": 2089.5,
+   "window": 5
+  },
+  {
+   "claim": "Salon owners struggle with the high cost of upgrading equipment despite wanting new technology.",
+   "quote": "I guess like a typical business owner I'm on budget right I like to have nice new things but there's not always enough money to purchase all the new spa equipment and all the new updated planning equipment.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    521,
+    522
+   ],
+   "t_start": 2578.06,
+   "t_end": 2590.14,
+   "window": 6
+  },
+  {
+   "claim": "Older tanning beds can become a financial burden due to expensive repairs and high energy consumption.",
+   "quote": "The bed wasn't looking new anymore, and even though it was tan gray, parts were breaking, repairs were expensive. On the flip side of the open sun 1050, it's the most electric consumption of all my units",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    525,
+    526,
+    527
+   ],
+   "t_start": 2601.46,
+   "t_end": 2625.5,
+   "window": 6
+  },
+  {
+   "claim": "Lamp changes for older equipment are a significant operational expense in terms of both parts and labor.",
+   "quote": "My lamp changes probably cost me U.S. dollars, I would say between lamps and labor, close to $2,000.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    528
+   ],
+   "t_start": 2625.5,
+   "t_end": 2631.8,
+   "window": 6
+  },
+  {
+   "claim": "Electricity costs can be a major overhead burden depending on the region.",
+   "quote": "In New Jersey, we're lucky enough to have super expensive electricity, so I pay 35 cents per kilowatt hour.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    529
+   ],
+   "t_start": 2632.64,
+   "t_end": 2639.5,
+   "window": 6
+  },
+  {
+   "claim": "The industry is moving toward bridging the gap between traditional tanning and wellness experiences.",
+   "quote": "this opportunity that Ellen's offered us, to bridge tending and wellness.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    489,
+    490
+   ],
+   "t_start": 2367.72,
+   "t_end": 2372.82,
+   "window": 6
+  },
+  {
+   "claim": "High electricity costs in certain regions create a significant financial burden for salon owners.",
+   "quote": "In New Jersey, we're lucky enough to have super expensive electricity, so I pay 35 cents per kilowatt hour.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    529
+   ],
+   "t_start": 2632.64,
+   "t_end": 2639.5,
+   "window": 7
+  },
+  {
+   "claim": "The cost of maintaining older high-end beds can be prohibitively expensive in terms of both parts and labor.",
+   "quote": "My lamp changes probably cost me U.S. dollars, I would say between lamps and labor, close to $2,000.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    528
+   ],
+   "t_start": 2625.5,
+   "t_end": 2631.8,
+   "window": 7
+  },
+  {
+   "claim": "Small salon owners struggle with maintenance schedules because they lack dedicated staff and rely on third-party distributors.",
+   "quote": "I don't have a full maintenance team, right? I have to contact my local distributor.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    544
+   ],
+   "t_start": 2722.15,
+   "t_end": 2725.85,
+   "window": 7
+  },
+  {
+   "claim": "Owners often miss the ideal window for lamp changes due to being busy, leading to a degraded customer experience.",
+   "quote": "I get a notification at that point, but I'm busy. I forget about it. And what ends up happening is my lamps get changed out at 600.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    547,
+    548,
+    549
+   ],
+   "t_start": 2733.03,
+   "t_end": 2740.51,
+   "window": 7
+  },
+  {
+   "claim": "There is a gap between when a lamp still functions and when it actually provides a quality tan for the customer.",
+   "quote": "And the beauty is the lamps still light up, right? But the customer is not getting a good experience.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    550,
+    551
+   ],
+   "t_start": 2741.62,
+   "t_end": 2746.28,
+   "window": 7
+  },
+  {
+   "claim": "Salon owners on limited budgets prioritize the ability to afford new equipment through operational cost savings.",
+   "quote": "My concern always is how am I going to pay for it, right? Because I'm on all these nice new things, but it's not, you know, on a limited budget.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    537,
+    538
+   ],
+   "t_start": 2685.39,
+   "t_end": 2691.47,
+   "window": 7
+  },
+  {
+   "claim": "Customers often mistakenly equate extreme heat with tanning effectiveness, requiring staff to re-educate them.",
+   "quote": "their staff gets a customer walking in the door and says I want the hottest bed you've got because they believe it's the best way.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    591
+   ],
+   "t_start": 2985.98,
+   "t_end": 2990.92,
+   "window": 7
+  },
+  {
+   "claim": "Customers often mistake the feeling of heat for actual tanning results.",
+   "quote": "their feeling of instant regurgitation is also why they like the tanning experience, but it's not true",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    606,
+    607
+   ],
+   "t_start": 3074.61,
+   "t_end": 3086.87,
+   "window": 8
+  },
+  {
+   "claim": "Salon owners face pushback from customers who equate heat with effectiveness.",
+   "quote": "And we've faced a lot of kickbacks in the industry. I want to get hot, I want to get a tan",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060689_a0",
+   "segment_ids": [
+    618,
+    619
+   ],
+   "t_start": 3135.51,
+   "t_end": 3164.47,
+   "window": 8
+  }
+ ]
+}

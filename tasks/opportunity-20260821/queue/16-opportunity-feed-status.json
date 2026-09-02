@@ -1,0 +1,13 @@
+{
+  "state": "running",
+  "turns": 6,
+  "tool_calls": 5,
+  "errors": 0,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/ui/src/components/OpportunityFeedSection.tsx"
+  ],
+  "elapsed": "56s",
+  "updated": "13:33:01",
+  "provider_history": [],
+  "provider_switched": false
+}

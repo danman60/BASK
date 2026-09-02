@@ -1,0 +1,63 @@
+[13:06:22] lane=big host=http://100.75.112.14:11434 model=qwen3-coder:30b smoke=0
+[13:06:22] 01-action-row-log: not in manifest, skipping
+[13:06:22] 01-action-row-result: not in manifest, skipping
+[13:06:22] === 02-opportunity-card attempt 1/2 ===
+[13:06:22] 02-opportunity-card -> packages/ui/src/components/OpportunityCard.tsx [tsx] log=02-opportunity-card-20260821-130622.txt
+[13:09:45] 02-opportunity-card: PASS, committed
+[13:09:45] === 03-sms-preview attempt 1/2 ===
+[13:09:45] 03-sms-preview -> packages/ui/src/components/SmsPreviewCard.tsx [tsx] log=03-sms-preview-20260821-130945.txt
+[13:11:41] 03-sms-preview: PASS, committed
+[13:11:41] 04-email-preview-log: not in manifest, skipping
+[13:11:41] 04-email-preview-result: not in manifest, skipping
+[13:11:41] === 05-social-post attempt 1/2 ===
+[13:11:41] 05-social-post -> packages/ui/src/components/SocialPostCard.tsx [tsx] log=05-social-post-20260821-131141.txt
+[13:13:31] 05-social-post: PASS, committed
+[13:13:31] === 07-desk-script attempt 1/2 ===
+[13:13:31] 07-desk-script -> packages/ui/src/components/FrontDeskScriptCard.tsx [tsx] log=07-desk-script-20260821-131331.txt
+[13:16:41] 07-desk-script: thrashing (bash=8 write=1) — killing
+[13:16:42] 07-desk-script: PASS, committed
+[13:16:42] === 08-staff-challenge attempt 1/2 ===
+[13:16:42] 08-staff-challenge -> packages/ui/src/components/StaffChallengeCard.tsx [tsx] log=08-staff-challenge-20260821-131642.txt
+[13:19:00] 08-staff-challenge: PASS, committed
+[13:19:00] === 09-outcome-card attempt 1/2 ===
+[13:19:00] 09-outcome-card -> packages/ui/src/components/OutcomeCard.tsx [tsx] log=09-outcome-card-20260821-131900.txt
+[13:21:44] 09-outcome-card: PASS, committed
+[13:21:44] === 10-handle-it attempt 1/2 ===
+[13:21:44] 10-handle-it -> packages/ui/src/components/HandleItPlanCard.tsx [tsx] log=10-handle-it-20260821-132144.txt
+[13:24:11] 10-handle-it: PASS, committed
+[13:24:11] === 11-listener-status attempt 1/2 ===
+[13:24:11] 11-listener-status -> packages/ui/src/components/ListenerStatusCard.tsx [tsx] log=11-listener-status-20260821-132411.txt
+[13:25:46] 11-listener-status: PASS, committed
+[13:25:46] === 12-interaction-card attempt 1/2 ===
+[13:25:46] 12-interaction-card -> packages/ui/src/components/InteractionCard.tsx [tsx] log=12-interaction-card-20260821-132546.txt
+[13:27:15] 12-interaction-card: PASS, committed
+[13:27:15] === 13-employee-table attempt 1/2 ===
+[13:27:15] 13-employee-table -> packages/ui/src/components/EmployeeSalesTable.tsx [tsx] log=13-employee-table-20260821-132715.txt
+[13:29:24] 13-employee-table: PASS, committed
+[13:29:24] === 14-monitor-insight attempt 1/2 ===
+[13:29:24] 14-monitor-insight -> packages/ui/src/components/MonitorInsightCard.tsx [tsx] log=14-monitor-insight-20260821-132924.txt
+[13:30:35] 14-monitor-insight: PASS, committed
+[13:30:35] === 15-consent-pledge attempt 1/2 ===
+[13:30:35] 15-consent-pledge -> packages/ui/src/components/ConsentPledgeCard.tsx [tsx] log=15-consent-pledge-20260821-133035.txt
+[13:32:04] 15-consent-pledge: PASS, committed
+[13:32:04] === 16-opportunity-feed attempt 1/2 ===
+[13:32:04] 16-opportunity-feed -> packages/ui/src/components/OpportunityFeedSection.tsx [tsx] log=16-opportunity-feed-20260821-133204.txt
+[13:35:43] 16-opportunity-feed: idle 183s and gates PASS — killing, accepting
+[13:35:45] 16-opportunity-feed: PASS, committed
+[13:35:45] === 17-monitor-surface attempt 1/2 ===
+[13:35:45] 17-monitor-surface -> packages/ui/src/components/MonitorSurface.tsx [tsx] log=17-monitor-surface-20260821-133545.txt
+[13:37:29] 17-monitor-surface: PASS, committed
+[13:37:29] === 18-opportunity-fixtures attempt 1/2 ===
+[13:37:29] 18-opportunity-fixtures -> packages/core/src/opportunities/fixtures.ts [fixture] log=18-opportunity-fixtures-20260821-133729.txt
+[13:37:57] 18-opportunity-fixtures: PASS, committed
+[13:37:57] === 19-monitor-fixtures attempt 1/2 ===
+[13:37:57] 19-monitor-fixtures -> packages/core/src/monitor/fixtures.ts [fixture] log=19-monitor-fixtures-20260821-133757.txt
+[13:38:31] 19-monitor-fixtures: PASS, committed
+[13:38:31] === 20-vo-script-v3 attempt 1/2 ===
+[13:38:31] 20-vo-script-v3 -> promo/VO-SCRIPT-V3.md [md] log=20-vo-script-v3-20260821-133831.txt
+[13:38:56] 20-vo-script-v3: PASS, committed
+[13:38:56] === 21-shot-plan-v3 attempt 1/2 ===
+[13:38:56] 21-shot-plan-v3 -> promo/SHOT-PLAN-V3.md [md] log=21-shot-plan-v3-20260821-133856.txt
+[13:39:17] 21-shot-plan-v3: thrashing (bash=9 write=1) — killing
+[13:39:17] 21-shot-plan-v3: PASS, committed
+[13:39:17] lane big drained

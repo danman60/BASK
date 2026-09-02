@@ -1,0 +1,395 @@
+{
+ "source_stream": "uvalux26_P1060687",
+ "media_duration_s": 3252.249,
+ "windows_total": 8,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 4,
+ "items_kept": 24,
+ "model": "gemma4:12b",
+ "mined_at": "2026-08-22T06:11:18",
+ "advice": [
+  {
+   "claim": "You must use the correct terminology to shift your brand from a tanning focus to a wellness and spa experience.",
+   "quote": "We have to get our vernacular down.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    44
+   ],
+   "t_start": 147.64,
+   "t_end": 149.38,
+   "window": 1
+  },
+  {
+   "claim": "Train your staff on the specific language and terminology required to sell the services correctly.",
+   "quote": "We have to teach our team who's next door the right things to say, like Mike was saying.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    45
+   ],
+   "t_start": 149.48,
+   "t_end": 154.4,
+   "window": 1
+  },
+  {
+   "claim": "Pair different modalities together to create a cohesive experience for the client.",
+   "quote": "So what we need to do is when I'm coming in for the wave or for the red light, what am I doing to pair my modalities for an experience?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    93,
+    94
+   ],
+   "t_start": 284.64,
+   "t_end": 294.08,
+   "window": 1
+  },
+  {
+   "claim": "Promote touchless technologies to reduce the need for constant staff supervision.",
+   "quote": "Because when you're talking about touchless, like Mike said, you don't have a lot of employees in there.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    98,
+    99
+   ],
+   "t_start": 313.04,
+   "t_end": 324.36,
+   "window": 1
+  },
+  {
+   "claim": "Instead of following existing trends, owners should aim to create new trends in skincare and wellness.",
+   "quote": "need to do is look at the trends in our area and fuck the trends. Yeah, you heard me. What we want to do is we want to create trends.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    117,
+    118
+   ],
+   "t_start": 422.73,
+   "t_end": 441.13,
+   "window": 2
+  },
+  {
+   "claim": "Staff must be engaged with customers rather than on their phones or social media to create a positive atmosphere.",
+   "quote": "When you're stepping into a place, is your staff on the phone or are they engaging? Are they TikToking or are they engaging the customers when they come in?",
+   "category": "coaching",
+   "moment": "greeting",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    130,
+    131
+   ],
+   "t_start": 506.72,
+   "t_end": 516.61,
+   "window": 2
+  },
+  {
+   "claim": "You only have about 15 seconds to make a first impression on a customer.",
+   "quote": "How long do we have to make that impression, to make that sale? Remember the seconds? Fifteen.",
+   "category": "customer",
+   "moment": "greeting",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    133,
+    134,
+    135
+   ],
+   "t_start": 519.26,
+   "t_end": 529.15,
+   "window": 2
+  },
+  {
+   "claim": "To transition from a tanning salon to a wellness center, you must change your branding, staff behavior, and social media presence.",
+   "quote": "when you bring in red light or a spray tan machine, that doesn't change that you're not a UV tanning salon anymore. Do you know what changes it? You change it. Your staff changes it. Your social media changes that.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    138,
+    139,
+    140,
+    141,
+    142,
+    143
+   ],
+   "t_start": 541.6,
+   "t_end": 560.16,
+   "window": 2
+  },
+  {
+   "claim": "Offer a menu of products to enhance the client experience and provide more options.",
+   "quote": "you have a menu of items that you can offer that are going to accentuate the entire experience.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    228
+   ],
+   "t_start": 981.08,
+   "t_end": 985.94,
+   "window": 3
+  },
+  {
+   "claim": "Use unique, innovative technology to differentiate your business from local competitors.",
+   "quote": "this is just going to help you really pull yourself away from the competition.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    274
+   ],
+   "t_start": 1204.16,
+   "t_end": 1209.92,
+   "window": 3
+  },
+  {
+   "claim": "Change the atmosphere of your salon through sensory elements like fragrance and music to create a specific mood.",
+   "quote": "And you can only do that with visual change and that aura, the feel of what people feel when they come in. Even to something like fragrance.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    282,
+    283
+   ],
+   "t_start": 1253.31,
+   "t_end": 1261.41,
+   "window": 3
+  },
+  {
+   "claim": "Sell skincare products as part of a necessary regimen rather than as one-off items.",
+   "quote": "when it comes to skincare products, you want your customer buying in, not just buying the products, but buying them that this needs to be part of the regimen.",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    334,
+    335
+   ],
+   "t_start": 1513.8,
+   "t_end": 1523.52,
+   "window": 4
+  },
+  {
+   "claim": "Staff education is essential to ensure employees feel confident enough to recommend products and modalities to customers.",
+   "quote": "education is the key because if your staff is scared of the products scared of the modalities and the equipment they're not going to tell others how to use it",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    345,
+    346
+   ],
+   "t_start": 1570.08,
+   "t_end": 1581.5,
+   "window": 4
+  },
+  {
+   "claim": "Business owners must maintain accurate financial records and understand their daily numbers to be prepared for growth or financing.",
+   "quote": "Keep good financial records.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    412,
+    413
+   ],
+   "t_start": 2178.89,
+   "t_end": 2186.98,
+   "window": 5
+  },
+  {
+   "claim": "Owners must stay informed about their business's daily financial operations rather than delegating full oversight to others.",
+   "quote": "You're the owner. It's up to you to know what those numbers are and what's happening in your business.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    421,
+    422
+   ],
+   "t_start": 2213.62,
+   "t_end": 2219.18,
+   "window": 5
+  },
+  {
+   "claim": "Establish a solid credit process and maintain good financial records to ensure your business is eligible for funding.",
+   "quote": "So you need to view. So right now you need to have established, start establishing good credit process as well as your business process that we're talking about.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    411
+   ],
+   "t_start": 2147.34,
+   "t_end": 2178.89,
+   "window": 6
+  },
+  {
+   "claim": "Evaluate your equipment and services to ensure they are generating profit and are worth the investment.",
+   "quote": "We've heard some talk about the standard tanning booth that maybe two clients a month are using it. Does it make sense to continue that? Do you want to invest money into that, that we'll maybe have, or you don't want?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    433,
+    434,
+    435
+   ],
+   "t_start": 2264.72,
+   "t_end": 2287.94,
+   "window": 6
+  },
+  {
+   "claim": "Pay your government credits and bills on time to avoid barriers to financing.",
+   "quote": "Pay your bills and especially those government credits. That's a barrier to being able to finance your business.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    462
+   ],
+   "t_start": 2457.35,
+   "t_end": 2464.62,
+   "window": 6
+  },
+  {
+   "claim": "Prepare a complete package of financial documents before approaching a lender.",
+   "quote": "You want to make your best marketing effort when you go to that financer. You don't want to go to them and have them ask you for the documents. You want to bring your package to them.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    471,
+    472,
+    473
+   ],
+   "t_start": 2585.77,
+   "t_end": 2604.19,
+   "window": 6
+  },
+  {
+   "claim": "A business plan is a critical document for securing financing as it outlines the owner's identity, business operations, and management strategy.",
+   "quote": "A business plan is a written document that tells me who you are as the owner, what your business does, and how you intend to run your business.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    507,
+    508
+   ],
+   "t_start": 2780.02,
+   "t_end": 2791.17,
+   "window": 7
+  },
+  {
+   "claim": "Create a 12-month cash flow projection to estimate income and expenses, especially when planning expansions or new financing.",
+   "quote": "Cash flow projections are an estimate of how you're going to, what cash is coming into your business, which cash is going out of your business, how your cash flow is going to look with the new expansion you're doing or the new financing. So that would be a 12-month spreadsheet, a monthly projection of the cash flow and the cash flow.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    511,
+    513
+   ],
+   "t_start": 2808.25,
+   "t_end": 2835.34,
+   "window": 7
+  },
+  {
+   "claim": "Consolidating existing debts, such as credit cards and equipment loans, can help manage cash flow when taking on new financing for expansion.",
+   "quote": "Consolidation of existing debt. This included some credit card debt, as well as they had the banks offer a small business financing loan for equipment.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    542
+   ],
+   "t_start": 3005.32,
+   "t_end": 3016.14,
+   "window": 7
+  },
+  {
+   "claim": "Consider financing equipment and marketing together to potentially secure a lower interest rate.",
+   "quote": "So if you have a piece of equipment that you're paying on, and you want to borrow or you need to do extra marketing, or you want to do both, buy a new piece of equipment and marketing, we can finance it all together. We can give you a lower rate stretch than time-out.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    545
+   ],
+   "t_start": 3035.9,
+   "t_end": 3058.45,
+   "window": 8
+  },
+  {
+   "claim": "Be aware that leasing equipment can be expensive compared to other financing methods.",
+   "quote": "When we introduce new equipment into salons, I would say 90% of the time we're leasing it. Leasing is expensive.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "source_stream": "uvalux26_P1060687",
+   "segment_ids": [
+    561
+   ],
+   "t_start": 3188.62,
+   "t_end": 3214.2,
+   "window": 8
+  }
+ ]
+}

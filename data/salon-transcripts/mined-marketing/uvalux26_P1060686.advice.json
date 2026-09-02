@@ -1,0 +1,898 @@
+{
+ "source_stream": "uvalux26_P1060686",
+ "media_duration_s": 4296.292,
+ "windows_total": 10,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 1,
+ "items_kept": 49,
+ "model": "gemma4:31b",
+ "lens": "marketing",
+ "mined_at": "2026-08-23T00:42:23",
+ "advice": [
+  {
+   "claim": "The wellness industry is evolving rapidly and requires a shift in strategy.",
+   "quote": "The wellness space is shifting fast.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    72
+   ],
+   "t_start": 270.83,
+   "t_end": 272.61,
+   "window": 1
+  },
+  {
+   "claim": "Future success for salons depends on using data to drive business decisions.",
+   "quote": "the studios that will thrive in 2026 are the ones making smarter, data-backed decisions right now.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    74,
+    75
+   ],
+   "t_start": 273.01,
+   "t_end": 278.63,
+   "window": 1
+  },
+  {
+   "claim": "Equipment costs for starting or upgrading a salon have increased significantly over time.",
+   "quote": "Now you can spend $100,000 for one piece of equipment, yeah?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    146
+   ],
+   "t_start": 587.96,
+   "t_end": 591.46,
+   "window": 2
+  },
+  {
+   "claim": "Salon owners often procrastinate implementing membership models due to fear of customer backlash.",
+   "quote": "oh gosh i gotta do it i gotta do it i just my customers will kill me if i do something like that",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    176,
+    177
+   ],
+   "t_start": 681.92,
+   "t_end": 692.18,
+   "window": 2
+  },
+  {
+   "claim": "Running a salon without data is like navigating without a guide.",
+   "quote": "We are like a ship without a compass.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    208
+   ],
+   "t_start": 782.11,
+   "t_end": 784.71,
+   "window": 2
+  },
+  {
+   "claim": "The rise of sunless tanning disrupted the traditional way salon owners tracked success via session counts.",
+   "quote": "But then along came sunless and people who tanned three or four times a week now only came once every ten days and screwed up our sessions.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    215,
+    216,
+    217
+   ],
+   "t_start": 801.79,
+   "t_end": 809.17,
+   "window": 2
+  },
+  {
+   "claim": "Salon owners often overestimate their actual customer spending because they lack accurate data.",
+   "quote": "you either don't have 1,000 customers, or your customers aren't spending what you think they are.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    283,
+    284
+   ],
+   "t_start": 1060.81,
+   "t_end": 1066.59,
+   "window": 3
+  },
+  {
+   "claim": "The tanning industry is characterized by a cycle of recycling existing customers rather than finding new ones.",
+   "quote": "part of what we're getting in this industry, we do not agree, is we're recycling customers.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    303
+   ],
+   "t_start": 1115.16,
+   "t_end": 1120.06,
+   "window": 3
+  },
+  {
+   "claim": "The average tanning customer visits a salon significantly less often than owners assume.",
+   "quote": "Average 16 times a year.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    314
+   ],
+   "t_start": 1152.82,
+   "t_end": 1154.4,
+   "window": 3
+  },
+  {
+   "claim": "Business strategy should be based on the majority of customers rather than the small percentage of power users.",
+   "quote": "Never build a platform of business around what 3% do.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    321
+   ],
+   "t_start": 1175.18,
+   "t_end": 1192.08,
+   "window": 3
+  },
+  {
+   "claim": "The ultimate metric for equipment value is customer retention and willingness to pay again.",
+   "quote": "Will you pay me to use it again?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    335
+   ],
+   "t_start": 1245.49,
+   "t_end": 1247.41,
+   "window": 3
+  },
+  {
+   "claim": "Salon owners often create overly restrictive membership terms because they fear a small minority of customers will abuse the system.",
+   "quote": "Sometimes we build memberships and packages around 3%. We're so afraid that they're going to abuse the process that we start saying unlimited tanning. you can tan up to eight sessions a month.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    365,
+    366,
+    367,
+    368
+   ],
+   "t_start": 1355.88,
+   "t_end": 1369.57,
+   "window": 4
+  },
+  {
+   "claim": "The wellness market allows salons to attract a much broader and more diverse demographic than traditional tanning.",
+   "quote": "no longer are we going after this white Caucasian female that fits in a certain demographic we have Gen Z's that are growing up without even knowing who we are",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    410,
+    411,
+    412
+   ],
+   "t_start": 1550.41,
+   "t_end": 1566.06,
+   "window": 4
+  },
+  {
+   "claim": "Pioneering new services in the salon industry is risky because errors are costly.",
+   "quote": "the hardest thing to do is be the pioneer in doing something right because it's expensive mistakes are expensive",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    414,
+    415
+   ],
+   "t_start": 1571.16,
+   "t_end": 1579.83,
+   "window": 4
+  },
+  {
+   "claim": "Overly complex sales processes and offers lead to failure in execution by staff.",
+   "quote": "complexity is the enemy of execution",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    418
+   ],
+   "t_start": 1595.94,
+   "t_end": 1604.24,
+   "window": 4
+  },
+  {
+   "claim": "Staff often struggle to explain complex promotional offers to customers, rendering them ineffective.",
+   "quote": "I see something that's right and then you watch your team and four and a half hours later the girls I'm explaining it to the customer it's too complex it's never gonna work",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    422,
+    423,
+    424
+   ],
+   "t_start": 1618.18,
+   "t_end": 1633.02,
+   "window": 4
+  },
+  {
+   "claim": "Focusing exclusively on tanning creates artificial seasonality and limits growth.",
+   "quote": "in essence we are the creators in this room of our own seasonality we limited ourselves to a very specific tight vertical market and we've given no room for growth",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    434,
+    435
+   ],
+   "t_start": 1678.9,
+   "t_end": 1693.0,
+   "window": 4
+  },
+  {
+   "claim": "The tanning industry has reached a growth plateau.",
+   "quote": "I'm not in any way shape or form suggesting tanning is doing bad it's just right it's plateaued we're climbing at about two to four percent a year that's the tanning industry",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    474,
+    475,
+    476
+   ],
+   "t_start": 1893.09,
+   "t_end": 1930.74,
+   "window": 5
+  },
+  {
+   "claim": "Salon owners often experience high turnover of businesses in their area.",
+   "quote": "there's a pretty good amount of attrition in the tanning right so stores changing hands people going out people coming in",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    477
+   ],
+   "t_start": 1930.74,
+   "t_end": 1935.2,
+   "window": 5
+  },
+  {
+   "claim": "Owners may resist new technology or modalities until they see their customer base decline.",
+   "quote": "some people said, well, I'm never going to do fake tan. I'm not going to expose my customers to that. So they didn't get on board. And two, three, four years go by and they watch their customer base start declining.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    483,
+    484,
+    485,
+    486
+   ],
+   "t_start": 1971.7,
+   "t_end": 1992.89,
+   "window": 5
+  },
+  {
+   "claim": "Failure to plan and invest during stable times leads to business failure during economic downturns.",
+   "quote": "If we're not investing in new equipment, if we're not thinking about new strategies, if we're not looking at our numbers when it's calm, we're gonna get destroyed when there's a storm.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    528,
+    529,
+    530,
+    531
+   ],
+   "t_start": 2172.62,
+   "t_end": 2182.29,
+   "window": 5
+  },
+  {
+   "claim": "The speaker believes that failing to plan and analyze numbers during stable times leads to business failure during economic downturns.",
+   "quote": "if we're not thinking about new strategies, if we're not looking at our numbers when it's calm, we're gonna get destroyed when there's a storm.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    529,
+    530,
+    531
+   ],
+   "t_start": 2174.78,
+   "t_end": 2182.29,
+   "window": 6
+  },
+  {
+   "claim": "The speaker views aggressive market share acquisition as a primary growth strategy.",
+   "quote": "It is far easier to steal a customer than earn one.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    560
+   ],
+   "t_start": 2316.83,
+   "t_end": 2324.08,
+   "window": 6
+  },
+  {
+   "claim": "The speaker notes that many salon owners attend trade shows but fail to engage with vendors for actual business improvement.",
+   "quote": "when I do consulting it's amazing how many times people have been to trade shows and never asked a vendor a simple question it's it's absolutely bonkers",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    581,
+    582
+   ],
+   "t_start": 2438.4,
+   "t_end": 2452.48,
+   "window": 6
+  },
+  {
+   "claim": "The speaker reports a significant revenue stream from implementing an annual facility fee for memberships.",
+   "quote": "Last year, we made a little over $800,000 in facility fees.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    614
+   ],
+   "t_start": 2645.8,
+   "t_end": 2649.82,
+   "window": 6
+  },
+  {
+   "claim": "The speaker claims that internal theft is the primary driver of inventory shrinkage in salons.",
+   "quote": "80% of all theft in your store will take place by an employee.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    599
+   ],
+   "t_start": 2557.9,
+   "t_end": 2562.24,
+   "window": 6
+  },
+  {
+   "claim": "Salon owners fear that introducing new fees will cause a major customer backlash.",
+   "quote": "we just instituted across a 25-store chain in the Midwest. And they said, we've got people ready. We just know that shit's going to hit the fan.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    626,
+    627
+   ],
+   "t_start": 2665.92,
+   "t_end": 2678.64,
+   "window": 7
+  },
+  {
+   "claim": "Customers are willing to pay facility fees as long as they can see the tangible value or new equipment it funds.",
+   "quote": "nobody wants to pay something for nothing. When they see it at work, they're glad to do it.",
+   "category": "membership",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    638,
+    639
+   ],
+   "t_start": 2718.2,
+   "t_end": 2723.42,
+   "window": 7
+  },
+  {
+   "claim": "A salon can significantly increase revenue by increasing the lifetime value of existing customers rather than just acquiring new ones.",
+   "quote": "We had 4,400 distinct customers five years ago. We're sitting at 3,185 doing $600,000 more.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    658
+   ],
+   "t_start": 2841.12,
+   "t_end": 2865.28,
+   "window": 7
+  },
+  {
+   "claim": "Staff appearance and grooming directly impact the customer's first impression of the business quality.",
+   "quote": "In our employee manual, dress and grooming is a part of your uniform. If your hair and makeup is not done, you will be sent home.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    690,
+    691
+   ],
+   "t_start": 3008.47,
+   "t_end": 3020.91,
+   "window": 7
+  },
+  {
+   "claim": "The person behind the counter is the primary driver of the sale, not just the service itself.",
+   "quote": "they're buying the person behind the counter that's who they're buying",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    699,
+    700
+   ],
+   "t_start": 3054.92,
+   "t_end": 3066.78,
+   "window": 7
+  },
+  {
+   "claim": "Salon employees often face social stigma or lack of respect from family members when working in a traditional tanning salon.",
+   "quote": "And mom and dad say, honey, come on, you can do better.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    715,
+    716
+   ],
+   "t_start": 3132.38,
+   "t_end": 3135.28,
+   "window": 8
+  },
+  {
+   "claim": "The physical toll of salon work is often underestimated by those outside the industry.",
+   "quote": "You just work at a tanning salon. You're like, oh, I'm going to kill you. i might slice your head off right now right i put 44 000 steps on these feet today on concrete i bent over and cleaned more beds and you'll clean in a lifetime in one day",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    736,
+    737,
+    738,
+    739
+   ],
+   "t_start": 3183.59,
+   "t_end": 3202.08,
+   "window": 8
+  },
+  {
+   "claim": "Customers make immediate judgments about the quality of service based on the visual appearance of the staff and facility.",
+   "quote": "In the first 18 seconds, we decided that what we see is going to be what we get.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    763
+   ],
+   "t_start": 3291.5,
+   "t_end": 3298.22,
+   "window": 8
+  },
+  {
+   "claim": "Salon owners often rely on the generic claim of having 'the best equipment' which fails to differentiate them from competitors.",
+   "quote": "Everybody always says they have the best equipment. So that's all your customers ever hear.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    770,
+    771
+   ],
+   "t_start": 3318.26,
+   "t_end": 3323.2,
+   "window": 8
+  },
+  {
+   "claim": "Owners often make excuses about 'price shoppers' when the real reason for a lost sale is a poor first impression of the store.",
+   "quote": "Well, some people are just price dollars. If they walk out of your store, they did it because we did something wrong.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    802,
+    803
+   ],
+   "t_start": 3417.33,
+   "t_end": 3424.62,
+   "window": 8
+  },
+  {
+   "claim": "Salon owners often resist upgrading old equipment because they believe it still functions adequately.",
+   "quote": "Well, what I have works fine. I mean, yeah, it looks like it was from 1964, but it tans great.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "objection",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    819,
+    820
+   ],
+   "t_start": 3486.01,
+   "t_end": 3493.26,
+   "window": 9
+  },
+  {
+   "claim": "Rising minimum wages in other sectors create a competitive labor market that forces salon owners to pay significantly more for staff.",
+   "quote": "Now, if your employee can work at Taco Bell taking ownership of the drive-thru for 20, and you want to pay them 18, yes, well, you're going to be looking for new employees.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    833,
+    834
+   ],
+   "t_start": 3539.62,
+   "t_end": 3548.18,
+   "window": 9
+  },
+  {
+   "claim": "Labor costs have escalated to a point where they are no longer sustainable for some businesses.",
+   "quote": "And pretty soon, we got into a realm of unaffordability.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    840
+   ],
+   "t_start": 3574.09,
+   "t_end": 3577.89,
+   "window": 9
+  },
+  {
+   "claim": "Adding new services often fails because they require too much staff time to manage and explain.",
+   "quote": "the problem is that it takes somebody walking back, showing somebody how to use it, getting them prepared to use it. It takes a lot of labor, right?",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    844,
+    845,
+    846,
+    847
+   ],
+   "t_start": 3587.77,
+   "t_end": 3596.86,
+   "window": 9
+  },
+  {
+   "claim": "Customers eventually hit a plateau with tanning results and stop seeing progress.",
+   "quote": "How many of you have had customers that say, you know what, I'm just going to stop handing. I mean, I'm kind of plateaued. I don't get results here anymore.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    850,
+    851,
+    852
+   ],
+   "t_start": 3616.58,
+   "t_end": 3626.62,
+   "window": 9
+  },
+  {
+   "claim": "The wellness industry is experiencing rapid growth and should be used to complement tanning services.",
+   "quote": "The wellness industry is just growing exponentially. I can't stress that enough.",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "market",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    891,
+    892
+   ],
+   "t_start": 3742.7,
+   "t_end": 3746.66,
+   "window": 9
+  },
+  {
+   "claim": "The brand has achieved a goal where every store exceeds $1.3 million in revenue.",
+   "quote": "2026 will be the first year that every single store in our brand exceeds 1.3 million homes every single one",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    919,
+    920
+   ],
+   "t_start": 3859.21,
+   "t_end": 3875.43,
+   "window": 9
+  },
+  {
+   "claim": "A salon in a small coal mining town was generating $433,000 in revenue before optimization.",
+   "quote": "She's doing $433,000 in Gillette, Wyoming. Now, Gillette, Wyoming is a coal mining town.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    927,
+    928
+   ],
+   "t_start": 3910.29,
+   "t_end": 3919.65,
+   "window": 9
+  },
+  {
+   "claim": "A salon owner in Wyoming increased revenue from $433k to $1.5M after rebranding, updating pricing and packages, and adding equipment.",
+   "quote": "she from 433 to 1.5 call her yourself she did so good in the following two years that she bought the seven acres across from her store opened up her own shopping center",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    935,
+    936,
+    937
+   ],
+   "t_start": 3956.02,
+   "t_end": 3977.51,
+   "window": 10
+  },
+  {
+   "claim": "Salon owners historically kept their business strategies secret from one another.",
+   "quote": "when I got into business, it was like we were in the CIA. Nobody could share ideas.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "phrase",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    943
+   ],
+   "t_start": 4016.27,
+   "t_end": 4020.89,
+   "window": 10
+  },
+  {
+   "claim": "Profit margins increase significantly once a salon surpasses $400,000 in revenue.",
+   "quote": "when you cross over $400,000, we change to a 76% profit margin.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "proof",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    986
+   ],
+   "t_start": 4178.4,
+   "t_end": 4184.8,
+   "window": 10
+  },
+  {
+   "claim": "Salon owners find it difficult and uncomfortable to implement changes in their business.",
+   "quote": "They're like, oh, I'm just, you know, it's just uncomfortable doing what I do. Change is hard.",
+   "category": "coaching",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    989,
+    990
+   ],
+   "t_start": 4191.44,
+   "t_end": 4195.46,
+   "window": 10
+  },
+  {
+   "claim": "Difficulty retaining staff is linked to a refusal to update products and modalities.",
+   "quote": "Why is it hard to keep staff? Because we refuse to change. They want new things. They want new products, new modalities.",
+   "category": "operations",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "pain",
+   "lens": "marketing",
+   "source_stream": "uvalux26_P1060686",
+   "segment_ids": [
+    992,
+    993,
+    994,
+    995
+   ],
+   "t_start": 4200.1,
+   "t_end": 4208.22,
+   "window": 10
+  }
+ ]
+}

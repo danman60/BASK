@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 7,
+  "tool_calls": 7,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/core/src/network/outcomes.ts']",
+  "elapsed": "21s",
+  "updated": "19:43:35",
+  "provider_history": [],
+  "provider_switched": false
+}

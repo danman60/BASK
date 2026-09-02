@@ -1,0 +1,13 @@
+{
+  "state": "done",
+  "turns": 11,
+  "tool_calls": 11,
+  "errors": 0,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/core/src/monitor/fixtures.ts"
+  ],
+  "elapsed": "30s",
+  "updated": "13:38:28",
+  "provider_history": [],
+  "provider_switched": false
+}

@@ -1,0 +1,157 @@
+{
+  "topbar": {
+    "w": 1600,
+    "h": 63
+  },
+  "today": {
+    "pageH": 5188,
+    "w": 1600,
+    "strips": [
+      {
+        "name": "today-s0",
+        "top": 0,
+        "h": 1300
+      },
+      {
+        "name": "today-s1",
+        "top": 1300,
+        "h": 1300
+      },
+      {
+        "name": "today-s2",
+        "top": 2600,
+        "h": 800
+      }
+    ]
+  },
+  "insights": {
+    "pageH": 3937,
+    "w": 1600,
+    "strips": [
+      {
+        "name": "insights-s0",
+        "top": 0,
+        "h": 1300
+      },
+      {
+        "name": "insights-s1",
+        "top": 1300,
+        "h": 1300
+      }
+    ]
+  },
+  "community": {
+    "pageH": 10908,
+    "w": 1600,
+    "strips": [
+      {
+        "name": "community-s0",
+        "top": 0,
+        "h": 1300
+      },
+      {
+        "name": "community-s1",
+        "top": 1300,
+        "h": 1300
+      },
+      {
+        "name": "community-s2",
+        "top": 2600,
+        "h": 1300
+      }
+    ]
+  },
+  "network": {
+    "pageH": 2564,
+    "w": 1600,
+    "strips": [
+      {
+        "name": "network-s0",
+        "top": 0,
+        "h": 1300
+      },
+      {
+        "name": "network-s1",
+        "top": 1300,
+        "h": 1264
+      }
+    ]
+  },
+  "calls": {
+    "pageH": 1588,
+    "w": 1600,
+    "strips": [
+      {
+        "name": "calls-s0",
+        "top": 0,
+        "h": 1300
+      },
+      {
+        "name": "calls-s1",
+        "top": 1300,
+        "h": 288
+      }
+    ]
+  },
+  "knowledge": {
+    "pageH": 4047,
+    "w": 1600,
+    "strips": [
+      {
+        "name": "knowledge-s0",
+        "top": 0,
+        "h": 1300
+      },
+      {
+        "name": "knowledge-s1",
+        "top": 1300,
+        "h": 600
+      }
+    ]
+  },
+  "studio": {
+    "pageH": 1000,
+    "w": 1600,
+    "strips": [
+      {
+        "name": "studio-s0",
+        "top": 0,
+        "h": 1000
+      }
+    ]
+  },
+  "campaigns": {
+    "pageH": 1000,
+    "w": 1600,
+    "strips": [
+      {
+        "name": "campaigns-s0",
+        "top": 0,
+        "h": 1000
+      }
+    ]
+  },
+  "evidence": {
+    "pageH": 1346,
+    "w": 1600,
+    "strips": [
+      {
+        "name": "evidence-s0",
+        "top": 0,
+        "h": 1300
+      }
+    ]
+  },
+  "ask": {
+    "pageH": 1000,
+    "w": 1600,
+    "strips": [
+      {
+        "name": "ask-s0",
+        "top": 0,
+        "h": 1000
+      }
+    ]
+  },
+  "askAnswer": "Tuesday afternoon next week is mostly open, with time from 1pm to 5pm being 69% unbooked. It could be a good time to offer a promotion, highlight last-minute deals, or try bringing in more appointments during those hours. This open stretch could bring in an extra $151 per month if you fill it."
+}

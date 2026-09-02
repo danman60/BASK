@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 15,
+  "tool_calls": 15,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/ui/src/components/CohortTable.visual.tsx']",
+  "elapsed": "253s",
+  "updated": "20:01:53",
+  "provider_history": [],
+  "provider_switched": false
+}

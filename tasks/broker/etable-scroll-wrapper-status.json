@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 18,
+  "tool_calls": 18,
+  "errors": 1,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/ui/src/components/EmployeeSalesTable.tsx']",
+  "elapsed": "48s",
+  "updated": "03:34:43",
+  "provider_history": [],
+  "provider_switched": false
+}

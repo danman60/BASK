@@ -1,0 +1,77 @@
+/**
+ * Scale-invariant threshold helpers for the insights rules engine.
+ *
+ * The detectors currently judge a change using ABSOLUTE percentage points — a rule
+ * like 'flag a retail attachment drop of 3 or more points'. That was tuned against
+ * synthetic demo fixtures where attachment runs about 21 percent. Measured against
+ * a real twelve-year salon dataset, attachment is 5.28 percent, so a 3-point
+ * absolute drop is a 57 percent relative collapse and the rule almost never fires.
+ * Worse, a companion rule needs a staff member to sit 6 points below the house
+ * rate, which is arithmetically impossible when the house rate is 5.28.
+ *
+ * These helpers let rules express thresholds in terms of both absolute points and
+ * relative share, so they work on both large-base and small-base data without
+ * tuning. A drop is material if it exceeds either the absolute threshold OR the
+ * relative threshold — on a large base the absolute test is the meaningful one,
+ * and on a small base the relative test is.
+ *
+ * For example, with a baseline of 5.28 percent:
+ *   - An absolute test of 3 points is only met by a fall to 2.28 or below
+ *   - A relative test of 0.40 is met by a fall to 3.17 or below (40% of 5.28)
+ *   - So a fall to 2.9 percent is material on the relative test (it lost 45% of
+ *     the baseline) but not on the absolute test (it moved only 2.38 points).
+ *     On the synthetic 21 percent base that same 2.38-point move is noise, and
+ *     there the absolute test is the one that correctly stays silent.
+ *
+ * The same logic applies to gaps — when comparing one performer to a reference
+ * rate, we want to know if they're significantly below that rate.
+ */
+
+import { MaterialityRule } from './scaling';
+
+/**
+ * A materiality rule defines the minimum change needed to consider a drop or gap
+ * significant. Either absolutePoints or relativeShare (or both) may be specified,
+ * but not both must be satisfied — on large bases the absolute test is meaningful,
+ * on small bases the relative test is.
+ */
+export interface MaterialityRule {
+  /** Minimum change in percentage points. */
+  readonly absolutePoints: number;
+  /** Minimum drop as a share of the baseline (0.25 = 25% drop). */
+  readonly relativeShare: number;
+}
+
+/**
+ * Materiality rule for judging a fall in retail attachment rate.
+ *
+ * This rule is used by the retail attachment drop detector. It has both absolute
+ * and relative thresholds to work across different data scales:
+ * - On synthetic demo fixtures where attachment runs about 21 percent, the
+ *   absolute threshold of 3 points is meaningful for detecting drops.
+ * - On real twelve-year dataset where attachment is 5.28 percent, a 3-point
+ *   drop would be a 57 percent collapse and almost never fires. The relative
+ *   threshold of 0.40 (forty percent) is needed to detect meaningful drops in
+ *   this smaller baseline.
+ */
+export const RETAIL_ATTACHMENT_DROP_RULE: Readonly<MaterialityRule> = {
+  absolutePoints: 3,
+  relativeShare: 0.40,
+};
+
+/**
+ * Materiality rule for judging whether one staff member sits far enough below
+ * the house attachment rate to be named.
+ *
+ * This rule is used by the staff comparison detector. It has both thresholds to
+ * work across different data scales:
+ * - The absolute threshold of 6 points would be impossible to meet when the house
+ *   rate is only 5.28 percent (no staffer could be 6 points below 5.28%).
+ * - The relative threshold of 0.30 (thirty percent) allows naming staff members
+ *   who are significantly below the house rate, such as the 3.37% staffer in the
+ *   2019 dataset against a 5.28% house rate.
+ */
+export const STAFF_COMPARISON_RULE: Readonly<MaterialityRule> = {
+  absolutePoints: 6,
+  relativeShare: 0.30,
+};

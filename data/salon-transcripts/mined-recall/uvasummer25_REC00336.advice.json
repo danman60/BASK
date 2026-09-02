@@ -1,0 +1,142 @@
+{
+ "source_stream": "uvasummer25_REC00336",
+ "media_duration_s": 1860.504,
+ "windows_total": 5,
+ "windows_too_thin": 0,
+ "windows_bad_json": 0,
+ "items_rejected_no_verbatim_match": 1,
+ "items_kept": 7,
+ "model": "gemma4:31b",
+ "lens": "recall",
+ "mined_at": "2026-08-22T15:44:43",
+ "advice": [
+  {
+   "claim": "Customers may be reluctant to buy high-end skincare for teens if they believe parents will only pay for established brands like Sephora.",
+   "quote": "the reason that we didn't go younger is because 16 and up is your demographic that they are employed you know most of these people's parents they don't want to pay for their kids added extra stuff outside of sephora right",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00336",
+   "segment_ids": [
+    28,
+    29
+   ],
+   "t_start": 152.36,
+   "t_end": 161.66,
+   "window": 1
+  },
+  {
+   "claim": "The ideal launch window for sunless tanning products is May to June to align with the seasonal desire to look good for summer.",
+   "quote": "it kind of correlates with our our launch time we're thinking may to june the reason being you're coming into the time of year people want to feel good look good everyone's going out",
+   "category": "marketing",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00336",
+   "segment_ids": [
+    32,
+    33,
+    34
+   ],
+   "t_start": 171.98,
+   "t_end": 187.86,
+   "window": 1
+  },
+  {
+   "claim": "Using a body wash too frequently (daily) may strip a spray tan or Versa tan faster.",
+   "quote": "If you're using it strictly for Versa, I think you would probably want to stay a little bit away from it, or spray tans in general, just because there could be the possibility that it could strip it a little bit faster.",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00336",
+   "segment_ids": [
+    35,
+    36,
+    37
+   ],
+   "t_start": 187.86,
+   "t_end": 205.9,
+   "window": 1
+  },
+  {
+   "claim": "Pricing a unique, high-story product too low can undervalue the brand; for example, $75 CAD was considered too low for a dual-chambered lotion set.",
+   "quote": "I would challenge you on the price. I think you really undervaluated at $75 Canadian.",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "concrete",
+   "shape": "mistake",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00336",
+   "segment_ids": [
+    107,
+    108
+   ],
+   "t_start": 538.56,
+   "t_end": 544.18,
+   "window": 2
+  },
+  {
+   "claim": "Physically placing a product in a customer's hand creates a sense of ownership and increases the likelihood of purchase.",
+   "quote": "when we're at the salon we always like to put the product in their hand because that's ownership right?",
+   "category": "retail",
+   "moment": "product",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00336",
+   "segment_ids": [
+    115
+   ],
+   "t_start": 575.2,
+   "t_end": 579.42,
+   "window": 2
+  },
+  {
+   "claim": "Male clients are often resistant to complex skincare routines and prefer simplified product offerings over multiple bottles.",
+   "quote": "one of the clients that came to mind i was thinking about typically our male clients who i don't use lotion i don't use product i don't like to put this on my skin why are you handing me five bottles i now need to put on",
+   "category": "customer",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "context",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00336",
+   "segment_ids": [
+    146,
+    147,
+    148
+   ],
+   "t_start": 697.7,
+   "t_end": 712.82,
+   "window": 2
+  },
+  {
+   "claim": "Sales are more successful when the process is made easy and simplified for the customer.",
+   "quote": "i always when i do sales trainings always like make things easier people because that's how you sell let's make things easy",
+   "category": "retail",
+   "moment": "none",
+   "is_script": false,
+   "specificity": "general",
+   "shape": "benchmark",
+   "lens": "recall",
+   "source_stream": "uvasummer25_REC00336",
+   "segment_ids": [
+    184,
+    185
+   ],
+   "t_start": 830.8,
+   "t_end": 839.52,
+   "window": 2
+  }
+ ]
+}

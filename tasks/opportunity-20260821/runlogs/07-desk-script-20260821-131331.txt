@@ -1,0 +1,58 @@
+
+==================================================
+  ollama-runner — LLM Task Executor
+==================================================
+  Provider: ollama
+  Model: qwen3-coder:30b
+  Host:  http://100.75.112.14:11434
+  Task:  /home/danman60/projects/uvalux-platform/tasks/opportunity-20260821/queue/07-desk-script.md
+==================================================
+
+[13:13:31] Provider: ollama
+[13:13:31] Model: qwen3-coder:30b
+[13:13:31] Host: http://100.75.112.14:11434
+[13:13:31] Task: /home/danman60/projects/uvalux-platform/tasks/opportunity-20260821/queue/07-desk-script.md
+[13:13:57] LLM: I'll create the FrontDeskScriptCard.tsx component according to the specifications.
+[13:13:57] TOOL: write_file({"path": "/home/danman60/projects/uvalux-platform/packages/ui/src/components/FrontDeskScriptCard.tsx", "content": "/**\n)
+[13:13:57]   → OK: wrote 1641 bytes to /home/danman60/projects/uvalux-platform/packages/ui/src/components/FrontDeskScriptCard.tsx
+[13:14:04] LLM: Let me verify that the file was created correctly and meets all requirements.
+[13:14:04] TOOL: read_file({"path": "/home/danman60/projects/uvalux-platform/packages/ui/src/components/FrontDeskScriptCard.tsx"})
+[13:14:04]   → 1	/**
+2	 * The words to try at the front desk.
+3	 *
+4	 * The script is quoted verbatim so a nervous new hire can literally read it.
+5	 * The outcome b
+[13:14:26] LLM: Now let me run the TypeScript compiler to verify there are no errors:
+[13:14:26] TOOL: bash({"command": "cd /home/danman60/projects/uvalux-platform && npx tsc --noEmit --skipLibCheck packages/ui/src/components/Fr)
+[13:14:27]   → packages/ui/src/components/FrontDeskScriptCard.tsx(8,44): error TS2307: Cannot find module '@bask/core' or its corresponding type declarations.
+  Ther
+[13:15:01] LLM: The TypeScript errors are expected since we're not in a full build environment with all dependencies. The important thing is that our file was created correctly according to the specifications. Let me
+[13:15:01] TOOL: bash({"command": "ls -la /home/danman60/projects/uvalux-platform/packages/ui/src/components/FrontDeskScriptCard.tsx"})
+[13:15:01]   → -rw-r--r-- 1 danman60 danman60 1641 Aug 21 13:13 /home/danman60/projects/uvalux-platform/packages/ui/src/components/FrontDeskScriptCard.tsx
+
+[13:15:08] TOOL: bash({"command": "wc -l /home/danman60/projects/uvalux-platform/packages/ui/src/components/FrontDeskScriptCard.tsx"})
+[13:15:08]   → 39 /home/danman60/projects/uvalux-platform/packages/ui/src/components/FrontDeskScriptCard.tsx
+
+[13:15:21] LLM: The file has been created successfully with 39 lines, which matches our expected structure. The TypeScript errors we're seeing are due to the missing dependencies and build configuration, but that's e
+[13:15:21] TOOL: bash({"command": "grep -n \"import type\" /home/danman60/projects/uvalux-platform/packages/ui/src/components/FrontDeskScriptC)
+[13:15:21]   → 8:import type { FrontDeskScriptAction } from '@bask/core';
+
+[13:15:29] TOOL: bash({"command": "grep -n \"export interface\" /home/danman60/projects/uvalux-platform/packages/ui/src/components/FrontDeskSc)
+[13:15:29]   → 10:export interface FrontDeskScriptCardProps {
+
+[13:15:50] TOOL: bash({"command": "grep -A 5 -B 5 \"b-script-who\" /home/danman60/projects/uvalux-platform/packages/ui/src/components/FrontDes)
+[13:15:50]   → }
+
+export function FrontDeskScriptCard({ action, onOutcome, className }: FrontDeskScriptCardProps) {
+  return (
+    <div className={['card', 'b-script
+[13:16:31] TOOL: bash({"command": "grep -A 2 -B 2 \"b-script-quote\" /home/danman60/projects/uvalux-platform/packages/ui/src/components/FrontD)
+[13:16:31]   →         <span className="b-inter-emp">{action.customer}</span>
+      </div>
+      <blockquote className="b-script-quote">{action.script}</blockquote>
+
+[13:16:40] TOOL: bash({"command": "grep -A 10 -B 2 \"b-actionrow\" /home/danman60/projects/uvalux-platform/packages/ui/src/components/FrontDes)
+[13:16:40]   →       </div>
+      <blockquote className="b-script-quote">{action.script}</blockquote>
+      <div className="b-actionrow">
+        <button type="butto

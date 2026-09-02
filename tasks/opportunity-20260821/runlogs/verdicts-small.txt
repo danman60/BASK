@@ -1,0 +1,5 @@
+--- 06-staff-task attempt 1 2026-08-21T13:06:54+00:00
+gate_rc=0
+
+model_claimed:
+

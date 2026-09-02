@@ -1,0 +1,11 @@
+{
+  "state": "done",
+  "turns": 16,
+  "tool_calls": 16,
+  "errors": 0,
+  "files_changed": "['/home/danman60/projects/uvalux-platform/packages/ui/src/components/GrowthRail.tsx']",
+  "elapsed": "30s",
+  "updated": "03:33:14",
+  "provider_history": [],
+  "provider_switched": false
+}

@@ -1,0 +1,13 @@
+{
+  "state": "running",
+  "turns": 5,
+  "tool_calls": 5,
+  "errors": 0,
+  "files_changed": [
+    "/home/danman60/projects/uvalux-platform/packages/core/src/insights/thresholds.ts"
+  ],
+  "elapsed": "316s",
+  "updated": "12:27:48",
+  "provider_history": [],
+  "provider_switched": false
+}
