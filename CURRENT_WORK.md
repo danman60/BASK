@@ -1,52 +1,52 @@
 # CURRENT_WORK — uvalux-platform
 
-## 2026-09-03 12:48 EDT — DEMO DAY, LIVE FIXES SHIPPED
+## 2026-09-03 16:26 EDT — MEETING DAY DONE. Elaine + NICK (not Wilfred).
 
-Room today: **Elaine (product training) + NICK.** Not Wilfred. Nick can approve.
+Production green all day: `demo:verify` **12 passed / 0 failed**. Four UI fixes shipped live from
+Daniel inspecting production, all verified by DOM measurement (`946e88c`).
 
-**Production green after the last deploy.** `demo:verify` **12 passed / 0 failed** against
-https://bask-psi.vercel.app on `946e88c`. HEAD == origin/master.
+### THE MISS WORTH REMEMBERING
+Nick had asked for **a specific agreement**. What was shipped everywhere was the 15-page
+**proposal** — every term, but no signature block and no acceptance clause. It was mistaken for the
+agreement because it had a price in it. Now fixed:
+**`docs/pitch/LETTER-AGREEMENT-Phase1.pdf`** — 3 pages, signable, terms lifted verbatim from the
+proposal, signature blocks for both parties. *Check what KIND of document is wanted, not just that
+yours is complete.*
 
-### Four fixes shipped from Daniel inspecting production live (`946e88c`)
-Each measured on the live DOM before and after, not eyeballed.
+### Proved on demand: it really was four salons
+Zero of 122 staff work at two locations · Salon D trades 2017-01-29→2019-07-14 while the other three
+run 2016-01-02→2020-03-14 · all four open on 844 days, only some on 651 · visits 84,077 / 55,435 /
+41,389 / 13,771 · the salon ids are SalonTouch creation timestamps from 2009, 2011, 2013 and 2016.
 
-| | before | after |
-|---|---|---|
-| Ask page had no shell inset at all | x=0, padding=0 | x=352, padding=40px |
-| Every Monitor card had zero padding | `.card.b-mon-insight` padding=0px | 16px, scoped to that surface |
-| Consent pledge card on Monitor | rendered | removed, no consent wording on the page |
-| Community layout | one 600px centred column | feed left (x=170), box right (x=910) |
+### Customer names: there are none, and that is the good answer
+`customers.csv` = `customer_id, salon_id, signup_date, marketing_opt_in, preferred_channel`. No
+name/email/phone/address anywhere. Staff names already de-identified to "Staff 01…".
+**Per-customer history IS present** — 11,411 customers ever visited, median 5 visits, max 736.
 
-**Gotcha to keep: the `card` class carries NO padding of its own.** Monitor's cards hugged their
-borders because of it. Other pages only look right because their own classes supply padding, so any
-new surface using a bare `card` will hit this. A global rule would double-pad existing pages, hence
-the scoped fix.
+### Shipped today
+- `docs/pitch/LETTER-AGREEMENT-Phase1.{md,html,pdf}`
+- `docs/pitch/DATASET-BROWSER.html` — eight real tables, 40 rows each, four-salon proof on top
+- The **raw CSVs are now in the kit** (`5-THE-RAW-DATA`, 51 MB) with a proof note
+- Deck: consent removed · ask slide → **Next steps** · **Timeline** slide added
+- Data summary now leads with four named salons
 
-### Consent stripped from everything customer-facing (owner directive)
-Deck slide 3 lost the `consent` gate node and its caption clause. `ConsentPledgeCard` is out of
-Monitor. The run sheet keeps the substance without the word.
-**The consent FILTER in `packages/core/consent` is untouched and still runs on every Compass read.**
+### Kit by machine
+**DART is the current one** at `C:\Users\User\OneDrive\Desktop\UVALUX-DEMO-2026-09-03` — its
+desktop is **OneDrive-redirected**, unlike FIRMAMENT and ASTEROID. Query the registry, never append
+`Desktop` to `%USERPROFILE%`. FIRMAMENT and the shared folder are current.
+**ASTEROID is BEHIND** — offline since ~13:00, missing the letter agreement, dataset browser and raw
+data. Catch it up when it returns.
 
-### Deck
-Slide 8 is now a **timeline** (now→January focus group · Jan 31 Expo launch · next summer
-vertical-agnostic). Slide 9 is **Next steps** (plan the three-phase deal · plan training corpus
-ingestion · onboard three test salons). The old "what I want from today" ask slide is gone.
+### Open
+1. Catch ASTEROID up.
+2. **Customer Health nudge buttons** (email/SMS + Bask-written copy popup) — asked for, not built.
+   `packages/api/src/ai/recovery.ts` already does per-customer drafts with approve-each-message but
+   only for failed payments. **No email/SMS delivery exists anywhere in the product.**
+3. A downloadable worker for salon-owner self-serve export; the read-only profiler is the safe half.
+4. Save the SalonTouch acquisition procedure (dossier §9) as a skill.
+5. `net user datapull /del` owed on the salon PC.
 
-### The launcher broke in the room and was fixed live
-`1 - START THE DEMO.bat` resolved Chrome into a variable and passed `--new-window`; on a machine
-with no Chrome on PATH the variable was empty and Windows tried to run `--new-window` as a program.
-It now names no browser at all. **It had never been run on a machine without Chrome before shipping.**
-
-### Open, for Daniel
-1. **Customer Health nudge buttons** (email/SMS, Bask-written copy popup) — asked for, not built.
-   `packages/api/src/ai/recovery.ts` already drafts per-customer messages with approve-each-message,
-   but only for failed payments. **There is no email/SMS delivery anywhere in the product.**
-2. **A downloadable worker** for salon-owner self-serve export. The read-only profiler is the safe
-   half already. The SalonTouch acquisition procedure is prose in the dossier §9, never a skill.
-3. `.rejected` files and the rest of the dirty tree. `net user datapull /del` still owed.
-
-Full detail, including the rehearsal findings and the corrections made to our own materials, is in
-`.claude-crash-transcript.md`.
+Full detail in `.claude-crash-transcript.md`.
 
 ## THURSDAY 2026-09-03 — WHO IS IN THE ROOM (changes what matters)
 
