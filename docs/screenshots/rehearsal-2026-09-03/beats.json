@@ -1,0 +1,176 @@
+[
+  {
+    "n": 1,
+    "name": "Today — the Daybreak letter",
+    "ms": 1521,
+    "shot": "beat1-today-daybreak.png",
+    "figs": [
+      "Good morning, Dana. Yesterday finished 12% above your usual Wednesday.",
+      "You’ve got five things to look at, with a few possible quick wins for next week. One item is tying up cash, but there are also signs of strong demand for specific services."
+    ],
+    "notes": "HTTP 200",
+    "status": "OK"
+  },
+  {
+    "n": 2,
+    "name": "The retail card in the attention queue",
+    "ms": 64,
+    "shot": "beat2-retail-card.png",
+    "figs": [
+      "Needs your attention — ranked by impact",
+      "Retail attachment is slipping",
+      "Lotion sales per visit fell from 9% to 6% over two weeks — mostly on Thursday afternoon and Friday evening shifts. Traffic is unchanged.",
+      "≈ $5,354/mo if it holds"
+    ],
+    "notes": "Card lives under \"Needs your attention — ranked by impact\".",
+    "status": "OK"
+  },
+  {
+    "n": "2b",
+    "name": "(context) \"6 ways to grow\" opportunity card #1 — where 8.3%→5.9% / $4,260 actually lives",
+    "ms": null,
+    "shot": "beat2b-opportunity-card-8.3-to-5.9.png",
+    "figs": [
+      "1",
+      "RETAIL",
+      "Improve evening retail sales",
+      "Retail attachment fell from 8.3% to 5.9% while visits stayed normal; most of the drop is evening shifts.",
+      "This decline in evening retail sales could cost the salon about $4,260 per month in lost revenue.",
+      "+$4,260/mo",
+      "High confidence",
+      "This week"
+    ],
+    "notes": "Separate section, ABOVE the attention queue. Has no \"Show me why\" / \"Fix this\".",
+    "status": "NOTE"
+  },
+  {
+    "n": 3,
+    "name": "\"Show me why\" — the evidence view (chart, then visit rows)",
+    "ms": 1864,
+    "shot": "beat3-evidence-chart.png",
+    "figs": [
+      "WHAT WE MEASURED",
+      "2026-07-09",
+      "2026-08-05",
+      "the 28 days before that",
+      "8.8%",
+      "→",
+      "last 14 days",
+      "5.7%",
+      "Measured over the last 14 days."
+    ],
+    "notes": "Chart + windows + money working.",
+    "status": "OK"
+  },
+  {
+    "n": "3b",
+    "name": "\"Show me why\" — the visit rows",
+    "ms": null,
+    "shot": "beat3b-evidence-visit-rows.png",
+    "figs": [
+      "· counted from the visits below",
+      "Showing 40 of 1,441 visits — 1401 more in the window, all counted in the figure above."
+    ],
+    "notes": "Row-level receipts under the chart.",
+    "status": "OK"
+  },
+  {
+    "n": 4,
+    "name": "\"What this drew on\" — coaching citations, one opened",
+    "ms": 2351,
+    "shot": "beat4-coaching-citations.png",
+    "figs": [
+      "What this drew on",
+      "Advice from UVALUX training that matched this. Open one to see it said out loud.",
+      "▾",
+      "The most effective way to sell lotion is by breaking down the cost per session.",
+      "UVALUX training · from 0h22m",
+      "·",
+      "Retail",
+      "Not checked yet",
+      "Said in the session:",
+      "“Cost per session is the number one answer right here.”",
+      "▸",
+      "Some lotion brands offer a 10% cash back incentive if the salon carries at least 75% of their product lines.",
+      "UVALUX training · from 3h39m",
+      "·"
+    ],
+    "notes": "Citation block loads async after \"Show me why\" (815ms to appear). 3 toggles.",
+    "status": "OK"
+  },
+  {
+    "n": 5,
+    "name": "\"Fix this\" → Studio, pre-filled (NOT generated)",
+    "ms": 1538,
+    "shot": "beat5-studio-prefilled.png",
+    "figs": [
+      "Fixing: Retail attachment is slipping.",
+      "✓ Goal",
+      "·"
+    ],
+    "notes": "Route: /marketing?insight=fcbac7c8-35e7-4ad2-9d75-300041bfc26f. No generate/approve/schedule/send clicked.",
+    "status": "OK"
+  },
+  {
+    "n": "6a",
+    "name": "Compass — Call List (the dark side)",
+    "ms": 1289,
+    "shot": "beat6a-compass.png",
+    "figs": [
+      "Compass",
+      "UVALUX",
+      "Network",
+      "Call List",
+      "Accounts",
+      "Coaching",
+      "Knowledge",
+      "FH",
+      "Fintan H.",
+      "All territories",
+      "Thursday. Four calls worth making.",
+      "Ranked by what a conversation could change this week.",
+      "4 thriving",
+      "2 steady"
+    ],
+    "notes": "GET /compass → HTTP 200",
+    "status": "OK"
+  },
+  {
+    "n": "6b",
+    "name": "Compass — Network",
+    "ms": 854,
+    "shot": "beat6b-compass-network.png",
+    "figs": [
+      "Compass",
+      "UVALUX",
+      "Network",
+      "Call List",
+      "Accounts",
+      "Coaching",
+      "Knowledge",
+      "FH",
+      "Fintan H.",
+      "All territories",
+      "12 salons across the network.",
+      "7 share business signals, 4 take part in benchmarks only, and 1 share nothing but their name. Every comparison below is drawn from 11 contributing salons.",
+      "How the network is doing",
+      "Open a band to see what put those salons in it. There is no score behind the band."
+    ],
+    "notes": "GET /compass/network → HTTP 200",
+    "status": "OK"
+  },
+  {
+    "n": "6c",
+    "name": "Compass — /compass/calls",
+    "ms": 860,
+    "shot": "beat6c-compass-calls.png",
+    "figs": [
+      "NOT FOUND",
+      "There’s nothing at this address.",
+      "The link may be out of date, or the page may have moved. Today’s summary is the best place to pick things back up.",
+      "Go to Today"
+    ],
+    "notes": "GET /compass/calls → HTTP 404",
+    "status": "FAILED — HTTP 404"
+  }
+]

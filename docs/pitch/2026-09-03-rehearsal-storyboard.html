@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bask — Rehearsal Storyboard, 3 Sep 2026</title>
+<style>
+  :root{
+    --ink:#1b1714; --ink2:#5d534c; --ink3:#8b8079;
+    --paper:#faf7f3; --card:#fff; --line:#e5ded5;
+    --accent:#b5511f; --good:#2f7d4f; --warn:#b07000; --bad:#b2241c;
+    --dark:#171310;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font:15px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  .wrap{max-width:1280px;margin:0 auto;padding:40px 28px 80px}
+  header.top{border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:28px}
+  .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  h1{font-size:34px;line-height:1.15;margin:8px 0 6px;letter-spacing:-.02em}
+  .sub{color:var(--ink2);font-size:14px;margin:0}
+  .meta{margin-top:14px;font-size:12.5px;color:var(--ink3)}
+  .meta b{color:var(--ink2)}
+
+  h2.sec{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);
+    margin:44px 0 14px;padding-bottom:7px;border-bottom:1px solid var(--line);font-weight:700}
+
+  table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);
+    border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);
+    padding:11px 14px;background:#f4efe8;border-bottom:1px solid var(--line);font-weight:700}
+  td{padding:11px 14px;border-bottom:1px solid #f0eae2;vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.num{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+  .bar{display:inline-block;height:8px;border-radius:4px;background:var(--accent);opacity:.75;vertical-align:middle;margin-right:8px}
+  .bar.over{background:var(--bad);opacity:.85}
+  .pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:700;
+    letter-spacing:.02em;white-space:nowrap}
+  .p-ok{background:#e6f2ea;color:var(--good)}
+  .p-warn{background:#fbf0da;color:var(--warn)}
+  .p-bad{background:#fbe4e2;color:var(--bad)}
+  .p-note{background:#eee9e2;color:var(--ink2)}
+
+  .alert{border-left:4px solid var(--bad);background:#fdf3f2;padding:16px 20px;border-radius:0 8px 8px 0;margin:14px 0}
+  .alert.warn{border-left-color:var(--warn);background:#fdf7ea}
+  .alert h3{margin:0 0 6px;font-size:15px}
+  .alert p{margin:0 0 6px;font-size:13.5px;color:var(--ink2)}
+  .alert p:last-child{margin-bottom:0}
+  code{font:12.5px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:#efe9e1;padding:1px 5px;border-radius:4px;color:#4a3f38}
+
+  .beat{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    margin:22px 0;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .beat.miss{border-color:#e8b6b1}
+  .bhead{display:flex;align-items:flex-start;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line);background:#fcfaf7}
+  .bnum{flex:0 0 auto;width:42px;height:42px;border-radius:10px;background:var(--ink);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+  .beat.miss .bnum{background:var(--bad)}
+  .beat.note .bnum{background:var(--ink3)}
+  .btitle{flex:1 1 auto;min-width:0}
+  .btitle h3{margin:0 0 3px;font-size:18px;letter-spacing:-.01em}
+  .btitle .bnote{margin:0;font-size:12.5px;color:var(--ink3)}
+  .btime{flex:0 0 auto;text-align:right}
+  .btime .t{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1}
+  .btime .t.over{color:var(--bad)}
+  .btime .l{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:4px}
+
+  .bbody{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:0}
+  @media (max-width:900px){.bbody{grid-template-columns:1fr}}
+  .shot{padding:18px;background:#f2ece4;display:flex;align-items:flex-start;justify-content:center}
+  .shot img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:6px;
+    box-shadow:0 2px 10px rgba(0,0,0,.10);background:#fff}
+  .says{padding:20px 22px;border-left:1px solid var(--line)}
+  @media (max-width:900px){.says{border-left:0;border-top:1px solid var(--line)}}
+  .says h4{margin:0 0 10px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+  .says ul{margin:0;padding:0;list-style:none}
+  .says li{padding:7px 0 7px 14px;border-left:2px solid var(--line);margin-bottom:4px;
+    font-size:13.5px;color:var(--ink);line-height:1.5}
+  .says li.key{border-left-color:var(--accent);font-weight:600}
+  .fig{font-variant-numeric:tabular-nums}
+  .talk{margin-top:16px;padding:12px 14px;background:#f7f3ed;border-radius:8px;font-size:13px;color:var(--ink2)}
+  .talk b{color:var(--ink);display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;color:var(--ink3)}
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">Rehearsal storyboard · read-only capture</div>
+  <h1>Bask &amp; Compass — the six-click demo spine</h1>
+  <p class="sub">Every beat below was walked live on the deployed build. Screenshots are 1920&times;1080, unretouched.</p>
+  <p class="meta">
+    Target <b>https://bask-psi.vercel.app</b> &nbsp;·&nbsp; Captured <b>3 Sep 2026, 03:46 ET</b> &nbsp;·&nbsp;
+    Viewport <b>1920&times;1080</b> &nbsp;·&nbsp; Chromium headless, cold cache per beat<br>
+    Nothing was generated, approved, scheduled or sent. No write action was taken on any surface.
+  </p>
+</header>
+
+<h2 class="sec">Read this before you walk on</h2>
+
+<div class="alert">
+  <h3>Beat 6 — <code>/compass/calls</code> does not exist. It returns HTTP 404.</h3>
+  <p>The Call List is served from <code>/compass</code> itself — the Compass index <em>is</em> the call list
+  (&ldquo;Thursday. Four calls worth making.&rdquo;). The left-nav item labelled <b>Call List</b> points at
+  <code>/compass?role=uvalux_rep</code>.</p>
+  <p><b>On the night:</b> never type <code>/compass/calls</code>. Go to <code>/compass</code>, or click <b>Call List</b> in the nav.
+  Typing the old path puts a &ldquo;NOT FOUND&rdquo; page on the big screen.</p>
+</div>
+
+<div class="alert warn">
+  <h3>The 8.3% &rarr; 5.9% / $4,260 figures are <em>not</em> on the card with &ldquo;Show me why&rdquo;.</h3>
+  <p>The Today page carries <b>two separate card systems</b>, and the retail story appears in both with different numbers:</p>
+  <p>&bull; <b>&ldquo;6 ways to grow your business today&rdquo;</b> &rarr; card 1, <i>Improve evening retail sales</i>:
+  <span class="fig">8.3% &rarr; 5.9%</span>, <span class="fig">+$4,260/mo</span>. This card has
+  <b>no &ldquo;Show me why&rdquo; and no &ldquo;Fix this&rdquo;</b> — its buttons are Start the challenge / Approve &amp; post / Request coaching.</p>
+  <p>&bull; <b>&ldquo;Needs your attention — ranked by impact&rdquo;</b> &rarr; card 1, <i>Retail attachment is slipping</i>:
+  <span class="fig">9% &rarr; 6%</span>, <span class="fig">&asymp; $5,354/mo if it holds</span>.
+  <b>This is the card that drives beats 3, 4 and 5.</b></p>
+  <p>&bull; Inside that card&rsquo;s evidence view the same metric is stated a third way:
+  <span class="fig">8.8% &rarr; 5.7%</span> (28-day window &rarr; 14-day window), and the rows footer reads <span class="fig">5.8%</span>.</p>
+  <p><b>On the night:</b> if you say &ldquo;8.3 to 5.9&rdquo; out loud and then open &ldquo;Show me why&rdquo;, the screen will say
+  9 to 6, then 8.8 to 5.7. Pick one card and quote its own numbers.</p>
+</div>
+
+<h2 class="sec">Load times — ranked. Anything over 2s is a hole you have to talk through.</h2>
+
+<table>
+  <thead><tr>
+    <th style="width:52px">Beat</th><th>Surface</th><th style="width:110px">Measured</th>
+    <th style="width:230px">Relative</th><th style="width:120px">Verdict</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      <td class="num">4</td><td>&ldquo;What this drew on&rdquo; — coaching citations, one opened</td>
+      <td class="num">2,351 ms</td>
+      <td><span class="bar over" style="width:200px"></span></td>
+      <td><span class="pill p-bad">Over 2s — talk</span></td>
+    </tr>
+    <tr>
+      <td class="num">3</td><td>&ldquo;Show me why&rdquo; — evidence chart + visit rows</td>
+      <td class="num">1,864 ms</td>
+      <td><span class="bar" style="width:159px"></span></td>
+      <td><span class="pill p-warn">Close to 2s</span></td>
+    </tr>
+    <tr>
+      <td class="num">5</td><td>&ldquo;Fix this&rdquo; &rarr; Studio, pre-filled</td>
+      <td class="num">1,538 ms</td>
+      <td><span class="bar" style="width:131px"></span></td>
+      <td><span class="pill p-ok">Fine</span></td>
+    </tr>
+    <tr>
+      <td class="num">1</td><td>Today — the Daybreak letter</td>
+      <td class="num">1,521 ms</td>
+      <td><span class="bar" style="width:129px"></span></td>
+      <td><span class="pill p-ok">Fine</span></td>
+    </tr>
+    <tr>
+      <td class="num">6a</td><td>Compass — Call List (<code>/compass</code>)</td>
+      <td class="num">1,289 ms</td>
+      <td><span class="bar" style="width:110px"></span></td>
+      <td><span class="pill p-ok">Fine</span></td>
+    </tr>
+    <tr>
+      <td class="num">6b</td><td>Compass — Network (<code>/compass/network</code>)</td>
+      <td class="num">854 ms</td>
+      <td><span class="bar" style="width:73px"></span></td>
+      <td><span class="pill p-ok">Fastest</span></td>
+    </tr>
+    <tr>
+      <td class="num">2</td><td>Retail card in the attention queue <span style="color:var(--ink3)">(scroll only — same page as beat 1)</span></td>
+      <td class="num">64 ms</td>
+      <td><span class="bar" style="width:6px"></span></td>
+      <td><span class="pill p-ok">Instant</span></td>
+    </tr>
+    <tr>
+      <td class="num">6c</td><td><code>/compass/calls</code> <span style="color:var(--ink3)">(not ranked — never reaches a usable surface)</span></td>
+      <td class="num">860 ms</td>
+      <td><span class="bar over" style="width:73px"></span></td>
+      <td><span class="pill p-bad">404 — do not open</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="meta" style="margin-top:12px">
+  Beats 1, 5, 6a, 6b, 6c are measured from <b>navigation start to the surface being visually ready</b> (key element visible + network idle).
+  Beats 2, 3, 4 happen inside an already-loaded page, so they are measured from <b>the click to the content being on screen</b>.
+</p>
+
+<h2 class="sec">Beat by beat</h2>
+
+<!-- BEAT 1 -->
+<div class="beat">
+  <div class="bhead">
+    <div class="bnum">1</div>
+    <div class="btitle">
+      <h3>Today — the Daybreak letter</h3>
+      <p class="bnote"><code>GET /</code> &rarr; HTTP 200 &nbsp;·&nbsp; the cold open, before you explain anything</p>
+    </div>
+    <div class="btime"><div class="t">1,521<span style="font-size:14px">ms</span></div><div class="l">to ready</div></div>
+  </div>
+  <div class="bbody">
+    <div class="shot"><img src="beat1-today-daybreak.png" alt="Today page with the Daybreak letter"></div>
+    <div class="says">
+      <h4>On screen, verbatim</h4>
+      <ul>
+        <li>DAYBREAK · THURSDAY, AUGUST 6</li>
+        <li class="key">&ldquo;Good morning, Dana. Yesterday finished <span class="fig">12% above your usual Wednesday</span>.&rdquo;</li>
+        <li>&ldquo;You&rsquo;ve got five things to look at, with a few possible quick wins for next week. One item is tying up cash, but there are also signs of strong demand for specific services.&rdquo;</li>
+        <li>&ldquo;6 ways to grow your business today&rdquo;</li>
+        <li>&ldquo;Found in your own numbers overnight. Every one opens into the thing that does it.&rdquo;</li>
+      </ul>
+      <div class="talk"><b>Note</b>The headline matches the pitch script exactly — <span class="fig">12% above your usual Wednesday</span>. The letter says &ldquo;five things&rdquo; while the section beneath it says &ldquo;6 ways&rdquo;; if Nick counts, that is the mismatch he will find.</div>
+    </div>
+  </div>
+</div>
+
+<!-- BEAT 2 -->
+<div class="beat">
+  <div class="bhead">
+    <div class="bnum">2</div>
+    <div class="btitle">
+      <h3>The retail card in the attention queue</h3>
+      <p class="bnote">Scroll to &ldquo;Needs your attention — ranked by impact&rdquo; &nbsp;·&nbsp; this is the card the rest of Act 1 runs on</p>
+    </div>
+    <div class="btime"><div class="t">64<span style="font-size:14px">ms</span></div><div class="l">scroll only</div></div>
+  </div>
+  <div class="bbody">
+    <div class="shot"><img src="beat2-retail-card.png" alt="Retail attachment is slipping card in the attention queue"></div>
+    <div class="says">
+      <h4>On screen, verbatim</h4>
+      <ul>
+        <li>Needs your attention — ranked by impact</li>
+        <li class="key">Retail attachment is slipping</li>
+        <li>&ldquo;Lotion sales per visit fell from <span class="fig">9% to 6%</span> over two weeks — mostly on Thursday afternoon and Friday evening shifts. Traffic is unchanged.&rdquo;</li>
+        <li class="key fig">&asymp; $5,354/mo if it holds</li>
+        <li>Controls: <b>Fix this</b> · <b>Show me why</b> · Dismiss</li>
+      </ul>
+      <div class="talk"><b>Watch out</b>These are <span class="fig">9% &rarr; 6%</span> and <span class="fig">$5,354</span> — <em>not</em> 8.3&rarr;5.9 / $4,260. Those live on a different card, shown below.</div>
+    </div>
+  </div>
+</div>
+
+<!-- BEAT 2b -->
+<div class="beat note">
+  <div class="bhead">
+    <div class="bnum">2b</div>
+    <div class="btitle">
+      <h3>Where 8.3% &rarr; 5.9% / $4,260 actually lives</h3>
+      <p class="bnote">&ldquo;6 ways to grow your business today&rdquo;, card 1 &nbsp;·&nbsp; a different section, higher up the page</p>
+    </div>
+    <div class="btime"><div class="t" style="color:var(--ink3)">&mdash;</div><div class="l">context</div></div>
+  </div>
+  <div class="bbody">
+    <div class="shot"><img src="beat2b-opportunity-card-8.3-to-5.9.png" alt="Opportunity card: Improve evening retail sales"></div>
+    <div class="says">
+      <h4>On screen, verbatim</h4>
+      <ul>
+        <li>1 &nbsp;·&nbsp; RETAIL</li>
+        <li class="key">Improve evening retail sales</li>
+        <li>&ldquo;Retail attachment fell from <span class="fig">8.3% to 5.9%</span> while visits stayed normal; most of the drop is evening shifts.&rdquo;</li>
+        <li>&ldquo;This decline in evening retail sales could cost the salon about <span class="fig">$4,260 per month</span> in lost revenue.&rdquo;</li>
+        <li class="key fig">+$4,260/mo &nbsp;·&nbsp; High confidence &nbsp;·&nbsp; This week</li>
+        <li>&ldquo;Four weeks of persistent signal, also below similar salons.&rdquo;</li>
+        <li>METHOD — UVALUX analytics method · Retail &amp; wellness attachment benchmarked across 300+ salons</li>
+        <li>Buttons: Start the challenge · Approve &amp; post to Facebook and Instagram · Request coaching</li>
+      </ul>
+      <div class="talk"><b>Do not demo from here</b>This card has <b>no &ldquo;Show me why&rdquo; and no &ldquo;Fix this&rdquo;</b>. If you open the retail story from this card you have nowhere to go — the drill-down and the Studio hand-off only exist on the attention-queue card in beat 2.</div>
+    </div>
+  </div>
+</div>
+
+<!-- BEAT 3 -->
+<div class="beat">
+  <div class="bhead">
+    <div class="bnum">3</div>
+    <div class="btitle">
+      <h3>&ldquo;Show me why&rdquo; — the evidence, inline</h3>
+      <p class="bnote">Expands in place and pushes the queue down &nbsp;·&nbsp; button flips to &ldquo;Hide the detail&rdquo;</p>
+    </div>
+    <div class="btime"><div class="t">1,864<span style="font-size:14px">ms</span></div><div class="l">click &rarr; chart + rows</div></div>
+  </div>
+  <div class="bbody">
+    <div class="shot"><img src="beat3-evidence-chart.png" alt="Evidence drilldown: what we measured, what's behind it, how the money figure works"></div>
+    <div class="says">
+      <h4>On screen, verbatim</h4>
+      <ul>
+        <li><b>WHAT WE MEASURED</b></li>
+        <li class="key fig">the 28 days before that <b>8.8%</b> &rarr; last 14 days <b>5.7%</b></li>
+        <li class="fig">2026-07-09 &nbsp;&mdash;&nbsp; 2026-08-05</li>
+        <li>&ldquo;Measured over the last 14 days.&rdquo;</li>
+        <li><b>WHAT&rsquo;S BEHIND IT</b></li>
+        <li>Thursday afternoon — &ldquo;Thursday afternoon shifts attached <span class="fig">3%</span> of visits.&rdquo;</li>
+        <li>Friday evening — &ldquo;Friday evening shifts attached <span class="fig">4%</span> of visits.&rdquo;</li>
+        <li><b>HOW THE MONEY FIGURE WORKS</b></li>
+        <li class="key">&ldquo;<span class="fig">3.2</span> fewer product sales a day at <span class="fig">$56</span> each, over <span class="fig">30</span> days.&rdquo;</li>
+      </ul>
+      <div class="talk"><b>Talk track</b>Nearly two seconds of blank expansion. Say the line while it opens: &ldquo;it shows its working — the window it measured, the shifts it blames, and the arithmetic behind the dollar figure.&rdquo;</div>
+    </div>
+  </div>
+</div>
+
+<!-- BEAT 3b -->
+<div class="beat">
+  <div class="bhead">
+    <div class="bnum">3b</div>
+    <div class="btitle">
+      <h3>&hellip; then the visit rows</h3>
+      <p class="bnote">Row-level receipts, directly under the chart — scroll, no extra click</p>
+    </div>
+    <div class="btime"><div class="t" style="color:var(--ink3)">&mdash;</div><div class="l">same expansion</div></div>
+  </div>
+  <div class="bbody">
+    <div class="shot"><img src="beat3b-evidence-visit-rows.png" alt="Visit rows table inside the evidence drilldown"></div>
+    <div class="says">
+      <h4>On screen, verbatim</h4>
+      <ul>
+        <li class="key"><span class="fig">84</span> of <span class="fig">1,441</span> visits over last 14 days included a product — <span class="fig">5.8%</span> · counted from the visits below</li>
+        <li>Columns: DAY · CUSTOMER · BOUGHT · AMOUNT</li>
+        <li>Wed, Aug 5 · Rosalind W · Hempz Botanical Sunshine Revitalizing Bronzer · <span class="fig">$53</span></li>
+        <li>Wed, Aug 5 · Callum H · California Tan CT Peepers Eyewear · <span class="fig">$10</span></li>
+        <li>Wed, Aug 5 · Tabitha D · Australian Gold Golden Legacy · <span class="fig">$49</span></li>
+        <li>Wed, Aug 5 · Sarah F · Uvalux Disposable Footwear Sticky · <span class="fig">$83</span></li>
+        <li class="key">&ldquo;Showing <span class="fig">40</span> of <span class="fig">1,441</span> visits — <span class="fig">1401</span> more in the window, all counted in the figure above.&rdquo;</li>
+      </ul>
+      <div class="talk"><b>Note</b>The footer reads <span class="fig">5.8%</span> here, against <span class="fig">5.7%</span> in the chart above it and <span class="fig">6%</span> on the card. Same metric, three roundings, all visible at once if he scrolls.</div>
+    </div>
+  </div>
+</div>
+
+<!-- BEAT 4 -->
+<div class="beat">
+  <div class="bhead">
+    <div class="bnum">4</div>
+    <div class="btitle">
+      <h3>&ldquo;What this drew on&rdquo; — the coaching citations</h3>
+      <p class="bnote">Loads <b>asynchronously</b> after &ldquo;Show me why&rdquo;, at the very bottom of the expansion. Three citations; one opened here.</p>
+    </div>
+    <div class="btime"><div class="t over">2,351<span style="font-size:14px">ms</span></div><div class="l">slowest beat</div></div>
+  </div>
+  <div class="bbody">
+    <div class="shot"><img src="beat4-coaching-citations.png" alt="What this drew on: coaching citations with one quote opened"></div>
+    <div class="says">
+      <h4>On screen, verbatim</h4>
+      <ul>
+        <li class="key">What this drew on</li>
+        <li>&ldquo;Advice from UVALUX training that matched this. Open one to see it said out loud.&rdquo;</li>
+        <li><b>Opened:</b> &ldquo;The most effective way to sell lotion is by breaking down the cost per session.&rdquo;<br>
+            <span style="color:var(--ink3)">UVALUX training · from 0h22m · Retail · Not checked yet</span></li>
+        <li class="key">Said in the session: &ldquo;Cost per session is the number one answer right here.&rdquo;</li>
+        <li>&ldquo;Some lotion brands offer a 10% cash back incentive if the salon carries at least 75% of their product lines.&rdquo;<br>
+            <span style="color:var(--ink3)">UVALUX training · from 3h39m · Retail · Not checked yet</span></li>
+        <li>&ldquo;To prevent customers from using outside lotions and encourage retail sales, require them to leave their personal bottles at the front desk and provide a sample for their session.&rdquo;<br>
+            <span style="color:var(--ink3)">UVALUX training · from 1h13m · Retail · Not checked yet</span></li>
+      </ul>
+      <div class="talk"><b>Talk track — you must fill this</b>This is the longest wait in the demo and the block appears <em>below the fold</em>, roughly <span class="fig">800ms</span> after the evidence itself. Expand, scroll down, and keep talking: &ldquo;and it tells you where the advice came from — a timestamp in UVALUX&rsquo;s own training, not a guess.&rdquo; Then open a citation. Every citation is tagged <b>Not checked yet</b> — if Nick asks, that is the review state, not an error.</div>
+    </div>
+  </div>
+</div>
+
+<!-- BEAT 5 -->
+<div class="beat">
+  <div class="bhead">
+    <div class="bnum">5</div>
+    <div class="btitle">
+      <h3>&ldquo;Fix this&rdquo; &rarr; Studio, arriving pre-filled</h3>
+      <p class="bnote"><code>/marketing?insight=fcbac7c8-35e7-4ad2-9d75-300041bfc26f</code> &nbsp;·&nbsp; captured pre-generate — nothing was generated, approved, scheduled or sent</p>
+    </div>
+    <div class="btime"><div class="t">1,538<span style="font-size:14px">ms</span></div><div class="l">to ready</div></div>
+  </div>
+  <div class="bbody">
+    <div class="shot"><img src="beat5-studio-prefilled.png" alt="Studio campaign composer arriving pre-filled"></div>
+    <div class="says">
+      <h4>On screen, verbatim</h4>
+      <ul>
+        <li>Step rail: <b>&#10003; Goal</b> · <b>&#10003; Audience</b> · <b>Offer</b> · Review · Schedule &nbsp;<span style="color:var(--ink3)">(lands on Offer, first two already satisfied)</span></li>
+        <li class="key">&ldquo;<b>Fixing:</b> Retail attachment is slipping. Lotion sales per visit fell from <span class="fig">9% to 6%</span> over two weeks — mostly on Thursday afternoon and Friday evening shifts. Traffic is unchanged.&rdquo;</li>
+        <li>&ldquo;What&rsquo;s the offer?&rdquo; — &ldquo;Bask suggested this one. Change it to anything inside your limits.&rdquo;</li>
+        <li>THE OFFER: <b>20% off</b> &nbsp;·&nbsp; GOOD FOR: <b>this week</b></li>
+        <li class="key">Audience — <span class="fig">24 people</span>. &ldquo;Top 10% by spend over the last 90 days.&rdquo;</li>
+        <li>Send <span class="fig">Fri, Aug 7, 6:00 p.m.</span> &nbsp;·&nbsp; Offer valid <b>this week</b></li>
+        <li>Buttons present but <b>not pressed</b>: Generate the campaign · Why this offer · Back</li>
+      </ul>
+      <div class="talk"><b>Talk track</b>&ldquo;I never started from a blank page.&rdquo; The goal and the audience are already ticked; the offer is written and editable. This is the beat that proves the hand-off, so let it sit before you touch Generate.</div>
+    </div>
+  </div>
+</div>
+
+<!-- BEAT 6a -->
+<div class="beat">
+  <div class="bhead">
+    <div class="bnum">6a</div>
+    <div class="btitle">
+      <h3>Compass — the Call List</h3>
+      <p class="bnote"><code>GET /compass</code> &rarr; HTTP 200 &nbsp;·&nbsp; role switches, theme flips dark</p>
+    </div>
+    <div class="btime"><div class="t">1,289<span style="font-size:14px">ms</span></div><div class="l">to ready</div></div>
+  </div>
+  <div class="bbody">
+    <div class="shot"><img src="beat6a-compass.png" alt="Compass call list, dark theme"></div>
+    <div class="says">
+      <h4>On screen, verbatim</h4>
+      <ul>
+        <li class="key">&ldquo;Thursday. <span class="fig">Four calls</span> worth making.&rdquo;</li>
+        <li>&ldquo;Ranked by what a conversation could change this week.&rdquo;</li>
+        <li class="fig">4 thriving · 2 steady · 1 need attention · 5 sharing name only · 12 salons in your portfolio</li>
+        <li class="key">Maple Glow Tanning, Burlington, ON — <b>Needs attention</b><br>
+          <span class="fig">&minus;17%</span> Retail sales, 8 weeks &nbsp;·&nbsp; <span class="fig">62 days</span> Since their last order &nbsp;·&nbsp; Health band · 11 salons in the cohort</li>
+        <li>&ldquo;Suggested conversation: Retail merchandising and staff sales coaching. Lead with the number, not the catalogue — ask what changed on the floor. Retail is down 17% over eight weeks.&rdquo;</li>
+        <li>&ldquo;Asked for coaching via Bask on Tuesday — their request, not just our signal.&rdquo;</li>
+        <li>Aurora Collective — Beltline, Calgary, AB — <span class="fig">&minus;9%</span>, Behind, Steady</li>
+        <li>Aurora Collective — Westside, Calgary, AB — <b>Ready to grow</b>, <span class="fig">+23%</span>, Thriving</li>
+        <li>Left nav: Network · <b>Call List</b> · Accounts · Coaching · Knowledge &nbsp;·&nbsp; Fintan H., All territories</li>
+      </ul>
+      <div class="talk"><b>Navigation</b>This page <em>is</em> the call list. Reach it by clicking <b>Call List</b> in the nav or typing <code>/compass</code>. There is no <code>/compass/calls</code>.</div>
+    </div>
+  </div>
+</div>
+
+<!-- BEAT 6b -->
+<div class="beat">
+  <div class="bhead">
+    <div class="bnum">6b</div>
+    <div class="btitle">
+      <h3>Compass — Network</h3>
+      <p class="bnote"><code>GET /compass/network</code> &rarr; HTTP 200 &nbsp;·&nbsp; fastest surface in the demo</p>
+    </div>
+    <div class="btime"><div class="t">854<span style="font-size:14px">ms</span></div><div class="l">to ready</div></div>
+  </div>
+  <div class="bbody">
+    <div class="shot"><img src="beat6b-compass-network.png" alt="Compass network view"></div>
+    <div class="says">
+      <h4>On screen, verbatim</h4>
+      <ul>
+        <li class="key">&ldquo;<span class="fig">12</span> salons across the network.&rdquo;</li>
+        <li>&ldquo;<span class="fig">7</span> share business signals, <span class="fig">4</span> take part in benchmarks only, and <span class="fig">1</span> share nothing but their name. Every comparison below is drawn from <span class="fig">11</span> contributing salons.&rdquo;</li>
+        <li>&ldquo;How the network is doing&rdquo; — &ldquo;Open a band to see what put those salons in it. There is no score behind the band.&rdquo;</li>
+        <li class="fig">4 Thriving · 2 Steady · 1 Needs attention · 5 Not shared</li>
+        <li><b>&ldquo;Retail is the network&rsquo;s soft spot&rdquo;</b> — &ldquo;<span class="fig">2</span> salons of the <span class="fig">7</span> sharing signals are showing a retail slide. The retail-reset playbook is the highest-leverage conversation this month.&rdquo;</li>
+        <li>&ldquo;Capacity pressure is showing up as growth demand&rdquo; — &ldquo;<span class="fig">1</span> salon is running at peak capacity long enough to justify a second-room conversation.&rdquo;</li>
+        <li>&ldquo;Ordering cadence is slipping at the edges&rdquo; — &ldquo;<span class="fig">2</span> accounts have gone past their usual reorder window.&rdquo;</li>
+        <li>Where they are — &ldquo;Twelve salons across four provinces.&rdquo; <span class="fig">AB 3 · BC 4 · ON 3 · QC 2</span></li>
+        <li>Adoption — <span class="fig">10 active</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- BEAT 6c -->
+<div class="beat miss">
+  <div class="bhead">
+    <div class="bnum">!</div>
+    <div class="btitle">
+      <h3>/compass/calls — MISSING, 404</h3>
+      <p class="bnote"><code>GET /compass/calls</code> &rarr; <b>HTTP 404</b> &nbsp;·&nbsp; the route does not exist in the build and does not exist in the repo</p>
+    </div>
+    <div class="btime"><div class="t over">404</div><div class="l">do not open</div></div>
+  </div>
+  <div class="bbody">
+    <div class="shot"><img src="beat6c-compass-calls.png" alt="404 not found page at /compass/calls"></div>
+    <div class="says">
+      <h4>On screen, verbatim</h4>
+      <ul>
+        <li class="key">NOT FOUND</li>
+        <li>&ldquo;There&rsquo;s nothing at this address.&rdquo;</li>
+        <li>&ldquo;The link may be out of date, or the page may have moved. Today&rsquo;s summary is the best place to pick things back up.&rdquo;</li>
+        <li>Button: Go to Today</li>
+      </ul>
+      <div class="talk"><b>Substitute</b>Use <code>/compass</code> (beat 6a) — it is the call list. Existing Compass routes are exactly:
+      <code>/compass</code>, <code>/compass/network</code>, <code>/compass/accounts</code>, <code>/compass/coaching</code>, <code>/compass/knowledge</code>.
+      Note the 404 page&rsquo;s recovery button sends you to <b>Bask&rsquo;s</b> Today, dropping you out of the dark Compass theme mid-demo.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Captured read-only from the live deployment on 3 Sep 2026 at 03:46 ET. No campaign was generated, approved, scheduled or sent; no data was written.
+  Screenshots also archived at <code>docs/screenshots/rehearsal-2026-09-03/</code>.
+</footer>
+
+</div>
+</body>
+</html>

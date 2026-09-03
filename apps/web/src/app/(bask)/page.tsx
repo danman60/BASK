@@ -7,7 +7,7 @@ import {
   TODAY_UI,
 } from '@bask/ui';
 
-import { DEMO_OPPORTUNITIES, DEMO_OUTCOMES } from '@bask/core';
+import { DEMO_OUTCOMES } from '@bask/core';
 
 import { WinsFeed } from '@/components/today/WinsFeed';
 
@@ -15,6 +15,7 @@ import { AttentionQueue } from '@/components/today/AttentionQueue';
 import { DaybreakLetter } from '@/components/today/DaybreakLetter';
 import { OpportunityFeed } from '@/components/today/OpportunityFeed';
 import { resolveSalonScope, readVirtualToday, SALON_PARAM } from '@/lib/salon-scope';
+import { loadOpportunities } from '@/lib/opportunity-data';
 import { loadToday } from '@/lib/today-data';
 
 import {
@@ -62,6 +63,12 @@ export default async function TodayPage({
   const scopeQuery = buildScopeQuery(params);
   const { brief, cards, comparison } = await loadToday(salon, today, scopeQuery);
 
+  /* The feed is fixtures unless BASK_LIVE_OPPORTUNITIES=1 says otherwise.
+     `loadOpportunities` reads that flag itself and returns `DEMO_OPPORTUNITIES`
+     untouched when it is unset — including on any failure of the derived path —
+     so the default build behaves exactly as it did before this existed. */
+  const { opportunities } = await loadOpportunities(salon, today);
+
 
   return (
     <main className="b-shell">
@@ -77,7 +84,7 @@ export default async function TodayPage({
             owner reads dollars and actions, not analytics. The insight queue
             below it stays as the finer-grained "what changed" detail. */}
         <OpportunityFeed
-          opportunities={DEMO_OPPORTUNITIES}
+          opportunities={opportunities}
           outcomes={DEMO_OUTCOMES}
           salonName={salon.name}
         />

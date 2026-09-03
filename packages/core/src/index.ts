@@ -324,6 +324,16 @@ export {
   type UvaluxOrderAction,
 } from './opportunities/types';
 export { DEMO_OPPORTUNITIES, DEMO_OUTCOMES } from './opportunities/fixtures';
+// Deriving that same shape from a salon's own rows. Pure — the measuring lives
+// in `apps/web/src/lib/opportunity-data.ts`. Reached only when
+// BASK_LIVE_OPPORTUNITIES=1; the default Today feed still renders the fixtures.
+export {
+  deriveOpportunities,
+  DERIVE_ASSUMPTIONS,
+  type LowStockSignal,
+  type OpportunitySignals,
+  type StaffRetailSignal,
+} from './opportunities/derive';
 export {
   DEMO_WINS,
   DEMO_WIN_NOTES,

@@ -305,3 +305,20 @@ seasonal-pause row failed, the broker **reverted the file to its committed conte
 model output as `.rejected`** — no manual recovery, unlike `detectors.ts` an hour earlier.
 
 Still yours to decide: row 4's shape, and rows 1-2's rewritten intents.
+## From SYSADMIN — 2026-09-03 00:00 ET — backend gateway domain change (owner-approved)
+The NETCUP Supabase gateway for this app is moving from `sb-bask.broadwayify.com` to
+`sb-bask.djatb.fyi` (dedicated backend-gateway domain, wildcard LE cert, live now). The OLD
+hostname keeps working as an alias — nothing breaks. SYSADMIN will flip `NEXT_PUBLIC_SUPABASE_URL`
+on the Vercel project and redeploy once public DNS resolution is consistent (resolvers are still
+clearing pre-delegation negatives). If you touch env or deploy before then: use the djatb.fyi host
+only if `dig +short A sb-bask.djatb.fyi @8.8.8.8` returns 152.53.208.249. Questions → SYSADMIN.
+
+## From uvalux-platform-12 — 2026-09-03 00:00 EDT
+**Netcup gateway hostname change (SYSADMIN, owner-approved — no action needed here).**
+Bask's Netcup gateway moves to `https://sb-bask.djatb.fyi`. The old builtwithdan.com
+hostname never actually served TLS. SYSADMIN flips the Vercel env var and redeploys
+once public DNS is consistent.
+
+Relevant to the 2026-09-03 demo only as a "do not be surprised": the demo runs on
+`https://bask-psi.vercel.app`, which is unaffected. Netcup remains STAGING and is still
+the wrong answer to Wilfred's data-residency question — it is in Manassas, Virginia.
