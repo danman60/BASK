@@ -3,7 +3,17 @@
  * One column, wide type, plenty of air: this screen is a conversation, and a
  * conversation laid out like a dashboard reads as a form to fill in. */
 
-.ask-page { display: grid; gap: var(--space-6); max-width: 46rem; }
+/* The page renders this as its own top-level container — it is NOT inside
+   `.b-shell` like Today is — so without the shell's own inset it sat flush
+   against the left edge of the viewport. Measured on production 2026-09-03:
+   x=0, padding=0. Same gutter and top space as `.b-shell`, centred. */
+.ask-page {
+  display: grid;
+  gap: var(--space-6);
+  max-width: 46rem;
+  margin-inline: auto;
+  padding: var(--space-10) var(--page-gutter);
+}
 .ask-head { display: grid; gap: var(--space-3); }
 .ask-eyebrow { margin: 0; font: 600 var(--text-xs) / 1 var(--font-body);
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary-deep); }

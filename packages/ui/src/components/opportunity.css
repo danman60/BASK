@@ -448,6 +448,13 @@
 @media (max-width: 900px) { .b-monitor-grid { grid-template-columns: minmax(0, 1fr); } }
 .b-monitor-main { display: grid; gap: var(--space-4); align-content: start; min-width: 0; }
 .b-monitor-main > * { min-width: 0; }
+/* The `card` class carries no padding of its own, so every card on this surface
+   rendered its text flush against its own border. Measured on production
+   2026-09-03: `.card.b-mon-insight` and `.card.b-listener` both padding=0px.
+   Scoped to this surface deliberately — other pages supply their own padding
+   through their own classes, and a global `.card` rule would double it. */
+.b-monitor-main > .card,
+.b-monitor-rail > .card { padding: var(--space-4); }
 .b-monitor-rail { display: grid; gap: var(--space-4); align-content: start; min-width: 0; }
 .b-monitor-rail > * { min-width: 0; }
 

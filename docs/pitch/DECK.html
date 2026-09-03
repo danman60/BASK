@@ -64,6 +64,17 @@
   .arrow{color:var(--ink-faint);font-size:1.3rem}
 
   .three{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,2.4vw,2rem);margin-top:2.8rem}
+  /* timeline — a rail with three stops. The rail is the point: it reads as one
+     continuous path rather than three unrelated bullets. */
+  .rail{margin-top:3.2rem;position:relative;display:grid;grid-template-columns:repeat(3,1fr);
+        gap:clamp(1rem,2.4vw,2.2rem)}
+  .rail:before{content:"";position:absolute;left:0;right:0;top:.45rem;height:2px;background:var(--line)}
+  .stop{position:relative;padding-top:2rem}
+  .stop:before{content:"";position:absolute;left:0;top:0;width:1rem;height:1rem;border-radius:50%;
+               background:var(--primary);box-shadow:0 0 0 6px var(--paper)}
+  .stop .when{font-family:var(--display);font-size:clamp(1rem,1.7vw,1.4rem);font-weight:600;
+              color:var(--primary-deep);line-height:1.2}
+  .stop .what{font-size:clamp(.9rem,1.35vw,1.1rem);color:var(--ink-soft);margin-top:.5rem;line-height:1.45}
   ol.ask{counter-reset:a;display:flex;flex-direction:column;gap:1.1rem;margin-top:2.4rem;list-style:none}
   ol.ask li{counter-increment:a;padding-left:3rem;font-size:clamp(1rem,1.7vw,1.45rem);color:var(--ink)}
   ol.ask li::before{content:counter(a);background:var(--primary);color:#fff;width:2rem;height:2rem;
@@ -126,11 +137,10 @@
   <div class="flow">
     <span class="node">Salon</span><span class="arrow">⇄</span>
     <span class="node">Bask</span><span class="arrow">⇄</span>
-    <span class="node gate">consent</span><span class="arrow">⇄</span>
     <span class="node">Compass</span><span class="arrow">⇄</span>
     <span class="node">UVALUX</span>
   </div>
-  <p class="lede">Salons run better. UVALUX sees the market it serves — with consent, by design.</p>
+  <p class="lede">Salons run better. UVALUX sees the market it serves.</p>
 </section>
 
 <!-- S4 — Act 1 backdrop -->
@@ -177,15 +187,34 @@
     They can’t reproduce UVALUX.</p>
 </section>
 
-<!-- S8 — The ask -->
+<!-- S8 — Timeline -->
 <section class="slide">
-  <div class="eyebrow">The ask</div>
-  <h2>What I want from today.</h2>
+  <div class="eyebrow">Timeline</div>
+  <h2>One salon group, then the network, then everything else.</h2>
+  <div class="rail">
+    <div class="stop">
+      <div class="when">Now &rarr; January</div>
+      <div class="what">Build with a small focus group of salons. Real data, real owners, close feedback.</div>
+    </div>
+    <div class="stop">
+      <div class="when">January 31 &middot; the Expo</div>
+      <div class="what">Launch to the salon network, in front of the room that is already coming.</div>
+    </div>
+    <div class="stop">
+      <div class="when">Next summer</div>
+      <div class="what">Demonstrate the same engine in other verticals. The architecture is already industry-agnostic.</div>
+    </div>
+  </div>
+</section>
+
+<!-- S9 — Next steps -->
+<section class="slide">
+  <div class="eyebrow">Next steps</div>
+  <h2>Three things to plan.</h2>
   <ol class="ask">
-    <li>Your read on the concept.</li>
-    <li>The branding call — UVALUX, co-brand, or powered-by.</li>
-    <li>Three to five salon owners you trust, for thirty minutes each.</li>
-    <li>Then: structure.</li>
+    <li>Plan the three-phase deal.</li>
+    <li>Plan the training corpus ingestion.</li>
+    <li>Onboard three test-group salons.</li>
   </ol>
 </section>
 

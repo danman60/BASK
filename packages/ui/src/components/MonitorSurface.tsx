@@ -8,7 +8,6 @@
  */
 import type { MonitorFixture } from '@bask/core';
 
-import { ConsentPledgeCard } from './ConsentPledgeCard';
 import { EmployeeSalesTable } from './EmployeeSalesTable';
 import { InteractionCard } from './InteractionCard';
 import { ListenerStatusCard } from './ListenerStatusCard';
@@ -42,7 +41,6 @@ export function MonitorSurface({ data, onCoach, className }: MonitorSurfaceProps
         </div>
         <div className="b-monitor-rail">
           <ListenerStatusCard status={data.status} />
-          <ConsentPledgeCard />
         </div>
       </div>
 
