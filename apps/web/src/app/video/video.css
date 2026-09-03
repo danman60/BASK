@@ -1,0 +1,55 @@
+/*
+ * Product film page. Deliberately OUTSIDE the (bask) route group: this is the
+ * one link that gets sent to someone who has never seen the product, so it
+ * carries no operator chrome — no nav, no role switcher, no presenter panel.
+ *
+ * The film itself is hosted on R2, not in this repo. A 66 MB asset in the
+ * bundle would bloat every deploy, and this repo's history was rewritten once
+ * already to strip large media out of it.
+ */
+.film-page {
+  min-height: 100vh;
+  background: #0e0d0a;
+  color: #f0ede7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 24px 72px;
+}
+.film-head { max-width: 900px; width: 100%; margin-bottom: 26px; }
+.film-mark {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 13px; letter-spacing: .16em; text-transform: uppercase;
+  color: #6fc0ac; margin-bottom: 10px;
+}
+.film-title {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(28px, 4.4vw, 44px); line-height: 1.08; margin: 0 0 12px;
+  letter-spacing: -.022em; font-weight: 640;
+}
+.film-sub { color: #9c968b; font-size: 16px; line-height: 1.55; margin: 0; max-width: 620px; }
+.film-stage {
+  width: 100%; max-width: 1180px; border-radius: 14px; overflow: hidden;
+  background: #000; box-shadow: 0 24px 70px rgba(0,0,0,.6); line-height: 0;
+}
+.film-stage video { width: 100%; height: auto; display: block; }
+.film-meta {
+  max-width: 1180px; width: 100%; margin-top: 16px;
+  display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
+  color: #6b665e; font-size: 13.5px;
+}
+.film-meta a { color: #6fc0ac; text-decoration: none; }
+.film-meta a:hover { text-decoration: underline; }
+.film-cta {
+  margin-top: 40px; max-width: 900px; width: 100%;
+  border-top: 1px solid #262319; padding-top: 26px;
+  display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+}
+.film-btn {
+  display: inline-block; background: #0f6b5c; color: #fff; text-decoration: none;
+  padding: 11px 20px; border-radius: 9px; font-size: 14.5px; font-weight: 600;
+}
+.film-btn:hover { background: #12816e; }
+.film-btn.ghost { background: transparent; border: 1px solid #302d26; color: #f0ede7; }
+.film-btn.ghost:hover { background: #1e1c16; }
+@media (max-width: 640px) { .film-page { padding: 30px 14px 52px; } }
