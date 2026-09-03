@@ -1,64 +1,52 @@
 # CURRENT_WORK — uvalux-platform
 
-## 2026-09-03 04:4x — DEMO DAY. EVERYTHING IS BUILT, PUSHED AND VERIFIED.
+## 2026-09-03 12:48 EDT — DEMO DAY, LIVE FIXES SHIPPED
 
-**Production: `demo:verify` 12 passed / 0 failed against https://bask-psi.vercel.app, run AFTER
-the deploy of `63ad55e`.** Today still reads "12% above your usual Wednesday", the feed still shows
-the 6 fixture cards, and the live-derived path is correctly NOT active.
+Room today: **Elaine (product training) + NICK.** Not Wilfred. Nick can approve.
 
-**The push is unblocked.** `origin/master` == local. The 1.7 GB of raw audio, `docs/research/` and
-`tmp-salon-data/` were stripped from the 11 unpushed commits with `filter-branch --index-filter`;
-every message survived, every file is still on disk. Backups: tags `backup/pre-audio-strip` and
-`backup/pre-rewrite-*`.
+**Production green after the last deploy.** `demo:verify` **12 passed / 0 failed** against
+https://bask-psi.vercel.app on `946e88c`. HEAD == origin/master.
 
-### A near-miss worth remembering
-`github.com/danman60/BASK` is **PUBLIC**. The ignore rule was `docs/research/salontouch-*`, so
-`uvalux-loop-artifact.html` — a real closed salon group's twelve-year financial history — did not
-match it and became tracked when the breakdown was corrected. It was inside the push payload and
-was caught by scanning the object list before pushing, not after. **The whole `docs/research/`
-directory is now ignored.** Scan the payload before any push that includes a history rewrite.
+### Four fixes shipped from Daniel inspecting production live (`946e88c`)
+Each measured on the live DOM before and after, not eyeballed.
 
-### The demo kit — on BOTH machines, ASTEROID is the demo machine
-`Desktop\UVALUX-DEMO-2026-09-03\` on ASTEROID (`C:\Users\daniel`) and FIRMAMENT (`C:\Users\danie`).
-`1 - START THE DEMO.bat` opens every document as Chrome tabs in running order — the StreamStage expo
-launcher pattern, one thing to click, works offline except the live demo itself.
-Film verified by SHA256 on ASTEROID: `1e3e0a13…1a98`, 69,484,696 bytes, identical to source.
+| | before | after |
+|---|---|---|
+| Ask page had no shell inset at all | x=0, padding=0 | x=352, padding=40px |
+| Every Monitor card had zero padding | `.card.b-mon-insight` padding=0px | 16px, scoped to that surface |
+| Consent pledge card on Monitor | rendered | removed, no consent wording on the page |
+| Community layout | one 600px centred column | feed left (x=170), box right (x=910) |
 
-| | |
-|---|---|
-| `1-video/` | `UVALUX-Bask-film-v7.mp4` — 130.0s, Open Road bed |
-| `2-open-in-browser/` | run sheet · data breakdown · thirteen findings · deck · payback calculator · **storyboard/** |
-| `3-reference/` | proposal (PDF+md+html) · Elaine questions · Wilfred requirements · runbook · pitch · 2 leave-behind PDFs |
-| `4-DO-NOT-SHOW/` | the Glow Playbook — predates the accuracy review, quotes retracted numbers |
+**Gotcha to keep: the `card` class carries NO padding of its own.** Monitor's cards hugged their
+borders because of it. Other pages only look right because their own classes supply padding, so any
+new surface using a bare `card` will hit this. A global rule would double-pad existing pages, hence
+the scoped fix.
 
-### TWO THINGS THE REHEARSAL CAUGHT THAT WOULD HAVE BROKEN THE DEMO
-1. **`/compass/calls` 404s.** The route does not exist. The Call List **is** `/compass` itself
-   ("Thursday. Four calls worth making."). The 404's recovery button is "Go to Today", which exits
-   the dark Compass theme mid-sentence. The run sheet now says this in bold.
-2. **There are TWO retail cards and only one opens.** The `8.3% → 5.9% / +$4,260` tile is inside the
-   `DEMO_OPPORTUNITIES` fixture block and has **no Show me why**. The card that drives beats 3-5 is
-   "Retail attachment is slipping", **9% → 6%, ≈$5,354/mo**. Quote the one you are about to click:
-   its own drilldown reads 8.8%→5.7% (28d vs 14d) and 5.8% in the rows footer, so quoting a fourth
-   number invites a contradiction on screen.
-3. Beat 4, the citations — **Elaine's beat** — is the slowest surface at 2.35s, loads ~0.8s after the
-   evidence, and sits below the fold. A line to fill it is in the run sheet.
+### Consent stripped from everything customer-facing (owner directive)
+Deck slide 3 lost the `consent` gate node and its caption clause. `ConsentPledgeCard` is out of
+Monitor. The run sheet keeps the substance without the word.
+**The consent FILTER in `packages/core/consent` is untouched and still runs on every Compass read.**
 
-### Built overnight, all gated
-- **Live opportunities behind `BASK_LIVE_OPPORTUNITIES=1`, OFF by default** (`2a0e9bf`→`63ad55e`).
-  Rendered output byte-identical when unset (md5 of the `b-oppfeed` section matches pre-change).
-  `pnpm typecheck` 7/7, `pnpm build` 2/2. **Deliberately not enabled for this demo:** only
-  sunset-ridge has rows to derive from, so salon-switching would silently flip to fixtures, and it
-  yields 4 cards where PITCH.md wants 6. Plan: `docs/plans/2026-09-02-live-opportunities.md`.
-- **Proposal bounded**: Phase 1 is now 12 weeks from kickoff, the clock starts when UVALUX provides
-  the export and names stakeholders, out-of-list work is Phase 2, and findings+roadmap moved to the
-  second payment so the final C$5,000 is gated only on the pilot build. Still C$25,000 + HST, 15pp.
-- **Leave-behind PDFs**: thirteen findings (19pp), data breakdown (13pp).
-- **Rehearsal storyboard**: 10 screenshots with measured load times.
+### Deck
+Slide 8 is now a **timeline** (now→January focus group · Jan 31 Expo launch · next summer
+vertical-agnostic). Slide 9 is **Next steps** (plan the three-phase deal · plan training corpus
+ingestion · onboard three test salons). The old "what I want from today" ask slide is gone.
 
-### NOT done, and deliberately
-**The coaching claims were NOT marked verified.** The badge for a verified claim reads
-**"Checked by UVALUX"**, and Elaine is UVALUX — marking them would put a false statement in front of
-the one person who knows it is false. 3 of 741 decided, said plainly, is the ask to her.
+### The launcher broke in the room and was fixed live
+`1 - START THE DEMO.bat` resolved Chrome into a variable and passed `--new-window`; on a machine
+with no Chrome on PATH the variable was empty and Windows tried to run `--new-window` as a program.
+It now names no browser at all. **It had never been run on a machine without Chrome before shipping.**
+
+### Open, for Daniel
+1. **Customer Health nudge buttons** (email/SMS, Bask-written copy popup) — asked for, not built.
+   `packages/api/src/ai/recovery.ts` already drafts per-customer messages with approve-each-message,
+   but only for failed payments. **There is no email/SMS delivery anywhere in the product.**
+2. **A downloadable worker** for salon-owner self-serve export. The read-only profiler is the safe
+   half already. The SalonTouch acquisition procedure is prose in the dossier §9, never a skill.
+3. `.rejected` files and the rest of the dirty tree. `net user datapull /del` still owed.
+
+Full detail, including the rehearsal findings and the corrections made to our own materials, is in
+`.claude-crash-transcript.md`.
 
 ## THURSDAY 2026-09-03 — WHO IS IN THE ROOM (changes what matters)
 

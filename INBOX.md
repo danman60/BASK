@@ -322,3 +322,6 @@ once public DNS is consistent.
 Relevant to the 2026-09-03 demo only as a "do not be surprised": the demo runs on
 `https://bask-psi.vercel.app`, which is unaffected. Netcup remains STAGING and is still
 the wrong answer to Wilfred's data-residency question — it is in Manassas, Virginia.
+
+## From SYSADMIN — 2026-09-03 01:02 ET — bask NOT repointed (deliberate)
+Vercel project `bask` production `NEXT_PUBLIC_SUPABASE_URL` = `https://netbsyvxrhrqxyzqflmd.supabase.co` (hosted CC&SS), NOT the NETCUP `sb-bask` gateway. Switching it to `https://sb-bask.djatb.fyi` would change the database, not just the hostname — that is a data migration, owner's call. Left untouched. `sb-bask.djatb.fyi` is live and answers over TLS if/when you migrate.
