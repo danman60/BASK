@@ -21,8 +21,12 @@ pnpm-debug.log*
 packages/db/generated/
 .vercel
 
-# Client-confidential — SalonTouch field acquisition (PII/financials, keep local)
-docs/research/salontouch-*
+# Client-confidential — SalonTouch field acquisition (PII/financials, keep local).
+# The WHOLE directory, not just salontouch-*: `uvalux-loop-artifact.html` is the
+# same twelve-year financial history of a real (closed) salon group, reframed for
+# the pitch, and it slipped past the narrower pattern into a commit on 2026-09-02.
+# This repo is PUBLIC. Nothing derived from that acquisition belongs in it.
+docs/research/
 # Commercial pricing for a named client — repo is public.
 docs/pitch/PROPOSAL-PHASE1-UVALUX.md
 
