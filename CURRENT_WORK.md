@@ -1,92 +1,64 @@
 # CURRENT_WORK — uvalux-platform
 
-## SESSION 2026-09-02 (early hours) — v7 CUT TO THE NEW FULL READ · demo is THURSDAY 2026-09-03
+## 2026-09-03 04:4x — DEMO DAY. EVERYTHING IS BUILT, PUSHED AND VERIFIED.
 
-**Active state: `promo/out/promo-v7-vo.mp4` — 130.0s, Daniel's second ElevenLabs read over a
-re-cut picture.** v5 and v6 masters are untouched on disk and remain the fallback.
+**Production: `demo:verify` 12 passed / 0 failed against https://bask-psi.vercel.app, run AFTER
+the deploy of `63ad55e`.** Today still reads "12% above your usual Wednesday", the feed still shows
+the 6 fixture cards, and the live-derived path is correctly NOT active.
 
-### What changed from v6
-Daniel rewrote and re-recorded the whole script. The new read
-(`promo/public/audio/vo/uvaint-v7.mp3`, **128.679s**, Frankie – Friendly Instructor,
-pvc_sp100_s50_sb75_v3) is **continuous and includes the UVALUX side**, which the v6 read did not.
+**The push is unblocked.** `origin/master` == local. The 1.7 GB of raw audio, `docs/research/` and
+`tmp-salon-data/` were stripped from the 11 unpushed commits with `filter-branch --index-filter`;
+every message survived, every file is still on disk. Backups: tags `backup/pre-audio-strip` and
+`backup/pre-rewrite-*`.
 
-- **The 13-second music hole is GONE.** v6 carried a deliberate silence at 75.19s because the read
-  had no UVALUX copy. Paragraphs 9-11 are now spoken. Do not reintroduce it.
-- **Every cut is pinned to a measured silence in the read**, not scaled by a constant, so the
-  picture cuts in the breath rather than under a word. Per-shot table:
-  `docs/pitch/2026-09-02-v7-beatmap.md`. Copy as recorded:
-  `docs/pitch/2026-09-02-v7-vo-elevenlabs.txt`.
-- Total **3900f = 130.0s**. The last word lands at 128.48s; the sign-off holds 1.5s in silence.
+### A near-miss worth remembering
+`github.com/danman60/BASK` is **PUBLIC**. The ignore rule was `docs/research/salontouch-*`, so
+`uvalux-loop-artifact.html` — a real closed salon group's twelve-year financial history — did not
+match it and became tracked when the breakdown was corrected. It was inside the push payload and
+was caught by scanning the object list before pushing, not after. **The whole `docs/research/`
+directory is now ignored.** Scan the payload before any push that includes a history rewrite.
 
-### Three real defects found by pulling frames out of the SHIPPED v6 master
-None of these were visible in the code. All three are fixed.
+### The demo kit — on BOTH machines, ASTEROID is the demo machine
+`Desktop\UVALUX-DEMO-2026-09-03\` on ASTEROID (`C:\Users\daniel`) and FIRMAMENT (`C:\Users\danie`).
+`1 - START THE DEMO.bat` opens every document as Chrome tabs in running order — the StreamStage expo
+launcher pattern, one thing to click, works offline except the live demo itself.
+Film verified by SHA256 on ASTEROID: `1e3e0a13…1a98`, 69,484,696 bytes, identical to source.
 
-1. **The backdrop never rendered.** `FigurePlate` painted an opaque `T.paper` fill over the whole
-   frame, so the dimmed page `Backdrop` draws behind every plate was covered completely. Every
-   plate shot in v6 played as an element floating on blank cream — which is exactly the "elements
-   too isolated" note the v6 rebuild existed to answer. Fill is now transparent, and the backdrop
-   is **blurred** (10px) so a plate never reads as a duplicate of the card behind it.
-2. **Tall page captures were illegible.** `maxHeight: 742` is right for a wide cutout and wrong for
-   a whole page: `citation.png` (740x1350) landed 407px wide, `records-table` (2052x4170) 365px.
-   Both now use a new `move="travel"` — scaled past the frame and panned down it. The `method`
-   beat now ends exactly on the open coaching quote as the line says "the words somebody actually
-   said on a stage".
-3. **The signed-in rep's name leaked on the calls page.** "Fintan H. / All territories" prints in
-   the Compass sidebar footer. `A12bKnowledge` masks it; `A12Calls` never did, and it is visible in
-   the shipped v6 master at 83s, clipped at the bottom edge. Masked in page space now. Names are
-   never shown app-facing (owner directive 2026-08-22).
-
-Also fixed: the second plate in `chart` and `action` mounted at the mid-shot cut with `delay={0}`,
-so its move window had already expired — it arrived fully pushed with no fade. Both now delay to
-their own mount frame.
-
-### Masters on disk
-| file | what |
+| | |
 |---|---|
-| `promo-v7-vo.mp4` | **130.0s, the new read, Open Road bed ducked under it — the deliverable** |
-| `promo-v7-vo-720.mp4` | 11.5MB 720p, for Telegram |
-| `promo-v7b-picture.mp4` | same cut, no read, captions off |
-| `promo-v6-vo.mp4` + `promo-v6b-picture.mp4` | previous read, 93.7s, untouched |
-| `promo-v5*.mp4` (x3) | delivered masters, byte-identical, never overwritten |
+| `1-video/` | `UVALUX-Bask-film-v7.mp4` — 130.0s, Open Road bed |
+| `2-open-in-browser/` | run sheet · data breakdown · thirteen findings · deck · payback calculator · **storyboard/** |
+| `3-reference/` | proposal (PDF+md+html) · Elaine questions · Wilfred requirements · runbook · pitch · 2 leave-behind PDFs |
+| `4-DO-NOT-SHOW/` | the Glow Playbook — predates the accuracy review, quotes retracted numbers |
 
-Levels verified by MEASUREMENT, not exit code. Whole file mean **-16.1 dB**, peak 0.0 dB — matches
-the approved v6 master (-16.4 / -0.0). Per beat: -15.8 to -17.1 dB, no hole anywhere.
-Sync spot-checked on the final mux at 33.5s / 91.6s / 122.9s — method, flip and sign-off each land
-on their own line.
+### TWO THINGS THE REHEARSAL CAUGHT THAT WOULD HAVE BROKEN THE DEMO
+1. **`/compass/calls` 404s.** The route does not exist. The Call List **is** `/compass` itself
+   ("Thursday. Four calls worth making."). The 404's recovery button is "Go to Today", which exits
+   the dark Compass theme mid-sentence. The run sheet now says this in bold.
+2. **There are TWO retail cards and only one opens.** The `8.3% → 5.9% / +$4,260` tile is inside the
+   `DEMO_OPPORTUNITIES` fixture block and has **no Show me why**. The card that drives beats 3-5 is
+   "Retail attachment is slipping", **9% → 6%, ≈$5,354/mo**. Quote the one you are about to click:
+   its own drilldown reads 8.8%→5.7% (28d vs 14d) and 5.8% in the rows footer, so quoting a fourth
+   number invites a contradiction on screen.
+3. Beat 4, the citations — **Elaine's beat** — is the slowest surface at 2.35s, loads ~0.8s after the
+   evidence, and sits below the fold. A line to fill it is in the run sheet.
 
-**`A12Calls` is shared with `MainV5`.** The scroll widening and the name mask therefore change what
-`BaskPromoV5` would render if it were ever rebuilt. The three v5 masters on disk are untouched and
-byte-identical, and they remain the fallback; a rebuilt v5 would simply also have the name covered,
-which is the correct behaviour.
+### Built overnight, all gated
+- **Live opportunities behind `BASK_LIVE_OPPORTUNITIES=1`, OFF by default** (`2a0e9bf`→`63ad55e`).
+  Rendered output byte-identical when unset (md5 of the `b-oppfeed` section matches pre-change).
+  `pnpm typecheck` 7/7, `pnpm build` 2/2. **Deliberately not enabled for this demo:** only
+  sunset-ridge has rows to derive from, so salon-switching would silently flip to fixtures, and it
+  yields 4 cards where PITCH.md wants 6. Plan: `docs/plans/2026-09-02-live-opportunities.md`.
+- **Proposal bounded**: Phase 1 is now 12 weeks from kickoff, the clock starts when UVALUX provides
+  the export and names stakeholders, out-of-list work is Phase 2, and findings+roadmap moved to the
+  second payment so the final C$5,000 is gated only on the pilot build. Still C$25,000 + HST, 15pp.
+- **Leave-behind PDFs**: thirteen findings (19pp), data breakdown (13pp).
+- **Rehearsal storyboard**: 10 screenshots with measured load times.
 
-### THE MUSIC — REGRESSED AT v5, RESTORED 2026-09-02, TRACK CHOICE OPEN
-Daniel: *"we used to have better music though can it go back in"*. He was right, and it is not a
-taste call — it is a measurable regression with two causes:
-
-1. **v5 dropped the treatment.** The original VO cut scored the film with
-   `BGM = { src: 'bgm-open-road.mp3', startSec: 43, bed: 0.26, bedUnderVo: 0.13 }` and a fade in and
-   out (`Soundtrack.tsx`, still there). From v5 onward `MainV6`/`MainV5` carried a bare
-   `<Audio volume={0.2} />` — the track from **0:00, flat, no fades**. Measured, the opening bars are
-   the quietest in the piece (**-21.2 dB** at 0:00 against **-12.6 dB** at 1:20), so the film was
-   being scored with the dullest 130 seconds of the track and with no arc.
-2. **The continuous read then buried it.** v6 had a 13s music hole; v7 does not, so with the
-   ducking the bed never surfaced. Picture-master audio measured **-26.6 to -31.6 dB** against a
-   voice at -16 — inaudible.
-
-**Both are fixed.** `MainV6` carries the restored treatment again (startFrom 0:43, envelope, fades).
-The VO master's bed is mixed in `promo/scripts/mix-vo.sh`, where it can be sidechained and measured.
-Music now surfaces ~9 dB louder in the speech gaps and rings out under the sign-off.
-
-**DECIDED 2026-09-02: OPEN ROAD.** Daniel picked it over tech-house. `promo-v7-vo.mp4` is now that
-mix, audio byte-identical to the `promo-v7-vo-openroad.mp4` cut he approved. Rebuild it any time
-with `bash promo/scripts/mix-vo.sh bgm-open-road.mp3 43 0.50 out/promo-v7-vo.mp4`.
-`promo-v7-vo-techhouse.mp4` is the rejected option, left on disk — delete needs his go.
-
-### ONE THING TO DECIDE BEFORE THURSDAY
-The `method` travel makes `citation.png` legible for the first time, and that page shows
-**"Not checked yet" three times**. It is true — 3 of 1,007 claims are decided — and it is
-**Elaine's surface**. Options: verify the ~20 demo-path claims and re-capture that one texture, or
-leave it and let it read as an honest queue. Product task, not a film task.
+### NOT done, and deliberately
+**The coaching claims were NOT marked verified.** The badge for a verified claim reads
+**"Checked by UVALUX"**, and Elaine is UVALUX — marking them would put a false statement in front of
+the one person who knows it is false. 3 of 741 decided, said plainly, is the ask to her.
 
 ## THURSDAY 2026-09-03 — WHO IS IN THE ROOM (changes what matters)
 
