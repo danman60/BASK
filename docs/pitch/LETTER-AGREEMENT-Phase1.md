@@ -1,4 +1,4 @@
-# Letter Agreement — Phase 1
+# Letter Agreement, Phase 1
 
 **UVALUX International Inc.** and **Daniel Abrahamson**
 Date: ________________
@@ -18,9 +18,9 @@ Phase 1 delivers:
 - working software, with database-backed accounts and interactive interfaces
 - a salon intelligence dashboard demonstrating opportunity detection and recommendations
 - a UVALUX intelligence dashboard, the internal view of account signals and opportunities
-- an initial analytics engine — deterministic business calculations and opportunity detectors
+- an initial analytics engine, deterministic business calculations and opportunity detectors
 - an AI recommendation layer that turns findings into plain-language recommendations
-- a UVALUX knowledge prototype — semantic ingestion and retrieval of selected UVALUX expertise
+- a UVALUX knowledge prototype, semantic ingestion and retrieval of selected UVALUX expertise
 - a benchmarking prototype comparing participating salons against their peers
 - an initial data-ingestion framework
 - demonstration datasets sufficient to show the product end to end

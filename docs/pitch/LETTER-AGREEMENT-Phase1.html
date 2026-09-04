@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset="utf-8">
-<title>Letter Agreement — Phase 1 — UVALUX Intelligence Platform</title>
+<title>Letter Agreement, Phase 1, UVALUX Intelligence Platform</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600&display=swap">
 <style>
 @page { size: Letter; margin: 18mm 18mm 16mm; }
@@ -9,7 +9,13 @@ body{background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-s
 .doc{max-width:44rem;margin:0 auto}
 h1,h2{font-family:Fraunces,Georgia,serif;line-height:1.2;margin:0;text-wrap:balance}
 h1{font-size:22pt;font-weight:600;margin-bottom:.2rem}
-h2{font-size:12.5pt;font-weight:600;margin:1.5rem 0 .4rem;color:var(--accent);break-after:avoid}
+h2{font-size:12.5pt;font-weight:600;margin:1.5rem 0 .4rem;color:var(--accent);break-after:avoid;page-break-after:avoid;break-inside:avoid}
+  /* A numbered clause is a unit. Section 3 was splitting with its heading and one line
+     stranded at the foot of page 1 and the rest overleaf, which reads as a printing fault
+     on a document someone is about to sign. 2026-09-03. */
+  section,.clause{break-inside:avoid;page-break-inside:avoid}
+  h2 + p,h2 + ul,h2 + table{break-before:avoid;page-break-before:avoid}
+  p,li{orphans:3;widows:3}
 p{margin:.5rem 0}
 ul{margin:.5rem 0;padding-left:1.1rem}
 li{margin:.2rem 0}
@@ -20,12 +26,13 @@ th{text-align:left;font-weight:600;border-bottom:1.5px solid var(--line);padding
 td{border-bottom:1px solid var(--line);padding:.5rem .45rem;vertical-align:top}
 em{color:var(--soft)}
 h2 + table td:first-child{font-weight:600}
-</style></head><body><div class="doc"><h1>Letter Agreement — Phase 1</h1>
+</style></head><body><div class="doc"><h1>Letter Agreement, Phase 1</h1>
 <p><strong>UVALUX International Inc.</strong> and <strong>Daniel Abrahamson</strong>
 Date: <strong><em>_</em></strong><strong><em>_</em></strong>__</p>
 <p>This letter sets out what we have agreed for Phase 1. It is short on purpose. The full detail sits
 in the Phase 1 Proposal dated August 2026, which this letter refers to and does not replace.</p>
 <hr />
+<section class="clause">
 <h2>1. What is being built</h2>
 <p>A proof of concept for the UVALUX Intelligence Platform: <strong>Bask</strong>, salon intelligence for the salon
 owner, and <strong>Compass</strong>, the intelligence layer for UVALUX over the network of salons running it.</p>
@@ -34,9 +41,9 @@ owner, and <strong>Compass</strong>, the intelligence layer for UVALUX over the 
 <li>working software, with database-backed accounts and interactive interfaces</li>
 <li>a salon intelligence dashboard demonstrating opportunity detection and recommendations</li>
 <li>a UVALUX intelligence dashboard, the internal view of account signals and opportunities</li>
-<li>an initial analytics engine — deterministic business calculations and opportunity detectors</li>
+<li>an initial analytics engine, deterministic business calculations and opportunity detectors</li>
 <li>an AI recommendation layer that turns findings into plain-language recommendations</li>
-<li>a UVALUX knowledge prototype — semantic ingestion and retrieval of selected UVALUX expertise</li>
+<li>a UVALUX knowledge prototype, semantic ingestion and retrieval of selected UVALUX expertise</li>
 <li>a benchmarking prototype comparing participating salons against their peers</li>
 <li>an initial data-ingestion framework</li>
 <li>demonstration datasets sufficient to show the product end to end</li>
@@ -44,6 +51,8 @@ owner, and <strong>Compass</strong>, the intelligence layer for UVALUX over the 
 <li>a Phase 2 roadmap</li>
 </ul>
 <p><strong>Anything not on that list is Phase 2 scope, agreed separately.</strong></p>
+</section>
+<section class="clause">
 <h2>2. What it costs</h2>
 <p><strong>C$25,000 + HST</strong>, in three payments:</p>
 <table>
@@ -70,12 +79,16 @@ owner, and <strong>Compass</strong>, the intelligence layer for UVALUX over the 
 </table>
 <p>Reasonable hosting and development infrastructure during the MVP period are included, unless
 unusually large external costs are approved in advance.</p>
+</section>
+<section class="clause">
 <h2>3. How long it takes</h2>
 <p><strong>Twelve weeks from kickoff.</strong></p>
 <p>Those twelve weeks begin when UVALUX has provided the sample data export and named the pilot
 stakeholders. Both are needed before the build can start, so the schedule does not run while we are
 waiting for them.</p>
 <p>Development milestones inside the twelve weeks are set at kickoff.</p>
+</section>
+<section class="clause">
 <h2>4. What each side does</h2>
 <p><strong>Daniel leads</strong> product design, software development, data-model development, AI architecture,
 analytics implementation, testing, iteration, and deployment of the MVP.</p>
@@ -83,6 +96,8 @@ analytics implementation, testing, iteration, and deployment of the MVP.</p>
 subject-matter expertise, and relevant training and coaching material.</p>
 <p>This is an independent-contractor engagement. It is deliberately simple while the opportunity is
 being validated.</p>
+</section>
+<section class="clause">
 <h2>5. Who owns what</h2>
 <p>Daniel retains ownership of the generalised underlying software, frameworks, code, reusable
 technology and development methods created during Phase 1.</p>
@@ -94,10 +109,14 @@ product information and internal knowledge remain the property of UVALUX.</p>
 part of Phase 2 planning. That might be licensing, revenue share, exclusivity, equity, a joint
 venture, an acquisition, or something else. <strong>Nothing in Phase 1 commits either party to any of
 them.</strong></p>
+</section>
+<section class="clause">
 <h2>6. Ending it</h2>
 <p>Either party may end Phase 1 in writing. Payments already earned at that point remain payable, and
 payments not yet earned are not owed.</p>
 <hr />
+</section>
+<section class="clause">
 <h2>Agreed</h2>
 <table>
 <thead>
@@ -147,3 +166,4 @@ payments not yet earned are not owed.</p>
 </table>
 <p><em>This letter records what we agreed in plain language. It refers to the Phase 1 Proposal (August
 2026) for the detail behind each section.</em></p></div></body></html>
+</section>

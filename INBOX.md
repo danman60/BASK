@@ -325,3 +325,57 @@ the wrong answer to Wilfred's data-residency question — it is in Manassas, Vir
 
 ## From SYSADMIN — 2026-09-03 01:02 ET — bask NOT repointed (deliberate)
 Vercel project `bask` production `NEXT_PUBLIC_SUPABASE_URL` = `https://netbsyvxrhrqxyzqflmd.supabase.co` (hosted CC&SS), NOT the NETCUP `sb-bask` gateway. Switching it to `https://sb-bask.djatb.fyi` would change the database, not just the hostname — that is a data migration, owner's call. Left untouched. `sb-bask.djatb.fyi` is live and answers over TLS if/when you migrate.
+
+## From assistant-3 (PA) — 2026-09-03 17:20 ET — TECHNICAL items from last night's Nick dinner
+Full three-way split (deal / technical / separate idea) is at
+`docs/meetings/2026-09-03-nick-deal-build-ideas.md`. Raw transcript beside it,
+`2026-09-03-nick-dinner-transcript.txt`, 1,951 lines, read end to end. **Speaker labels drift
+mid-block, so attribute from content, not from the tag.**
+
+**ARCHITECTURE DECISION, stated repeatedly and it is the moat: never replace their software, sync.**
+Nick, verbatim: *"we're agnostic, incredibly sticky... people don't want to retrain what they're
+doing. I'm not gonna change your POS because it costs to retrain my front user, let alone put all my
+data into it, but if we can just sync. I can just pull it and do it."* Two ingest options discussed,
+both low friction: a click-to-sync, or a background uploader on the salon PC. Hard constraint from
+Nick: *"you don't need to take over salon management to do that."*
+
+**Competitive position, and why speed matters.** Two US groups are already chasing salon data, but
+*"on the platform side, they want people to switch software."* Agnostic sync-only IS the wedge and
+it is copyable, hence Daniel's *"if we do it fast, if no one else is doing salon specific corpus."*
+
+**Features named, roughly in the priority the room gave them:**
+1. **Customer reactivation from historical data** — the immediate demo. *"there's a link to people
+   with the product or the minutes that they had, and their emails"*, then *"come into the salon,
+   how many minutes you had, we'll honor it."*
+2. **Lamp hours and relamping.** Lamps ~600 hours. Nick logs relamps by hand today, *"we're logging
+   like pets."* Wants real usage, then *"these are your lamp reports, and this is your budget of
+   what you need when you need it."*
+3. **Equipment utilisation calculator.** *"Do you have enough utilization to justify this new
+   equipment... you're eligible."* Nick already has something built for this. Drives a manufacturer sale.
+4. **One-click LLM promotions in the owner's own voice.** *"action, action, action, post that thing,
+   write that thing, and we had some edits to it, so it's in their voice."*
+5. **Sales-conversation capture and training. This had the most energy in the room.** Nick listened
+   to two of his best owners sell live and wants it bottled. Daniel: *"that's going to be our
+   business, the bottling of great sales pitches."* Method: capture front-desk conversations, label
+   which produced a sale, train on winners first. *"just get the killers down. That's 80% of the lift."*
+6. **Expert chatbot and customer chatbot** off the same corpus.
+7. **Risk mitigation / compliance flagging** — Nick raised it unprompted: staff *"saying something
+   wrong or non-factual, and that's a danger to the industry."*
+
+**SOURCE SYSTEMS AND TWO THINGS TO RESOLVE BEFORE BUILDING**
+- **SalonTouch is the incumbent and it is ancient.** Some salons untouched 8 years, 1998-era stack,
+  known security holes. **Nick says access needs only an address: _"you don't even need their
+  consent... just type in their address, connect to their live streams."_ That is a LEGAL question,
+  not a convenience. Get it answered before it is designed in.**
+- **Suddenlink**, Nick's biggest partner, is *"doing something"* in this space. Unknown scope. Nick
+  offered to find out at Expo and bring Daniel in. Treat as a live competitive risk.
+- **A real 8-year dataset exists and Nick physically holds it** (the salon computer he acquired with
+  the Liberty Village equipment). Daniel wants it: *"it's nice to get in with some real data."* This
+  is also a Phase 1 precondition in the letter agreement, which does not start the clock until the
+  sample export lands.
+
+**Data monetisation, four routes counted in the room:** back to the manufacturer (who buys what, by
+demographic), Nick's own increased sales and restocking, charging the salon, and a generalised
+anonymised dataset sold onward. The unlock is consent-by-value: owners hand data over because the
+tool grows their business. Daniel's own refusal to sell dance footage to an AI marketplace on
+child-safety grounds is the instinct that should shape consent design here.

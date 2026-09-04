@@ -36,3 +36,10 @@ docs/pitch/PROPOSAL-PHASE1-UVALUX.md
 # The TRANSCRIPTS and the mined claims under data/salon-transcripts/ ARE tracked
 # and are the artefacts anything downstream actually reads.
 data/salon-transcripts/audio/
+
+# Raw meeting recordings and outbound send notes — this remote is PUBLIC.
+# Derived analyses in docs/meetings/ ARE tracked; the raw recordings are not
+# (private multi-person conversations), and the SEND-NOTE files carry partner
+# email addresses that do not belong in a public repo.
+docs/meetings/*-transcript.txt
+docs/pitch/SEND-NOTE-*.md
