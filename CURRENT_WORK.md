@@ -1,5 +1,142 @@
 # CURRENT_WORK — uvalux-platform
 
+## 2026-09-04 — THE SEND. Report made 31x faster, agreement rewritten three times, Nick's email went out.
+
+One sentence: `CUSTOMER-REPORT.html` was virtualised from a 4.1-second open to 0.13 seconds, the
+Phase 1 letter agreement was rebuilt three times as Daniel changed his mind, and at 21:0x he sent
+the lot to nik@uvalux.com with the correct attachments.
+
+### OUTCOME — the email is SENT. Do not re-touch that draft.
+Sent message `1a06e114375523e0`, to `nik@uvalux.com`, thread `1a06a423738c9c57`. Verified from the
+Sent folder, attachments byte-checked:
+
+| attachment | bytes | sha256 (16) |
+|---|---|---|
+| CUSTOMER-REPORT.html | 2,992,004 | `2435f6740b5ff450` |
+| LETTER-AGREEMENT-Phase1.pdf | 154,075 | `4c3f1bedefa72a99` |
+| EQUIPMENT-REPORT.html | 15,321 | `297d4991a88ca98c` |
+
+The PDF that went out is byte-identical to `docs/pitch/LETTER-AGREEMENT-Phase1.pdf` in this repo.
+
+### 1. CUSTOMER-REPORT.html — 6.86 MB and 4.1 s, now 2.99 MB and 0.13 s
+Measured in headless Chromium over `file://`, 3 runs each, median:
+
+| | before | after |
+|---|---|---|
+| file size | 6,855,509 B | 2,992,004 B |
+| open, wall / DOMContentLoaded | 4,109 / 3,834 ms | 133 / 117 ms |
+| `<td>` nodes per draw | 319,536 | 316 |
+| total DOM nodes | 367,030 | 556 |
+| sort a column | 4,516 ms | 178 ms |
+| type "vaughan" in search | 15,928 ms | 744 ms |
+
+What was done, in payoff order: virtualised the table on window scroll (~40 rows plus two spacer
+`<tr>`, recycled); debounced search at 150 ms against a precomputed lowercase key per row;
+`JSON.parse('...')` instead of a JS array literal; rows as arrays against one shared header;
+totals computed once per filter instead of inside `draw()`.
+
+**Correctness was proven, not sampled.** All 15,216 rows x 21 cells were dumped from both the old
+and new files in a real browser, including each `<td>`'s class. Both dumps hash to
+`9da5caa732dbbea11fb7881769ced91945edc585f67c102c9be8d0482702c945`. All five filters match on
+count, total and row order. 84 scroll-position invariant checks across four states (all, filtered,
+filtered+sorted, searched) found no gaps, overlaps or page errors; document height differs by 1 px
+over 457,882.
+
+**Two decisions worth remembering:**
+- `city` is NOT rendered but the old search joined it, so it was KEPT in the payload. Dropping it
+  would have silently changed search results. Only `retail`, `prov` and `mail` were dropped.
+- Column widths are measured once from a hidden probe table (the 8 longest values per column, sized
+  by the browser itself) so they do not jump while scrolling. Canvas `measureText` was tried first
+  and over-measured by ~12%.
+
+**Known trade-off, disclosed to Daniel:** browser Ctrl+F now only finds rows currently on screen.
+The report's own search box still covers all 15,216. `beforeprint` re-renders every row so printing
+is unaffected.
+
+### 2. The letter agreement, rebuilt three times
+`docs/pitch/LETTER-AGREEMENT-Phase1.{md,html,pdf}` are all modified and NOT yet committed at the
+time of writing (this wrap-up commits them). Final state:
+- **Section 3** — real dates. Phase 1 runs to December 1, 2026 assuming kickoff the week of
+  September 8; a later kickoff moves the end date by the same number of days. Phase 2, if it
+  happens, runs to February 1, 2027. Daniel cut the "eight working weeks / holidays" explanation:
+  his words were "way too much junk context".
+- **Section 5** — Daniel owns the whole of the software, not only the "generalised" parts. UVALUX's
+  data ownership stated much more strongly. New continuity clause.
+- **Entity** — every party reference is now **Stream Stage Productions Inc.**, on Daniel's
+  instruction, EXCEPT one deliberate "Daniel Abrahamson" in the continuity-clause trigger:
+  *"If Stream Stage Productions Inc. stops work, if Daniel Abrahamson is unable to continue, or if
+  either party ends this agreement, UVALUX keeps the right to run the Phase 1 build for its own
+  salons, permanently, at no further cost."* That personal trigger exists because a company can
+  keep existing while its only operator cannot work. **Do not "tidy" that name away.**
+- **Signature block** — Name and Title rows were added to the Stream Stage side so a company has a
+  named signer. Daniel was told and did not ask to revert.
+
+### How the PDF is built — THERE IS NO BUILD SCRIPT IN THIS REPO
+The pipeline is markdown -> the existing `LETTER-AGREEMENT-Phase1.html` -> Chromium print. Rebuild
+recipe, which is what the scratchpad scripts do:
+1. Edit ONLY the affected `<section class="clause">` bodies inside the existing HTML. Never
+   regenerate the whole HTML with a different converter, or you lose the `@page` rule, the
+   `break-inside` fixes and the signature-block underscore markup.
+2. The paragraph conversion is: split on blank lines, keep internal newlines, `**x**` ->
+   `<strong>x</strong>`, straight apostrophes, no smart quotes. Prove it by converting an UNCHANGED
+   prose section and diffing against the existing HTML — section 4 reproduces character for
+   character.
+3. Render with Playwright: `page.pdf({ printBackground: true, preferCSSPageSize: true })` after
+   `waitUntil: 'networkidle'` and `document.fonts.ready`. **Fraunces and Inter come from the Google
+   Fonts CDN and are NOT installed locally**, so the render needs network or the PDF silently falls
+   back to Georgia/system-ui.
+4. Validate settings by re-rendering the OLD html first and diffing `pdftotext` against the
+   committed PDF. It matches text AND page breaks exactly.
+5. Acceptance checks, all automated: 3 pages; zero dashes across `U+2010..U+2015` plus `U+2212`;
+   every heading has content under it on its own page (no strand); no clause split across pages;
+   exactly one "Daniel Abrahamson"; every prose word of the markdown appears in order in the
+   rendered text (only the 11 list bullets legitimately do not).
+
+Scratchpad scripts, worth copying into the repo if this is ever done again:
+`/tmp/claude-1000/-home-danman60-projects-uvalux-platform/91de2a22-1683-4f26-b25c-b8d4d7d31ebb/scratchpad/`
+— `build-letter.mjs`, `render-letter.mjs`, `swap-pdf.mjs`, `measure.mjs`, `compare.mjs`,
+`verify.mjs`, `stress.mjs`, `build.mjs`.
+
+### GOTCHAS THAT COST REAL TIME TODAY
+- **A Gmail compose window that is already open will silently revert attachments written by the
+  API.** Daniel had the draft open; his autosave rewrote the whole message from that window's
+  in-memory state, restoring the previous PDF and discarding a verified API write. Detected by the
+  message id changing after a verified read, with his body length changing in the same version.
+  If someone is editing a draft in the UI, they must reload before you write, and again before they
+  send. Racing their autosave is unwinnable; the last writer wins.
+- **`gws gmail users drafts update --upload <file> --upload-content-type message/rfc822` WORKS**
+  for multi-megabyte drafts. It builds a proper multipart upload. An earlier session's claim that
+  `--upload` is rejected and that a hand-rolled resumable upload is required is WRONG. No resumable
+  session, no shell argument limit.
+- **`gws auth export` returns a refresh token that no longer works.** Minting an access token from
+  it fails `invalid_grant` against the file secret and `invalid_client` against its own. gws itself
+  works because it uses the encrypted `~/.config/gws/token_cache.json`. Do not try to hand-roll
+  OAuth for gws; use the CLI.
+- **`drafts.update` drops all labels.** Re-apply with `messages.modify` on the NEW message id every
+  single time. The set here was `Label_19`, `Label_20`, `Label_26`.
+- **Always re-fetch the draft raw immediately before writing.** Daniel's body changed four times
+  during this session (2,211 -> 2,218 -> 2,308 -> 2,163 chars). Any cached `.eml` would have
+  destroyed his edits.
+- The report and the agreement hold real names, addresses, postal codes and mobile numbers for
+  15,216 people. **Never host, commit or link `CUSTOMER-REPORT.html`.** Work on copies in `/tmp`.
+
+### Open thread nobody closed
+Daniel's email body said "twelve weeks from kickoff" while the PDF says December 1, 2026. It was
+flagged twice to the PA and to Daniel and was still present in the live body at 19:11Z. He sent
+anyway. **If Nick asks about the timeline, the PDF is authoritative.**
+
+### Build status
+Not run this session. No application code was touched — the only repo changes are the three
+`docs/pitch/LETTER-AGREEMENT-Phase1.*` files and the previously untracked `uvaint-v7.mp3`.
+
+### Next steps
+1. Nothing is pending on the email. It is sent. Do not rewrite that draft.
+2. If the agreement changes again, follow the rebuild recipe above and re-run the acceptance checks.
+3. Consider moving the PDF build into `scripts/` so the next rebuild does not start from scratch.
+4. Untested this session: nothing in the app changed, so no app regression risk.
+
+---
+
 ## 2026-09-03 late — THE DATA SESSION. The extract was lying, and four features came back.
 
 One sentence: the anonymised `canonical/*.csv` had been read for two weeks as if it described
