@@ -353,7 +353,13 @@
 @media (prefers-reduced-motion: reduce) {
   .b-listener-bar { animation: none; height: 12px; }
 }
-.b-listener-stats { display: flex; flex-wrap: wrap; gap: var(--space-5); }
+.b-listener-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+/* `.b-metric` carries tile padding for standalone metric cards; inside the
+   listener card that padding stacked on the card's own and opened wide gaps. */
+.b-listener-stats .b-metric { padding: 0; }
+.b-listener-stats .b-metric-value { margin: 0 0 var(--space-2); }
+.b-listener-where { font: 500 var(--text-sm) / 1.4 var(--font-body); color: var(--ink-soft); }
+.b-listener-where .b-metric-label { margin-right: var(--space-2); }
 
 /* ---- interaction card ------------------------------------------------------ */
 .b-inter { display: grid; gap: var(--space-3); }
@@ -420,6 +426,8 @@
 .b-etable-trend[data-trend='flat'] { color: var(--ink-faint); }
 .b-etable-trend[data-trend='down'] { color: var(--warn); }
 .b-etable-flag { font: 500 var(--text-xs) / 1.3 var(--font-body); color: var(--warn); }
+.b-etable-name { display: block; font-weight: 600; }
+.b-etable-role { display: block; font: 400 var(--text-xs) / 1.3 var(--font-body); color: var(--ink-faint); }
 
 /* ---- monitor insight ------------------------------------------------------- */
 .b-mon-insight { display: grid; gap: var(--space-3); }
@@ -455,6 +463,10 @@
    through their own classes, and a global `.card` rule would double it. */
 .b-monitor-main > .card,
 .b-monitor-rail > .card { padding: var(--space-4); }
+/* The team card sits outside .b-monitor-main/.b-monitor-rail, so the padding
+   rule above never reached it and its heading sat on the border. */
+.b-monitor > .b-monitor-team { padding: var(--space-5); }
+.b-monitor-team > .b-oppfeed-head { margin: 0 0 var(--space-3); }
 .b-monitor-rail { display: grid; gap: var(--space-4); align-content: start; min-width: 0; }
 .b-monitor-rail > * { min-width: 0; }
 

@@ -95,7 +95,7 @@ export const DEMO_MONITOR: MonitorFixture = {
       employee: 'Maya',
       customerLabel: 'Lapsed · last visit 6 weeks ago',
       excerpt: [
-        { speaker: 'staff', text: 'Hi there, welcome back!' },
+        { speaker: 'staff', text: 'Hi there! What can I get you today?' },
         { speaker: 'customer', text: 'Hello, I was just here for a spray tan.' },
         { speaker: 'staff', text: 'Great! How are you doing today?' },
         { speaker: 'customer', text: 'I\'m good. I haven\'t been here in a while, but I heard about your new products.' },
@@ -182,8 +182,8 @@ export const DEMO_MONITOR: MonitorFixture = {
         membership: 4,
         close: 5,
       },
-      outcome: 'sale',
-      outcomeDetail: 'Customer expressed interest in new option',
+      outcome: 'no_sale',
+      outcomeDetail: 'Interested in the express option, said maybe next time',
       coachingNote: 'Good job of explaining the value proposition when offering new options.',
     },
     {
@@ -192,11 +192,11 @@ export const DEMO_MONITOR: MonitorFixture = {
       employee: 'Jordan',
       customerLabel: 'Lapsed · last visit 6 weeks ago',
       excerpt: [
-        { speaker: 'staff', text: 'Hi there, welcome back!' },
+        { speaker: 'staff', text: 'Hi there! What can I do for you?' },
         { speaker: 'customer', text: 'Hello! I\'m just here for a spray tan.' },
         { speaker: 'staff', text: 'Great! How are you doing today?' },
         { speaker: 'customer', text: 'I\'m good. I haven\'t been here in a while.' },
-        { speaker: 'staff', text: 'We\'re happy to see you back!' },
+        { speaker: 'staff', text: 'Okay, let me get you set up.' },
         { speaker: 'customer', text: 'Thank you, I\'ve been meaning to come back.' },
       ],
       scores: {

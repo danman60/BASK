@@ -50,16 +50,15 @@ export function EmployeeSalesTable({ employees, className }: EmployeeSalesTableP
           {employees.map((emp) => (
             <tr key={emp.name}>
               <td>
-                {emp.name} <span>{emp.role}</span>
+                <span className="b-etable-name">{emp.name}</span>
+                <span className="b-etable-role">{emp.role}</span>
               </td>
               <td className="num">{emp.interactions}</td>
               <td className="num">{emp.membershipMentions}</td>
               <td className="num">{emp.conversions}</td>
               <td className="num">{emp.attachmentPct}%</td>
               <td>
-                <span
-                  data-trend={emp.trend}
-                >
+                <span data-trend={emp.trend}>
                   {emp.trend === 'up'
                     ? '▲ improving'
                     : emp.trend === 'down'

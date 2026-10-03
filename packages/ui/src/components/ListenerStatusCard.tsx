@@ -36,11 +36,12 @@ export function ListenerStatusCard({ status, className }: ListenerStatusCardProp
           <div className="b-metric-value num">{status.uptimeDays}</div>
           <div className="b-metric-label">days running</div>
         </div>
-        <div className="b-metric">
-          <div className="b-metric-value">{status.location}</div>
-          <div className="b-metric-label">location</div>
-        </div>
       </div>
+      {/* Location is a label, not a figure — set as a number it outweighed the
+          two counts beside it. */}
+      <p className="b-listener-where">
+        <span className="b-metric-label">Location</span> {status.location}
+      </p>
       <p className="b-pledge-line">{status.consentNote}</p>
     </div>
   );

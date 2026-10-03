@@ -47,7 +47,7 @@ export function MonitorSurface({ data, onCoach, className }: MonitorSurfaceProps
       </div>
 
       {/* The team table under the grid */}
-      <div className="card">
+      <div className="card b-monitor-team">
         <h2 className="b-oppfeed-head">The team, this week</h2>
         <EmployeeSalesTable employees={data.employees} />
       </div>
