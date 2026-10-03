@@ -79,6 +79,9 @@ main{position:relative;overflow:hidden}
 .card .meta{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
 .chip{font-size:10.5px;border-radius:999px;padding:3px 8px;background:var(--paper2);color:var(--ink2);font-weight:600}
 .chip.code{background:var(--ink);color:var(--paper)}
+.chip.tbd{background:var(--wash);color:var(--ink)}
+.chip.st{background:transparent;border:1px solid var(--line)}
+.leftstack{display:grid;gap:14px;align-content:start}
 .ghost{position:fixed;pointer-events:none;z-index:50;opacity:.95;transform:rotate(1.2deg);box-shadow:0 14px 34px rgba(40,25,15,.25)}
 .card.dragging{opacity:.3}
 .barline{position:sticky;bottom:-40px;margin:18px -24px -40px;padding:12px 24px 16px;background:color-mix(in oklch,var(--paper) 92%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;gap:16px 26px}
@@ -222,10 +225,10 @@ table.sched .r{text-align:right}
       <div class="screen">
         <div class="pagehead">
           <div><div class="eyebrow">Bask for UVALUX · the build</div><h1 class="disp">Three phases. <em>Stop after any one.</em></h1></div>
-          <p>Drag any item to the phase it belongs in, or to "Later" if it can wait. Untick a phase to stop before it; the price follows. Committing to more than one phase prices each phase lower.</p>
+          <p>Drag any item to the phase it belongs in, or to "Later" if it can wait. Items under "To place" are ideas from the meetings with Nik still to be placed and priced. Untick a phase to stop before it; the price follows. Committing to more than one phase prices each phase lower.</p>
         </div>
         <div class="boardwrap">
-          <section class="col" data-col="tray" id="col-tray"></section>
+          <div class="leftstack"><section class="col" data-col="place" id="col-place"></section><section class="col" data-col="tray" id="col-tray"></section></div>
           <div class="cols" id="cols"></div>
         </div>
         <div class="barline">
@@ -395,15 +398,15 @@ const ITEMS = [
   {id:'1.6', home:'P1', t:'Customer health grid', d:'Every customer scored loyal, slipping or gone, with a reach-out ready.', src:'NIK'},
   {id:'1.7', home:'P1', t:'Bottle depletion and reorder cue', d:'Reorder conversation before the customer thinks of it.', src:'NIK'},
   {id:'1.8', home:'P1', t:'UVALUX knowledge base', d:'Expo sessions and coaching material the product reasons over.', src:'PROP, NIK'},
-  {id:'1.9', home:'P1', t:'Data ingestion framework', d:'UVALUX purchase data and salon exports mapped into one model.', src:'PROP'},
+  {id:'1.9', home:'P1', t:'Data ingestion framework: sync, not replace', d:'UVALUX purchase data and salon exports mapped into one model. Sync, not replace: "a simple little click to sync" or "a thing that runs in the background on the computer that is automatically uploading". The salon keeps its own software.', src:'PROP, S03'},
   {id:'1.10', home:'P1', t:'Frozen baseline per salon', d:'The before picture, so any lift can be proven.', src:'NIK'},
   {id:'1.11', home:'P1', t:'Pilot with friendly salons', d:'A small UVALUX-selected group live on it.', src:'PROP, NIK'},
   {id:'1.12', home:'P1', t:'Phase 1 findings and Phase 2 roadmap', d:'Delivered with the working version, not held to the end.', src:'PROP, LTR'},
-  {id:'2.1', home:'P2', t:'Measured lift', d:'Retail per visit, reorder frequency, lapsed recovery, member tenure.', src:'NIK'},
+  {id:'2.1', home:'P2', t:'Measured lift: one headline number', d:'Retail per visit, reorder frequency, lapsed recovery, member tenure, rolled into one headline impact number (+X% since Bask) against the frozen baseline: "we can increase it by X, and this is the impact it\'s had."', src:'NIK, A19'},
   {id:'2.2', home:'P2', t:'Member tenure and the modality link', d:'Which equipment keeps members longer.', src:'NIK'},
   {id:'2.3', home:'P2', t:'Staff performance, data only', d:'Whose reach-outs land and whose close rate is what. No microphones.', src:'NIK'},
   {id:'2.4', home:'P2', t:'Campaigns off the data', d:'From "Thursdays are soft" to the offer, the post and the text.', src:'NIK, PROP'},
-  {id:'2.5', home:'P2', t:'Production sign-in, privacy and consent', d:'Real accounts, salon authorization and consent workflows.', src:'PROP'},
+  {id:'2.5', home:'P2', t:'Production sign-in, privacy and consent', d:'Real accounts, salon authorization and consent workflows, including the data-sharing consent tiers: Private / Benchmarks / Benchmarks + Coaching view.', src:'PROP', st:'Tiers built at /settings/data-sharing'},
   {id:'2.6', home:'P2', t:'Automated and hosted-data ingestion', d:'Deeper integration with the data UVALUX hosts.', src:'PROP'},
   {id:'2.7', home:'P2', t:'Members-only community space', d:'Owners post their numbers and ask each other, moderated.', src:'NIK'},
   {id:'2.8', home:'P2', t:'Canadian beta and Expo-ready demonstration', d:'A polished salon experience shown at the January Expo.', src:'PROP, NIK'},
@@ -413,17 +416,25 @@ const ITEMS = [
   {id:'3.3', home:'P3', t:'Integrations and partnerships', d:'Hosted salon platforms and existing salon-software providers.', src:'PROP'},
   {id:'3.4', home:'P3', t:'Wellness, spa, sauna and gym', d:'The sector-agnostic build, sold beyond salons.', src:'PROP, NIK'},
   {id:'L.1', home:'tray', t:'One click to book a coaching call', d:'From an insight straight to a person at UVALUX.', src:'NIK', roadmap:true},
-  {id:'L.2', home:'tray', t:'Equipment payback modelling', d:'"Salons like yours that added this modality hold members a month longer."', src:'NIK', roadmap:true},
-  {id:'L.3', home:'tray', t:'Staff coaching from real conversations', d:'Starts as data only; audio stays off until counsel says otherwise.', src:'NIK', roadmap:true},
+  {id:'L.2', home:'tray', t:'Equipment payback and utilization calculator', d:'"Do you have enough utilization to justify this new equipment... you\'re eligible." "Salons like yours that added this modality hold members a month longer."', src:'NIK, S03', roadmap:true},
+  {id:'L.3', home:'place', t:'Front Desk Listener', d:'A device at the front desk hears each sales conversation, with consent, scores five moments (greeting, asked needs, product, membership, close) and turns the patterns into coaching. "The team knows it\'s here. Conversations are scored for coaching, nobody is disciplined off a transcript." Counsel before any live audio.', src:'A19, S03', st:'Built as demo at /monitor', tbd:true},
+  {id:'N.1', home:'place', t:'Bottled pitches', d:'Label which front-desk conversations closed and train staff on the best sellers first: "just get the killers down. That\'s 80% of the lift."', src:'S03', st:'Not built', tbd:true},
+  {id:'N.2', home:'place', t:'Compliance flag', d:'Catch staff "saying something wrong or non-factual, and that\'s a danger to the industry."', src:'S03', st:'Not built', tbd:true},
+  {id:'N.3', home:'place', t:'Reactivation on unused prepaid minutes', d:'Find who had unused minutes and invite them back: "hey, come into the salon, how many minutes you had, we\'ll honor it." Named the immediate demo.', src:'S03', st:'Not built', tbd:true},
+  {id:'N.4', home:'place', t:'Lamp hours, relamping reports and lamp budget', d:'Actual lamp usage instead of relamps logged by hand: "these are your lamp reports, and this is your budget of what you need when you need it."', src:'S03', st:'Not built', tbd:true},
+  {id:'N.5', home:'place', t:'Expert chatbot and customer chatbot', d:'Two chatbots off the same corpus: one for owners and staff, one for customers.', src:'S03', st:'Not built (owner Ask exists at /ask)', tbd:true},
+  {id:'N.6', home:'place', t:'Front-desk customer prompt', d:'A second screen for whoever is serving the customer: "It\'s been 85 days since Daniel last spent, this is what he generally likes."', src:'A19', st:'Not built', tbd:true},
+  {id:'N.7', home:'place', t:'Failed-payment recovery', d:'Members whose payment failed, with a personal message to each. Deliberately no "send all".', src:'APP', st:'Built at /customers?view=recovery', tbd:true},
+  {id:'N.8', home:'place', t:'Inventory to UVALUX draft order', d:'Low stock turns into a draft order to UVALUX for the owner to review and submit.', src:'APP', st:'Built at /inventory/order', tbd:true},
 ];
-const SRC_NAME = {PROP:'Phase 1 proposal', NIK:'proposal to Nik, Aug 19', LTR:'Phase 1 letter'};
+const SRC_NAME = {PROP:'Phase 1 proposal', NIK:'proposal to Nik, Aug 19', LTR:'Phase 1 letter', A19:'Nik, Aug 19 meeting', S03:'Nik, Sep 3 meeting', APP:'live app'};
 // Ontario statutory holidays (Employment Standards Act) and observed days, 2026 to 2027.
 const HOLIDAYS = ['2026-10-12','2026-12-25','2026-12-28','2027-01-01','2027-02-15','2027-03-26','2027-05-24','2027-07-01','2027-09-06','2027-10-11','2027-12-27','2027-12-28'];
 
 const KEY = 'bask-scope-board-v1';
 const fresh = () => ({place:Object.fromEntries(ITEMS.map(i=>[i.id,i.home])), on:{P1:true,P2:true,P3:true}, legal:''});
 let S = fresh(), HIST = [];
-try { const raw = localStorage.getItem(KEY); if (raw) { const v = JSON.parse(raw); if (v && v.place && v.on) S = Object.assign(fresh(), v); } } catch(e) {}
+try { const raw = localStorage.getItem(KEY); if (raw) { const v = JSON.parse(raw); if (v && v.place && v.on) { const f = fresh(); S = Object.assign(f, v, {place:Object.assign(f.place, v.place)}); } } } catch(e) {}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} };
 const snap = () => { HIST.push(JSON.stringify(S)); if (HIST.length > 60) HIST.shift(); };
 const $ = s => document.querySelector(s);
@@ -466,7 +477,7 @@ function schedule(){
 
 // ---- board render ----
 function cardHTML(i){
-  return `<div class="card${i.roadmap?' roadmap':''}" data-id="${i.id}"><div class="t">${esc(i.t)}</div><div class="d">${esc(i.d)}</div><div class="meta"><span class="chip code">${i.id}</span><span class="chip">${i.src.split(', ').map(s=>SRC_NAME[s]).join(' · ')}</span></div></div>`;
+  return `<div class="card${i.roadmap?' roadmap':''}" data-id="${i.id}"><div class="t">${esc(i.t)}</div><div class="d">${esc(i.d)}</div><div class="meta"><span class="chip code">${i.id}</span><span class="chip">${i.src.split(', ').map(s=>SRC_NAME[s]).join(' · ')}</span>${i.st?`<span class="chip st">${esc(i.st)}</span>`:''}${i.tbd?'<span class="chip tbd">Price to be set</span>':''}</div></div>`;
 }
 function colInner(id){
   const items = ITEMS.filter(i => S.place[i.id] === id);
@@ -474,6 +485,7 @@ function colInner(id){
 }
 function render(){
   const T = totals();
+  $('#col-place').innerHTML = `<div class="colhead"><div class="top"><span class="ctag tray">To place</span><span class="src">Not in this price yet</span></div><div class="name">From the meetings with Nik</div><div class="gate">Drag each into a phase or into Later. Phase prices do not change; these are priced when placed.</div></div>${colInner('place')}`;
   $('#col-tray').innerHTML = `<div class="colhead"><div class="top"><span class="ctag tray">Later</span><span class="src">Not in this price</span></div><div class="name">After launch, or not at all</div><div class="gate">Drag here to take an item out. Items here are priced when they are added.</div></div>${colInner('tray')}`;
   $('#cols').innerHTML = PHASES.map(p => {
     const on = S.on[p.id], pr = priceOfPhase(p);
@@ -511,10 +523,10 @@ function renderPrice(T){
   $('#sLast').textContent = rows.length ? dfmt(rows[rows.length-1].date) : '';
 }
 function renderLanded(){
-  const groups = [...PHASES.map(p=>({id:p.id, h:`${p.id} · ${p.name}`, on:S.on[p.id]})), {id:'tray', h:'Later: not in this price', on:true}];
+  const groups = [...PHASES.map(p=>({id:p.id, h:`${p.id} · ${p.name}`, on:S.on[p.id]})), {id:'place', h:'To place: from the meetings with Nik, not yet priced', on:true}, {id:'tray', h:'Later: not in this price', on:true}];
   $('#landed').innerHTML = groups.map(g => {
     const items = ITEMS.filter(i => S.place[i.id] === g.id);
-    return `<div class="panel lgroup"><div class="k">${g.on?(g.id==='tray'?'Not in this price':'In'):'Phase not taken: not in this price'}</div><h3>${esc(g.h)}</h3>${items.map(i=>`<div class="litem"><span class="c">${i.id}</span><span>${esc(i.t)}</span><span class="w">${i.home===g.id?'as proposed':'moved here'}</span></div>`).join('') || '<div class="src">Nothing here.</div>'}</div>`;
+    return `<div class="panel lgroup"><div class="k">${g.on?(g.id==='tray'||g.id==='place'?'Not in this price':'In'):'Phase not taken: not in this price'}</div><h3>${esc(g.h)}</h3>${items.map(i=>`<div class="litem"><span class="c">${i.id}</span><span>${esc(i.t)}</span><span class="w">${i.home===g.id?'as proposed':'moved here'}</span></div>`).join('') || '<div class="src">Nothing here.</div>'}</div>`;
   }).join('');
 }
 function renderLetter(T){
@@ -534,7 +546,7 @@ function renderLetter(T){
     ${cl('2.1', `${esc(P)} builds the phases below, with the items sorted on the scope board on the date of this letter and listed in Schedule A.`)}
     <table><thead><tr><th>Phase</th><th>Gate</th><th class="r">Price</th></tr></thead><tbody>${T.on.map(p=>`<tr><td>${p.id} ${esc(p.name)}</td><td>${esc(p.gate)}</td><td class="r">${fmt(priceOfPhase(p))}</td></tr>`).join('')}</tbody></table>
     ${cl('2.2', `Each phase ends at its gate. UVALUX may stop after any gate; a phase not yet started is not owed.`)}
-    ${cl('2.3', `Items listed as "Later" in Schedule A are not part of this letter and are priced when they are added.`)}
+    ${cl('2.3', `Items listed as "To place" or "Later" in Schedule A are not part of this letter and are priced when they are added.`)}
     <h4>3. Payment</h4>
     ${cl('3.1', `Build price: <b>${fmt(T.price)}</b> plus HST at 13% (${fmt(T.price*(1+HST))} with HST). ${T.on.length>=2?`Committing to ${T.on.length} phases prices each at its committed rate, ${fmt(T.save)} less than buying them one at a time.`:''}`)}
     ${cl('3.2', `Each phase is paid 40% at its start, 40% at its working version and 20% at its gate. Dates falling on a weekend or statutory holiday move to the next business day.`)}
@@ -544,7 +556,7 @@ function renderLetter(T){
     ${cl('4.1', last ? `The phases above run to ${ldate(last)}, assuming work starts on the date of this letter. A later start moves every date by the same number of days.` : 'No phase selected.')}
     <h4>5. Data and customers</h4>
     ${cl('5.1', `UVALUX's data remains UVALUX's, during the build and after it. ${esc(P)} never markets to UVALUX's salons' customers.`)}`;
-  $('#schedA').innerHTML = `<h4 style="margin-top:0">Schedule A: where we landed</h4>` + [...PHASES.filter(p=>S.on[p.id]).map(p=>({id:p.id,h:`${p.id} ${p.name}`})), {id:'tray',h:'Later (not in this letter)'}].map(g => {
+  $('#schedA').innerHTML = `<h4 style="margin-top:0">Schedule A: where we landed</h4>` + [...PHASES.filter(p=>S.on[p.id]).map(p=>({id:p.id,h:`${p.id} ${p.name}`})), {id:'place',h:'To place (not in this letter until placed and priced)'}, {id:'tray',h:'Later (not in this letter)'}].map(g => {
     const items = ITEMS.filter(i => S.place[i.id] === g.id);
     return `<table><thead><tr><th colspan="2">${esc(g.h)}</th></tr></thead><tbody>${items.map(i=>`<tr><td style="width:56px">${i.id}</td><td>${esc(i.t)}</td></tr>`).join('') || '<tr><td colspan="2">None</td></tr>'}</tbody></table>`;
   }).join('') + PHASES.filter(p=>!S.on[p.id]).map(p => {
@@ -586,6 +598,10 @@ function issues(){
   if (PROVIDER_LEGAL.startsWith('[')) out.push('The contracting entity is not confirmed yet.');
   if (!S.legal.trim()) out.push('UVALUX legal name is blank.');
   if (!T.on.length) out.push('No phase is selected.');
+  const place = ITEMS.filter(i => S.place[i.id]==='place').length;
+  if (place) out.push(`${place} item${place>1?'s are':' is'} under "To place": not placed or priced yet.`);
+  const priced = ITEMS.filter(i => i.tbd && PHASES.some(p=>p.id===S.place[i.id])).length;
+  if (priced) out.push(`${priced} item${priced>1?'s were':' was'} placed into a phase with its price still to be set.`);
   const tray = ITEMS.filter(i => S.place[i.id]==='tray').length;
   if (tray) out.push(`${tray} item${tray>1?'s are':' is'} under "Later" and will not be in the letter.`);
   const parked = ITEMS.filter(i => PHASES.some(p=>p.id===S.place[i.id] && !S.on[p.id])).length;
