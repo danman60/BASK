@@ -61,6 +61,9 @@
 .b-healthgrid-cell[data-band='lapsed']   { background: var(--risk-wash); }
 .b-healthgrid-legend { display: flex; gap: var(--space-3); margin-top: var(--space-5); }
 .b-healthgrid-caption { font-size: var(--text-xs); color: var(--ink-faint); margin-bottom: var(--space-4); }
+/* `.card` carries no padding; without this the caption and legend sat on the
+   card's border. */
+.b-healthgrid-wrap { padding: var(--space-5) var(--space-6); }
 
 /* ---- shared table shape (slipping list, cohort table) -------------------- */
 /* `width: 100%` cannot shrink a table below its min-content, so at a 390px
@@ -70,6 +73,12 @@
    itself never scrolls sideways. Same remedy as .b-etable-scroll, applied at
    the container because six components share .b-dtable. */
 .card:has(> .b-dtable) { overflow-x: auto; }
+/* Header row and footnote sat on the card edge — the footnote's first letter
+   was cut by the corner radius. */
+.card:has(> .b-dtable) { padding-top: var(--space-4); }
+.card > .b-dtable + .b-metric-sub { margin: 0; padding: var(--space-3) var(--space-4) var(--space-4); }
+/* A metric row followed directly by a table card (the peers scoreboard). */
+.b-metrics + .card { margin-top: var(--space-5); }
 .b-dtable { width: 100%; border-collapse: collapse; }
 .b-dtable th {
   font: 600 var(--text-xs) / 1 var(--font-body);

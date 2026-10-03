@@ -256,7 +256,8 @@ export default async function PeersPage({
                         <input type="hidden" name="label" value={gap.label} />
                         <input type="hidden" name="target" value={Math.round(gap.cohortMedian)} />
                         <button type="submit" className="btn btn-primary">
-                          Set the team a {Math.round(gap.cohortMedian)}% target
+                          Set the team {articleFor(Math.round(gap.cohortMedian))}{' '}
+                          {Math.round(gap.cohortMedian)}% target
                         </button>
                       </form>
 
@@ -327,4 +328,16 @@ export default async function PeersPage({
       )}
     </PageContainer>
   );
+}
+
+/**
+ * "a" or "an" before a number as it is read aloud: an 8, an 11, an 18, an 80,
+ * an 800 — otherwise a. Covers 0-999, which is every percentage this page sets.
+ */
+function articleFor(n: number): 'a' | 'an' {
+  const whole = Math.abs(Math.trunc(n));
+  if (whole === 8 || whole === 11 || whole === 18) return 'an';
+  if (whole >= 80 && whole <= 89) return 'an';
+  if (whole >= 800 && whole <= 899) return 'an';
+  return 'a';
 }

@@ -310,6 +310,10 @@ interface DollarCoefficients {
 function dollarCoefficients(facts: SalonFacts, customerCount: number): DollarCoefficients {
   const a = facts.attachment;
   const attachmentPerPoint = round((a.visitsPerDay * 30 * a.averageAttachedSpend) / 100, 2);
+  // The daily figure is not a whole number. Shown rounded to an integer, the
+  // stated product disagreed with itself ("104 × 30 = 3126"), so the workings
+  // print one decimal and multiply exactly what they print.
+  const visitsPerDayShown = round(a.visitsPerDay, 1);
 
   const totalPossible = facts.capacity.slots.reduce((s, x) => s + x.sessionsPossible, 0);
   const averageSessionValue =
@@ -327,9 +331,9 @@ function dollarCoefficients(facts: SalonFacts, customerCount: number): DollarCoe
   return {
     attachment: {
       perPoint: attachmentPerPoint,
-      workings: `${Math.round(a.visitsPerDay)} visits a day × 30 days = ${Math.round(
-        a.visitsPerDay * 30,
-      )} visits a month. One point of attachment is 1 in 100 of those, and an attached visit is worth ${formatCurrency(
+      workings: `${visitsPerDayShown.toLocaleString()} visits a day × 30 days = ${Math.round(
+        visitsPerDayShown * 30,
+      ).toLocaleString()} visits a month. One point of attachment is 1 in 100 of those, and an attached visit is worth ${formatCurrency(
         a.averageAttachedSpend,
       )} — so a point is ${formatCurrency(attachmentPerPoint)} a month.`,
     },
