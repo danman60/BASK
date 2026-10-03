@@ -89,6 +89,7 @@
   color: var(--accent-on-wash);
   border-radius: 999px;
   padding: 4px 9px;
+  white-space: nowrap;
 }
 
 .ds-tier-plain {
@@ -184,14 +185,17 @@
   color: var(--risk-on-wash);
 }
 
+/* `--success-on-wash` / `--risk-on-wash` are the light theme's dark ink (L 47%)
+ * and vanished on this pane's charcoal. The pane is the fixed Compass
+ * sub-theme in both app themes, so its marks take the Compass inks. */
 .ds-preview--them .ds-mark--yes {
   background: var(--c-green-wash);
-  color: var(--success-on-wash);
+  color: var(--c-green);
 }
 
 .ds-preview--them .ds-mark--no {
   background: oklch(68% 0.15 28 / 0.14);
-  color: var(--risk-on-wash);
+  color: var(--c-risk);
 }
 
 .ds-group-label {

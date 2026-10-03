@@ -471,7 +471,10 @@ export function generateFixtures(options: GenerateOptions = {}): FixtureBundle {
       toTier: 'coaching' as const,
       changedByStaffId: staffByKey.get('dana')?.id ?? null,
       note: 'Opted in to coaching after the spring rep visit',
-      changedAt: zonedToUtc(addDays(dayZero, -120), 11, 0, TZ),
+      // Must fall after onboarding (`createdAt`, day zero − 91). At −120 the
+      // upgrade predated the salon's own onboarding row, so the change history
+      // read "Set at onboarding, May 7" above "upgrade, Apr 8".
+      changedAt: zonedToUtc(addDays(dayZero, -60), 11, 0, TZ),
     },
   ];
 
