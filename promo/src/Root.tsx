@@ -7,11 +7,13 @@ import { MainFilm } from './MainFilm';
 import { MainV3 } from './MainV3';
 import { MainV5 } from './MainV5';
 import { MainV6 } from './MainV6';
+import { MainV8 } from './MainV8';
 import { FPS, SHOTS, SHOTS_VO, TOTAL, TOTAL_VO } from './timeline';
 import { TOTAL_FILM } from './timelineFilm';
 import { TOTAL_V3 } from './timelineV3';
 import { TOTAL_V5 } from './timelineV5';
 import { TOTAL_V6 } from './timelineV6';
+import { TOTAL_V8 } from './timelineV8';
 
 export const schema = z.object({
   // Wraps the BGM <Audio> only; SFX stay. Renders the no-BGM deliverable from
@@ -24,6 +26,18 @@ export const schema = z.object({
 
 export const RemotionRoot: React.FC = () => (
   <>
+    {/* v8 full-feature cut on the guiding chain (2026-10-03). Every cut comes
+        from the read via timelineV8's one import line. `bgm: false` renders
+        the no-music deliverable (VO + SFX) from the same timeline. */}
+    <Composition
+      id="PromoV8"
+      component={MainV8}
+      durationInFrames={TOTAL_V8}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      defaultProps={{ bgm: true }}
+    />
     {/* v5 shotcraft redo (2026-08-28) — 43.9s, fourteen shots, element-level
         framing off 3x captures of production. Storyboard:
         docs/pitch/2026-08-28-shotcraft-v5-spec.md. `bgm` off renders the same

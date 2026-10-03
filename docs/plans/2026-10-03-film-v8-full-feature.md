@@ -30,7 +30,7 @@ membership math out loud, the customer saying yes, and that conversation landing
 | B | H3 b-roll: Nano Banana stills (one identity per character) → H3 I2VA 864x480, via gpu-borrow | subagent | `promo/public/h3/v8/*.mp4` |
 | C | HTML demo plates for features NOT built in the app (concept screens, Bask tokens) | subagent | `promo/demos/v8/*.html` + PNG captures |
 | D | Product captures of BUILT features not in v7 (monitor, peers, customers, recovery, data-sharing, inventory order, staff) | subagent | `promo/public/textures/v8/*.png` |
-| E | VO: `voiceover.txt` (clean) + Chatterbox `frankie` read (v7 voice) | main | `promo/public/audio/vo/v8/` |
+| E | VO: `voiceover.txt` (clean) + Chatterbox `uvaint` read (v7 voice — file uvaint-v7.mp3; the v7 beatmap note "Frankie" was wrong, corrected by Daniel 14:00) | main | `promo/public/audio/vo/v8/` |
 | F | Remotion v8 assembly, comprehension gate, final review, render, DM | main | `promo/out/promo-v8*.mp4` |
 | G | Proposal board gaps → routed to coverwise-2 (owns the scope board) | done 13:5x | message sent |
 
@@ -78,3 +78,20 @@ Built vs concept is labelled per beat below. Concept beats are spoken in the fut
 
 ## Deviations log
 (append here)
+- 2026-10-03 14:00 — Voice is `uvaint` (Daniel). Frankie render kept only as a scratch reference.
+- 2026-10-03 14:02 — RESTRUCTURE (Daniel: "a guiding principle ... the basic chain of data analysis to reveal
+  insight coaching to build LLM instant actions and then tracking and sharing with the community on the salon
+  owner side and then visibility coaching opportunities and analytics on the Uvolux side"; "look for ... a few
+  extra high end aftereffects motion graphics shots ... OK if this video is explainer length").
+  Beat sheet above is SUPERSEDED by chapter order: DATA → INSIGHT → COACHING → INSTANT ACTION → TRACKING →
+  COMMUNITY | consent hinge | flip | VISIBILITY → COACHING OPPORTUNITIES → ANALYTICS. Narration rewritten:
+  promo/v8/voiceover.txt (25 paragraphs, 598 words, ~4:00), read in uvaint → promo/public/audio/vo/v8-chain/.
+  New MG shots: chain draw-on (b02), data-flow sync (b03), waveform→transcript→scores (b08), transcript→playbook
+  deal-out (b11), DigitRoll measured (b15), 3D flip to the UVALUX chain (b19), persistent chain strip.
+
+### 2026-10-03 — Remotion v8 assembly (track F)
+- Structure follows the chain brief (25 beats, `v8-chain` uvaint read, 204.07s), not the 24-beat table above.
+- Every cut comes from the read: `scripts/v8-anchors.py` (Whisper word pass) → `vo-anchors.json`; `timelineV8.ts` has ONE import line naming the read.
+- Bed: `bgm-open-road.mp3` is 182s, the film 205.5s → two passes spliced once at the first UVALUX chapter (network), jump back 13 bars; pass B ends on the track's own outro under the sign-off. Ducked in-composition from the beat timing; master gain in `scripts/master-v8.sh`.
+- b15 opens on `owner-review.mp4` (Dana reading the result) instead of v7's measured plate; `team.mp4` / `yes.mp4` unused (the deal-out MG carries "the whole team learns it").
+- b18 shows the data-sharing heading + three tiers for the whole line (the tall what-UVALUX-sees panel read as a broken sliver in draft 1).

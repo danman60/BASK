@@ -22,6 +22,9 @@ import { FigurePlate } from './FigurePlate';
 export interface ShotProps {
   duration: number;
   captions?: boolean;
+  /** v8 re-time: the internal cut, re-pinned to the new read's own breath.
+   *  Omitted → the v7 value, so v6/v7 render exactly as before. */
+  cut?: number;
 }
 
 const ease = {
@@ -91,11 +94,11 @@ export const B2Read: React.FC<ShotProps> = ({ duration, captions = true }) => (
  * The series is the real one the product shows: attachment easing from 8.8% to
  * 5.7% over a fortnight.
  */
-export const B3Chart: React.FC<ShotProps> = ({ duration, captions = true }) => {
+export const B3Chart: React.FC<ShotProps> = ({ duration, captions = true, cut }) => {
   const f = useCurrentFrame();
   // Pinned to the silence at 24.3s in the read ("Traffic never moved"), not
   // scaled from v6's 200. See docs/pitch/2026-09-02-v7-beatmap.md.
-  const CUT = 196;
+  const CUT = cut ?? 196;
   return (
     <AbsoluteFill>
       {f < CUT ? (
@@ -175,11 +178,11 @@ export const B4Method: React.FC<ShotProps> = ({ duration, captions = true }) => 
 
 /* ------------------------------------------------------------------ 5 */
 /** One button, and the campaign is already written. */
-export const B5Action: React.FC<ShotProps> = ({ duration, captions = true }) => {
+export const B5Action: React.FC<ShotProps> = ({ duration, captions = true, cut }) => {
   const f = useCurrentFrame();
   // Pinned to the silence at 62.5s ("You read it, you change what you want"),
   // which is the frame the campaigns page belongs under.
-  const CUT = 270;
+  const CUT = cut ?? 270;
   return (
     <AbsoluteFill>
       {f < CUT ? (

@@ -1,0 +1,394 @@
+{
+  "meta": {
+    "w": 1600,
+    "dsf": 2,
+    "strip": 1300,
+    "coords": "page-space CSS px; texture px = x2"
+  },
+  "topbar": {
+    "source": "http://localhost:3517",
+    "w": 1600,
+    "h": 63
+  },
+  "customers": {
+    "route": "/customers",
+    "source": "http://localhost:3519",
+    "patch": null,
+    "theme": "sunset",
+    "capturedAt": "2026-10-03T18:06:56.754Z",
+    "pageH": 2722,
+    "w": 1600,
+    "full": {
+      "name": "customers-full",
+      "h": 1700
+    },
+    "strips": [
+      {
+        "name": "customers-s0",
+        "top": 0,
+        "h": 1300
+      },
+      {
+        "name": "customers-s1",
+        "top": 1300,
+        "h": 400
+      }
+    ],
+    "boxes": {
+      "bands": {
+        "x": 250,
+        "y": 206,
+        "w": 1100,
+        "h": 140
+      },
+      "healthgrid": {
+        "x": 275,
+        "y": 420,
+        "w": 1050,
+        "h": 141
+      },
+      "healthgridWrap": {
+        "x": 250,
+        "y": 366,
+        "w": 1100,
+        "h": 258
+      },
+      "slipping": {
+        "x": 250,
+        "y": 643,
+        "w": 1100,
+        "h": 1141
+      }
+    }
+  },
+  "recovery": {
+    "route": "/customers?view=recovery",
+    "source": "http://localhost:3519",
+    "patch": null,
+    "theme": "sunset",
+    "capturedAt": "2026-10-03T18:07:01.982Z",
+    "pageH": 1000,
+    "w": 1600,
+    "full": {
+      "name": "recovery-full",
+      "h": 1000
+    },
+    "strips": [
+      {
+        "name": "recovery-s0",
+        "top": 0,
+        "h": 1000
+      }
+    ],
+    "boxes": {
+      "summary": {
+        "x": 250,
+        "y": 206,
+        "w": 1100,
+        "h": 118
+      },
+      "list": {
+        "x": 250,
+        "y": 348,
+        "w": 1100,
+        "h": 574
+      },
+      "first": {
+        "x": 250,
+        "y": 348,
+        "w": 1100,
+        "h": 72
+      }
+    }
+  },
+  "insights": {
+    "route": "/insights",
+    "source": "http://localhost:3519",
+    "patch": null,
+    "theme": "sunset",
+    "capturedAt": "2026-10-03T18:07:15.604Z",
+    "pageH": 3937,
+    "w": 1600,
+    "full": {
+      "name": "insights-full",
+      "h": 3937
+    },
+    "strips": [
+      {
+        "name": "insights-s0",
+        "top": 0,
+        "h": 1300
+      },
+      {
+        "name": "insights-s1",
+        "top": 1300,
+        "h": 1300
+      },
+      {
+        "name": "insights-s2",
+        "top": 2600,
+        "h": 1300
+      }
+    ],
+    "boxes": {
+      "staff": {
+        "x": 250,
+        "y": 2223,
+        "w": 1100,
+        "h": 1273
+      },
+      "staffCard1": {
+        "x": 250,
+        "y": 2309,
+        "w": 356,
+        "h": 285
+      },
+      "staffCard2": {
+        "x": 622,
+        "y": 2309,
+        "w": 356,
+        "h": 285
+      }
+    }
+  },
+  "peers": {
+    "route": "/insights/peers",
+    "source": "http://localhost:3519",
+    "patch": null,
+    "theme": "sunset",
+    "capturedAt": "2026-10-03T18:07:27.463Z",
+    "pageH": 2272,
+    "w": 1600,
+    "full": {
+      "name": "peers-full",
+      "h": 2272
+    },
+    "strips": [
+      {
+        "name": "peers-s0",
+        "top": 0,
+        "h": 1300
+      },
+      {
+        "name": "peers-s1",
+        "top": 1300,
+        "h": 972
+      }
+    ],
+    "boxes": {
+      "head": {
+        "x": 250,
+        "y": 95,
+        "w": 1100,
+        "h": 134
+      },
+      "scoreboard": {
+        "x": 250,
+        "y": 394,
+        "w": 1100,
+        "h": 511
+      },
+      "metrics": {
+        "x": 250,
+        "y": 529,
+        "w": 1100,
+        "h": 160
+      },
+      "cohortTable": {
+        "x": 250,
+        "y": 709,
+        "w": 1100,
+        "h": 196
+      },
+      "gapCard1": {
+        "x": 250,
+        "y": 1031,
+        "w": 1100,
+        "h": 441
+      }
+    }
+  },
+  "datasharing": {
+    "route": "/settings/data-sharing",
+    "source": "http://localhost:3519",
+    "patch": null,
+    "theme": "sunset",
+    "capturedAt": "2026-10-03T18:07:31.778Z",
+    "pageH": 1772,
+    "w": 1600,
+    "full": {
+      "name": "datasharing-full",
+      "h": 1772
+    },
+    "strips": [
+      {
+        "name": "datasharing-s0",
+        "top": 0,
+        "h": 1300
+      },
+      {
+        "name": "datasharing-s1",
+        "top": 1300,
+        "h": 472
+      }
+    ],
+    "boxes": {
+      "head": {
+        "x": 260,
+        "y": 103,
+        "w": 1080,
+        "h": 140
+      },
+      "tiers": {
+        "x": 260,
+        "y": 275,
+        "w": 1080,
+        "h": 169
+      },
+      "previewYou": {
+        "x": 260,
+        "y": 476,
+        "w": 530,
+        "h": 392
+      },
+      "previewUvalux": {
+        "x": 810,
+        "y": 476,
+        "w": 530,
+        "h": 899
+      },
+      "audit": {
+        "x": 260,
+        "y": 1566,
+        "w": 1080,
+        "h": 158
+      }
+    }
+  },
+  "order": {
+    "route": "/inventory/order",
+    "source": "http://localhost:3517",
+    "patch": null,
+    "theme": "sunset",
+    "capturedAt": "2026-10-03T17:51:11.112Z",
+    "pageH": 1000,
+    "w": 1600,
+    "full": {
+      "name": "order-full",
+      "h": 1000
+    },
+    "strips": [
+      {
+        "name": "order-s0",
+        "top": 0,
+        "h": 1000
+      }
+    ],
+    "boxes": {
+      "head": {
+        "x": 250,
+        "y": 95,
+        "w": 1100,
+        "h": 112
+      },
+      "line1": {
+        "x": 251,
+        "y": 232,
+        "w": 762,
+        "h": 169
+      },
+      "total": {
+        "x": 1055,
+        "y": 283,
+        "w": 270,
+        "h": 42
+      },
+      "suggests": {
+        "x": 250,
+        "y": 441,
+        "w": 764,
+        "h": 308
+      }
+    }
+  },
+  "monitor": {
+    "route": "/monitor",
+    "source": "http://localhost:3519",
+    "patch": null,
+    "theme": "sunset",
+    "capturedAt": "2026-10-03T18:07:36.342Z",
+    "pageH": 3903,
+    "w": 1600,
+    "full": {
+      "name": "monitor-full",
+      "h": 3903
+    },
+    "strips": [
+      {
+        "name": "monitor-s0",
+        "top": 0,
+        "h": 1300
+      },
+      {
+        "name": "monitor-s1",
+        "top": 1300,
+        "h": 1300
+      },
+      {
+        "name": "monitor-s2",
+        "top": 2600,
+        "h": 1300
+      }
+    ],
+    "boxes": {
+      "rail": {
+        "x": 1030,
+        "y": 195,
+        "w": 320,
+        "h": 3298
+      },
+      "listener": {
+        "x": 1030,
+        "y": 195,
+        "w": 320,
+        "h": 234
+      },
+      "pledge": {
+        "x": 1030,
+        "y": 445,
+        "w": 320,
+        "h": 239
+      },
+      "conv1": {
+        "x": 250,
+        "y": 897,
+        "w": 760,
+        "h": 302
+      },
+      "mayaMethod": {
+        "x": 250,
+        "y": 446,
+        "w": 760,
+        "h": 212
+      },
+      "insight1": {
+        "x": 250,
+        "y": 240,
+        "w": 760,
+        "h": 190
+      },
+      "team": {
+        "x": 271,
+        "y": 3579,
+        "w": 1058,
+        "h": 262
+      },
+      "teamCard": {
+        "x": 250,
+        "y": 3518,
+        "w": 1100,
+        "h": 345
+      }
+    }
+  }
+}

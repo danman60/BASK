@@ -1,0 +1,242 @@
+{
+ "voice": "uvaint",
+ "engine": "chatterbox",
+ "knobs": {
+  "exaggeration": 0.5,
+  "cfg_weight": 0.5,
+  "temperature": 0.8,
+  "seed": 7
+ },
+ "fps": 30,
+ "gap": 0.35,
+ "total": 204.069,
+ "totalFrames": 6122,
+ "job": "20261003-144145-uvaint",
+ "beats": [
+  {
+   "id": "b01",
+   "text": "Bask is an app a salon owner opens when the place is quiet. To make it less quiet.",
+   "file": "beats/b01.wav",
+   "start": 0.0,
+   "duration": 5.549,
+   "startFrame": 0,
+   "durationFrames": 166
+  },
+  {
+   "id": "b02",
+   "text": "Everything in Bask works the same way. Your numbers become an insight. The insight is matched to real coaching. The coaching becomes something you can do in one click. Then it's tracked, and shared with owners like you.",
+   "file": "beats/b02.wav",
+   "start": 5.899,
+   "duration": 13.541,
+   "startFrame": 177,
+   "durationFrames": 406
+  },
+  {
+   "id": "b03",
+   "text": "It starts with your data. Bask doesn't replace your software. It sits beside it, and quietly syncs what you already have.",
+   "file": "beats/b03.wav",
+   "start": 19.79,
+   "duration": 7.404,
+   "startFrame": 594,
+   "durationFrames": 222
+  },
+  {
+   "id": "b04",
+   "text": "It reads last night's numbers before anyone unlocks the door. Not a dashboard. A short letter, in plain words, about what actually changed.",
+   "file": "beats/b04.wav",
+   "start": 27.544,
+   "duration": 8.461,
+   "startFrame": 826,
+   "durationFrames": 254
+  },
+  {
+   "id": "b05",
+   "text": "Lotion per visit slipped. Not everywhere. Thursday afternoons, and Friday nights. Traffic never moved. That gap is four thousand dollars a month, and it had been there for four weeks.",
+   "file": "beats/b05.wav",
+   "start": 36.355,
+   "duration": 11.876,
+   "startFrame": 1091,
+   "durationFrames": 356
+  },
+  {
+   "id": "b06",
+   "text": "It knows every customer by their own rhythm. Who's healthy, who's slipping, who's gone quiet, and who still has minutes they paid for and never used.",
+   "file": "beats/b06.wav",
+   "start": 48.581,
+   "duration": 7.998,
+   "startFrame": 1457,
+   "durationFrames": 240
+  },
+  {
+   "id": "b07",
+   "text": "Seven memberships failed to pay this week, and most of them look recoverable.",
+   "file": "beats/b07.wav",
+   "start": 56.929,
+   "duration": 3.683,
+   "startFrame": 1708,
+   "durationFrames": 110
+  },
+  {
+   "id": "b08",
+   "text": "And with everyone's consent, the front desk listens. Every sales conversation is scored on the moments that matter. The greeting, the question, the product, the membership, the close.",
+   "file": "beats/b08.wav",
+   "start": 60.962,
+   "duration": 10.1,
+   "startFrame": 1829,
+   "durationFrames": 303
+  },
+  {
+   "id": "b09",
+   "text": "You see your team without a leaderboard. Who's improving, and who needs a hand this week. And you see where you stand, against salons like yours, as a rank, not a guess.",
+   "file": "beats/b09.wav",
+   "start": 71.413,
+   "duration": 9.169,
+   "startFrame": 2142,
+   "durationFrames": 275
+  },
+  {
+   "id": "b10",
+   "text": "Then the part nobody else does. It doesn't invent the advice. It goes and finds where that advice came from. The training you've already recorded, a thousand pieces of coaching, and it shows you the words somebody actually said on a stage about this exact problem.",
+   "file": "beats/b10.wav",
+   "start": 80.931,
+   "duration": 15.498,
+   "startFrame": 2428,
+   "durationFrames": 465
+  },
+  {
+   "id": "b11",
+   "text": "It finds your best seller, and bottles how she does it. Maya does the membership math out loud, and people say yes. Now the whole team learns it.",
+   "file": "beats/b11.wav",
+   "start": 96.779,
+   "duration": 8.015,
+   "startFrame": 2903,
+   "durationFrames": 240
+  },
+  {
+   "id": "b12",
+   "text": "And if someone says something about a product that isn't true, you hear it first.",
+   "file": "beats/b12.wav",
+   "start": 105.144,
+   "duration": 3.397,
+   "startFrame": 3154,
+   "durationFrames": 102
+  },
+  {
+   "id": "b13",
+   "text": "Then you act. One button. The campaign is already written. The right people, the right night, the offer inside your own rules. You read it, you change what you want, and you send it. Nothing leaves without you.",
+   "file": "beats/b13.wav",
+   "start": 108.891,
+   "duration": 13.873,
+   "startFrame": 3267,
+   "durationFrames": 416
+  },
+  {
+   "id": "b14",
+   "text": "Every insight comes with its action. A note to the people with minutes left. A message to each failed payment. And when someone walks in, the front desk already knows. Eighty-five days since her last tan, and the lotion she always buys.",
+   "file": "beats/b14.wav",
+   "start": 123.114,
+   "duration": 13.93,
+   "startFrame": 3693,
+   "durationFrames": 418
+  },
+  {
+   "id": "b15",
+   "text": "Then it comes back and tells you what it was worth. Not a promise. A measured number, next to the coaching that suggested it.",
+   "file": "beats/b15.wav",
+   "start": 137.394,
+   "duration": 6.458,
+   "startFrame": 4122,
+   "durationFrames": 194
+  },
+  {
+   "id": "b16",
+   "text": "Everything on this screen can be opened. Every figure goes back to the visits behind it.",
+   "file": "beats/b16.wav",
+   "start": 144.202,
+   "duration": 4.908,
+   "startFrame": 4326,
+   "durationFrames": 147
+  },
+  {
+   "id": "b17",
+   "text": "And you're not doing it alone. What worked is shared with other owners, working the same week.",
+   "file": "beats/b17.wav",
+   "start": 149.46,
+   "duration": 5.15,
+   "startFrame": 4484,
+   "durationFrames": 155
+  },
+  {
+   "id": "b18",
+   "text": "Your data stays yours. You choose what UVALUX sees, and you can take it back in one click.",
+   "file": "beats/b18.wav",
+   "start": 154.961,
+   "duration": 5.947,
+   "startFrame": 4649,
+   "durationFrames": 178
+  },
+  {
+   "id": "b19",
+   "text": "Same nervous system, opposite end. UVALUX sees the same chain from above.",
+   "file": "beats/b19.wav",
+   "start": 161.257,
+   "duration": 5.223,
+   "startFrame": 4838,
+   "durationFrames": 157
+  },
+  {
+   "id": "b20",
+   "text": "Every salon running this is a signal, and for the first time UVALUX can see the market it actually serves.",
+   "file": "beats/b20.wav",
+   "start": 166.83,
+   "duration": 5.896,
+   "startFrame": 5005,
+   "durationFrames": 177
+  },
+  {
+   "id": "b21",
+   "text": "Your rep stops calling to ask if anyone needs anything. They call already knowing what's wrong, and what to suggest.",
+   "file": "beats/b21.wav",
+   "start": 173.076,
+   "duration": 6.085,
+   "startFrame": 5192,
+   "durationFrames": 183
+  },
+  {
+   "id": "b22",
+   "text": "And the coaching underneath all of it is yours. Your training, your sessions, reviewed by your people before it ever reaches a salon floor.",
+   "file": "beats/b22.wav",
+   "start": 179.512,
+   "duration": 7.249,
+   "startFrame": 5385,
+   "durationFrames": 217
+  },
+  {
+   "id": "b23",
+   "text": "Low stock becomes a draft order. Lamp hours become a relamping budget. Busy beds become the case for one more.",
+   "file": "beats/b23.wav",
+   "start": 187.11,
+   "duration": 6.293,
+   "startFrame": 5613,
+   "durationFrames": 189
+  },
+  {
+   "id": "b24",
+   "text": "And that same knowledge answers questions. For owners today, and one day for their customers.",
+   "file": "beats/b24.wav",
+   "start": 193.753,
+   "duration": 5.377,
+   "startFrame": 5813,
+   "durationFrames": 161
+  },
+  {
+   "id": "b25",
+   "text": "That's Bask. It opens when the salon is quiet. To make it less quiet.",
+   "file": "beats/b25.wav",
+   "start": 199.48,
+   "duration": 4.546,
+   "startFrame": 5984,
+   "durationFrames": 136
+  }
+ ]
+}

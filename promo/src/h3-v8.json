@@ -1,0 +1,58 @@
+{
+ "open": {
+  "src": "h3/v8/open.mp4",
+  "seconds": 5.167,
+  "frames30": 155,
+  "w": 864,
+  "h": 480,
+  "fps": 24
+ },
+ "frontdesk": {
+  "src": "h3/v8/frontdesk.mp4",
+  "seconds": 5.167,
+  "frames30": 155,
+  "w": 864,
+  "h": 480,
+  "fps": 24
+ },
+ "listen": {
+  "src": "h3/v8/listen.mp4",
+  "seconds": 5.167,
+  "frames30": 155,
+  "w": 864,
+  "h": 480,
+  "fps": 24
+ },
+ "yes": {
+  "src": "h3/v8/yes.mp4",
+  "seconds": 5.167,
+  "frames30": 155,
+  "w": 864,
+  "h": 480,
+  "fps": 24
+ },
+ "owner-review": {
+  "src": "h3/v8/owner-review.mp4",
+  "seconds": 5.167,
+  "frames30": 155,
+  "w": 864,
+  "h": 480,
+  "fps": 24
+ },
+ "rep": {
+  "src": "h3/v8/rep.mp4",
+  "seconds": 5.167,
+  "frames30": 155,
+  "w": 864,
+  "h": 480,
+  "fps": 24
+ },
+ "team": {
+  "src": "h3/v8/team.mp4",
+  "seconds": 5.167,
+  "frames30": 155,
+  "w": 864,
+  "h": 480,
+  "fps": 24
+ }
+}
