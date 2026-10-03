@@ -302,7 +302,8 @@ export const failedPaymentsDetector: Detector = {
         dedupeKey: `${ctx.salonId}:failed_payments`,
         type: 'failed_payments',
         severity: severityForMoney(recoverableValue, { high: 250, medium: 100 }),
-        title: `${all.length} memberships failed payment this week`,
+        // `all` is every membership in `failed` state now, not a weekly count.
+        title: `${all.length} memberships have a payment that did not go through`,
         summary: `${recoverable.length} of ${all.length} look recoverable.`,
         evidence,
         impactEstimate: recoverableValue,

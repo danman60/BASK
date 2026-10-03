@@ -60,6 +60,7 @@ export function CustomersSurface() {
             <div className="cu-head">
               <div>
                 <h1>{C.recovery.title}</h1>
+                <p>{C.recovery.body}</p>
               </div>
               {recoveryAction}
             </div>
@@ -76,7 +77,7 @@ export function CustomersSurface() {
             </div>
 
             {list.data && (
-              <>
+              <div className="cu-health">
                 <HealthBandTiles
                   counts={(['healthy', 'slipping', 'lapsed'] as const).map((band) => ({
                     band,
@@ -93,6 +94,9 @@ export function CustomersSurface() {
                 <SlippingList
                   rows={list.data.customers
                     .filter((customer) => customer.health.band === 'slipping')
+                    // Lowest health score first: the list is "who to call", so
+                    // the most urgent leads. The query returns surname order.
+                    .sort((a, b) => a.health.score - b.health.score)
                     .slice(0, 20)
                     .map((customer) => ({
                       id: customer.id,
@@ -100,14 +104,14 @@ export function CustomersSurface() {
                       band: customer.health.band,
                       lastVisit: customer.health.daysSinceLastVisit === null
                         ? 'Never visited'
-                        : `${customer.health.daysSinceLastVisit} days ago`,
+                        : C.stats.daysAgo(customer.health.daysSinceLastVisit),
                       usual: customer.health.usualEveryDays === null
                         ? 'No pattern yet'
                         : `Every ${customer.health.usualEveryDays} days`,
                       why: customer.health.reason,
                     }))}
                 />
-              </>
+              </div>
             )}
 
             <div className="cu-search">
@@ -502,11 +506,6 @@ function RecoveryFlow() {
 
   return (
     <>
-      <div className="cu-head">
-        <h1>{C.recovery.title}</h1>
-        <p>{C.recovery.body}</p>
-      </div>
-
       <div className="cu-rec-summary" style={{ marginTop: 'var(--space-6)' }}>
         <div>
           <div className="cu-rec-n num">{counts.failed}</div>
@@ -549,6 +548,9 @@ function RecoveryFlow() {
         {rows.map((row) => {
           const body = drafts[row.membershipId];
           const isRecovered = row.paymentState === 'recovered';
+          // Not recoverable means "worth a phone call instead" — the channel
+          // label must say the same thing as the reason beside it.
+          const callInstead = !row.recoverable && !isRecovered;
           return (
             <div
               key={row.membershipId}
@@ -560,14 +562,16 @@ function RecoveryFlow() {
                   <span className="cu-rec-name">{row.customerName}</span>
                   <span className="cu-rec-reason">
                     {row.reason}
-                    {!row.recoverable && !isRecovered ? ` ${C.recovery.notRecoverable}` : ''}
+                    {callInstead ? ` ${C.recovery.notRecoverable}` : ''}
                   </span>
                 </span>
                 <span className="cu-rec-value">{formatMoney(row.monthlyPrice)}/mo</span>
                 {isRecovered ? (
                   <span className="cu-recovered">✓ {C.recovery.sent}</span>
                 ) : (
-                  <span className="cu-rec-whisper">{C.recovery.channel[row.channel]}</span>
+                  <span className="cu-rec-whisper">
+                    {callInstead ? C.recovery.channel.phone : C.recovery.channel[row.channel]}
+                  </span>
                 )}
               </div>
 

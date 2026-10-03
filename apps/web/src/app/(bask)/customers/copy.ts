@@ -93,7 +93,9 @@ export const CUSTOMERS_COPY = {
     open: 'Failed payments',
     back: 'Back to customers',
     counts: {
-      failed: 'Failed this month',
+      // Counts every membership whose payment state is `failed` right now —
+      // there is no date window in the query, so the label carries none.
+      failed: 'Not paid yet',
       recoverable: 'Look recoverable',
       recovered: 'Sorted out',
     },
@@ -106,7 +108,7 @@ export const CUSTOMERS_COPY = {
     sent: 'Sent — payment sorted',
     perMessage:
       'Read each one and send it yourself. There is no send-all button, on purpose.',
-    channel: { sms: 'By text', email: 'By email' },
+    channel: { sms: 'By text', email: 'By email', phone: 'By phone call' },
     noneFailed: 'No failed payments right now. Nothing to chase.',
     notRecoverable:
       'Not ranked as recoverable — a message is unlikely to land. Worth a phone call instead.',

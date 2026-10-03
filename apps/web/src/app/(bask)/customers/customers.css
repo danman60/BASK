@@ -39,6 +39,18 @@
 }
 
 /* --- search + chips ------------------------------------------------------- */
+/* Band tiles, health grid and slipping list: one spaced stack, clear of the
+   heading (and its Failed payments button) above. */
+.cu-health {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+  min-width: 0;
+}
+.cu-health > * {
+  min-width: 0;
+}
+
 .cu-search {
   display: flex;
   gap: var(--space-3);

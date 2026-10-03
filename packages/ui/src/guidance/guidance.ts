@@ -81,7 +81,7 @@ export const METRICS = {
   },
   failedPayments: {
     label: 'Payments that did not go through',
-    what: 'Memberships whose card was declined this month.',
+    what: 'Memberships whose card was declined and that have not been paid since.',
     how: 'Every membership charge the bank refused, minus the ones that have since been paid.',
     why: 'Most of these are just an expired card. A quick message usually gets the money back — but only if someone asks.',
   },
