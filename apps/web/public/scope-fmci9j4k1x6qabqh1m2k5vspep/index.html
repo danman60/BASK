@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Bask Scope Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Bask tokens (uvalux-platform docs/DESIGN_SPEC.md 2.1): warm paper, ink, one terracotta accent. */
+:root{
+  --paper:oklch(98.2% .004 84);--paper2:oklch(95.6% .008 80);--card:#fff;--line:oklch(89% .01 80);--line2:oklch(82% .014 70);
+  --ink:oklch(21% .012 320);--ink2:oklch(36% .012 320);--faint:oklch(46% .012 320);
+  --primary:oklch(58% .14 42);--primary-deep:oklch(50% .14 42);--wash:oklch(95% .03 42);
+  --gold:oklch(47% .085 78);--green:oklch(52% .11 155);--greenwash:oklch(95% .035 155);
+  --amber:oklch(46% .11 62);--amberwash:oklch(96% .04 85);--rose:oklch(55% .15 20);--rosewash:oklch(96% .03 20);
+  --shadow:0 1px 2px rgba(40,25,15,.06),0 8px 28px rgba(40,25,15,.07);--r:16px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-size:15px}
+body{overflow:hidden}
+button,input{font:inherit;color:inherit}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+.num,.money,.price,td.r,.r{font-variant-numeric:tabular-nums}
+.disp{font-family:Fraunces,Georgia,serif;font-weight:500;letter-spacing:-.013em}
+.app{height:100vh;height:100dvh;display:grid;grid-template-rows:auto 1fr}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:10px 22px;border-bottom:1px solid var(--line);background:color-mix(in oklch,var(--paper) 88%,transparent);backdrop-filter:blur(12px);position:relative;z-index:20}
+.brand{display:flex;align-items:baseline;gap:10px}
+.wordmark{font-family:Fraunces,Georgia,serif;font-style:italic;font-weight:600;font-size:24px;letter-spacing:-.01em}
+.brand small{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+nav{display:flex;flex-wrap:wrap;gap:4px;flex:1 1 auto}
+.navbtn{border:0;background:transparent;padding:9px 13px;border-radius:999px;color:var(--ink2);font-weight:600;font-size:13px;cursor:pointer;min-height:40px;white-space:nowrap}
+.navbtn.active{background:var(--paper2);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.headmeta{display:flex;align-items:center;gap:10px;margin-left:auto}
+.pill{padding:8px 14px;border-radius:999px;background:var(--wash);color:var(--primary-deep);font-weight:700;font-size:13px;white-space:nowrap}
+.hbtn{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;min-height:40px;color:var(--ink2)}
+.hbtn:disabled{opacity:.4;cursor:default}
+.hbtn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
+main{position:relative;overflow:hidden}
+.view{position:absolute;inset:0;display:none;overflow:auto;padding:22px 24px 40px}
+.view.active{display:block}
+.screen{max-width:1240px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.pagehead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:18px;flex-wrap:wrap}
+.pagehead h1{font-size:34px;line-height:1.12;margin-top:6px;max-width:760px}
+.pagehead h1 em{color:var(--primary);font-style:italic}
+.pagehead p{color:var(--ink2);font-size:14.5px;line-height:1.55;max-width:470px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.k{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.proposed{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);background:var(--amberwash);border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.src{font-size:11.5px;color:var(--faint);line-height:1.45}
+
+/* board */
+.boardwrap{display:grid;grid-template-columns:minmax(260px,1fr) minmax(0,3fr);gap:14px;align-items:start}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.col{background:var(--paper2);border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;min-height:220px;transition:background .15s,border-color .15s}
+.col.hot{border-color:var(--primary);background:var(--wash)}
+.col.off .cards,.col.off .colhead .gate{opacity:.45}
+.colhead{padding:14px 14px 8px}
+.colhead .top{display:flex;align-items:center;gap:8px}
+.ctag{font-weight:700;font-size:11px;letter-spacing:.06em;color:#fff;background:var(--primary);border-radius:6px;padding:3px 7px}
+.ctag.tray{background:var(--faint)}
+.colhead .name{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:19px;line-height:1.2;margin-top:8px}
+.colhead .gate{font-size:12px;color:var(--ink2);margin-top:4px;line-height:1.4}
+.money{display:flex;align-items:baseline;gap:8px;margin-top:10px;flex-wrap:wrap}
+.money b{font-size:20px}
+.money s{color:var(--faint);font-size:13px}
+.money small{font-size:11.5px;color:var(--faint)}
+.incl{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;font-weight:600;cursor:pointer;min-height:40px}
+.incl input{width:20px;height:20px;accent-color:var(--primary)}
+.cards{padding:6px 10px 12px;display:flex;flex-direction:column;gap:8px;flex:1;min-height:60px}
+.card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:12px;padding:10px 12px;touch-action:none;cursor:grab;box-shadow:0 1px 2px rgba(40,25,15,.05)}
+.card.roadmap{border-left-color:var(--gold)}
+.card.sel{box-shadow:0 0 0 2px var(--primary)}
+.card .t{font-weight:600;font-size:13.5px;line-height:1.3}
+.card .d{font-size:12px;color:var(--ink2);margin-top:4px;line-height:1.4}
+.card .meta{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.chip{font-size:10.5px;border-radius:999px;padding:3px 8px;background:var(--paper2);color:var(--ink2);font-weight:600}
+.chip.code{background:var(--ink);color:var(--paper)}
+.ghost{position:fixed;pointer-events:none;z-index:50;opacity:.95;transform:rotate(1.2deg);box-shadow:0 14px 34px rgba(40,25,15,.25)}
+.card.dragging{opacity:.3}
+.barline{position:sticky;bottom:-40px;margin:18px -24px -40px;padding:12px 24px 16px;background:color-mix(in oklch,var(--paper) 92%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;gap:16px 26px}
+.tot .v{font-size:24px;font-weight:700;display:block}
+.tot .n{font-size:12px;color:var(--faint)}
+.barline .btns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+
+/* price + phases */
+.phasegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ph{padding:18px}
+.ph h3{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:21px;margin-top:6px}
+.ph .row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);gap:10px;font-size:13.5px}
+.ph .row span{color:var(--ink2)}
+.ph .row b{font-size:16px;white-space:nowrap}
+.ph.off{opacity:.5}
+.summ{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:14px}
+.summ .panel{padding:16px}
+.summ .v{font-size:26px;font-weight:700;margin-top:6px;display:block}
+.summ .n{font-size:12px;color:var(--faint);margin-top:2px;display:block}
+table.sched{width:100%;border-collapse:collapse;font-size:13.5px}
+table.sched th{text-align:left;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding:10px 8px;border-bottom:1px solid var(--line2)}
+table.sched td{padding:10px 8px;border-bottom:1px solid var(--line)}
+table.sched .r{text-align:right}
+.rolled{font-size:11px;color:var(--amber);display:block}
+.note{font-size:12.5px;color:var(--ink2);line-height:1.5}
+
+/* landed */
+.lgroup{padding:16px 18px;margin-bottom:14px}
+.lgroup h3{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:20px}
+.litem{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px;align-items:baseline}
+.litem:last-child{border-bottom:0}
+.litem .c{font-weight:700;font-size:11px;min-width:42px;color:var(--primary-deep)}
+.litem .w{margin-left:auto;font-size:11.5px;color:var(--faint);white-space:nowrap}
+
+/* system / value / links */
+.loop{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.loop .step{padding:16px;position:relative}
+.loop .step b{font-size:11px;color:var(--primary);letter-spacing:.1em}
+.loop .step h3{font-size:15px;margin-top:6px}
+.loop .step p{font-size:12.5px;color:var(--ink2);margin-top:6px;line-height:1.45}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+.two .panel{padding:18px}
+.two h3{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:21px;margin:6px 0 8px}
+.two ul{margin:8px 0 0;padding-left:18px;color:var(--ink2);font-size:13.5px;line-height:1.6}
+.ex{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.ex .panel{padding:18px;border-left:4px solid var(--green)}
+.ex h3{font-size:16px;margin-top:6px}
+.ex p{font-size:13.5px;color:var(--ink2);margin-top:6px;line-height:1.5}
+.ex .big{font-family:Fraunces,Georgia,serif;font-size:26px;color:var(--green);margin-top:8px}
+.links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.lcard{display:flex;flex-direction:column;gap:8px;padding:16px;text-decoration:none}
+.lcard img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;border-radius:10px;border:1px solid var(--line)}
+.lcard h3{font-size:16px}
+.lcard p{font-size:13px;color:var(--ink2);line-height:1.45}
+.lcard .go{margin-top:auto;font-weight:600;color:var(--primary-deep);font-size:13px}
+
+/* letter */
+.lettertools{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:860px;margin:0 auto 14px;flex-wrap:wrap}
+.lettertools p{font-size:13.5px;color:var(--ink2);max-width:540px;line-height:1.5}
+.paper{max-width:860px;margin:0 auto;background:#fff;color:#1d1a1f;border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);padding:56px 64px;font-size:13.5px;line-height:1.6}
+.paper .lhead{display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #1d1a1f;padding-bottom:14px}
+.paper .lhead .wordmark{font-size:28px}
+.paper .lhead .ent{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.paper h2{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:24px;margin:26px 0 4px}
+.paper .sub{color:#5b5560;font-size:13px}
+.paper .parties{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin:22px 0}
+.paper .lab{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#7a737e;font-weight:700}
+.paper .fillrow{display:flex;gap:10px;font-size:12.5px;margin-top:6px;align-items:baseline}
+.paper .fillrow span:first-child{color:#7a737e;min-width:78px}
+.paper input.fill{flex:1;border:0;border-bottom:1px solid #b9b2bb;background:transparent;font-size:12.5px;padding:2px 0;min-width:0}
+.paper h4{font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:22px 0 6px}
+.paper .cl{display:grid;grid-template-columns:36px 1fr;gap:6px;margin:6px 0}
+.paper .cl span{color:#7a737e}
+.paper table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0}
+.paper th{text-align:left;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#7a737e;border-bottom:1px solid #1d1a1f;padding:6px 4px}
+.paper td{border-bottom:1px solid #e5e0e6;padding:6px 4px}
+.paper .r{text-align:right}
+.paper .tbc{color:var(--rose);font-weight:700}
+.paper .sig{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;break-inside:avoid;page-break-inside:avoid}
+.paper .sig .line{border-bottom:1px solid #1d1a1f;height:46px}
+.paper .sig small{display:block;margin-top:6px;color:#5b5560;line-height:1.5}
+.paper .schedA{margin-top:36px;padding-top:24px;border-top:1px solid #e5e0e6}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(29,26,31,.42);display:none;align-items:center;justify-content:center;z-index:80;padding:18px}
+.modal.open{display:flex}
+.sheet{width:min(520px,100%);padding:22px;display:flex;flex-direction:column;gap:12px}
+.sheet h2{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:22px}
+.sheet ul{margin:0;padding-left:18px;font-size:14px;line-height:1.6;color:var(--ink2)}
+.sheet .row{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+
+@media (max-width:980px){
+  .boardwrap{grid-template-columns:1fr}
+  .cols,.phasegrid,.links,.loop,.two,.ex{grid-template-columns:1fr}
+  .summ{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pagehead h1{font-size:27px}
+  .paper{padding:28px 20px}
+  .paper .parties{grid-template-columns:1fr}
+  table.sched{font-size:12.5px}
+  .view{padding:16px 16px 40px}
+  header{padding:8px 16px}
+  .barline{margin:18px -16px -40px;padding:12px 16px 16px}
+}
+@media (max-width:560px){ .hide-s{display:none} .summ{grid-template-columns:1fr} .navbtn{padding:7px 9px;font-size:12.5px;min-height:36px} .brand small{display:none} }
+
+/* print: letter only, no browser header/footer (zero page margin removes the URL line), clean pages */
+@media print{
+  @page{size:letter;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  header,.lettertools,.modal,.barline,.view:not(#view-letter){display:none!important}
+  .app{display:block;height:auto}
+  main{overflow:visible}
+  #view-letter{display:block!important;position:static;overflow:visible;padding:0}
+  .paper{max-width:none;border:0;border-radius:0;box-shadow:none;padding:.75in .8in}
+  .paper .schedA{break-before:page;page-break-before:always;margin-top:0;border-top:0}
+  .paper input.fill{border-bottom-color:#8a8390}
+  .paper tr,.paper .cl{break-inside:avoid;page-break-inside:avoid}
+  .paper h4{break-after:avoid;page-break-after:avoid}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand"><span class="wordmark">Bask</span><small>× UVALUX · scope board</small></div>
+    <nav aria-label="Sections">
+      <button class="navbtn active" data-view="board">Scope board</button>
+      <button class="navbtn" data-view="price">Price + phases</button>
+      <button class="navbtn" data-view="landed">Where we landed</button>
+      <button class="navbtn" data-view="letter">Letter</button>
+      <button class="navbtn" data-view="system">System</button>
+      <button class="navbtn" data-view="value">Value</button>
+      <button class="navbtn" data-view="links">Links + film</button>
+    </nav>
+    <div class="headmeta"><span class="pill" id="pill">$75,000</span></div>
+  </header>
+  <main>
+    <!-- BOARD -->
+    <section class="view active" id="view-board">
+      <div class="screen">
+        <div class="pagehead">
+          <div><div class="eyebrow">Bask for UVALUX · the build</div><h1 class="disp">Three phases. <em>Stop after any one.</em></h1></div>
+          <p>Drag any item to the phase it belongs in, or to "Later" if it can wait. Untick a phase to stop before it; the price follows. Committing to more than one phase prices each phase lower.</p>
+        </div>
+        <div class="boardwrap">
+          <section class="col" data-col="tray" id="col-tray"></section>
+          <div class="cols" id="cols"></div>
+        </div>
+        <div class="barline">
+          <div class="tot"><span class="k">Phases in</span><span class="v" id="bPhases"></span><span class="n" id="bPhasesN"></span></div>
+          <div class="tot"><span class="k">Build price</span><span class="v" id="bPrice"></span><span class="n" id="bPriceN"></span></div>
+          <div class="tot hide-s"><span class="k">Saved by committing</span><span class="v" id="bSave" style="color:var(--green)"></span><span class="n">against phase-by-phase prices</span></div>
+          <div class="btns"><button class="hbtn" id="undoBtn" disabled>Undo</button><button class="hbtn" id="resetBtn">Reset</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICE -->
+    <section class="view" id="view-price">
+      <div class="screen">
+        <div class="pagehead">
+          <div><div class="eyebrow">Price + phases</div><h1 class="disp">One price for all three. <em>Less per phase</em> the further you commit.</h1></div>
+          <p>Each phase has a phase-by-phase price and a committed price. Commit to two or more phases up front and each one is charged at its committed price. Stop after any phase gate and later phases are not owed.</p>
+        </div>
+        <div class="phasegrid" id="phaseCards"></div>
+        <div class="summ">
+          <div class="panel"><div class="k">Build price</div><span class="v" id="sPrice"></span><span class="n" id="sPriceHst"></span></div>
+          <div class="panel"><div class="k">Phase by phase</div><span class="v" id="sStd" style="color:var(--faint)"></span><span class="n">if each phase were bought on its own</span></div>
+          <div class="panel"><div class="k">Saved</div><span class="v" id="sSave" style="color:var(--green)"></span><span class="n" id="sSaveN"></span></div>
+          <div class="panel"><div class="k">Last payment</div><span class="v" id="sLast" style="font-size:20px"></span><span class="n">business days only</span></div>
+        </div>
+        <div class="panel" style="padding:18px;margin-top:14px;overflow-x:auto">
+          <div class="k">Payment schedule <span class="proposed">Proposed</span></div><p class="note" style="margin:6px 0 10px;max-width:none">Each phase is paid 40% at its start, 40% at its working version and 20% at its gate, the same split as the Phase 1 letter (C$10,000 / C$10,000 / C$5,000). Any date on a weekend or a statutory holiday moves to the next business day.</p>
+          <table class="sched"><thead><tr><th>Milestone</th><th>Date</th><th>What it is paid on</th><th class="r">Amount</th><th class="r">With HST</th><th class="r">To date</th></tr></thead><tbody id="schedRows"></tbody></table>
+        </div>
+        <p class="src" style="margin-top:12px">Sources: Phase 1 at C$25,000 + HST and its 12 weeks are from the Phase 1 proposal (August 2026); Phase 2 running to about nine weeks is from the Phase 1 letter (Phase 1 to Dec 1, Phase 2 to Feb 1). The other phase prices, the committed prices, Phase 3's length and the payment split are proposed for discussion, marked "Proposed".</p>
+      </div>
+    </section>
+
+    <!-- LANDED -->
+    <section class="view" id="view-landed">
+      <div class="screen">
+        <div class="pagehead">
+          <div><div class="eyebrow">Where we landed</div><h1 class="disp">Everything on the table, <em>and where it goes.</em></h1></div>
+          <p>Follows the board. Items under "Later" are not in this price; if added after launch they are priced then.</p>
+        </div>
+        <div id="landed"></div>
+      </div>
+    </section>
+
+    <!-- LETTER -->
+    <section class="view" id="view-letter">
+      <div class="screen">
+        <div class="lettertools">
+          <p>The letter fills itself from the board: the phases in, the build price, the payment dates and Schedule A. Fill the UVALUX legal name below before printing.</p>
+          <button class="hbtn primary" id="pdfBtn">Check and save as PDF</button>
+        </div>
+        <article class="paper" id="letterDoc">
+          <div class="lhead"><span class="wordmark">Bask</span><span class="ent provLegal"></span></div>
+          <h2>Letter of intent and offer</h2>
+          <div class="sub">Bask for UVALUX, phases <span id="lPhases"></span> · <span id="lDate"></span></div>
+          <div class="parties">
+            <div><div class="lab">From</div><strong class="provLegal"></strong><div class="fillrow"><span>Principal</span><span>Daniel Abrahamson</span></div></div>
+            <div><div class="lab">To</div><strong>UVALUX</strong>
+              <div class="fillrow"><span>Legal name</span><input class="fill" id="legalName" aria-label="UVALUX legal name"></div>
+              <div class="fillrow"><span>Attention</span><span>Nik Van Haeren</span></div>
+              <div class="fillrow"><span>Address</span><span>470 Industrial Ave, Woodstock, ON</span></div></div>
+          </div>
+          <div id="letterBody"></div>
+          <div class="sig">
+            <div><div class="line"></div><small>Accepted for UVALUX<br>Nik Van Haeren<br>Date</small></div>
+            <div><div class="line"></div><small>For <span class="provLegal"></span><br>Daniel Abrahamson<br>Date</small></div>
+          </div>
+          <div class="schedA" id="schedA"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SYSTEM -->
+    <section class="view" id="view-system">
+      <div class="screen">
+        <div class="pagehead">
+          <div><div class="eyebrow">System</div><h1 class="disp">From the numbers a salon already has <em>to the thing it does next.</em></h1></div>
+          <p>The loop from the Phase 1 proposal. Every useful insight points toward something someone can actually do.</p>
+        </div>
+        <div class="loop" id="loop"></div>
+        <div class="two">
+          <div class="panel"><div class="eyebrow">For the salon owner</div><h3>What should I do today to improve my business?</h3><p class="note">Bask: Daybreak, the opportunity cards, customer health, marketing written from the salon's own numbers, coaching drawn from UVALUX's experts.</p>
+            <ul><li>Recover recurring revenue</li><li>Increase retail sales</li><li>Fill unused capacity</li><li>Improve membership conversion</li></ul></div>
+          <div class="panel"><div class="eyebrow">For UVALUX</div><h3>Here are the five accounts where UVALUX can create the most value today.</h3><p class="note">Compass: the network view of accounts growing, declining, underbuying or ready for equipment, and why a rep should call.</p>
+            <ul><li>Which accounts are growing or declining</li><li>Which salons need coaching</li><li>Who may be ready for more equipment</li><li>Who to call this week, and what to discuss</li></ul></div>
+        </div>
+        <div class="two">
+          <div class="panel"><div class="k">Data it uses</div><ul><li>UVALUX: accounts, purchasing history, product categories, equipment, installations, service history, rep notes</li><li>Salons: customers, transactions, memberships, payments, visits, product sales, staff, bookings</li><li>Hosted data where UVALUX has access and customer authorization</li></ul></div>
+          <div class="panel"><div class="k">Terms that do not change</div><ul><li>Salon data stays protected and is used to give value back to the salon</li><li>Benchmarks are anonymized; salons authorize use of their data</li><li>Daniel never markets to UVALUX's salons' customers</li><li>UVALUX's data remains UVALUX's</li></ul></div>
+        </div>
+        <p class="src" style="margin-top:12px">Source: Phase 1 proposal (August 2026), proposal to Nik (August 19, 2026) and the Phase 1 letter agreement.</p>
+      </div>
+    </section>
+
+    <!-- VALUE -->
+    <section class="view" id="view-value">
+      <div class="screen">
+        <div class="pagehead">
+          <div><div class="eyebrow">Value</div><h1 class="disp">What it is worth <em>to a salon, and to UVALUX.</em></h1></div>
+          <p>Worked examples from the Phase 1 proposal and the working build. They show the kind of finding Bask makes; they are not measured results. Phase 2 exists to measure the real lift.</p>
+        </div>
+        <div class="ex">
+          <div class="panel"><div class="k">Recover recurring revenue</div><h3>Seven recurring membership payments failed this week.</h3><div class="big">$510/month at risk</div><p>Contact the five customers most likely to recover and retry eligible payments.</p></div>
+          <div class="panel"><div class="k">Increase retail sales</div><h3>Visits are stable, but fewer customers buy products.</h3><div class="big">+$850/month</div><p>Retail attachment 14% this month against 21% historically. Run a focused product-training challenge with evening staff.</p></div>
+          <div class="panel"><div class="k">Fill unused capacity</div><h3>Tuesday afternoons run below normal use.</h3><div class="big">$400 to $650/week</div><p>Target customers likely to respond to an off-peak promotion.</p></div>
+          <div class="panel"><div class="k">Membership conversion</div><h3>Twelve frequent customers behave like members but pay as they go.</h3><div class="big">+$690 MRR</div><p>Start outreach to convert them.</p></div>
+        </div>
+        <div class="two">
+          <div class="panel"><div class="eyebrow">Benchmarking</div><h3>Your retail attachment is in the 72nd percentile among comparable salons.</h3><p class="note">Anonymized and aggregated: revenue per customer, visits, membership penetration and tenure, retail attachment, frequency, retention, equipment use.</p></div>
+          <div class="panel"><div class="eyebrow">Equipment payback</div><h3>Upgrading 40 members from $89 to $120 pays for a $28,000 machine in 22.6 months.</h3><p class="note">From the payback calculator. If the machine also moves average tenure from 2.5 to 3.5 months, that extra month is worth another $4,800 a year. Your numbers, not ours.</p></div>
+        </div>
+        <p class="src" style="margin-top:12px">Sources: Phase 1 proposal (August 2026); PAYBACK-CALCULATOR; the working build at bask-psi.vercel.app.</p>
+      </div>
+    </section>
+
+    <!-- LINKS -->
+    <section class="view" id="view-links">
+      <div class="screen">
+        <div class="pagehead"><div><div class="eyebrow">Links + film</div><h1 class="disp">The working product, <em>live.</em></h1></div><p>Everything here runs today. Open it on a phone or a laptop.</p></div>
+        <div class="links">
+          <a class="panel lcard" href="https://bask-psi.vercel.app/video" target="_blank" rel="noopener"><img src="/scope-fmci9j4k1x6qabqh1m2k5vspep/art/beat1-today-daybreak.jpg" alt="Bask Daybreak screen" loading="lazy"><span class="k">Film</span><h3>The Bask product film</h3><p>Two minutes ten: Daybreak, an opportunity, the evidence, coaching, the campaign and Compass.</p><span class="go">Watch ↗</span></a>
+          <a class="panel lcard" href="https://bask-psi.vercel.app" target="_blank" rel="noopener"><img src="/scope-fmci9j4k1x6qabqh1m2k5vspep/art/beat2b-opportunity-card-8.3-to-5.9.jpg" alt="Bask opportunity card" loading="lazy"><span class="k">Working product</span><h3>Bask, the salon side</h3><p>Today, customer health, marketing, analytics, ask, monitor and community, on a demo salon.</p><span class="go">Open ↗</span></a>
+          <a class="panel lcard" href="https://bask-psi.vercel.app/compass" target="_blank" rel="noopener"><img src="/scope-fmci9j4k1x6qabqh1m2k5vspep/art/beat6a-compass.jpg" alt="Compass call list" loading="lazy"><span class="k">Working product</span><h3>Compass, the UVALUX side</h3><p>The call list: which accounts to call this week, and why.</p><span class="go">Open ↗</span></a>
+          <div class="panel lcard"><img src="/scope-fmci9j4k1x6qabqh1m2k5vspep/art/beat3-evidence-chart.jpg" alt="Evidence chart" loading="lazy"><span class="k">In the build</span><h3>The evidence behind every card</h3><p>Every finding opens into the numbers that produced it.</p></div>
+          <div class="panel lcard"><img src="/scope-fmci9j4k1x6qabqh1m2k5vspep/art/beat4-coaching-citations.jpg" alt="Coaching with citations" loading="lazy"><span class="k">In the build</span><h3>Coaching, with its sources</h3><p>Answers drawn from UVALUX's own expertise, with the session it came from.</p></div>
+          <div class="panel lcard"><img src="/scope-fmci9j4k1x6qabqh1m2k5vspep/art/beat6b-compass-network.jpg" alt="Compass network" loading="lazy"><span class="k">In the build</span><h3>The network view</h3><p>UVALUX's accounts on one map.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="modal" id="checkModal"><div class="panel sheet">
+  <h2>Before you print</h2>
+  <p class="note">These would print as gaps in the letter:</p>
+  <ul id="checkList"></ul>
+  <div class="row"><button class="hbtn" id="checkBack">Go back</button><button class="hbtn primary" id="checkPrint">Print anyway</button></div>
+</div></div>
+<div class="modal" id="resetModal"><div class="panel sheet">
+  <h2>Reset the board?</h2><p class="note">Puts every item back where it started and turns all three phases on. Undo can bring it back.</p>
+  <div class="row"><button class="hbtn" id="resetNo">Cancel</button><button class="hbtn primary" id="resetYes">Reset</button></div>
+</div></div>
+
+<script>
+// ---- constants: every number either sourced (see .src lines) or PROPOSED ----
+const PROVIDER_LEGAL = '[Entity to be confirmed]';   // open with Daniel (PA, 2026-10-03). Do not fill without his word.
+const BUILD_TOTAL = 75000;                           // Daniel, 2026-10-03 12:22 ET: "$75,000 build price total"
+const HST = 0.13;
+// std = phase-by-phase price, commit = price when committing to 2+ phases. P1 std is the Phase 1 proposal's C$25,000.
+// Everything else is PROPOSED, scaled to the Plan To Live proposal's ratio (committed $75,000 / standalone $95,000).
+const PHASES = [
+  {id:'P1', name:'Prove it works on real data', weeks:12, std:25000, commit:20000,
+   gate:'Salons use it, and the baseline is captured cleanly', weeksSrc:'Phase 1 proposal: twelve weeks'},
+  {id:'P2', name:'Prove the number, open it at the Expo', weeks:9, std:38000, commit:30000,
+   gate:'The lift is real and salons are paying', weeksSrc:'Phase 1 letter: Phase 2 to Feb 1 after Phase 1 to Dec 1'},
+  {id:'P3', name:'Commercial scale and the U.S.', weeks:12, std:31500, commit:25000,
+   gate:'A repeatable sale outside the pilot, and the ownership conversation', weeksSrc:'Proposed'},
+];
+const PROPOSED_NOTE = 'Proposed';
+// Items: sourced from the Phase 1 proposal (PROP), the proposal to Nik of Aug 19 (NIK) and the letter (LTR).
+const ITEMS = [
+  {id:'1.1', home:'P1', t:'Salon intelligence dashboard', d:'What should I do today? Opportunity cards with the action attached.', src:'PROP'},
+  {id:'1.2', home:'P1', t:'UVALUX intelligence (Compass)', d:'The five accounts where UVALUX can create the most value today, and why.', src:'PROP'},
+  {id:'1.3', home:'P1', t:'Analytics engine and opportunity detectors', d:'Deterministic business calculations that find the conditions worth acting on.', src:'PROP'},
+  {id:'1.4', home:'P1', t:'AI recommendation layer', d:'Structured findings turned into plain recommendations.', src:'PROP'},
+  {id:'1.5', home:'P1', t:'Benchmarking scoreboard', d:'Percentile against comparable salons, in units as well as dollars.', src:'PROP, NIK'},
+  {id:'1.6', home:'P1', t:'Customer health grid', d:'Every customer scored loyal, slipping or gone, with a reach-out ready.', src:'NIK'},
+  {id:'1.7', home:'P1', t:'Bottle depletion and reorder cue', d:'Reorder conversation before the customer thinks of it.', src:'NIK'},
+  {id:'1.8', home:'P1', t:'UVALUX knowledge base', d:'Expo sessions and coaching material the product reasons over.', src:'PROP, NIK'},
+  {id:'1.9', home:'P1', t:'Data ingestion framework', d:'UVALUX purchase data and salon exports mapped into one model.', src:'PROP'},
+  {id:'1.10', home:'P1', t:'Frozen baseline per salon', d:'The before picture, so any lift can be proven.', src:'NIK'},
+  {id:'1.11', home:'P1', t:'Pilot with friendly salons', d:'A small UVALUX-selected group live on it.', src:'PROP, NIK'},
+  {id:'1.12', home:'P1', t:'Phase 1 findings and Phase 2 roadmap', d:'Delivered with the working version, not held to the end.', src:'PROP, LTR'},
+  {id:'2.1', home:'P2', t:'Measured lift', d:'Retail per visit, reorder frequency, lapsed recovery, member tenure.', src:'NIK'},
+  {id:'2.2', home:'P2', t:'Member tenure and the modality link', d:'Which equipment keeps members longer.', src:'NIK'},
+  {id:'2.3', home:'P2', t:'Staff performance, data only', d:'Whose reach-outs land and whose close rate is what. No microphones.', src:'NIK'},
+  {id:'2.4', home:'P2', t:'Campaigns off the data', d:'From "Thursdays are soft" to the offer, the post and the text.', src:'NIK, PROP'},
+  {id:'2.5', home:'P2', t:'Production sign-in, privacy and consent', d:'Real accounts, salon authorization and consent workflows.', src:'PROP'},
+  {id:'2.6', home:'P2', t:'Automated and hosted-data ingestion', d:'Deeper integration with the data UVALUX hosts.', src:'PROP'},
+  {id:'2.7', home:'P2', t:'Members-only community space', d:'Owners post their numbers and ask each other, moderated.', src:'NIK'},
+  {id:'2.8', home:'P2', t:'Canadian beta and Expo-ready demonstration', d:'A polished salon experience shown at the January Expo.', src:'PROP, NIK'},
+  {id:'2.9', home:'P2', t:'Per-salon subscription pricing', d:'Priced and tested with paying salons.', src:'NIK'},
+  {id:'3.1', home:'P3', t:'U.S. trade-show rollout', d:'Take the proof to the U.S. market.', src:'NIK, PROP'},
+  {id:'3.2', home:'P3', t:'Add-on for hosting customers', d:'Sold into the hosted salons UVALUX is bringing on.', src:'NIK'},
+  {id:'3.3', home:'P3', t:'Integrations and partnerships', d:'Hosted salon platforms and existing salon-software providers.', src:'PROP'},
+  {id:'3.4', home:'P3', t:'Wellness, spa, sauna and gym', d:'The sector-agnostic build, sold beyond salons.', src:'PROP, NIK'},
+  {id:'L.1', home:'tray', t:'One click to book a coaching call', d:'From an insight straight to a person at UVALUX.', src:'NIK', roadmap:true},
+  {id:'L.2', home:'tray', t:'Equipment payback modelling', d:'"Salons like yours that added this modality hold members a month longer."', src:'NIK', roadmap:true},
+  {id:'L.3', home:'tray', t:'Staff coaching from real conversations', d:'Starts as data only; audio stays off until counsel says otherwise.', src:'NIK', roadmap:true},
+];
+const SRC_NAME = {PROP:'Phase 1 proposal', NIK:'proposal to Nik, Aug 19', LTR:'Phase 1 letter'};
+// Ontario statutory holidays (Employment Standards Act) and observed days, 2026 to 2027.
+const HOLIDAYS = ['2026-10-12','2026-12-25','2026-12-28','2027-01-01','2027-02-15','2027-03-26','2027-05-24','2027-07-01','2027-09-06','2027-10-11','2027-12-27','2027-12-28'];
+
+const KEY = 'bask-scope-board-v1';
+const fresh = () => ({place:Object.fromEntries(ITEMS.map(i=>[i.id,i.home])), on:{P1:true,P2:true,P3:true}, legal:''});
+let S = fresh(), HIST = [];
+try { const raw = localStorage.getItem(KEY); if (raw) { const v = JSON.parse(raw); if (v && v.place && v.on) S = Object.assign(fresh(), v); } } catch(e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} };
+const snap = () => { HIST.push(JSON.stringify(S)); if (HIST.length > 60) HIST.shift(); };
+const $ = s => document.querySelector(s);
+const fmt = n => '$' + Math.round(n).toLocaleString('en-CA');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// ---- pricing ----
+const onPhases = () => PHASES.filter(p => S.on[p.id]);
+const committed = () => onPhases().length >= 2;
+const priceOfPhase = p => committed() ? p.commit : p.std;
+function totals(){
+  const on = onPhases();
+  const price = on.reduce((a,p)=>a+priceOfPhase(p),0);
+  const std = on.reduce((a,p)=>a+p.std,0);
+  return {on, price, std, save: std - price};
+}
+// ---- dates: business-day roll ----
+const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+function rollBiz(d){ const x = new Date(d); let rolled = false;
+  while (x.getDay()===0 || x.getDay()===6 || HOLIDAYS.includes(iso(x))) { x.setDate(x.getDate()+1); rolled = true; }
+  return {date:x, rolled}; }
+const addDays = (d,n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+const dfmt = d => d.toLocaleDateString('en-CA',{weekday:'short',month:'short',day:'numeric',year:'numeric'});
+const ldate = d => d.toLocaleDateString('en-CA',{day:'numeric',month:'long',year:'numeric'});
+const TODAY = (()=>{ const t = new Date(); t.setHours(12,0,0,0); return t; })();
+function schedule(){
+  const rows = []; let start = rollBiz(TODAY).date, cum = 0;
+  for (const p of onPhases()) {
+    const amt = priceOfPhase(p), parts = [Math.round(amt*.4/100)*100, Math.round(amt*.4/100)*100];
+    parts.push(amt - parts[0] - parts[1]);
+    const mid = rollBiz(addDays(start, Math.round(p.weeks*7/2))), end = rollBiz(addDays(start, p.weeks*7));
+    const s0 = rollBiz(start);
+    [[s0, `${p.id} start`, parts[0]], [mid, `${p.id} working version`, parts[1]], [end, `${p.id} gate: ${p.gate}`, parts[2]]].forEach(([d, what, a], i) => {
+      cum += a; rows.push({m:`${p.id}.${i+1}`, date:d.date, rolled:d.rolled, what, amt:a, cum, phase:p.id});
+    });
+    start = end.date;
+  }
+  return rows;
+}
+
+// ---- board render ----
+function cardHTML(i){
+  return `<div class="card${i.roadmap?' roadmap':''}" data-id="${i.id}"><div class="t">${esc(i.t)}</div><div class="d">${esc(i.d)}</div><div class="meta"><span class="chip code">${i.id}</span><span class="chip">${i.src.split(', ').map(s=>SRC_NAME[s]).join(' · ')}</span></div></div>`;
+}
+function colInner(id){
+  const items = ITEMS.filter(i => S.place[i.id] === id);
+  return `<div class="cards" data-drop="${id}">${items.map(cardHTML).join('') || '<div class="src" style="padding:8px 4px">Drop items here</div>'}</div>`;
+}
+function render(){
+  const T = totals();
+  $('#col-tray').innerHTML = `<div class="colhead"><div class="top"><span class="ctag tray">Later</span><span class="src">Not in this price</span></div><div class="name">After launch, or not at all</div><div class="gate">Drag here to take an item out. Items here are priced when they are added.</div></div>${colInner('tray')}`;
+  $('#cols').innerHTML = PHASES.map(p => {
+    const on = S.on[p.id], pr = priceOfPhase(p);
+    const sourced = p.id==='P1' && !committed();
+    return `<section class="col${on?'':' off'}" data-col="${p.id}"><div class="colhead"><div class="top"><span class="ctag">${p.id}</span><span class="src">${p.weeks} weeks</span></div><div class="name">${esc(p.name)}</div><div class="gate">Gate: ${esc(p.gate)}</div>
+      <div class="money"><b>${on?fmt(pr):'Not in'}</b>${on && committed()?`<s>${fmt(p.std)}</s>`:''}${sourced?'':'<span class="proposed">Proposed</span>'}</div>
+      <label class="incl"><input type="checkbox" data-phase="${p.id}" ${on?'checked':''}> Include ${p.id}</label></div>${colInner(p.id)}</section>`;
+  }).join('');
+  $('#bPhases').textContent = T.on.length ? T.on.map(p=>p.id).join(' + ') : 'None';
+  $('#bPhasesN').textContent = T.on.length===3 ? 'all three' : T.on.length ? `stop after ${T.on[T.on.length-1].id}` : 'turn a phase on';
+  $('#bPrice').textContent = fmt(T.price);
+  $('#bPriceN').textContent = `${fmt(T.price*(1+HST))} with HST`;
+  $('#bSave').textContent = fmt(T.save);
+  $('#pill').textContent = `${T.on.length ? T.on.map(p=>p.id).join('+') : 'No phases'} · ${fmt(T.price)}`;
+  $('#undoBtn').disabled = !HIST.length;
+  renderPrice(T); renderLanded(); renderLetter(T);
+}
+function renderPrice(T){
+  $('#phaseCards').innerHTML = PHASES.map(p => {
+    const on = S.on[p.id];
+    return `<div class="panel ph${on?'':' off'}"><span class="ctag" style="background:var(--primary);color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:3px 7px">${p.id}</span><h3>${esc(p.name)}</h3>
+      <div class="row"><span>Phase by phase</span><b>${fmt(p.std)}${p.id==='P1'?'':' <span class="proposed">Proposed</span>'}</b></div>
+      <div class="row"><span>Committed with another phase</span><b>${fmt(p.commit)} <span class="proposed">Proposed</span></b></div>
+      <div class="row"><span>Length</span><b>${p.weeks} weeks${p.weeksSrc==='Proposed'?' <span class="proposed">Proposed</span>':''}</b></div>
+      <div class="row"><span>Gate</span><span style="text-align:right">${esc(p.gate)}</span></div>
+      <div class="row" style="border:0"><span>${on?'In: charged':'Not in'}</span><b>${on?fmt(priceOfPhase(p)):''}</b></div></div>`;
+  }).join('');
+  $('#sPrice').textContent = fmt(T.price);
+  $('#sPriceHst').textContent = `${fmt(T.price*(1+HST))} with 13% HST`;
+  $('#sStd').textContent = fmt(T.std);
+  $('#sSave').textContent = fmt(T.save);
+  $('#sSaveN').textContent = T.on.length >= 2 ? `${Math.round(T.save/T.std*100)}% less for committing` : 'commit to a second phase to save';
+  const rows = schedule();
+  $('#schedRows').innerHTML = rows.map(r => `<tr><td>${r.m}</td><td>${dfmt(r.date)}${r.rolled?'<span class="rolled">moved to the next business day</span>':''}</td><td>${esc(r.what)}</td><td class="r">${fmt(r.amt)}</td><td class="r">${fmt(r.amt*(1+HST))}</td><td class="r">${fmt(r.cum)}</td></tr>`).join('') || '<tr><td colspan="6">Turn a phase on.</td></tr>';
+  $('#sLast').textContent = rows.length ? dfmt(rows[rows.length-1].date) : '';
+}
+function renderLanded(){
+  const groups = [...PHASES.map(p=>({id:p.id, h:`${p.id} · ${p.name}`, on:S.on[p.id]})), {id:'tray', h:'Later: not in this price', on:true}];
+  $('#landed').innerHTML = groups.map(g => {
+    const items = ITEMS.filter(i => S.place[i.id] === g.id);
+    return `<div class="panel lgroup"><div class="k">${g.on?(g.id==='tray'?'Not in this price':'In'):'Phase not taken: not in this price'}</div><h3>${esc(g.h)}</h3>${items.map(i=>`<div class="litem"><span class="c">${i.id}</span><span>${esc(i.t)}</span><span class="w">${i.home===g.id?'as proposed':'moved here'}</span></div>`).join('') || '<div class="src">Nothing here.</div>'}</div>`;
+  }).join('');
+}
+function renderLetter(T){
+  document.querySelectorAll('.provLegal').forEach(n => { n.textContent = PROVIDER_LEGAL; n.classList.toggle('tbc', PROVIDER_LEGAL.startsWith('[')); });
+  $('#lDate').textContent = ldate(TODAY);
+  $('#lPhases').textContent = T.on.map(p=>p.id).join(', ') || 'none';
+  if (document.activeElement !== $('#legalName')) $('#legalName').value = S.legal || '';
+  const rows = schedule(), last = rows.length ? rows[rows.length-1].date : null;
+  const cl = (n, t) => `<div class="cl"><span>${n}</span><div>${t}</div></div>`;
+  const P = PROVIDER_LEGAL;
+  $('#letterBody').innerHTML = `
+    <h4>1. Purpose and status</h4>
+    ${cl('1.1', `This letter records the intent of both parties and the offer made on ${ldate(TODAY)}: the phases, the price and the payment schedule for building Bask for UVALUX.`)}
+    ${cl('1.2', `It is not the full agreement. Ownership of the software, UVALUX's data and the continuity terms follow the Phase 1 letter agreement sent on September 4, 2026, until a full agreement replaces it.`)}
+    ${cl('1.3', `Work begins on signature and receipt of the first payment in clause 3.`)}
+    <h4>2. The work</h4>
+    ${cl('2.1', `${esc(P)} builds the phases below, with the items sorted on the scope board on the date of this letter and listed in Schedule A.`)}
+    <table><thead><tr><th>Phase</th><th>Gate</th><th class="r">Price</th></tr></thead><tbody>${T.on.map(p=>`<tr><td>${p.id} ${esc(p.name)}</td><td>${esc(p.gate)}</td><td class="r">${fmt(priceOfPhase(p))}</td></tr>`).join('')}</tbody></table>
+    ${cl('2.2', `Each phase ends at its gate. UVALUX may stop after any gate; a phase not yet started is not owed.`)}
+    ${cl('2.3', `Items listed as "Later" in Schedule A are not part of this letter and are priced when they are added.`)}
+    <h4>3. Payment</h4>
+    ${cl('3.1', `Build price: <b>${fmt(T.price)}</b> plus HST at 13% (${fmt(T.price*(1+HST))} with HST). ${T.on.length>=2?`Committing to ${T.on.length} phases prices each at its committed rate, ${fmt(T.save)} less than buying them one at a time.`:''}`)}
+    ${cl('3.2', `Each phase is paid 40% at its start, 40% at its working version and 20% at its gate. Dates falling on a weekend or statutory holiday move to the next business day.`)}
+    <table><thead><tr><th>Milestone</th><th>Date</th><th>Paid on</th><th class="r">Amount</th><th class="r">With HST</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r.m}</td><td>${dfmt(r.date)}</td><td>${esc(r.what)}</td><td class="r">${fmt(r.amt)}</td><td class="r">${fmt(r.amt*(1+HST))}</td></tr>`).join('')}</tbody></table>
+    ${cl('3.3', `Each payment is due when its milestone is met or on its date, whichever is later. Amounts are in Canadian dollars.`)}
+    <h4>4. Timeline</h4>
+    ${cl('4.1', last ? `The phases above run to ${ldate(last)}, assuming work starts on the date of this letter. A later start moves every date by the same number of days.` : 'No phase selected.')}
+    <h4>5. Data and customers</h4>
+    ${cl('5.1', `UVALUX's data remains UVALUX's, during the build and after it. ${esc(P)} never markets to UVALUX's salons' customers.`)}`;
+  $('#schedA').innerHTML = `<h4 style="margin-top:0">Schedule A: where we landed</h4>` + [...PHASES.filter(p=>S.on[p.id]).map(p=>({id:p.id,h:`${p.id} ${p.name}`})), {id:'tray',h:'Later (not in this letter)'}].map(g => {
+    const items = ITEMS.filter(i => S.place[i.id] === g.id);
+    return `<table><thead><tr><th colspan="2">${esc(g.h)}</th></tr></thead><tbody>${items.map(i=>`<tr><td style="width:56px">${i.id}</td><td>${esc(i.t)}</td></tr>`).join('') || '<tr><td colspan="2">None</td></tr>'}</tbody></table>`;
+  }).join('') + PHASES.filter(p=>!S.on[p.id]).map(p => {
+    const items = ITEMS.filter(i => S.place[i.id] === p.id);
+    return items.length ? `<p class="src">${p.id} is not taken; its ${items.length} items are not part of this letter.</p>` : '';
+  }).join('');
+}
+
+// ---- interactions ----
+function setPhase(id, on){
+  snap();
+  const idx = PHASES.findIndex(p=>p.id===id);
+  // phases are sequential: stop after any phase. Turning one on turns on those before it; off turns off those after.
+  PHASES.forEach((p,i) => { if (on && i <= idx) S.on[p.id] = true; if (!on && i >= idx) S.on[p.id] = false; });
+  save(); render();
+}
+function move(id, to){ if (S.place[id] === to) return; snap(); S.place[id] = to; save(); render(); }
+document.addEventListener('change', e => { const c = e.target.closest('input[data-phase]'); if (c) setPhase(c.dataset.phase, c.checked); });
+$('#undoBtn').onclick = () => { if (!HIST.length) return; S = JSON.parse(HIST.pop()); save(); render(); };
+$('#resetBtn').onclick = () => $('#resetModal').classList.add('open');
+$('#resetNo').onclick = () => $('#resetModal').classList.remove('open');
+$('#resetYes').onclick = () => { snap(); S = fresh(); save(); $('#resetModal').classList.remove('open'); render(); };
+$('#legalName').addEventListener('input', e => { S.legal = e.target.value; save(); });
+function show(view){
+  if (!document.getElementById('view-'+view)) view = 'board';
+  document.querySelectorAll('.navbtn').forEach(x=>x.classList.toggle('active', x.dataset.view===view));
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active', v.id==='view-'+view));
+  try { history.replaceState(null, '', '#'+view); } catch(e) {}
+}
+document.querySelectorAll('.navbtn').forEach(b => b.onclick = () => show(b.dataset.view));
+if (location.hash) show(location.hash.slice(1));
+document.addEventListener('keydown', e => { if (e.key==='Escape') document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'));
+  if ((e.ctrlKey||e.metaKey) && e.key==='z' && !e.target.closest('input')) { e.preventDefault(); $('#undoBtn').click(); } });
+document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); }));
+
+// pre-PDF check
+function issues(){
+  const T = totals(), out = [];
+  if (PROVIDER_LEGAL.startsWith('[')) out.push('The contracting entity is not confirmed yet.');
+  if (!S.legal.trim()) out.push('UVALUX legal name is blank.');
+  if (!T.on.length) out.push('No phase is selected.');
+  const tray = ITEMS.filter(i => S.place[i.id]==='tray').length;
+  if (tray) out.push(`${tray} item${tray>1?'s are':' is'} under "Later" and will not be in the letter.`);
+  const parked = ITEMS.filter(i => PHASES.some(p=>p.id===S.place[i.id] && !S.on[p.id])).length;
+  if (parked) out.push(`${parked} item${parked>1?'s sit':' sits'} in a phase that is not taken.`);
+  return out;
+}
+$('#pdfBtn').onclick = () => { const l = issues(); if (!l.length) return window.print();
+  $('#checkList').innerHTML = l.map(x=>`<li>${esc(x)}</li>`).join(''); $('#checkModal').classList.add('open'); };
+$('#checkBack').onclick = () => $('#checkModal').classList.remove('open');
+$('#checkPrint').onclick = () => { $('#checkModal').classList.remove('open'); setTimeout(()=>window.print(), 50); };
+
+// drag (pointer events: mouse and touch)
+let drag = null;
+document.addEventListener('pointerdown', e => {
+  const c = e.target.closest('.card'); if (!c || e.button > 0) return;
+  drag = {id:c.dataset.id, el:c, x:e.clientX, y:e.clientY, ghost:null};
+});
+document.addEventListener('pointermove', e => {
+  if (!drag) return;
+  if (!drag.ghost) { if (Math.hypot(e.clientX-drag.x, e.clientY-drag.y) < 6) return;
+    const r = drag.el.getBoundingClientRect(); drag.ghost = drag.el.cloneNode(true); drag.ghost.classList.add('ghost');
+    drag.ghost.style.width = r.width+'px'; document.body.appendChild(drag.ghost); drag.el.classList.add('dragging'); drag.dx = e.clientX-r.left; drag.dy = e.clientY-r.top; }
+  drag.ghost.style.left = (e.clientX-drag.dx)+'px'; drag.ghost.style.top = (e.clientY-drag.dy)+'px';
+  document.querySelectorAll('.col').forEach(c=>c.classList.remove('hot'));
+  const col = document.elementsFromPoint(e.clientX, e.clientY).find(n=>n.classList && n.classList.contains('col')); if (col) col.classList.add('hot');
+});
+document.addEventListener('pointerup', e => {
+  if (!drag) return; const d = drag; drag = null;
+  document.querySelectorAll('.col').forEach(c=>c.classList.remove('hot'));
+  if (!d.ghost) return; d.ghost.remove(); d.el.classList.remove('dragging');
+  const col = document.elementsFromPoint(e.clientX, e.clientY).find(n=>n.classList && n.classList.contains('col'));
+  if (col) move(d.id, col.dataset.col);
+});
+const LOOP = [['Business data','UVALUX purchasing and salon operating data, in one model.'],['Analytics','Deterministic business calculations.'],['Opportunity detection','The conditions worth acting on.'],['UVALUX knowledge','Coaching, training and Expo sessions.'],['AI interpretation','Findings turned into plain language.'],['Recommendation','What to do, and why.'],['Business action','A list, a script, a campaign, a rep task.'],['Measured result','Did it move the number.']];
+$('#loop').innerHTML = LOOP.map(([h,p],i)=>`<div class="panel step"><b>${String(i+1).padStart(2,'0')}</b><h3>${h}</h3><p>${p}</p></div>`).join('');
+render();
+</script>
+</body>
+</html>
