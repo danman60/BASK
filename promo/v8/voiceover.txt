@@ -1,8 +1,8 @@
-Bask is an app a salon owner opens when the place is quiet. To make it less quiet.
+Bask is an app a salon owner opens when the place is quiet. It doesn't run your salon. It grows it.
 
 Everything in Bask works the same way. Your numbers become an insight. The insight is matched to real coaching. The coaching becomes something you can do in one click. Then it's tracked, and shared with owners like you.
 
-It starts with your data. Bask doesn't replace your software. It sits beside it, and quietly syncs what you already have.
+It starts with your data. Your software already runs the salon, and Bask doesn't replace it. It sits beside it, and quietly syncs what you already have.
 
 It reads last night's numbers before anyone unlocks the door. Not a dashboard. A short letter, in plain words, about what actually changed.
 
@@ -12,7 +12,7 @@ It knows every customer by their own rhythm. Who's healthy, who's slipping, who'
 
 Seven memberships failed to pay this week, and most of them look recoverable.
 
-And with everyone's consent, the front desk listens. Every sales conversation is scored on the moments that matter. The greeting, the question, the product, the membership, the close.
+And the front desk listens. Every sales conversation is scored on the moments that matter. The greeting, the question, the product, the membership, the close.
 
 You see your team without a leaderboard. Who's improving, and who needs a hand this week. And you see where you stand, against salons like yours, as a rank, not a guess.
 
@@ -32,8 +32,6 @@ Everything on this screen can be opened. Every figure goes back to the visits be
 
 And you're not doing it alone. What worked is shared with other owners, working the same week.
 
-Your data stays yours. You choose what UVALUX sees, and you can take it back in one click.
-
 Same nervous system, opposite end. UVALUX sees the same chain from above.
 
 Every salon running this is a signal, and for the first time UVALUX can see the market it actually serves.
@@ -46,4 +44,4 @@ Low stock becomes a draft order. Lamp hours become a relamping budget. Busy beds
 
 And that same knowledge answers questions. For owners today, and one day for their customers.
 
-That's Bask. It opens when the salon is quiet. To make it less quiet.
+That's Bask. It doesn't run your salon. It grows it.

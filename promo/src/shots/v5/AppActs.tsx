@@ -34,7 +34,7 @@ type ShotProps = { duration: number; captions?: boolean };
  * What it is, said plainly, over the app itself. No jargon: someone who has
  * never heard of Bask has to understand it from this one line.
  */
-export const A1Open: React.FC<ShotProps> = ({ duration, captions = true }) => {
+export const A1Open: React.FC<ShotProps & { tagline?: React.ReactNode }> = ({ duration, captions = true, tagline }) => {
   const f = useCurrentFrame();
   const titleIn = interpolate(f, [8, 26], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: E.easeOut });
   const titleOut = interpolate(f, [duration - 24, duration - 8], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
@@ -52,7 +52,8 @@ export const A1Open: React.FC<ShotProps> = ({ duration, captions = true }) => {
             Bask
           </div>
           <div style={{ fontFamily: BODY, fontSize: 44, color: T.inkSoft, marginTop: 26, maxWidth: 1180 }}>
-            An app a salon owner opens when the salon is quiet — to make it less quiet.
+            {/* v8 passes its own line ("It doesn't run your salon. It grows it."); omitted → v5/v6/v7 unchanged */}
+            {tagline ?? 'An app a salon owner opens when the salon is quiet — to make it less quiet.'}
           </div>
 
           {/* NO invert filter here, unlike the outro. This title card sits on
@@ -327,7 +328,7 @@ export const A12bKnowledge: React.FC<ShotProps> = ({ duration, captions = true }
 
 /* ------------------------------------------------------------------ S13 */
 /** Sign-off. Held still, in the dark, for the last second and a half. */
-export const A13Outro: React.FC<ShotProps> = ({ duration }) => {
+export const A13Outro: React.FC<ShotProps & { line?: string }> = ({ duration, line }) => {
   const f = useCurrentFrame();
   const markIn = interpolate(f, [10, 30], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: E.heavyOut });
   const lineIn = interpolate(f, [26, 44], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: E.easeOut });
@@ -357,7 +358,7 @@ export const A13Outro: React.FC<ShotProps> = ({ duration }) => {
             Bask · Compass
           </div>
           <div style={{ fontFamily: BODY, fontSize: 38, color: T.cInkFaint, marginTop: 20, opacity: lineIn }}>
-            Opens when the salon is quiet. Exists to make it less quiet.
+            {line ?? 'Opens when the salon is quiet. Exists to make it less quiet.'}
           </div>
 
           {/* The UVALUX lockup. Absent from every v5 cut — the asset was on disk

@@ -29,6 +29,12 @@ model = WhisperModel('small.en', device='cpu', compute_type='int8')
 out = []
 for b in timing['beats']:
     wav = os.path.join(d, 'beats', f"{b['id']}.wav")
+    if not os.path.exists(wav):
+        # no per-beat files: cut the beat out of the joined read
+        import subprocess, tempfile
+        wav = os.path.join(tempfile.gettempdir(), f"v8anch-{b['id']}.wav")
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', str(b['startFrame'] / fps), '-t',
+                        str(b['durationFrames'] / fps), '-i', os.path.join(d, 'vo.wav'), wav], check=True)
     segs, _ = model.transcribe(wav, word_timestamps=True, beam_size=5, initial_prompt=b['text'])
     words = []
     for s in segs:
@@ -46,6 +52,28 @@ for b in timing['beats']:
         'words': words,
     })
     print(b['id'], len(words), ' '.join(w[2] for w in words)[:90], flush=True)
+
+# The breath between two words: Whisper's word edges are approximate (and often
+# touch), so each boundary also records the quietest 20 ms in a window around
+# it, measured on the read itself. timelineV8 cuts on that frame.
+import subprocess
+import numpy as np
+SR = 16000
+pcm = subprocess.run(['ffmpeg', '-v', 'error', '-i', os.path.join(d, 'vo.wav'), '-ac', '1', '-ar', str(SR), '-f', 's16le', '-'],
+                     capture_output=True, check=True).stdout
+sig = np.frombuffer(pcm, np.int16).astype(float) / 32768
+hop = SR // 50
+rms = np.sqrt(np.add.reduceat(sig[: len(sig) // hop * hop] ** 2, np.arange(0, len(sig) // hop * hop, hop)) / hop)
+for bt in out:
+    ws = bt['words']
+    for i in range(1, len(ws)):
+        lo = min(ws[i - 1][1], ws[i][0]) - 4
+        hi = ws[i][0] + 6
+        a, b = int(lo / fps * 50), int(hi / fps * 50) + 1
+        if b <= a or b > len(rms):
+            continue
+        k = a + int(np.argmin(rms[a:b]))
+        ws[i].append(round((k + 0.5) / 50 * fps, 1))
 
 rel = os.path.relpath(d, os.path.join(os.path.dirname(__file__), '..', 'public'))
 json.dump(

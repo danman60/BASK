@@ -390,5 +390,467 @@
         "h": 345
       }
     }
+  },
+  "studioAudience": {
+    "route": "/marketing?insight=fcbac7c8-35e7-4ad2-9d75-300041bfc26f",
+    "source": "http://localhost:3517",
+    "space": "page",
+    "note": null,
+    "capturedAt": "2026-10-03T22:59:12.427Z",
+    "pageH": 1153,
+    "w": 1600,
+    "full": {
+      "name": "studioAudience-full",
+      "h": 1153
+    },
+    "boxes": {
+      "context": {
+        "x": 250,
+        "y": 143,
+        "w": 1100,
+        "h": 73
+      },
+      "segList": {
+        "x": 275,
+        "y": 352,
+        "w": 726,
+        "h": 578
+      },
+      "segSelected": {
+        "x": 275,
+        "y": 605,
+        "w": 726,
+        "h": 72
+      },
+      "channels": {
+        "x": 275,
+        "y": 969,
+        "w": 726,
+        "h": 29
+      },
+      "reaching": {
+        "x": 1050,
+        "y": 308,
+        "w": 300,
+        "h": 192
+      },
+      "next": {
+        "x": 275,
+        "y": 1045,
+        "w": 162,
+        "h": 35
+      }
+    }
+  },
+  "studioOffer": {
+    "route": "/marketing?insight=fcbac7c8-35e7-4ad2-9d75-300041bfc26f",
+    "source": "http://localhost:3517",
+    "space": "page",
+    "note": null,
+    "capturedAt": "2026-10-03T22:59:14.934Z",
+    "pageH": 1000,
+    "w": 1600,
+    "full": {
+      "name": "studioOffer-full",
+      "h": 1000
+    },
+    "boxes": {
+      "context": {
+        "x": 250,
+        "y": 143,
+        "w": 1100,
+        "h": 73
+      },
+      "setup": {
+        "x": 250,
+        "y": 308,
+        "w": 776,
+        "h": 255
+      },
+      "side": {
+        "x": 1050,
+        "y": 308,
+        "w": 300,
+        "h": 243
+      },
+      "generate": {
+        "x": 275,
+        "y": 502,
+        "w": 188,
+        "h": 35
+      }
+    }
+  },
+  "studioReview": {
+    "route": "/marketing?insight=fcbac7c8-35e7-4ad2-9d75-300041bfc26f",
+    "source": "http://localhost:3517",
+    "space": "page",
+    "note": "Schedule button HOVERED, never pressed.",
+    "capturedAt": "2026-10-03T22:59:21.018Z",
+    "pageH": 1457,
+    "w": 1600,
+    "full": {
+      "name": "studioReview-full",
+      "h": 1457
+    },
+    "boxes": {
+      "context": {
+        "x": 250,
+        "y": 143,
+        "w": 1100,
+        "h": 73
+      },
+      "tones": {
+        "x": 1127,
+        "y": 259,
+        "w": 223,
+        "h": 27
+      },
+      "instagram": {
+        "x": 250,
+        "y": 310,
+        "w": 402,
+        "h": 535
+      },
+      "igCanvas": {
+        "x": 271,
+        "y": 383,
+        "w": 360,
+        "h": 360
+      },
+      "sms": {
+        "x": 676,
+        "y": 310,
+        "w": 350,
+        "h": 348
+      },
+      "smsBubble": {
+        "x": 677,
+        "y": 363,
+        "w": 348,
+        "h": 160
+      },
+      "email": {
+        "x": 676,
+        "y": 682,
+        "w": 350,
+        "h": 337
+      },
+      "audience": {
+        "x": 1050,
+        "y": 310,
+        "w": 300,
+        "h": 213
+      },
+      "schedule": {
+        "x": 1050,
+        "y": 543,
+        "w": 300,
+        "h": 181
+      },
+      "side": {
+        "x": 1050,
+        "y": 310,
+        "w": 300,
+        "h": 1099
+      },
+      "scheduleBtn": {
+        "x": 1050,
+        "y": 806,
+        "w": 300,
+        "h": 46
+      },
+      "previewBtn": {
+        "x": 1050,
+        "y": 752,
+        "w": 300,
+        "h": 46
+      }
+    },
+    "insightRoute": "/marketing?insight=fcbac7c8-35e7-4ad2-9d75-300041bfc26f",
+    "createdCampaignId": "fff55c4d-95b9-4042-a4c0-e1effadbceb0",
+    "provenance": [
+      "You’ll see bookings and revenue from this campaign on Today.",
+      "Written by gpt-4.1"
+    ]
+  },
+  "studioPhoneIg": {
+    "route": "/marketing?insight=fcbac7c8-35e7-4ad2-9d75-300041bfc26f",
+    "source": "http://localhost:3517",
+    "space": "page",
+    "note": "Schedule button HOVERED, never pressed.",
+    "capturedAt": "2026-10-03T22:59:24.179Z",
+    "pageH": 1000,
+    "w": 1600,
+    "full": {
+      "name": "studioPhoneIg-full",
+      "h": 1000
+    },
+    "boxes": {
+      "phone": {
+        "x": 250,
+        "y": 310,
+        "w": 300,
+        "h": 550
+      },
+      "tabs": {
+        "x": 582,
+        "y": 310,
+        "w": 768,
+        "h": 25
+      },
+      "panel": {
+        "x": 582,
+        "y": 351,
+        "w": 768,
+        "h": 192
+      },
+      "scheduleBtn": {
+        "x": 607,
+        "y": 483,
+        "w": 168,
+        "h": 35
+      }
+    }
+  },
+  "studioPhoneSms": {
+    "route": "/marketing?insight=fcbac7c8-35e7-4ad2-9d75-300041bfc26f",
+    "source": "http://localhost:3517",
+    "space": "page",
+    "note": "Schedule button HOVERED, never pressed.",
+    "capturedAt": "2026-10-03T22:59:26.218Z",
+    "pageH": 1000,
+    "w": 1600,
+    "full": {
+      "name": "studioPhoneSms-full",
+      "h": 1000
+    },
+    "boxes": {
+      "phone": {
+        "x": 250,
+        "y": 310,
+        "w": 300,
+        "h": 550
+      },
+      "tabs": {
+        "x": 582,
+        "y": 310,
+        "w": 768,
+        "h": 25
+      },
+      "panel": {
+        "x": 582,
+        "y": 351,
+        "w": 768,
+        "h": 192
+      },
+      "scheduleBtn": {
+        "x": 607,
+        "y": 483,
+        "w": 168,
+        "h": 35
+      }
+    }
+  },
+  "studioPhoneEmail": {
+    "route": "/marketing?insight=fcbac7c8-35e7-4ad2-9d75-300041bfc26f",
+    "source": "http://localhost:3517",
+    "space": "page",
+    "note": "Schedule button HOVERED, never pressed.",
+    "capturedAt": "2026-10-03T22:59:28.204Z",
+    "pageH": 1000,
+    "w": 1600,
+    "full": {
+      "name": "studioPhoneEmail-full",
+      "h": 1000
+    },
+    "boxes": {
+      "phone": {
+        "x": 250,
+        "y": 310,
+        "w": 300,
+        "h": 550
+      },
+      "tabs": {
+        "x": 582,
+        "y": 310,
+        "w": 768,
+        "h": 25
+      },
+      "panel": {
+        "x": 582,
+        "y": 351,
+        "w": 768,
+        "h": 192
+      },
+      "scheduleBtn": {
+        "x": 607,
+        "y": 483,
+        "w": 168,
+        "h": 35
+      }
+    }
+  },
+  "todaySocialIg": {
+    "route": "/",
+    "source": "http://localhost:3517",
+    "space": "viewport",
+    "note": null,
+    "capturedAt": "2026-10-03T22:59:56.369Z",
+    "pageH": 5188,
+    "w": 1600,
+    "full": {
+      "name": "todaySocialIg-full",
+      "h": 1000
+    },
+    "boxes": {
+      "sheet": {
+        "x": 580,
+        "y": 60,
+        "w": 440,
+        "h": 880
+      },
+      "card": {
+        "x": 580,
+        "y": 90,
+        "w": 440,
+        "h": 769
+      },
+      "preview": {
+        "x": 605,
+        "y": 154,
+        "w": 390,
+        "h": 583
+      },
+      "create": {
+        "x": 605,
+        "y": 807,
+        "w": 114,
+        "h": 31
+      }
+    }
+  },
+  "todaySocialFb": {
+    "route": "/",
+    "source": "http://localhost:3517",
+    "space": "viewport",
+    "note": null,
+    "capturedAt": "2026-10-03T22:59:58.981Z",
+    "pageH": 5188,
+    "w": 1600,
+    "full": {
+      "name": "todaySocialFb-full",
+      "h": 1000
+    },
+    "boxes": {
+      "card": {
+        "x": 580,
+        "y": 90,
+        "w": 440,
+        "h": 789
+      },
+      "preview": {
+        "x": 605,
+        "y": 154,
+        "w": 390,
+        "h": 604
+      }
+    }
+  },
+  "todaySocialDone": {
+    "route": "/",
+    "source": "http://localhost:3517",
+    "space": "viewport",
+    "note": null,
+    "capturedAt": "2026-10-03T23:00:01.368Z",
+    "pageH": 5188,
+    "w": 1600,
+    "full": {
+      "name": "todaySocialDone-full",
+      "h": 1000
+    },
+    "boxes": {
+      "toast": {
+        "x": 540,
+        "y": 926,
+        "w": 520,
+        "h": 42
+      }
+    }
+  },
+  "todaySms": {
+    "route": "/",
+    "source": "http://localhost:3517",
+    "space": "viewport",
+    "note": null,
+    "capturedAt": "2026-10-03T23:00:06.185Z",
+    "pageH": 5188,
+    "w": 1600,
+    "full": {
+      "name": "todaySms-full",
+      "h": 1000
+    },
+    "boxes": {
+      "sheet": {
+        "x": 580,
+        "y": 248,
+        "w": 440,
+        "h": 503
+      },
+      "approve": {
+        "x": 605,
+        "y": 421,
+        "w": 238,
+        "h": 31
+      }
+    }
+  },
+  "todaySmsDone": {
+    "route": "/",
+    "source": "http://localhost:3517",
+    "space": "viewport",
+    "note": null,
+    "capturedAt": "2026-10-03T23:00:08.682Z",
+    "pageH": 5188,
+    "w": 1600,
+    "full": {
+      "name": "todaySmsDone-full",
+      "h": 1000
+    },
+    "boxes": {
+      "toast": {
+        "x": 544,
+        "y": 926,
+        "w": 512,
+        "h": 42
+      }
+    }
+  },
+  "todayEmail": {
+    "route": "/",
+    "source": "http://localhost:3517",
+    "space": "viewport",
+    "note": null,
+    "capturedAt": "2026-10-03T23:00:13.213Z",
+    "pageH": 5188,
+    "w": 1600,
+    "full": {
+      "name": "todayEmail-full",
+      "h": 1000
+    },
+    "boxes": {
+      "sheet": {
+        "x": 580,
+        "y": 284,
+        "w": 440,
+        "h": 431
+      },
+      "send": {
+        "x": 775,
+        "y": 409,
+        "w": 170,
+        "h": 35
+      }
+    }
   }
 }

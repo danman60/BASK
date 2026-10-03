@@ -40,6 +40,8 @@ const raw: Sfx[] = [
   { from: S.team.from + CUE.team.peers, src: a('sweep-short.mp3'), volume: 0.18, durationInFrames: 34 },
 
   { from: S.method.from, src: a('paper-move-quick.mp3'), volume: 0.22, durationInFrames: 30 },
+  /* into the speakers, quietly — their voices carry it */
+  { from: S.method.from + CUE.method.speakers, src: a('transition-soft.mp3'), volume: 0.16, durationInFrames: 30 },
 
   { from: S.bottle.from, src: a('air-woosh-quick.mp3'), volume: 0.18, durationInFrames: 26 },
   { from: S.bottle.from + CUE.bottle.card, src: a('transition-soft.mp3'), volume: 0.18, durationInFrames: 34 },
@@ -48,9 +50,14 @@ const raw: Sfx[] = [
 
   { from: S.flag.from + CUE.flag.why, src: a('pop-electric.mp3'), volume: 0.16, durationInFrames: 20 },
 
-  /* one button — the one firm click in the film, as in v7 */
-  { from: S.action.from + 12, src: a('switch-click-quick.mp3'), volume: 0.32, durationInFrames: 20 },
-  { from: S.action.from + CUE.action.cut, src: a('pop-electric.mp3'), volume: 0.18, durationInFrames: 20 },
+  /* one button — the one firm click in the film, on the press */
+  { from: S.action.from + CUE.action.press, src: a('switch-click-quick.mp3'), volume: 0.32, durationInFrames: 20 },
+  { from: S.action.from + CUE.action.toast + 4, src: a('pop-electric.mp3'), volume: 0.16, durationInFrames: 20 },
+  /* the narration hole: the email, the post, the phone */
+  { from: S.action.from + CUE.action.messages, src: a('paper-move-quick.mp3'), volume: 0.16, durationInFrames: 30 },
+  { from: S.action.from + CUE.action.messages + 74, src: a('paper-move-quick.mp3'), volume: 0.16, durationInFrames: 30 },
+  { from: S.action.from + CUE.action.messages + 160, src: a('paper-move-quick.mp3'), volume: 0.14, durationInFrames: 30 },
+  ...[1, 2].map((k) => ({ from: S.action.from + CUE.action.messages + 160 + k * 30, src: a('click-camera.mp3'), volume: 0.1, durationInFrames: 14 })),
 
   { from: S.actions.from, src: a('paper-move-quick.mp3'), volume: 0.18, durationInFrames: 30 },
   { from: S.actions.from + CUE.actions.message, src: a('click-camera.mp3'), volume: 0.14, durationInFrames: 18 },
@@ -64,7 +71,6 @@ const raw: Sfx[] = [
 
   { from: S.opens.from, src: a('sweep-short.mp3'), volume: 0.22, durationInFrames: 34 },
   { from: S.community.from, src: a('paper-move-quick.mp3'), volume: 0.18, durationInFrames: 30 },
-  { from: S.consent.from, src: a('transition-soft.mp3'), volume: 0.2, durationInFrames: 34 },
 
   /* the flip — the film's one sweep where the point of view turns (v7) */
   { from: S.flip.from + CUE.flip.flip, src: a('sweep-short.mp3'), volume: 0.3, durationInFrames: 40 },

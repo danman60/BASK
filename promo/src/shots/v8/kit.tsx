@@ -207,44 +207,46 @@ export const ChainStrip: React.FC<{
   const p = pulse ? interpolate(f, [4, 12, 26], [0, 1, 0], clamp) : 0;
   const labelIn = pulse ? interpolate(f, [6, 20], [0, 1], { ...clamp, easing: E.easeOut }) : 1;
   const accent = dark ? T.cAmber : T.primary;
+  // Compact and stacked (dots over label), pinned in the right margin: the
+  // travel plates end at x≈1550 and the calls page at x≈1400, so at ≤300px wide
+  // it never sits on page content (pass-2 note: it covered method/opens/calls).
   return (
     <div
       style={{
         position: 'absolute',
-        right: 54,
-        top: 44,
+        right: 34,
+        top: 30,
         display: 'flex',
-        alignItems: 'center',
-        gap: 18,
-        padding: '13px 22px',
-        borderRadius: 999,
-        background: dark ? 'oklch(22.5% 0.013 50 / 0.9)' : 'oklch(99% 0.003 84 / 0.92)',
+        flexDirection: 'column',
+        alignItems: 'flex-end',
+        gap: 7,
+        padding: '10px 14px',
+        borderRadius: 14,
+        background: dark ? 'oklch(22.5% 0.013 50 / 0.88)' : 'oklch(99% 0.003 84 / 0.9)',
         boxShadow: dark ? '0 0 0 1px oklch(31% 0.014 55)' : `0 0 0 1px ${T.line}, ${T.shadowCard}`,
         opacity: inT * outT,
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
         {labels.map((_, i) => {
           const lit = i === link;
           const past = i < link;
           return (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <div
                 style={{
-                  width: 13,
-                  height: 13,
-                  borderRadius: 7,
+                  width: 11,
+                  height: 11,
+                  borderRadius: 6,
                   background: lit ? accent : past ? (dark ? T.cInkFaint : T.inkFaint) : 'transparent',
                   boxShadow: lit
-                    ? `0 0 0 ${4 + 6 * p}px ${dark ? `oklch(79% 0.125 78 / ${0.18 + 0.2 * p})` : `oklch(58% 0.14 42 / ${0.16 + 0.2 * p})`}`
+                    ? `0 0 0 ${3 + 5 * p}px ${dark ? `oklch(79% 0.125 78 / ${0.18 + 0.2 * p})` : `oklch(58% 0.14 42 / ${0.16 + 0.2 * p})`}`
                     : `inset 0 0 0 1.5px ${dark ? T.cInkFaint : T.inkFaint}`,
                   opacity: lit || past ? 1 : 0.55,
                   transform: `scale(${lit ? 1 + 0.25 * p : 1})`,
                 }}
               />
-              {i < labels.length - 1 && (
-                <div style={{ width: 14, height: 1.5, background: dark ? T.cLine : T.line }} />
-              )}
+              {i < labels.length - 1 && <div style={{ width: 10, height: 1.5, background: dark ? T.cLine : T.line }} />}
             </div>
           );
         })}
@@ -252,13 +254,13 @@ export const ChainStrip: React.FC<{
       <div
         style={{
           fontFamily: BODY,
-          fontSize: 22,
+          fontSize: 15,
           fontWeight: 600,
-          letterSpacing: '0.16em',
+          letterSpacing: '0.12em',
           textTransform: 'uppercase',
           color: dark ? T.cInk : T.ink,
           opacity: labelIn,
-          transform: `translateY(${(1 - labelIn) * 6}px)`,
+          transform: `translateY(${(1 - labelIn) * 5}px)`,
           whiteSpace: 'nowrap',
         }}
       >

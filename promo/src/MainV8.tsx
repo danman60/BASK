@@ -11,14 +11,14 @@
 import { AbsoluteFill, Audio, interpolate, Sequence, staticFile } from 'remotion';
 
 import { A11Network, A12bKnowledge, A13Outro } from './shots/v5/AppActs';
-import { B2Read, B3Chart, B4Method, B5Action, B6Community, B8Opens } from './shots/v6/Acts6';
+import { B2Read, B3Chart, B6Community, B8Opens } from './shots/v6/Acts6';
+import { V8Action, V8Method } from './shots/v8/Acts8b';
 import {
   V8Actions,
   V8Ask,
   V8Bottle,
   V8Calls,
   V8Chain,
-  V8Consent,
   V8Flag,
   V8Flip,
   V8Health,
@@ -43,10 +43,15 @@ import {
   TOTAL_V8,
   UVALUX_CHAIN,
   VO_IS_ESTIMATE,
+  VO_SEGMENTS,
   VO_SRC,
   type ShotV8,
 } from './timelineV8';
 import { T } from './tokens';
+
+const V8Signoff: React.FC<{ duration: number }> = ({ duration }) => (
+  <A13Outro duration={duration} line="It doesn't run your salon. It grows it." />
+);
 
 /** Bed level at an absolute frame: 0.38 in the clear, 0.19 under the voice. */
 const BED_CLEAR = 0.38;
@@ -72,22 +77,21 @@ const SHOT: Record<ShotV8, { C: Comp; cut?: number }> = {
   recovery: { C: V8Recovery },
   listen: { C: V8Listen },
   team: { C: V8Team },
-  method: { C: B4Method },
+  method: { C: V8Method },
   bottle: { C: V8Bottle },
   flag: { C: V8Flag },
-  action: { C: B5Action, cut: CUE.action.cut },
+  action: { C: V8Action },
   actions: { C: V8Actions },
   measured: { C: V8Measured },
   opens: { C: B8Opens },
   community: { C: B6Community },
-  consent: { C: V8Consent },
   flip: { C: V8Flip },
   network: { C: A11Network },
   calls: { C: V8Calls },
   knowledge: { C: A12bKnowledge },
   supply: { C: V8Supply },
   ask: { C: V8Ask },
-  signoff: { C: A13Outro },
+  signoff: { C: V8Signoff },
 };
 
 export const MainV8: React.FC<{ bgm?: boolean }> = ({ bgm = true }) => {
@@ -95,7 +99,14 @@ export const MainV8: React.FC<{ bgm?: boolean }> = ({ bgm = true }) => {
   const x = MUSIC.xfade;
   return (
     <AbsoluteFill style={{ backgroundColor: T.paper }}>
-      {!VO_IS_ESTIMATE && <Audio src={staticFile(VO_SRC)} volume={1} />}
+      {/* The read, in pieces: it stops for the speakers and for the messages,
+          and picks up where it left off. Never sped up, never trimmed. */}
+      {!VO_IS_ESTIMATE &&
+        VO_SEGMENTS.map((g) => (
+          <Sequence key={g.from} from={g.at} durationInFrames={g.to - g.from}>
+            <Audio src={staticFile(VO_SRC)} startFrom={g.from} volume={1} />
+          </Sequence>
+        ))}
 
       {bgm && (
         <Sequence from={0} durationInFrames={MUSIC.spliced ? MUSIC.splice + x : TOTAL_V8}>

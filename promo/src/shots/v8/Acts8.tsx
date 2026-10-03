@@ -34,7 +34,17 @@ export const V8Open: React.FC<P> = ({ duration }) => {
         </Seg>
       )}
       <Seg from={c.title} to={duration}>
-        <A1Open duration={duration - c.title} captions={false} />
+        <A1Open
+          duration={duration - c.title}
+          captions={false}
+          tagline={
+            <>
+              An app a salon owner opens when the salon is quiet.
+              <br />
+              It doesn&apos;t run your salon. It grows it.
+            </>
+          }
+        />
       </Seg>
     </AbsoluteFill>
   );
@@ -198,8 +208,8 @@ const Crop: React.FC<{ src: string; nat: [number, number]; box: [number, number,
 };
 const PRACTICE: [number, number, number, number] = [0.548, 0.463, 0.422, 0.212];
 const SEATS = [
-  { name: 'Jordan', role: 'Evenings', x: 520 },
-  { name: 'Priya', role: 'Part-time', x: 1400 },
+  { name: 'Jordan', role: 'Evenings', x: 500 },
+  { name: 'Priya', role: 'Part-time', x: 1420 },
 ];
 export const V8Bottle: React.FC<P> = ({ duration }) => {
   const c = CUE.bottle;
@@ -207,7 +217,7 @@ export const V8Bottle: React.FC<P> = ({ duration }) => {
   const d = c.deal - c.card; // local to the card segment
   const lf = f - c.card;
   const shrink = interpolate(lf, [d, d + 12], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const PW = 720;
+  const PW = 880;
   const seatsIn = interpolate(lf, [d + 6, d + 16], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill>
@@ -229,7 +239,7 @@ export const V8Bottle: React.FC<P> = ({ duration }) => {
               style={{
                 position: 'absolute',
                 left: 960 - PW / 2,
-                top: 250,
+                top: 200,
                 opacity: shrink,
                 transform: `scale(${0.9 + 0.1 * shrink})`,
               }}
@@ -241,10 +251,10 @@ export const V8Bottle: React.FC<P> = ({ duration }) => {
             </div>
             {SEATS.map((s, i) => {
               const cue = d + 16 + i * 6;
-              const pose = dealPose(lf, cue, 960 - s.x, 250 - 640, i ? 6 : -6);
-              const CW = 520;
+              const pose = dealPose(lf, cue, 960 - s.x, 200 - 610, i ? 6 : -6);
+              const CW = 700;
               return (
-                <div key={s.name} style={{ position: 'absolute', left: s.x - CW / 2, top: 640, width: CW, opacity: seatsIn }}>
+                <div key={s.name} style={{ position: 'absolute', left: s.x - CW / 2, top: 610, width: CW, opacity: seatsIn }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 12 }}>
                     <span style={{ fontFamily: DISPLAY, fontSize: 40, fontWeight: 500, color: T.ink }}>{s.name}</span>
                     <span style={{ fontFamily: BODY, fontSize: 20, color: T.inkFaint }}>{s.role}</span>
@@ -345,26 +355,6 @@ export const V8Measured: React.FC<P> = ({ duration }) => {
         <PageBack src="concept-headline" duration={duration - c.card} />
         <Plate src="concept-headline-card" width={1600} move="push" moveFrames={duration - c.card} />
       </Seg>
-    </AbsoluteFill>
-  );
-};
-
-/* ---------------------------------------------------------- b18 consent */
-export const V8Consent: React.FC<P> = ({ duration }) => {
-  const c = CUE.consent;
-  // One page, held legibly for the whole line: the page's own heading over the
-  // three sharing levels. "You choose" lights the level this salon picked;
-  // "take it back" lights Private. (The tall what-UVALUX-sees panel read as a
-  // broken sliver at film scale — owner/coordinator note on draft 1.)
-  return (
-    <AbsoluteFill>
-      <PageBack src="datasharing-full" duration={duration} yFrom={-160} yTo={-220} />
-      <Plate src="datasharing-head" width={1640} y={272} move="none" />
-      <Plate src="datasharing-tiers" width={1640} y={590} move="settle" moveFrames={duration}>
-        <Hi x={0.675} y={0.0} w={0.325} h={1} from={c.preview} to={c.back - 4} />
-        <Hi x={0.0} y={0.0} w={0.325} h={1} from={c.back} />
-      </Plate>
-      <BaskCaption lead="Your data " accent="stays yours" tail="." duration={duration} from={8} />
     </AbsoluteFill>
   );
 };

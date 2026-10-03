@@ -11,12 +11,13 @@
 //
 //   v8-est    — DEV ONLY, estimated from voiceover.txt (no audio). Never ship.
 //   v8-chain  — the chain-order uvaint read (25 beats). The final renders from this.
-import VO from '../public/audio/vo/v8-chain/vo-anchors.json';
+import VO from '../public/audio/vo/v8-f2/vo-anchors.json';
+import CORPUS from '../public/corpus/v8/clips.json';
 import H3 from './h3-v8.json';
 
 export const FPS = 30;
 
-type Word = [number, number, string];
+type Word = [number, number, string, number?]; // [start, end, word, quietest frame before it]
 type Beat = { id: string; text: string; startFrame: number; durationFrames: number; words: Word[] };
 const V = VO as unknown as { dir: string; fps: number; totalFrames: number; beats: Beat[]; estimate?: boolean };
 
@@ -24,13 +25,24 @@ export const VO_SRC = `${V.dir}/vo.mp3`;
 export const VO_IS_ESTIMATE = Boolean(V.estimate);
 export const VO_BEATS = V.beats;
 
-if (V.beats.length !== 25) throw new Error(`timelineV8: expected 25 beats, the read has ${V.beats.length}`);
+/* ------------------------------------------------------------ the shot list */
+// Pass 3 (2026-10-03): the consent paragraph and its shot are gone — Community
+// goes straight to the flip. One paragraph per shot, 24 of each.
+export const ORDER = [
+  'open', 'chain', 'sync', 'read', 'chart', 'health', 'recovery', 'listen', 'team', 'method',
+  'bottle', 'flag', 'action', 'actions', 'measured', 'opens', 'community', 'flip',
+  'network', 'calls', 'knowledge', 'supply', 'ask', 'signoff',
+] as const;
+export type ShotV8 = (typeof ORDER)[number];
+
+if (V.beats.length !== ORDER.length) throw new Error(`timelineV8: expected ${ORDER.length} beats, the read has ${V.beats.length}`);
 
 const beat = (id: string) => {
   const b = V.beats.find((x) => x.id === id);
   if (!b) throw new Error(`timelineV8: no beat ${id}`);
   return b;
 };
+const beatOf = (shot: ShotV8) => V.beats[ORDER.indexOf(shot)].id;
 const end = (b: Beat) => b.startFrame + b.durationFrames;
 const norm = (w: string) => w.toLowerCase().replace(/[^a-z0-9]/g, '');
 
@@ -49,27 +61,65 @@ const wordIx = (id: string, q: string, nth = 1) => {
   }
   throw new Error(`timelineV8: anchor "${q}"#${nth} not heard in ${id}: ${b.words.map((w) => w[2]).join(' ')}`);
 };
-/** Absolute frame a word starts. */
-const at = (id: string, q: string, nth = 1) => Math.round(beat(id).words[wordIx(id, q, nth)][0]);
-/** Absolute frame of the breath before a word: midpoint of the gap to the previous word. */
-const before = (id: string, q: string, nth = 1) => {
+// ---- the same anchors in READ time (frames of vo.mp3), before any gaps
+const atV = (id: string, q: string, nth = 1) => Math.round(beat(id).words[wordIx(id, q, nth)][0]);
+const beforeV = (id: string, q: string, nth = 1) => {
   const b = beat(id);
   const i = wordIx(id, q, nth);
   if (i === 0) return b.startFrame;
-  return Math.round((b.words[i - 1][1] + b.words[i][0]) / 2);
+  return Math.round(b.words[i][3] ?? (b.words[i - 1][1] + b.words[i][0]) / 2);
 };
+const startsV = V.beats.map((b, i) => (i === 0 ? 0 : Math.round((end(V.beats[i - 1]) + b.startFrame) / 2)));
 
-/* ------------------------------------------------------------ the shot list */
-export const ORDER = [
-  'open', 'chain', 'sync', 'read', 'chart', 'health', 'recovery', 'listen', 'team', 'method',
-  'bottle', 'flag', 'action', 'actions', 'measured', 'opens', 'community', 'consent', 'flip',
-  'network', 'calls', 'knowledge', 'supply', 'ask', 'signoff',
-] as const;
-export type ShotV8 = (typeof ORDER)[number];
+/* ------------------------------------------------- holes in the narration
+ * Two places where the narrator stops and the picture talks:
+ *  1. SPEAKERS — in the method paragraph, after "...somebody actually said on a
+ *     stage", the training speakers themselves, their own audio up. Narration
+ *     resumes "about this exact problem" on the citation page.
+ *  2. MESSAGES — at the end of the action paragraph ("Nothing leaves without
+ *     you."), the text, the email and the post the app wrote, shown in turn.
+ * The read is never sped up or cut: it is split at these frames and the rest of
+ * it plays later. Every film frame below is mapped through the holes. */
+type CClip = { file: string; duration_s: number; text: string; event: string };
+const corpus = (CORPUS as unknown as { clips: CClip[] }).clips;
+const cclip = (f: string) => {
+  const c = corpus.find((x) => x.file === f);
+  if (!c) throw new Error(`timelineV8: corpus clip ${f} missing`);
+  return { src: `corpus/v8/${f}`, frames: Math.floor(c.duration_s * FPS) - 1, text: c.text, event: c.event, year: c.event.includes('2026') ? 2026 : 2025 };
+};
+// A03 is excluded on purpose (it says "jerks").
+export const MONTAGE = ['A08.mp4', 'A01.mp4', 'A02.mp4', 'A04.mp4', 'B04.mp4'].map(cclip);
+const MONTAGE_LEAD = 8; // a breath of picture before the first speaker
+const MONTAGE_LEN = MONTAGE_LEAD + MONTAGE.reduce((n, c) => n + c.frames, 0) + 6;
+const MESSAGES_LEN = 246;
+
+const methodB = beat(beatOf('method'));
+const stageI = wordIx(methodB.id, 'stage');
+const gapSpeakers = beforeV(methodB.id, 'about', 1 + methodB.words.slice(0, stageI).filter((w) => norm(w[2]).startsWith('about')).length);
+const gapMessages = startsV[ORDER.indexOf('actions')];
+export const GAPS = [
+  { name: 'speakers', at: gapSpeakers, len: MONTAGE_LEN },
+  { name: 'messages', at: gapMessages, len: MESSAGES_LEN },
+].sort((x, y) => x.at - y.at);
+/** read frame → film frame (a frame AT a hole plays after it) */
+const map = (v: number) => v + GAPS.filter((g) => g.at <= v).reduce((n, g) => n + g.len, 0);
+/** film frame where a hole begins */
+const holeAt = (name: string) => {
+  const g = GAPS.find((x) => x.name === name)!;
+  return map(g.at) - g.len;
+};
+/** The read, in playable pieces: [readFrom, readTo) placed at film frame `at`. */
+export const VO_SEGMENTS = (() => {
+  const cuts = [0, ...GAPS.map((g) => g.at), V.totalFrames + 2];
+  return cuts.slice(0, -1).map((c, i) => ({ from: c, to: cuts[i + 1], at: map(c) }));
+})();
+
+const at = (id: string, q: string, nth = 1) => map(atV(id, q, nth));
+const before = (id: string, q: string, nth = 1) => map(beforeV(id, q, nth));
 
 /** Each shot owns one paragraph; it starts in the breath before its first word. */
-const starts = V.beats.map((b, i) => (i === 0 ? 0 : Math.round((end(V.beats[i - 1]) + b.startFrame) / 2)));
-const lastWord = end(V.beats[V.beats.length - 1]);
+const starts = startsV.map(map);
+const lastWord = map(end(V.beats[V.beats.length - 1]));
 /** ~1.5s of silence after the last word, same as v7. */
 export const TOTAL_V8 = lastWord + 45;
 
@@ -128,7 +178,7 @@ export const CUE = {
       L('chain', at(b('chain'), 'shared')),
     ],
   },
-  sync: { card: L('sync', before(b('sync'), '=and')) },
+  sync: { card: L('sync', before(b('sync'), '=and', 2)) },
   chart: { cut: L('chart', before(b('chart'), 'Traffic')) },
   health: {
     bands: L('health', before(b('health'), "who's")),
@@ -142,7 +192,7 @@ export const CUE = {
   recovery: { seven: L('recovery', at(b('recovery'), 'Seven')), recoverable: L('recovery', at(b('recovery'), 'recoverable')) },
   listen: {
     roll: listenRoll,
-    pledge: L('listen', at(b('listen'), 'consent')),
+    pledge: L('listen', at(b('listen'), 'listens')),
     conv: L('listen', before(b('listen'), '=every')),
     scores: [
       L('listen', at(b('listen'), 'greeting')),
@@ -163,7 +213,17 @@ export const CUE = {
     deal: L('bottle', before(b('bottle'), 'Now')),
   },
   flag: { why: L('flag', at(b('flag'), 'hear')) },
-  action: { cut: L('action', before(b('action'), '=you', 2)) },
+  action: {
+    // Today's text sheet → the press → the real toast → (hole) email, post, phone
+    press: L('action', at(b('action'), 'send')),
+    toast: L('action', before(b('action'), 'Nothing')),
+    messages: L('action', holeAt('messages')),
+  },
+  method: {
+    speakers: L('method', holeAt('speakers')),
+    lead: MONTAGE_LEAD,
+    resume: L('method', holeAt('speakers')) + MONTAGE_LEN,
+  },
   actions: {
     note: L('actions', at(b('actions'), 'note')),
     message: L('actions', before(b('actions'), '=a', 2)),
@@ -178,7 +238,6 @@ export const CUE = {
     odo: L('measured', before(b('measured'), 'Not')),
     card: L('measured', before(b('measured'), 'next')),
   },
-  consent: { preview: L('consent', before(b('consent'), '=you', 1)), back: L('consent', at(b('consent'), 'take')) },
   flip: { flip: L('flip', at(b('flip'), 'opposite')) - 4, rise: L('flip', at(b('flip'), 'sees')) },
   calls: { roll: repRoll },
   supply: { lamps: L('supply', before(b('supply'), 'Lamp')), util: L('supply', before(b('supply'), 'Busy')) },
@@ -223,12 +282,18 @@ export const CHAPTER: Partial<Record<ShotV8, { side: 'salon' | 'uvalux'; link: n
 const TRACK_END = 181.6; // the track's natural tail is ~-42 dB from 180s
 const A_LIMIT = 172; // pass A must splice before the outro starts fading
 const BAR = (4 * 60) / 123.05;
-const CHAPTER_STARTS: ShotV8[] = ['chart', 'method', 'action', 'measured', 'community', 'consent', 'flip', 'network', 'calls', 'supply'];
-const fits = CHAPTER_STARTS.filter((k) => S[k].from / FPS <= A_LIMIT);
-const splice = TOTAL_V8 / FPS <= TRACK_END ? TOTAL_V8 : S[fits[fits.length - 1] ?? 'chart'].from;
+const CHAPTER_STARTS: ShotV8[] = ['chart', 'method', 'action', 'measured', 'community', 'flip', 'network', 'calls', 'supply'];
+const B_MIN = 15; // pass B must not start in the track's quiet intro
+const inRange = (k: ShotV8) => S[k].from / FPS <= A_LIMIT && S[k].from / FPS >= TOTAL_V8 / FPS - (TRACK_END - B_MIN);
+const fitsCh = CHAPTER_STARTS.filter(inRange);
+const fitsAny = ORDER.filter(inRange);
+const pick = fitsCh[fitsCh.length - 1] ?? fitsAny[fitsAny.length - 1];
+if (TOTAL_V8 / FPS > TRACK_END && !pick) throw new Error('timelineV8: film too long for one splice of the bed');
+const splice = TOTAL_V8 / FPS <= TRACK_END ? TOTAL_V8 : S[pick].from;
 const aPos = splice / FPS; // where pass A is in the track at the splice
 const needB = (TRACK_END * FPS - (TOTAL_V8 - splice)) / FPS; // latest start for pass B
 const jump = splice >= TOTAL_V8 ? 0 : Math.max(0, Math.ceil((aPos - needB) / BAR) * BAR);
+if (aPos - jump < 0) throw new Error('timelineV8: bed pass B would start before the track');
 export const MUSIC = {
   splice,
   spliceShot: ORDER.find((k) => S[k].from === splice) ?? 'none',
@@ -243,8 +308,8 @@ export const MUSIC = {
 export const SPEECH: [number, number][] = (() => {
   const r: [number, number][] = [];
   for (const bt of V.beats) {
-    const s = bt.startFrame;
-    const e = end(bt);
+    const s = map(bt.startFrame);
+    const e = map(end(bt));
     if (r.length && s - r[r.length - 1][1] < 24) r[r.length - 1][1] = e;
     else r.push([s, e]);
   }

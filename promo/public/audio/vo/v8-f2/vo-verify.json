@@ -1,0 +1,149 @@
+{
+ "min_match": 0.9,
+ "beats": [
+  {
+   "id": "b01",
+   "match": 0.952,
+   "script": "Bask is an app a salon owner opens when the place is quiet. It doesn't run your salon. It grows it.",
+   "heard": "Basque is an app. A salon owner opens when the place is quiet. It doesn't run your salon. It grows it."
+  },
+  {
+   "id": "b02",
+   "match": 0.974,
+   "script": "Everything in Bask works the same way. Your numbers become an insight. The insight is matched to real coaching. The coaching becomes something you can do in one click. Then it's tracked, and shared with owners like you.",
+   "heard": "Everything in BASC works the same way. Your numbers become an insight. The insight is matched to real coaching. The coaching becomes something you can do in one click. Then it's tracked and shared with owners like you."
+  },
+  {
+   "id": "b03",
+   "match": 0.963,
+   "script": "It starts with your data. Your software already runs the salon, and Bask doesn't replace it. It sits beside it, and quietly syncs what you already have.",
+   "heard": "It starts with your data. Your software already runs the salon and BASC doesn't replace it. It sits beside it and quietly syncs what you already have."
+  },
+  {
+   "id": "b04",
+   "match": 1.0,
+   "script": "It reads last night's numbers before anyone unlocks the door. Not a dashboard. A short letter, in plain words, about what actually changed.",
+   "heard": "It reads last night's numbers before anyone unlocks the door, not a dashboard. A short letter in plain words about what actually changed."
+  },
+  {
+   "id": "b05",
+   "match": 0.915,
+   "script": "Lotion per visit slipped. Not everywhere. Thursday afternoons, and Friday nights. Traffic never moved. That gap is four thousand dollars a month, and it had been there for four weeks.",
+   "heard": "Lotion per visit slipped. Not everywhere. Thursday afternoons and Friday nights. Traffic never moved. That gap is $4,000 a month and it had been there for four weeks."
+  },
+  {
+   "id": "b06",
+   "match": 1.0,
+   "script": "It knows every customer by their own rhythm. Who's healthy, who's slipping, who's gone quiet, and who still has minutes they paid for and never used.",
+   "heard": "It knows every customer by their own rhythm. Who's healthy, who's slipping, who's gone quiet, and who still has minutes they paid for and never used."
+  },
+  {
+   "id": "b07",
+   "match": 1.0,
+   "script": "Seven memberships failed to pay this week, and most of them look recoverable.",
+   "heard": "Seven memberships failed to pay this week, and most of them look recoverable."
+  },
+  {
+   "id": "b08",
+   "match": 1.0,
+   "script": "And the front desk listens. Every sales conversation is scored on the moments that matter. The greeting, the question, the product, the membership, the close.",
+   "heard": "and the front desk listens. Every sales conversation is scored on the moments that matter. The greeting, the question, the product, the membership, the close."
+  },
+  {
+   "id": "b09",
+   "match": 1.0,
+   "script": "You see your team without a leaderboard. Who's improving, and who needs a hand this week. And you see where you stand, against salons like yours, as a rank, not a guess.",
+   "heard": "You see your team without a leaderboard, who's improving, and who needs a hand this week. And you see where you stand, against salons like yours, as a rank, not a guess."
+  },
+  {
+   "id": "b10",
+   "match": 1.0,
+   "script": "Then the part nobody else does. It doesn't invent the advice. It goes and finds where that advice came from. The training you've already recorded, a thousand pieces of coaching, and it shows you the words somebody actually said on a stage about this exact problem.",
+   "heard": "then the part nobody else does. It doesn't invent the advice. It goes and finds where that advice came from. The training you've already recorded, a thousand pieces of coaching, and it shows you the words somebody actually said on a stage about this exact problem."
+  },
+  {
+   "id": "b11",
+   "match": 0.945,
+   "script": "It finds your best seller, and bottles how she does it. Maya does the membership math out loud, and people say yes. Now the whole team learns it.",
+   "heard": "It finds your bestseller and bottles how she does it. Maya does the membership math out loud and people say yes, now the whole team learns it."
+  },
+  {
+   "id": "b12",
+   "match": 1.0,
+   "script": "And if someone says something about a product that isn't true, you hear it first.",
+   "heard": "And if someone says something about a product that isn't true, you hear it first."
+  },
+  {
+   "id": "b13",
+   "match": 1.0,
+   "script": "Then you act. One button. The campaign is already written. The right people, the right night, the offer inside your own rules. You read it, you change what you want, and you send it. Nothing leaves without you.",
+   "heard": "Then you act. One button. The campaign is already written. The right people, the right night, the offer inside your own rules. You read it, you change what you want and you send it. Nothing leaves without you."
+  },
+  {
+   "id": "b14",
+   "match": 1.0,
+   "script": "Every insight comes with its action. A note to the people with minutes left. A message to each failed payment. And when someone walks in, the front desk already knows. Eighty-five days since her last tan, and the lotion she always buys.",
+   "heard": "Every insight comes with its action, a note to the people with minutes left, a message to each failed payment. And when someone walks in, the front desk already knows. Eighty-five days since her last tan and the lotion she always buys."
+  },
+  {
+   "id": "b15",
+   "match": 1.0,
+   "script": "Then it comes back and tells you what it was worth. Not a promise. A measured number, next to the coaching that suggested it.",
+   "heard": "Then it comes back and tells you what it was worth, not a promise. A measured number next to the coaching that suggested it."
+  },
+  {
+   "id": "b16",
+   "match": 1.0,
+   "script": "Everything on this screen can be opened. Every figure goes back to the visits behind it.",
+   "heard": "Everything on this screen can be opened. Every figure goes back to the visits behind it."
+  },
+  {
+   "id": "b17",
+   "match": 1.0,
+   "script": "And you're not doing it alone. What worked is shared with other owners, working the same week.",
+   "heard": "and you're not doing it alone. What worked is shared with other owners, working the same week."
+  },
+  {
+   "id": "b18",
+   "match": 0.88,
+   "script": "Same nervous system, opposite end. Yoova lucks sees the same chain from above.",
+   "heard": "same nervous system, opposite end. Yuvalux sees the same chain from above."
+  },
+  {
+   "id": "b19",
+   "match": 0.927,
+   "script": "Every salon running this is a signal, and for the first time Yoova lucks can see the market it actually serves.",
+   "heard": "Every salon running this is a signal, and for the first time, Yuvalux can see the market it actually serves."
+  },
+  {
+   "id": "b20",
+   "match": 1.0,
+   "script": "Your rep stops calling to ask if anyone needs anything. They call already knowing what's wrong, and what to suggest.",
+   "heard": "Your rep stops calling to ask if anyone needs anything. They call already knowing what's wrong and what to suggest."
+  },
+  {
+   "id": "b21",
+   "match": 1.0,
+   "script": "And the coaching underneath all of it is yours. Your training, your sessions, reviewed by your people before it ever reaches a salon floor.",
+   "heard": "and the coaching underneath all of it is yours. Your training, your sessions, reviewed by your people before it ever reaches a salon floor."
+  },
+  {
+   "id": "b22",
+   "match": 1.0,
+   "script": "Low stock becomes a draft order. Lamp hours become a relamping budget. Busy beds become the case for one more.",
+   "heard": "Low stock becomes a draft order. Lamp hours become a relamping budget. Busy beds become the case for one more."
+  },
+  {
+   "id": "b23",
+   "match": 1.0,
+   "script": "And that same knowledge answers questions. For owners today, and one day for their customers.",
+   "heard": "And that same knowledge answers questions for owners today and one day for their customers."
+  },
+  {
+   "id": "b24",
+   "match": 0.9,
+   "script": "That's Bask. It doesn't run your salon. It grows it.",
+   "heard": "That's Basque. It doesn't run your salon, it grows it."
+  }
+ ]
+}
