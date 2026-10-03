@@ -368,7 +368,11 @@ export async function loadStaffRows(
         shifts,
         salesPerShift: shifts === 0 ? 0 : round(revenue / shifts, 2),
         strength,
-        note: strength
+        note: s.currentRate === 0
+          ? `No product was sold with any of their ${s.currentVisits} sessions — ${Math.abs(
+              gap,
+            )} points under the salon. A shift alongside someone stronger usually closes most of that.`
+          : strength
           ? `Selling with ${round(s.currentRate, 1)} out of every 100 sessions — ${Math.abs(
               gap,
             )} points above the salon. Worth asking what they say at the counter.`
@@ -377,7 +381,9 @@ export async function loadStaffRows(
             )} points under the salon. A shift alongside someone stronger usually closes most of that.`,
       };
     })
-    .sort((a, b) => b.visits - a.visits);
+    // Alphabetical. The section promises "nobody is ranked here"; ordering by
+    // sessions (or by rate) put a ranking back in through the layout.
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export async function loadCampaigns(salon: DemoSalonContext): Promise<CampaignRow[]> {
