@@ -272,7 +272,7 @@ export const DEMO_MONITOR: MonitorFixture = {
       id: 'mi-03',
       pattern: 'Returning lapsed customers are greeted like strangers — nobody welcomes them back.',
       evidenceCount: 5,
-      suggestion: 'Check-in flags the gap so the greeting can land; no knowledgeRef.',
+      suggestion: 'When check-in shows a long gap, welcome them back before anything else.',
     },
   ],
 };
