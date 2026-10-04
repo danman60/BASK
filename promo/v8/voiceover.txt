@@ -1,12 +1,12 @@
-Bask is an app a salon owner opens when the place is quiet. It doesn't run your salon. It grows it.
+Bask is an app a tanning salon owner opens when the place is quiet. It doesn't run your salon. It grows it. Built with UVALUX, the people who make the lotions and the beds.
 
-Everything in Bask works the same way. Your numbers become an insight. The insight is matched to real coaching. The coaching becomes something you can do in one click. Then it's tracked, and shared with owners like you.
+Everything in Bask works the same way. Your numbers become an insight. The insight is matched to real coaching. The coaching becomes something you can do in one click. Then it's tracked, and shared with owners like you. So the same customers come back more often, and spend more every time they do.
 
 It starts with your data. Your software already runs the salon, and Bask doesn't replace it. It sits beside it, and quietly syncs what you already have.
 
 It reads last night's numbers before anyone unlocks the door. Not a dashboard. A short letter, in plain words, about what actually changed.
 
-Lotion per visit slipped. Not everywhere. Thursday afternoons, and Friday nights. Traffic never moved. That gap is four thousand dollars a month, and it had been there for four weeks.
+Lotion per visit slipped. Not everywhere. Thursday afternoons, and Friday nights. Traffic never moved. That gap is over five thousand dollars a month, and it had been there for four weeks.
 
 It knows every customer by their own rhythm. Who's healthy, who's slipping, who's gone quiet, and who still has minutes they paid for and never used.
 
@@ -17,6 +17,8 @@ And the front desk listens. Every sales conversation is scored on the moments th
 You see your team without a leaderboard. Who's improving, and who needs a hand this week. And you see where you stand, against salons like yours, as a rank, not a guess.
 
 Then the part nobody else does. It doesn't invent the advice. It goes and finds where that advice came from. The training you've already recorded, a thousand pieces of coaching, and it shows you the words somebody actually said on a stage about this exact problem.
+
+Bask finds the line that fits your problem, and puts it in front of you.
 
 It finds your best seller, and bottles how she does it. Maya does the membership math out loud, and people say yes. Now the whole team learns it.
 
@@ -32,7 +34,7 @@ Everything on this screen can be opened. Every figure goes back to the visits be
 
 And you're not doing it alone. What worked is shared with other owners, working the same week.
 
-Same nervous system, opposite end. UVALUX sees the same chain from above.
+Same nervous system, opposite end. This is what UVALUX sees. The same chain, from above.
 
 Every salon running this is a signal, and for the first time UVALUX can see the market it actually serves.
 

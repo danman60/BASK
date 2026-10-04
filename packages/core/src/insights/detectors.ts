@@ -153,7 +153,7 @@ export const attachmentSlipDetector: Detector = {
 
     const where = describeWhere(laggards.map((s) => s.name), softSlots);
     const sentence =
-      `Lotion sales per visit fell from **${round(a.baselineRate, 0)}% to ${round(a.currentRate, 0)}%** ` +
+      `Lotion sales per visit fell from **${round(a.baselineRate, 1)}% to ${round(a.currentRate, 1)}%** ` +
       `over ${describeSpan(a.currentDays)}${where}. Traffic is unchanged.`;
 
     const evidence: Evidence = {

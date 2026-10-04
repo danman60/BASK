@@ -47,13 +47,16 @@ export const DEMO_OPPORTUNITIES: Opportunity[] = [
        the demo and wrong about the industry, in front of someone who sells to
        that industry for a living.
 
-       Measured at day zero: 217 retail lines over 2,612 visits in the 28-day
-       baseline (8.3%) against 88 over 1,488 in the 14-day window (5.9%), at an
-       average product line of ~$55. 3,235 visits a month × 2.4pp × $55 ≈ $4,260. */
-    whatChanged: 'Retail attachment fell from 8.3% to 5.9% while visits stayed normal; most of the drop is evening shifts.',
-    whyItMatters: 'This decline in evening retail sales could cost the salon about $4,260 per month in lost revenue.',
-    impactLabel: '+$4,260/mo',
-    impactMonthly: 4260,
+       Re-measured 2026-10-04 against seed sunset-ridge-v5 (demo day 2026-08-06):
+       visits with a product, 230 of 2,624 in the 28-day baseline (8.8%) against
+       83 of 1,459 in the 14-day window (5.7%). The dollar figure is the
+       retail-attachment insight's own estimate ($5,354/mo, detectors.ts), so the
+       card, the insight and the film all say one number (Daniel, 2026-10-04).
+       Evening visits (from 5 PM) account for about half of the drop. */
+    whatChanged: 'Retail attachment fell from 8.8% to 5.7% while visits stayed normal; about half of the drop is evening shifts.',
+    whyItMatters: 'This decline in evening retail sales could cost the salon about $5,354 per month in lost revenue.',
+    impactLabel: '+$5,354/mo',
+    impactMonthly: 5354,
     confidence: 'high',
     confidenceNote: 'Four weeks of persistent signal, also below similar salons.',
     urgency: 'this_week',
