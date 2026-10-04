@@ -25,11 +25,18 @@ const Seg: React.FC<{ from: number; to: number; children: React.ReactNode }> = (
 /* ------------------------------------------------------------- b01 open */
 export const V8Open: React.FC<P> = ({ duration }) => {
   const c = CUE.open;
+  const f = useCurrentFrame();
+  // ONE backdrop for the whole open (pass-5 note: "dashboard flashing janky in
+  // the first 10 seconds, twice" — the page used to show sharp for a frame as
+  // the title faded in, and again as it faded out). It holds blurred and veiled
+  // throughout, then eases to plain paper so the cut to the chain is seamless.
+  const toPaper = interpolate(f, [duration - 18, duration - 2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill>
+      <PageBack src="textures/v5app/today-s0.png" duration={duration} dim={0.8} yFrom={-20} yTo={-90} />
+      <AbsoluteFill style={{ backgroundColor: T.paper, opacity: toPaper }} />
       {c.roll && (
         <Seg from={0} to={c.title}>
-          <PageBack src="textures/v5app/today-s0.png" duration={c.title} dim={0.6} />
           <BRoll src={c.roll.src} rate={c.roll.rate} duration={c.title} />
         </Seg>
       )}
@@ -37,9 +44,9 @@ export const V8Open: React.FC<P> = ({ duration }) => {
         <A1Open
           duration={duration - c.title}
           captions={false}
+          bare
           logoFrom={c.logo}
           logoLine="Built with UVALUX"
-          bgBlur={6}
           tagline={
             <>
               An app a tanning salon owner opens when the salon is quiet.
@@ -115,8 +122,8 @@ export const V8Recovery: React.FC<P> = ({ duration }) => {
     <AbsoluteFill>
       <PageBack src="recovery-full" duration={duration} yFrom={-80} yTo={-140} />
       <Plate src="recovery-summary" width={1700} move="settle" moveFrames={duration}>
-        <Hi x={0.0} y={0.08} w={0.12} h={0.84} from={Math.max(6, c.seven)} to={c.recoverable - 4} />
-        <Hi x={0.14} y={0.08} w={0.2} h={0.84} from={c.recoverable} />
+        <Hi x={0.004} y={0.1} w={0.1} h={0.8} pad={3} from={Math.max(6, c.seven)} to={c.recoverable - 4} />
+        <Hi x={0.145} y={0.1} w={0.16} h={0.8} pad={3} from={c.recoverable} />
       </Plate>
     </AbsoluteFill>
   );

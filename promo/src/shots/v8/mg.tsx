@@ -140,7 +140,7 @@ export const ChainHero: React.FC<{
   const ny = (i: number) => 530 + (i % 2 ? 120 : 0);
   const titleIn = interpolate(f, [4, 22], [0, 1], { ...clamp, easing: E.easeOut });
   const ghostIn = interpolate(f, [10, 30], [0, 1], { ...clamp, easing: E.easeOut });
-  const camZ = interpolate(f, [0, duration], [1, 1.02], { ...clamp, easing: E.camera });
+  const camZ = interpolate(f, [0, duration], [1, 1.07], clamp);
   return (
     <AbsoluteFill style={{ backgroundColor: T.paper }}>
       <AbsoluteFill
@@ -247,8 +247,12 @@ export const ChainHero: React.FC<{
           );
         })}
       </AbsoluteFill>
-      {payoff && <Rising at={payoff.visits} x={640} label="Visits" sub="the same customers, more often" />}
-      {payoff && <Rising at={payoff.spend} x={1280} label="Spend per visit" sub="more every time they come" />}
+      {payoff && (
+        <AbsoluteFill style={{ transform: `scale(${camZ})` }}>
+          <Rising at={payoff.visits} x={640} label="Visits" sub="the same customers, more often" />
+          <Rising at={payoff.spend} x={1280} label="Spend per visit" sub="more every time they come" />
+        </AbsoluteFill>
+      )}
     </AbsoluteFill>
   );
 };

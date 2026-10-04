@@ -50,7 +50,7 @@ import {
 import { T } from './tokens';
 
 const V8Signoff: React.FC<{ duration: number }> = ({ duration }) => (
-  <A13Outro duration={duration} line="It doesn't run your salon. It grows it." />
+  <A13Outro duration={duration} line="It grows salons. It grows UVALUX." />
 );
 
 /** Bed level at an absolute frame: 0.38 in the clear, 0.19 under the voice. */

@@ -102,12 +102,14 @@ export const V8Method: React.FC<P> = ({ duration }) => {
       <Sequence from={c.speakers} durationInFrames={c.resume - c.speakers} layout="none">
         <SpeakerMontage />
       </Sequence>
-      <Sequence from={c.resume} durationInFrames={duration - c.resume} layout="none">
-        {/* continue the same travel from where it stopped */}
-        <Sequence from={-c.speakers} layout="none">
-          <B4Method duration={travel} captions={false} travelFrom={-190} />
+      {duration - c.resume > 0 && (
+        <Sequence from={c.resume} durationInFrames={duration - c.resume} layout="none">
+          {/* continue the same travel from where it stopped */}
+          <Sequence from={-c.speakers} layout="none">
+            <B4Method duration={travel} captions={false} travelFrom={-190} />
+          </Sequence>
         </Sequence>
-      </Sequence>
+      )}
     </AbsoluteFill>
   );
 };

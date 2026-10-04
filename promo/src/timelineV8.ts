@@ -11,7 +11,7 @@
 //
 //   v8-est    — DEV ONLY, estimated from voiceover.txt (no audio). Never ship.
 //   v8-chain  — the chain-order uvaint read (25 beats). The final renders from this.
-import VO from '../public/audio/vo/v8-g/vo-anchors.json';
+import VO from '../public/audio/vo/v8-h/vo-anchors.json';
 import CORPUS from '../public/corpus/v8/clips.json';
 import H3 from './h3-v8.json';
 
@@ -71,6 +71,13 @@ const beforeV = (id: string, q: string, nth = 1) => {
   return Math.round(b.words[i][3] ?? (b.words[i - 1][1] + b.words[i][0]) / 2);
 };
 const startsV = V.beats.map((b, i) => (i === 0 ? 0 : Math.round((end(V.beats[i - 1]) + b.startFrame) / 2)));
+// The recovery screen must be up BEFORE "Seven memberships failed to pay" —
+// the minutes card before it also shows a 7, and a cut in the breath let the
+// two sevens blur together (pass-4 gate). Lead it by half a second.
+{
+  const r = ORDER.indexOf('recovery');
+  startsV[r] = Math.min(startsV[r], V.beats[r].startFrame - 15);
+}
 
 /* ------------------------------------------------- holes in the narration
  * Two places where the narrator stops and the picture talks:
@@ -94,11 +101,19 @@ const MONTAGE_LEAD = 8; // a breath of picture before the first speaker
 const MONTAGE_LEN = MONTAGE_LEAD + MONTAGE.reduce((n, c) => n + c.frames, 0) + 6;
 const MESSAGES_LEN = 246;
 
-const methodB = beat(beatOf('method'));
-const stageI = wordIx(methodB.id, 'stage');
-const gapSpeakers = beforeV(methodB.id, 'about', 1 + methodB.words.slice(0, stageI).filter((w) => norm(w[2]).startsWith('about')).length);
+// Pass 5: the narrator finishes her sentence ("...on a stage about this exact
+// problem.") before the speakers start — the hole sits at the end of the method
+// paragraph, and the bridge line plays after them over the citation.
+const gapSpeakers = startsV[ORDER.indexOf('bridge')];
 const gapMessages = startsV[ORDER.indexOf('actions')];
+// Pass 5: the listen b-roll (the front desk with its sign) holds 4.7s. The
+// narration pauses after "And the front desk listens." for whatever the read
+// does not already give it.
+const LISTEN_ROLL = 140;
+const listenEvery = beforeV(beatOf('listen'), '=every');
+const gapListen = Math.max(0, LISTEN_ROLL - (listenEvery - startsV[ORDER.indexOf('listen')]));
 export const GAPS = [
+  { name: 'listen', at: listenEvery, len: gapListen },
   { name: 'speakers', at: gapSpeakers, len: MONTAGE_LEN },
   { name: 'messages', at: gapMessages, len: MESSAGES_LEN },
 ].sort((x, y) => x.at - y.at);

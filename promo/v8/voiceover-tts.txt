@@ -1,8 +1,8 @@
-Bask is an app a tanning salon owner opens when the place is quiet. It doesn't run your salon. It grows it. Built with Yoova lucks, the people who make the lotions and the beds.
+Bask is an app a tanning salon owner opens when the place is quiet. It doesn't run your salon. It grows it. Built with Yoova lucks, who already supply great services and support to Canada's salons.
 
 Everything in Bask works the same way. Your numbers become an insight. The insight is matched to real coaching. The coaching becomes something you can do in one click. Then it's tracked, and shared with owners like you. So the same customers come back more often, and spend more every time they do.
 
-It starts with your data. Your software already runs the salon, and Bask doesn't replace it. It sits beside it, and quietly syncs what you already have.
+It starts with your data. Your software already runs the salon, and Bask doesn't replace it. It learns from it, and quietly syncs what you already have.
 
 It reads last night's numbers before anyone unlocks the door. Not a dashboard. A short letter, in plain words, about what actually changed.
 
@@ -46,4 +46,4 @@ Low stock becomes a draft order. Lamp hours become a relamping budget. Busy beds
 
 And that same knowledge answers questions. For owners today, and one day for their customers.
 
-That's Bask. It doesn't run your salon. It grows it.
+That's Bask. It grows salons. And it grows Yoova lucks.

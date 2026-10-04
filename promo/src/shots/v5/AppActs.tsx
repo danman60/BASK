@@ -35,8 +35,8 @@ type ShotProps = { duration: number; captions?: boolean };
  * never heard of Bask has to understand it from this one line.
  */
 export const A1Open: React.FC<
-  ShotProps & { tagline?: React.ReactNode; logoFrom?: number; logoLine?: string; bgBlur?: number }
-> = ({ duration, captions = true, tagline, logoFrom = 30, logoLine, bgBlur = 0 }) => {
+  ShotProps & { tagline?: React.ReactNode; logoFrom?: number; logoLine?: string; bgBlur?: number; bare?: boolean }
+> = ({ duration, captions = true, tagline, logoFrom = 30, logoLine, bgBlur = 0, bare = false }) => {
   const f = useCurrentFrame();
   const titleIn = interpolate(f, [8, 26], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: E.easeOut });
   const titleOut = interpolate(f, [duration - 24, duration - 8], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
@@ -46,11 +46,17 @@ export const A1Open: React.FC<
   return (
     <AbsoluteFill>
       {/* bgBlur (v8): the page behind still carries pre-fix figures; blur makes it texture, not text */}
-      <AbsoluteFill style={bgBlur ? { filter: `blur(${bgBlur}px)`, transform: 'scale(1.02)' } : undefined}>
-        <AppScroll page="today" from={0} to={120} duration={duration} zoom={1.2} zoomTo={1.26} ease={ease.push} />
-      </AbsoluteFill>
-      <Focus opacity={0.62 * titleIn * titleOut} />
-      <AbsoluteFill style={{ backgroundColor: T.paper, opacity: 0.82 * titleIn * titleOut }} />
+      {/* bare (v8): the caller owns one continuous backdrop for the whole open,
+          so the page never pops in or out behind the title */}
+      {!bare && (
+        <>
+          <AbsoluteFill style={bgBlur ? { filter: `blur(${bgBlur}px)`, transform: 'scale(1.02)' } : undefined}>
+            <AppScroll page="today" from={0} to={120} duration={duration} zoom={1.2} zoomTo={1.26} ease={ease.push} />
+          </AbsoluteFill>
+          <Focus opacity={0.62 * titleIn * titleOut} />
+          <AbsoluteFill style={{ backgroundColor: T.paper, opacity: 0.82 * titleIn * titleOut }} />
+        </>
+      )}
       <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', opacity: titleIn * titleOut }}>
         <div style={{ textAlign: 'center', transform: `translateY(${(1 - titleIn) * 14}px)` }}>
           <div style={{ fontFamily: DISPLAY, fontStyle: 'italic', fontSize: 150, fontWeight: 600, color: T.ink, lineHeight: 1 }}>
