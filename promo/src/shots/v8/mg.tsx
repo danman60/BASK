@@ -122,12 +122,15 @@ const pulseAmp = (frame: number, at: number) => {
  * is visible before it is explained, then lit one by one on the word that
  * names each — the line arriving exactly as the word lands.
  */
-export const ChainHero: React.FC<{ labels: readonly string[]; nodes: number[]; duration: number }> = ({
-  labels,
-  nodes,
-  duration,
-}) => {
+export const ChainHero: React.FC<{
+  labels: readonly string[];
+  nodes: number[];
+  duration: number;
+  /** the growth payoff: the chain lifts away and two rising lines draw on */
+  payoff?: { at: number; visits: number; spend: number };
+}> = ({ labels, nodes, duration, payoff }) => {
   const f = useCurrentFrame();
+  const lift = payoff ? interpolate(f, [payoff.at, payoff.at + 20], [0, 1], { ...clamp, easing: E.camera }) : 0;
   const W = 222;
   const H = 152;
   const GAP = 56;
@@ -140,7 +143,12 @@ export const ChainHero: React.FC<{ labels: readonly string[]; nodes: number[]; d
   const camZ = interpolate(f, [0, duration], [1, 1.02], { ...clamp, easing: E.camera });
   return (
     <AbsoluteFill style={{ backgroundColor: T.paper }}>
-      <AbsoluteFill style={{ transform: `scale(${camZ})` }}>
+      <AbsoluteFill
+        style={{
+          transform: `translateY(${-250 * lift}px) scale(${camZ * (1 - 0.18 * lift)})`,
+          opacity: 1 - 0.35 * lift,
+        }}
+      >
         <div
           style={{
             position: 'absolute',
@@ -239,10 +247,48 @@ export const ChainHero: React.FC<{ labels: readonly string[]; nodes: number[]; d
           );
         })}
       </AbsoluteFill>
+      {payoff && <Rising at={payoff.visits} x={640} label="Visits" sub="the same customers, more often" />}
+      {payoff && <Rising at={payoff.spend} x={1280} label="Spend per visit" sub="more every time they come" />}
     </AbsoluteFill>
   );
 };
 
+/** One rising line with its label — labels and arrows only, no invented numbers. */
+const Rising: React.FC<{ at: number; x: number; label: string; sub: string }> = ({ at, x, label, sub }) => {
+  const f = useCurrentFrame();
+  const inT = interpolate(f, [at - 6, at + 8], [0, 1], { ...clamp, easing: E.easeOut });
+  const draw = interpolate(f, [at, at + 26], [0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
+  if (f < at - 6) return null;
+  const x0 = x - 210;
+  const x1 = x + 210;
+  const y0 = 930;
+  const y1 = 690;
+  const d = `M ${x0} ${y0} C ${x0 + 140} ${y0 - 10}, ${x1 - 170} ${y1 + 90}, ${x1} ${y1}`;
+  const len = 560;
+  const head = draw > 0.98;
+  return (
+    <>
+      <div style={{ position: 'absolute', left: x0, top: 600, opacity: inT, transform: `translateY(${(1 - inT) * 10}px)` }}>
+        <div style={{ fontFamily: DISPLAY, fontSize: 46, fontWeight: 500, color: T.ink, lineHeight: 1 }}>{label}</div>
+        <div style={{ fontFamily: BODY, fontSize: 22, color: T.inkFaint, marginTop: 8 }}>{sub}</div>
+      </div>
+      <svg width={1920} height={1080} style={{ position: 'absolute', inset: 0 }}>
+        <line x1={x0} y1={y0 + 14} x2={x1 + 20} y2={y0 + 14} stroke={T.line} strokeWidth={2} opacity={inT} />
+        <path d={d} fill="none" stroke={T.primary} strokeWidth={6} strokeLinecap="round" strokeDasharray={`${len * draw} ${len + 40}`} />
+        {head && (
+          <path
+            d={`M ${x1 - 26} ${y1 + 2} L ${x1 + 4} ${y1 - 4} L ${x1 - 10} ${y1 + 24}`}
+            fill="none"
+            stroke={T.primary}
+            strokeWidth={6}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        )}
+      </svg>
+    </>
+  );
+};
 /* ---------------------------------------------------------------- DataFlow */
 const RECORDS = ['Visits', 'Memberships', 'Product sales', 'Bookings'];
 export const DataFlow: React.FC<{ duration: number }> = ({ duration }) => {

@@ -11,7 +11,7 @@
 //
 //   v8-est    — DEV ONLY, estimated from voiceover.txt (no audio). Never ship.
 //   v8-chain  — the chain-order uvaint read (25 beats). The final renders from this.
-import VO from '../public/audio/vo/v8-f2/vo-anchors.json';
+import VO from '../public/audio/vo/v8-g/vo-anchors.json';
 import CORPUS from '../public/corpus/v8/clips.json';
 import H3 from './h3-v8.json';
 
@@ -27,10 +27,11 @@ export const VO_BEATS = V.beats;
 
 /* ------------------------------------------------------------ the shot list */
 // Pass 3 (2026-10-03): the consent paragraph and its shot are gone — Community
-// goes straight to the flip. One paragraph per shot, 24 of each.
+// goes straight to the flip. Pass 4: `bridge` ("Bask finds the line that fits
+// your problem...") follows the speakers. One paragraph per shot, 25 of each.
 export const ORDER = [
   'open', 'chain', 'sync', 'read', 'chart', 'health', 'recovery', 'listen', 'team', 'method',
-  'bottle', 'flag', 'action', 'actions', 'measured', 'opens', 'community', 'flip',
+  'bridge', 'bottle', 'flag', 'action', 'actions', 'measured', 'opens', 'community', 'flip',
   'network', 'calls', 'knowledge', 'supply', 'ask', 'signoff',
 ] as const;
 export type ShotV8 = (typeof ORDER)[number];
@@ -166,7 +167,7 @@ const repRoll = bslot('rep', L('calls', before(b('calls'), 'They')));
 const ownerRoll = bslot('owner-review', L('measured', before(b('measured'), 'Not')));
 
 export const CUE = {
-  open: { roll: openRoll, title: openRoll ? openRoll.frames : 0 },
+  open: { roll: openRoll, title: openRoll ? openRoll.frames : 0, logo: L('open', at(b('open'), 'Built')) - (openRoll ? openRoll.frames : 0) },
   chain: {
     // one node per link, lit on the word that names it
     nodes: [
@@ -177,6 +178,10 @@ export const CUE = {
       L('chain', at(b('chain'), 'tracked')),
       L('chain', at(b('chain'), 'shared')),
     ],
+    // the growth payoff: "So the same customers come back more often, and spend more..."
+    payoff: L('chain', before(b('chain'), '=so')),
+    visits: L('chain', at(b('chain'), 'often')),
+    spend: L('chain', at(b('chain'), 'spend')),
   },
   sync: { card: L('sync', before(b('sync'), '=and', 2)) },
   chart: { cut: L('chart', before(b('chart'), 'Traffic')) },
@@ -258,6 +263,7 @@ export const CHAPTER: Partial<Record<ShotV8, { side: 'salon' | 'uvalux'; link: n
   listen: { side: 'salon', link: 1 },
   team: { side: 'salon', link: 1 },
   method: { side: 'salon', link: 2 },
+  bridge: { side: 'salon', link: 2 },
   bottle: { side: 'salon', link: 2 },
   flag: { side: 'salon', link: 2 },
   action: { side: 'salon', link: 3 },

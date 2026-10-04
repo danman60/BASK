@@ -25,6 +25,12 @@ export interface ShotProps {
   /** v8 re-time: the internal cut, re-pinned to the new read's own breath.
    *  Omitted → the v7 value, so v6/v7 render exactly as before. */
   cut?: number;
+  /** v8: the citation travel's start/end offsets (v7 values when omitted) */
+  travelFrom?: number;
+  travelTo?: number;
+  /** v8: after the chart's cut, keep the chart and add the money figure
+   *  instead of the insight plate (whose stored sentence still reads 9%→6%) */
+  money?: { value: string; label: string };
 }
 
 const ease = {
@@ -94,14 +100,28 @@ export const B2Read: React.FC<ShotProps> = ({ duration, captions = true }) => (
  * The series is the real one the product shows: attachment easing from 8.8% to
  * 5.7% over a fortnight.
  */
-export const B3Chart: React.FC<ShotProps> = ({ duration, captions = true, cut }) => {
+export const B3Chart: React.FC<ShotProps> = ({ duration, captions = true, cut, money }) => {
   const f = useCurrentFrame();
   // Pinned to the silence at 24.3s in the read ("Traffic never moved"), not
   // scaled from v6's 200. See docs/pitch/2026-09-02-v7-beatmap.md.
   const CUT = cut ?? 196;
   return (
     <AbsoluteFill>
-      {f < CUT ? (
+      {money ? (
+        <>
+          <Backdrop page="today" from={120} to={190} duration={duration} dim={0.88} />
+          <ChartPlate
+            series={[8.8, 8.7, 8.4, 8.1, 7.6, 7.2, 6.8, 6.3, 6.0, 5.7]}
+            label="Lotion per visit"
+            fromLabel="the 28 days before"
+            toLabel="the last 14 days"
+            fromValue="8.8%"
+            toValue="5.7%"
+            accent
+          />
+          <Figure value={money.value} label={money.label} x={1250} y={250} from={CUT + 6} />
+        </>
+      ) : f < CUT ? (
         <>
           <Backdrop page="today" from={120} to={190} duration={duration} dim={0.88} />
           <ChartPlate
@@ -146,7 +166,7 @@ export const B3Chart: React.FC<ShotProps> = ({ duration, captions = true, cut })
  * production: three retrieved claims with one open to the words somebody said
  * on a stage.
  */
-export const B4Method: React.FC<ShotProps> = ({ duration, captions = true }) => (
+export const B4Method: React.FC<ShotProps> = ({ duration, captions = true, travelFrom = 30, travelTo = -1105 }) => (
   <AbsoluteFill>
     <Backdrop page="today" from={300} to={420} duration={duration} dim={0.8} />
     {/* TRAVEL, not push. This is the longest beat in the film (20.6s) and
@@ -161,8 +181,8 @@ export const B4Method: React.FC<ShotProps> = ({ duration, captions = true }) => 
       move="travel"
       moveFrames={duration}
       travelWidth={1180}
-      travelFrom={30}
-      travelTo={-1105}
+      travelFrom={travelFrom}
+      travelTo={travelTo}
     />
     {captions && (
       <BaskCaption

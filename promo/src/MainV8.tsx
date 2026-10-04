@@ -12,7 +12,7 @@ import { AbsoluteFill, Audio, interpolate, Sequence, staticFile } from 'remotion
 
 import { A11Network, A12bKnowledge, A13Outro } from './shots/v5/AppActs';
 import { B2Read, B3Chart, B6Community, B8Opens } from './shots/v6/Acts6';
-import { V8Action, V8Method } from './shots/v8/Acts8b';
+import { V8Action, V8Bridge, V8Method } from './shots/v8/Acts8b';
 import {
   V8Actions,
   V8Ask,
@@ -66,18 +66,22 @@ const bed = (abs: number) => {
   return (BED_CLEAR - (BED_CLEAR - BED_DUCK) * d) * edge;
 };
 
-type Comp = React.FC<{ duration: number; captions?: boolean; cut?: number }>;
-const SHOT: Record<ShotV8, { C: Comp; cut?: number }> = {
+type Comp = React.FC<{ duration: number; captions?: boolean; cut?: number; money?: { value: string; label: string } }>;
+const SHOT: Record<ShotV8, { C: Comp; cut?: number; money?: { value: string; label: string } }> = {
   open: { C: V8Open },
   chain: { C: V8Chain },
   sync: { C: V8Sync },
   read: { C: B2Read },
-  chart: { C: B3Chart, cut: CUE.chart.cut },
+  // After "Traffic never moved": the chart stays and the app's money figure
+  // lands beside it. The insight plate is not used — its stored sentence still
+  // reads "9% to 6%" until a demo reset (not approved).
+  chart: { C: B3Chart, cut: CUE.chart.cut, money: { value: '≈ $5,354/mo', label: 'if the gap holds' } },
   health: { C: V8Health },
   recovery: { C: V8Recovery },
   listen: { C: V8Listen },
   team: { C: V8Team },
   method: { C: V8Method },
+  bridge: { C: V8Bridge },
   bottle: { C: V8Bottle },
   flag: { C: V8Flag },
   action: { C: V8Action },
@@ -137,10 +141,10 @@ export const MainV8: React.FC<{ bgm?: boolean }> = ({ bgm = true }) => {
       ))}
 
       {ORDER.map((k) => {
-        const { C, cut } = SHOT[k];
+        const { C, cut, money } = SHOT[k];
         return (
           <Sequence key={k} from={S[k].from} durationInFrames={S[k].duration} name={`${S[k].beat} ${k}`}>
-            <C duration={S[k].duration} captions={false} cut={cut} />
+            <C duration={S[k].duration} captions={false} cut={cut} money={money} />
           </Sequence>
         );
       })}

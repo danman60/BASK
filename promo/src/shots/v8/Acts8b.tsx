@@ -86,13 +86,18 @@ export const SpeakerMontage: React.FC = () => {
   );
 };
 
+/** "Bask finds the line that fits your problem" — held on the quote it found. */
+export const V8Bridge: React.FC<P> = ({ duration }) => (
+  <B4Method duration={duration} captions={false} travelFrom={-1060} travelTo={-1105} />
+);
+
 export const V8Method: React.FC<P> = ({ duration }) => {
   const c = CUE.method;
   const travel = c.speakers + (duration - c.resume); // the citation page's own time
   return (
     <AbsoluteFill>
       <Sequence from={0} durationInFrames={c.speakers} layout="none">
-        <B4Method duration={travel} captions={false} />
+        <B4Method duration={travel} captions={false} travelFrom={-190} />
       </Sequence>
       <Sequence from={c.speakers} durationInFrames={c.resume - c.speakers} layout="none">
         <SpeakerMontage />
@@ -100,7 +105,7 @@ export const V8Method: React.FC<P> = ({ duration }) => {
       <Sequence from={c.resume} durationInFrames={duration - c.resume} layout="none">
         {/* continue the same travel from where it stopped */}
         <Sequence from={-c.speakers} layout="none">
-          <B4Method duration={travel} captions={false} />
+          <B4Method duration={travel} captions={false} travelFrom={-190} />
         </Sequence>
       </Sequence>
     </AbsoluteFill>
@@ -120,8 +125,12 @@ const ViewportCam: React.FC<{
   s0: number;
   s1: number;
   frames: number;
+  /** CSS-px box kept sharp; the rest of the capture is blurred (stale figures behind the sheet) */
+  focus?: Bx;
+  /** blur the whole capture */
+  blurAll?: number;
   children?: React.ReactNode;
-}> = ({ src, cx, cy, s0, s1, frames, children }) => {
+}> = ({ src, cx, cy, s0, s1, frames, focus, blurAll, children }) => {
   const f = useCurrentFrame();
   const s = interpolate(f, [0, frames], [s0, s1], { ...clamp, easing: E.camera });
   const o = interpolate(f, [0, 8], [0, 1], clamp);
@@ -139,7 +148,15 @@ const ViewportCam: React.FC<{
           opacity: o,
         }}
       >
-        <Img src={tex(src)} style={{ position: 'absolute', left: 0, top: 0, width: 1600, height: 1000 }} />
+        <Img
+          src={tex(src)}
+          style={{ position: 'absolute', left: 0, top: 0, width: 1600, height: 1000, filter: blurAll || focus ? `blur(${blurAll ?? 5}px)` : undefined }}
+        />
+        {focus && (
+          <div style={{ position: 'absolute', left: focus.x, top: focus.y, width: focus.w, height: focus.h, overflow: 'hidden' }}>
+            <Img src={tex(src)} style={{ position: 'absolute', left: -focus.x, top: -focus.y, width: 1600, height: 1000 }} />
+          </div>
+        )}
         {children}
       </div>
     </AbsoluteFill>
@@ -231,24 +248,24 @@ export const V8Action: React.FC<P> = ({ duration }) => {
   return (
     <AbsoluteFill>
       <Sequence from={0} durationInFrames={c.toast} layout="none">
-        <ViewportCam src="todaySms-full" cx={800} cy={505} s0={1.62} s1={1.78} frames={c.toast}>
+        <ViewportCam src="todaySms-full" cx={800} cy={505} s0={1.62} s1={1.78} frames={c.toast} focus={{ x: 578, y: 216, w: 444, h: 537 }}>
           <Press x={605} y={421} w={238} h={31} at={c.press} />
         </ViewportCam>
       </Sequence>
       <Sequence from={c.toast} durationInFrames={m - c.toast} layout="none">
         {/* framed so the page's own (small) toast sits below the frame edge —
             only the magnified one below is seen */}
-        <ViewportCam src="todaySmsDone-full" cx={800} cy={400} s0={1.16} s1={1.19} frames={m - c.toast} />
+        <ViewportCam src="todaySmsDone-full" cx={800} cy={400} s0={1.16} s1={1.19} frames={m - c.toast} blurAll={7} />
         <AbsoluteFill style={{ backgroundColor: T.paper, opacity: 0.45 }} />
         <ToastRise />
       </Sequence>
       <Sequence from={E1} durationInFrames={E2 - E1} layout="none">
-        <ViewportCam src="todayEmail-full" cx={800} cy={500} s0={1.72} s1={1.8} frames={E2 - E1}>
+        <ViewportCam src="todayEmail-full" cx={800} cy={500} s0={1.72} s1={1.8} frames={E2 - E1} focus={{ x: 578, y: 252, w: 444, h: 465 }}>
           <PxRing x={775} y={409} w={170} h={35} from={22} />
         </ViewportCam>
       </Sequence>
       <Sequence from={E2} durationInFrames={E3 - E2} layout="none">
-        <ViewportCam src="todaySocialIg-full" cx={800} cy={498} s0={1.1} s1={1.16} frames={E3 - E2} />
+        <ViewportCam src="todaySocialIg-full" cx={800} cy={498} s0={1.1} s1={1.16} frames={E3 - E2} focus={{ x: 578, y: 40, w: 444, h: 902 }} />
       </Sequence>
       <Sequence from={E3} durationInFrames={duration - E3} layout="none">
         <ViewportCam src={phone[tab]} cx={800} cy={590} s0={1.6} s1={1.66} frames={duration - E3} />

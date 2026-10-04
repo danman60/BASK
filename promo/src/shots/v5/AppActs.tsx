@@ -34,16 +34,21 @@ type ShotProps = { duration: number; captions?: boolean };
  * What it is, said plainly, over the app itself. No jargon: someone who has
  * never heard of Bask has to understand it from this one line.
  */
-export const A1Open: React.FC<ShotProps & { tagline?: React.ReactNode }> = ({ duration, captions = true, tagline }) => {
+export const A1Open: React.FC<
+  ShotProps & { tagline?: React.ReactNode; logoFrom?: number; logoLine?: string; bgBlur?: number }
+> = ({ duration, captions = true, tagline, logoFrom = 30, logoLine, bgBlur = 0 }) => {
   const f = useCurrentFrame();
   const titleIn = interpolate(f, [8, 26], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: E.easeOut });
   const titleOut = interpolate(f, [duration - 24, duration - 8], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   // The lockup arrives after the line, so the open reads Bask → what it is →
   // whose network it runs on. Same order as the sign-off.
-  const logoIn = interpolate(f, [30, 50], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: E.easeOut });
+  const logoIn = interpolate(f, [logoFrom, logoFrom + 20], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: E.easeOut });
   return (
     <AbsoluteFill>
-      <AppScroll page="today" from={0} to={120} duration={duration} zoom={1.2} zoomTo={1.26} ease={ease.push} />
+      {/* bgBlur (v8): the page behind still carries pre-fix figures; blur makes it texture, not text */}
+      <AbsoluteFill style={bgBlur ? { filter: `blur(${bgBlur}px)`, transform: 'scale(1.02)' } : undefined}>
+        <AppScroll page="today" from={0} to={120} duration={duration} zoom={1.2} zoomTo={1.26} ease={ease.push} />
+      </AbsoluteFill>
       <Focus opacity={0.62 * titleIn * titleOut} />
       <AbsoluteFill style={{ backgroundColor: T.paper, opacity: 0.82 * titleIn * titleOut }} />
       <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', opacity: titleIn * titleOut }}>
@@ -51,7 +56,7 @@ export const A1Open: React.FC<ShotProps & { tagline?: React.ReactNode }> = ({ du
           <div style={{ fontFamily: DISPLAY, fontStyle: 'italic', fontSize: 150, fontWeight: 600, color: T.ink, lineHeight: 1 }}>
             Bask
           </div>
-          <div style={{ fontFamily: BODY, fontSize: 44, color: T.inkSoft, marginTop: 26, maxWidth: 1180 }}>
+          <div style={{ fontFamily: BODY, fontSize: 44, color: T.inkSoft, marginTop: 26, maxWidth: tagline ? 1500 : 1180 }}>
             {/* v8 passes its own line ("It doesn't run your salon. It grows it."); omitted → v5/v6/v7 unchanged */}
             {tagline ?? 'An app a salon owner opens when the salon is quiet — to make it less quiet.'}
           </div>
@@ -62,10 +67,15 @@ export const A1Open: React.FC<ShotProps & { tagline?: React.ReactNode }> = ({ du
               it would paint the mark white on white and it would vanish. The
               two lockups are treated differently ON PURPOSE; if either shot is
               ever re-lit, re-check its background before copying the other. */}
-          <div style={{ marginTop: 46, display: 'flex', justifyContent: 'center', opacity: logoIn * 0.6 }}>
+          <div style={{ marginTop: 46, display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: logoIn * (logoLine ? 0.9 : 0.6) }}>
+            {logoLine && (
+              <div style={{ fontFamily: BODY, fontSize: 22, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: T.inkFaint, marginBottom: 14 }}>
+                {logoLine}
+              </div>
+            )}
             <Img
               src={staticFile('brand/uvalux-logo-4x.png')}
-              style={{ width: 250, height: 'auto', transform: `translateY(${(1 - logoIn) * 8}px)` }}
+              style={{ width: logoLine ? 300 : 250, height: 'auto', transform: `translateY(${(1 - logoIn) * 8}px)` }}
             />
           </div>
         </div>

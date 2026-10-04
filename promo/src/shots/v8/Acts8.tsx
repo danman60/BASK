@@ -37,9 +37,12 @@ export const V8Open: React.FC<P> = ({ duration }) => {
         <A1Open
           duration={duration - c.title}
           captions={false}
+          logoFrom={c.logo}
+          logoLine="Built with UVALUX"
+          bgBlur={6}
           tagline={
             <>
-              An app a salon owner opens when the salon is quiet.
+              An app a tanning salon owner opens when the salon is quiet.
               <br />
               It doesn&apos;t run your salon. It grows it.
             </>
@@ -52,7 +55,12 @@ export const V8Open: React.FC<P> = ({ duration }) => {
 
 /* ----------------------------------------------------- b02 the chain (spine) */
 export const V8Chain: React.FC<P> = ({ duration }) => (
-  <ChainHero labels={SALON_CHAIN} nodes={CUE.chain.nodes} duration={duration} />
+  <ChainHero
+    labels={SALON_CHAIN}
+    nodes={CUE.chain.nodes}
+    duration={duration}
+    payoff={{ at: CUE.chain.payoff, visits: CUE.chain.visits, spend: CUE.chain.spend }}
+  />
 );
 
 /* ------------------------------------------------------------- b03 sync */
