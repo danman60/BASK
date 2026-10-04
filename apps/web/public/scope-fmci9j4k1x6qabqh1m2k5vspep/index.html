@@ -108,6 +108,40 @@ table.sched .r{text-align:right}
 .rolled{font-size:11px;color:var(--amber);display:block}
 .note{font-size:12.5px;color:var(--ink2);line-height:1.5}
 
+/* cash + share */
+.dealpanel{padding:20px 22px}
+.buildline{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.buildline b{font-size:28px}
+.buildline .n{font-size:12.5px;color:var(--faint)}
+.split{display:flex;height:44px;border-radius:12px;overflow:hidden;margin:16px 0 8px;border:1px solid var(--line)}
+.split .sa{background:var(--primary);color:#fff;display:flex;align-items:center;padding:0 12px;font-weight:700;min-width:52px;transition:width .15s}
+.split .sb{flex:1;background:var(--paper2);color:var(--ink);display:flex;align-items:center;justify-content:flex-end;padding:0 12px;font-weight:700;min-width:52px}
+.splitlab{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--faint);font-weight:600}
+.splitlab .a{color:var(--primary-deep)}.splitlab .b{color:var(--ink)}
+.dealpanel input[type=range]{width:100%;accent-color:var(--primary);height:36px;margin:12px 0 2px;cursor:pointer}
+.scale{display:flex;justify-content:space-between;gap:16px;font-size:12px;color:var(--ink2);line-height:1.4}
+.scale span:last-child{text-align:right}
+.presets{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.presets button{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;min-height:40px;color:var(--ink2)}
+.presets button.on{background:var(--wash);border-color:var(--primary);color:var(--primary-deep)}
+.sides{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+.side{padding:18px}
+.side .who{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:20px;margin-bottom:4px}
+.cmprow{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);gap:10px;font-size:13.5px}
+.cmprow span{color:var(--ink2)}.cmprow b{font-size:16px;white-space:nowrap}
+.cmprow:last-child{border-bottom:0}
+.stepup{padding:18px;margin-top:14px}
+.steprow{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin-top:10px}
+.steprow span{display:block;font-size:12.5px;color:var(--ink2)}
+.bigp{font-family:Fraunces,Georgia,serif;font-size:30px;font-weight:500;display:block;margin-top:4px}
+.steprow em{font-style:normal;font-size:12px;color:var(--faint)}
+.steprow .arrow{font-size:22px;color:var(--faint)}
+.steprow .stepex{grid-column:1/-1;font-size:13px;color:var(--ink2);background:var(--paper2);border-radius:10px;padding:10px 12px;line-height:1.5}
+.p1only{padding:16px 18px;border-radius:12px;background:var(--amberwash);color:var(--ink);font-size:14px;line-height:1.55;margin-top:14px}
+.cmp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+.cmp .panel{padding:16px}
+.cmp p{font-size:13px;color:var(--ink2);line-height:1.5;margin-top:6px}
+
 /* landed */
 .lgroup{padding:16px 18px;margin-bottom:14px}
 .lgroup h3{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:20px}
@@ -175,7 +209,9 @@ table.sched .r{text-align:right}
 
 @media (max-width:980px){
   .boardwrap{grid-template-columns:1fr}
-  .cols,.phasegrid,.links,.loop,.two,.ex{grid-template-columns:1fr}
+  .cols,.phasegrid,.links,.loop,.two,.ex,.sides,.cmp{grid-template-columns:1fr}
+  .steprow{grid-template-columns:1fr}
+  .steprow .arrow{display:none}
   .summ{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pagehead h1{font-size:27px}
   .paper{padding:28px 20px}
@@ -211,6 +247,7 @@ table.sched .r{text-align:right}
     <nav aria-label="Sections">
       <button class="navbtn active" data-view="board">Scope board</button>
       <button class="navbtn" data-view="price">Price + phases</button>
+      <button class="navbtn" data-view="deal">Cash + share</button>
       <button class="navbtn" data-view="landed">Where we landed</button>
       <button class="navbtn" data-view="letter">Letter</button>
       <button class="navbtn" data-view="system">System</button>
@@ -225,7 +262,7 @@ table.sched .r{text-align:right}
       <div class="screen">
         <div class="pagehead">
           <div><div class="eyebrow">Bask for UVALUX · the build</div><h1 class="disp">Three phases. <em>Stop after any one.</em></h1></div>
-          <p>Drag any item to the phase it belongs in, or to "Later" if it can wait. Items under "To place" are ideas from the meetings with Nik still to be placed and priced. Untick a phase to stop before it; the price follows. Committing to more than one phase prices each phase lower.</p>
+          <p>Drag any item to the phase it belongs in, or to "Later" if it can wait. Items under "To place" are ideas from the meetings with Nik still to be placed and priced. Untick a phase to stop before it; the price follows. Phase 1 is C$25,000 in every case, as in the Phase 1 letter. Commit to Phase 2 or 3 now and each is priced lower.</p>
         </div>
         <div class="boardwrap">
           <div class="leftstack"><section class="col" data-col="place" id="col-place"></section><section class="col" data-col="tray" id="col-tray"></section></div>
@@ -235,6 +272,7 @@ table.sched .r{text-align:right}
           <div class="tot"><span class="k">Phases in</span><span class="v" id="bPhases"></span><span class="n" id="bPhasesN"></span></div>
           <div class="tot"><span class="k">Build price</span><span class="v" id="bPrice"></span><span class="n" id="bPriceN"></span></div>
           <div class="tot hide-s"><span class="k">Saved by committing</span><span class="v" id="bSave" style="color:var(--green)"></span><span class="n">against phase-by-phase prices</span></div>
+          <div class="tot"><span class="k">Cash now</span><span class="v" id="bCash"></span><span class="n" id="bCashN"></span></div>
           <div class="btns"><button class="hbtn" id="undoBtn" disabled>Undo</button><button class="hbtn" id="resetBtn">Reset</button></div>
         </div>
       </div>
@@ -244,21 +282,74 @@ table.sched .r{text-align:right}
     <section class="view" id="view-price">
       <div class="screen">
         <div class="pagehead">
-          <div><div class="eyebrow">Price + phases</div><h1 class="disp">One price for all three. <em>Less per phase</em> the further you commit.</h1></div>
-          <p>Each phase has a phase-by-phase price and a committed price. Commit to two or more phases up front and each one is charged at its committed price. Stop after any phase gate and later phases are not owed.</p>
+          <div><div class="eyebrow">Price + phases</div><h1 class="disp">Phase 1 as agreed. <em>Less per phase</em> for committing to the rest.</h1></div>
+          <p>Phase 1 is C$25,000 + HST whatever is chosen, as the Phase 1 letter says. Phases 2 and 3 each have a phase-by-phase price and a lower committed price. Commit to them now and each is charged at its committed price. Stop after any phase gate and later phases are not owed.</p>
         </div>
         <div class="phasegrid" id="phaseCards"></div>
         <div class="summ">
           <div class="panel"><div class="k">Build price</div><span class="v" id="sPrice"></span><span class="n" id="sPriceHst"></span></div>
           <div class="panel"><div class="k">Phase by phase</div><span class="v" id="sStd" style="color:var(--faint)"></span><span class="n">if each phase were bought on its own</span></div>
           <div class="panel"><div class="k">Saved</div><span class="v" id="sSave" style="color:var(--green)"></span><span class="n" id="sSaveN"></span></div>
-          <div class="panel"><div class="k">Last payment</div><span class="v" id="sLast" style="font-size:20px"></span><span class="n">business days only</span></div>
+          <div class="panel"><div class="k">Cash now</div><span class="v" id="sCash"></span><span class="n" id="sCashN"></span></div>
         </div>
+        <p class="note" id="pricingNote" style="margin-top:12px;max-width:none"></p>
         <div class="panel" style="padding:18px;margin-top:14px;overflow-x:auto">
-          <div class="k">Payment schedule <span class="proposed">Proposed</span></div><p class="note" style="margin:6px 0 10px;max-width:none">Each phase is paid 40% at its start, 40% at its working version and 20% at its gate, the same split as the Phase 1 letter (C$10,000 / C$10,000 / C$5,000). Any date on a weekend or a statutory holiday moves to the next business day.</p>
+          <div style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:baseline"><div class="k">Payment schedule</div><div class="src">Last payment <b id="sLast" style="color:var(--ink)"></b>, business days only</div></div>
+          <p class="note" style="margin:6px 0 10px;max-width:none">Phase 1 is paid C$10,000 / C$10,000 / C$5,000 exactly as in the Phase 1 letter. Phases 2 and 3 are paid 40% at their start, 40% at their working version and 20% at their gate <span class="proposed">Proposed</span>, out of the cash set on the Cash + share tab. Phase 1 ending December 1, 2026 and Phase 2 running to February 1, 2027 are from the Phase 1 letter; the working-version dates and all of Phase 3's dates are <span class="proposed">Proposed</span>. Any date on a weekend or a statutory holiday moves to the next business day.</p>
           <table class="sched"><thead><tr><th>Milestone</th><th>Date</th><th>What it is paid on</th><th class="r">Amount</th><th class="r">With HST</th><th class="r">To date</th></tr></thead><tbody id="schedRows"></tbody></table>
         </div>
-        <p class="src" style="margin-top:12px">Sources: Phase 1 at C$25,000 + HST and its 12 weeks are from the Phase 1 proposal (August 2026); Phase 2 running to about nine weeks is from the Phase 1 letter (Phase 1 to Dec 1, Phase 2 to Feb 1). The other phase prices, the committed prices, Phase 3's length and the payment split are proposed for discussion, marked "Proposed".</p>
+        <p class="src" style="margin-top:12px">Sources: Phase 1 at C$25,000 + HST, its three payments, its December 1, 2026 end and Phase 2 running to February 1, 2027 are from the Phase 1 letter agreement (September 4, 2026). $75,000 for all three phases committed is Daniel's build total. Phase 2 and 3 prices, Phase 3's length, the working-version dates and the Phase 2 and 3 payment split are proposed for discussion, marked "Proposed".</p>
+      </div>
+    </section>
+
+    <!-- CASH + SHARE -->
+    <section class="view" id="view-deal">
+      <div class="screen">
+        <div class="pagehead">
+          <div><div class="eyebrow">Cash + share</div><h1 class="disp">One build price. <em>Two sides. One slider.</em></h1></div>
+          <p>The build price never changes. The slider only moves how much is paid in cash now against how the future licensing upside is shared. Phase 1 is always paid in cash, as the Phase 1 letter says.</p>
+        </div>
+        <div class="panel dealpanel">
+          <div class="buildline"><span class="k">Build price</span><b id="dBuild"></b><span class="n" id="dBuildN"></span></div>
+          <div id="dealOpen">
+            <div class="split" aria-hidden="true"><div class="sa" id="barA"><span id="barAt"></span></div><div class="sb"><span id="barBt"></span></div></div>
+            <div class="splitlab"><span class="a">UVALUX</span><span>Commercial share of future licensing</span><span class="b">Stream Stage</span></div>
+            <input type="range" id="shareRange" min="5" max="95" step="1" value="50" aria-label="UVALUX commercial share">
+            <div class="scale"><span>Less cash now, Stream Stage holds more of the upside</span><span>More cash now, UVALUX holds more of the upside</span></div>
+            <div class="presets"><button data-p="min">Minimum cash</button><button data-p="shared">Even split</button><button data-p="full">Full cash</button></div>
+          </div>
+          <div class="p1only" id="dealP1"></div>
+        </div>
+        <div id="dealBody">
+          <div class="sides">
+            <div class="panel side"><div class="who">UVALUX</div>
+              <div class="cmprow"><span>Pays in cash, over the schedule</span><b id="dCash"></b></div>
+              <div class="cmprow"><span>Of which Phase 1, as in the Phase 1 letter</span><b id="dCashP1"></b></div>
+              <div class="cmprow"><span>Commercial share</span><b id="dShare"></b></div>
+              <div class="cmprow"><span>Operational use of what is built</span><b>100%</b></div></div>
+            <div class="panel side"><div class="who">Stream Stage</div>
+              <div class="cmprow"><span>Receives in cash, over the schedule</span><b id="dCashB"></b></div>
+              <div class="cmprow"><span>Build value carried, unpaid</span><b id="dCarried"></b></div>
+              <div class="cmprow"><span>Commercial share</span><b id="dShareB"></b></div></div>
+          </div>
+          <div class="panel stepup">
+            <div class="k">Share is priced lowest at signing</div>
+            <div class="steprow">
+              <div><span>Fixed at signing, for this purchase</span><b class="bigp" id="rateNow"></b><em id="rateNowN"></em></div>
+              <div class="arrow">→</div>
+              <div><span>Share bought after the build, from <b id="winEnd"></b></span><b class="bigp" id="rateLater"></b><em id="rateLaterN"></em></div>
+              <div class="stepex" id="stepEx"></div>
+            </div>
+          </div>
+          <div class="cmp">
+            <div class="panel"><div class="k">At the full $75,000 build</div><div class="cmprow"><span>Cash now</span><b id="cA1"></b></div><div class="cmprow"><span>Carried, unpaid</span><b id="cA2"></b></div></div>
+            <div class="panel"><div class="k" id="cBk">At this build</div><div class="cmprow"><span>Cash now</span><b id="cB1"></b></div><div class="cmprow"><span>Carried, unpaid</span><b id="cB2"></b></div></div>
+            <div class="panel"><div class="k">The same at every point</div>
+              <p>The build price is fixed. Phase 1's C$25,000 is always paid in cash. Any value not paid in cash is carried by Stream Stage Productions Inc., not discounted.</p>
+              <p>Commercial share is economics, not access. It applies only to agreed downstream licensing. It is not automatically equity. Stream Stage Productions Inc. owns the software and UVALUX owns its data, as in the Phase 1 letter.</p></div>
+          </div>
+        </div>
+        <p class="src" style="margin-top:12px">How the slider works: UVALUX's share runs from 5% to 95% in 1% steps. Cash = the minimum cash plus the share above 5%, as a fraction of 90%, times the rest of the build price, in $500 steps. The minimum cash is Phase 1's C$25,000, fixed in the Phase 1 letter. Share bought after the build is priced at least 50% above the rate fixed at signing.</p>
       </div>
     </section>
 
@@ -283,7 +374,7 @@ table.sched .r{text-align:right}
         <article class="paper" id="letterDoc">
           <div class="lhead"><span class="wordmark">Bask</span><span class="ent provLegal"></span></div>
           <h2>Letter of intent and offer</h2>
-          <div class="sub">Bask for UVALUX, phases <span id="lPhases"></span> · <span id="lDate"></span></div>
+          <div class="sub">Bask for UVALUX, <span id="lPhases"></span> · <span id="lDate"></span></div>
           <div class="parties">
             <div><div class="lab">From</div><strong class="provLegal"></strong><div class="fillrow"><span>Principal</span><span>Daniel Abrahamson</span></div></div>
             <div><div class="lab">To</div><strong>UVALUX</strong>
@@ -368,26 +459,39 @@ table.sched .r{text-align:right}
   <div class="row"><button class="hbtn" id="checkBack">Go back</button><button class="hbtn primary" id="checkPrint">Print anyway</button></div>
 </div></div>
 <div class="modal" id="resetModal"><div class="panel sheet">
-  <h2>Reset the board?</h2><p class="note">Puts every item back where it started and turns all three phases on. Undo can bring it back.</p>
+  <h2>Reset the board?</h2><p class="note">Puts every item back where it started, turns all three phases on and sets the slider back to an even split. Undo can bring it back.</p>
   <div class="row"><button class="hbtn" id="resetNo">Cancel</button><button class="hbtn primary" id="resetYes">Reset</button></div>
 </div></div>
 
 <script>
 // ---- constants: every number either sourced (see .src lines) or PROPOSED ----
-const PROVIDER_LEGAL = '[Entity to be confirmed]';   // open with Daniel (PA, 2026-10-03). Do not fill without his word.
+// Contracting party: named in the Phase 1 letter agreement UVALUX holds (sent September 4, 2026).
+const PROVIDER_LEGAL = 'Stream Stage Productions Inc.';
 const BUILD_TOTAL = 75000;                           // Daniel, 2026-10-03 12:22 ET: "$75,000 build price total"
 const HST = 0.13;
-// std = phase-by-phase price, commit = price when committing to 2+ phases. P1 std is the Phase 1 proposal's C$25,000.
-// Everything else is PROPOSED, scaled to the Plan To Live proposal's ratio (committed $75,000 / standalone $95,000).
+// std = phase-by-phase price, commit = committed price. Pricing mechanic carried over from the reference board:
+// each phase has a standalone and a committed price; committed phases are charged at the committed price.
+// P1 is the Phase 1 letter: C$25,000 in EVERY scenario (std = commit), paid 10,000 / 10,000 / 5,000, development to Dec 1, 2026.
+// P2 and P3 prices are PROPOSED: committed P2 + P3 = $50,000 so all three committed = $75,000 (Daniel), and the standalone
+// total is $95,000, the same $95,000 -> $75,000 ($20,000 commitment savings) as the reference proposal.
 const PHASES = [
-  {id:'P1', name:'Prove it works on real data', weeks:12, std:25000, commit:20000,
-   gate:'Salons use it, and the baseline is captured cleanly', weeksSrc:'Phase 1 proposal: twelve weeks'},
-  {id:'P2', name:'Prove the number, open it at the Expo', weeks:9, std:38000, commit:30000,
-   gate:'The lift is real and salons are paying', weeksSrc:'Phase 1 letter: Phase 2 to Feb 1 after Phase 1 to Dec 1'},
-  {id:'P3', name:'Commercial scale and the U.S.', weeks:12, std:31500, commit:25000,
-   gate:'A repeatable sale outside the pilot, and the ownership conversation', weeksSrc:'Proposed'},
+  {id:'P1', name:'Prove it works on real data', std:25000, commit:25000, end:'2026-12-01', sourced:true,
+   gate:'Salons use it, and the baseline is captured cleanly', when:'To Dec 1, 2026', whenProp:false,
+   pay:[[10000,'Kickoff and commencement of development'],[10000,'Working end-to-end MVP, with the Phase 1 findings and the Phase 2 roadmap'],[5000,'Phase 1 pilot build complete']]},
+  {id:'P2', name:'Prove the number, open it at the Expo', std:38000, commit:27500, end:'2027-02-01',
+   gate:'The lift is real and salons are paying', when:'Dec 1, 2026 to Feb 1, 2027', whenProp:false},
+  {id:'P3', name:'Commercial scale and the U.S.', std:32000, commit:22500, weeks:12,
+   gate:'A repeatable sale outside the pilot, and the ownership conversation', when:'12 weeks from Feb 1, 2027', whenProp:true},
 ];
-const PROPOSED_NOTE = 'Proposed';
+const SPLIT = [.4,.4,.2];                            // PROPOSED: Phase 2 and 3 payment split (Phase 1 uses the letter's own amounts)
+// Cash + share slider, carried over unchanged from the reference board: share 5% to 95% in 1% steps, opens at 50%;
+// cash = minimum cash + (share - 5%) / 90% x (build - minimum cash), in $500 steps; the rest is carried, not discounted;
+// rate = cash / share points; share bought after the build is priced at least 50% above that rate.
+// BASK: the minimum cash is Phase 1's C$25,000 because the Phase 1 letter fixes it in cash (the reference floor was $10,000).
+const MIN_PCT = 5, MAX_PCT = 95, CASH_STEP = 500, STEP_UP = 0.5, SHARE_DEFAULT = 50;
+const MIN_CASH = PHASES[0].std;
+console.assert(PHASES.reduce((a,p)=>a+p.commit,0) === BUILD_TOTAL, 'all three committed must be $75,000');
+console.assert(PHASES[0].std === 25000 && PHASES[0].commit === 25000 && PHASES[0].pay.reduce((a,x)=>a+x[0],0) === 25000, 'Phase 1 must be C$25,000');
 // Items: sourced from the Phase 1 proposal (PROP), the proposal to Nik of Aug 19 (NIK) and the letter (LTR).
 const ITEMS = [
   {id:'1.1', home:'P1', t:'Salon intelligence dashboard', d:'What should I do today? Opportunity cards with the action attached.', src:'PROP'},
@@ -432,9 +536,10 @@ const SRC_NAME = {PROP:'Phase 1 proposal', NIK:'proposal to Nik, Aug 19', LTR:'P
 const HOLIDAYS = ['2026-10-12','2026-12-25','2026-12-28','2027-01-01','2027-02-15','2027-03-26','2027-05-24','2027-07-01','2027-09-06','2027-10-11','2027-12-27','2027-12-28'];
 
 const KEY = 'bask-scope-board-v1';
-const fresh = () => ({place:Object.fromEntries(ITEMS.map(i=>[i.id,i.home])), on:{P1:true,P2:true,P3:true}, legal:''});
+const fresh = () => ({place:Object.fromEntries(ITEMS.map(i=>[i.id,i.home])), on:{P1:true,P2:true,P3:true}, legal:'', share:SHARE_DEFAULT});
 let S = fresh(), HIST = [];
 try { const raw = localStorage.getItem(KEY); if (raw) { const v = JSON.parse(raw); if (v && v.place && v.on) { const f = fresh(); S = Object.assign(f, v, {place:Object.assign(f.place, v.place)}); } } } catch(e) {}
+if (!(S.share >= MIN_PCT && S.share <= MAX_PCT)) S.share = SHARE_DEFAULT;
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} };
 const snap = () => { HIST.push(JSON.stringify(S)); if (HIST.length > 60) HIST.shift(); };
 const $ = s => document.querySelector(s);
@@ -445,11 +550,18 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 const onPhases = () => PHASES.filter(p => S.on[p.id]);
 const committed = () => onPhases().length >= 2;
 const priceOfPhase = p => committed() ? p.commit : p.std;
+// Cash + share. Phase 1 alone is the Phase 1 letter: all cash, no share (nothing in Phase 1 commits either party).
+function dealFor(build){
+  if (build <= MIN_CASH) return {build, cash:build, carried:0, pct:null, open:false};
+  const pct = S.share, raw = MIN_CASH + ((pct-MIN_PCT)/(MAX_PCT-MIN_PCT))*(build-MIN_CASH);
+  const cash = Math.round(raw/CASH_STEP)*CASH_STEP, rate = cash/pct;
+  return {build, cash, carried:build-cash, pct, open:true, rate, rateL:rate*(1+STEP_UP)};
+}
 function totals(){
   const on = onPhases();
   const price = on.reduce((a,p)=>a+priceOfPhase(p),0);
   const std = on.reduce((a,p)=>a+p.std,0);
-  return {on, price, std, save: std - price};
+  return {on, price, std, save: std - price, deal: dealFor(price)};
 }
 // ---- dates: business-day roll ----
 const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
@@ -460,17 +572,35 @@ const addDays = (d,n) => { const x = new Date(d); x.setDate(x.getDate()+n); retu
 const dfmt = d => d.toLocaleDateString('en-CA',{weekday:'short',month:'short',day:'numeric',year:'numeric'});
 const ldate = d => d.toLocaleDateString('en-CA',{day:'numeric',month:'long',year:'numeric'});
 const TODAY = (()=>{ const t = new Date(); t.setHours(12,0,0,0); return t; })();
+const dateOf = s => { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d, 12); };
+// P1 starts at kickoff (the date of this letter), ends Dec 1, 2026 (Phase 1 letter); P2 runs to Feb 1, 2027 (Phase 1 letter);
+// P3 runs 12 weeks from there (PROPOSED). Working version = halfway through each phase (PROPOSED).
+function phaseDates(){
+  let start = rollBiz(TODAY).date; const out = {};
+  for (const p of PHASES) {
+    const s = rollBiz(start), e = rollBiz(p.end ? dateOf(p.end) : addDays(s.date, p.weeks*7));
+    const mid = rollBiz(addDays(s.date, Math.round((e.date - s.date)/864e5/2)));
+    out[p.id] = {s, mid, e}; start = e.date;
+  }
+  return out;
+}
+// Phase 1 is paid in the letter's own amounts. The cash beyond Phase 1 (set by the slider) is spread over Phases 2 and 3
+// in proportion to their prices, then split 40 / 40 / 20 inside each phase; the last row takes the rounding.
 function schedule(){
-  const rows = []; let start = rollBiz(TODAY).date, cum = 0;
-  for (const p of onPhases()) {
-    const amt = priceOfPhase(p), parts = [Math.round(amt*.4/100)*100, Math.round(amt*.4/100)*100];
-    parts.push(amt - parts[0] - parts[1]);
-    const mid = rollBiz(addDays(start, Math.round(p.weeks*7/2))), end = rollBiz(addDays(start, p.weeks*7));
-    const s0 = rollBiz(start);
-    [[s0, `${p.id} start`, parts[0]], [mid, `${p.id} working version`, parts[1]], [end, `${p.id} gate: ${p.gate}`, parts[2]]].forEach(([d, what, a], i) => {
-      cum += a; rows.push({m:`${p.id}.${i+1}`, date:d.date, rolled:d.rolled, what, amt:a, cum, phase:p.id});
-    });
-    start = end.date;
+  const T = totals(), dates = phaseDates(), rows = []; let cum = 0;
+  const later = T.on.filter(p => !p.sourced), laterValue = later.reduce((a,p)=>a+priceOfPhase(p),0);
+  const laterCash = T.deal.cash - (S.on.P1 ? PHASES[0].std : 0); let left = laterCash;
+  for (const p of T.on) {
+    const d = dates[p.id], when = [d.s, d.mid, d.e];
+    let parts, whats;
+    if (p.pay) { parts = p.pay.map(x=>x[0]); whats = p.pay.map(x=>`${p.id}: ${x[1]}`); }
+    else {
+      const last = p === later[later.length-1];
+      const pc = last ? left : Math.round(priceOfPhase(p)*laterCash/laterValue/100)*100; left -= pc;
+      parts = [Math.round(pc*SPLIT[0]/100)*100, Math.round(pc*SPLIT[1]/100)*100]; parts.push(pc - parts[0] - parts[1]);
+      whats = [`${p.id} start`, `${p.id} working version`, `${p.id} gate: ${p.gate}`];
+    }
+    parts.forEach((a, i) => { cum += a; rows.push({m:`${p.id}.${i+1}`, date:when[i].date, rolled:when[i].rolled, what:whats[i], amt:a, cum, phase:p.id}); });
   }
   return rows;
 }
@@ -489,9 +619,9 @@ function render(){
   $('#col-tray').innerHTML = `<div class="colhead"><div class="top"><span class="ctag tray">Later</span><span class="src">Not in this price</span></div><div class="name">After launch, or not at all</div><div class="gate">Drag here to take an item out. Items here are priced when they are added.</div></div>${colInner('tray')}`;
   $('#cols').innerHTML = PHASES.map(p => {
     const on = S.on[p.id], pr = priceOfPhase(p);
-    const sourced = p.id==='P1' && !committed();
-    return `<section class="col${on?'':' off'}" data-col="${p.id}"><div class="colhead"><div class="top"><span class="ctag">${p.id}</span><span class="src">${p.weeks} weeks</span></div><div class="name">${esc(p.name)}</div><div class="gate">Gate: ${esc(p.gate)}</div>
-      <div class="money"><b>${on?fmt(pr):'Not in'}</b>${on && committed()?`<s>${fmt(p.std)}</s>`:''}${sourced?'':'<span class="proposed">Proposed</span>'}</div>
+    const tag = p.sourced ? '<small>Phase 1 letter</small>' : '<span class="proposed">Proposed</span>';
+    return `<section class="col${on?'':' off'}" data-col="${p.id}"><div class="colhead"><div class="top"><span class="ctag">${p.id}</span><span class="src">${esc(p.when)}</span></div><div class="name">${esc(p.name)}</div><div class="gate">Gate: ${esc(p.gate)}</div>
+      <div class="money"><b>${on?fmt(pr):'Not in'}</b>${on && committed() && p.std!==pr?`<s>${fmt(p.std)}</s>`:''}${on?tag:''}</div>
       <label class="incl"><input type="checkbox" data-phase="${p.id}" ${on?'checked':''}> Include ${p.id}</label></div>${colInner(p.id)}</section>`;
   }).join('');
   $('#bPhases').textContent = T.on.length ? T.on.map(p=>p.id).join(' + ') : 'None';
@@ -499,17 +629,21 @@ function render(){
   $('#bPrice').textContent = fmt(T.price);
   $('#bPriceN').textContent = `${fmt(T.price*(1+HST))} with HST`;
   $('#bSave').textContent = fmt(T.save);
+  $('#bCash').textContent = fmt(T.deal.cash);
+  $('#bCashN').textContent = shareLine(T.deal);
   $('#pill').textContent = `${T.on.length ? T.on.map(p=>p.id).join('+') : 'No phases'} · ${fmt(T.price)}`;
   $('#undoBtn').disabled = !HIST.length;
-  renderPrice(T); renderLanded(); renderLetter(T);
+  renderPrice(T); renderDeal(T); renderLanded(); renderLetter(T);
 }
+const shareLine = d => d.open ? `UVALUX ${d.pct}% share · ${fmt(d.carried)} carried` : (d.cash ? 'Phase 1 in cash, no share' : '');
 function renderPrice(T){
+  const P1 = '<small style="color:var(--faint);font-weight:500;font-size:11.5px">Phase 1 letter</small>', PR = ' <span class="proposed">Proposed</span>';
   $('#phaseCards').innerHTML = PHASES.map(p => {
     const on = S.on[p.id];
     return `<div class="panel ph${on?'':' off'}"><span class="ctag" style="background:var(--primary);color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:3px 7px">${p.id}</span><h3>${esc(p.name)}</h3>
-      <div class="row"><span>Phase by phase</span><b>${fmt(p.std)}${p.id==='P1'?'':' <span class="proposed">Proposed</span>'}</b></div>
-      <div class="row"><span>Committed with another phase</span><b>${fmt(p.commit)} <span class="proposed">Proposed</span></b></div>
-      <div class="row"><span>Length</span><b>${p.weeks} weeks${p.weeksSrc==='Proposed'?' <span class="proposed">Proposed</span>':''}</b></div>
+      <div class="row"><span>Phase by phase</span><b>${fmt(p.std)}${p.sourced?' '+P1:PR}</b></div>
+      <div class="row"><span>Committed${p.sourced?'':' with Phase 1'}</span><b>${fmt(p.commit)}${p.sourced?' '+P1:PR}</b></div>
+      <div class="row"><span>Runs</span><b>${esc(p.when)}${p.whenProp?PR:''}</b></div>
       <div class="row"><span>Gate</span><span style="text-align:right">${esc(p.gate)}</span></div>
       <div class="row" style="border:0"><span>${on?'In: charged':'Not in'}</span><b>${on?fmt(priceOfPhase(p)):''}</b></div></div>`;
   }).join('');
@@ -517,10 +651,44 @@ function renderPrice(T){
   $('#sPriceHst').textContent = `${fmt(T.price*(1+HST))} with 13% HST`;
   $('#sStd').textContent = fmt(T.std);
   $('#sSave').textContent = fmt(T.save);
-  $('#sSaveN').textContent = T.on.length >= 2 ? `${Math.round(T.save/T.std*100)}% less for committing` : 'commit to a second phase to save';
+  $('#sSaveN').textContent = T.save ? `${Math.round(T.save/T.std*100)}% less for committing` : 'commit to Phase 2 to save';
+  $('#sCash').textContent = fmt(T.deal.cash);
+  $('#sCashN').textContent = shareLine(T.deal) || 'turn a phase on';
+  $('#pricingNote').textContent = !T.on.length ? 'No phases selected. Choose at least Phase 1.'
+    : !committed() ? 'Phase 1 on its own: C$25,000 + HST, exactly as in the Phase 1 letter. Add Phase 2 to see the committed prices.'
+    : `${T.on.length===3?'All three phases':'Phases 1 and 2'} committed. Commitment pricing saves ${fmt(T.save)} on ${T.on.length===3?'Phases 2 and 3':'Phase 2'}, bringing ${fmt(T.std)} of phase-by-phase scope to ${fmt(T.price)}. Phase 1 stays at C$25,000.`;
   const rows = schedule();
   $('#schedRows').innerHTML = rows.map(r => `<tr><td>${r.m}</td><td>${dfmt(r.date)}${r.rolled?'<span class="rolled">moved to the next business day</span>':''}</td><td>${esc(r.what)}</td><td class="r">${fmt(r.amt)}</td><td class="r">${fmt(r.amt*(1+HST))}</td><td class="r">${fmt(r.cum)}</td></tr>`).join('') || '<tr><td colspan="6">Turn a phase on.</td></tr>';
   $('#sLast').textContent = rows.length ? dfmt(rows[rows.length-1].date) : '';
+}
+const money2 = n => '$' + n.toLocaleString('en-CA',{minimumFractionDigits:2,maximumFractionDigits:2});
+function renderDeal(T){
+  const d = T.deal, rows = schedule();
+  $('#dBuild').textContent = fmt(T.price);
+  $('#dBuildN').textContent = T.on.length ? `${T.on.length>1?'Phases':'Phase'} ${T.on.map(p=>p.id).join(' + ')}, from the scope board` : 'No phase selected';
+  $('#dealOpen').style.display = d.open ? '' : 'none';
+  $('#dealBody').style.display = d.open ? '' : 'none';
+  $('#dealP1').style.display = d.open ? 'none' : '';
+  $('#dealP1').innerHTML = T.on.length
+    ? `<b>Phase 1 on its own is C$25,000 in cash</b>, paid C$10,000 / C$10,000 / C$5,000 as in the Phase 1 letter. Nothing in Phase 1 commits either party to a share, so there is nothing to split. Turn on Phase 2 to open the slider.`
+    : 'Turn a phase on to open the slider.';
+  if (!d.open) return;
+  $('#barA').style.width = d.pct + '%'; $('#barAt').textContent = d.pct + '%'; $('#barBt').textContent = (100-d.pct) + '%';
+  if (document.activeElement !== $('#shareRange')) $('#shareRange').value = d.pct;
+  $('#shareRange').setAttribute('aria-valuetext', `UVALUX ${d.pct} percent, cash ${fmt(d.cash)}`);
+  $('#dCash').textContent = fmt(d.cash); $('#dCashP1').textContent = fmt(MIN_CASH);
+  $('#dShare').textContent = d.pct + '%';
+  $('#dCashB').textContent = fmt(d.cash); $('#dCarried').textContent = fmt(d.carried); $('#dShareB').textContent = (100-d.pct) + '%';
+  $('#rateNow').textContent = money2(d.rate); $('#rateLater').textContent = money2(d.rateL);
+  $('#rateNowN').textContent = `cash per 1% of commercial share: ${fmt(d.cash)} buys ${d.pct}%`;
+  $('#rateLaterN').textContent = `per 1%, at least ${Math.round(STEP_UP*100)}% more`;
+  $('#winEnd').textContent = rows.length ? rows[rows.length-1].date.toLocaleDateString('en-CA',{month:'short',year:'numeric'}) : '';
+  $('#stepEx').innerHTML = `Ten more points later would cost UVALUX at least <b>${fmt(d.rateL*10)}</b>, against <b>${fmt(d.rate*10)}</b> at today's price. The same cash buys more share at signing.`;
+  document.querySelectorAll('.presets [data-p]').forEach(b => b.classList.toggle('on', (b.dataset.p==='full'&&d.pct===MAX_PCT)||(b.dataset.p==='shared'&&d.pct===50)||(b.dataset.p==='min'&&d.pct===MIN_PCT)));
+  const full = dealFor(BUILD_TOTAL);
+  $('#cA1').textContent = fmt(full.cash); $('#cA2').textContent = fmt(full.carried);
+  $('#cBk').textContent = `At this build, ${fmt(T.price)}`;
+  $('#cB1').textContent = fmt(d.cash); $('#cB2').textContent = fmt(d.carried);
 }
 function renderLanded(){
   const groups = [...PHASES.map(p=>({id:p.id, h:`${p.id} · ${p.name}`, on:S.on[p.id]})), {id:'place', h:'To place: from the meetings with Nik, not yet priced', on:true}, {id:'tray', h:'Later: not in this price', on:true}];
@@ -532,30 +700,42 @@ function renderLanded(){
 function renderLetter(T){
   document.querySelectorAll('.provLegal').forEach(n => { n.textContent = PROVIDER_LEGAL; n.classList.toggle('tbc', PROVIDER_LEGAL.startsWith('[')); });
   $('#lDate').textContent = ldate(TODAY);
-  $('#lPhases').textContent = T.on.map(p=>p.id).join(', ') || 'none';
+  $('#lPhases').textContent = T.on.length ? (T.on.length>1?'phases ':'phase ') + T.on.map(p=>p.id).join(', ') : 'no phase selected';
   if (document.activeElement !== $('#legalName')) $('#legalName').value = S.legal || '';
   const rows = schedule(), last = rows.length ? rows[rows.length-1].date : null;
   const cl = (n, t) => `<div class="cl"><span>${n}</span><div>${t}</div></div>`;
-  const P = PROVIDER_LEGAL;
+  const P = PROVIDER_LEGAL, d = T.deal, later = T.on.filter(p=>!p.sourced);
+  const laterNames = later.length===2 ? 'Phases 2 and 3' : 'Phase 2';
+  let n = 3;
   $('#letterBody').innerHTML = `
     <h4>1. Purpose and status</h4>
-    ${cl('1.1', `This letter records the intent of both parties and the offer made on ${ldate(TODAY)}: the phases, the price and the payment schedule for building Bask for UVALUX.`)}
-    ${cl('1.2', `It is not the full agreement. Ownership of the software, UVALUX's data and the continuity terms follow the Phase 1 letter agreement sent on September 4, 2026, until a full agreement replaces it.`)}
-    ${cl('1.3', `Work begins on signature and receipt of the first payment in clause 3.`)}
+    ${cl('1.1', `This letter records the intent of both parties and the offer made on ${ldate(TODAY)}: the phases, the price and the payment schedule for building Bask for UVALUX${d.open?', and the commercial share':''}.`)}
+    ${cl('1.2', `Phase 1 is as agreed in the Phase 1 letter agreement sent on September 4, 2026: C$25,000 plus HST, paid C$10,000 on kickoff and commencement of development, C$10,000 on a working end-to-end MVP delivered with the Phase 1 findings and the Phase 2 roadmap, and C$5,000 on completion of the Phase 1 pilot build, with development running to December 1, 2026. Nothing in this letter changes it.`)}
+    ${cl('1.3', `This letter is not the full agreement. Ownership of the software, UVALUX's data and the continuity terms follow the Phase 1 letter agreement, until a full agreement replaces it.`)}
+    ${cl('1.4', `Work begins on signature and receipt of the first payment in clause 3.`)}
     <h4>2. The work</h4>
     ${cl('2.1', `${esc(P)} builds the phases below, with the items sorted on the scope board on the date of this letter and listed in Schedule A.`)}
-    <table><thead><tr><th>Phase</th><th>Gate</th><th class="r">Price</th></tr></thead><tbody>${T.on.map(p=>`<tr><td>${p.id} ${esc(p.name)}</td><td>${esc(p.gate)}</td><td class="r">${fmt(priceOfPhase(p))}</td></tr>`).join('')}</tbody></table>
+    <table><thead><tr><th>Phase</th><th>Runs</th><th>Gate</th><th class="r">Price</th></tr></thead><tbody>${T.on.map(p=>`<tr><td>${p.id} ${esc(p.name)}</td><td>${esc(p.when)}</td><td>${esc(p.gate)}</td><td class="r">${fmt(priceOfPhase(p))}</td></tr>`).join('')}</tbody></table>
     ${cl('2.2', `Each phase ends at its gate. UVALUX may stop after any gate; a phase not yet started is not owed.`)}
     ${cl('2.3', `Items listed as "To place" or "Later" in Schedule A are not part of this letter and are priced when they are added.`)}
     <h4>3. Payment</h4>
-    ${cl('3.1', `Build price: <b>${fmt(T.price)}</b> plus HST at 13% (${fmt(T.price*(1+HST))} with HST). ${T.on.length>=2?`Committing to ${T.on.length} phases prices each at its committed rate, ${fmt(T.save)} less than buying them one at a time.`:''}`)}
-    ${cl('3.2', `Each phase is paid 40% at its start, 40% at its working version and 20% at its gate. Dates falling on a weekend or statutory holiday move to the next business day.`)}
+    ${cl('3.1', `Build price: <b>${fmt(T.price)}</b> plus HST at 13%.${later.length?` Committing to ${laterNames} now prices ${later.length===2?'each':'it'} at ${later.length===2?'its':'the'} committed rate, ${fmt(T.save)} less than buying ${later.length===2?'them':'it'} phase by phase. Phase 1 stays at C$25,000.`:''}`)}
+    ${cl('3.2', `Total cash payable under this letter: <b>${fmt(d.cash)}</b> plus HST (${fmt(d.cash*(1+HST))} with HST).${d.open && d.carried ? ` The part of the build price not paid in cash, <b>${fmt(d.carried)}</b>, is carried by ${esc(P)} and is not a discount.` : ''}`)}
+    ${cl('3.3', `Phase 1 is paid as in clause 1.2.${later.length?` ${laterNames} ${later.length===2?'are':'is'} paid 40% at ${later.length===2?'each':'its'} start, 40% at ${later.length===2?'each':'its'} working version and 20% at ${later.length===2?'each':'its'} gate, out of the cash in clause 3.2.`:''} Dates falling on a weekend or statutory holiday move to the next business day.`)}
     <table><thead><tr><th>Milestone</th><th>Date</th><th>Paid on</th><th class="r">Amount</th><th class="r">With HST</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r.m}</td><td>${dfmt(r.date)}</td><td>${esc(r.what)}</td><td class="r">${fmt(r.amt)}</td><td class="r">${fmt(r.amt*(1+HST))}</td></tr>`).join('')}</tbody></table>
-    ${cl('3.3', `Each payment is due when its milestone is met or on its date, whichever is later. Amounts are in Canadian dollars.`)}
-    <h4>4. Timeline</h4>
-    ${cl('4.1', last ? `The phases above run to ${ldate(last)}, assuming work starts on the date of this letter. A later start moves every date by the same number of days.` : 'No phase selected.')}
-    <h4>5. Data and customers</h4>
-    ${cl('5.1', `UVALUX's data remains UVALUX's, during the build and after it. ${esc(P)} never markets to UVALUX's salons' customers.`)}`;
+    ${cl('3.4', `Each payment is due when its milestone is met or on its date, whichever is later. Amounts are in Canadian dollars; HST at 13% is added to each amount.`)}
+    ${d.open ? `<h4>${++n}. Commercial share</h4>
+    ${cl(n+'.1', `Commercial share in this letter means a proportionate share of revenue or profit from licensing, sale or other commercial exploitation of the platform. It is not automatically equity.`)}
+    ${cl(n+'.2', `On payment in full of the cash in clause 3.2, that share is held <b>${d.pct}%</b> by UVALUX and <b>${100-d.pct}%</b> by ${esc(P.replace(/\.$/,''))}.`)}
+    ${cl(n+'.3', `The full agreement sets out how that share is calculated, paid and recorded, and whether it is held contractually or as shares in a company. No share is transferred before that agreement is signed. Phase 1 on its own commits neither party to any share.`)}
+    ${cl(n+'.4', `UVALUX keeps 100% operational use of what is built for its own business throughout.`)}
+    <h4>${++n}. Price of commercial share</h4>
+    ${cl(n+'.1', `The cash in clause 3.2 purchases the share in clause ${n-1}.2, being <b>${money2(d.rate)}</b> for each 1%. This price is fixed on signature and applies only to that purchase.`)}
+    ${cl(n+'.2', `Commercial share purchased after the end of this agreement is priced at not less than <b>${money2(d.rateL)}</b> for each 1%, being ${Math.round(STEP_UP*100)}% above clause ${n}.1.`)}` : ''}
+    <h4>${++n}. Timeline</h4>
+    ${cl(n+'.1', last ? `The phases above run to ${ldate(last)}. Phase 1 development runs to December 1, 2026${S.on.P2?' and Phase 2 to February 1, 2027':''}, as in the Phase 1 letter, which assumed kickoff in the week of September 8; as that letter says, a later kickoff moves the end date by the same number of days.` : 'No phase selected.')}
+    <h4>${++n}. Ownership, data and customers</h4>
+    ${cl(n+'.1', `${esc(P)} owns the software, as in the Phase 1 letter. UVALUX's data remains UVALUX's, during the build and after it. ${esc(P)} never markets to UVALUX's salons' customers.`)}`;
   $('#schedA').innerHTML = `<h4 style="margin-top:0">Schedule A: where we landed</h4>` + [...PHASES.filter(p=>S.on[p.id]).map(p=>({id:p.id,h:`${p.id} ${p.name}`})), {id:'place',h:'To place (not in this letter until placed and priced)'}, {id:'tray',h:'Later (not in this letter)'}].map(g => {
     const items = ITEMS.filter(i => S.place[i.id] === g.id);
     return `<table><thead><tr><th colspan="2">${esc(g.h)}</th></tr></thead><tbody>${items.map(i=>`<tr><td style="width:56px">${i.id}</td><td>${esc(i.t)}</td></tr>`).join('') || '<tr><td colspan="2">None</td></tr>'}</tbody></table>`;
@@ -580,6 +760,11 @@ $('#resetBtn').onclick = () => $('#resetModal').classList.add('open');
 $('#resetNo').onclick = () => $('#resetModal').classList.remove('open');
 $('#resetYes').onclick = () => { snap(); S = fresh(); save(); $('#resetModal').classList.remove('open'); render(); };
 $('#legalName').addEventListener('input', e => { S.legal = e.target.value; save(); });
+// slider: one Undo step per drag, not one per pixel
+let sliding = false;
+$('#shareRange').addEventListener('input', e => { const v = Math.max(MIN_PCT, Math.min(MAX_PCT, +e.target.value)); if (v === S.share) return; if (!sliding) { snap(); sliding = true; } S.share = v; save(); render(); });
+$('#shareRange').addEventListener('change', () => { sliding = false; });
+document.querySelectorAll('.presets [data-p]').forEach(b => b.onclick = () => { const v = {min:MIN_PCT, shared:50, full:MAX_PCT}[b.dataset.p]; if (v === S.share) return; snap(); S.share = v; save(); render(); });
 function show(view){
   if (!document.getElementById('view-'+view)) view = 'board';
   document.querySelectorAll('.navbtn').forEach(x=>x.classList.toggle('active', x.dataset.view===view));
