@@ -313,9 +313,9 @@ table.sched .r{text-align:right}
           <div class="buildline"><span class="k">Build price</span><b id="dBuild"></b><span class="n" id="dBuildN"></span></div>
           <div id="dealOpen">
             <div class="split" aria-hidden="true"><div class="sa" id="barA"><span id="barAt"></span></div><div class="sb"><span id="barBt"></span></div></div>
-            <div class="splitlab"><span class="a">UVALUX</span><span>Commercial share of future licensing</span><span class="b">Stream Stage</span></div>
+            <div class="splitlab"><span class="a">UVALUX</span><span>Commercial share of future licensing</span><span class="b">DanCoded</span></div>
             <input type="range" id="shareRange" min="5" max="95" step="1" value="50" aria-label="UVALUX commercial share">
-            <div class="scale"><span>Less cash now, Stream Stage holds more of the upside</span><span>More cash now, UVALUX holds more of the upside</span></div>
+            <div class="scale"><span>Less cash now, DanCoded holds more of the upside</span><span>More cash now, UVALUX holds more of the upside</span></div>
             <div class="presets"><button data-p="min">Minimum cash</button><button data-p="shared">Even split</button><button data-p="full">Full cash</button></div>
           </div>
           <div class="p1only" id="dealP1"></div>
@@ -327,7 +327,7 @@ table.sched .r{text-align:right}
               <div class="cmprow"><span>Of which Phase 1, as in the Phase 1 letter</span><b id="dCashP1"></b></div>
               <div class="cmprow"><span>Commercial share</span><b id="dShare"></b></div>
               <div class="cmprow"><span>Operational use of what is built</span><b>100%</b></div></div>
-            <div class="panel side"><div class="who">Stream Stage</div>
+            <div class="panel side"><div class="who">DanCoded</div>
               <div class="cmprow"><span>Receives in cash, over the schedule</span><b id="dCashB"></b></div>
               <div class="cmprow"><span>Build value carried, unpaid</span><b id="dCarried"></b></div>
               <div class="cmprow"><span>Commercial share</span><b id="dShareB"></b></div></div>
@@ -345,8 +345,8 @@ table.sched .r{text-align:right}
             <div class="panel"><div class="k">At the full $75,000 build</div><div class="cmprow"><span>Cash now</span><b id="cA1"></b></div><div class="cmprow"><span>Carried, unpaid</span><b id="cA2"></b></div></div>
             <div class="panel"><div class="k" id="cBk">At this build</div><div class="cmprow"><span>Cash now</span><b id="cB1"></b></div><div class="cmprow"><span>Carried, unpaid</span><b id="cB2"></b></div></div>
             <div class="panel"><div class="k">The same at every point</div>
-              <p>The build price is fixed. Phase 1's C$25,000 is always paid in cash. Any value not paid in cash is carried by Stream Stage Productions Inc., not discounted.</p>
-              <p>Commercial share is economics, not access. It applies only to agreed downstream licensing. It is not automatically equity. Stream Stage Productions Inc. owns the software and UVALUX owns its data, as in the Phase 1 letter.</p></div>
+              <p>The build price is fixed. Phase 1's C$25,000 is always paid in cash. Any value not paid in cash is carried by DanCoded Inc., not discounted.</p>
+              <p>Commercial share is economics, not access. It applies only to agreed downstream licensing. It is not automatically equity. DanCoded Inc. owns the software and UVALUX owns its data.</p></div>
           </div>
         </div>
         <p class="src" style="margin-top:12px">How the slider works: UVALUX's share runs from 5% to 95% in 1% steps. Cash = the minimum cash plus the share above 5%, as a fraction of 90%, times the rest of the build price, in $500 steps. The minimum cash is Phase 1's C$25,000, fixed in the Phase 1 letter. Share bought after the build is priced at least 50% above the rate fixed at signing.</p>
@@ -466,7 +466,7 @@ table.sched .r{text-align:right}
 <script>
 // ---- constants: every number either sourced (see .src lines) or PROPOSED ----
 // Contracting party: named in the Phase 1 letter agreement UVALUX holds (sent September 4, 2026).
-const PROVIDER_LEGAL = 'Stream Stage Productions Inc.';
+const PROVIDER_LEGAL = 'DanCoded Inc.';
 const BUILD_TOTAL = 75000;                           // Daniel, 2026-10-03 12:22 ET: "$75,000 build price total"
 const HST = 0.13;
 // std = phase-by-phase price, commit = committed price. Pricing mechanic carried over from the reference board:
