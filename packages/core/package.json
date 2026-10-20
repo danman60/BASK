@@ -5,7 +5,8 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./sessions": "./src/sessions/index.ts"
+    "./sessions": "./src/sessions/index.ts",
+    "./flags": "./src/flags.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",

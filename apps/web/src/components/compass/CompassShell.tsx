@@ -43,7 +43,13 @@ function isUvaluxRole(value: string | null): boolean {
   return value !== null && (UVALUX_ROLES as readonly string[]).includes(value);
 }
 
-export function CompassShell({ children }: { children: ReactNode }) {
+export function CompassShell({
+  children,
+  hidden = [],
+}: {
+  children: ReactNode;
+  hidden?: readonly string[];
+}) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -76,7 +82,7 @@ export function CompassShell({ children }: { children: ReactNode }) {
             Compass<small>UVALUX</small>
           </Link>
           <nav className="cp-nav" aria-label="Compass">
-            {NAV.map((item) => (
+            {NAV.filter((item) => !hidden.includes(item.href)).map((item) => (
               <Link
                 key={item.href}
                 href={href(item.href)}

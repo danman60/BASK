@@ -1,5 +1,7 @@
 import { Suspense, type ReactNode } from 'react';
 
+import { allowed, featuresForPath, readFlags } from '@bask/core/flags';
+
 import { CompassShell } from '@/components/compass/CompassShell';
 import '../compass.css';
 
@@ -17,9 +19,14 @@ import '../compass.css';
  * than degrading quietly. One boundary here covers the shell and its children.
  */
 export default function CompassLayout({ children }: { children: ReactNode }) {
+  // Sidebar entries whose proposal feature is off (packages/core/src/flags.ts) are hidden.
+  const flags = readFlags(process.env);
+  const hidden = ['/compass/coaching', '/compass/knowledge'].filter(
+    (href) => !allowed(flags, featuresForPath(href)),
+  );
   return (
     <Suspense fallback={null}>
-      <CompassShell>{children}</CompassShell>
+      <CompassShell hidden={hidden}>{children}</CompassShell>
     </Suspense>
   );
 }

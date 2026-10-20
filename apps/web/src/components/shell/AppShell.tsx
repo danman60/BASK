@@ -1,8 +1,10 @@
 import { Suspense, type ReactNode } from 'react';
 
+import { allowed, featuresForPath, readFlags } from '@bask/core/flags';
 import { SHELL_UI } from '@bask/ui';
 
 import { AppNav } from './AppNav';
+import { NAV } from './nav';
 import { SalonChip, type SalonIdentity } from './SalonChip';
 
 /**
@@ -23,6 +25,10 @@ export function AppShell({
   fallback: SalonIdentity;
   children: ReactNode;
 }) {
+  // Destinations whose proposal feature is off (packages/core/src/flags.ts) leave the nav.
+  const flags = readFlags(process.env);
+  const keys = NAV.filter((d) => allowed(flags, featuresForPath(d.href))).map((d) => d.key);
+
   return (
     <>
       <a className="b-skip" href="#main">
@@ -32,7 +38,7 @@ export function AppShell({
       <header className="b-topbar glass">
         <span className="b-wordmark">{SHELL_UI.wordmark}</span>
         <Suspense fallback={<div className="b-nav" aria-hidden />}>
-          <AppNav variant="pills" />
+          <AppNav variant="pills" keys={keys} />
         </Suspense>
         <Suspense fallback={<div className="b-topbar-right" />}>
           <SalonChip roster={roster} fallback={fallback} />
@@ -43,7 +49,7 @@ export function AppShell({
 
       {/* Outside the header on purpose — see the note in AppNav. */}
       <Suspense fallback={null}>
-        <AppNav variant="tabs" />
+        <AppNav variant="tabs" keys={keys} />
       </Suspense>
     </>
   );

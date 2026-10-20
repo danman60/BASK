@@ -21,11 +21,11 @@
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-import { SHELL_UI } from '@bask/ui';
+import { SHELL_UI, type NavKey } from '@bask/ui';
 
 import { activeNavKey, NAV } from './nav';
 
-export function AppNav({ variant }: { variant: 'pills' | 'tabs' }) {
+export function AppNav({ variant, keys }: { variant: 'pills' | 'tabs'; keys: readonly NavKey[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const active = activeNavKey(pathname);
@@ -39,7 +39,7 @@ export function AppNav({ variant }: { variant: 'pills' | 'tabs' }) {
     // `display: none` takes the other out of the accessibility tree — so the two
     // navs never present as duplicate landmarks.
     <nav className={tabs ? 'b-tabbar' : 'b-nav'} aria-label={SHELL_UI.navLandmark}>
-      {NAV.map((item) => (
+      {NAV.filter((item) => keys.includes(item.key)).map((item) => (
         <Link
           key={item.key}
           href={href(item.href)}
