@@ -38,7 +38,9 @@ export default async function TrendPage({
     group by 1
     order by 1`;
   const complete: WeekRevenue[] = rows
-    .filter((r) => addDays(r.week, 7) <= salon.today)
+    // Only weeks that finished in the 16 weeks before today: a salon whose records stopped years
+    // ago gets "not enough weeks", not a projection drawn from stale history.
+    .filter((r) => addDays(r.week, 7) <= salon.today && r.week >= addDays(salon.today, -7 * FIT_WEEKS))
     .map((r) => ({ weekStart: r.week, revenue: r.revenue }));
   const history = await dropPartialFirstWeek(complete, salon.salonId, salon.timezone);
   const p = projectWeekly(history.slice(-FIT_WEEKS), HORIZON_WEEKS);
@@ -104,49 +106,52 @@ async function dropPartialFirstWeek(weeks: WeekRevenue[], salonId: string, tz: s
   return first && first.day > weeks[0]!.weekStart ? weeks.slice(1) : weeks;
 }
 
+/**
+ * Lines in a stretched 100x100 SVG (strokes stay crisp via non-scaling-stroke) with the labels in
+ * HTML on top, so the text stays readable at phone width instead of shrinking with the drawing.
+ */
 function TrendChart({ p }: { p: ReturnType<typeof projectWeekly> }) {
-  const W = 720;
-  const H = 260;
-  const pad = { l: 56, r: 12, t: 12, b: 28 };
   const n = p.history.length + p.projected.length;
   const max = Math.max(...p.history.map((w) => w.revenue), ...p.projected.map((w) => w.high)) * 1.05;
-  const x = (i: number) => pad.l + (i / (n - 1)) * (W - pad.l - pad.r);
-  const y = (v: number) => pad.t + (1 - v / max) * (H - pad.t - pad.b);
+  const x = (i: number) => (i / (n - 1)) * 100;
+  const y = (v: number) => (1 - v / max) * 100;
   const h0 = p.history.length;
   const last = p.history[h0 - 1]!;
+  // The projection and its band both start from the last real week.
+  const ahead = [{ mid: last.revenue, low: last.revenue, high: last.revenue }, ...p.projected];
+  const ax = (i: number) => x(h0 - 1 + i);
 
   const histPath = p.history.map((w, i) => `${i ? 'L' : 'M'}${x(i)},${y(w.revenue)}`).join(' ');
-  const midPath =
-    `M${x(h0 - 1)},${y(last.revenue)} ` + p.projected.map((w, i) => `L${x(h0 + i)},${y(w.mid)}`).join(' ');
+  const midPath = ahead.map((w, i) => `${i ? 'L' : 'M'}${ax(i)},${y(w.mid)}`).join(' ');
   const band =
-    p.projected.map((w, i) => `${i ? 'L' : 'M'}${x(h0 + i)},${y(w.high)}`).join(' ') +
+    ahead.map((w, i) => `${i ? 'L' : 'M'}${ax(i)},${y(w.high)}`).join(' ') +
     ' ' +
-    [...p.projected].reverse().map((w, i) => `L${x(n - 1 - i)},${y(w.low)}`).join(' ') +
+    ahead.map((w, i) => `L${ax(i)},${y(w.low)}`).reverse().join(' ') +
     ' Z';
   const ticks = [0, 0.5, 1].map((f) => max * f);
+  const label = { position: 'absolute', fontSize: 12, color: 'var(--ink-soft, currentColor)' } as const;
 
   return (
-    <svg
-      viewBox={`0 0 ${W} ${H}`}
-      width="100%"
+    <div
       role="img"
       aria-label={`Weekly sales for ${p.history.length} weeks and a projection for ${p.projected.length} more`}
+      style={{ position: 'relative', height: 240, margin: '8px 0 24px 64px' }}
     >
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" width="100%" height="100%" style={{ overflow: 'visible' }}>
+        {ticks.map((t) => (
+          <line key={t} x1={0} x2={100} y1={y(t)} y2={y(t)} stroke="var(--line)" vectorEffect="non-scaling-stroke" />
+        ))}
+        <line x1={x(h0 - 1)} x2={x(h0 - 1)} y1={0} y2={100} stroke="var(--line)" strokeDasharray="2 3" vectorEffect="non-scaling-stroke" />
+        <path d={band} fill="var(--primary)" opacity="0.12" />
+        <path d={histPath} fill="none" stroke="var(--ink, currentColor)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+        <path d={midPath} fill="none" stroke="var(--primary)" strokeWidth="2" strokeDasharray="6 4" vectorEffect="non-scaling-stroke" />
+      </svg>
       {ticks.map((t) => (
-        <g key={t}>
-          <line x1={pad.l} x2={W - pad.r} y1={y(t)} y2={y(t)} stroke="var(--line)" />
-          <text x={pad.l - 6} y={y(t) + 4} textAnchor="end" fontSize="11" fill="var(--ink-soft, currentColor)">
-            {formatCurrency(Math.round(t / 100) * 100)}
-          </text>
-        </g>
+        <span key={t} style={{ ...label, right: '100%', marginRight: 8, top: `${y(t)}%`, transform: 'translateY(-50%)' }}>
+          {formatCurrency(Math.round(t / 100) * 100)}
+        </span>
       ))}
-      <line x1={x(h0 - 1)} x2={x(h0 - 1)} y1={pad.t} y2={H - pad.b} stroke="var(--line)" strokeDasharray="2 3" />
-      <text x={x(h0 - 1) + 6} y={H - 10} fontSize="11" fill="var(--ink-soft, currentColor)">
-        now
-      </text>
-      <path d={band} fill="var(--primary)" opacity="0.12" />
-      <path d={histPath} fill="none" stroke="var(--ink, currentColor)" strokeWidth="2" />
-      <path d={midPath} fill="none" stroke="var(--primary)" strokeWidth="2" strokeDasharray="6 4" />
-    </svg>
+      <span style={{ ...label, left: `${x(h0 - 1)}%`, top: '100%', transform: 'translateX(-50%)', marginTop: 4 }}>now</span>
+    </div>
   );
 }

@@ -26,6 +26,8 @@ export function InsightsTabsNav({
           className="l4-tab"
           data-active={pathname === section.href}
           aria-current={pathname === section.href ? 'page' : undefined}
+          // The row scrolls sideways on a phone; bring the open tab into view.
+          ref={pathname === section.href ? (el) => el?.scrollIntoView({ block: 'nearest', inline: 'nearest' }) : undefined}
         >
           {section.label}
         </Link>

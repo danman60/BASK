@@ -6,7 +6,7 @@ const SECTIONS = [
   { href: '/insights', label: 'What changed' },
   { href: '/insights/peers', label: 'Peers' },
   { href: '/insights/activity', label: 'Who did what' },
-  { href: '/insights/trend', label: 'Where it is heading' },
+  { href: '/insights/trend', label: 'Ahead' },
 ] as const;
 
 /** Server half: drops tabs whose proposal feature is off (packages/core/src/flags.ts). */
