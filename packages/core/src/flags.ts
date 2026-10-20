@@ -30,6 +30,11 @@ export interface Feature {
   readonly routes: readonly string[];
   /** tRPC procedure prefixes this feature owns, e.g. `community.`. */
   readonly procedures: readonly string[];
+  /**
+   * `dev` = newly built and not yet shown to anyone: on only in development, OFF in the demo too,
+   * because a push to master redeploys the live demo. Remove the field to promote it into the demo.
+   */
+  readonly stage?: 'dev';
 }
 
 export const FEATURES = {
@@ -44,6 +49,7 @@ export const FEATURES = {
   community: { proposalId: '2.7', title: 'Members-only community space', phase: 'P2', routes: ['/community'], procedures: [] },
   coachingCall: { proposalId: 'L.1', title: 'One click to book a coaching call', phase: 'addon', routes: [], procedures: ['compass.scheduleCoaching'] },
   frontDeskListener: { proposalId: 'L.3', title: 'Front Desk Listener', phase: 'addon', routes: ['/monitor'], procedures: [] },
+  trendProjection: { proposalId: 'N.9', title: 'Trend projection', phase: 'addon', routes: ['/insights/trend'], procedures: [], stage: 'dev' },
   expertChat: { proposalId: 'N.5', title: 'Expert chatbot and customer chatbot', phase: 'addon', routes: ['/ask'], procedures: [] },
   inventoryOrder: { proposalId: 'N.8', title: 'Inventory to UVALUX draft order', phase: 'addon', routes: ['/inventory'], procedures: ['inventory.'] },
 } as const satisfies Record<string, Feature>;
@@ -75,13 +81,16 @@ function override(raw: string | undefined): boolean | undefined {
   return undefined;
 }
 
+function modeDefault(env: BaskEnv, key: FeatureKey): boolean {
+  if (env === 'production') return APPROVED.includes(key);
+  const feature: Feature = FEATURES[key];
+  return env === 'dev' || feature.stage !== 'dev';
+}
+
 export function readFlags(source: Env): FlagState {
-  const prod = resolveEnv(source) === 'production';
+  const env = resolveEnv(source);
   return Object.fromEntries(
-    FEATURE_KEYS.map((key) => [
-      key,
-      override(source[flagEnvName(key)]) ?? (prod ? APPROVED.includes(key) : true),
-    ]),
+    FEATURE_KEYS.map((key) => [key, override(source[flagEnvName(key)]) ?? modeDefault(env, key)]),
   ) as Record<FeatureKey, boolean>;
 }
 

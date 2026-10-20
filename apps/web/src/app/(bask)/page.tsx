@@ -8,6 +8,7 @@ import {
 } from '@bask/ui';
 
 import { DEMO_OUTCOMES } from '@bask/core';
+import { readFlags } from '@bask/core/flags';
 
 import { WinsFeed } from '@/components/today/WinsFeed';
 
@@ -67,7 +68,17 @@ export default async function TodayPage({
      `loadOpportunities` reads that flag itself and returns `DEMO_OPPORTUNITIES`
      untouched when it is unset — including on any failure of the derived path —
      so the default build behaves exactly as it did before this existed. */
-  const { opportunities } = await loadOpportunities(salon, today);
+  const { opportunities: allOpportunities } = await loadOpportunities(salon, today);
+  // Card actions that open another proposal feature disappear when that feature is off.
+  const flags = readFlags(process.env);
+  const opportunities = allOpportunities.map((o) => ({
+    ...o,
+    actions: o.actions.filter(
+      (a) =>
+        !(a.kind === 'uvalux_order' && !flags.inventoryOrder) &&
+        !(a.kind === 'coaching_request' && !flags.coachingCall),
+    ),
+  }));
 
 
   return (

@@ -471,3 +471,10 @@ export {
   DEMO_NETWORK_OUTCOMES,
   type OpportunityNetworkProof,
 } from './network/opportunity-proof';
+export {
+  projectWeekly,
+  MIN_WEEKS_TO_PROJECT,
+  type Projection,
+  type ProjectedWeek,
+  type WeekRevenue,
+} from './insights/projection';

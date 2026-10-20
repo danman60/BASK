@@ -1,37 +1,20 @@
-'use client';
+import { allowed, featuresForPath, readFlags } from '@bask/core/flags';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { InsightsTabsNav } from './InsightsTabsNav';
 
-/**
- * Section tabs inside Insights.
- *
- * This is NOT app navigation — Lane 1 owns the topbar and the six destinations
- * in the IA. Insights is one destination with three views (PRODUCT_SPEC §13:
- * metric areas, Peers, and the activity log), and this switches between them.
- */
 const SECTIONS = [
   { href: '/insights', label: 'What changed' },
   { href: '/insights/peers', label: 'Peers' },
   { href: '/insights/activity', label: 'Who did what' },
+  { href: '/insights/trend', label: 'Where it is heading' },
 ] as const;
 
+/** Server half: drops tabs whose proposal feature is off (packages/core/src/flags.ts). */
 export function InsightsTabs() {
-  const pathname = usePathname();
-
+  const flags = readFlags(process.env);
   return (
-    <nav className="l4-tabs" aria-label="Insights sections">
-      {SECTIONS.map((section) => (
-        <Link
-          key={section.href}
-          href={section.href}
-          className="l4-tab"
-          data-active={pathname === section.href}
-          aria-current={pathname === section.href ? 'page' : undefined}
-        >
-          {section.label}
-        </Link>
-      ))}
-    </nav>
+    <InsightsTabsNav
+      sections={SECTIONS.filter((s) => allowed(flags, featuresForPath(s.href)))}
+    />
   );
 }

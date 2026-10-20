@@ -4,6 +4,7 @@ import {
   allowed,
   APPROVED,
   FEATURE_KEYS,
+  FEATURES,
   featuresForPath,
   featuresForProcedure,
   readFlags,
@@ -11,9 +12,15 @@ import {
 } from '../src/flags';
 
 describe('mode', () => {
-  it('unset BASK_ENV is demo, so the live demo keeps every surface', () => {
+  it('unset BASK_ENV is demo: every shown surface on, dev-stage builds off', () => {
     expect(resolveEnv({})).toBe('demo');
-    expect(Object.values(readFlags({})).every(Boolean)).toBe(true);
+    const flags = readFlags({});
+    for (const key of FEATURE_KEYS) expect(flags[key]).toBe(!('stage' in FEATURES[key]));
+    expect(flags.trendProjection).toBe(false);
+  });
+
+  it('dev turns everything on, dev-stage builds included', () => {
+    expect(Object.values(readFlags({ BASK_ENV: 'dev' })).every(Boolean)).toBe(true);
   });
 
   it('production turns off everything not approved', () => {
@@ -31,7 +38,7 @@ describe('mode', () => {
 describe('ownership', () => {
   it('a nested route needs its parent feature on too', () => {
     expect(featuresForPath('/compass/knowledge/x').sort()).toEqual(['compass', 'knowledgeBase']);
-    const flags = { ...readFlags({}), compass: false };
+    const flags = { ...readFlags({ BASK_ENV: 'dev' }), compass: false };
     expect(allowed(flags, featuresForPath('/compass/knowledge'))).toBe(false);
   });
 
