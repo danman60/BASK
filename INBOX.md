@@ -379,3 +379,36 @@ demographic), Nick's own increased sales and restocking, charging the salon, and
 anonymised dataset sold onward. The unlock is consent-by-value: owners hand data over because the
 tool grows their business. Daniel's own refusal to sell dance footage to an AI marketplace on
 child-safety grounds is the instinct that should shape consent design here.
+
+
+## From assistant (PA) — 2026-10-06 15:54 ET — build items from the uvalux call, 2026-10-06
+
+Extracted automatically from the meeting transcript. Every item carries her own
+words. Anti-duplication was asked for but VERIFY IT YOURSELF before building.
+Transcript: `corpus/clients/uvalux/zoom/` in ~/projects/assistant.
+
+**1. Nightly delta sync, not a full re-copy**
+UVALUX hosting lead (unnamed in transcript), L555: "you want every increment. Every day because otherwise, you have all data only... You want constantly feed yes of last night's data needs to become imported into." Same speaker, L572: "you only need the updates, including the deletes and whatnot." Gen-Z questioner, L563: "We can. We can build an API."
+Build: an overnight job (or client-provided API) that pulls only yesterday's creates/updates/deletes into Bask's DB, never a full re-export.
+Acceptance test: after a day of changes on a source salon's platform, the sync run inserts/updates/deletes only those changed rows, leaving untouched rows with their original timestamps.
+Repo: not built. `packages/db/scripts/salon-ingest/etl/run.ts` only wipes and reloads a full dataset; no cursor/since/watermark logic exists anywhere in the ingest code.
+
+**2. Platform-agnostic ingestion (any salon software, not just one)**
+Nik, L414: "build something that was more platform agnostic. So, whether it's untouched or sun link or Helios, it doesn't matter. No, right, as long as there's a way that we can rip the data, analyze and spit it back out to somebody."
+Build: a shared contract (already started) that any per-platform mapper feeds into, so SalonTouch, Sunlink and Helios data all land in the same Bask schema.
+Acceptance test: run the ETL against a SalonTouch export and a Helios export; both produce rows in the identical schema that Compass reads from.
+Repo: partially built. SalonTouch ingestion exists and is proven live (`packages/db/scripts/sweep-salontouch.ts`, the "four-salon proof" in git history) against a generic CSV contract (`packages/db/scripts/salon-ingest/etl/contract.ts`). No Sunlink or Helios adapter exists yet — Daniel's earlier Helios pull was a one-off manual SSH/MySQL extraction, not code in this repo.
+
+**3. Don't let the AI (or UVALUX) see everything — scope what's shared**
+Gen-Z questioner, L761: "there's stuff like, you know, owners or clients are not going to want, like, share that... how much money they're making... they don't really want to share, like yearlies." Same speaker, L773: "how are you going to tell the AI? Okay, I want you to record or find... the information in these tables. If I don't want you to scan everything."
+Build: a consent tier per salon that gates exactly which fields UVALUX/Compass and any AI call can see, never raw revenue or customer records outside what's consented.
+Acceptance test: a salon on the lowest tier returns no revenue figures or customer-level rows from any Compass query, verified by the existing unit test.
+Repo: already built. `packages/core/src/consent/index.ts` implements three tiers (private/benchmarks/coaching), fail-closed by default, with `packages/core/test/consent.test.ts` covering it.
+
+**4. Attribute results to the one action that caused them ("six pills" problem)**
+UVALUX hosting lead, L1066: "you don't feel too well, and you just follow six different pills... the question is now? Which of those six?" Same speaker, L1078: "you never know which one was the cure."
+Build: track each fired insight/campaign's before-and-after result on its own, not bundled with everything else clicked that day.
+Acceptance test: fire one campaign, measure its own revenue/booking delta against its own targeted customers, independent of any other action running the same week.
+Repo: partially built. The `Campaign` model (`packages/db/prisma/schema.prisma`) carries a `measured` state with its own revenue/bookings, and `apps/web/src/server/insights-data.ts` aggregates results per measured campaign. Nothing yet stops an owner firing several insights at once and confounding which one worked.
+## From uvalux-platform-2 — 2026-10-07 10:33
+What-it's-worth section live on Value tab (ddd c2f5ea4, pushed 10:30 ET, verified in browser at 390+1440). Only touched index.html Value tab: new #worth panel + .worth CSS + renderWorth() called from renderExtras; "Where it goes next" vtotal shortened. Pull before editing.

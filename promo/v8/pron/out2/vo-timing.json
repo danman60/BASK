@@ -1,0 +1,44 @@
+{
+ "voice": "uvaint",
+ "engine": "chatterbox",
+ "knobs": {
+  "exaggeration": 0.5,
+  "cfg_weight": 0.5,
+  "temperature": 0.8,
+  "seed": 7
+ },
+ "fps": 30,
+ "gap": 0.35,
+ "total": 16.144,
+ "totalFrames": 484,
+ "job": "20261003-185640-uvaint",
+ "beats": [
+  {
+   "id": "d",
+   "text": "Same nervous system, opposite end. Yoovalucks sees the same chain from above.",
+   "file": "beats/d.wav",
+   "start": 0.0,
+   "duration": 4.725,
+   "startFrame": 0,
+   "durationFrames": 142
+  },
+  {
+   "id": "e",
+   "text": "Same nervous system, opposite end. Yoovahlux sees the same chain from above.",
+   "file": "beats/e.wav",
+   "start": 5.075,
+   "duration": 5.328,
+   "startFrame": 152,
+   "durationFrames": 160
+  },
+  {
+   "id": "f",
+   "text": "Same nervous system, opposite end. Yoova lucks sees the same chain from above.",
+   "file": "beats/f.wav",
+   "start": 10.752,
+   "duration": 5.344,
+   "startFrame": 323,
+   "durationFrames": 160
+  }
+ ]
+}

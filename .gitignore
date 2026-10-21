@@ -43,3 +43,6 @@ data/salon-transcripts/audio/
 # email addresses that do not belong in a public repo.
 docs/meetings/*-transcript.txt
 docs/pitch/SEND-NOTE-*.md
+
+# PRIVATE per-customer attachments for Nik (names, emails, phones, addresses). Never commit.
+docs/pitch/*-PRIVATE.html

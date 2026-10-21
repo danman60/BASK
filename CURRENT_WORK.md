@@ -1,5 +1,13 @@
 # CURRENT_WORK — uvalux-platform
 
+
+## 2026-10-21 09:15 ET — Wilfried value follow-up (session bask-value) — DONE, idle (power/internet outage stop)
+
+- Done + pushed 666ab2a: docs/pitch/2026-10-21-value-followup.md (5 value drivers, SUGGESTED email 168 words, [DAN] slots); staged panel docs/pitch/staged/2026-10-21-value-panel/ (NOT on dancoded.ca). PA INBOX entry "From bask-value" written.
+- Mistake: that push also published 2 waiting app commits (df31907, 2d7a271) -> prod deploy bask-v851df19j. Checked: / /compass /insights /customers /floor 200, /insights/trend 404 (dev flag). Noted in assistant/DECISIONS.md.
+- Outage stop 09:15 ET: this commit is LOCAL ONLY (push to master = prod deploy; sysadmin said no deploys). Promo media (356 MB untracked audio/stills, another session's) NOT committed.
+- RESUME: 1) `git push origin master` once deploys are allowed (docs/CURRENT_WORK only). 2) PA builds Gmail draft from the SUGGESTED email. 3) On Daniel's yes, port the staged panel block (marked STAGED comment) into ~/projects/ddd/public/p/bask-uvalux-cmxb8vlay3/index.html, without the disarmed beacon line.
+
 ## 2026-10-20 11:20 ET — Proposal feature gates (session UVALUX, plan docs/plans/2026-10-20-proposal-feature-gates.md)
 
 - DONE 276362d: `packages/core/src/flags.ts` catalog keyed to proposal ids (13 features), `BASK_ENV` production|demo|dev (unset = demo), `BASK_FLAG_<KEY>` overrides, `APPROVED` empty. `apps/web/src/proxy.ts` 404s pages + tRPC of off features; Bask nav + Compass sidebar hide them.
@@ -346,3 +354,8 @@ the owed Liberty Village dataset · `PA-20260903-03` Nick package (report attach
 - DONE: The trend projection page (proposal item N.9) is built and tested. In a real salon setup, Today's coaching and draft-order buttons now hide when those features are switched off.
 - IN PROGRESS: nothing. Dev server stopped, board marked done at 15:40 ET.
 - NEEDS YOU: 1. Should I push the two finished commits? Pushing redeploys the live demo; I checked locally that the demo looks the same.
+
+## Arrival brief — 2026-10-20 22:05 ET — UVALUX
+- DONE: Session wrapped up. The tracker commit is saved locally, the session is logged in the vault, and the project's vault page links to it.
+- IN PROGRESS: nothing. No dev server is running.
+- NEEDS YOU: 1. Should I push the three local commits? Pushing to the main branch redeploys the live demo at bask-psi. Because the trend page only shows in dev mode, the demo looks the same.
