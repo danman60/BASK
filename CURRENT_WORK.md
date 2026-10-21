@@ -1,5 +1,35 @@
 # CURRENT_WORK — uvalux-platform
 
+## 2026-10-20 11:20 ET — Proposal feature gates (session UVALUX, plan docs/plans/2026-10-20-proposal-feature-gates.md)
+
+- DONE 276362d: `packages/core/src/flags.ts` catalog keyed to proposal ids (13 features), `BASK_ENV` production|demo|dev (unset = demo), `BASK_FLAG_<KEY>` overrides, `APPROVED` empty. `apps/web/src/proxy.ts` 404s pages + tRPC of off features; Bask nav + Compass sidebar hide them.
+- Verified: BASK_ENV=production locally -> 11 gated routes 404, nav Today+Analytics; unset -> all 200. Live bask-psi.vercel.app redeployed by the push (push = prod deploy), all 13 routes 200, nav unchanged.
+- Gap: in production mode Today's card buttons (Approve & post, Request coaching) still link into gated surfaces.
+- 16:00 ET: master has 2 LOCAL commits, NOT published (publishing master redeploys the live demo; go asked in assistant/DECISIONS.md): Today hides order/coaching card actions when those features are off; flags `stage:'dev'` (on only with BASK_ENV=dev); N.9 `/insights/trend` (core `projectWeekly`, OLS over last 16 full weeks + 80% band, 8 weeks out). Verified: dev -> page renders, sunset-ridge last-4 avg $8,359 matches bask.sale (May 11-Jul 27 2026); stale 2016-2020 salons -> "not enough weeks"; demo (unset) -> trend 404, no tab, all else 200; production -> card coaching/order buttons gone. tsc, eslint, 11 core tests pass. Copy on the trend page is inline, not yet in the guidance dictionary.
+- To show the trend page in the demo: delete `stage: 'dev'` on trendProjection in packages/core/src/flags.ts, publish.
+- Then: build NOT-BUILT proposal items behind flags (N.3 prepaid minutes, N.9 trend projection, 2.2 tenure x modality, 2.3 staff performance, L.2 payback calculator, N.4 lamp hours, N.6 front-desk prompt).
+
+## 2026-10-07 13:55 ET — BASK proposal: What it's worth + saves/notes/activity LIVE
+
+- Value tab "What it's worth" live (salons sell more / UVALUX sells more / licensing calculator, 3.5x default, presets 300/1,000/1,800). Open: fee currency US$ or C$.
+- Collaboration live on dancoded.ca/p/bask-uvalux-cmxb8vlay3: Save + History + notes per section (top-center bar), no accounts, drafts saved by Save, every click/slider/tab/state change logged. Owner view: dancoded.ca/owner/proposal-activity.html (key PROPOSAL_OWNER_KEY in ~/.env.keys). Tables ddd_proposal_versions/_comments/_events (CC&SS public, ddd repo). Plan: docs/plans/2026-10-07-proposal-collab.md. Test rows deleted 13:53 ET; live tables empty.
+- Daniel's own browsers must open the link once with ?obs=off or his visits are logged as a visitor.
+
+## 2026-10-07 10:18 ET — BASK × UVALUX proposal refinement (fresh restart from bask-mtg)
+
+Live: https://dancoded.ca/p/bask-uvalux-cmxb8vlay3 (source ~/projects/ddd/public/p/bask-uvalux-cmxb8vlay3/index.html, push ddd main, only that folder).
+Pushed 10:16 ET: tab order System, Links, Value, Technical, Salon data, Plan + price, Deal, Where we landed, Letter; Hexaport's part (-$8,500: cards 2.6 data feed $5,000 + 2.10 hosting $3,500, toggle, default on -> $66,500); Expo Jan 31 2027; customer zero testing Jan 1 to Mar 1 2027; their Oct 6 quotes on System; why-DanCoded on Value; the ask on Where we landed.
+UNCOMMITTED in ddd: Value tab price row hidden + scope/funding strip removed (Daniel: "build price shouldn't be in value... VALUE should focus on what its WORTH once completed and working").
+NEXT: build a "What it's worth" section on Value: (1) salon sales increase, (2) UVALUX distribution increase, (3) licensing at $100/salon/month U.S. (tanning + wellness TAM) and buyout value once proven (ARR x multiple). Sourced TAM research is being written to /tmp/claude-1000/-home-danman60-projects-uvalux-platform/5790aabb-1ba9-45e2-9b20-74ebb230fa56/scratchpad/tam-research.md (agent started 10:13 ET in old window). Every number needs a source + year; assumptions labelled.
+Staged brief (noindex): https://dancoded.ca/p/bask-uvalux-brief-q4m8t2. PA items PA-20261006-13, PA-20261007-11.
+
+## 2026-10-06 — Oct 6 UVALUX meeting → proposal update WAITING ON DANIEL (PA-20261006-13)
+
+- Transcript (full, from the draft's attachment; body was truncated): `docs/meetings/2026-10-06-uvalux-meeting-transcript.txt`. Filed in PA corpus `uvalux/zoom`.
+- Notes: `docs/meetings/2026-10-06-uvalux-meeting-notes.md`. Change list + 6 questions: `docs/meetings/2026-10-06-proposal-changes.md`.
+- Staged (not live): `docs/meetings/2026-10-06-staged/index.html`. On approval: copy to `~/projects/ddd/public/p/bask-uvalux-cmxb8vlay3/index.html`, screenshot 390+1440, commit/push ddd main (that folder only), verify live.
+- No price/equity/date changes drafted. Open: base number/retainer, Expo date, Helios 3-store vs SalonTouch 4-salon, Wilfred cc, Nik's "bigger pitch".
+
 ## 2026-09-04 — THE SEND. Report made 31x faster, agreement rewritten three times, Nick's email went out.
 
 One sentence: `CUSTOMER-REPORT.html` was virtualised from a 4.1-second open to 0.13 seconds, the
@@ -251,3 +281,68 @@ number with an untested story; verify the instrument before trusting a discrepan
 ### Routed to PA
 `PA-20260903-01` SalonTouch consent legal question · `PA-20260903-02` Suddenlink + stakeholders +
 the owed Liberty Village dataset · `PA-20260903-03` Nick package (report attached, links live).
+
+## Arrival brief — 2026-10-06 16:32 ET — bask-mtg
+- DONE: Names recorded in notes and memory. The change list, now including the "never agreed" fix, is with PA.
+- IN PROGRESS: Nothing running. Proposal edits staged, not live.
+- NEEDS YOU: 1) wording for the "agreed" fix, 2) approve the change list, 3) the Expo date, 4) your base-number stance.
+
+## Arrival brief — 2026-10-06 19:41 ET — bask-mtg
+- DONE: Nothing new since your last message. The cover-letter reasons and draft paragraph are above.
+- IN PROGRESS: Nothing running. Proposal edits staged, not live.
+- NEEDS YOU: 1) wording for the "agreed" fix, 2) the Expo date, 3) whether to switch to feature pricing (below).
+
+## Arrival brief — 2026-10-06 20:07 ET — bask-mtg
+- DONE: Proposal live at $75,000 to the Expo, Phase 3 for onboarding multiple salons, Technical tab added. Verified in a real browser at phone and desktop size.
+- IN PROGRESS: A background search of the FounderVision and PA deal-closing notes, a few minutes.
+- NEEDS YOU: 1) Expo name and date (page still says "January Expo").
+
+## Arrival brief — 2026-10-06 20:37 ET — bask-mtg
+- DONE: Clarity pass is live. The Deal tab now opens on the $75,000 build price.
+- IN PROGRESS: Nothing running.
+- NEEDS YOU: 1) Expo name and date, 2) UVALUX's legal name for the letter, 3) payment dates counting from the day the page is opened: OK?
+
+## Arrival brief — 2026-10-07 13:33 ET — uvalux-platform-2
+- DONE: The "What it's worth" section is on the Value tab and has been live since 10:31 ET.
+- IN PROGRESS: Nothing.
+- NEEDS YOU: 1. Should the $100 to $200 licence fee be shown in US$ or C$?
+
+## Arrival brief — 2026-10-07 15:16 ET — uvalux-platform-2
+- DONE: Saving, history, notes and the full activity log are live on the BASK proposal. I tested it on the live site, then deleted all test data. Links sent to you on Telegram.
+- IN PROGRESS: nothing.
+- NEEDS YOU: 1. Should the $100 to $200 licence fee show as US$ or C$? 2. Open the `?obs=off` link once in each of your own browsers, so your visits aren't logged as a visitor.
+
+## Arrival brief — 2026-10-07 15:34 ET — uvalux-platform-2
+- DONE: The landing page has one large Enter button again. Note boxes now look like text fields, and System and Links have their own. All of it is live.
+- IN PROGRESS: nothing.
+- NEEDS YOU: 1. Should the $100 to $200 fee be shown in US$ or C$?
+
+## Arrival brief — 2026-10-07 16:24 ET — uvalux-platform-2
+- DONE: The Hexaport readiness date (November 30, 2026, with your dates moving if Hexaport is late) is live in the Letter and on Plan + price.
+- IN PROGRESS: Researching industry costs for the two Hexaport items, with sources. About 10 minutes.
+- NEEDS YOU: 1. Should the four-salon totals show as C$? 2. UVALUX's legal name for the Letter.
+
+## Arrival brief — 2026-10-07 16:40 ET — uvalux-platform-2
+- DONE: Checked your pricing against published 2025 to 2026 market rates. Your prices are fair, slightly on the low side.
+- IN PROGRESS: nothing.
+- NEEDS YOU: nothing before sending. Nik's draft is in your Gmail.
+
+## Arrival brief — 2026-10-07 17:50 ET — uvalux-platform-2
+- DONE: The draft fixes went to the PA as PA-20261007-25. The proposal page is live and tracking is clean.
+- IN PROGRESS: The PA is editing the draft. I haven't seen it marked done yet.
+- NEEDS YOU: 1) Before you send, check that Duncan is not on Cc. My note to the PA, sent at 16:47, said to add him, but at 16:56 you said to leave him off.
+
+## Arrival brief — 2026-10-07 18:08 ET — uvalux-platform-2
+- DONE: Email alerts for the proposal are live and tested on the real page. The DDD window has the list of proposal changes and is working on it.
+- IN PROGRESS: The DDD window is planning to make these changes standard for every client proposal.
+- NEEDS YOU: 1) What did you mean by "revolta template"? It doesn't match any project, file or past conversation.
+
+## Arrival brief — 2026-10-07 19:25 ET — uvalux-platform-2
+- DONE: Your answer is with the DDD window: tracking, notes and a value-heavy Value tab are the three things every client proposal should carry.
+- IN PROGRESS: The DDD window is building that into its plan.
+- NEEDS YOU: Nothing.
+
+## Arrival brief — 2026-10-20 15:40 ET — UVALUX
+- DONE: The trend projection page (proposal item N.9) is built and tested. In a real salon setup, Today's coaching and draft-order buttons now hide when those features are switched off.
+- IN PROGRESS: nothing. Dev server stopped, board marked done at 15:40 ET.
+- NEEDS YOU: 1. Should I push the two finished commits? Pushing redeploys the live demo; I checked locally that the demo looks the same.
