@@ -5,8 +5,8 @@
 
 - Done + pushed 666ab2a: docs/pitch/2026-10-21-value-followup.md (5 value drivers, SUGGESTED email 168 words, [DAN] slots); staged panel docs/pitch/staged/2026-10-21-value-panel/ (NOT on dancoded.ca). PA INBOX entry "From bask-value" written.
 - Mistake: that push also published 2 waiting app commits (df31907, 2d7a271) -> prod deploy bask-v851df19j. Checked: / /compass /insights /customers /floor 200, /insights/trend 404 (dev flag). Noted in assistant/DECISIONS.md.
-- Outage stop 09:15 ET: this commit is LOCAL ONLY (push to master = prod deploy; sysadmin said no deploys). Promo media (356 MB untracked audio/stills, another session's) NOT committed.
-- RESUME: 1) `git push origin master` once deploys are allowed (docs/CURRENT_WORK only). 2) PA builds Gmail draft from the SUGGESTED email. 3) On Daniel's yes, port the staged panel block (marked STAGED comment) into ~/projects/ddd/public/p/bask-uvalux-cmxb8vlay3/index.html, without the disarmed beacon line.
+- Outage stop 09:15 ET was a false alarm; checkpoint pushed 09:25 ET, deploy bask-embbjcuq8 Ready, main routes 200. Promo media (356 MB untracked audio/stills, another session's) NOT committed.
+- NEXT: 1) pushed (done). 2) PA builds Gmail draft from the SUGGESTED email. 3) On Daniel's yes, port the staged panel block (marked STAGED comment) into ~/projects/ddd/public/p/bask-uvalux-cmxb8vlay3/index.html, without the disarmed beacon line.
 
 ## 2026-10-20 11:20 ET — Proposal feature gates (session UVALUX, plan docs/plans/2026-10-20-proposal-feature-gates.md)
 
@@ -359,3 +359,8 @@ the owed Liberty Village dataset · `PA-20260903-03` Nick package (report attach
 - DONE: Session wrapped up. The tracker commit is saved locally, the session is logged in the vault, and the project's vault page links to it.
 - IN PROGRESS: nothing. No dev server is running.
 - NEEDS YOU: 1. Should I push the three local commits? Pushing to the main branch redeploys the live demo at bask-psi. Because the trend page only shows in dev mode, the demo looks the same.
+
+## Arrival brief — 2026-10-21 09:13 ET — bask-value
+- DONE: Wilfried value write-up and its suggested email are finished and with the PA. The new proposal panel is staged, not live. Everything is committed now.
+- IN PROGRESS: nothing. Going idle.
+- NEEDS YOU: 1. Keep or undo the two Bask app changes my push sent live last night. 2. Push this commit once deploys are allowed.
