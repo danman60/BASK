@@ -2,12 +2,25 @@ import { NextResponse, type NextRequest } from 'next/server';
 
 import { allowed, featuresForPath, featuresForProcedure, readFlags } from '@bask/core/flags';
 
+import { CLOSED_HTML } from './closed-page';
+
+// Owner 2026-11-03: demo closed, every page shows the thank-you page. Set false to reopen.
+const CLOSED = true;
+
 /**
  * The one developmental-feature gate (packages/core/src/flags.ts). A page or tRPC call whose
  * proposal feature is off answers 404, so an unapproved surface does not exist in production.
  * With BASK_ENV unset (the demo) every feature is on and this passes everything through.
  */
 export function proxy(request: NextRequest) {
+  if (CLOSED) {
+    if (request.nextUrl.pathname.startsWith('/api/')) {
+      return NextResponse.json({ error: { message: 'Closed' } }, { status: 410 });
+    }
+    return new NextResponse(CLOSED_HTML, {
+      headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'x-robots-tag': 'noindex, nofollow' },
+    });
+  }
   const flags = readFlags(process.env);
   const { pathname } = request.nextUrl;
 
