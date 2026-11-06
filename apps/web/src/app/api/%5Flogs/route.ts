@@ -1,3 +1,5 @@
+import { timingSafeEqual } from 'node:crypto';
+
 import { NextResponse, type NextRequest } from 'next/server';
 
 import { db } from '@bask/db';
@@ -24,8 +26,28 @@ export const dynamic = 'force-dynamic';
 
 function authorised(req: NextRequest): boolean {
   const expected = process.env.LOG_TOKEN;
-  if (!expected) return false;
-  return req.nextUrl.searchParams.get('token') === expected;
+  const given = req.nextUrl.searchParams.get('token');
+  if (!expected || !given) return false;
+  const a = Buffer.from(given);
+  const b = Buffer.from(expected);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
+// Browser errors POST without a token (the token must never ship in client JS).
+// Untokened writes are limited to these tags, forced to level=error, and rate-limited.
+const CLIENT_TAGS = new Set(['client-error', 'client-rejection', 'console-error']);
+// shortcut: per-instance in-memory limit, resets on cold start; move to a shared store if abuse shows up.
+const hits = new Map<string, { n: number; reset: number }>();
+function clientRateOk(req: NextRequest): boolean {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  const now = Date.now();
+  const h = hits.get(ip);
+  if (!h || h.reset < now) {
+    if (hits.size > 5000) hits.clear();
+    hits.set(ip, { n: 1, reset: now + 60_000 });
+    return true;
+  }
+  return ++h.n <= 20;
 }
 
 export async function GET(req: NextRequest) {
@@ -55,8 +77,9 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  if (!authorised(req)) {
-    return NextResponse.json({ error: 'unauthorised' }, { status: 401 });
+  const trusted = authorised(req);
+  if (!trusted && !clientRateOk(req)) {
+    return NextResponse.json({ error: 'rate limited' }, { status: 429 });
   }
 
   const body = (await req.json().catch(() => null)) as {
@@ -69,13 +92,19 @@ export async function POST(req: NextRequest) {
   if (!body?.tag || !body?.msg) {
     return NextResponse.json({ error: 'tag and msg are required' }, { status: 400 });
   }
+  if (!trusted && !CLIENT_TAGS.has(body.tag)) {
+    return NextResponse.json({ error: 'unauthorised' }, { status: 401 });
+  }
 
   await db.appLog.create({
     data: {
-      level: body.level ?? 'info',
+      level: trusted ? (body.level ?? 'info') : 'error',
       tag: body.tag.slice(0, 64),
       msg: body.msg.slice(0, 2000),
-      data: body.data === undefined ? undefined : (body.data as object),
+      data:
+        body.data === undefined || (!trusted && JSON.stringify(body.data).length > 4000)
+          ? undefined
+          : (body.data as object),
     },
   });
 

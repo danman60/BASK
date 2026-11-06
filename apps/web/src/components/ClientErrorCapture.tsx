@@ -12,11 +12,10 @@ import { useEffect } from 'react';
 export function ClientErrorCapture() {
   useEffect(() => {
     const url = process.env.NEXT_PUBLIC_APP_URL;
-    const token = process.env.NEXT_PUBLIC_LOG_TOKEN;
-    if (!url || !token) return;
+    if (!url) return;
 
     const send = (tag: string, msg: string, data?: unknown) => {
-      void fetch(`${url}/api/_logs?token=${encodeURIComponent(token)}`, {
+      void fetch(`${url}/api/_logs`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ level: 'error', tag, msg, data }),
