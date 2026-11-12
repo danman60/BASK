@@ -1,5 +1,18 @@
 # CURRENT_WORK — uvalux-platform
 
+## 2026-11-12 17:52 ET — CLOSE-OUT (session uvalux): demo + proposal LIVE, Nik has the link
+
+- State read back 17:45 ET: bask-psi.vercel.app `/`, `/compass`, `/compass/network`, `/monitor` answer 200 with the real app; dancoded.ca/p/bask-uvalux-cmxb8vlay3 answers 200, 255,123 bytes, byte-identical to the 12:53 ET copy; dancoded.ca/p/bask-uvalux-brief-q4m8t2 answers 200, 16,587 bytes. master `CLOSED = false`.
+- Daniel sent Nik the proposal link himself at 14:38 ET (gmail msg `1a1d14532df692d5`, thread `1a117f83d948fd0a`), price unchanged ($75,000; Phase 1 C$25,000). The 12:50 ET price-bump idea was not acted on.
+- THREE switches must agree to open or close the proposal + demo. The "To close again" line in the entry below covers only the first:
+  1. `CLOSED` in `apps/web/src/proxy.ts`, push master (prod build).
+  2. The files in ddd `public/p/bask-uvalux-cmxb8vlay3` and `public/p/bask-uvalux-brief-q4m8t2`, push ddd main. Open = tree at ddd 416d562, closed = tree at 416d562^.
+  3. `proposal_live` on deal `bask-phase1`, set from ~/projects/ddd with `scripts/deals.mjs set bask-phase1 proposal_live=true|false --actor <window>` (it also needs the `--expect` hash, see the script). With it off the page answers 410 even when the files are restored.
+- Open, asked in assistant/DECISIONS.md on 2026-11-12: (a) merge the log-token fix ba73383, which sits on the LOCAL branch `secfix/2026-11-05` only, no remote copy; (b) Reset / Advance on the public demo have no login (`demo.reset`, `demo.advance` are `publicProcedure`); (c) an Oct 4 copy of the proposal, with prices, sits in the public R2 bucket.
+- Known defect, not started: `/monitor` outcome chips (11px) fail the contrast check, 8 at 1440, so its screenshots stay held. Small fix, < 2M tokens (< 0.3% of the week).
+- The main checkout is still on `secfix/2026-11-05` with other sessions' uncommitted trackers and untracked promo media, left as found. Today's master work was done in temporary worktrees, all removed.
+- EXACT NEXT STEP: read assistant/DECISIONS.md for Daniel's answer on (a). On yes: merge `secfix/2026-11-05` forward into master (no cherry-pick), push master, rotate the exposed log token on Vercel Production, then confirm `/api/_logs` refuses the old one. No answer = nothing to do, the demo stays live as is.
+
 ## 2026-11-12 13:46 ET — Demo LIVE AGAIN (open 12:57, closed 13:02, reopened 13:46 ET; session uvalux, brief from PA assistant-8)
 
 - 13:44 ET Daniel: "meh put it back live as is". `CLOSED = false` pushed; proposal pages restored in ddd to the tree at 416d562. No price change made.
