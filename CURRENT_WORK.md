@@ -1,5 +1,14 @@
 # CURRENT_WORK — uvalux-platform
 
+## 2026-11-12 12:55 ET — Demo REOPENED (session uvalux, brief from PA assistant-8)
+
+- Why: Nik emailed 12:46 ET asking for the proposal link to be opened again (trade show this weekend). The proposal links into this app (`/`, `/compass`, `/compass/network`, `/monitor`).
+- Change: `apps/web/src/proxy.ts` `CLOSED = false` on master; push = prod deploy of bask-psi.vercel.app. To close again: set `CLOSED = true`, push.
+- Done in worktree `.claude/worktrees/reopen-1112`; the main checkout stayed on `secfix/2026-11-05`, untouched.
+- OPEN RISK: master still ships `NEXT_PUBLIC_LOG_TOKEN` in browser JS (set on Vercel Production), so `/api/_logs` is readable by anyone who reads the bundle. Fix is ba73383 on `secfix/2026-11-05`, NOT merged. `bask.app_log` held 9 rows on 2026-11-12, newest 2026-10-03.
+- Daniel 12:50 ET: "before sharing link back to nick i wnat to explore a price bmp". Hold note is in assistant/INBOX.md. The proposal page itself is already live at the old price ($75,000; Phase 1 C$25,000).
+- Verification results: assistant/INBOX.md, entries "From uvalux — 2026-11-12".
+
 
 ## 2026-10-21 09:15 ET — Wilfried value follow-up (session bask-value) — DONE, idle (power/internet outage stop)
 
