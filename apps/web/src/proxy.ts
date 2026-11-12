@@ -4,8 +4,8 @@ import { allowed, featuresForPath, featuresForProcedure, readFlags } from '@bask
 
 import { CLOSED_HTML } from './closed-page';
 
-// Owner 2026-11-03: demo closed, every page shows the thank-you page. Reopened 2026-11-12 12:57 ET, closed again 13:01 ET (owner: "BASK DOWN"). Set false to reopen.
-const CLOSED = true;
+// Closure gate. Owner closed the demo 2026-11-03; on 2026-11-12 it was reopened, closed, then reopened again at 13:45 ET (owner: "put it back live as is"). Set true to close.
+const CLOSED = false;
 
 /**
  * The one developmental-feature gate (packages/core/src/flags.ts). A page or tRPC call whose

@@ -1,7 +1,8 @@
 # CURRENT_WORK — uvalux-platform
 
-## 2026-11-12 13:03 ET — Demo CLOSED AGAIN (was reopened 12:57 ET; session uvalux, brief from PA assistant-8)
+## 2026-11-12 13:46 ET — Demo LIVE AGAIN (open 12:57, closed 13:02, reopened 13:46 ET; session uvalux, brief from PA assistant-8)
 
+- 13:44 ET Daniel: "meh put it back live as is". `CLOSED = false` pushed; proposal pages restored in ddd to the tree at 416d562. No price change made.
 - 13:01 ET Daniel: "BASK DOWN". `CLOSED = true` pushed again, every page shows the thank-you page. The bullets below record the reopen that was withdrawn.
 - Why: Nik emailed 12:46 ET asking for the proposal link to be opened again (trade show this weekend). The proposal links into this app (`/`, `/compass`, `/compass/network`, `/monitor`).
 - Change: `apps/web/src/proxy.ts` `CLOSED = false` on master; push = prod deploy of bask-psi.vercel.app. To close again: set `CLOSED = true`, push.
