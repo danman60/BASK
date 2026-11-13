@@ -1,5 +1,15 @@
 # CURRENT_WORK — uvalux-platform
 
+## 2026-11-12 21:05 ET — ALL 3 DECISIONS DONE (owner 20:55 ET: "All 3, But the link I sent Nick needs to be active and usable")
+
+- (a) Log-token fix merged forward into master (merge b15bef5) and pushed with 01be074. Vercel Production: `NEXT_PUBLIC_LOG_TOKEN` removed, `LOG_TOKEN` rotated (new value in ~/.env.keys `BASK_LOG_TOKEN`). Live 21:02 ET: old token 401, new 200, no token 401; old token in live JS bundles: 0.
+- (b) `demo.reset`, `demo.advance`, `demo.jumpTo` now `presenterProcedure`: need header `x-bask-presenter` = `DEMO_PRESENTER_KEY` (Vercel Production; also ~/.env.keys `BASK_DEMO_PRESENTER_KEY`). Unset key = locked. Presenter Panel (Ctrl/Cmd+Shift+D) has a "Presenter key" field, kept in that browser's localStorage. Live: no key / wrong key -> 401 "The demo clock is locked"; right key jumpTo day 0 -> ok, no move. Clock still day 0 (Aug 6). Reads and the whole walk stay public.
+- (c) R2 `streamstagesite/proposals/bask-uvalux-cmxb8vlay3/index.html` (Oct 4, 133,937 B) deleted 21:04 ET; raw r2.dev now 404. Before deleting, a browser walk of Nik's link at 390 + 1440 recorded 511 responses, none from R2 proposal storage (page = static ddd public/p file, 255,123 B). Other 17 objects in that prefix (art, poster) left. Local backup of the deleted file in the session scratchpad only.
+- Nik's link after all three: 200, 255,123 B; links to `/`, `/compass`, `/compass/network`, `/monitor` all 200; film (r2.dev bask/BASK-film-v8.mp4) 200.
+- Not locked: `/dev/floor` harness (live, 200) has its own floor reset for the harness salon, not the demo clock. `demo.firePush` still public.
+- The main checkout stays on `secfix/2026-11-05`, now merged; nothing else needs that branch.
+
+
 ## 2026-11-12 17:52 ET — CLOSE-OUT (session uvalux): demo + proposal LIVE, Nik has the link
 
 - State read back 17:45 ET: bask-psi.vercel.app `/`, `/compass`, `/compass/network`, `/monitor` answer 200 with the real app; dancoded.ca/p/bask-uvalux-cmxb8vlay3 answers 200, 255,123 bytes, byte-identical to the 12:53 ET copy; dancoded.ca/p/bask-uvalux-brief-q4m8t2 answers 200, 16,587 bytes. master `CLOSED = false`.
