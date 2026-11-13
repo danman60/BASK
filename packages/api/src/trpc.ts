@@ -39,6 +39,20 @@ export const createCallerFactory = t.createCallerFactory;
 export const publicProcedure = t.procedure;
 
 /**
+ * Demo clock controls (reset, advance, bookmark jumps). The demo is public, so without this
+ * any visitor could move the shared clock for everyone. Needs the presenter key header.
+ */
+export const presenterProcedure = publicProcedure.use(({ ctx, next }) => {
+  if (!ctx.presenter) {
+    throw new TRPCError({
+      code: 'UNAUTHORIZED',
+      message: 'The demo clock is locked. Enter the presenter key to move it.',
+    });
+  }
+  return next({ ctx });
+});
+
+/**
  * Throws unless the caller holds one of `allowed`. Message is plain-language
  * because a non-technical user can trip this with the role switch
  * (IMPLEMENTATION_SPEC §3).

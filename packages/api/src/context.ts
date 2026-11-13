@@ -23,9 +23,11 @@
  * as a last resort for a database seeded some other way.
  */
 
+import { timingSafeEqual } from 'node:crypto';
+
 import { db, type PrismaClient, type ScopedDb, withSalonScope } from '@bask/db';
 
-import { type DemoRole, parseDemoRole, ROLE_HEADER, SALON_HEADER } from './roles';
+import { type DemoRole, parseDemoRole, PRESENTER_HEADER, ROLE_HEADER, SALON_HEADER } from './roles';
 import { resolveSalon, SALON_PARAM } from './salon-scope';
 
 export { ROLE_HEADER, SALON_HEADER };
@@ -36,6 +38,8 @@ export interface Context {
   /** Salon in scope, or null when the database has no salons seeded yet. */
   salonId: string | null;
   salonSlug: string | null;
+  /** True when the request carries the presenter key (DEMO_PRESENTER_KEY). Gates the demo clock. */
+  presenter: boolean;
   /** Prisma client. See `runScoped` before using it on RLS-protected tables. */
   db: PrismaClient;
   /**
@@ -67,6 +71,14 @@ function readParam(options: CreateContextOptions, header: string, param: string)
   }
 }
 
+function presenterKeyOk(given: string | null): boolean {
+  const expected = process.env.DEMO_PRESENTER_KEY;
+  if (!expected || !given) return false;
+  const a = Buffer.from(given);
+  const b = Buffer.from(expected);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
 export async function createContext(options: CreateContextOptions): Promise<Context> {
   const role = parseDemoRole(readParam(options, ROLE_HEADER, 'role'));
   const requestedSalon = readParam(options, SALON_HEADER, SALON_PARAM);
@@ -82,6 +94,7 @@ export async function createContext(options: CreateContextOptions): Promise<Cont
     role,
     salonId,
     salonSlug: salon?.slug ?? null,
+    presenter: presenterKeyOk(options.headers.get(PRESENTER_HEADER)),
     db,
     runScoped: <T,>(fn: (tx: ScopedDb) => Promise<T>): Promise<T> => {
       if (!salonId) {

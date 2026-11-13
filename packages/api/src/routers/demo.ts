@@ -1,6 +1,7 @@
 /**
  * Demo Harness router — the Presenter Panel's whole backend (IMPLEMENTATION_SPEC
- * §0.1, §1.4). Public procedures on purpose: the panel is hidden behind a hotkey,
+ * §0.1, §1.4). Reads are public; reset/advance/jumpTo need the presenter key
+ * (presenterProcedure) because the demo is public. Otherwise public on purpose: the panel is hidden behind a hotkey,
  * not behind a role, and the presenter may be switched to any role when they use it.
  */
 
@@ -11,7 +12,7 @@ import { z } from 'zod';
 
 import { DEMO_STATE_ID, ensureDemoState, fixtureDayZero } from '../demo/clock';
 import { DEMO_ROLES } from '../roles';
-import { publicProcedure, router } from '../trpc';
+import { presenterProcedure, publicProcedure, router } from '../trpc';
 
 const DAY_MS = 86_400_000;
 
@@ -119,7 +120,7 @@ export const demoRouter = router({
    * click never blocks on the AI API mid-demo — the scripted briefs are already
    * cached by `demo:advance` on the command line.
    */
-  advance: publicProcedure
+  advance: presenterProcedure
     .input(z.object({ days: z.int().min(1).max(90).default(1) }))
     .mutation(async ({ ctx, input }) => {
       const state = await ensureDemoState(ctx.db);
@@ -149,7 +150,7 @@ export const demoRouter = router({
    * Kept, unrenamed at the wire, for the panel's explicit "rewind the pointer"
    * control — where the UI now says exactly this in one line.
    */
-  reset: publicProcedure.mutation(async ({ ctx }) => {
+  reset: presenterProcedure.mutation(async ({ ctx }) => {
     await ctx.db.demoState.update({
       where: { id: DEMO_STATE_ID },
       data: { virtualToday: fixtureDayZero(), lastAdvancedAt: null, lastPipelineRunAt: null },
@@ -175,7 +176,7 @@ export const demoRouter = router({
    * navigation, not a time machine — the caller is told so via `rewindRefused`
    * and the panel says it out loud rather than quietly rewinding.
    */
-  jumpTo: publicProcedure
+  jumpTo: presenterProcedure
     .input(z.object({ day: z.int().min(0).max(90) }))
     .mutation(async ({ ctx, input }) => {
       const state = await ensureDemoState(ctx.db);

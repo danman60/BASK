@@ -29,6 +29,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { buildScopedHref, ROLE_PARAM } from '@/lib/demo-scope';
+import { readPresenterKey, writePresenterKey } from '@/lib/presenter-key';
 import { SCENARIO_BOOKMARKS, type ScenarioBookmark } from '@/lib/scenario-bookmarks';
 import { trpc } from '@/lib/trpc';
 
@@ -70,6 +71,8 @@ export function PresenterPanel() {
   const { preference, isForced, theme: paintedTheme, setPreference } = useTheme();
 
   const push = usePresenterPush();
+  const [presenterKey, setPresenterKey] = useState('');
+  useEffect(() => setPresenterKey(readPresenterKey() ?? ''), []);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -200,6 +203,18 @@ export function PresenterPanel() {
                 Rewind pointer
               </PanelButton>
             </div>
+            <input
+              type="password"
+              aria-label="Presenter key"
+              placeholder="Presenter key"
+              autoComplete="off"
+              value={presenterKey}
+              onChange={(event) => {
+                setPresenterKey(event.target.value);
+                writePresenterKey(event.target.value);
+              }}
+              className="mt-2 w-full rounded-lg border border-white/15 bg-white/10 px-2 py-1.5 text-xs text-white placeholder:text-white/40"
+            />
             <p className="mt-2 text-xs leading-snug text-amber-200/70">
               Rewind moves the date only. The visits, sales and settled campaigns the
               pipeline already wrote stay where they are — advancing again re-runs those

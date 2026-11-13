@@ -22,6 +22,8 @@ import type { StaffRole } from '@bask/db';
  */
 export const ROLE_HEADER = 'x-bask-role';
 export const SALON_HEADER = 'x-bask-salon';
+/** Presenter key header. Server compares it to DEMO_PRESENTER_KEY; unset key = clock controls locked. */
+export const PRESENTER_HEADER = 'x-bask-presenter';
 
 export const DEMO_ROLES = [
   'owner',
